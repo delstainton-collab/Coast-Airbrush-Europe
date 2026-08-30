@@ -1,0 +1,19 @@
+{
+  "name": "coast-airbrush-eu",
+  "version": "1.0.0",
+  "description": "Coast Airbrush EU - Custom Automotive & Airbrush Paint Platform, Mixing Engine & E-Commerce Storefront",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "coast-airbrush-eu",
+    "kroma-edge",
+    "flake-king",
+    "house-of-kolor",
+    "airbrush",
+    "custom-paint"
+  ],
+  "author": "Coast Airbrush EU",
+  "license": "UNLICENSED"
+}
