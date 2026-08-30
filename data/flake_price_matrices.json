@@ -1,0 +1,2780 @@
+{
+  "fk-2629": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 249.99,
+      "priceEur": 292.49
+    }
+  ],
+  "fk-2610": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 119.99,
+        "priceEur": 140.39
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "10g Jar / Pot",
+        "rawPack": "10g",
+        "priceGbp": 5.99,
+        "priceEur": 7.01
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "ultra-small",
+        "packSize": "10g",
+        "priceGbp": 5.99,
+        "priceEur": 7.01
+      },
+      {
+        "flakeSize": "ultra-small",
+        "packSize": "100g",
+        "priceGbp": 39.99,
+        "priceEur": 46.79
+      },
+      {
+        "flakeSize": "ultra-small",
+        "packSize": "1000g",
+        "priceGbp": 359.99,
+        "priceEur": 421.19
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 16.99,
+        "priceEur": 19.88
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 159.99,
+        "priceEur": 187.19
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 119.99,
+        "priceEur": 140.39
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 119.99,
+        "priceEur": 140.39
+      },
+      {
+        "flakeSize": "xlarge",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "xlarge",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "xlarge",
+        "packSize": "1000g",
+        "priceGbp": 119.99,
+        "priceEur": 140.39
+      },
+      {
+        "flakeSize": "dxl",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "dxl",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "dxl",
+        "packSize": "1000g",
+        "priceGbp": 119.99,
+        "priceEur": 140.39
+      }
+    ]
+  },
+  "fk-2603": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 106.65,
+      "priceEur": 124.78
+    }
+  ],
+  "fk-2602": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 129.99,
+      "priceEur": 152.09
+    }
+  ],
+  "fk-2600": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 1.49,
+      "priceEur": 1.74
+    }
+  ],
+  "fk-2598": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 1.32,
+      "priceEur": 1.54
+    }
+  ],
+  "fk-2542": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 0.0,
+      "priceEur": 0.0
+    }
+  ],
+  "fk-2524": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "packSize": "10g Jar / Pot",
+        "rawPack": "10g",
+        "priceGbp": 11.99,
+        "priceEur": 14.03
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "ultra-small",
+        "packSize": "100g",
+        "priceGbp": 69.99,
+        "priceEur": 81.89
+      },
+      {
+        "flakeSize": "ultra-small",
+        "packSize": "10g",
+        "priceGbp": 11.99,
+        "priceEur": 14.03
+      },
+      {
+        "flakeSize": "ultra-small",
+        "packSize": "1000g",
+        "priceGbp": 659.99,
+        "priceEur": 772.19
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 6.99,
+        "priceEur": 8.18
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 35.99,
+        "priceEur": 42.11
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 349.99,
+        "priceEur": 409.49
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      }
+    ]
+  },
+  "fk-2473": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 26.49,
+      "priceEur": 30.99
+    }
+  ],
+  "fk-2467": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 26.4,
+      "priceEur": 30.89
+    }
+  ],
+  "fk-2465": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 19.99,
+      "priceEur": 23.39
+    }
+  ],
+  "fk-2463": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 3.99,
+      "priceEur": 4.67
+    }
+  ],
+  "fk-2458": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 4.99,
+      "priceEur": 5.84
+    }
+  ],
+  "fk-2453": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 169.99,
+      "priceEur": 198.89
+    }
+  ],
+  "fk-2449": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 149.99,
+      "priceEur": 175.49
+    }
+  ],
+  "fk-2440": {
+    "packPriceMatrix": [],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "45g",
+        "packSize": "",
+        "priceGbp": 6.99,
+        "priceEur": 8.18
+      },
+      {
+        "flakeSize": "150g",
+        "packSize": "",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "300g",
+        "packSize": "",
+        "priceGbp": 27.99,
+        "priceEur": 32.75
+      },
+      {
+        "flakeSize": "600g",
+        "packSize": "",
+        "priceGbp": 39.99,
+        "priceEur": 46.79
+      }
+    ]
+  },
+  "fk-2431": {
+    "packPriceMatrix": [],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "70g",
+        "packSize": "",
+        "priceGbp": 6.99,
+        "priceEur": 8.18
+      },
+      {
+        "flakeSize": "250g",
+        "packSize": "",
+        "priceGbp": 13.99,
+        "priceEur": 16.37
+      },
+      {
+        "flakeSize": "500g",
+        "packSize": "",
+        "priceGbp": 27.99,
+        "priceEur": 32.75
+      },
+      {
+        "flakeSize": "1000g",
+        "packSize": "",
+        "priceGbp": 39.99,
+        "priceEur": 46.79
+      }
+    ]
+  },
+  "fk-2426": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 19.99,
+      "priceEur": 23.39
+    }
+  ],
+  "fk-2423": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 1.58,
+      "priceEur": 1.85
+    }
+  ],
+  "fk-2415": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 24.99,
+      "priceEur": 29.24
+    }
+  ],
+  "fk-2409": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 14.99,
+      "priceEur": 17.54
+    }
+  ],
+  "fk-2401": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 24.99,
+      "priceEur": 29.24
+    }
+  ],
+  "fk-2392": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 1.68,
+      "priceEur": 1.97
+    }
+  ],
+  "fk-2380": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 1.99,
+      "priceEur": 2.33
+    }
+  ],
+  "fk-2375": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 18.99,
+      "priceEur": 22.22
+    }
+  ],
+  "fk-2366": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 3.49,
+      "priceEur": 4.08
+    }
+  ],
+  "fk-2361": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 18.99,
+      "priceEur": 22.22
+    }
+  ],
+  "fk-2352": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 3.49,
+      "priceEur": 4.08
+    }
+  ],
+  "fk-2341": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      }
+    ]
+  },
+  "fk-2330": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2319": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      }
+    ]
+  },
+  "fk-2308": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      }
+    ]
+  },
+  "fk-2297": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      }
+    ]
+  },
+  "fk-2283": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 4.49,
+        "priceEur": 5.25
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 16.99,
+        "priceEur": 19.88
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 169.99,
+        "priceEur": 198.89
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2269": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 4.49,
+        "priceEur": 5.25
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 16.99,
+        "priceEur": 19.88
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 169.99,
+        "priceEur": 198.89
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2255": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 4.49,
+        "priceEur": 5.25
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 16.99,
+        "priceEur": 19.88
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 169.99,
+        "priceEur": 198.89
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2244": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      }
+    ]
+  },
+  "fk-2233": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2222": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      }
+    ]
+  },
+  "fk-2208": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 4.49,
+        "priceEur": 5.25
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 16.99,
+        "priceEur": 19.88
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 169.99,
+        "priceEur": 198.89
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2194": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 4.49,
+        "priceEur": 5.25
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 16.99,
+        "priceEur": 19.88
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 169.99,
+        "priceEur": 198.89
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2183": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2172": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2158": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 4.49,
+        "priceEur": 5.25
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 16.99,
+        "priceEur": 19.88
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 169.99,
+        "priceEur": 198.89
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2147": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2133": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 4.49,
+        "priceEur": 5.25
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 16.99,
+        "priceEur": 19.88
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 169.99,
+        "priceEur": 198.89
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2122": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      }
+    ]
+  },
+  "fk-2111": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      }
+    ]
+  },
+  "fk-2104": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2097": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2090": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      }
+    ]
+  },
+  "fk-2080": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 4.49,
+        "priceEur": 5.25
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 16.99,
+        "priceEur": 19.88
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 169.99,
+        "priceEur": 198.89
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2070": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 4.49,
+        "priceEur": 5.25
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 169.99,
+        "priceEur": 198.89
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2060": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 169.99,
+        "priceEur": 198.89
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2053": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2043": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 16.99,
+        "priceEur": 19.88
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 169.99,
+        "priceEur": 198.89
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2036": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2029": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 4.99,
+        "priceEur": 5.84
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 19.99,
+        "priceEur": 23.39
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 164.99,
+        "priceEur": 193.04
+      }
+    ]
+  },
+  "fk-2022": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2015": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-2005": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 4.49,
+        "priceEur": 5.25
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 169.99,
+        "priceEur": 198.89
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-1992": {
+    "packPriceMatrix": [
+      {
+        "packSize": "1000g (1 Kilo Trade)",
+        "rawPack": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "packSize": "100g Refill Jar",
+        "rawPack": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "packSize": "10g Jar / Pot",
+        "rawPack": "10g",
+        "priceGbp": 5.99,
+        "priceEur": 7.01
+      },
+      {
+        "packSize": "15g Jar / Pot",
+        "rawPack": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      }
+    ],
+    "fullMatrixPricing": [
+      {
+        "flakeSize": "ultra-small",
+        "packSize": "10g",
+        "priceGbp": 5.99,
+        "priceEur": 7.01
+      },
+      {
+        "flakeSize": "ultra-small",
+        "packSize": "100g",
+        "priceGbp": 45.99,
+        "priceEur": 53.81
+      },
+      {
+        "flakeSize": "ultra-small",
+        "packSize": "1000g",
+        "priceGbp": 399.99,
+        "priceEur": 467.99
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "15g",
+        "priceGbp": 4.49,
+        "priceEur": 5.25
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "100g",
+        "priceGbp": 16.99,
+        "priceEur": 19.88
+      },
+      {
+        "flakeSize": "small",
+        "packSize": "1000g",
+        "priceGbp": 169.99,
+        "priceEur": 198.89
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "medium",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "15g",
+        "priceGbp": 3.99,
+        "priceEur": 4.67
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "100g",
+        "priceGbp": 14.99,
+        "priceEur": 17.54
+      },
+      {
+        "flakeSize": "large",
+        "packSize": "1000g",
+        "priceGbp": 129.99,
+        "priceEur": 152.09
+      }
+    ]
+  },
+  "fk-1972": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 139.99,
+      "priceEur": 163.79
+    }
+  ],
+  "fk-1970": [
+    {
+      "packSize": "Standard Unit",
+      "priceGbp": 119.99,
+      "priceEur": 140.39
+    }
+  ]
+}

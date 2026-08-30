@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Chrome &amp; Kustom | Coast Airbrush Europe</title>
+  
+  <!-- Tailwind CSS & Plugins -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary-fixed": "#e5e2e1",
+            "on-background": "#e2e2e2",
+            "on-surface": "#e2e2e2",
+            "on-tertiary-fixed": "#1c1b1b",
+            "secondary": "#c6c6c6",
+            "error-container": "#93000a",
+            "surface-variant": "#333535",
+            "secondary-fixed-dim": "#c6c6c6",
+            "surface": "#121414",
+            "primary-fixed": "#ffdad6",
+            "on-primary": "#680008",
+            "on-secondary-fixed-variant": "#464747",
+            "surface-container-lowest": "#0c0f0f",
+            "surface-tint": "#ffb3ac",
+            "surface-bright": "#37393a",
+            "primary-container": "#d32f2f",
+            "primary": "#ffb3ac",
+            "outline-variant": "#5b403d",
+            "on-error-container": "#ffdad6",
+            "surface-dim": "#121414",
+            "on-secondary": "#2f3131",
+            "on-tertiary-container": "#f7f3f3",
+            "error": "#ffb4ab",
+            "inverse-on-surface": "#2f3131",
+            "tertiary-container": "#706f6f",
+            "background": "#121414",
+            "inverse-primary": "#ba1a20",
+            "on-error": "#690005",
+            "secondary-fixed": "#e3e2e2",
+            "secondary-container": "#484949",
+            "on-tertiary": "#313030",
+            "outline": "#ab8985",
+            "surface-container-low": "#1a1c1c",
+            "surface-container": "#1e2020",
+            "on-tertiary-fixed-variant": "#474646",
+            "on-surface-variant": "#e4beba",
+            "inverse-surface": "#e2e2e2",
+            "surface-container-highest": "#333535",
+            "on-primary-container": "#fff2f0",
+            "on-primary-fixed": "#410003",
+            "surface-container-high": "#282a2b",
+            "primary-fixed-dim": "#ffb3ac",
+            "on-secondary-fixed": "#1a1c1c",
+            "tertiary": "#c8c6c5",
+            "tertiary-fixed-dim": "#c8c6c5",
+            "on-secondary-container": "#b8b8b8",
+            "on-primary-fixed-variant": "#930010"
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          spacing: {
+            "margin-mobile": "1rem",
+            "margin-desktop": "2.5rem",
+            "gutter": "1.5rem",
+            "unit": "4px"
+          },
+          fontFamily: {
+            "label-xs": ["JetBrains Mono", "monospace"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "headline-lg-mobile": ["Anybody", "sans-serif"],
+            "headline-md": ["Anybody", "sans-serif"],
+            "headline-xl": ["Anybody", "sans-serif"],
+            "headline-lg": ["Anybody", "sans-serif"],
+            "body-md": ["Hanken Grotesk", "sans-serif"],
+            "body-lg": ["Hanken Grotesk", "sans-serif"]
+          },
+          fontSize: {
+            "label-xs": ["10px", { "lineHeight": "12px", "fontWeight": "700" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["32px", { "lineHeight": "38px", "fontWeight": "800" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "headline-xl": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "900" }],
+            "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
+
+  <!-- ========================================================================= -->
+  <!-- UK LOGISTICS & WORLDWIDE SHIPPING BANNER -->
+  <!-- ========================================================================= -->
+  <div class="bg-surface-container-lowest border-b border-secondary/60 py-2 px-margin-mobile md:px-margin-desktop text-xs font-label-xs tracking-wider flex flex-wrap justify-between items-center text-secondary gap-2">
+    <div class="flex items-center gap-3 flex-wrap">
+      <span class="text-primary font-bold flex items-center gap-1">
+        <span class="text-base">🇬🇧</span> DISPATCHED FROM UK
+      </span>
+      <span class="hidden sm:inline text-secondary/40">•</span>
+      <span class="flex items-center gap-1 text-on-surface">
+        <span class="material-symbols-outlined text-[15px] text-emerald-400">flight_takeoff</span> Fast Tracked Delivery Across All EU Countries
+      </span>
+      <span class="hidden md:inline text-secondary/40">•</span>
+      <span class="hidden md:flex items-center gap-1 text-on-surface">
+        <span class="material-symbols-outlined text-[15px] text-sky-400">factory</span> Large Volume Orders Shipped Direct from Japan &amp; USA
+      </span>
+      <span class="hidden lg:inline text-secondary/40">•</span>
+      <span class="hidden lg:flex items-center gap-1 text-emerald-400">
+        <span class="material-symbols-outlined text-[15px]">eco</span> 100% REACH &amp; VOC Compliant
+      </span>
+    </div>
+
+    <!-- Country, Language & Currency Quick Switcher Dropdown -->
+    <div class="flex items-center gap-2.5 ml-auto flex-wrap">
+      <!-- Language Selector -->
+      <div class="flex items-center gap-1 bg-surface-container border border-secondary px-2 py-1 rounded">
+        <span class="material-symbols-outlined text-[13px] text-primary">translate</span>
+        <select id="select-site-language" class="bg-transparent text-on-surface text-[11px] font-bold uppercase outline-none cursor-pointer">
+          <option value="en" class="bg-surface text-on-surface">🇬🇧 English</option>
+          <option value="de" class="bg-surface text-on-surface">🇩🇪 Deutsch</option>
+          <option value="fr" class="bg-surface text-on-surface">🇫🇷 Français</option>
+          <option value="nl" class="bg-surface text-on-surface">🇳🇱 Nederlands</option>
+          <option value="es" class="bg-surface text-on-surface">🇪🇸 Español</option>
+          <option value="it" class="bg-surface text-on-surface">🇮🇹 Italiano</option>
+          <option value="pl" class="bg-surface text-on-surface">🇵🇱 Polski</option>
+        </select>
+      </div>
+
+      <!-- Country Selector -->
+      <div class="flex items-center gap-1.5 bg-surface-container border border-secondary px-2.5 py-1 rounded">
+        <span id="nav-selected-country-flag" class="text-sm">🇩🇪</span>
+        <select id="select-eu-country" class="bg-transparent text-on-surface text-[11px] font-bold uppercase outline-none cursor-pointer">
+          <option value="DE" class="bg-surface text-on-surface">🇩🇪 Germany (EUR €)</option>
+          <option value="FR" class="bg-surface text-on-surface">🇫🇷 France (EUR €)</option>
+          <option value="NL" class="bg-surface text-on-surface">🇳🇱 Netherlands (EUR €)</option>
+          <option value="GB" class="bg-surface text-on-surface">🇬🇧 United Kingdom (GBP £)</option>
+          <option value="IT" class="bg-surface text-on-surface">🇮🇹 Italy (EUR €)</option>
+          <option value="ES" class="bg-surface text-on-surface">🇪🇸 Spain (EUR €)</option>
+          <option value="PL" class="bg-surface text-on-surface">🇵🇱 Poland (PLN zł)</option>
+          <option value="BE" class="bg-surface text-on-surface">🇧🇪 Belgium (EUR €)</option>
+          <option value="CH" class="bg-surface text-on-surface">🇨🇭 Switzerland (CHF)</option>
+          <option value="SE" class="bg-surface text-on-surface">🇸🇪 Sweden (SEK kr)</option>
+        </select>
+      </div>
+
+      <!-- Preferred Unit Toggle (Metric / Imperial) -->
+      <button id="btn-toggle-units" class="hidden sm:flex items-center gap-1 bg-surface-container border border-secondary px-2 py-1 text-[11px] text-secondary hover:text-primary transition-colors cursor-pointer" title="Toggle Unit Preference">
+        <span class="material-symbols-outlined text-[14px]">straighten</span>
+        <span id="label-unit-toggle">METRIC (mL/g)</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- STITCH TOP NAVIGATION BAR -->
+  <!-- ========================================================================= -->
+  <nav class="bg-surface font-label-sm text-label-sm uppercase tracking-widest flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 sticky top-0 z-50 border-b-2 border-secondary shadow-[0_4px_0px_0px_rgba(0,0,0,1)] backdrop-blur">
+    <!-- Logo Area -->
+    <a id="nav-logo-btn" class="flex-shrink-0 flex items-center h-12 w-44 md:w-52 relative cursor-pointer" href="javascript:void(0)">
+      <img alt="COAST AIRBRUSH" class="w-full h-full object-contain transition-transform hover:scale-105" src="assets/images/coast_logo_white.png">
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <div class="hidden md:flex items-center space-x-6">
+      <a id="tab-storefront" class="nav-link active" href="javascript:void(0)">SHOP</a>
+      <a id="tab-preorders" class="nav-link" href="javascript:void(0)">PRE-ORDERS</a>
+      <a id="tab-forum" class="nav-link" href="javascript:void(0)">COMMUNITY FORUM</a>
+      <a id="tab-calculator" class="nav-link" href="javascript:void(0)">MIX CALCULATOR</a>
+      <a id="tab-coverage" class="nav-link" href="javascript:void(0)">COVERAGE ESTIMATOR</a>
+      <a id="tab-agent-a" class="nav-link !text-primary flex items-center gap-1.5" href="javascript:void(0)">
+        <span class="material-symbols-outlined text-[16px]">smart_toy</span> PAINTER AI
+      </a>
+    </div>
+
+    <!-- Trailing Actions -->
+    <div class="flex items-center space-x-3">
+      <!-- Destination Badge & Speed Indicator -->
+      <div id="nav-shipping-speed-badge" class="hidden xl:flex items-center gap-1.5 font-label-xs text-[10px] text-emerald-400 bg-emerald-950/40 border border-emerald-500/40 px-2.5 py-1.5">
+        <span class="material-symbols-outlined text-[14px]">bolt</span>
+        <span id="nav-shipping-speed-text">🇬🇧 UK Dispatch: 2-3d to Europe</span>
+      </div>
+
+      <!-- Dealer B2B Login -->
+      <button id="btn-b2b-login" class="hidden sm:inline-flex items-center gap-1.5 font-label-xs text-label-xs border-2 border-secondary bg-surface-container px-3 py-2 text-on-surface hover:border-primary hover:text-primary transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-0.5 active:shadow-none">
+        <span class="material-symbols-outlined text-[16px]">storefront</span> DEALER / B2B
+      </button>
+
+      <!-- Cart Drawer Button -->
+      <button id="btn-toggle-cart-drawer" class="mech-button-primary !py-2 !px-4 text-xs flex items-center gap-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+        <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+        <span class="hidden sm:inline">CART</span>
+        <span id="header-cart-count" class="bg-surface text-primary font-bold px-1.5 py-0.5 rounded text-[11px]">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Secondary Navigation Bar -->
+  <div class="md:hidden bg-surface-container-low border-b-2 border-secondary flex overflow-x-auto py-2.5 px-4 gap-2 text-xs">
+    <button onclick="document.getElementById('tab-storefront').click()" class="nav-link !text-xs !py-1 !px-2.5 active">Shop</button>
+    <button onclick="document.getElementById('tab-preorders').click()" class="nav-link !text-xs !py-1 !px-2.5">Pre-Orders</button>
+    <button onclick="document.getElementById('tab-forum').click()" class="nav-link !text-xs !py-1 !px-2.5">Forum</button>
+    <button onclick="document.getElementById('tab-calculator').click()" class="nav-link !text-xs !py-1 !px-2.5">Mix Lab</button>
+    <button onclick="document.getElementById('tab-coverage').click()" class="nav-link !text-xs !py-1 !px-2.5">Coverage</button>
+    <button onclick="document.getElementById('tab-agent-a').click()" class="nav-link !text-xs !py-1 !px-2.5 !text-primary">Painter AI</button>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- TAB VIEW 1: MASTER STOREFRONT & SHOPPING WORKSPACE (Active View) -->
+  <!-- ========================================================================= -->
+  <div id="view-storefront" class="tab-view flex-grow flex flex-col">
+    
+    <!-- Hero Section (Option B: Full-Bleed Buggy Showcase) -->
+    <section class="relative w-full py-20 lg:py-28 bg-surface-container-lowest border-b-2 border-secondary overflow-hidden">
+      <!-- Full-Bleed Background Image with Directional Fade -->
+      <div class="absolute inset-0 bg-cover bg-[center_right] md:bg-right" style="background-image: linear-gradient(to right, rgba(18, 20, 20, 0.98) 0%, rgba(18, 20, 20, 0.88) 38%, rgba(18, 20, 20, 0.40) 70%, rgba(18, 20, 20, 0.10) 100%), url('assets/images/flake_buggy_hero.jpg');"></div>
+      <!-- Metallic Overlay -->
+      <div class="absolute inset-0 metal-sheen opacity-20 pointer-events-none"></div>
+      <!-- Pinstripe Accent -->
+      <div class="absolute bottom-0 w-full h-1 bg-primary-container z-10"></div>
+
+      <div class="relative z-20 h-full flex flex-col justify-center items-start px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full">
+        <!-- Hero Content Column -->
+        <div class="max-w-2xl">
+          <div class="mb-5 w-full max-w-[340px]">
+            <img src="assets/images/coast_logo_white.png" alt="Coast Airbrush" class="w-full h-auto drop-shadow-[0_0_25px_rgba(211,47,47,0.7)]">
+          </div>
+          
+          <div class="flex items-center gap-2 mb-3">
+            <span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">speed</span>
+            <span class="font-label-sm text-label-sm uppercase text-secondary tracking-widest">Master Series</span>
+            <span class="metal-spec-plate text-[10px] ml-2">FLAKE KING .025" SILVER + KANDY FLAMES</span>
+          </div>
+
+          <h1 class="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase text-primary italic mb-5 tracking-tighter drop-shadow-[0_0_20px_rgba(211,47,47,0.6)]">
+            KUSTOM KULTURE REFINED.
+          </h1>
+
+          <p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-xl leading-relaxed">
+            High-performance paints, precision Flake King dry guns, and pure garage energy. Shipped directly from the UK across Europe, with direct factory container logistics from Japan &amp; USA for large commercial orders.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <button onclick="document.getElementById('storefront-catalog-anchor').scrollIntoView({behavior: 'smooth'})" class="bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase px-8 py-4 border-b-2 border-secondary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-inverse-primary hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center gap-2 font-bold cursor-pointer">
+              SHOP REFINED COLORS
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </button>
+            <button onclick="document.getElementById('tab-forum').click()" class="bg-surface/80 backdrop-blur text-on-surface font-label-sm text-label-sm uppercase px-6 py-4 border-2 border-secondary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-surface-variant transition-all flex items-center gap-2 cursor-pointer">
+              OWNER'S FORUM
+              <span class="material-symbols-outlined text-[18px]">forum</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logistics Trust & Global Sourcing Strip -->
+    <section class="bg-surface-container-low border-b-2 border-secondary py-6 px-margin-mobile md:px-margin-desktop">
+      <div class="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="flex items-start gap-3">
+          <div class="p-2.5 bg-surface border border-secondary text-primary rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <span class="material-symbols-outlined text-2xl">local_shipping</span>
+          </div>
+          <div>
+            <h4 class="font-headline text-sm uppercase text-on-surface">UK Direct Dispatch</h4>
+            <p class="font-body-md text-xs text-secondary">All standard orders dispatched direct from UK stock via DPD, DHL &amp; Royal Mail.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <div class="p-2.5 bg-surface border border-secondary text-emerald-400 rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <span class="material-symbols-outlined text-2xl">factory</span>
+          </div>
+          <div>
+            <h4 class="font-headline text-sm uppercase text-on-surface">Direct Japan / USA Sourcing</h4>
+            <p class="font-body-md text-xs text-secondary">Bulk and commercial trade orders can ship directly from Signal Japan or Coast USA.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <div class="p-2.5 bg-surface border border-secondary text-sky-400 rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <span class="material-symbols-outlined text-2xl">verified_user</span>
+          </div>
+          <div>
+            <h4 class="font-headline text-sm uppercase text-on-surface">REACH &amp; VOC Certified</h4>
+            <p class="font-body-md text-xs text-secondary">Complies with European Chemical Directives &amp; Bodyshop emission standards.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <div class="p-2.5 bg-surface border border-secondary text-yellow-400 rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <span class="material-symbols-outlined text-2xl">payments</span>
+          </div>
+          <div>
+            <h4 class="font-headline text-sm uppercase text-on-surface">European Local Payments</h4>
+            <p class="font-body-md text-xs text-secondary">iDEAL, Klarna, Bancontact, BLIK, SEPA, and 0% export VAT for verified businesses.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Grid Section: Top Tier Kits & Metals (Stitch Authentic) -->
+    <div class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full py-12 flex flex-col gap-12">
+      <section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+        <!-- Section Header -->
+        <div class="col-span-1 md:col-span-12 flex justify-between items-end mb-2 border-b-2 border-secondary pb-3 relative">
+          <h2 class="font-headline-lg text-headline-md md:text-headline-lg uppercase text-on-surface">Top Tier Kits &amp; Metals</h2>
+          <div class="pinstripe absolute bottom-0 left-0 w-1/3"></div>
+        </div>
+
+        <!-- Featured Kit Card (Large 8-col) -->
+        <div class="col-span-1 md:col-span-8 bg-surface-container border-2 border-secondary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group hover:border-primary-container transition-colors relative overflow-hidden flex flex-col md:flex-row h-full min-h-[380px]">
+          <div class="w-full md:w-1/2 h-64 md:h-full bg-surface-dim relative border-b-2 md:border-b-0 md:border-r-2 border-secondary">
+            <img class="absolute inset-0 w-full h-full object-cover filter contrast-125 group-hover:scale-105 transition-all duration-500" alt="The Outlaw Compressor Kit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBavElGrP0UeSQQie53Hp7PUjGuy-joCWAUarZIPbjEC6dZUHUMg32_CPrjc-CHYCuArdyC4R6i5h2_pjSPm1a7hYYzdOGX0shgKhyIL6eiKR0aWgWshECdmAdA1uHZ1JIPfEQnEEfSg7aLF9AI9eqpAI7zZSJZ86tWqelCE3gT9ebSGOk3e7rte-1MB1HLR0F9eMCbJDu5yV17Jgz81wkoUoipjWSX9lsLUUpRdFVPWUK5mJyYTNw6mQ">
+            <div class="absolute top-4 left-4 bg-secondary text-surface font-label-xs text-label-xs px-2.5 py-1 uppercase border border-surface shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center gap-1 font-bold">
+              <span class="material-symbols-outlined text-[12px]">build</span> Pro Series
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 p-8 flex flex-col justify-between bg-gradient-to-b from-surface-container to-surface">
+            <div>
+              <div class="font-mono text-[11px] text-secondary mb-1">SKU: PRO-OUTLAW-50</div>
+              <h3 class="font-headline text-2xl uppercase text-primary mb-2">The Outlaw Compressor Kit</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">Industrial strength airflow meets pinpoint precision. Built for the garage, refined for the gallery.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-surface-dim border border-secondary text-on-surface font-label-xs text-label-xs px-3 py-1 uppercase flex items-center gap-1.5 font-bold">
+                  <span class="w-2 h-2 rounded-full bg-primary-container"></span> 50 PSI Max
+                </span>
+                <span class="bg-surface-dim border border-secondary text-on-surface font-label-xs text-label-xs px-3 py-1 uppercase flex items-center gap-1.5 font-bold">
+                  <span class="w-2 h-2 rounded-full bg-secondary"></span> Dual Action
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t-2 border-secondary border-dashed">
+              <span class="font-headline text-2xl text-on-surface">€460.00 <span class="text-xs font-mono text-secondary">($499 USD)</span></span>
+              <button onclick="window.paintApp.addDirectToCart({sku: 'PRO-OUTLAW-50', title: 'The Outlaw Compressor Kit', price: 460.00})" class="w-11 h-11 border-2 border-secondary hover:border-primary text-secondary hover:text-primary flex items-center justify-center transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] bg-surface-dim cursor-pointer">
+                <span class="material-symbols-outlined text-[22px]">add_shopping_cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Latest Metal Flakes Stack (4-col) -->
+        <div class="col-span-1 md:col-span-4 flex flex-col gap-6 h-full">
+          <!-- Flake Item 1 -->
+          <div class="bg-surface-container border-2 border-secondary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex-grow flex flex-col relative overflow-hidden group">
+            <div class="h-32 bg-surface-dim border-b-2 border-secondary relative overflow-hidden">
+              <img class="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" alt="Bloodhound Red Flake" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYjvbnNECBYPygPVQ1XL5eFtbNAmCtclEB4Fs-w1E49c54w1fzpbaTbq8eSxt34Ynv0Qhlga9hV304V0qQncK8geyEPrG_3inqk1VVoJkvEagwpqgWsdEV7Mf5gmBGF78EL1zUnPTSs9LluAu4MUIL3hjsUZxJbGFm9Nl7c71CIJQ66TnHKdxpYgzJ47g5QeLUTaGxConxq3L2h6aFOBEyyiLhIO_ID7C-TZ2P6VxDLLLO0XiHbNbMqA">
+              <div class="absolute top-2 left-2">
+                <span class="metal-spec-plate text-[10px]">.008 Mini</span>
+              </div>
+              <div class="absolute bottom-0 right-0 bg-primary-container w-10 h-10 flex items-center justify-center border-l-2 border-t-2 border-secondary">
+                <span class="material-symbols-outlined text-on-primary-container text-sm">water_drop</span>
+              </div>
+            </div>
+            <div class="p-4 flex-grow flex flex-col justify-between">
+              <h4 class="font-headline text-lg uppercase text-on-surface tracking-tight">Bloodhound Red Flake</h4>
+              <div class="flex items-center justify-between mt-3">
+                <span class="font-label-sm text-label-sm text-primary font-bold uppercase">€24.00</span>
+                <button onclick="window.paintApp.addDirectToCart({sku: 'FK-FLAKE-RED-008', title: 'Bloodhound Red Flake .008', price: 24.00})" class="text-primary hover:text-primary-container font-label-xs text-label-xs uppercase flex items-center font-bold">Add <span class="material-symbols-outlined text-[14px]">chevron_right</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flake Item 2 -->
+          <div class="bg-surface-container border-2 border-secondary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex-grow flex flex-col relative overflow-hidden group">
+            <div class="h-32 bg-surface-dim border-b-2 border-secondary relative overflow-hidden">
+              <img class="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" alt="Chrome Shrapnel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU8kCBWAmdFaGsVAGlOict2oqcARIbnI7p-eNn0NUwUBdwR5TtiYD3b_TNtwaieX0IBB99hle6vpUv6qU4DYPXX9NWILucwcy0_leBFqbdE8LFD8j0yzRN-zOKh225Fdz1bfM40IZh4-bNxCJw5oIH65KbEQJ4POOIBejKJfCcAmaX6eMOBFZOelse4U0VfRRuyHaD7Er66aLBSLDJZ8kYHzda3_1mQf0iB0Rm_aIdRPWPxSdz1j8FMw">
+              <div class="absolute top-2 left-2">
+                <span class="metal-spec-plate text-[10px]">.015 Standard</span>
+              </div>
+              <div class="absolute bottom-0 right-0 bg-secondary w-10 h-10 flex items-center justify-center border-l-2 border-t-2 border-surface-container">
+                <span class="material-symbols-outlined text-surface text-sm">auto_awesome</span>
+              </div>
+            </div>
+            <div class="p-4 flex-grow flex flex-col justify-between">
+              <h4 class="font-headline text-lg uppercase text-on-surface tracking-tight">Chrome Shrapnel</h4>
+              <div class="flex items-center justify-between mt-3">
+                <span class="font-label-sm text-label-sm text-primary font-bold uppercase">€24.00</span>
+                <button onclick="window.paintApp.addDirectToCart({sku: 'FK-FLAKE-CHROME-015', title: 'Chrome Shrapnel Flake .015', price: 24.00})" class="text-primary hover:text-primary-container font-label-xs text-label-xs uppercase flex items-center font-bold">Add <span class="material-symbols-outlined text-[14px]">chevron_right</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Community Promo Section (Stitch Authentic) -->
+      <section class="border-2 border-secondary bg-surface-container-high relative overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-secondary to-transparent"></div>
+        <div class="flex flex-col md:flex-row">
+          <!-- Text Content -->
+          <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center relative z-10 border-b-2 md:border-b-0 md:border-r-2 border-secondary bg-surface/60 backdrop-blur-sm">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="w-2.5 h-2.5 bg-primary-container rounded-full animate-pulse"></span>
+              <span class="font-label-sm text-label-sm uppercase text-secondary tracking-widest">Restricted Access</span>
+            </div>
+            <h2 class="font-headline text-3xl uppercase text-on-surface mb-3">The 'Owner's Only' Forum</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-6 border-l-2 border-primary-container pl-4 leading-relaxed">
+              Connect with elite custom painters, share verified paint formulas, and access priority allocations on official European inventory.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <button onclick="document.getElementById('tab-forum').click()" class="bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase px-6 py-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-inverse-primary transition-colors font-bold flex items-center gap-2">
+                JOIN COMMUNITY
+                <span class="material-symbols-outlined text-sm">group</span>
+              </button>
+              <button onclick="document.getElementById('btn-open-verify-modal').click()" class="bg-transparent border-2 border-secondary text-on-surface font-label-sm text-label-sm uppercase px-6 py-3 hover:bg-surface-variant transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                VERIFY ORDER
+              </button>
+            </div>
+          </div>
+          <!-- Visual/Stats Content -->
+          <div class="w-full md:w-1/2 bg-surface-container-lowest relative p-8 flex flex-col justify-center items-center overflow-hidden">
+            <div class="absolute inset-0 opacity-15 pointer-events-none flex items-center justify-center">
+              <span class="material-symbols-outlined text-[200px] text-secondary transform -rotate-45">settings</span>
+            </div>
+            <div class="grid grid-cols-2 gap-6 w-full max-w-sm relative z-10">
+              <div class="bg-surface border-2 border-secondary p-5 text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                <span class="block font-headline text-4xl text-primary mb-1">10K+</span>
+                <span class="font-label-xs text-label-xs uppercase text-secondary font-bold">Active Builders</span>
+              </div>
+              <div class="bg-surface border-2 border-secondary p-5 text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                <span class="block font-headline text-4xl text-on-surface mb-1">500+</span>
+                <span class="font-label-xs text-label-xs uppercase text-secondary font-bold">Custom Mixes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MASTER PRODUCT CATALOG (STITCH SHOP SCREEN LAYOUT) -->
+    <!-- ========================================================================= -->
+    <div id="storefront-catalog-anchor" class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full py-8 flex-grow">
+      
+      <!-- Top Banner Header (Stitch Authentic) -->
+      <div class="industrial-card w-full h-44 md:h-56 relative overflow-hidden group mb-8">
+        <img alt="Header Image" class="absolute inset-0 w-full h-full object-cover garage-filter opacity-55 mix-blend-luminosity group-hover:opacity-75 transition-opacity duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX_qHNJaNBNJnoCKgMNTRR2VzufcTRR7DbOZySBgsJemjAhwzz6hwS4XwjLFYsrt1JU0B0BFo-GfI_4HsztfAh_ojZXeaNYh8On_dQHzaIotdKA3U1zF8XEQPijZ3EUjDmNxypGWZN4iL__hXxT1-FS2t3HBLrRVMmsjVyGfRtmzQuZDQGUHOXecUPePGRWgqO8mKgc8dM6jgaksqaYk-Dc4KHlZBVAGRL3FJiu2uSlqalMsIXvOCj0BUrrteaBcP8xFA">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+        <div class="absolute bottom-6 left-6 right-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+          <div>
+            <span class="metal-spec-plate-red text-[10px] mb-2 inline-block">OFFICIAL EUROPEAN MASTER DISTRIBUTOR</span>
+            <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl text-primary uppercase drop-shadow-[0_0_8px_rgba(211,47,47,0.8)]">Paint &amp; Metal Flake</h2>
+            <p class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mt-1">Premium finishes for high-performance builds.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-label-xs text-xs bg-emerald-950 text-emerald-400 border border-emerald-700 px-2.5 py-1 font-bold">
+              ⚡ 24/48H RAPID DISPATCH (EU &amp; UK)
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Layout: Left Filter Sidebar (Tool Chest) + Right Product Canvas -->
+      <div class="flex flex-col lg:flex-row gap-gutter items-start">
+        
+        <!-- Sidebar Filter (Modular Tool Chest) -->
+        <aside class="w-full lg:w-72 flex-shrink-0 flex flex-col gap-6 sticky top-24">
+          <div class="industrial-card p-5">
+            <h3 class="font-headline text-xl mb-3 text-secondary uppercase tracking-tight">Filters</h3>
+            <div class="pinstripe-divider mb-5"></div>
+            
+            <!-- Brand Filter -->
+            <div class="mb-5">
+              <label class="font-label-xs text-label-xs uppercase text-secondary mb-2 block font-bold">Brand</label>
+              <select id="select-brand-filter" class="mech-select">
+                <option value="all">All Brands (VsionAir, Flake King, Kroma Edge)</option>
+                <option value="VsionAir">VsionAir (Workstations &amp; Jigs)</option>
+                <option value="Flake King">Flake King (Dry Guns &amp; Flakes)</option>
+                <option value="Kroma Edge">Kroma Edge (Liquid Chrome &amp; Paints)</option>
+              </select>
+            </div>
+
+            <!-- Product Category Filter (Selectable Category List) -->
+            <div class="mb-5">
+              <div class="flex items-center justify-between mb-2">
+                <label class="font-label-xs text-label-xs uppercase text-secondary font-bold">Product Categories</label>
+                <span id="sidebar-category-header-count" class="text-[10px] font-mono text-primary font-bold">19 CATEGORIES</span>
+              </div>
+              
+              <!-- Interactive Category Selection List -->
+              <div id="sidebar-category-list" class="flex flex-col gap-1 max-h-72 overflow-y-auto pr-1 custom-scrollbar border border-secondary/20 p-1.5 bg-surface-container-lowest/70 rounded">
+                <!-- Injected dynamically via JS with active state highlighting -->
+              </div>
+              
+              <!-- Hidden select retained for programmatic compatibility -->
+              <select id="select-category-filter" class="hidden">
+                <option value="all">All Product Categories (136 Products)</option>
+                <option value="Dry Metal Flake (Glitter)">Dry Metal Flakes &amp; Glitters</option>
+                <option value="Dry Metal Flake Guns">Flake Guns &amp; Applicators</option>
+                <option value="Solvent Paints">Solvent Paints &amp; Chrome Systems</option>
+                <option value="Airbrushes &amp; Spray Guns">Airbrushes &amp; Spray Guns</option>
+                <option value="Helmet Jigs">Helmet &amp; Mask Jigs</option>
+                <option value="Tool Bars &amp; Lighting Rigs">Tool Bars &amp; Lighting Rigs</option>
+                <option value="Stands">Workstation Stands &amp; Desk Mounts</option>
+                <option value="Airbrush Specific">Airbrush Specific Mounts &amp; Holders</option>
+                <option value="Canvass Jig">Canvass &amp; Art Jigs</option>
+                <option value="Skateboard Jig">Skateboard &amp; Specialty Jigs</option>
+                <option value="Motorcycle Part Jigs">Motorcycle Part Jigs</option>
+                <option value="Car &amp; Motorcycle Wheel Jig">Wheel &amp; Rim Jigs</option>
+                <option value="Guitar Parts Jigs">Guitar &amp; Instrument Jigs</option>
+                <option value="VsionAir Knobs">VsionAir Knobs &amp; Fasteners</option>
+                <option value="VsionAir Brackets">VsionAir Brackets &amp; Hardware</option>
+                <option value="Storage, Comfort &amp; Environment">Storage &amp; Workstation Ergonomics</option>
+                <option value="Corroded Metal FX">Corroded Metal FX Series</option>
+                <option value="Masking Products">Masking Tapes &amp; Supplies</option>
+                <option value="Wet Products">Wet Binders &amp; Cleaners</option>
+              </select>
+            </div>
+
+            <!-- Flake Sub-categories Filter Chips -->
+            <div class="mb-5">
+              <label class="font-label-xs text-label-xs uppercase text-secondary mb-2 block font-bold">Flake Dimension &amp; Finish</label>
+              <div class="flex flex-wrap gap-1.5">
+                <button data-flake-subcat="all" class="flake-subcat-btn metal-spec-plate-red text-[10px] uppercase cursor-pointer">All Flakes</button>
+                <button data-flake-subcat="single" class="flake-subcat-btn metal-spec-plate text-[10px] uppercase cursor-pointer">Single Colour</button>
+                <button data-flake-subcat="blend" class="flake-subcat-btn metal-spec-plate text-[10px] uppercase cursor-pointer">Blends</button>
+                <button data-flake-subcat="holographic" class="flake-subcat-btn metal-spec-plate text-[10px] uppercase cursor-pointer">Holographic</button>
+                <button data-flake-subcat="iridescent" class="flake-subcat-btn metal-spec-plate text-[10px] uppercase cursor-pointer">Iridescent</button>
+              </div>
+            </div>
+
+            <!-- Search Field -->
+            <div class="mb-4">
+              <label class="font-label-xs text-label-xs uppercase text-secondary mb-2 block font-bold">Keyword / SKU Search</label>
+              <input id="input-shop-search" type="text" placeholder="Search SKU, name..." class="mech-input">
+            </div>
+
+            <button id="btn-reset-filters" class="w-full bg-transparent border-2 border-secondary py-2 font-label-xs text-label-xs uppercase text-secondary hover:bg-secondary hover:text-black transition-colors font-bold cursor-pointer">
+              Reset Filters
+            </button>
+          </div>
+
+          <!-- Quick Cart BOM Card in Sidebar -->
+          <div class="industrial-card p-5 hidden lg:flex flex-col gap-3">
+            <div class="flex items-center justify-between border-b border-secondary pb-2">
+              <span class="font-headline text-base uppercase text-primary">Cart Summary</span>
+              <span class="metal-spec-plate text-[10px]">SHOPIFY LIVE</span>
+            </div>
+            <div class="flex justify-between font-mono text-xs text-secondary">
+              <span>Items in Cart:</span>
+              <span id="sidebar-cart-qty-display" class="font-bold text-on-surface">0</span>
+            </div>
+            <div class="flex justify-between font-mono text-xs text-secondary">
+              <span>Est. Subtotal:</span>
+              <span id="sidebar-cart-total-display" class="font-bold text-primary">€0.00</span>
+            </div>
+            <button onclick="window.paintApp.openCartDrawer()" class="mech-button-primary !w-full !justify-center !text-xs !py-2.5">
+              Open Full Cart &amp; BOM &rarr;
+            </button>
+          </div>
+        </aside>
+
+        <!-- Product Canvas -->
+        <main class="flex-grow flex flex-col gap-6 w-full">
+          
+          <!-- Mobile Filter Trigger Bar (Visible on Mobile/Tablet) -->
+          <div class="lg:hidden flex items-center justify-between bg-surface-container border-2 border-secondary p-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <button id="btn-open-mobile-filters" class="mech-button-primary !py-2 !px-3.5 text-xs flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px]">tune</span>
+              <span>FILTER &amp; SORT</span>
+              <span id="mobile-filter-badge-count" class="bg-surface text-primary font-bold px-1.5 py-0.5 rounded text-[10px]">ALL</span>
+            </button>
+            <div class="flex items-center gap-2">
+              <span id="mobile-shop-results-count" class="font-mono text-xs text-secondary font-bold">136 Products</span>
+            </div>
+          </div>
+
+          <!-- Results Count Bar & Sorter -->
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-surface-container-low p-3 border-2 border-secondary gap-3">
+            <span id="shop-results-count" class="font-label-sm text-label-sm text-secondary uppercase font-bold">Showing 136 Products</span>
+            <div class="flex items-center gap-2">
+              <span class="font-label-xs text-xs text-secondary uppercase">Sort:</span>
+              <select id="select-shop-sort" class="bg-surface text-on-surface border-2 border-secondary font-label-xs text-xs uppercase py-1 px-2 focus:border-primary outline-none">
+                <option value="popular">Popularity</option>
+                <option value="rating">Top Rated (Painter Reviews)</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="name">Product Name (A-Z)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Product Grid (All 136 Products Injected Dynamically) -->
+          <div id="storefront-product-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-gutter">
+            <!-- Product cards injected via JS -->
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- TAB VIEW 2: MIXING CALCULATOR & RATIO MATRIX -->
+  <!-- ========================================================================= -->
+  <div id="view-calculator" class="tab-view flex-grow flex flex-col py-8 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full" style="display: none;">
+    <div class="border-b-2 border-secondary pb-4 mb-8 flex justify-between items-end">
+      <div>
+        <span class="metal-spec-plate-red">PRECISION PAINT LAB</span>
+        <h2 class="font-headline text-3xl uppercase text-primary mt-1">INTERACTIVE MIXING CALCULATOR &amp; FORMULATION LAB</h2>
+      </div>
+      <button onclick="document.getElementById('tab-scale').click()" class="mech-btn-secondary !text-xs">
+        <span class="material-symbols-outlined text-[16px]">scale</span> SWITCH TO SCALE MODE
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        <div class="industrial-card p-6">
+          <div class="flex items-center justify-between mb-4 border-b-2 border-secondary pb-2">
+            <h3 class="font-headline text-lg text-primary uppercase">1. System &amp; Volume</h3>
+            <span class="metal-spec-plate">STEP 1</span>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div>
+              <label for="select-mixing-system" class="font-label-xs text-xs text-secondary uppercase block mb-1.5 font-bold">Product Line &amp; Formula</label>
+              <select id="select-mixing-system" class="mech-select"></select>
+            </div>
+
+            <div>
+              <label for="input-total-volume" class="font-label-xs text-xs text-secondary uppercase block mb-1.5 font-bold">Total Mixed Volume Required</label>
+              <div class="flex gap-2">
+                <input type="number" id="input-total-volume" class="mech-input" value="500" min="10" max="50000">
+                <select id="select-volume-unit" class="mech-select w-32">
+                  <option value="ml">mL</option>
+                  <option value="floz">Fl Oz</option>
+                  <option value="pt">Pints</option>
+                  <option value="qt">Quarts</option>
+                </select>
+              </div>
+            </div>
+
+            <p id="system-description" class="font-mono text-xs text-on-surface-variant bg-surface-dim p-3 border-l-2 border-primary-container leading-relaxed">
+              Loading system formula details...
+            </p>
+          </div>
+        </div>
+
+        <div class="industrial-card p-6">
+          <div class="flex items-center justify-between mb-4 border-b-2 border-secondary pb-2">
+            <h3 class="font-headline text-lg text-primary uppercase">2. Base &amp; Effect Swatches</h3>
+            <span class="metal-spec-plate">STEP 2</span>
+          </div>
+          <div id="swatch-container" class="swatch-grid max-h-80 overflow-y-auto pr-1">
+            <!-- Swatches rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 flex flex-col gap-6">
+        <div class="industrial-card p-6">
+          <div class="flex items-center justify-between mb-4 border-b-2 border-secondary pb-2">
+            <h3 class="font-headline text-lg text-primary uppercase">3. Scale Target Weight Matrix</h3>
+            <span id="formula-ratio-badge" class="metal-spec-plate-red">Ratio: 2:1</span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="mech-table">
+              <thead>
+                <tr>
+                  <th>Step</th>
+                  <th>Component</th>
+                  <th>SKU</th>
+                  <th>Mix %</th>
+                  <th>Volume</th>
+                  <th>Indiv. Weight</th>
+                  <th>Cumulative Scale Target</th>
+                </tr>
+              </thead>
+              <tbody id="recipe-table-body">
+                <!-- Recipe rows -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="flex flex-wrap justify-end gap-3 mt-6 pt-4 border-t-2 border-secondary">
+            <button id="btn-send-to-scale" class="mech-btn-secondary !text-xs">
+              ⚖️ Precision Scale Mode
+            </button>
+            <button id="btn-add-to-cart" class="mech-button-primary !text-xs">
+              📋 Add Components to Project BOM
+            </button>
+          </div>
+        </div>
+
+        <div class="industrial-card p-5 flex flex-wrap items-center justify-between gap-4 bg-surface-container">
+          <div>
+            <h4 class="font-headline text-sm uppercase text-on-surface">Export Recipe &amp; Quotes</h4>
+            <p class="font-label-xs text-xs text-secondary">Export to Project BOM, CSV Quote, or JSON Formula</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button id="btn-export-shopify-permalink" class="mech-button-primary !py-2 !px-3 !text-xs">
+              BOM Link
+            </button>
+            <button id="btn-export-csv-bom" class="mech-btn-secondary !py-2 !px-3 !text-xs">
+              CSV Quote
+            </button>
+            <button id="btn-export-json-recipe" class="mech-btn-secondary !py-2 !px-3 !text-xs">
+              JSON Recipe
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- TAB VIEW 3: DIGITAL SCALE MODE -->
+  <!-- ========================================================================= -->
+  <div id="view-scale" class="tab-view flex-grow flex flex-col py-8 px-margin-mobile md:px-margin-desktop max-w-[1000px] mx-auto w-full" style="display: none;">
+    <div class="border-b-2 border-secondary pb-4 mb-8 flex justify-between items-end">
+      <div>
+        <span class="metal-spec-plate-red">BODYSHOP PRECISION SCALE</span>
+        <h2 class="font-headline text-3xl uppercase text-primary mt-1">GRAM SCALE MIX ASSISTANT</h2>
+      </div>
+      <button onclick="document.getElementById('tab-calculator').click()" class="mech-btn-secondary !text-xs">
+        &larr; BACK TO CALCULATOR
+      </button>
+    </div>
+
+    <div class="industrial-card p-6 md:p-8 flex flex-col gap-6">
+      <div class="scale-display">
+        <div class="font-label-xs text-xs uppercase text-secondary mb-2 font-bold">LIVE MIX TARGET (CUMULATIVE GRAMS)</div>
+        <div id="scale-target-digits" class="scale-digits">0.0 g</div>
+        <div id="scale-step-title" class="font-label-sm text-sm uppercase text-primary font-bold mt-2">STEP 1: ADD BASECOAT</div>
+      </div>
+
+      <div class="flex justify-between items-center bg-surface-dim p-4 border-2 border-secondary">
+        <div>
+          <span class="font-label-xs text-xs text-secondary uppercase block font-bold">Current Component</span>
+          <span id="scale-current-component" class="font-headline text-xl text-on-surface">Basecoat Component</span>
+        </div>
+        <div class="text-right">
+          <span class="font-label-xs text-xs text-secondary uppercase block font-bold">Step Weight</span>
+          <span id="scale-step-weight" class="font-mono text-lg text-primary font-bold">+0.0 g</span>
+        </div>
+      </div>
+
+      <div class="flex justify-between gap-4">
+        <button id="btn-scale-prev-step" class="mech-btn-secondary !flex-1 !justify-center">
+          &larr; Previous Component
+        </button>
+        <button id="btn-scale-next-step" class="mech-button-primary !flex-1 !justify-center">
+          Next Component &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- TAB VIEW 4: COVERAGE & BOM -->
+  <!-- ========================================================================= -->
+  <div id="view-coverage" class="tab-view flex-grow flex flex-col py-8 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full" style="display: none;">
+    <div class="border-b-2 border-secondary pb-4 mb-8">
+      <span class="metal-spec-plate-red">SURFACE COVERAGE &amp; BILL OF MATERIALS</span>
+      <h2 class="font-headline text-3xl uppercase text-primary mt-1">PROJECT SURFACE ESTIMATOR</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="industrial-card p-6">
+        <h3 class="font-headline text-lg uppercase text-primary mb-4 border-b-2 border-secondary pb-2">Select Vehicle / Project Panel</h3>
+        <div class="flex flex-col gap-3 font-label-xs text-xs">
+          <button onclick="window.paintApp.setCoveragePreset('motorcycle_tank')" class="mech-btn-secondary !justify-start">🏍️ Motorcycle Tank (0.5 m² / ~250 mL)</button>
+          <button onclick="window.paintApp.setCoveragePreset('motorcycle_full')" class="mech-btn-secondary !justify-start">🏍️ Full Motorcycle Kit (1.8 m² / ~750 mL)</button>
+          <button onclick="window.paintApp.setCoveragePreset('car_hood')" class="mech-btn-secondary !justify-start">🚗 Car Hood / Bonnet (2.0 m² / ~900 mL)</button>
+          <button onclick="window.paintApp.setCoveragePreset('car_complete')" class="mech-btn-secondary !justify-start">🚘 Complete Automotive Respray (14 m² / ~6,000 mL)</button>
+          <button onclick="window.paintApp.setCoveragePreset('guitar_body')" class="mech-btn-secondary !justify-start">🎸 Guitar Body (0.35 m² / ~180 mL)</button>
+          <button onclick="window.paintApp.setCoveragePreset('helmet')" class="mech-btn-secondary !justify-start">🪖 Racing Helmet (0.25 m² / ~120 mL)</button>
+        </div>
+      </div>
+
+      <div class="industrial-card p-6 flex flex-col justify-between">
+        <div>
+          <h3 class="font-headline text-lg uppercase text-primary mb-4 border-b-2 border-secondary pb-2">Coverage Summary</h3>
+          <p id="coverage-preset-details" class="font-mono text-sm text-on-surface mb-4 leading-relaxed">
+            Select a project panel preset to calculate required basecoat, intercoat, reducer, and speed clearcoat quantities.
+          </p>
+        </div>
+        <button onclick="document.getElementById('tab-calculator').click()" class="mech-button-primary !w-full !justify-center hidden" style="display: none;">
+          APPLY VOLUME TO MIX CALCULATOR
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- TAB VIEW 5: OWNERS COMMUNITY FORUM (DEDICATED TECHNICAL EXCHANGE) -->
+  <!-- ========================================================================= -->
+  <div id="view-forum" class="tab-view flex-grow flex flex-col py-8 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full" style="display: none;">
+    <header class="mb-8 border-b-2 border-secondary pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="w-2.5 h-2.5 bg-primary-container rounded-full animate-pulse"></span>
+          <span class="font-label-xs text-xs text-secondary uppercase">VERIFIED PAINTER COMMUNITY</span>
+        </div>
+        <h1 class="font-headline text-3xl sm:text-4xl uppercase text-on-surface mb-1">VERIFIED OWNERS FORUM</h1>
+        <p class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">The Technical &amp; Formula Exchange of Kustom Kulture</p>
+      </div>
+      <div class="flex gap-3">
+        <button id="btn-open-verify-modal" class="mech-btn-secondary !text-xs !py-2.5">
+          🛡️ Verify Order Badge
+        </button>
+        <button id="btn-open-post-recipe-modal" class="mech-button-primary !text-xs !py-2.5">
+          NEW TOPIC <span class="material-symbols-outlined align-middle ml-1 text-sm">add</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- COMMUNITY THREADS & VERIFIED RECIPES FEED -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+      <!-- Left Column: Forum Threads (8-col) -->
+      <div class="lg:col-span-8 flex flex-col gap-6" id="forum-threads-container">
+        <!-- Threads injected via JS -->
+      </div>
+
+      <!-- Right Column: Categories & Badges (4-col) -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="industrial-card p-5">
+          <h3 class="font-headline text-base uppercase text-primary mb-3 border-b-2 border-secondary pb-2">Forum Categories</h3>
+          <ul class="space-y-2 font-label-xs text-xs">
+            <li><a class="flex justify-between items-center py-1.5 px-2.5 hover:bg-surface-container text-on-surface hover:text-primary transition-colors border border-secondary/30" href="javascript:void(0)"><span>Airbrush Techniques &amp; PSI</span><span class="metal-spec-plate text-[10px]">1.2k</span></a></li>
+            <li><a class="flex justify-between items-center py-1.5 px-2.5 hover:bg-surface-container text-on-surface hover:text-primary transition-colors border border-secondary/30" href="javascript:void(0)"><span>Pinstriping &amp; Lettering</span><span class="metal-spec-plate text-[10px]">845</span></a></li>
+            <li><a class="flex justify-between items-center py-1.5 px-2.5 hover:bg-surface-container text-on-surface hover:text-primary transition-colors border border-secondary/30" href="javascript:void(0)"><span>Flake King Dry Guns &amp; Jars</span><span class="metal-spec-plate text-[10px]">620</span></a></li>
+            <li><a class="flex justify-between items-center py-1.5 px-2.5 hover:bg-surface-container text-on-surface hover:text-primary transition-colors border border-secondary/30" href="javascript:void(0)"><span>Kroma Edge Spray Chrome</span><span class="metal-spec-plate text-[10px]">410</span></a></li>
+            <li><a class="flex justify-between items-center py-1.5 px-2.5 hover:bg-surface-container text-on-surface hover:text-primary transition-colors border border-secondary/30" href="javascript:void(0)"><span>European Distribution News</span><span class="metal-spec-plate text-[10px]">185</span></a></li>
+          </ul>
+        </div>
+
+        <div class="industrial-card p-5">
+          <h4 class="font-headline text-base uppercase text-primary mb-3 border-b-2 border-secondary pb-2">Verified Badges</h4>
+          <div class="flex flex-col gap-3 font-mono text-xs text-secondary">
+            <div><span class="metal-spec-plate-red text-[10px] mr-2">MASTER PAINTER</span> Recognized master custom finisher &amp; formula creator.</div>
+            <div><span class="metal-spec-plate text-[10px] mr-2">VERIFIED BUILDER</span> Order-verified painter (European / US order verified).</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- TAB VIEW 6: PRE-ORDERS & 75% STOCK REINVESTMENT LAUNCH HUB -->
+  <!-- ========================================================================= -->
+  <div id="view-preorders" class="tab-view flex-grow flex flex-col py-8 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full" style="display: none;">
+    <header class="mb-8 border-b-2 border-secondary pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="metal-spec-plate-red text-[10px]">BATCH 1 EUROPEAN DISPATCH</span>
+          <span class="font-label-xs text-xs text-secondary uppercase">100% UPFRONT ALLOCATION COMMITMENT</span>
+        </div>
+        <h1 class="font-headline text-3xl sm:text-4xl uppercase text-on-surface mb-1">FOUNDING PRE-ORDERS</h1>
+        <p class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Direct-to-Warehouse Inventory Acceleration Program</p>
+      </div>
+      <div>
+        <button onclick="document.getElementById('tab-storefront').click()" class="mech-btn-secondary !text-xs !py-2.5">
+          &larr; Return to Live Catalog
+        </button>
+      </div>
+    </header>
+
+    <!-- OFFICIAL BATCH 1 ALLOCATION BANNER -->
+    <div class="industrial-card p-6 md:p-8 mb-8 bg-gradient-to-r from-surface-container to-surface border-2 border-primary-container">
+      <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+        <div class="max-w-2xl">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="metal-spec-plate-red text-[10px]">EUROPEAN LAUNCH PRIORITY</span>
+            <span class="font-label-xs text-xs text-primary font-bold">BATCH 1 GUARANTEED ALLOCATION</span>
+          </div>
+          <h3 class="font-headline text-2xl md:text-3xl uppercase text-on-surface mb-3">Guaranteed First-Run European Delivery</h3>
+          <p class="font-body-md text-sm text-secondary leading-relaxed">
+            Secure guaranteed priority stock dispatched directly from the UK. All Batch 1 pre-orders include exclusive launch discounts, direct factory formulation, and expedited tracked courier dispatch across Europe, with container direct-import for large commercial volume.
+          </p>
+        </div>
+
+        <!-- Value Guarantee Badges -->
+        <div class="grid grid-cols-2 gap-4 w-full lg:w-[420px] font-mono text-xs">
+          <div class="bg-surface-dim p-4 border-2 border-secondary rounded flex flex-col justify-between shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <div class="flex items-center gap-1.5 text-primary mb-1">
+              <span class="material-symbols-outlined text-[18px]">verified</span>
+              <strong class="uppercase font-headline text-xs">Batch 1 Locked</strong>
+            </div>
+            <span class="text-secondary text-[11px]">Guaranteed first-dispatch priority from UK distribution stock.</span>
+          </div>
+          <div class="bg-surface-dim p-4 border-2 border-secondary rounded flex flex-col justify-between shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <div class="flex items-center gap-1.5 text-emerald-400 mb-1">
+              <span class="material-symbols-outlined text-[18px]">local_shipping</span>
+              <strong class="uppercase font-headline text-xs">24/48h Rapid</strong>
+            </div>
+            <span class="text-secondary text-[11px]">ADR-compliant express delivery with DPD hazardous freight.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIERED PRE-ORDER PACKAGES -->
+    <div class="mb-10">
+      <div class="border-b-2 border-secondary pb-3 mb-6 flex justify-between items-center">
+        <h4 class="font-headline text-xl uppercase text-primary">Official Founding Pre-Order Packages</h4>
+        <span class="font-label-xs text-xs text-secondary">Batch 1 Delivery • Guaranteed Earliest Allocation</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Tier 1 -->
+        <div class="industrial-card p-6 flex flex-col justify-between border-2 border-secondary hover:border-sky-400 transition-colors">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <span class="metal-spec-plate text-[10px]">15% Early Bird</span>
+              <span class="font-label-xs text-xs text-secondary">Batch 1 (Oct)</span>
+            </div>
+            <h4 class="font-headline text-xl text-on-surface uppercase mb-1">Founding Painter Package</h4>
+            <div class="font-headline text-2xl text-sky-400 mb-4">€249.00 <span class="text-xs text-secondary font-mono font-normal">($270 USD)</span></div>
+            <ul class="font-mono text-xs text-secondary flex flex-col gap-2 mb-6">
+              <li>✓ 2x Kroma Edge Solvent Basecoat/Clear Quarts</li>
+              <li>✓ 1x High-Grade Urethane Reducer Quart</li>
+              <li>✓ 1x Flake King 100g Holographic Flake</li>
+              <li>✓ Free Limited Edition Shop Apron &amp; Scale</li>
+              <li>✓ Exclusive Lifetime Verified Builder Badge</li>
+            </ul>
+          </div>
+          <button onclick="window.paintApp.addPreorderTier('preorder_tier1')" class="mech-btn-secondary !w-full !justify-center !text-xs">
+            🛒 Pre-Order Tier 1 Package
+          </button>
+        </div>
+
+        <!-- Tier 2 -->
+        <div class="industrial-card p-6 flex flex-col justify-between border-2 border-primary-container bg-surface-container relative">
+          <div class="absolute -top-3 right-4 bg-primary-container text-on-primary font-label-xs text-[10px] font-bold px-2 py-0.5 uppercase border border-secondary shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            Wholesale Priority
+          </div>
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <span class="metal-spec-plate-red text-[10px]">B2B Bodyshop</span>
+              <span class="font-label-xs text-xs text-secondary">Priority Stock</span>
+            </div>
+            <h4 class="font-headline text-xl text-on-surface uppercase mb-1">Bodyshop Allocation Suite</h4>
+            <div class="font-headline text-2xl text-primary mb-4">€890.00 <span class="text-xs text-secondary font-mono font-normal">($968 USD)</span></div>
+            <ul class="font-mono text-xs text-secondary flex flex-col gap-2 mb-6">
+              <li>✓ 6x Kroma Edge Solvent Basecoats &amp; Primers</li>
+              <li>✓ 2x Kroma 2K Polyurethane Speed Clear Kits</li>
+              <li>✓ Free Acrylic Countertop Display Rack</li>
+              <li>✓ Next-Day Dispatch Guarantee across EU/UK</li>
+              <li>✓ Dedicated Technical B2B Advisor</li>
+            </ul>
+          </div>
+          <button onclick="window.paintApp.addPreorderTier('preorder_tier2')" class="mech-button-primary !w-full !justify-center !text-xs">
+            🛒 Pre-Order B2B Allocation
+          </button>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="industrial-card p-6 flex flex-col justify-between border-2 border-secondary hover:border-amber-400 transition-colors">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <span class="metal-spec-plate text-[10px]">Ultimate Pro</span>
+              <span class="font-label-xs text-xs text-secondary">VIP Batch 1</span>
+            </div>
+            <h4 class="font-headline text-xl text-on-surface uppercase mb-1">Master Custom Suite</h4>
+            <div class="font-headline text-2xl text-amber-400 mb-4">€1,450.00 <span class="text-xs text-secondary font-mono font-normal">($1,575 USD)</span></div>
+            <ul class="font-mono text-xs text-secondary flex flex-col gap-2 mb-6">
+              <li>✓ Complete Kroma Edge Spray Chrome 1L Kit</li>
+              <li>✓ 1x Flake King 500 Dry Flake Gun + 5 Flakes</li>
+              <li>✓ 1x Pro Precision Dual-Action Airbrush (0.35mm)</li>
+              <li>✓ 4x Kroma Color-Shift Pearls &amp; Liquid Clears</li>
+              <li>✓ Masterclass Access with Coast US Artists</li>
+            </ul>
+          </div>
+          <button onclick="window.paintApp.addPreorderTier('preorder_tier3')" class="mech-btn-secondary !w-full !justify-center !text-xs">
+            🛒 Pre-Order Pro Suite
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- TAB VIEW: AGENT A - MASTER PAINTER AI & DAVE CHAT ("THE KUSTOM SPECIALIST") -->
+  <!-- ========================================================================= -->
+  <div id="view-agent-a" class="tab-view flex-grow flex flex-col py-8 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full" style="display: none;">
+    <div class="border-b-2 border-secondary pb-4 mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="w-2.5 h-2.5 bg-primary-container rounded-full animate-pulse"></span>
+          <span class="font-label-xs text-xs text-secondary uppercase">COAST AIRBRUSH USA TECHNICAL ENGINE</span>
+        </div>
+        <h2 class="font-headline text-3xl uppercase text-primary">AGENT A: MASTER PAINTER ADVISOR &amp; DAVE AI</h2>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="font-label-xs text-xs text-secondary font-mono">Shop Ambient Temp:</span>
+        <select id="select-agent-temp" class="mech-select w-32 !py-1 text-xs">
+          <option value="15">15°C (Cool)</option>
+          <option value="21" selected>21°C (Standard)</option>
+          <option value="28">28°C (Warm)</option>
+          <option value="35">35°C (Hot)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-8 flex flex-col gap-4">
+        <div class="agent-chat-container">
+          <div class="p-4 bg-surface-container-high border-b-2 border-secondary flex justify-between items-center">
+            <div class="flex items-center gap-2">
+              <span class="metal-spec-plate-red">TECHNICAL CHAT</span>
+              <span class="font-label-xs text-xs text-primary font-bold">Ask Anything: Flake Guns, Reducers, PSI &amp; Chrome</span>
+            </div>
+            <span class="font-mono text-xs text-secondary">Dave Engine v2.4 Active</span>
+          </div>
+
+          <div id="agent-a-messages" class="agent-chat-messages bg-surface-dim">
+            <div class="agent-msg ai">
+              <div class="agent-avatar">🤖</div>
+              <div class="agent-bubble">
+                <p><strong>Welcome to Coast Airbrush Technical Advisory.</strong></p>
+                <p>I can calculate exact spray gun tip sizes, urethane reducer speeds based on your shop temperature, dry metal flake airbrush setup, and generate 1-click Shopify project kits.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 bg-surface-container-high border-t-2 border-secondary flex gap-3">
+            <input type="text" id="input-agent-a-query" placeholder="e.g. How do I spray Kroma Edge liquid chrome over black urethane?" class="mech-input">
+            <button id="btn-agent-a-send" class="mech-button-primary !py-2 !px-6">
+              Send
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 flex flex-col gap-6">
+        <div class="industrial-card p-5">
+          <h4 class="font-headline text-base uppercase text-primary mb-3 border-b-2 border-secondary pb-2">Quick Technical Prompts</h4>
+          <div class="flex flex-col gap-2 font-mono text-xs">
+            <button class="prompt-chip p-2.5 bg-surface-dim border-2 border-secondary text-left hover:border-primary transition-colors text-on-surface" data-prompt="How do I set up the Flake King 500 dry flake gun on my airbrush?">
+              ⚡ Flake King 500 Setup Guide
+            </button>
+            <button class="prompt-chip p-2.5 bg-surface-dim border-2 border-secondary text-left hover:border-primary transition-colors text-on-surface" data-prompt="What reducer should I use for 28°C shop temperature?">
+              🌡️ Reducer Temperature Selection
+            </button>
+            <button class="prompt-chip p-2.5 bg-surface-dim border-2 border-secondary text-left hover:border-primary transition-colors text-on-surface" data-prompt="How many grams of .015 flake do I need for a motorcycle gas tank?">
+              📐 Flake Coverage Calculation
+            </button>
+            <button class="prompt-chip p-2.5 bg-surface-dim border-2 border-secondary text-left hover:border-primary transition-colors text-on-surface" data-prompt="What is the groundcoat requirement for Kroma Edge mirror chrome?">
+              🪞 Mirror Chrome Protocol
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- TAB VIEW: AGENT B - ORDER CONCIERGE & VAT AUDITOR -->
+  <!-- ========================================================================= -->
+  <div id="view-agent-b" class="tab-view flex-grow flex flex-col py-8 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full" style="display: none;">
+    <div class="border-b-2 border-secondary pb-4 mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="w-2.5 h-2.5 bg-sky-400 rounded-full animate-pulse"></span>
+          <span class="font-label-xs text-xs text-secondary uppercase">EUROPEAN TAX, VAT &amp; ADR HAZMAT AUDITOR</span>
+        </div>
+        <h2 class="font-headline text-3xl uppercase text-primary">AGENT B: ORDER CONCIERGE &amp; TAX ENGINE</h2>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="btn-view-vat-invoice" class="mech-button-primary !text-xs !py-2.5">
+          📄 View Compliant VAT Tax Invoice
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Order Tracking Card -->
+    <div class="industrial-card p-6 mb-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-secondary pb-4 mb-6 gap-4">
+        <div>
+          <span id="order-id-badge" class="metal-spec-plate-red text-xs">ORDER #EU-10492</span>
+          <h3 id="order-customer-name" class="font-headline text-2xl text-on-surface uppercase mt-1">Stefan Lindqvist (Kustom Garage Stockholm)</h3>
+        </div>
+        <div class="flex flex-wrap gap-2 font-mono text-xs">
+          <span class="bg-surface-dim px-3 py-1 border border-secondary text-secondary">Carrier: <strong id="order-carrier-name" class="text-on-surface">DPD Hazardous Express</strong></span>
+          <span class="bg-surface-dim px-3 py-1 border border-secondary text-secondary">Tracking: <strong id="order-tracking-num" class="text-sky-400 font-bold">DPD-EU-8839210</strong></span>
+          <span class="bg-surface-dim px-3 py-1 border border-secondary text-secondary">ADR: <strong id="order-adr-tag" class="text-emerald-400 font-bold">UN1263 Class 3 (LQ)</strong></span>
+        </div>
+      </div>
+
+      <!-- Milestone Timeline -->
+      <div id="order-milestone-timeline" class="milestone-timeline">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- TAB VIEW: AGENT C - SOCIAL MEDIA & GROWTH AI -->
+  <!-- ========================================================================= -->
+  <div id="view-agent-c" class="tab-view flex-grow flex flex-col py-8 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full" style="display: none;">
+    <div class="border-b-2 border-secondary pb-4 mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="w-2.5 h-2.5 bg-rose-500 rounded-full animate-pulse"></span>
+          <span class="font-label-xs text-xs text-secondary uppercase">VIRAL REELS, TIKTOKS &amp; DM-TO-SALE AUTOMATION</span>
+        </div>
+        <h2 class="font-headline text-3xl uppercase text-primary">AGENT C: SOCIAL GROWTH &amp; DM CONVERTER</h2>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="font-label-xs text-xs text-secondary font-mono">Organic Reach: <strong class="text-rose-400">290.2K/wk</strong></span>
+      </div>
+    </div>
+
+    <!-- Trending Hashtags Ticker Bar -->
+    <div class="industrial-card p-4 mb-8 flex items-center gap-4 overflow-x-auto">
+      <div class="flex items-center gap-1.5 flex-shrink-0">
+        <span class="material-symbols-outlined text-rose-500 text-[18px]">trending_up</span>
+        <span class="font-headline text-xs uppercase text-primary font-bold">Trending Hashtags:</span>
+      </div>
+      <div class="flex items-center gap-3 font-mono text-xs text-secondary flex-nowrap">
+        <span class="bg-surface-dim px-2.5 py-1 border border-secondary text-rose-400 font-bold">#HouseOfKolor (14.2K posts)</span>
+        <span class="bg-surface-dim px-2.5 py-1 border border-secondary text-sky-400 font-bold">#KromaEdge (8.6K posts • Viral)</span>
+        <span class="bg-surface-dim px-2.5 py-1 border border-secondary text-amber-400 font-bold">#FlakeKing (5.1K posts)</span>
+        <span class="bg-surface-dim px-2.5 py-1 border border-secondary text-emerald-400 font-bold">#AirbrushArt (24.9K posts)</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-7 flex flex-col gap-6">
+        <div class="border-b-2 border-secondary pb-2 flex justify-between items-center">
+          <h4 class="font-headline text-lg uppercase text-primary">Scheduled Viral Video Campaigns</h4>
+          <span class="font-label-xs text-xs text-secondary">Auto-publishing across IG, TikTok &amp; YouTube</span>
+        </div>
+        <div id="social-campaigns-container" class="flex flex-col gap-5">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        <div class="industrial-card p-6 flex flex-col justify-between h-full">
+          <div>
+            <div class="border-b-2 border-secondary pb-3 mb-4 flex items-center justify-between">
+              <h4 class="font-headline text-lg uppercase text-primary flex items-center gap-2">
+                <span class="material-symbols-outlined text-rose-400">forum</span> DM-to-Checkout AI Converter
+              </h4>
+              <span class="metal-spec-plate-red text-[10px]">Active Listener</span>
+            </div>
+            <p class="font-mono text-xs text-secondary mb-4 leading-relaxed">
+              Agent C automatically monitors incoming direct messages &amp; comments, identifies featured paints or tools, and generates instant direct Shopify checkout permalinks.
+            </p>
+            <div id="social-dm-chat" class="agent-chat-messages !h-[320px] bg-surface-dim border-2 border-secondary p-4 rounded mb-4">
+              <div class="agent-msg ai">
+                <div class="agent-avatar">🚀</div>
+                <div class="agent-bubble text-xs">
+                  <p>Agent C DM Listener active. Click a quick prompt or type below to generate instant 1-click cart links!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <input type="text" id="input-social-dm" class="bg-surface-dim border-2 border-secondary text-xs p-2.5 flex-1 font-mono outline-none focus:border-rose-400" placeholder="Simulate incoming Instagram DM...">
+            <button id="btn-social-dm-send" class="mech-button-primary !py-2 !px-4 text-xs">
+              Send DM
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- TAB VIEW: AGENT D - INVENTORY FORECASTING & DUAL SOURCING PO AI -->
+  <!-- ========================================================================= -->
+  <div id="view-agent-d" class="tab-view flex-grow flex flex-col py-8 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full" style="display: none;">
+    <div class="border-b-2 border-secondary pb-4 mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="metal-spec-plate-red text-[10px]">INTERNAL OPERATOR DECK</span>
+          <span class="font-label-xs text-xs text-secondary uppercase">MONTHLY LEAN STOCK &amp; SOURCING ENGINE</span>
+        </div>
+        <h2 class="font-headline text-3xl uppercase text-primary">OPERATIONS COCKPIT: AGENT D STOCK GURU</h2>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="btn-draft-po-japan" class="mech-button-primary !text-xs !py-2.5">
+          🚢 Draft PO: Signal Japan (0% Duty Ocean)
+        </button>
+        <button id="btn-draft-po-usa" class="mech-btn-secondary !text-xs !py-2.5">
+          ✈️ Draft PO: Coast USA (Air Buffer)
+        </button>
+      </div>
+    </div>
+
+    <!-- Multi-Location Warehouse Overview Matrix -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="industrial-card p-5">
+        <div class="flex justify-between items-center mb-2">
+          <span class="font-label-xs text-xs text-secondary uppercase font-bold">🇳🇱 NETHERLANDS 3PL HUB</span>
+          <span class="metal-spec-plate text-[10px]">Bonded Central</span>
+        </div>
+        <div class="font-headline text-2xl text-on-surface" id="stat-nl-stock">54 Units Active</div>
+        <div class="font-mono text-[11px] text-secondary mt-1">Delfgauw Bonded Warehouse • EU OSS Hub</div>
+      </div>
+
+      <div class="industrial-card p-5">
+        <div class="flex justify-between items-center mb-2">
+          <span class="font-label-xs text-xs text-secondary uppercase font-bold">🇬🇧 UK REGIONAL HUB</span>
+          <span class="metal-spec-plate text-[10px]">Silverstone Park</span>
+        </div>
+        <div class="font-headline text-2xl text-on-surface" id="stat-uk-stock">35 Units Active</div>
+        <div class="font-mono text-[11px] text-secondary mt-1">Postponed VAT Accounting (PVA) • DPD Express</div>
+      </div>
+
+      <div class="industrial-card p-5">
+        <div class="flex justify-between items-center mb-2">
+          <span class="font-label-xs text-xs text-secondary uppercase font-bold">🇺🇸 COAST USA RESERVE</span>
+          <span class="metal-spec-plate-red text-[10px]">California Buffer</span>
+        </div>
+        <div class="font-headline text-2xl text-on-surface" id="stat-us-stock">255 Units Standby</div>
+        <div class="font-mono text-[11px] text-secondary mt-1">7-Day Rapid Air Replenishment Ready</div>
+      </div>
+    </div>
+
+    <!-- Live Inventory Table & Sourcing Simulator -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-7 flex flex-col gap-6">
+        <div class="industrial-card p-6">
+          <div class="flex justify-between items-center border-b-2 border-secondary pb-3 mb-4">
+            <h4 class="font-headline text-lg uppercase text-primary">Master SKU Stock Health &amp; Run Rates</h4>
+            <span class="font-label-xs text-xs text-secondary">Dynamic Safety Stock (30-Day Buffer)</span>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left font-mono text-xs">
+              <thead>
+                <tr class="border-b-2 border-secondary text-secondary text-[11px] uppercase">
+                  <th class="pb-2">SKU / Product</th>
+                  <th class="pb-2 text-center">EU Stock</th>
+                  <th class="pb-2 text-center">Velocity/Day</th>
+                  <th class="pb-2 text-center">Days Cover</th>
+                  <th class="pb-2 text-right">Status</th>
+                </tr>
+              </thead>
+              <tbody id="inventory-table-body">
+                <!-- Populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        <div class="industrial-card p-6 flex flex-col justify-between h-full">
+          <div>
+            <div class="border-b-2 border-secondary pb-3 mb-4 flex justify-between items-center">
+              <h4 class="font-headline text-lg uppercase text-primary">Dual-Sourcing Routing Engine</h4>
+              <span id="eval-sku-badge" class="metal-spec-plate-red text-[10px]">KE-CHROME-1L</span>
+            </div>
+            <div id="sourcing-recommendation-box" class="p-3 bg-surface-dim border-2 border-secondary text-xs font-mono mb-4 leading-relaxed">
+              Evaluating optimal replenishment route...
+            </div>
+            <div class="flex flex-col gap-3">
+              <div class="p-3 bg-surface-dim border-2 border-emerald-800 rounded">
+                <div class="flex justify-between items-center mb-1">
+                  <strong class="text-emerald-400 text-xs uppercase font-headline">Scenario 1: Signal Japan (Bulk Ocean)</strong>
+                  <span class="metal-spec-plate text-[10px]">0% REX Duty</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 font-mono text-[11px] text-secondary mt-2">
+                  <div>Lead: <span class="text-on-surface font-bold">45 Days</span></div>
+                  <div>Landed: <span id="eval-landed-jp" class="text-emerald-400 font-bold">€41.80</span></div>
+                  <div>Margin: <span id="eval-margin-jp" class="text-emerald-400 font-bold">66.2%</span></div>
+                </div>
+              </div>
+              <div class="p-3 bg-surface-dim border-2 border-sky-800 rounded">
+                <div class="flex justify-between items-center mb-1">
+                  <strong class="text-sky-400 text-xs uppercase font-headline">Scenario 2: Coast USA (Air Buffer)</strong>
+                  <span class="metal-spec-plate text-[10px]">6.5% MFN Duty</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 font-mono text-[11px] text-secondary mt-2">
+                  <div>Lead: <span class="text-on-surface font-bold">7 Days</span></div>
+                  <div>Landed: <span id="eval-landed-us" class="text-sky-400 font-bold">€61.20</span></div>
+                  <div>Margin: <span id="eval-margin-us" class="text-sky-400 font-bold">50.5%</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t-2 border-secondary flex justify-between items-center">
+            <span class="font-label-xs text-xs text-secondary uppercase font-bold">Simulate PO Volume:</span>
+            <select id="select-eval-qty" class="mech-select !w-32 !py-1 text-xs">
+              <option value="25">25 Units</option>
+              <option value="50" selected>50 Units</option>
+              <option value="100">100 Units</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PRODUCT DETAIL MODAL (STITCH AUTHENTIC + REVIEWS + SDS/TDS COMPLIANCE) -->
+  <!-- ========================================================================= -->
+  <div id="modal-product-detail" class="modal-overlay">
+    <div class="modal-box !max-w-[960px]">
+      <div class="bg-surface-container-high p-4 border-b-2 border-secondary flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <span id="detail-brand-badge" class="metal-spec-plate-red">KROMA EDGE</span>
+          <span id="detail-sku-badge" class="font-label-xs text-xs text-primary font-bold">SKU: KE-CHROME-1L</span>
+          <span id="detail-voc-badge" class="hidden sm:inline-flex metal-spec-plate text-[10px] text-emerald-400 border-emerald-500/40">🌿 REACH &amp; VOC COMPLIANT</span>
+        </div>
+        <button onclick="window.paintApp.closeDetailModal()" class="text-secondary hover:text-primary transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+
+      <div class="p-6 md:p-8 flex flex-col md:flex-row gap-8 bg-surface">
+        <div class="w-full md:w-1/2 flex flex-col gap-4">
+          <div class="h-64 md:h-80 bg-surface-container-lowest border-2 border-secondary overflow-hidden relative product-studio-stage flex items-center justify-center">
+            <img id="detail-img" src="" alt="Product" class="w-full h-full object-contain p-2 filter contrast-110 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
+            <div class="absolute bottom-2 left-2 flex gap-1">
+              <span id="detail-stock-badge" class="metal-spec-plate text-[10px] font-bold text-emerald-400">⚡ IN STOCK (UK DISPATCH)</span>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <span class="metal-spec-plate text-xs flex-1 text-center font-bold">AUTHENTIC MASTER STOCK</span>
+            <span class="metal-spec-plate text-xs flex-1 text-center font-bold">MADE IN USA / UK / JP</span>
+          </div>
+
+          <!-- Verified Painter Review Snippet -->
+          <div class="bg-surface-container-low border border-secondary p-3.5 rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <div class="flex items-center justify-between mb-1.5">
+              <div class="flex items-center gap-1">
+                <span class="text-amber-400 text-sm">★★★★★</span>
+                <span id="detail-rating-score" class="font-mono text-xs font-bold text-on-surface">4.9 / 5.0</span>
+              </div>
+              <span id="detail-review-count" class="font-label-xs text-[10px] text-secondary font-bold">48 VERIFIED REVIEWS</span>
+            </div>
+            <p id="detail-review-quote" class="font-body-md text-xs italic text-on-surface-variant leading-relaxed">
+              "Lays down perfectly flat with zero solvent pop. Standard equipment for our show paint builds."
+            </p>
+            <div class="flex items-center gap-1.5 mt-2 text-[10px] text-emerald-400 font-mono">
+              <span class="material-symbols-outlined text-[12px]">verified</span>
+              <span id="detail-reviewer-author">Verified Pro Painter • Munich Custom Works</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 flex flex-col justify-between">
+          <div>
+            <h2 id="detail-title" class="font-headline text-2xl sm:text-3xl uppercase text-primary mb-2">KANDY RED UK05</h2>
+            <div class="flex items-baseline gap-3 mb-3">
+              <div id="detail-price" class="font-headline text-3xl text-on-surface">€85.00</div>
+              <div id="detail-price-sub" class="font-mono text-xs text-secondary">£72.95 GBP</div>
+            </div>
+            <p id="detail-desc" class="font-body-md text-sm text-on-surface-variant mb-5 leading-relaxed">
+              Legendary deep transparent urethane kandy. Unmatched depth and optical clarity when applied over metallic basecoats or flake.
+            </p>
+
+            <!-- Technical Application Specs -->
+            <div class="border-t-2 border-b-2 border-secondary py-3.5 mb-5 flex flex-col gap-2 font-label-xs text-xs bg-surface-container-lowest p-3 border-dashed">
+              <div class="flex justify-between">
+                <span class="text-secondary uppercase">Gun Tip Recommendation:</span>
+                <span id="detail-spec-tip" class="text-on-surface font-bold">1.2mm - 1.4mm HVLP</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-secondary uppercase">Air Pressure:</span>
+                <span id="detail-spec-psi" class="text-on-surface font-bold">18 - 22 PSI (1.2 - 1.5 Bar)</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-secondary uppercase">Mixing Ratio:</span>
+                <span id="detail-spec-ratio" class="text-primary font-bold">3 : 1 : 2 (Paint : Hardener : Reducer)</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-secondary uppercase">VOC Emission Standard:</span>
+                <span id="detail-spec-voc" class="text-emerald-400 font-bold">&lt;420 g/L (EU 2004/42/EC)</span>
+              </div>
+            </div>
+
+            <!-- SDS & TDS Regulatory Downloads -->
+            <div class="mb-5 flex flex-col sm:flex-row gap-2">
+              <button id="btn-download-sds" class="flex-1 bg-surface-container border border-secondary px-3 py-2 text-[11px] font-label-xs uppercase text-on-surface hover:text-primary hover:border-primary transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                <span class="material-symbols-outlined text-[15px] text-red-400">picture_as_pdf</span>
+                <span>DOWNLOAD REACH SDS</span>
+              </button>
+              <button id="btn-download-tds" class="flex-1 bg-surface-container border border-secondary px-3 py-2 text-[11px] font-label-xs uppercase text-on-surface hover:text-primary hover:border-primary transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                <span class="material-symbols-outlined text-[15px] text-sky-400">description</span>
+                <span>TECH SPEC (TDS)</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <button id="btn-detail-add-cart" class="mech-button-primary w-full !justify-center !py-3.5 !text-sm">
+              + ADD TO PROJECT CART
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- ORDER VERIFICATION MODAL -->
+  <!-- ========================================================================= -->
+  <div id="modal-order-verify" class="modal-overlay">
+    <div class="modal-box !max-w-[500px]">
+      <div class="bg-surface-container-high p-4 border-b-2 border-secondary flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="metal-spec-plate-red">COMMUNITY ACCESS</span>
+          <span class="font-label-xs text-xs text-primary font-bold">VERIFY ORDER</span>
+        </div>
+        <button id="btn-close-verify-modal" class="text-secondary hover:text-primary transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+
+      <div class="p-6 bg-surface flex flex-col gap-4">
+        <p class="font-mono text-xs text-secondary leading-relaxed">
+          Enter your <strong>Coast USA</strong> (e.g. <code>US-94812</code>) or <strong>Coast Europe</strong> (e.g. <code>EU-10492</code>) order number to unlock Verified Builder rights and exclusive posting access.
+        </p>
+        <div>
+          <label class="font-label-xs text-xs uppercase text-primary font-bold block mb-1">Order Reference Number</label>
+          <input type="text" id="input-verify-order-id" class="mech-input font-mono uppercase" placeholder="e.g. EU-10492 or US-94812">
+        </div>
+        <div id="verify-feedback-msg" class="font-mono text-xs hidden"></div>
+        <button id="btn-submit-verify-order" class="mech-button-primary !w-full !justify-center">
+          🛡️ Verify &amp; Unlock Badge
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- POST NEW RECIPE MODAL -->
+  <!-- ========================================================================= -->
+  <div id="modal-post-recipe" class="modal-overlay">
+    <div class="modal-box !max-w-[550px]">
+      <div class="bg-surface-container-high p-4 border-b-2 border-secondary flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="metal-spec-plate-red">RECIPE EXCHANGE</span>
+          <span class="font-label-xs text-xs text-primary font-bold">POST CUSTOM FORMULA</span>
+        </div>
+        <button id="btn-close-post-recipe-modal" class="text-secondary hover:text-primary transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+
+      <div class="p-6 bg-surface flex flex-col gap-4">
+        <div>
+          <label class="font-label-xs text-xs uppercase text-secondary font-bold block mb-1">Thread Title</label>
+          <input type="text" id="input-post-title" class="mech-input" placeholder="e.g. Hyper-Shift Pearl over Jet Black Ratios">
+        </div>
+        <div>
+          <label class="font-label-xs text-xs uppercase text-secondary font-bold block mb-1">Technique &amp; Spray Instructions</label>
+          <textarea id="input-post-content" rows="4" class="mech-input" placeholder="Describe substrate prep, nozzle size, PSI, and flash times..."></textarea>
+        </div>
+        <button id="btn-submit-new-thread" class="mech-button-primary !w-full !justify-center">
+          🚀 Publish to Verified Community
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- VAT INVOICE MODAL -->
+  <!-- ========================================================================= -->
+  <div id="modal-vat-invoice" class="modal-overlay">
+    <div class="modal-box !max-w-[850px] !bg-slate-900">
+      <div class="bg-surface-container-high p-4 border-b-2 border-secondary flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="metal-spec-plate-red">OFFICIAL TAX DOCUMENT</span>
+          <span class="font-label-xs text-xs text-primary font-bold">TAX INVOICE</span>
+        </div>
+        <button id="btn-close-vat-modal" class="text-secondary hover:text-primary transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+      <div class="p-6 bg-slate-950">
+        <div id="invoice-printable-content" class="invoice-paper"></div>
+        <div class="flex justify-end gap-3 mt-6">
+          <button onclick="window.print()" class="mech-btn-secondary !text-xs">
+            🖨️ Print Tax Invoice
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PURCHASE ORDER (PO) MODAL -->
+  <!-- ========================================================================= -->
+  <div id="modal-po" class="modal-overlay">
+    <div class="modal-box !max-w-[850px] !bg-slate-900">
+      <div class="bg-surface-container-high p-4 border-b-2 border-secondary flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="metal-spec-plate-red">PROCUREMENT DOCUMENT</span>
+          <span id="po-modal-title" class="font-label-xs text-xs text-primary font-bold">PURCHASE ORDER</span>
+        </div>
+        <button id="btn-close-po-modal" class="text-secondary hover:text-primary transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+      <div class="p-6 bg-slate-950">
+        <div id="po-printable-content" class="invoice-paper"></div>
+        <div class="flex justify-end gap-3 mt-6">
+          <button onclick="window.print()" class="mech-btn-secondary !text-xs">
+            🖨️ Print Purchase Order
+          </button>
+          <button id="btn-export-po-katana" class="mech-button-primary !text-xs">
+            📥 Export Katana / Xero JSON
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MOBILE FILTER & SORT DRAWER -->
+  <!-- ========================================================================= -->
+  <div id="drawer-mobile-filters" class="drawer-overlay">
+    <div class="drawer-panel-left">
+      <div class="p-4 bg-surface-container-high border-b-2 border-secondary flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-xl">tune</span>
+          <h3 class="font-headline text-lg text-primary uppercase">CATALOG FILTERS</h3>
+        </div>
+        <button id="btn-close-mobile-filters" class="text-secondary hover:text-primary transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+
+      <div class="p-5 flex-grow flex flex-col gap-5 overflow-y-auto bg-surface">
+        <!-- Search Field -->
+        <div>
+          <label class="font-label-xs text-xs uppercase text-secondary mb-1.5 block font-bold">Keyword / SKU Search</label>
+          <input id="input-mobile-shop-search" type="text" placeholder="Search SKU, name, flake..." class="mech-input">
+        </div>
+
+        <!-- Brand Filter -->
+        <div>
+          <label class="font-label-xs text-xs uppercase text-secondary mb-1.5 block font-bold">Brand</label>
+          <select id="select-mobile-brand-filter" class="mech-select">
+            <option value="all">All Brands (VsionAir, Flake King, Kroma Edge)</option>
+            <option value="VsionAir">VsionAir (Workstations &amp; Jigs)</option>
+            <option value="Flake King">Flake King (Dry Guns &amp; Flakes)</option>
+            <option value="Kroma Edge">Kroma Edge (Liquid Chrome &amp; Paints)</option>
+          </select>
+        </div>
+
+        <!-- Product Category Filter -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="font-label-xs text-xs uppercase text-secondary font-bold">Product Category</label>
+            <span id="mobile-category-header-count" class="text-[10px] font-mono text-primary font-bold">19 CATEGORIES</span>
+          </div>
+          <div id="mobile-category-list" class="flex flex-col gap-1 max-h-60 overflow-y-auto pr-1 custom-scrollbar border border-secondary/20 p-1.5 bg-surface-container-lowest/70 rounded">
+            <!-- Injected dynamically via JS -->
+          </div>
+          <select id="select-mobile-category-filter" class="hidden">
+            <option value="all">All Product Categories (136 Products)</option>
+            <option value="Dry Metal Flake (Glitter)">Dry Metal Flakes &amp; Glitters</option>
+            <option value="Dry Metal Flake Guns">Flake Guns &amp; Applicators</option>
+            <option value="Solvent Paints">Solvent Paints &amp; Chrome Systems</option>
+            <option value="Airbrushes &amp; Spray Guns">Airbrushes &amp; Spray Guns</option>
+            <option value="Helmet Jigs">Helmet &amp; Mask Jigs</option>
+            <option value="Tool Bars &amp; Lighting Rigs">Tool Bars &amp; Lighting Rigs</option>
+            <option value="Stands">Workstation Stands &amp; Desk Mounts</option>
+            <option value="Airbrush Specific">Airbrush Specific Mounts &amp; Holders</option>
+            <option value="Canvass Jig">Canvass &amp; Art Jigs</option>
+            <option value="Skateboard Jig">Skateboard &amp; Specialty Jigs</option>
+            <option value="Motorcycle Part Jigs">Motorcycle Part Jigs</option>
+            <option value="Car &amp; Motorcycle Wheel Jig">Wheel &amp; Rim Jigs</option>
+            <option value="Guitar Parts Jigs">Guitar &amp; Instrument Jigs</option>
+            <option value="VsionAir Knobs">VsionAir Knobs &amp; Fasteners</option>
+            <option value="VsionAir Brackets">VsionAir Brackets &amp; Hardware</option>
+            <option value="Storage, Comfort &amp; Environment">Storage &amp; Workstation Ergonomics</option>
+            <option value="Corroded Metal FX">Corroded Metal FX Series</option>
+            <option value="Masking Products">Masking Tapes &amp; Supplies</option>
+            <option value="Wet Products">Wet Binders &amp; Cleaners</option>
+          </select>
+        </div>
+
+        <!-- Flake Dimension & Finish Chips -->
+        <div>
+          <label class="font-label-xs text-xs uppercase text-secondary mb-1.5 block font-bold">Flake Dimension &amp; Finish</label>
+          <div class="flex flex-wrap gap-1.5">
+            <button data-flake-subcat="all" class="flake-subcat-btn-mobile metal-spec-plate-red text-[10px] uppercase cursor-pointer">All Flakes</button>
+            <button data-flake-subcat="single" class="flake-subcat-btn-mobile metal-spec-plate text-[10px] uppercase cursor-pointer">Single Colour</button>
+            <button data-flake-subcat="blend" class="flake-subcat-btn-mobile metal-spec-plate text-[10px] uppercase cursor-pointer">Blends</button>
+            <button data-flake-subcat="holographic" class="flake-subcat-btn-mobile metal-spec-plate text-[10px] uppercase cursor-pointer">Holographic</button>
+            <button data-flake-subcat="iridescent" class="flake-subcat-btn-mobile metal-spec-plate text-[10px] uppercase cursor-pointer">Iridescent</button>
+          </div>
+        </div>
+
+        <!-- Sort By -->
+        <div>
+          <label class="font-label-xs text-xs uppercase text-secondary mb-1.5 block font-bold">Sort By</label>
+          <select id="select-mobile-shop-sort" class="mech-select">
+            <option value="popular">Popularity</option>
+            <option value="rating">Top Rated (Painter Reviews)</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name">Product Name (A-Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="p-4 bg-surface-container-high border-t-2 border-secondary flex gap-2">
+        <button id="btn-mobile-reset-filters" class="flex-1 bg-transparent border-2 border-secondary py-2.5 font-label-xs text-xs uppercase text-secondary hover:bg-secondary hover:text-black transition-colors font-bold cursor-pointer text-center">
+          Reset
+        </button>
+        <button id="btn-mobile-apply-filters" class="flex-1 mech-button-primary !py-2.5 !text-xs !justify-center">
+          Show Results
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- SHOPIFY CART DRAWER (EUROPEAN UPGRADE) -->
+  <!-- ========================================================================= -->
+  <div id="drawer-shopify-cart" class="drawer-overlay">
+    <div class="drawer-panel">
+      <div class="p-5 bg-surface-container-high border-b-2 border-secondary flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-2xl">shopping_bag</span>
+          <div>
+            <h3 class="font-headline text-xl text-primary uppercase">PROJECT CART &amp; BOM</h3>
+            <span id="cart-drawer-hub-badge" class="font-mono text-[10px] text-emerald-400 font-bold block">🇬🇧 Dispatched from UK • Direct Japan / USA Container Options</span>
+          </div>
+        </div>
+        <button id="btn-close-cart-drawer" class="text-secondary hover:text-primary transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+
+      <div id="cart-drawer-items" class="p-6 flex-grow overflow-y-auto flex flex-col gap-4">
+        <!-- Cart Items -->
+      </div>
+
+      <!-- EU VAT & Payment Module -->
+      <div class="p-5 bg-surface-container border-t-2 border-secondary flex flex-col gap-3">
+        <!-- EU Intra-Community VAT Validator -->
+        <div class="bg-surface-dim p-3 border border-secondary/80 rounded">
+          <div class="flex justify-between items-center mb-1">
+            <span class="font-label-xs text-[10px] uppercase text-secondary font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[13px] text-primary">domain</span> EU B2B VAT Exemption (0% Reverse-Charge)
+            </span>
+            <span id="vat-status-pill" class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-surface border border-secondary text-secondary">OPTIONAL</span>
+          </div>
+          <div class="flex gap-1.5 mt-1.5">
+            <input type="text" id="input-vat-number" placeholder="e.g. DE123456789 or NL899999999B01" class="mech-input !py-1 !px-2 !text-xs font-mono uppercase flex-1">
+            <button id="btn-verify-vat" class="mech-button-primary !py-1 !px-3 !text-[11px] font-bold">Apply VAT</button>
+          </div>
+          <div id="vat-feedback-msg" class="font-mono text-[10px] mt-1.5 hidden"></div>
+        </div>
+
+        <!-- Order Summary Matrix -->
+        <div class="flex flex-col gap-1.5 font-label-xs text-xs pt-1 border-t border-secondary/40">
+          <div class="flex justify-between text-secondary">
+            <span>Net Subtotal:</span>
+            <span id="cart-drawer-subtotal" class="font-mono text-on-surface">€0.00</span>
+          </div>
+          <div class="flex justify-between text-secondary">
+            <span id="cart-drawer-vat-label">VAT (19% DE):</span>
+            <span id="cart-drawer-vat-amount" class="font-mono text-on-surface">€0.00</span>
+          </div>
+          <div class="flex justify-between text-secondary">
+            <span>Carrier Dispatch:</span>
+            <span id="cart-drawer-carrier" class="font-mono text-emerald-400 font-bold">DHL Express (Free &gt; €150)</span>
+          </div>
+          <div class="flex justify-between items-center font-headline text-2xl pt-2 border-t border-secondary">
+            <span class="text-secondary uppercase">TOTAL:</span>
+            <div class="text-right">
+              <span id="cart-drawer-total" class="text-primary block font-bold">€0.00</span>
+              <span id="cart-drawer-converted-total" class="text-xs font-mono text-secondary font-normal block"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- European Payment Gateways Acceptance Strip -->
+        <div class="bg-surface-dim p-2.5 border border-secondary/60 rounded flex flex-col gap-1.5">
+          <span class="font-label-xs text-[9px] uppercase tracking-wider text-secondary/90 font-bold">Accepted European Payment Methods:</span>
+          <div class="flex flex-wrap gap-1.5 items-center">
+            <span class="px-2 py-0.5 bg-surface border border-secondary font-bold text-[10px] text-pink-400">Klarna.</span>
+            <span class="px-2 py-0.5 bg-surface border border-secondary font-bold text-[10px] text-sky-400">iDEAL</span>
+            <span class="px-2 py-0.5 bg-surface border border-secondary font-bold text-[10px] text-yellow-400">PayPal</span>
+            <span class="px-2 py-0.5 bg-surface border border-secondary font-bold text-[10px] text-blue-400">Bancontact</span>
+            <span class="px-2 py-0.5 bg-surface border border-secondary font-bold text-[10px] text-red-400">BLIK</span>
+            <span class="px-2 py-0.5 bg-surface border border-secondary font-bold text-[10px] text-emerald-400">SEPA Direct</span>
+            <span class="px-2 py-0.5 bg-surface border border-secondary font-bold text-[10px] text-white">Apple / Google Pay</span>
+          </div>
+        </div>
+
+        <button id="btn-drawer-checkout-shopify" class="mech-button-primary !w-full !justify-center !py-3.5 !text-sm font-bold shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+          PROCEED TO EUROPEAN CHECKOUT &rarr;
+        </button>
+
+        <div class="flex gap-2">
+          <button id="btn-drawer-export-csv" class="mech-btn-secondary !flex-1 !justify-center !text-xs !py-2">
+            Download CSV BOM
+          </button>
+          <button id="btn-drawer-export-json" class="mech-btn-secondary !flex-1 !justify-center !text-xs !py-2">
+            Save Recipe JSON
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- FLOATING DAVE AI CHAT ASSISTANT (STITCH AUTHENTIC) -->
+  <!-- ========================================================================= -->
+  <div id="ai-chat-widget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <!-- Chat Window -->
+    <div id="chat-window" class="hidden bg-surface-container-high border-2 border-secondary shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] w-96 max-w-[90vw] overflow-hidden flex flex-col">
+      <div class="bg-primary-container p-3.5 border-b-2 border-secondary flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full border-2 border-secondary overflow-hidden flex-shrink-0">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCCHXspIV_hCfu9D82nDzSWqmzGc5xfIkwNWZ6-kzhajLsDD0H4BA6bmOxodmCf_DGLOCETIJtvbYoIXx9LpknQrefX-E51tiL-IzN8jmt345YXTpzeXq5BUN5Zzf22GY0AgxEqbKle70Ql-tCxiY-Dw4RghxudDCJdaTA7k1NpgGHVqPBVmq-6v5Jiv5vEjKIUiGZ4tQ-rj8_gEG8EL-1IDM2_rNFzZwQPknPe1ZW3tdPTOAUaCz8-oJq2dHT6JyGt78" alt="Dave" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <span class="font-label-sm text-xs uppercase text-on-primary-container font-bold block">Dave - Kustom AI Assistant</span>
+            <span class="font-label-xs text-[10px] text-white/80">Coast Airbrush Technical Support</span>
+          </div>
+        </div>
+        <button onclick="document.getElementById('chat-window').classList.add('hidden')" class="text-on-primary-container hover:scale-110 transition-transform cursor-pointer">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <div id="floating-dave-messages" class="p-4 bg-surface-dim flex flex-col gap-3 max-h-72 overflow-y-auto font-body-md text-xs">
+        <div class="bg-surface-container border-l-2 border-primary-container p-3">
+          <p class="text-on-surface">Hey! I'm Dave. Need help choosing between custom urethane basecoats, Flake King dry guns, or sprayable chrome mixing ratios?</p>
+        </div>
+      </div>
+
+      <div class="p-3 bg-surface-container-high border-t-2 border-secondary flex gap-2">
+        <input type="text" id="input-floating-dave" placeholder="Ask Dave a question (e.g. flake gun for .025 flake)..." class="mech-input !py-1.5 !text-xs">
+        <button id="btn-floating-dave-send" class="mech-button-primary !p-2 !px-3">
+          <span class="material-symbols-outlined text-[16px]">send</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Toggle Button -->
+    <button onclick="document.getElementById('chat-window').classList.toggle('hidden')" class="w-14 h-14 bg-primary-container text-on-primary-container rounded-full border-2 border-secondary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center justify-center group overflow-hidden cursor-pointer">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdAPuPUOBOdP6FuMZnOD8MW9mbI551fmZj-hXbAixAkA_fYSyHMMZx3f3XO9dNGZMSZs8oivHieXvPJnlHDLRzC9tSmJhN55iavx_YbyQGoIv_Iu9O76dFHR_gxk6KhcygY5Tliiy5ct5jqGyhdD12RM3bez1wDjeWSNp-pTPt9G9FSSDx1Xh7diNVW5hCo60cCox-1mjWvHRoBzEqRN9qbWMNACX-yJt1zFjt2e508Ofs5CSQykuf_xaIjmirfQ_Tmug" alt="Dave AI Assistant" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+    </button>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- STITCH FOOTER -->
+  <!-- ========================================================================= -->
+  <footer class="bg-surface-container-lowest text-secondary font-label-xs text-label-xs uppercase border-t-2 border-secondary relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-1 before:bg-[linear-gradient(90deg,transparent_0%,#d32f2f_50%,transparent_100%)] flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-12 gap-gutter mt-auto">
+    <div class="h-10 w-auto">
+      <img src="assets/images/coast_logo_white.png" alt="COAST AIRBRUSH" class="h-full w-auto object-contain">
+    </div>
+    <div class="flex gap-4 md:gap-8 flex-wrap justify-center font-bold">
+      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="#">Support</a>
+      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="#">Privacy Policy</a>
+      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="#">Shipping Info</a>
+      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="#">Authorized Dealers</a>
+    </div>
+    <div class="font-bold">© 2026 COAST AIRBRUSH. KUSTOM KULTURE REFINED.</div>
+  </footer>
+
+  <!-- Application Master Scripts -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

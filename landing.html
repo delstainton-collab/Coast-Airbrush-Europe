@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Welcome to Coast Airbrush Europe</title>
+  
+  <!-- Tailwind CSS & Google Fonts -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&amp;family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#121414",
+            "surface-container": "#181a1a",
+            "surface-container-high": "#222525",
+            "surface-container-lowest": "#0c0e0e",
+            "primary": "#ffb3ac",
+            "primary-container": "#d32f2f",
+            "primary-dark": "#b71c1c",
+            "secondary": "#c6c6c6",
+            "on-surface": "#e2e2e2"
+          },
+          fontFamily: {
+            "headline": ["Anybody", "sans-serif"],
+            "body": ["Hanken Grotesk", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  
+  <style>
+    body {
+      font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #0e1010;
+      color: #ffffff;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Fixed static full-viewport background */
+    .static-buggy-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(180deg, rgba(14, 16, 16, 0.60) 0%, rgba(10, 12, 12, 0.40) 40%, rgba(8, 10, 10, 0.70) 100%), 
+                  url('assets/images/flake_buggy_hero.jpg') no-repeat center center;
+      background-size: cover;
+      z-index: 0;
+      pointer-events: none;
+      transform: translate3d(0, 0, 0);
+      will-change: transform;
+    }
+
+    .static-metal-sheen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.04) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .welcome-card {
+      background: rgba(18, 20, 20, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 2px solid rgba(198, 198, 198, 0.75);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .inner-panel {
+      background: rgba(12, 14, 14, 0.80);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(198, 198, 198, 0.4);
+    }
+
+    .red-accent-rule {
+      height: 2px;
+      background: linear-gradient(90deg, #d32f2f 0%, rgba(211, 47, 47, 0.4) 60%, transparent 100%);
+    }
+
+    .text-shadow-contrast {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95), 0 0 12px rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body class="flex flex-col justify-between selection:bg-primary-container selection:text-white relative">
+
+  <!-- ========================================================================= -->
+  <!-- PERMANENT STATIC HERO BUGGY BACKGROUND -->
+  <!-- ========================================================================= -->
+  <div class="static-buggy-bg"></div>
+  <div class="static-metal-sheen"></div>
+
+  <!-- Header (Logo navigates directly to Shop page) -->
+  <header class="w-full border-b border-white/20 bg-[#121414]/85 backdrop-blur-md sticky top-0 z-30">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group" title="Coast Airbrush Europe - Go to Shop">
+        <img src="assets/images/coast_logo_white.png" alt="Coast Airbrush Europe" class="h-9 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+      </a>
+
+      <div class="flex items-center gap-4">
+        <span class="hidden sm:inline font-mono text-[11px] text-white/90 tracking-wider text-shadow-contrast">
+          🇬🇧 UK DISPATCH • REACH COMPLIANT
+        </span>
+        <a href="index.html" class="mech-button-primary !py-2 !px-4 text-xs font-mono tracking-wider flex items-center gap-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+          <span>ENTER SHOP</span>
+          <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN FLOATING ANNOUNCEMENT (Translucent with Static Buggy Locked in Place) -->
+  <!-- ========================================================================= -->
+  <main class="w-full flex-grow flex flex-col justify-center items-center py-12 sm:py-20 px-4 sm:px-6 relative z-10">
+    
+    <article class="welcome-card w-full max-w-3xl p-6 sm:p-12 space-y-12 rounded-sm my-auto">
+      
+      <!-- SECTION 1: WELCOME TO COAST AIRBRUSH EUROPE -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="font-mono text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2 bg-black/60 px-3 py-1 rounded border border-primary/40">
+            <span class="inline-block w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+            Official European Launch
+          </div>
+          <span class="font-mono text-[11px] text-white/80 text-shadow-contrast font-bold">EST. 2026</span>
+        </div>
+
+        <h1 class="font-headline text-3xl sm:text-5xl uppercase text-white tracking-tight leading-tight text-shadow-contrast">
+          Welcome to Coast Airbrush Europe
+        </h1>
+
+        <p class="font-headline text-lg sm:text-2xl text-primary font-medium tracking-wide text-shadow-contrast">
+          Precision Engineering. Personal Support. No Compromises.
+        </p>
+
+        <div class="red-accent-rule"></div>
+
+        <p class="text-base sm:text-lg text-white leading-relaxed font-normal pt-1 text-shadow-contrast">
+          Coast Airbrush Europe has arrived. We are redefining the custom painting standard with proprietary, market-leading equipment backed by genuine human expertise before, during, and after every purchase.
+        </p>
+      </section>
+
+      <!-- SECTION 2: EXCLUSIVE PRODUCT ROLLOUT -->
+      <section class="space-y-3">
+        <h2 class="font-headline text-xl sm:text-2xl uppercase text-white tracking-tight text-shadow-contrast">
+          Exclusive Product Rollout: <span class="text-secondary">The Next 6 Months</span>
+        </h2>
+
+        <div class="red-accent-rule"></div>
+
+        <p class="text-sm sm:text-base text-white/95 leading-relaxed font-light text-shadow-contrast">
+          Over the next six months, we will be launching an exclusive lineup of groundbreaking, professional-grade products found nowhere else. We reject generic clones and faceless marketplaces to bring you purpose-built innovations that protect your craft and elevate your finish.
+        </p>
+      </section>
+
+      <!-- SECTION 3: PHASE 1 LAUNCH: THE KROMAEDGE SPRAYABLE CHROME SYSTEM -->
+      <section class="space-y-4">
+        <div class="space-y-1">
+          <div class="font-mono text-xs text-primary font-bold uppercase tracking-wider text-shadow-contrast">
+            PHASE 1 LAUNCH
+          </div>
+          <h2 class="font-headline text-xl sm:text-2xl uppercase text-white tracking-tight text-shadow-contrast">
+            The Kromaedge Sprayable Chrome System
+          </h2>
+        </div>
+
+        <div class="red-accent-rule"></div>
+
+        <p class="text-sm sm:text-base text-white/95 leading-relaxed font-light text-shadow-contrast">
+          We are excited to announce that the very first release in Europe is the revolutionary <strong class="text-white font-semibold">Kromaedge</strong> product line. Engineered for deep, liquid-mirror reflections, superior atomization, and flawless edge-to-edge application, Kromaedge sets a new benchmark in sprayable chrome technology.
+        </p>
+
+        <!-- Status Notice -->
+        <div class="font-mono text-sm font-bold text-emerald-400 flex items-center gap-2 pt-1 text-shadow-contrast">
+          <span class="material-symbols-outlined text-[18px]">verified</span>
+          <span>Pre-orders are now officially open.</span>
+        </div>
+
+        <!-- Direct Pre-Order Link & Specification Button -->
+        <div class="flex flex-col sm:flex-row gap-3 pt-1">
+          <a href="index.html?search=Kroma+Edge#storefront-catalog-anchor" class="mech-button-primary !py-3.5 !px-7 text-xs sm:text-sm font-mono font-bold tracking-wider flex items-center justify-center gap-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+            <span>Pre-Order Kromaedge Now</span>
+          </a>
+          
+          <button onclick="openSpecModal()" class="inner-panel !p-3 !px-5 text-xs sm:text-sm font-mono font-bold tracking-wider text-white hover:text-primary flex items-center justify-center gap-2 border border-secondary/70 transition-colors">
+            <span class="material-symbols-outlined text-[18px]">description</span>
+            <span>View Product Specifications</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- SECTION 4: STAY AHEAD & JOIN THE COMMUNITY -->
+      <section class="space-y-4">
+        <h2 class="font-headline text-xl sm:text-2xl uppercase text-white tracking-tight text-shadow-contrast">
+          Stay Ahead &amp; Join the Community
+        </h2>
+
+        <div class="red-accent-rule"></div>
+
+        <div class="space-y-3 text-sm sm:text-base text-white/95 leading-relaxed font-light text-shadow-contrast">
+          <p>
+            Don't miss a single drop as our new product rollout unfolds. Subscribe for early access alerts, technical application guides, and exclusive European allocations.
+          </p>
+          <p>
+            Join our growing community of artists, commercial refinishers, and custom painters exchanging techniques, setups, and advice on the official Coast Forum.
+          </p>
+        </div>
+
+        <!-- Inline Subscription Form with Double Opt-In Verification Flow -->
+        <div class="inner-panel p-5 sm:p-6 rounded space-y-4 shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)] border border-secondary/50">
+          
+          <!-- State 1: Email Input Form -->
+          <form id="subscribe-form" onsubmit="handleSubscribe(event)" class="space-y-3">
+            <div class="flex flex-col sm:flex-row gap-2">
+              <input 
+                id="subscriber-email"
+                type="email" 
+                required 
+                placeholder="Enter Your Email Address" 
+                class="flex-grow bg-[#0c0e0e]/90 border-2 border-secondary/70 text-white px-3.5 py-2.5 text-xs sm:text-sm font-mono focus:border-primary focus:outline-none placeholder:text-secondary/60"
+              >
+              <button 
+                type="submit" 
+                class="mech-button-primary !py-2.5 !px-5 text-xs font-mono font-bold tracking-wider flex items-center justify-center gap-1.5 whitespace-nowrap shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+              >
+                <span class="material-symbols-outlined text-[16px]">send</span>
+                <span>Sign Up for Updates &amp; Forum Access</span>
+              </button>
+            </div>
+            
+            <p class="font-mono text-[11px] text-white/85 italic flex items-center gap-1.5 text-shadow-contrast">
+              <span class="material-symbols-outlined text-primary text-[13px]">shield</span>
+              Direct technical updates. Exclusive early drops. Zero spam.
+            </p>
+          </form>
+
+          <!-- State 2: Double Opt-In Inbox Confirmation Panel (Revealed on submit) -->
+          <div id="subscribe-success" class="hidden py-3 space-y-4">
+            <div class="flex items-start gap-3 bg-black/50 p-4 border border-emerald-500/40 rounded">
+              <div class="w-10 h-10 rounded bg-emerald-950/80 border border-emerald-500 text-emerald-400 flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-2xl">mark_email_unread</span>
+              </div>
+              <div class="space-y-1">
+                <h4 class="font-headline text-base uppercase text-white tracking-wide text-shadow-contrast">
+                  Check Your Inbox to Confirm Access
+                </h4>
+                <p class="font-mono text-xs text-white/90">
+                  We sent a verification link to <strong id="display-subscriber-email" class="text-primary font-bold">painter@email.com</strong>.
+                </p>
+              </div>
+            </div>
+
+            <!-- Double Opt-In Instruction Steps -->
+            <div class="font-mono text-xs text-white/85 space-y-2 pl-1">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-primary-container text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">1</span>
+                <span>Open the verification email from <strong>Coast Airbrush Europe</strong>.</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-primary-container text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">2</span>
+                <span>Click <strong>"Confirm My Forum &amp; VIP Access"</strong>.</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-primary-container text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">3</span>
+                <span>Your early allocation status &amp; technical guides activate immediately.</span>
+              </div>
+            </div>
+
+            <!-- Resend / Edit Actions -->
+            <div class="pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+              <button onclick="handleResendEmail()" id="btn-resend-email" class="text-primary hover:underline flex items-center gap-1 font-bold">
+                <span class="material-symbols-outlined text-[14px]">refresh</span>
+                <span id="label-resend">Resend Verification Email</span>
+              </button>
+              
+              <button onclick="handleEditEmail()" class="text-secondary hover:text-white flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">edit</span>
+                <span>Change Email Address</span>
+              </button>
+            </div>
+            
+            <div class="text-[11px] font-mono text-secondary/60">
+              * Didn't receive it? Please check your Spam / Promotions folder.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 5: THE COAST GUARANTEE -->
+      <section class="space-y-4">
+        <h2 class="font-headline text-xl sm:text-2xl uppercase text-white tracking-tight text-shadow-contrast">
+          The Coast Guarantee
+        </h2>
+
+        <div class="red-accent-rule"></div>
+
+        <ul class="space-y-2.5">
+          <li class="inner-panel p-3.5 sm:p-4 flex items-start gap-3 rounded-sm transition-colors hover:border-primary/60">
+            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0 mt-0.5">support_agent</span>
+            <div class="space-y-0.5">
+              <h3 class="font-headline text-sm sm:text-base uppercase text-white text-shadow-contrast">Personal Human Support</h3>
+              <p class="text-xs sm:text-sm text-white/90 font-light text-shadow-contrast">
+                (Expert 1-on-1 guidance before, whilst, and after your purchase)
+              </p>
+            </div>
+          </li>
+
+          <li class="inner-panel p-3.5 sm:p-4 flex items-start gap-3 rounded-sm transition-colors hover:border-primary/60">
+            <span class="material-symbols-outlined text-emerald-400 text-xl flex-shrink-0 mt-0.5">verified_user</span>
+            <div class="space-y-0.5">
+              <h3 class="font-headline text-sm sm:text-base uppercase text-white text-shadow-contrast">Guaranteed Authenticity</h3>
+              <p class="text-xs sm:text-sm text-white/90 font-light text-shadow-contrast">
+                (Proprietary products backed by full factory warranty)
+              </p>
+            </div>
+          </li>
+
+          <li class="inner-panel p-3.5 sm:p-4 flex items-start gap-3 rounded-sm transition-colors hover:border-primary/60">
+            <span class="material-symbols-outlined text-sky-400 text-xl flex-shrink-0 mt-0.5">smart_toy</span>
+            <div class="space-y-0.5">
+              <h3 class="font-headline text-sm sm:text-base uppercase text-white text-shadow-contrast">24/7 AI Knowledge Base</h3>
+              <p class="text-xs sm:text-sm text-white/90 font-light text-shadow-contrast">
+                (Instant technical specs and baseline troubleshooting)
+              </p>
+            </div>
+          </li>
+
+          <li class="inner-panel p-3.5 sm:p-4 flex items-start gap-3 rounded-sm transition-colors hover:border-primary/60">
+            <span class="material-symbols-outlined text-amber-400 text-xl flex-shrink-0 mt-0.5">forum</span>
+            <div class="space-y-0.5">
+              <h3 class="font-headline text-sm sm:text-base uppercase text-white text-shadow-contrast">Dedicated Artist Forum</h3>
+              <p class="text-xs sm:text-sm text-white/90 font-light text-shadow-contrast">
+                (Real-world discussion with working custom painters)
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Direct Action into Main Store -->
+      <div class="pt-4 border-t border-white/20 text-center">
+        <a href="index.html" class="inline-flex items-center gap-2 text-primary hover:text-white font-mono text-xs sm:text-sm font-bold uppercase transition-colors text-shadow-contrast">
+          <span>Continue to Main Catalog &amp; Storefront</span>
+          <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- Minimal Clean Footer -->
+  <footer class="w-full border-t border-white/20 bg-[#0c0e0e]/85 backdrop-blur-md py-6 px-6 text-center font-mono text-xs text-white/80 relative z-20">
+    <div class="max-w-5xl mx-auto space-y-1">
+      <p>&copy; 2026 Coast Airbrush Europe. Precision Engineering. Personal Support. No Compromises.</p>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: PRODUCT SPECIFICATIONS -->
+  <!-- ========================================================================= -->
+  <div id="spec-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="industrial-card max-w-2xl w-full p-6 sm:p-8 bg-[#181a1a] border-2 border-secondary relative shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-h-[90vh] overflow-y-auto">
+      <button onclick="closeSpecModal()" class="absolute top-4 right-4 text-secondary hover:text-white">
+        <span class="material-symbols-outlined text-2xl">close</span>
+      </button>
+
+      <div class="font-mono text-xs text-primary font-bold uppercase mb-1">
+        TECHNICAL SPECIFICATIONS
+      </div>
+
+      <h3 class="font-headline text-2xl uppercase text-white mb-4">Kromaedge Technical Data Sheet</h3>
+
+      <div class="space-y-4 text-xs font-mono">
+        <table class="w-full text-left border-collapse border border-secondary/30">
+          <tbody>
+            <tr class="border-b border-secondary/20 bg-[#0c0e0e]">
+              <td class="p-2.5 font-bold text-primary uppercase w-1/3">Formulation Base</td>
+              <td class="p-2.5 text-white">Advanced Synthetic Metallic Suspension</td>
+            </tr>
+            <tr class="border-b border-secondary/20">
+              <td class="p-2.5 font-bold text-primary uppercase">Nozzle Range</td>
+              <td class="p-2.5 text-white">0.8mm – 1.2mm Detail Gun / HVLP (15–22 PSI)</td>
+            </tr>
+            <tr class="border-b border-secondary/20 bg-[#0c0e0e]">
+              <td class="p-2.5 font-bold text-primary uppercase">Required Basecoat</td>
+              <td class="p-2.5 text-white">High-Gloss Jet Black (Fully Cured &amp; Flat)</td>
+            </tr>
+            <tr class="border-b border-secondary/20">
+              <td class="p-2.5 font-bold text-primary uppercase">Specular Reflectance</td>
+              <td class="p-2.5 text-white">99.4% Liquid Chrome Mirror Finish</td>
+            </tr>
+            <tr class="border-b border-secondary/20 bg-[#0c0e0e]">
+              <td class="p-2.5 font-bold text-primary uppercase">Flash-Off Time</td>
+              <td class="p-2.5 text-white">10–15 Minutes at 20°C (68°F)</td>
+            </tr>
+            <tr class="bg-[#0c0e0e]">
+              <td class="p-2.5 font-bold text-primary uppercase">Compliance</td>
+              <td class="p-2.5 text-emerald-400 font-bold">100% EU REACH &amp; VOC Compliant</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-secondary/30 flex justify-between items-center">
+        <a href="index.html?search=Kroma+Edge#storefront-catalog-anchor" class="mech-button-primary !py-2.5 !px-5 text-xs font-mono font-bold flex items-center gap-1">
+          <span>ORDER IN SHOP</span>
+          <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+        </a>
+        <button onclick="closeSpecModal()" class="text-xs text-secondary hover:text-white font-mono">
+          CLOSE
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Scripts -->
+  <script>
+    function openSpecModal() {
+      const modal = document.getElementById('spec-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById('spec-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function handleSubscribe(e) {
+      e.preventDefault();
+      const input = document.getElementById('subscriber-email');
+      const form = document.getElementById('subscribe-form');
+      const success = document.getElementById('subscribe-success');
+      const emailDisplay = document.getElementById('display-subscriber-email');
+      
+      if (input && input.value) {
+        if (emailDisplay) emailDisplay.textContent = input.value;
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+      }
+    }
+
+    function handleEditEmail() {
+      const form = document.getElementById('subscribe-form');
+      const success = document.getElementById('subscribe-success');
+      const input = document.getElementById('subscriber-email');
+      if (form && success) {
+        success.classList.add('hidden');
+        form.classList.remove('hidden');
+        if (input) input.focus();
+      }
+    }
+
+    function handleResendEmail() {
+      const label = document.getElementById('label-resend');
+      if (label) {
+        label.textContent = "Verification Email Resent! (Check Inbox)";
+        setTimeout(() => {
+          label.textContent = "Resend Verification Email";
+        }, 4000);
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSpecModal();
+      }
+    });
+  </script>
+</body>
+</html>
