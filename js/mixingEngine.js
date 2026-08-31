@@ -14,15 +14,61 @@ export const CONVERSIONS = {
 
 export const PRESET_PANELS = [
   { id: "custom", name: "Custom Dimensions / Sq Ft", sqft: 0 },
-  { id: "airbrush_panel", name: "Airbrush Test Panel (12\" x 12\")", sqft: 1 },
-  { id: "helmet", name: "Full Face Motorcycle Helmet", sqft: 3.5 },
-  { id: "mc_tank", name: "Motorcycle Gas Tank", sqft: 6 },
-  { id: "mc_fender", name: "Motorcycle Fender Set", sqft: 8 },
-  { id: "hood", name: "Car Hood / Bonnet", sqft: 22 },
-  { id: "roof", name: "Car Roof", sqft: 25 },
-  { id: "full_car", name: "Full Mid-Size Car Body", sqft: 140 },
-  { id: "full_truck", name: "Full Pickup Truck Body", sqft: 180 }
+  { id: "helmet", name: "Full Face Racing Helmet (2.5 sq ft / 0.23 m²)", sqft: 2.5 },
+  { id: "mc_tank", name: "Motorcycle Gas Tank (6.0 sq ft / 0.56 m²)", sqft: 6.0 },
+  { id: "mc_full", name: "Complete Motorcycle Set (15.0 sq ft / 1.4 m²)", sqft: 15.0 },
+  { id: "hood", name: "Car Hood / Bonnet (22.0 sq ft / 2.05 m²)", sqft: 22.0 },
+  { id: "guitar", name: "Electric Guitar Body (3.5 sq ft / 0.33 m²)", sqft: 3.5 },
+  { id: "full_car", name: "Full Mid-Size Vehicle Respray (140 sq ft / 13.0 m²)", sqft: 140.0 }
 ];
+
+/**
+ * Calculates exact KromaEdge sprayable chrome and clearcoat volume requirements.
+ * Benchmark: 1 fl oz of mixed KromaEdge Chrome covers 2 square feet (0.5 fl oz per sq ft).
+ */
+export function calculateKromaCoverage({ sqft = 0, sqm = 0 }) {
+  let effectiveSqFt = sqft;
+  if (sqm && sqm > 0) {
+    effectiveSqFt = sqm * CONVERSIONS.SQM_TO_SQFT;
+  }
+  if (!effectiveSqFt || effectiveSqFt <= 0) effectiveSqFt = 2.0;
+
+  // 1 fl oz mixed covers 2 sq ft (0.5 fl oz / ~14.78 mL per sq ft)
+  const chromeFlOz = Math.round((effectiveSqFt / 2.0) * 10) / 10;
+  const chromeMl = Math.round(chromeFlOz * CONVERSIONS.FLOZ_TO_ML);
+
+  // Dedicated clearcoat volume needed
+  const clearMl = Math.round(chromeMl * 1.25);
+
+  // Recommended kit sizes based on 1oz = 2 sq ft:
+  // 140g (5oz) covers up to 10 sq ft
+  // 420g (15oz) covers up to 30 sq ft
+  // 1260g (45oz) covers up to 90 sq ft
+  let recommendedKit = "KromaEdge 140g / 5oz Kit (covers up to 10 sq ft)";
+  let recommendedClear = "Topcoat Clear 180 SET (378g)";
+  let kitSku = "kroma-chrome-140g";
+  
+  if (chromeFlOz > 15 || effectiveSqFt > 30) {
+    recommendedKit = "KromaEdge 1L / 1260g Large Kit (covers up to 90 sq ft)";
+    recommendedClear = "Topcoat Clear 900 SET / 3600 SET";
+    kitSku = "kroma-chrome-1l";
+  } else if (chromeFlOz > 5 || effectiveSqFt > 10) {
+    recommendedKit = "KromaEdge 420g / 15oz Medium Kit (covers up to 30 sq ft)";
+    recommendedClear = "Topcoat Clear 900 SET (1,890g)";
+    kitSku = "kroma-chrome-420g";
+  }
+
+  return {
+    sqft: Math.round(effectiveSqFt * 10) / 10,
+    sqm: Math.round(effectiveSqFt * CONVERSIONS.SQFT_TO_SQM * 100) / 100,
+    chromeFlOz: chromeFlOz,
+    chromeMl: chromeMl,
+    clearMl: clearMl,
+    recommendedKit: recommendedKit,
+    recommendedClear: recommendedClear,
+    kitSku: kitSku
+  };
+}
 
 /**
  * Calculates total required liquid volume based on surface area and coats.
@@ -30,7 +76,6 @@ export const PRESET_PANELS = [
 export function calculateRequiredVolume({ sqft, coats = 2, transferEfficiency = 0.65, coverageRateSqFtPerGal = 400 }) {
   if (!sqft || sqft <= 0) return { ml: 250, floz: 8.45, quarts: 0.26 };
 
-  // Theoretical coverage per gallon at 1 mil DFT
   const sqftPerGalEffective = coverageRateSqFtPerGal * transferEfficiency;
   const gallonsNeeded = (sqft * coats) / sqftPerGalEffective;
   const mlNeeded = gallonsNeeded * CONVERSIONS.GAL_TO_ML;

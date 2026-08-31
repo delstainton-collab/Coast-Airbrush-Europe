@@ -1,9 +1,9 @@
-# Coast Airbrush EU
+# Coast Airbrush Europe
 
-> **The European Hub for Custom Automotive Paint, Airbrush Systems, Kroma Edge & Flake King**
+> **The Official European Hub for Custom Automotive Paint, Airbrush Systems, Kroma Edge & Flake King**
 
 ## Overview
-Coast Airbrush EU is the dedicated European e-commerce storefront, mixing engine, and technical hub for custom automotive painters, airbrush artists, and motorcycle builders across the UK and EU.
+Coast Airbrush Europe is the dedicated European e-commerce storefront, mixing engine, CRM platform, and technical hub for custom automotive painters, airbrush artists, and motorcycle builders across Europe and the UK.
 
 ### Key Features
 - **Interactive Paint Mixing Engine**: Real-time volume, reduction ratio, and multi-stage formula calculator.
@@ -22,7 +22,8 @@ Coast Airbrush EU is the dedicated European e-commerce storefront, mixing engine
 ├── data/            # Product catalogs, pricing matrices, and color formulas
 ├── docs/            # Strategic blueprints, tax optimization & architectural specifications
 ├── js/              # Mixing engines, AI agent workflows, and Shopify integration
-├── index.html       # Primary interactive application & storefront
-├── landing.html     # Pre-order & launch landing page
+├── index.html       # Primary e-commerce storefront & mixing application
+├── about.html       # Official European Launch, heritage & 6-month roadmap page
+├── landing.html     # Dedicated launch & pre-order portal
 └── package.json     # Project configuration
 ```

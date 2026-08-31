@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coast Airbrush Europe — Multi-Tier CRM & Communications Hub</title>
+  
+  <!-- Google Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,700;0,900;1,700;1,900&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <style>
+    /* Specialized CRM Engine Styles */
+    :root {
+      --crm-bg: #0e1010;
+      --crm-surface: #141717;
+      --crm-card: #1b1e1e;
+      --crm-card-hover: #232727;
+      --crm-border: #2d3333;
+      --crm-border-light: #3e4646;
+      --crm-red: #d32f2f;
+      --crm-red-glow: rgba(211, 47, 47, 0.4);
+      --crm-chrome: #c6c6c6;
+      --crm-chrome-bright: #f0f0f0;
+      --crm-green: #22c55e;
+      --crm-amber: #f59e0b;
+      --crm-cyan: #38bdf8;
+    }
+
+    body.crm-body {
+      background-color: var(--crm-bg);
+      color: #e2e2e2;
+      font-family: 'Hanken Grotesk', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* CRM Navigation Header */
+    .crm-header {
+      background: linear-gradient(180deg, #181b1b 0%, #121414 100%);
+      border-bottom: 2px solid var(--crm-border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+
+    .crm-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .crm-logo-flame {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #ff2a2a, #b70000);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      box-shadow: 0 0 15px var(--crm-red-glow);
+      border: 1px solid #ff7b72;
+    }
+
+    .crm-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .crm-title {
+      font-family: 'Anybody', sans-serif;
+      font-weight: 900;
+      font-style: italic;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .crm-subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--crm-red);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Top Nav Tabs */
+    .crm-nav-tabs {
+      display: flex;
+      background: #090b0b;
+      border-radius: 8px;
+      padding: 4px;
+      border: 1px solid var(--crm-border);
+      gap: 4px;
+    }
+
+    .crm-nav-tab {
+      background: transparent;
+      border: none;
+      color: var(--crm-chrome);
+      padding: 8px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .crm-nav-tab:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .crm-nav-tab.active {
+      background: linear-gradient(180deg, #d32f2f 0%, #b70000 100%);
+      color: #fff;
+      box-shadow: 0 0 12px var(--crm-red-glow);
+      border: 1px solid #ff7b72;
+    }
+
+    /* User / Global Actions */
+    .crm-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .crm-search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .crm-search-input {
+      background: #0c0f0f;
+      border: 1px solid var(--crm-border);
+      border-radius: 6px;
+      padding: 7px 12px 7px 34px;
+      color: #fff;
+      font-size: 0.85rem;
+      font-family: 'Hanken Grotesk', sans-serif;
+      width: 240px;
+      transition: all 0.2s ease;
+    }
+
+    .crm-search-input:focus {
+      outline: none;
+      border-color: var(--crm-red);
+      box-shadow: 0 0 8px var(--crm-red-glow);
+      width: 300px;
+    }
+
+    .crm-search-icon {
+      position: absolute;
+      left: 10px;
+      color: #6b7280;
+      font-size: 18px;
+      pointer-events: none;
+    }
+
+    .crm-rep-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #181b1b;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--crm-border);
+    }
+
+    .crm-rep-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #333;
+      border: 2px solid var(--crm-red);
+    }
+
+    .crm-rep-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* View Container */
+    .crm-viewport {
+      flex: 1;
+      padding: 24px;
+      max-width: 1600px;
+      margin: 0 auto;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .crm-view-panel {
+      display: none;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    .crm-view-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Grid & Card Utilities */
+    .crm-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .crm-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .crm-grid-split {
+      display: grid;
+      grid-template-columns: 340px 1fr 340px;
+      gap: 24px;
+    }
+
+    .crm-card {
+      background: var(--crm-card);
+      border: 1px solid var(--crm-border);
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .crm-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--crm-border);
+    }
+
+    .crm-card-title {
+      font-family: 'Anybody', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-red {
+      background: rgba(211, 47, 47, 0.15);
+      color: #ff6b6b;
+      border: 1px solid rgba(211, 47, 47, 0.4);
+    }
+
+    .badge-chrome {
+      background: rgba(198, 198, 198, 0.1);
+      color: #e2e2e2;
+      border: 1px solid rgba(198, 198, 198, 0.3);
+    }
+
+    .badge-green {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+    }
+
+    .badge-gold {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    /* Buttons */
+    .btn-red {
+      background: linear-gradient(180deg, #d32f2f 0%, #b70000 100%);
+      color: #fff;
+      border: 1px solid #ff7b72;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 0 10px var(--crm-red-glow);
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-red:hover {
+      background: linear-gradient(180deg, #e53935 0%, #c62828 100%);
+      box-shadow: 0 0 18px rgba(211, 47, 47, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .btn-chrome {
+      background: #282d2d;
+      color: #fff;
+      border: 1px solid var(--crm-border-light);
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-chrome:hover {
+      background: #363d3d;
+      border-color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* Omnichannel Timeline Tree */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--crm-red) 0%, var(--crm-border) 100%);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: -28px;
+      top: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--crm-bg);
+      border: 2px solid var(--crm-red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 8px var(--crm-red-glow);
+    }
+
+    .timeline-marker.green { border-color: var(--crm-green); box-shadow: 0 0 8px rgba(34,197,94,0.4); }
+    .timeline-marker.gold { border-color: var(--crm-amber); box-shadow: 0 0 8px rgba(245,158,11,0.4); }
+    .timeline-marker.cyan { border-color: var(--crm-cyan); box-shadow: 0 0 8px rgba(56,189,248,0.4); }
+
+    .timeline-card {
+      background: #141717;
+      border: 1px solid var(--crm-border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      transition: all 0.2s ease;
+    }
+
+    .timeline-card:hover {
+      border-color: var(--crm-border-light);
+      background: #181c1c;
+    }
+
+    .timeline-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .timeline-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .timeline-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: #8b949e;
+    }
+
+    .timeline-body {
+      font-size: 0.82rem;
+      color: #c6c6c6;
+      line-height: 1.45;
+    }
+
+    /* Waveform simulation */
+    .audio-waveform {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 24px;
+      padding: 4px 8px;
+      background: #090b0b;
+      border-radius: 4px;
+      margin-top: 8px;
+      border: 1px solid #222;
+    }
+
+    .audio-bar {
+      width: 3px;
+      background: var(--crm-red);
+      border-radius: 2px;
+      animation: pulseWave 1.2s infinite ease-in-out alternate;
+    }
+
+    @keyframes pulseWave {
+      0% { height: 4px; opacity: 0.4; }
+      100% { height: 18px; opacity: 1; }
+    }
+
+    /* Pricing Matrix Controls */
+    .tier-slider-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #141717;
+      border: 1px solid var(--crm-border);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+
+    .tier-slider-label {
+      font-family: 'Anybody', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tier-slider-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--crm-chrome);
+    }
+
+    .tier-slider-input {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 220px;
+      height: 6px;
+      background: #282d2d;
+      border-radius: 3px;
+      outline: none;
+    }
+
+    .tier-slider-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--crm-red);
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--crm-red-glow);
+      border: 2px solid #fff;
+    }
+
+    .tier-slider-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #fff;
+      min-width: 55px;
+      text-align: right;
+    }
+
+    /* Data Tables */
+    .crm-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+
+    .crm-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background: #111414;
+      color: var(--crm-chrome);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--crm-border);
+    }
+
+    .crm-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--crm-border);
+      color: #e2e2e2;
+    }
+
+    .crm-table tr:hover td {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .price-input {
+      background: #090b0b;
+      border: 1px solid var(--crm-border);
+      border-radius: 4px;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      padding: 6px 10px;
+      width: 90px;
+    }
+
+    .price-input:focus {
+      outline: none;
+      border-color: var(--crm-red);
+      box-shadow: 0 0 6px var(--crm-red-glow);
+    }
+
+    /* Google Meet In-App Frame */
+    .meet-room-box {
+      background: #090b0b;
+      border: 2px solid var(--crm-border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 480px;
+    }
+
+    .meet-room-header {
+      background: #141717;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--crm-border);
+    }
+
+    .meet-canvas {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 16px;
+      background: #060707;
+      position: relative;
+    }
+
+    .video-participant {
+      background: #1a1e1e;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 1px solid #333;
+      overflow: hidden;
+    }
+
+    .video-participant img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-label {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(0,0,0,0.7);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .meet-controls {
+      background: #141717;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border-top: 1px solid var(--crm-border);
+    }
+
+    .meet-btn-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #282d2d;
+      border: 1px solid var(--crm-border-light);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .meet-btn-circle:hover {
+      background: #363d3d;
+    }
+
+    .meet-btn-circle.hangup {
+      background: #d32f2f;
+      border-color: #ff7b72;
+      box-shadow: 0 0 10px var(--crm-red-glow);
+    }
+
+    /* Modal Overlay */
+    .crm-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .crm-modal-overlay.active {
+      display: flex;
+    }
+
+    .crm-modal {
+      background: var(--crm-card);
+      border: 2px solid var(--crm-red);
+      border-radius: 12px;
+      width: 650px;
+      max-width: 95%;
+      box-shadow: 0 0 30px rgba(211, 47, 47, 0.4);
+      overflow: hidden;
+      animation: modalPop 0.2s ease-out;
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.94); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .crm-modal-header {
+      background: #111414;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--crm-border);
+    }
+
+    .crm-modal-body {
+      padding: 20px;
+    }
+
+    .crm-modal-footer {
+      background: #111414;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      border-top: 1px solid var(--crm-border);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      color: var(--crm-chrome);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .form-control {
+      width: 100%;
+      background: #090b0b;
+      border: 1px solid var(--crm-border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      color: #fff;
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 0.88rem;
+      box-sizing: border-box;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--crm-red);
+      box-shadow: 0 0 8px var(--crm-red-glow);
+    }
+
+    /* Toast Notification */
+    #crmToast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #141717;
+      border: 1px solid var(--crm-red);
+      box-shadow: 0 0 15px var(--crm-red-glow);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 2000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #crmToast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="crm-body">
+
+  <!-- CRM Command Header -->
+  <header class="crm-header">
+    <div style="display: flex; align-items: center; gap: 24px;">
+      <a href="index.html" class="crm-brand">
+        <div class="crm-logo-flame">
+          <span class="material-symbols-outlined" style="font-size: 24px;">local_fire_department</span>
+        </div>
+        <div class="crm-brand-text">
+          <span class="crm-title">COAST AIRBRUSH</span>
+          <span class="crm-subtitle">Enterprise CRM Suite</span>
+        </div>
+      </a>
+
+      <!-- View Navigation Tabs -->
+      <nav class="crm-nav-tabs">
+        <button class="crm-nav-tab active" data-view="dashboard">
+          <span class="material-symbols-outlined" style="font-size: 18px;">dashboard</span>
+          Executive 360
+        </button>
+        <button class="crm-nav-tab" data-view="customer360">
+          <span class="material-symbols-outlined" style="font-size: 18px;">person_pin</span>
+          Client Interactions
+        </button>
+        <button class="crm-nav-tab" data-view="comms">
+          <span class="material-symbols-outlined" style="font-size: 18px;">mail</span>
+          Email & Google Meet
+        </button>
+        <button class="crm-nav-tab" data-view="pricing">
+          <span class="material-symbols-outlined" style="font-size: 18px;">price_change</span>
+          Dynamic Pricing
+        </button>
+      </nav>
+    </div>
+
+    <div class="crm-header-actions">
+      <div class="crm-search-box">
+        <span class="material-symbols-outlined crm-search-icon">search</span>
+        <input type="text" id="globalCrmSearch" class="crm-search-input" placeholder="Search accounts, SKUs, emails...">
+      </div>
+
+      <div class="crm-rep-badge">
+        <div class="crm-rep-avatar" style="background: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80') center/cover;"></div>
+        <span class="crm-rep-name">Sales Desk (HQ)</span>
+        <span class="badge badge-red">LIVE</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main CRM Viewport -->
+  <main class="crm-viewport">
+
+    <!-- ========================================== -->
+    <!-- VIEW 1: EXECUTIVE DASHBOARD & TERRITORIES -->
+    <!-- ========================================== -->
+    <section id="view-dashboard" class="crm-view-panel active">
+      <!-- 3-Tier Summary KPI Cards -->
+      <div class="crm-grid-3" style="margin-bottom: 24px;">
+        <div class="crm-card" style="border-top: 3px solid var(--crm-red);">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-red);">brush</span>
+              End Users (Artists)
+            </span>
+            <span class="badge badge-red">5,842 Accounts</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 800; color: #fff;">€428,500</div>
+              <div style="font-size: 0.78rem; color: #9ca3af;">YTD E-Commerce Revenue</div>
+            </div>
+            <div class="badge badge-green">+18.4% YoY</div>
+          </div>
+          <div style="margin-top: 14px; font-size: 0.8rem; color: var(--crm-chrome);">
+            🎨 1,240 Custom Formulas Saved in Vault
+          </div>
+        </div>
+
+        <div class="crm-card" style="border-top: 3px solid var(--crm-chrome);">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-chrome);">storefront</span>
+              Dealers & Jobbers
+            </span>
+            <span class="badge badge-chrome">2,323 Accounts</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 800; color: #fff;">€1,840,200</div>
+              <div style="font-size: 0.78rem; color: #9ca3af;">YTD Wholesale Net Volume</div>
+            </div>
+            <div class="badge badge-green">+24.1% YoY</div>
+          </div>
+          <div style="margin-top: 14px; font-size: 0.8rem; color: var(--crm-chrome);">
+            💳 94.2% Good Standing on Net-30 Terms
+          </div>
+        </div>
+
+        <div class="crm-card" style="border-top: 3px solid var(--crm-amber);">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-amber);">hub</span>
+              Regional Distributors
+            </span>
+            <span class="badge badge-gold">29 Master Hubs</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 800; color: #fff;">€3,450,000</div>
+              <div style="font-size: 0.78rem; color: #9ca3af;">Container & Pallet Volume</div>
+            </div>
+            <div class="badge badge-gold">88% Quota Pacing</div>
+          </div>
+          <div style="margin-top: 14px; font-size: 0.8rem; color: var(--crm-chrome);">
+            📦 €84,500 Accrued in Retro-Rebates
+          </div>
+        </div>
+      </div>
+
+      <!-- Territory Map & Live Feed Grid -->
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+        <div class="crm-card">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-red);">public</span>
+              European Territory Revenue & Quota Performance
+            </span>
+            <span class="badge badge-chrome">NL & UK Bonded Hubs</span>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px;">
+            <div style="background: #111414; padding: 12px; border-radius: 6px; border-left: 3px solid var(--crm-red);">
+              <div style="font-size: 0.75rem; color: #888;">GERMANY (DACH)</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 800; color: #fff;">€1,420,000</div>
+              <div style="font-size: 0.7rem; color: var(--crm-green);">94% Quota Met</div>
+            </div>
+            <div style="background: #111414; padding: 12px; border-radius: 6px; border-left: 3px solid var(--crm-chrome);">
+              <div style="font-size: 0.75rem; color: #888;">UK & IRELAND</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 800; color: #fff;">£920,000</div>
+              <div style="font-size: 0.7rem; color: var(--crm-green);">102% Quota Met</div>
+            </div>
+            <div style="background: #111414; padding: 12px; border-radius: 6px; border-left: 3px solid var(--crm-amber);">
+              <div style="font-size: 0.75rem; color: #888;">FRANCE & BENELUX</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 800; color: #fff;">€880,000</div>
+              <div style="font-size: 0.7rem; color: var(--crm-amber);">82% Quota Met</div>
+            </div>
+            <div style="background: #111414; padding: 12px; border-radius: 6px; border-left: 3px solid var(--crm-cyan);">
+              <div style="font-size: 0.75rem; color: #888;">NORDICS & SCANDI</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 800; color: #fff;">€610,000</div>
+              <div style="font-size: 0.7rem; color: var(--crm-green);">91% Quota Met</div>
+            </div>
+          </div>
+
+          <div style="background: #090b0b; border-radius: 8px; padding: 16px; border: 1px solid var(--crm-border);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 700; color: #fff;">ANNUAL PACING: €5,748,500 / €6,200,000 TARGET</span>
+              <span class="badge badge-red">92.7% ON TRACK</span>
+            </div>
+            <div style="width: 100%; height: 12px; background: #1a1e1e; border-radius: 6px; overflow: hidden;">
+              <div style="width: 92.7%; height: 100%; background: linear-gradient(90deg, #b70000, #ff2a2a); box-shadow: 0 0 12px var(--crm-red-glow);"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Master Painter & Support Alerts -->
+        <div class="crm-card">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-red);">smart_toy</span>
+              AI Specialist Alerts
+            </span>
+            <span class="badge badge-red">2 Escalations</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="background: #111414; padding: 12px; border-radius: 6px; border-left: 3px solid var(--crm-red);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <span style="font-weight: 700; font-size: 0.85rem; color: #fff;">Apex Custom Paintworks</span>
+                <span class="badge badge-red">URGENT</span>
+              </div>
+              <p style="font-size: 0.78rem; color: #aaa; margin: 0;">AI Master Painter flagged fish-eye issue on epoxy clear. Scheduled technical follow-up.</p>
+            </div>
+
+            <div style="background: #111414; padding: 12px; border-radius: 6px; border-left: 3px solid var(--crm-amber);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <span style="font-weight: 700; font-size: 0.85rem; color: #fff;">Nordic Kustom Hub</span>
+                <span class="badge badge-gold">REORDER</span>
+              </div>
+              <p style="font-size: 0.78rem; color: #aaa; margin: 0;">Stock Guru predicted 48h stock-out on Slow Speed Reducer 5L barrels.</p>
+            </div>
+
+            <button class="btn-red" style="width: 100%; margin-top: 8px;" onclick="switchCrmView('customer360')">
+              <span class="material-symbols-outlined" style="font-size: 18px;">open_in_new</span>
+              Inspect Active Client
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 2: CUSTOMER 360 & INTERACTION TIMELINE -->
+    <!-- ========================================== -->
+    <section id="view-customer360" class="crm-view-panel">
+      <!-- Top Client Switcher Bar -->
+      <div class="crm-card" style="margin-bottom: 20px; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 700; color: var(--crm-chrome);">ACTIVE CLIENT:</span>
+          <select id="clientSelector" class="form-control" style="width: 320px; font-weight: 700; color: #fff; background: #0c0f0f; border-color: var(--crm-red);">
+            <option value="apex">Apex Custom Paintworks (Dealer Tier 2)</option>
+            <option value="nordic">Nordics Paint Logistics B.V. (Distributor Master)</option>
+            <option value="dave">Dave's Kustom Airbrush Studio (Pro End User)</option>
+          </select>
+        </div>
+        
+        <div style="display: flex; gap: 10px;">
+          <button class="btn-red" onclick="openEmailModal()">
+            <span class="material-symbols-outlined" style="font-size: 16px;">outgoing_mail</span>
+            Send Email
+          </button>
+          <button class="btn-chrome" onclick="openCallModal()">
+            <span class="material-symbols-outlined" style="font-size: 16px;">phone_forwarded</span>
+            Log / Schedule Call
+          </button>
+          <button class="btn-red" style="background: linear-gradient(180deg, #ff2a2a, #b70000);" onclick="launchInstantMeet()">
+            <span class="material-symbols-outlined" style="font-size: 16px;">videocam</span>
+            Start Google Meet
+          </button>
+        </div>
+      </div>
+
+      <!-- 3-Column Workspace -->
+      <div class="crm-grid-split">
+        
+        <!-- LEFT COLUMN: Client Card & Commercial Terms -->
+        <div class="crm-card">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-red);">badge</span>
+              Account Profile
+            </span>
+            <span id="clientBadge" class="badge badge-red">DEALER TIER 2</span>
+          </div>
+
+          <div style="text-align: center; margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--crm-border);">
+            <div style="width: 64px; height: 64px; border-radius: 50%; background: #111414; border: 2px solid var(--crm-red); margin: 0 auto 10px; display: flex; align-items: center; justify-content: center;">
+              <span class="material-symbols-outlined" style="font-size: 32px; color: #fff;">car_repair</span>
+            </div>
+            <h3 id="clientNameDisplay" style="margin: 0 0 4px; font-family: 'Anybody', sans-serif; font-size: 1.15rem; color: #fff;">Apex Custom Paintworks</h3>
+            <div id="clientLocation" style="font-size: 0.78rem; color: #888;">Unit 4, Silverstone Business Park, UK</div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.82rem;">
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 6px;">
+              <span style="color: #888;">Primary Contact:</span>
+              <span id="clientContact" style="font-weight: 700; color: #fff;">Sarah Jensen (Head Painter)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 6px;">
+              <span style="color: #888;">Direct Email:</span>
+              <span id="clientEmail" style="color: #ff6b6b;">sarah.j@apexpaint.co.uk</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 6px;">
+              <span style="color: #888;">Phone:</span>
+              <span style="font-family: 'JetBrains Mono', monospace; color: #fff;">+44 7911 123456</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 6px;">
+              <span style="color: #888;">Payment Terms:</span>
+              <span class="badge badge-green">Net 30 Days</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 6px;">
+              <span style="color: #888;">Credit Line:</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #fff;">£18,400 / £25,000</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding-bottom: 6px;">
+              <span style="color: #888;">Total Spend (YTD):</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-weight: 800; color: var(--crm-green);">£142,100</span>
+            </div>
+          </div>
+
+          <button class="btn-chrome" style="width: 100%; margin-top: 16px;" onclick="switchCrmView('pricing')">
+            <span class="material-symbols-outlined" style="font-size: 16px;">tune</span>
+            Manage Custom Pricing Matrix
+          </button>
+        </div>
+
+        <!-- CENTER COLUMN: Omnichannel Timeline (Emails, Calls, Video Meet AI Notes) -->
+        <div class="crm-card">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-red);">history</span>
+              Omnichannel Timeline & AI Intelligence
+            </span>
+            <span class="badge badge-chrome">2-Way Sync</span>
+          </div>
+
+          <div class="timeline" id="timelineStream">
+            
+            <!-- Upcoming Scheduled Call Item -->
+            <div class="timeline-item">
+              <div class="timeline-marker gold">
+                <span class="material-symbols-outlined" style="font-size: 12px; color: var(--crm-amber);">event</span>
+              </div>
+              <div class="timeline-card" style="border-left: 3px solid var(--crm-amber);">
+                <div class="timeline-header">
+                  <span class="timeline-title">
+                    <span class="material-symbols-outlined" style="color: var(--crm-amber); font-size: 16px;">alarm</span>
+                    Scheduled Call: Q3 Stocking & Neon Candy Range
+                  </span>
+                  <span class="badge badge-gold">UPCOMING: TOMORROW 14:00</span>
+                </div>
+                <div class="timeline-body">
+                  Discussing initial pre-order of Kroma Edge Neon series and Net-30 limit review.
+                </div>
+              </div>
+            </div>
+
+            <!-- In-App Google Meet AI Summary Item -->
+            <div class="timeline-item">
+              <div class="timeline-marker red">
+                <span class="material-symbols-outlined" style="font-size: 12px; color: var(--crm-red);">videocam</span>
+              </div>
+              <div class="timeline-card" style="border-left: 3px solid var(--crm-red);">
+                <div class="timeline-header">
+                  <span class="timeline-title">
+                    <span class="material-symbols-outlined" style="color: var(--crm-red); font-size: 16px;">smart_toy</span>
+                    Google Meet: Technical Mix Review & Action Items
+                  </span>
+                  <span class="timeline-time">Today, 11:15 AM (38 mins)</span>
+                </div>
+                <div class="timeline-body">
+                  <div style="background: #0d0f0f; padding: 10px; border-radius: 6px; margin-top: 6px; border: 1px solid #262a2a;">
+                    <div style="font-weight: 700; color: #fff; margin-bottom: 4px;">🧠 AI Meeting Summary (Gemini):</div>
+                    <ul style="margin: 0 0 6px 18px; padding: 0; color: #bbb;">
+                      <li>Discussed 3-stage Candy Red layering over Silver Fine Metallic base.</li>
+                      <li>Sarah confirmed 1.3mm needle tip with 28 PSI air pressure for final clearcoat.</li>
+                      <li>Agreed on +5% dealer discount on Fast Reducer 5L barrels.</li>
+                    </ul>
+                    <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #ff6b6b;">
+                      ✓ Tagged Formula: <strong>#881 Midnight Violet (25% Reducer, 10% Gold Pearl)</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Synced Email Item -->
+            <div class="timeline-item">
+              <div class="timeline-marker green">
+                <span class="material-symbols-outlined" style="font-size: 12px; color: var(--crm-green);">mail</span>
+              </div>
+              <div class="timeline-card" style="border-left: 3px solid var(--crm-green);">
+                <div class="timeline-header">
+                  <span class="timeline-title">
+                    <span class="material-symbols-outlined" style="color: var(--crm-green); font-size: 16px;">inbox</span>
+                    Inbound Email: PO #APX-719 Approved
+                  </span>
+                  <span class="timeline-time">Yesterday, 16:42</span>
+                </div>
+                <div class="timeline-body">
+                  <em>"Hey Mark, thanks for the TDS sheets on the new Flake King carrier. We have submitted purchase order #APX-719 for 4 cases of Candy Apple Red."</em>
+                  <div style="margin-top: 8px;">
+                    <button class="btn-chrome" style="padding: 4px 10px; font-size: 0.72rem;" onclick="openEmailModal('Re: PO #APX-719 Approved')">
+                      <span class="material-symbols-outlined" style="font-size: 14px;">reply</span> Reply In-App
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Logged Phone Call with Waveform -->
+            <div class="timeline-item">
+              <div class="timeline-marker cyan">
+                <span class="material-symbols-outlined" style="font-size: 12px; color: var(--crm-cyan);">phone_in_talk</span>
+              </div>
+              <div class="timeline-card" style="border-left: 3px solid var(--crm-cyan);">
+                <div class="timeline-header">
+                  <span class="timeline-title">
+                    <span class="material-symbols-outlined" style="color: var(--crm-cyan); font-size: 16px;">call</span>
+                    Phone Call: Reducer Flash Time Troubleshooting
+                  </span>
+                  <span class="timeline-time">24 Aug, 09:30 AM (4m 12s)</span>
+                </div>
+                <div class="timeline-body">
+                  Advised Sarah to switch from Medium to Slow Reducer due to current 29°C workshop heat in Northamptonshire.
+                  
+                  <div class="audio-waveform">
+                    <span class="material-symbols-outlined" style="color: var(--crm-red); font-size: 18px; cursor: pointer;">play_arrow</span>
+                    <div class="audio-bar" style="height: 6px;"></div>
+                    <div class="audio-bar" style="height: 14px;"></div>
+                    <div class="audio-bar" style="height: 8px;"></div>
+                    <div class="audio-bar" style="height: 18px;"></div>
+                    <div class="audio-bar" style="height: 12px;"></div>
+                    <div class="audio-bar" style="height: 16px;"></div>
+                    <div class="audio-bar" style="height: 7px;"></div>
+                    <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: #888; margin-left: auto;">Audio Memo Logged</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Saved Formulas & Quick Tools -->
+        <div class="crm-card">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-red);">science</span>
+              Client Paint Formulas
+            </span>
+            <span class="badge badge-chrome">3 Active</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="background: #111414; padding: 12px; border-radius: 6px; border: 1px solid var(--crm-border);">
+              <div style="font-weight: 700; color: #fff; font-size: 0.88rem;">Midnight Pearl Violet 3-Stage</div>
+              <div style="font-size: 0.74rem; color: #888; margin-bottom: 6px;">Created for: Aston Martin Project</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--crm-chrome);">
+                • Base: Deep Metallic Violet<br>
+                • Midcoat: 12% Micro Silver Flake<br>
+                • Reducer: 1:1 Slow Speed
+              </div>
+              <button class="btn-chrome" style="width: 100%; margin-top: 8px; padding: 6px 10px; font-size: 0.72rem;" onclick="showToast('Formula #881 attached to next quote!')">
+                <span class="material-symbols-outlined" style="font-size: 14px;">attach_file</span> Add to Quote Draft
+              </button>
+            </div>
+
+            <div style="background: #111414; padding: 12px; border-radius: 6px; border: 1px solid var(--crm-border);">
+              <div style="font-weight: 700; color: #fff; font-size: 0.88rem;">Candy Apple Red Master Mix</div>
+              <div style="font-size: 0.74rem; color: #888; margin-bottom: 6px;">Created for: Custom Harley Tank</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--crm-chrome);">
+                • Base: Fine Coarse Silver<br>
+                • Candy: 4:1 Concentrate<br>
+                • Gun Tip: 1.3mm @ 26 PSI
+              </div>
+            </div>
+
+            <button class="btn-red" style="width: 100%;" onclick="openEmailModal('Coast Airbrush: Color Formula Spec Sheet')">
+              <span class="material-symbols-outlined" style="font-size: 16px;">send</span>
+              Email Formulas to Client
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 3: IN-APP EMAIL & GOOGLE MEET HUB -->
+    <!-- ========================================== -->
+    <section id="view-comms" class="crm-view-panel">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        
+        <!-- IN-APP EMAIL CLIENT -->
+        <div class="crm-card">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-red);">mail</span>
+              Two-Way In-App Email Client (Gmail/Outlook Sync)
+            </span>
+            <button class="btn-red" style="padding: 6px 14px; font-size: 0.75rem;" onclick="openEmailModal()">
+              <span class="material-symbols-outlined" style="font-size: 14px;">edit</span> Compose
+            </button>
+          </div>
+
+          <!-- Email Inbox Mini-List -->
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+            <div style="background: #111414; border: 1px solid var(--crm-red); border-radius: 6px; padding: 12px; cursor: pointer;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <span style="font-weight: 700; color: #fff; font-size: 0.85rem;">Sarah Jensen (Apex Custom)</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--crm-red);">10:45 AM</span>
+              </div>
+              <div style="font-weight: 600; color: #ff8585; font-size: 0.8rem;">Re: TDS Sheets for New 2K Clearcoat Batch</div>
+              <div style="font-size: 0.76rem; color: #888; margin-top: 2px;">"Thanks for the breakdown Mark. Can you send over the updated price list for 10-unit crates?"</div>
+            </div>
+
+            <div style="background: #111414; border: 1px solid var(--crm-border); border-radius: 6px; padding: 12px; cursor: pointer;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <span style="font-weight: 700; color: #fff; font-size: 0.85rem;">Nordic Paint Importers</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #888;">Yesterday</span>
+              </div>
+              <div style="font-weight: 600; color: #e2e2e2; font-size: 0.8rem;">Pallet Shipment Manifest & ADR Customs Docs</div>
+              <div style="font-size: 0.76rem; color: #888; margin-top: 2px;">"Container #NL-8841 is cleared at Rotterdam port. Awaiting final bill of lading."</div>
+            </div>
+          </div>
+
+          <!-- Fast Quick Reply Box -->
+          <div style="background: #090b0b; border: 1px solid var(--crm-border); border-radius: 8px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: #fff;">QUICK INLINE REPLY:</span>
+              <div style="display: flex; gap: 4px;">
+                <button type="button" class="btn-chrome" style="padding: 2px 6px; font-size: 0.68rem;" onclick="geminiQuickDraft('proposal')">✨ AI Proposal</button>
+                <button type="button" class="btn-chrome" style="padding: 2px 6px; font-size: 0.68rem;" onclick="geminiQuickDraft('translate_de')">🇩🇪 German</button>
+                <button type="button" class="btn-chrome" style="padding: 2px 6px; font-size: 0.68rem;" onclick="geminiQuickDraft('translate_fr')">🇫🇷 French</button>
+              </div>
+            </div>
+            <textarea id="quickReplyText" class="form-control" rows="3" placeholder="Type your reply or click an AI generator above..." style="resize: none; margin-bottom: 10px;"></textarea>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-chrome" style="padding: 6px 10px; font-size: 0.72rem;" onclick="showToast('TDS Spec Sheet attached!')">
+                  <span class="material-symbols-outlined" style="font-size: 14px;">description</span> + Attach TDS
+                </button>
+                <button class="btn-chrome" style="padding: 6px 10px; font-size: 0.72rem;" onclick="showToast('Color Formula #881 attached!')">
+                  <span class="material-symbols-outlined" style="font-size: 14px;">science</span> + Attach Formula
+                </button>
+              </div>
+              <button class="btn-red" style="padding: 6px 14px; font-size: 0.75rem;" onclick="sendQuickReply()">
+                <span class="material-symbols-outlined" style="font-size: 14px;">send</span> Send Reply
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- GOOGLE MEET IN-APP VIDEO ROOM -->
+        <div class="crm-card">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-red);">videocam</span>
+              In-App Google Meet Room Generator
+            </span>
+            <span class="badge badge-green">WebRTC Connected</span>
+          </div>
+
+          <div class="meet-room-box">
+            <div class="meet-room-header">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #fff;">MEETING: Coast Technical Review (Room #COAST-MEET-8821)</span>
+              <span class="badge badge-red">LIVE STREAM</span>
+            </div>
+
+            <div class="meet-canvas">
+              <div class="video-participant">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80" alt="Sarah Jensen">
+                <span class="video-label">Sarah Jensen (Client - Apex Custom)</span>
+              </div>
+              <div class="video-participant">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&auto=format&fit=crop&q=80" alt="Coast Rep">
+                <span class="video-label">Mark Lawson (Coast Airbrush Europe)</span>
+              </div>
+            </div>
+
+            <div class="meet-controls">
+              <button class="meet-btn-circle" title="Mute/Unmute" onclick="showToast('Microphone toggled')">
+                <span class="material-symbols-outlined">mic</span>
+              </button>
+              <button class="meet-btn-circle" title="Camera on/off" onclick="showToast('Camera toggled')">
+                <span class="material-symbols-outlined">videocam</span>
+              </button>
+              <button class="meet-btn-circle" title="Share Screen" onclick="showToast('Screen sharing started')">
+                <span class="material-symbols-outlined">present_to_all</span>
+              </button>
+              <button class="meet-btn-circle hangup" title="End Call" onclick="showToast('Google Meet session concluded & AI summary generated!')">
+                <span class="material-symbols-outlined">call_end</span>
+              </button>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px; display: flex; gap: 10px;">
+            <button class="btn-red" style="flex: 1;" onclick="launchInstantMeet()">
+              <span class="material-symbols-outlined" style="font-size: 16px;">add_link</span>
+              Generate New Google Meet Link
+            </button>
+            <button class="btn-chrome" onclick="copyMeetLink()">
+              <span class="material-symbols-outlined" style="font-size: 16px;">content_copy</span>
+              Copy Link
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 4: DYNAMIC PRICING & TIER MATRIX -->
+    <!-- ========================================== -->
+    <section id="view-pricing" class="crm-view-panel">
+      <div style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 24px;">
+        
+        <!-- LEFT: System-Wide Tier Presets -->
+        <div class="crm-card">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-red);">tune</span>
+              Selectable System-Wide Tier Presets
+            </span>
+            <span class="badge badge-chrome">Global Defaults</span>
+          </div>
+
+          <p style="font-size: 0.8rem; color: #888; margin-top: 0; margin-bottom: 16px;">
+            Adjust the baseline catalog discount applied across all accounts within each customer tier:
+          </p>
+
+          <div class="tier-slider-row">
+            <div class="tier-slider-label">
+              <span>End User (Retail)</span>
+              <span class="tier-slider-sub">MSRP Base Pricing</span>
+            </div>
+            <input type="range" min="0" max="15" value="0" class="tier-slider-input" id="slider-tier0" oninput="updateTierVal('tier0', this.value)">
+            <div class="tier-slider-val" id="val-tier0">0%</div>
+          </div>
+
+          <div class="tier-slider-row">
+            <div class="tier-slider-label">
+              <span>Pro Artist / Studio</span>
+              <span class="tier-slider-sub">Certified Custom Painters</span>
+            </div>
+            <input type="range" min="5" max="25" value="15" class="tier-slider-input" id="slider-tier1" oninput="updateTierVal('tier1', this.value)">
+            <div class="tier-slider-val" id="val-tier1">15%</div>
+          </div>
+
+          <div class="tier-slider-row">
+            <div class="tier-slider-label">
+              <span>Dealer Jobber Tier 1</span>
+              <span class="tier-slider-sub">Small Paint Retailers</span>
+            </div>
+            <input type="range" min="20" max="40" value="35" class="tier-slider-input" id="slider-tier2" oninput="updateTierVal('tier2', this.value)">
+            <div class="tier-slider-val" id="val-tier2">35%</div>
+          </div>
+
+          <div class="tier-slider-row" style="border-color: var(--crm-red);">
+            <div class="tier-slider-label">
+              <span style="color: #ff8585;">Dealer Tier 2 (High Volume)</span>
+              <span class="tier-slider-sub">Active: Apex Custom Paintworks</span>
+            </div>
+            <input type="range" min="25" max="50" value="40" class="tier-slider-input" id="slider-tier3" oninput="updateTierVal('tier3', this.value)">
+            <div class="tier-slider-val" id="val-tier3">40%</div>
+          </div>
+
+          <div class="tier-slider-row">
+            <div class="tier-slider-label">
+              <span>Master Distributor</span>
+              <span class="tier-slider-sub">Pallet / Container Importers</span>
+            </div>
+            <input type="range" min="40" max="60" value="52" class="tier-slider-input" id="slider-tier4" oninput="updateTierVal('tier4', this.value)">
+            <div class="tier-slider-val" id="val-tier4">52%</div>
+          </div>
+
+          <button class="btn-red" style="width: 100%; margin-top: 10px;" onclick="syncPricingToShopify()">
+            <span class="material-symbols-outlined" style="font-size: 18px;">cloud_sync</span>
+            Save & Sync System Tiers to Shopify
+          </button>
+        </div>
+
+        <!-- RIGHT: Individual Client Custom SKU Overrides -->
+        <div class="crm-card">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-red);">edit_note</span>
+              Individual Client Custom SKU Overrides
+            </span>
+            <span class="badge badge-red">Apex Custom Paintworks</span>
+          </div>
+
+          <p style="font-size: 0.8rem; color: #888; margin-top: 0; margin-bottom: 16px;">
+            Set bespoke contracted net prices for specific SKUs with automatic real-time profit margin validation:
+          </p>
+
+          <table class="crm-table" id="skuPricingTable">
+            <thead>
+              <tr>
+                <th>Product SKU</th>
+                <th>MSRP</th>
+                <th>Tier 2 Def.</th>
+                <th>Custom Net Price</th>
+                <th>Margin Guard</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div style="font-weight: 700; color: #fff;">Kroma Edge Candy Apple (500ml)</div>
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #888;">SKU: KE-CANDY-RD</span>
+                </td>
+                <td style="font-family: 'JetBrains Mono', monospace; color: #888;">£45.00</td>
+                <td style="font-family: 'JetBrains Mono', monospace; color: var(--crm-chrome);">£27.00</td>
+                <td>
+                  <input type="text" class="price-input" value="£24.50" onchange="calculateMargin(this, 14.00)">
+                </td>
+                <td>
+                  <span class="badge badge-green">42.8% OK</span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div style="font-weight: 700; color: #fff;">Medusa Gold Micro Flake (100g)</div>
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #888;">SKU: FK-FLAKE-GLD</span>
+                </td>
+                <td style="font-family: 'JetBrains Mono', monospace; color: #888;">£40.00</td>
+                <td style="font-family: 'JetBrains Mono', monospace; color: var(--crm-chrome);">£24.00</td>
+                <td>
+                  <input type="text" class="price-input" value="£21.00" onchange="calculateMargin(this, 11.50)">
+                </td>
+                <td>
+                  <span class="badge badge-green">45.2% OK</span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div style="font-weight: 700; color: #fff;">Slow Speed Reducer (5L Drum)</div>
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #888;">SKU: KE-RED-SLW-5L</span>
+                </td>
+                <td style="font-family: 'JetBrains Mono', monospace; color: #888;">£90.00</td>
+                <td style="font-family: 'JetBrains Mono', monospace; color: var(--crm-chrome);">£54.00</td>
+                <td>
+                  <input type="text" class="price-input" value="£49.00" onchange="calculateMargin(this, 30.00)">
+                </td>
+                <td>
+                  <span class="badge badge-green">38.7% OK</span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div style="font-weight: 700; color: #fff;">Kroma Edge 2K Diamond Clear (5L)</div>
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #888;">SKU: KE-CLR-2K-5L</span>
+                </td>
+                <td style="font-family: 'JetBrains Mono', monospace; color: #888;">£145.00</td>
+                <td style="font-family: 'JetBrains Mono', monospace; color: var(--crm-chrome);">£87.00</td>
+                <td>
+                  <input type="text" class="price-input" value="£78.00" onchange="calculateMargin(this, 48.00)">
+                </td>
+                <td>
+                  <span class="badge badge-green">38.4% OK</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="display: flex; gap: 12px; margin-top: 20px;">
+            <button class="btn-chrome" style="flex: 1;" onclick="addNewSkuRow()">
+              <span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+              + Add Custom SKU Rule
+            </button>
+            <button class="btn-red" style="flex: 1;" onclick="syncPricingToShopify()">
+              <span class="material-symbols-outlined" style="font-size: 16px;">save</span>
+              Save Custom Price Book
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- MODAL 1: COMPOSE EMAIL -->
+  <!-- ========================================== -->
+  <div id="modalEmail" class="crm-modal-overlay">
+    <div class="crm-modal">
+      <div class="crm-modal-header">
+        <span class="crm-card-title">
+          <span class="material-symbols-outlined" style="color: var(--crm-red);">outgoing_mail</span>
+          In-App Email Composer (Gmail Sync)
+        </span>
+        <span class="material-symbols-outlined" style="cursor: pointer; color: #888;" onclick="closeModal('modalEmail')">close</span>
+      </div>
+      <div class="crm-modal-body">
+        <div class="form-group">
+          <label class="form-label">To Recipient</label>
+          <input type="text" id="emailRecipient" class="form-control" value="sarah.j@apexpaint.co.uk">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <input type="text" id="emailSubject" class="form-control" value="Coast Airbrush: Formulation Spec & Custom Net Pricing">
+        </div>
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label class="form-label" style="margin-bottom: 0;">Message Body</label>
+            
+            <!-- Gemini AI Copilot Trigger Dropdown -->
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span class="badge badge-red" style="font-size: 0.68rem; display: flex; align-items: center; gap: 4px;">
+                <span class="material-symbols-outlined" style="font-size: 13px;">auto_awesome</span>
+                GEMINI AI COPILOT
+              </span>
+            </div>
+          </div>
+
+          <!-- Gemini AI Prompt Bar -->
+          <div style="background: #0e1111; border: 1px solid #2f3636; border-radius: 8px; padding: 10px; margin-bottom: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700; color: #ff8585;">✨ 1-CLICK AI GENERATORS:</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #888;">Select a prompt or language:</span>
+            </div>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+              <button type="button" class="btn-chrome" style="padding: 4px 8px; font-size: 0.7rem;" onclick="geminiGenerateEmail('proposal')">
+                <span class="material-symbols-outlined" style="font-size: 13px; color: var(--crm-red);">description</span> Draft Paint Proposal
+              </button>
+              <button type="button" class="btn-chrome" style="padding: 4px 8px; font-size: 0.7rem;" onclick="geminiGenerateEmail('polish')">
+                <span class="material-symbols-outlined" style="font-size: 13px; color: var(--crm-cyan);">auto_fix_high</span> Polish & Tone
+              </button>
+              <button type="button" class="btn-chrome" style="padding: 4px 8px; font-size: 0.7rem;" onclick="geminiGenerateEmail('followup')">
+                <span class="material-symbols-outlined" style="font-size: 13px; color: var(--crm-amber);">timer</span> Payment/Stock Follow-Up
+              </button>
+              <button type="button" class="btn-chrome" style="padding: 4px 8px; font-size: 0.7rem;" onclick="geminiGenerateEmail('troubleshoot')">
+                <span class="material-symbols-outlined" style="font-size: 13px; color: var(--crm-green);">build</span> Tech Mixing Advice
+              </button>
+            </div>
+
+            <!-- Translation Selector -->
+            <div style="display: flex; align-items: center; gap: 8px; border-top: 1px solid #1f2424; padding-top: 8px;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 700; color: #aaa;">🌍 TRANSLATE TO:</span>
+              <button type="button" class="btn-chrome" style="padding: 2px 7px; font-size: 0.68rem;" onclick="geminiTranslateEmail('de')">🇩🇪 German</button>
+              <button type="button" class="btn-chrome" style="padding: 2px 7px; font-size: 0.68rem;" onclick="geminiTranslateEmail('fr')">🇫🇷 French</button>
+              <button type="button" class="btn-chrome" style="padding: 2px 7px; font-size: 0.68rem;" onclick="geminiTranslateEmail('nl')">🇳🇱 Dutch</button>
+              <button type="button" class="btn-chrome" style="padding: 2px 7px; font-size: 0.68rem;" onclick="geminiTranslateEmail('es')">🇪🇸 Spanish</button>
+              <button type="button" class="btn-chrome" style="padding: 2px 7px; font-size: 0.68rem;" onclick="geminiTranslateEmail('it')">🇮🇹 Italian</button>
+              <button type="button" class="btn-chrome" style="padding: 2px 7px; font-size: 0.68rem;" onclick="geminiTranslateEmail('en')">🇬🇧 English</button>
+            </div>
+          </div>
+
+          <textarea id="emailBody" class="form-control" rows="7" style="resize: none;">Hi Sarah,
+
+Great catching up on Google Meet earlier. Attached are the Technical Data Sheets (TDS) and the agreed net pricing for your upcoming Candy Apple Red batch.
+
+Best regards,
+Mark Lawson — Coast Airbrush Europe</textarea>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn-chrome" style="font-size: 0.74rem;" onclick="showToast('TDS Attached!')">
+            <span class="material-symbols-outlined" style="font-size: 14px;">description</span> Attach TDS Sheet
+          </button>
+          <button class="btn-chrome" style="font-size: 0.74rem;" onclick="showToast('Formula #881 Attached!')">
+            <span class="material-symbols-outlined" style="font-size: 14px;">science</span> Attach Formula Card
+          </button>
+        </div>
+      </div>
+      <div class="crm-modal-footer">
+        <button class="btn-chrome" onclick="closeModal('modalEmail')">Cancel</button>
+        <button class="btn-red" onclick="sendFullEmail()">
+          <span class="material-symbols-outlined" style="font-size: 16px;">send</span> Send Email Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL 2: LOG / SCHEDULE CALL -->
+  <!-- ========================================== -->
+  <div id="modalCall" class="crm-modal-overlay">
+    <div class="crm-modal">
+      <div class="crm-modal-header">
+        <span class="crm-card-title">
+          <span class="material-symbols-outlined" style="color: var(--crm-red);">phone_forwarded</span>
+          Log Phone Call & Schedule Reminder
+        </span>
+        <span class="material-symbols-outlined" style="cursor: pointer; color: #888;" onclick="closeModal('modalCall')">close</span>
+      </div>
+      <div class="crm-modal-body">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-group">
+            <label class="form-label">Call Type</label>
+            <select class="form-control">
+              <option>Outbound Call</option>
+              <option>Inbound Call</option>
+              <option>Technical Application Support</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Duration</label>
+            <input type="text" class="form-control" value="12 mins 30 secs">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Call Notes & Formulas Discussed</label>
+          <textarea id="callNotesInput" class="form-control" rows="4" style="resize: none;" placeholder="Discussed clearcoat drying time and requested sample flake kit..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Schedule Follow-Up Reminder</label>
+          <input type="datetime-local" class="form-control" style="color: #fff;">
+        </div>
+      </div>
+      <div class="crm-modal-footer">
+        <button class="btn-chrome" onclick="closeModal('modalCall')">Cancel</button>
+        <button class="btn-red" onclick="saveCallLog()">
+          <span class="material-symbols-outlined" style="font-size: 16px;">save</span> Save to Timeline
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Bar -->
+  <div id="crmToast">
+    <span class="material-symbols-outlined" style="color: #4ade80;">check_circle</span>
+    <span id="crmToastMsg">Action completed successfully!</span>
+  </div>
+
+  <!-- Core CRM Script -->
+  <script src="js/crm.js"></script>
+</body>
+</html>

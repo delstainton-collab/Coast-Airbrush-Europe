@@ -80,13 +80,15 @@ export const KROMA_EDGE_CATALOG = {
   brand: "Kroma Edge",
   systemName: "Kroma Edge Self-Organization Mirror Chrome System",
   defaultDensity: 0.95,
-  coverageRateSqFtPerGal: 390,
+  coverageRateSqFtPerGal: 256, // 1 fl oz covers 2 sq ft (128 fl oz = 256 sq ft)
   tds: KROMA_EDGE_TDS,
 
   mixingSystems: [
     {
       id: "kroma_edge_mirror_chrome",
       name: "Kroma Edge Mirror System (5:5:2:2 by Weight)",
+      badge: "4-Part Chrome",
+      category: "Mirror Chrome",
       ratioText: "5 Parts Binder : 5 Parts Reducer : 2 Parts Hardener : 2 Parts Mirror Seeds",
       parts: [
         { role: "binder", name: "Kroma Edge Binder (Resin)", ratio: 5, defaultDensity: 0.98 },
@@ -99,6 +101,8 @@ export const KROMA_EDGE_CATALOG = {
     {
       id: "kroma_edge_dedicated_clear",
       name: "Kroma Edge Dedicated Topcoat Clear (10:1 + 70-100% Thinner)",
+      badge: "Topcoat Clear",
+      category: "Dedicated Clearcoat",
       ratioText: "10 Parts Clear Base : 1 Part Hardener : 7-10 Parts Thinner",
       parts: [
         { role: "clear", name: "Kroma Clear Base", ratio: 10, defaultDensity: 0.99 },
@@ -106,6 +110,8 @@ export const KROMA_EDGE_CATALOG = {
         { role: "thinner", name: "Dedicated Clear Thinner", ratio: 8.5, defaultDensity: 0.84 }
       ],
       description: "Non-destructive dedicated clearcoat for Kroma Edge. Prevents particle lifting. Apply fine mist tack coat, wait 5 min, then apply full wet coat."
+    },
     }
   ]
 };
+

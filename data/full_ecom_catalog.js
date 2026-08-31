@@ -1,84 +1,99 @@
 export const ECOM_CATALOG = [
   {
-    "id": "kroma-chrome-1l",
+    "id": "kroma-mirror-chrome-system",
     "brand": "Kroma Edge",
-    "category": "Solvent Paints",
-    "name": "Kroma Edge Sprayable Chrome Liquid Kit (1L)",
-    "sku": "KE-CHROME-1L",
-    "priceEur": 149.95,
-    "priceGbp": 129.95,
+    "category": "Mirror Chrome Systems",
+    "name": "Kroma Edge Self-Organizing Mirror Chrome System",
+    "sku": "KE-MIRROR-SYS",
+    "priceGbp": 149.95,
+    "priceEur": 175.44,
     "inStock": true,
-    "isPreOrder": true,
+    "isPreOrder": false,
     "badge": "KROMA SIGNATURE",
-    "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
-    "description": "Ultra-reflective sprayable liquid mirror chrome paint system. High-opacity 100% mirror shine finish over Jet Black primer.",
+    "image": "Images/kromaedge/kroma-helmet-mirror.jpg",
+    "description": "The world's first self-organizing 2K optical coating that delivers a flawless, non-clouding mirror finish across any industry. Chemically bonds and aligns metallic particles to lock in true mirror reflection over plastics, wood, 3D resin, aluminum, and steel without requiring a gloss black groundcoat. Mix ratio 5:5:2:2 (Binder : Reducer : Hardener : Mirror Seeds).",
     "sizes": [
-      "1 Litre Kit",
-      "500mL Pint"
+      "Small Kit (140g)",
+      "Medium Kit (420g)",
+      "Large Kit (1260g)"
     ],
     "packSizes": [
-      "Standard Kit"
+      "Complete 4-Part Kit"
     ],
-    "hasOptions": true
+    "hasOptions": true,
+    "hasFullMatrix": false,
+    "packPriceMatrix": [
+      {
+        "packSize": "Small Kit (140g)",
+        "priceGbp": 149.95,
+        "priceEur": 175.44
+      },
+      {
+        "packSize": "Medium Kit (420g)",
+        "priceGbp": 349.95,
+        "priceEur": 409.44
+      },
+      {
+        "packSize": "Large Kit (1260g)",
+        "priceGbp": 899.95,
+        "priceEur": 1052.94
+      }
+    ]
   },
   {
-    "id": "kroma-clearcoat-1l",
+    "id": "kroma-dedicated-topcoat-clear",
     "brand": "Kroma Edge",
-    "category": "Solvent Paints",
-    "name": "Kroma Edge Speed Clearcoat + Hardener Kit (1.5L)",
-    "sku": "KE-CLEAR-1.5L",
-    "priceEur": 89.95,
-    "priceGbp": 76.95,
+    "category": "Dedicated Clearcoats",
+    "name": "Kroma Edge Dedicated Topcoat Clear System",
+    "sku": "KE-TOPCOAT-CLR",
+    "priceGbp": 89.95,
+    "priceEur": 105.24,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "HIGH GLOSS",
-    "image": "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=600&q=80",
-    "description": "Rapid cure 2K polyurethane show clearcoat designed specifically for Kroma Edge chrome and solvent basecoats.",
+    "badge": "ULTRA HIGH CLARITY",
+    "image": "Images/kromaedge/kroma-silver-surfer-front.jpg",
+    "description": "Specifically engineered topcoat clear for Kroma Edge Chrome systems with ultra-low turbidity and maximum optical clarity. Formulated to prevent clouding, lifting, or solvent reactivation of the aligned metallic mirror layer. Mix ratio 10:1 (Clear Base : Hardener) + 70-100% Dedicated Thinner.",
     "sizes": [
-      "1.5L Kit",
-      "3L Kit"
+      "Topcoat Clear 180 SET (1.5 m²)",
+      "Topcoat Clear 900 SET (6.0 m²)",
+      "Topcoat Clear 3600 SET (24.0 m²)"
     ],
     "packSizes": [
-      "Standard Kit"
+      "Base + Hardener + Thinner Set"
     ],
-    "hasOptions": true
-  },
-  {
-    "id": "kroma-black-primer-1l",
-    "brand": "Kroma Edge",
-    "category": "Solvent Paints",
-    "name": "Kroma Edge Jet Black Mirror Gloss Primer (1L)",
-    "sku": "KE-PRIMER-BLK",
-    "priceEur": 54.95,
-    "priceGbp": 46.95,
-    "inStock": true,
-    "isPreOrder": false,
-    "badge": "MIRROR BASE",
-    "image": "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80",
-    "description": "High-solid gloss black groundcoat required for maximum chrome reflection and candy color depth.",
-    "sizes": [
-      "1 Litre",
-      "500mL"
-    ],
-    "packSizes": [
-      "Can"
-    ],
-    "hasOptions": true
+    "hasOptions": true,
+    "hasFullMatrix": false,
+    "packPriceMatrix": [
+      {
+        "packSize": "Topcoat Clear 180 SET (1.5 m²)",
+        "priceGbp": 89.95,
+        "priceEur": 105.24
+      },
+      {
+        "packSize": "Topcoat Clear 900 SET (6.0 m²)",
+        "priceGbp": 249.95,
+        "priceEur": 292.44
+      },
+      {
+        "packSize": "Topcoat Clear 3600 SET (24.0 m²)",
+        "priceGbp": 699.95,
+        "priceEur": 818.94
+      }
+    ]
   },
   {
     "id": "fk-2629",
     "brand": "Flake King",
     "category": "Dry Metal Flake Guns",
-    "flakeType": "Single Colour",
     "name": "Flake King Pro Series Kit",
     "sku": "5060733580007-1",
     "priceGbp": 249.99,
     "priceEur": 292.49,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "PRO GUN SYSTEM",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ProSeriesKit2.jpg?fit=600%2C600&ssl=1",
-    "description": "The Pro Series Kit encompasses all three dry metal flake guns.\nThe kit is supplied with all the components that will enable you to assemble any of the 3 following guns \u2013 500 airbrush (supplied with an Iwata Eclipse airbrush connector) , 550 mini gun and our very popular 1000 gun.\nAll components come in a cool rugged aluminium flight case as well as the aluminium components being anodised now in our flagship Red (photo\u2019s to follow) .\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "The Pro Series Kit encompasses all three dry metal flake guns.\nThe kit is supplied with all the components that will enable you to assemble any of the 3 following guns – 500 airbrush (supplied with an Iwata Eclipse airbrush connector) , 550 mini gun and our very popular 1000 gun.\nAll components come in a cool rugged aluminium flight case as well as the aluminium components being anodised now in our flagship Red (photo’s to follow) .\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
@@ -97,7 +112,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2610.jpg",
-    "description": "Show Krome Metal Flake. Available in .002\u2033, .004\u2033, .008\u2033, .015\u2033, .025\u2033 & .040\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "Show Krome Metal Flake. Available in .002″, .004″, .008″, .015″, .025″ & .040″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Ultra Small .002\"",
       "Small .008\"",
@@ -107,8 +122,7 @@ export const ECOM_CATALOG = [
       "DXL .060\""
     ],
     "packSizes": [
-      "10g Pot",
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -125,12 +139,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "10g Pot",
-        "priceGbp": 5.99,
-        "priceEur": 7.01
-      },
-      {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -140,8 +149,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Ultra Small .002\"",
         "rawFlakeSize": "ultra-small",
-        "packSize": "10g Pot",
-        "rawPackSize": "10g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 5.99,
         "priceEur": 7.01
       },
@@ -164,8 +173,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -188,8 +197,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -212,8 +221,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -236,8 +245,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "XL .040\"",
         "rawFlakeSize": "xlarge",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -260,8 +269,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "DXL .060\"",
         "rawFlakeSize": "dxl",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -289,16 +298,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2603",
     "brand": "Flake King",
     "category": "Dry Metal Flake Guns",
-    "flakeType": "Single Colour",
-    "name": "Flake King 500 \u2013 Dry Metal Flake Airbrush Attachment",
+    "name": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
     "sku": "flake-king-500-dry-metal-flake-airbrush-attachment-1",
     "priceGbp": 106.65,
     "priceEur": 124.78,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "PRO GUN SYSTEM",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/PaascheTalonAdaptorA.gif?fit=600%2C600&ssl=1",
-    "description": "Ideal for small jobs up to the size of a motorcycle helmet, skateboards, simply push fits directly on the front of the airbrush.\nRuns off an airbrush compressor\nRequires an adaptor specific to a model of airbrush sold separately.\nThe available adaptors are: Iwata Eclipse\u2026\nThe Flake King 500 Airbrush Attachment is available with 5 different airbrush connectors. your purchase of the Flake King 500 includes one connector of your choice that fit the following airbrushes..\n\nIwata BCS Eclipse, HPC\nIwata BCR Revolution\nIwata Neo\nBadger 105, 3155, 360\nHarder & Steenbeck Evolution\nPaasche Talon\n\nAll connectors are also available to purchase individually.\nTo fit an adaptor loosen the screw inside the lid, push the adaptor in and tighten the screw. Some adaptors are a really tight fit you can overcome this by simply licking your little finger and running it around the o\u2019ring making it a lot easier to push on.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "Ideal for small jobs up to the size of a motorcycle helmet, skateboards, simply push fits directly on the front of the airbrush.\nRuns off an airbrush compressor\nRequires an adaptor specific to a model of airbrush sold separately.\nThe available adaptors are: Iwata Eclipse…\nThe Flake King 500 Airbrush Attachment is available with 5 different airbrush connectors. your purchase of the Flake King 500 includes one connector of your choice that fit the following airbrushes..\n\nIwata BCS Eclipse, HPC\nIwata BCR Revolution\nIwata Neo\nBadger 105, 3155, 360\nHarder & Steenbeck Evolution\nPaasche Talon\n\nAll connectors are also available to purchase individually.\nTo fit an adaptor loosen the screw inside the lid, push the adaptor in and tighten the screw. Some adaptors are a really tight fit you can overcome this by simply licking your little finger and running it around the o’ring making it a lot easier to push on.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Iwata Eclipse BCS/HPC",
       "Iwata Revolution BCR",
@@ -315,16 +323,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2602",
     "brand": "Flake King",
     "category": "Dry Metal Flake Guns",
-    "flakeType": "Single Colour",
     "name": "Flake King 1000 Dry Metal Flake Gun",
     "sku": "5060733580014-1",
     "priceGbp": 129.99,
     "priceEur": 152.09,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "PRO GUN SYSTEM",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10001.png?fit=600%2C600&ssl=1",
-    "description": "Introducing our latest version of the Flake King 1000 Dry Flake Applicator Gun\nIdeal for any size item that you wish to flake \u2013 from bowling balls up to vehicles and even large areas such as walls in your home, restaurant or theme park rides.\nThe ultimate dry flake applicator used by many professional and hobby custom painters worldwide.\nIf you\u2019re in the market for a dry flake applicator that doesn\u2019t just spit flake out randomly then you\u2019ve come to the right place.\nThis gun doesn\u2019t rely on pick up tubes that can cause flake \u201cflurries\u201d it truly agitates the flake and draws it out consistently giving you professional results.\nEvery aspect of this gun is controllable from the air agitation and application pressure to the volume of flake you want to dispense via the in line flake valve. We\u2019ve even fine tuned 3 different sized colour coded nozzles to help you blend larger areas easier.\nWe\u2019ve even given you multiple ways to apply the flake \u2013 you can set the barrel to be self levelling or rigid dependent upon your spraying style. In fact the barrel is now removable so you can blow your flake into the clear either from the gun handle or if you prefer you can turn the flake valve off.\nOur flake is supplied in ready to use pots/jars simply screw onto the gun \u2013 no messing.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "Introducing our latest version of the Flake King 1000 Dry Flake Applicator Gun\nIdeal for any size item that you wish to flake – from bowling balls up to vehicles and even large areas such as walls in your home, restaurant or theme park rides.\nThe ultimate dry flake applicator used by many professional and hobby custom painters worldwide.\nIf you’re in the market for a dry flake applicator that doesn’t just spit flake out randomly then you’ve come to the right place.\nThis gun doesn’t rely on pick up tubes that can cause flake “flurries” it truly agitates the flake and draws it out consistently giving you professional results.\nEvery aspect of this gun is controllable from the air agitation and application pressure to the volume of flake you want to dispense via the in line flake valve. We’ve even fine tuned 3 different sized colour coded nozzles to help you blend larger areas easier.\nWe’ve even given you multiple ways to apply the flake – you can set the barrel to be self levelling or rigid dependent upon your spraying style. In fact the barrel is now removable so you can blow your flake into the clear either from the gun handle or if you prefer you can turn the flake valve off.\nOur flake is supplied in ready to use pots/jars simply screw onto the gun – no messing.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
@@ -334,14 +341,13 @@ export const ECOM_CATALOG = [
     "id": "fk-2600",
     "brand": "Flake King",
     "category": "Flake King Gun Accessories",
-    "flakeType": "Single Colour",
     "name": "FOM 1000/1050 50g Jar & Lid",
     "sku": "FK-2600",
     "priceGbp": 1.49,
     "priceEur": 1.74,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "GENUINE ACCESSORY",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM1000-50gJarLid.jpg?fit=1200%2C1200&ssl=1",
     "description": "Replacement 50g Jar & Lid for the FOM 1000 & 1050 Gun",
     "sizes": [],
@@ -353,14 +359,13 @@ export const ECOM_CATALOG = [
     "id": "fk-2598",
     "brand": "Flake King",
     "category": "Flake King Gun Accessories",
-    "flakeType": "Single Colour",
     "name": "FOM 500/550 Spare 30g Jar & Lid",
     "sku": "FK-2598",
     "priceGbp": 1.32,
     "priceEur": 1.54,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "GENUINE ACCESSORY",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=2560%2C2560&ssl=1",
     "description": "Replacement plastic 30g jar to fit the FOM500 Airbrush & FOM550 Mini Gun",
     "sizes": [],
@@ -372,14 +377,13 @@ export const ECOM_CATALOG = [
     "id": "fk-2542",
     "brand": "Flake King",
     "category": "Dry Metal Flake Guns",
-    "flakeType": "Single Colour",
     "name": "Flake O Matic 1000",
     "sku": "FK-2542",
     "priceGbp": 11.95,
     "priceEur": 13.95,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "PRO GUN SYSTEM",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FoMDeluxe2.png?fit=500%2C343&ssl=1",
     "description": "The Flake o Matic has grown up and has now been superseded by the Flake King 1000\nPlease click here to see the new gun.\nThe Flake O Matic 1000 was designed to be an efficient way of applying metal flake.",
     "sizes": [],
@@ -400,7 +404,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2524.jpg",
-    "description": "FKK01 Kromatic Show Krome\u00a0Metal Flake. Available in .002\u2033, .004\u2033, .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKK01 Kromatic Show Krome Metal Flake. Available in .002″, .004″, .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Ultra Small .002\"",
       "Small .008\"",
@@ -408,8 +412,7 @@ export const ECOM_CATALOG = [
       "Large .025\""
     ],
     "packSizes": [
-      "10g Pot",
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -426,12 +429,7 @@ export const ECOM_CATALOG = [
         "priceEur": 23.39
       },
       {
-        "packSize": "10g Pot",
-        "priceGbp": 11.99,
-        "priceEur": 14.03
-      },
-      {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 4.99,
         "priceEur": 5.84
       }
@@ -449,8 +447,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Ultra Small .002\"",
         "rawFlakeSize": "ultra-small",
-        "packSize": "10g Pot",
-        "rawPackSize": "10g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 11.99,
         "priceEur": 14.03
       },
@@ -465,8 +463,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 6.99,
         "priceEur": 8.18
       },
@@ -489,8 +487,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -513,8 +511,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -542,16 +540,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2473",
     "brand": "Flake King",
     "category": "Corroded Metal FX",
-    "flakeType": "Single Colour",
     "name": "Corroded Metals Pump Kit",
     "sku": "5060733583381",
     "priceGbp": 26.49,
     "priceEur": 30.99,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "CORRODED FX",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/PumpKit1_1.png?fit=600%2C600&ssl=1",
-    "description": "Corroded Metals Pump Kit\u00a0\nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our \u201cCorroder\u201d directly to the surface and wait \u2013 the longer you leave it on the more corroded it will become.\nMinimum amount of work \u2013 for maximum effect.\nWhen you\u2019re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it\u2019s in our Flake King Dry gun, and whether you\u2019re switching from Flake to metal powders it\u2019s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn\u2019t been applied by a carrier. This makes the process quicker \u2013 by spraying the surface with our corroder and that\u2019s it. If you\u2019re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode \u2013 if it\u2019s too hot the water will evaporate and reduce the corrosion.",
+    "description": "Corroded Metals Pump Kit \nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false
@@ -560,16 +557,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2467",
     "brand": "Flake King",
     "category": "Corroded Metal FX",
-    "flakeType": "Single Colour",
     "name": "Corroded Metals Mini Shaker Kit",
     "sku": "5060733583374",
     "priceGbp": 26.4,
     "priceEur": 30.89,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "CORRODED FX",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ShakerKit_1.png?fit=600%2C600&ssl=1",
-    "description": "Corroded Metals Mini Shaker Kit\nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our \u201cCorroder\u201d directly to the surface and wait \u2013 the longer you leave it on the more corroded it will become.\nMinimum amount of work \u2013 for maximum effect.\nWhen you\u2019re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it\u2019s in our Flake King Dry gun, and whether you\u2019re switching from Flake to metal powders it\u2019s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn\u2019t been applied by a carrier. This makes the process quicker \u2013 by spraying the surface with our corroder and that\u2019s it. If you\u2019re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode \u2013 if it\u2019s too hot the water will evaporate and reduce the corrosion.",
+    "description": "Corroded Metals Mini Shaker Kit\nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false
@@ -578,16 +574,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2465",
     "brand": "Flake King",
     "category": "Corroded Metal FX",
-    "flakeType": "Single Colour",
     "name": "Corrosion Activator 750ml Concentrated",
     "sku": "5060733580243",
     "priceGbp": 6.99,
     "priceEur": 8.18,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "CORRODED FX",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/CMFXNH750_2.png?fit=600%2C600&ssl=1",
-    "description": "Corrosion Activator 750ml\u00a0Concentrated\nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our \u201cCorroder\u201d directly to the surface and wait \u2013 the longer you leave it on the more corroded it will become.\nMinimum amount of work \u2013 for maximum effect.\nWhen you\u2019re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it\u2019s in our Flake King Dry gun, and whether you\u2019re switching from Flake to metal powders it\u2019s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn\u2019t been applied by a carrier. This makes the process quicker \u2013 by spraying the surface with our corroder and that\u2019s it. If you\u2019re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode \u2013 if it\u2019s too hot the water will evaporate and reduce the corrosion.",
+    "description": "Corrosion Activator 750ml Concentrated\nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false
@@ -596,16 +591,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2463",
     "brand": "Flake King",
     "category": "Corroded Metal FX",
-    "flakeType": "Single Colour",
     "name": "Patina FX Sponge",
     "sku": "5060733580281",
     "priceGbp": 3.49,
     "priceEur": 4.08,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "CORRODED FX",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/PatinaSponge.png?fit=600%2C600&ssl=1",
-    "description": "Patina FX Sponge for our amazing Corroded Metal FX Kit!\nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our \u201cCorroder\u201d directly to the surface and wait \u2013 the longer you leave it on the more corroded it will become.\nMinimum amount of work \u2013 for maximum effect.\nWhen you\u2019re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it\u2019s in our Flake King Dry gun, and whether you\u2019re switching from Flake to metal powders it\u2019s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn\u2019t been applied by a carrier. This makes the process quicker \u2013 by spraying the surface with our corroder and that\u2019s it. If you\u2019re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode \u2013 if it\u2019s too hot the water will evaporate and reduce the corrosion.",
+    "description": "Patina FX Sponge for our amazing Corroded Metal FX Kit!\nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false
@@ -614,16 +608,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2458",
     "brand": "Flake King",
     "category": "Corroded Metal FX",
-    "flakeType": "Mixed / Custom",
     "name": "Corrosion Activator Ready Mixed",
     "sku": "corrosion-activator-ready-mixed",
     "priceGbp": 4.49,
     "priceEur": 5.25,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (MIXED / CUSTOM)",
+    "badge": "CORRODED FX",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/CMFXNH100_2.png?fit=600%2C600&ssl=1",
-    "description": "Corrosion Activator Ready Mixed\nAvailable in 100ml & 750ml\u00a0\nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our \u201cCorroder\u201d directly to the surface and wait \u2013 the longer you leave it on the more corroded it will become.\nMinimum amount of work \u2013 for maximum effect.\nWhen you\u2019re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it\u2019s in our Flake King Dry gun, and whether you\u2019re switching from Flake to metal powders it\u2019s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn\u2019t been applied by a carrier. This makes the process quicker \u2013 by spraying the surface with our corroder and that\u2019s it. If you\u2019re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode \u2013 if it\u2019s too hot the water will evaporate and reduce the corrosion.",
+    "description": "Corrosion Activator Ready Mixed\nAvailable in 100ml & 750ml \nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false
@@ -632,16 +625,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2453",
     "brand": "Flake King",
     "category": "Corroded Metal FX",
-    "flakeType": "Single Colour",
     "name": "Flake King 1000 Corroded Metal Kit",
     "sku": "5060733580151",
     "priceGbp": 169.99,
     "priceEur": 198.89,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "CORRODED FX",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/CMFX1000Kit_1.png?fit=600%2C600&ssl=1",
-    "description": "Welcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our \u201cCorroder\u201d directly to the surface and wait \u2013 the longer you leave it on the more corroded it will become.\nMinimum amount of work \u2013 for maximum effect.\nWhen you\u2019re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it\u2019s in our Flake King Dry gun, and whether you\u2019re switching from Flake to metal powders it\u2019s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn\u2019t been applied by a carrier. This makes the process quicker \u2013 by spraying the surface with our corroder and that\u2019s it. If you\u2019re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode \u2013 if it\u2019s too hot the water will evaporate and reduce the corrosion.",
+    "description": "Welcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
@@ -651,16 +643,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2449",
     "brand": "Flake King",
     "category": "Corroded Metal FX",
-    "flakeType": "Single Colour",
     "name": "Flake King 500/550 Corroded Metal Kit",
     "sku": "5060733580144",
     "priceGbp": 149.99,
     "priceEur": 175.49,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "CORRODED FX",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/CMFX500Kit_1.png?fit=600%2C600&ssl=1",
-    "description": "Welcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our \u201cCorroder\u201d directly to the surface and wait \u2013 the longer you leave it on the more corroded it will become.\nMinimum amount of work \u2013 for maximum effect.\nWhen you\u2019re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it\u2019s in our Flake King Dry gun, and whether you\u2019re switching from Flake to metal powders it\u2019s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn\u2019t been applied by a carrier. This makes the process quicker \u2013 by spraying the surface with our corroder and that\u2019s it. If you\u2019re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode \u2013 if it\u2019s too hot the water will evaporate and reduce the corrosion.",
+    "description": "Welcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
@@ -670,16 +661,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2440",
     "brand": "Flake King",
     "category": "Corroded Metal FX",
-    "flakeType": "Single Colour",
     "name": "Corroded Coppa Refill",
     "sku": "corroded-coppa-refill",
     "priceGbp": 6.99,
     "priceEur": 8.18,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "CORRODED FX",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/CMFXCU45.png?fit=600%2C600&ssl=1",
-    "description": "Corroded Coppa Refill for our amazing range of Corroded Metal Kits!\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our \u201cCorroder\u201d directly to the surface and wait \u2013 the longer you leave it on the more corroded it will become.\nMinimum amount of work \u2013 for maximum effect.\nWhen you\u2019re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it\u2019s in our Flake King Dry gun, and whether you\u2019re switching from Flake to metal powders it\u2019s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn\u2019t been applied by a carrier. This makes the process quicker \u2013 by spraying the surface with our corroder and that\u2019s it. If you\u2019re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode \u2013 if it\u2019s too hot the water will evaporate and reduce the corrosion.",
+    "description": "Corroded Coppa Refill for our amazing range of Corroded Metal Kits!\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
     "sizes": [
       "45g",
       "150g",
@@ -729,16 +719,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2431",
     "brand": "Flake King",
     "category": "Corroded Metal FX",
-    "flakeType": "Single Colour",
     "name": "Vintage Iron Refill",
     "sku": "vintage-iron-refill",
     "priceGbp": 6.99,
     "priceEur": 8.18,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "CORRODED FX",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/CMFXFE70.png?fit=600%2C600&ssl=1",
-    "description": "Heavy Vintage Iron Refill for our amazing Corroded Metal Kits!\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our \u201cCorroder\u201d directly to the surface and wait \u2013 the longer you leave it on the more corroded it will become.\nMinimum amount of work \u2013 for maximum effect.\nWhen you\u2019re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it\u2019s in our Flake King Dry gun, and whether you\u2019re switching from Flake to metal powders it\u2019s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn\u2019t been applied by a carrier. This makes the process quicker \u2013 by spraying the surface with our corroder and that\u2019s it. If you\u2019re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode \u2013 if it\u2019s too hot the water will evaporate and reduce the corrosion.",
+    "description": "Heavy Vintage Iron Refill for our amazing Corroded Metal Kits!\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
     "sizes": [
       "70g",
       "250g",
@@ -788,14 +777,13 @@ export const ECOM_CATALOG = [
     "id": "fk-2426",
     "brand": "Flake King",
     "category": "Flake King Gun Accessories",
-    "flakeType": "Single Colour",
     "name": "Flake King 1000 Nozzle",
     "sku": "flake-king-1000-nozzle",
     "priceGbp": 19.99,
     "priceEur": 23.39,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "GENUINE ACCESSORY",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FanNozzles.jpg?fit=600%2C600&ssl=1",
     "description": "Available in small, medium & large.\nFan nozzles that can be bought individually or as a pack.",
     "sizes": [],
@@ -807,14 +795,13 @@ export const ECOM_CATALOG = [
     "id": "fk-2423",
     "brand": "Flake King",
     "category": "Flake King Gun Accessories",
-    "flakeType": "Single Colour",
     "name": "FOM 1000/1050 100g Jar and Standard Lid",
     "sku": "5060733580021",
     "priceGbp": 1.58,
     "priceEur": 1.85,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "GENUINE ACCESSORY",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM1000JarLid-scaled.jpg?fit=2560%2C2560&ssl=1",
     "description": "Replacement Jar and Lid for the Flake King 1000 & 1050.",
     "sizes": [],
@@ -826,16 +813,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2415",
     "brand": "Flake King",
     "category": "Wet Products",
-    "flakeType": "Single Colour",
     "name": "FK100 Prime Black Base",
     "sku": "fk100-prime-black-base",
     "priceGbp": 12.34,
     "priceEur": 14.44,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "PRO WET BINDER",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FK100FamilyWeb_1.jpg?fit=600%2C600&ssl=1",
-    "description": "Available in 100ml, 500ml & 1 Litre Bottles\nWhen we considered the perfect colour for our Metal Flake, we had to look no further than FK100 our prime black base that offers incredible adhesion to the wide ranging array of primers on the market today.\nAgain, as it\u2019s water based, it\u2019s better for the environment, inert and will not react with previously applied products it also easier to ship (worldwide)\nPrime Black Base will adhere to properly prepared surfaces such as existing finishes, primer, plastic, vinyl, fibreglass, wood and most substrates.\nPrime black base is be the perfect companion for our FK50 Surface binder to adhere to.",
+    "description": "Available in 100ml, 500ml & 1 Litre Bottles\nWhen we considered the perfect colour for our Metal Flake, we had to look no further than FK100 our prime black base that offers incredible adhesion to the wide ranging array of primers on the market today.\nAgain, as it’s water based, it’s better for the environment, inert and will not react with previously applied products it also easier to ship (worldwide)\nPrime Black Base will adhere to properly prepared surfaces such as existing finishes, primer, plastic, vinyl, fibreglass, wood and most substrates.\nPrime black base is be the perfect companion for our FK50 Surface binder to adhere to.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false
@@ -844,16 +830,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2409",
     "brand": "Flake King",
     "category": "Wet Products",
-    "flakeType": "Single Colour",
     "name": "FK55 Thinner",
     "sku": "fk55-thinner",
     "priceGbp": 6.72,
     "priceEur": 7.86,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "PRO WET BINDER",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FK55FamilyWeb.jpg?fit=600%2C600&ssl=1",
-    "description": "Available in\u00a050ml & 100ml\nThis is our go to thinner for both our FK50 Surface Binder and our FK100 Prime Base. It can be added to a maximum of 10% volume.\nIt will also be our standard thinners for all new wet products moving forward.",
+    "description": "Available in 50ml & 100ml\nThis is our go to thinner for both our FK50 Surface Binder and our FK100 Prime Base. It can be added to a maximum of 10% volume.\nIt will also be our standard thinners for all new wet products moving forward.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false
@@ -862,16 +847,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2401",
     "brand": "Flake King",
     "category": "Wet Products",
-    "flakeType": "Single Colour",
     "name": "FK50 Surface Binder",
     "sku": "fk50-surface-binder",
     "priceGbp": 11.1,
     "priceEur": 12.99,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "PRO WET BINDER",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FK50Familyweb.jpg?fit=600%2C600&ssl=1",
-    "description": "Available in 100ml, 500ml & 1 Litre Bottles\nFK50 Surface binder is a water based adhesion product, that can applied by brush, dabbed on with a sponge or sprayed on with Spray gun or Airbrush (when thinned with FK55 Thinners).\nDeveloped to stay open longer than a typical solvent or existing water based product with reduced potential of sagging when applied in a medium to wet coat. Its primary use is for the application of our Dry Metal Flakes (Industrial/Commercial Glitters) and our dry blended metal powders.\nWhy is it better than, for example a solvent binder or 2k clear?\nWell as it\u2019s water based, it\u2019s better for the environment, inert will not react with previously applied products, easier to ship (worldwide) and there are no sensible limitations on how many coats that can be applied (within reason).\nIt also produces a nice clean edge, for masking removal, allowing you to now be able to produce coloured flake designs rather than traditional methods of silver base and coloured \u201ccandy\u201d dyes on top. Coloured flake will last longer in direct sunlight than candy dye based products.\nAn additional bonus the FK50 Surface binder when applied over a complete flaked area, reduces the amount of clear coat required.\nFK50 will adhere to properly prepared surfaces such as existing finishes, primer, plastic, vinyl, fibreglass, wood and most substrates.",
+    "description": "Available in 100ml, 500ml & 1 Litre Bottles\nFK50 Surface binder is a water based adhesion product, that can applied by brush, dabbed on with a sponge or sprayed on with Spray gun or Airbrush (when thinned with FK55 Thinners).\nDeveloped to stay open longer than a typical solvent or existing water based product with reduced potential of sagging when applied in a medium to wet coat. Its primary use is for the application of our Dry Metal Flakes (Industrial/Commercial Glitters) and our dry blended metal powders.\nWhy is it better than, for example a solvent binder or 2k clear?\nWell as it’s water based, it’s better for the environment, inert will not react with previously applied products, easier to ship (worldwide) and there are no sensible limitations on how many coats that can be applied (within reason).\nIt also produces a nice clean edge, for masking removal, allowing you to now be able to produce coloured flake designs rather than traditional methods of silver base and coloured “candy” dyes on top. Coloured flake will last longer in direct sunlight than candy dye based products.\nAn additional bonus the FK50 Surface binder when applied over a complete flaked area, reduces the amount of clear coat required.\nFK50 will adhere to properly prepared surfaces such as existing finishes, primer, plastic, vinyl, fibreglass, wood and most substrates.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false
@@ -880,16 +864,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2392",
     "brand": "Flake King",
     "category": "Masking Products",
-    "flakeType": "Single Colour",
     "name": "UltiMask Crepe Masking Tape",
     "sku": "ultimask-crepe-masking-tape",
     "priceGbp": 1.68,
     "priceEur": 1.97,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe18mmB.gif?fit=600%2C600&ssl=1",
-    "description": "Available in 18mm, 24mm, 36mm & 48mm widths\nUltiMask Crepe Masking Tape is a general all-round crepe tape for masking off areas when spraying vehicles. It is ideally suited to use with other Flake King products, with a strong adhesion and is heat-resistant to temperatures of 80C/176F. UltiMask Crepe Masking Tape can be easily removed, leaving no residue and is available in widths from 19mm to 48mm.\u00a0UltiMask Crepe Masking Tape is the perfect high-quality everyday tape. Supplied individually packed to keep clean and dry.",
+    "description": "Available in 18mm, 24mm, 36mm & 48mm widths\nUltiMask Crepe Masking Tape is a general all-round crepe tape for masking off areas when spraying vehicles. It is ideally suited to use with other Flake King products, with a strong adhesion and is heat-resistant to temperatures of 80C/176F. UltiMask Crepe Masking Tape can be easily removed, leaving no residue and is available in widths from 19mm to 48mm. UltiMask Crepe Masking Tape is the perfect high-quality everyday tape. Supplied individually packed to keep clean and dry.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
@@ -933,16 +916,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2380",
     "brand": "Flake King",
     "category": "Masking Products",
-    "flakeType": "Single Colour",
     "name": "Prime Flat Line Masking Tape",
     "sku": "prime-flat-line-masking-tape",
     "priceGbp": 1.99,
     "priceEur": 2.33,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine6mm.png?fit=600%2C600&ssl=1",
-    "description": "Prime Flat Line Masking Tape\nAvailable in 6mm, 9mm, 12mm, 24mm & 48mm widths\nPrime Flat Line Orange\u00a0is\u00a0our precision masking solution for masking rubbers, plastics, mouldings, trims, canvass and artboards \u2013 both paper and synthetic airbrush papers.\u00a0Summed up it is a flat non-bleed tape that adheres to surfaces that conventional masking tape would not!\nConstructed from \u201cwashi\u201d or better known as rice paper, this non-bleed tape is suitable for fine-line work as well as general masking. Developed for high end industrial, commercial model makers, scenery, film, automotive, and artists applications. Ideal for placing over existing artwork or vinyl fine lines as the tape is so translucent it allows you see through it to cut and remove the necessary areas.\nThe flexible, water-proof, advanced acrylic adhesive means that it will adhere to surfaces that standard masking tape would otherwise not; resistant to 110C/230F, available in widths from 6mm upwards. However, we can produce this to any width required subject to quantity.",
+    "description": "Prime Flat Line Masking Tape\nAvailable in 6mm, 9mm, 12mm, 24mm & 48mm widths\nPrime Flat Line Orange is our precision masking solution for masking rubbers, plastics, mouldings, trims, canvass and artboards – both paper and synthetic airbrush papers. Summed up it is a flat non-bleed tape that adheres to surfaces that conventional masking tape would not!\nConstructed from “washi” or better known as rice paper, this non-bleed tape is suitable for fine-line work as well as general masking. Developed for high end industrial, commercial model makers, scenery, film, automotive, and artists applications. Ideal for placing over existing artwork or vinyl fine lines as the tape is so translucent it allows you see through it to cut and remove the necessary areas.\nThe flexible, water-proof, advanced acrylic adhesive means that it will adhere to surfaces that standard masking tape would otherwise not; resistant to 110C/230F, available in widths from 6mm upwards. However, we can produce this to any width required subject to quantity.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
@@ -986,16 +968,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2375",
     "brand": "Flake King",
     "category": "Masking Products",
-    "flakeType": "Mixed / Custom",
     "name": "Prime Orange Fine Line Mixed Set",
     "sku": "5060733583282",
     "priceGbp": 18.99,
     "priceEur": 22.22,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (MIXED / CUSTOM)",
+    "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1",
-    "description": "Prime Orange\u00a0Fine Line\u00a0Mixed Set\nSizes included: 1 x 1mm, 1 x 2mm, 2 x 3mm\nOur\u00a0Prime Orange Fine Line\u00a0Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our\u00a0prime green fine line\u00a0it is extremely versatile, perfect for intricate, delicate and multi-layer\u00a0masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 138\u00b0C/280\u00b0F for at least 45 minutes; after painting, it can be cleanly removed leaving a defined line with no adhesive residue.",
+    "description": "Prime Orange Fine Line Mixed Set\nSizes included: 1 x 1mm, 1 x 2mm, 2 x 3mm\nOur Prime Orange Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime green fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 138°C/280°F for at least 45 minutes; after painting, it can be cleanly removed leaving a defined line with no adhesive residue.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false
@@ -1004,16 +985,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2366",
     "brand": "Flake King",
     "category": "Masking Products",
-    "flakeType": "Single Colour",
     "name": "Prime Orange Fine Line",
     "sku": "prime-orange-fine-line",
     "priceGbp": 3.49,
     "priceEur": 4.08,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
-    "description": "Available in 1mm, 2mm, 3mm & 6mm widths\nOur\u00a0Prime Orange Fine Line\u00a0Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our\u00a0prime green fine line\u00a0it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 138\u00b0C/280\u00b0F for at least 45 minutes; after painting, it can be cleanly removed leaving a defined line with no adhesive residue.",
+    "description": "Available in 1mm, 2mm, 3mm & 6mm widths\nOur Prime Orange Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime green fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 138°C/280°F for at least 45 minutes; after painting, it can be cleanly removed leaving a defined line with no adhesive residue.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false
@@ -1022,16 +1002,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2361",
     "brand": "Flake King",
     "category": "Masking Products",
-    "flakeType": "Mixed / Custom",
     "name": "Prime Green Fine Line Mixed Set",
     "sku": "5060733583237",
     "priceGbp": 18.99,
     "priceEur": 22.22,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (MIXED / CUSTOM)",
+    "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebGreenProSet.jpg?fit=600%2C600&ssl=1",
-    "description": "Prime Green Fine Line\u00a0Mixed Set\nSizes included: 1 x 1mm, 1 x 2mm, 2 x 3mm\nOur\u00a0Prime Green Fine Line\u00a0Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our\u00a0prime orange fine line\u00a0it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 132\u00b0 C/270\u00b0 F for at least 30 minutes.",
+    "description": "Prime Green Fine Line Mixed Set\nSizes included: 1 x 1mm, 1 x 2mm, 2 x 3mm\nOur Prime Green Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime orange fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 132° C/270° F for at least 30 minutes.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false
@@ -1040,16 +1019,15 @@ export const ECOM_CATALOG = [
     "id": "fk-2352",
     "brand": "Flake King",
     "category": "Masking Products",
-    "flakeType": "Single Colour",
     "name": "Prime Green Fine Line Tape",
     "sku": "prime-green-fine-line-tape",
     "priceGbp": 3.49,
     "priceEur": 4.08,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
-    "description": "Available in 1mm, 2mm, 3mm & 6mm widths\nOur\u00a0Prime Green Fine Line\u00a0Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our\u00a0prime orange fine line\u00a0it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 132\u00b0 C/270\u00b0 F for at least 30 minutes.",
+    "description": "Available in 1mm, 2mm, 3mm & 6mm widths\nOur Prime Green Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime orange fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 132° C/270° F for at least 30 minutes.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
@@ -1102,13 +1080,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2341.jpg",
-    "description": "FKK13 Kromatic Asteroid Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKK13 Kromatic Asteroid Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -1125,7 +1103,7 @@ export const ECOM_CATALOG = [
         "priceEur": 23.39
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 4.99,
         "priceEur": 5.84
       }
@@ -1135,8 +1113,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -1159,8 +1137,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -1197,13 +1175,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FKS231600x1067.png?fit=600%2C600&ssl=1",
-    "description": "FKS23 Gun Metal Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS23 Gun Metal Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -1220,7 +1198,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -1230,8 +1208,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -1254,8 +1232,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -1291,13 +1269,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2319.jpg",
-    "description": "FKK01 Kromatic Elvis Gold Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKK01 Kromatic Elvis Gold Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -1314,7 +1292,7 @@ export const ECOM_CATALOG = [
         "priceEur": 23.39
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 4.99,
         "priceEur": 5.84
       }
@@ -1324,8 +1302,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -1348,8 +1326,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -1386,13 +1364,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2308.jpg",
-    "description": "FKI02 Dragon Koi Flake. Available in .008\u2033 & .015\u2033\nDue to the chemical nature of this flake it is only suitable for Dry Application using solvent or water based adhesion coat it cannot be suspended in a solvent.Due to the chemical nature of this flake it is only suitable for Dry Application using solvent or water based adhesion coat it cannot be suspended in a solvent.\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKI02 Dragon Koi Flake. Available in .008″ & .015″\nDue to the chemical nature of this flake it is only suitable for Dry Application using solvent or water based adhesion coat it cannot be suspended in a solvent.Due to the chemical nature of this flake it is only suitable for Dry Application using solvent or water based adhesion coat it cannot be suspended in a solvent.\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -1409,7 +1387,7 @@ export const ECOM_CATALOG = [
         "priceEur": 23.39
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 4.99,
         "priceEur": 5.84
       }
@@ -1419,8 +1397,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -1443,8 +1421,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -1481,13 +1459,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2297.jpg",
-    "description": "FKI01 Water Dragon Flake. Available in .008\u2033 & .015\u2033\nDue to the chemical nature of this flake it is only suitable for Dry Application using solvent or water based adhesion coat it cannot be suspended in a solvent.\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKI01 Water Dragon Flake. Available in .008″ & .015″\nDue to the chemical nature of this flake it is only suitable for Dry Application using solvent or water based adhesion coat it cannot be suspended in a solvent.\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -1504,7 +1482,7 @@ export const ECOM_CATALOG = [
         "priceEur": 23.39
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 4.99,
         "priceEur": 5.84
       }
@@ -1514,8 +1492,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -1538,8 +1516,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -1576,14 +1554,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2283.jpg",
-    "description": "FKS20 Candy Cobalt Blue Metal Flake. Available in .004\u2033, .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS20 Candy Cobalt Blue Metal Flake. Available in .004″, .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Small .008\"",
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -1600,7 +1578,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -1610,8 +1588,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.49,
         "priceEur": 5.25
       },
@@ -1634,8 +1612,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -1658,8 +1636,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -1696,14 +1674,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2269.jpg",
-    "description": "FKS21 Candy Turquoise Blue Metal Flake. Available in .004\u2033, .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS21 Candy Turquoise Blue Metal Flake. Available in .004″, .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Small .008\"",
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -1720,7 +1698,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -1730,8 +1708,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.49,
         "priceEur": 5.25
       },
@@ -1754,8 +1732,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -1778,8 +1756,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -1816,14 +1794,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2255.jpg",
-    "description": "FKS19 Candy Azura Blue Metal Flake. Available in .004\u2033, .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS19 Candy Azura Blue Metal Flake. Available in .004″, .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Small .008\"",
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -1840,7 +1818,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -1850,8 +1828,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.49,
         "priceEur": 5.25
       },
@@ -1874,8 +1852,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -1898,8 +1876,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -1936,13 +1914,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2244.jpg",
-    "description": "FKK10 Kromatic Blue Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKK10 Kromatic Blue Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -1959,7 +1937,7 @@ export const ECOM_CATALOG = [
         "priceEur": 23.39
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 4.99,
         "priceEur": 5.84
       }
@@ -1969,8 +1947,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -1993,8 +1971,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -2031,13 +2009,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2233.jpg",
-    "description": "FKS18 Candy Light Blue Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS18 Candy Light Blue Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -2054,7 +2032,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -2064,8 +2042,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2088,8 +2066,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2126,13 +2104,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2222.jpg",
-    "description": "FKK12 Kromatic Poison Green Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKK12 Kromatic Poison Green Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -2149,7 +2127,7 @@ export const ECOM_CATALOG = [
         "priceEur": 23.39
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 4.99,
         "priceEur": 5.84
       }
@@ -2159,8 +2137,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -2183,8 +2161,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -2221,14 +2199,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2208.jpg",
-    "description": "FKS17 Candy Emerald Green Metal Flake. Available in .004\u2033, .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS17 Candy Emerald Green Metal Flake. Available in .004″, .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Small .008\"",
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -2245,7 +2223,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -2255,8 +2233,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.49,
         "priceEur": 5.25
       },
@@ -2279,8 +2257,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2303,8 +2281,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2341,14 +2319,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2194.jpg",
-    "description": "FKS16 Candy Poison Green Metal Flake. Available in .004\u2033, .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS16 Candy Poison Green Metal Flake. Available in .004″, .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Small .008\"",
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -2365,7 +2343,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -2375,8 +2353,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.49,
         "priceEur": 5.25
       },
@@ -2399,8 +2377,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2423,8 +2401,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2461,13 +2439,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2183.jpg",
-    "description": "FKS15 Candy Lime Green Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS15 Candy Lime Green Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -2484,7 +2462,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -2494,8 +2472,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2518,8 +2496,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2556,13 +2534,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2172.jpg",
-    "description": "FKM24 Peacock Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKM24 Peacock Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -2579,7 +2557,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -2589,8 +2567,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2613,8 +2591,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2651,14 +2629,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2158.jpg",
-    "description": "FKS14 Candy Purple Heart Metal Flake. Available in .004\u2033, .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS14 Candy Purple Heart Metal Flake. Available in .004″, .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Small .008\"",
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -2675,7 +2653,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -2685,8 +2663,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.49,
         "priceEur": 5.25
       },
@@ -2709,8 +2687,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2733,8 +2711,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2771,13 +2749,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2147.jpg",
-    "description": "FKM22 Sky Purple Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKM22 Sky Purple Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -2794,7 +2772,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -2804,8 +2782,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2828,8 +2806,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2866,14 +2844,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2133.jpg",
-    "description": "FKS11 Candy Fewsha Metal Flake. Available in .004\u2032, .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS11 Candy Fewsha Metal Flake. Available in .004′, .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Small .008\"",
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -2890,7 +2868,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -2900,8 +2878,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.49,
         "priceEur": 5.25
       },
@@ -2924,8 +2902,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2948,8 +2926,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -2986,13 +2964,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2122.jpg",
-    "description": "FKK08 Kromatic Lavender Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKK08 Kromatic Lavender Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -3009,7 +2987,7 @@ export const ECOM_CATALOG = [
         "priceEur": 23.39
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 4.99,
         "priceEur": 5.84
       }
@@ -3019,8 +2997,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -3043,8 +3021,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -3081,13 +3059,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2111.jpg",
-    "description": "FKK11 Kromatic Bubble Gum Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKK11 Kromatic Bubble Gum Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -3104,7 +3082,7 @@ export const ECOM_CATALOG = [
         "priceEur": 23.39
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 4.99,
         "priceEur": 5.84
       }
@@ -3114,8 +3092,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -3138,8 +3116,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -3176,13 +3154,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2104.jpg",
-    "description": "FKS12 Candy Pink Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS12 Candy Pink Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -3199,7 +3177,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -3209,8 +3187,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3233,8 +3211,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3271,13 +3249,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2097.jpg",
-    "description": "FKM25 Fire Purple Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKM25 Fire Purple Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -3294,7 +3272,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -3304,8 +3282,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3328,8 +3306,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3366,13 +3344,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2090.jpg",
-    "description": "FKK05 Kromatic Volcano Red Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKK05 Kromatic Volcano Red Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -3389,7 +3367,7 @@ export const ECOM_CATALOG = [
         "priceEur": 23.39
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 4.99,
         "priceEur": 5.84
       }
@@ -3399,8 +3377,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -3423,8 +3401,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -3461,14 +3439,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2080.jpg",
-    "description": "FKS10 Candy Bright Red Metal Flake. Available in .004\u2032, .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS10 Candy Bright Red Metal Flake. Available in .004′, .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Small .008\"",
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -3485,7 +3463,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -3495,8 +3473,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.49,
         "priceEur": 5.25
       },
@@ -3519,8 +3497,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3543,8 +3521,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3581,14 +3559,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2070.jpg",
-    "description": "FKS09 Candy Apple Red Metal Flake. Available in .004\u2032, .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS09 Candy Apple Red Metal Flake. Available in .004′, .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Small .008\"",
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -3605,7 +3583,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -3615,8 +3593,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.49,
         "priceEur": 5.25
       },
@@ -3639,8 +3617,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3663,8 +3641,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3701,14 +3679,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2060.jpg",
-    "description": "FKS08 Candy Tangy Orange Metal Flake. Available in .004\u2032, .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS08 Candy Tangy Orange Metal Flake. Available in .004′, .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Small .008\"",
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -3725,7 +3703,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -3735,8 +3713,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3759,8 +3737,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3783,8 +3761,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3821,13 +3799,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2053.jpg",
-    "description": "FKM23 Fizzy Green Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKM23 Fizzy Green Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -3844,7 +3822,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -3854,8 +3832,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3878,8 +3856,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3916,14 +3894,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2043.jpg",
-    "description": "FKS07 Candy Extreme Yellow Metal Flake. Available in .004\u2032, .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS07 Candy Extreme Yellow Metal Flake. Available in .004′, .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Small .008\"",
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -3940,7 +3918,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -3950,8 +3928,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3974,8 +3952,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -3998,8 +3976,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -4036,13 +4014,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2036.jpg",
-    "description": "FKS06 Nevada Sands Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS06 Nevada Sands Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -4059,7 +4037,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -4069,8 +4047,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -4093,8 +4071,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -4131,13 +4109,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2029.jpg",
-    "description": "FKK03 Kromatic Copper Head Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKK03 Kromatic Copper Head Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -4154,7 +4132,7 @@ export const ECOM_CATALOG = [
         "priceEur": 23.39
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 4.99,
         "priceEur": 5.84
       }
@@ -4164,8 +4142,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -4188,8 +4166,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.99,
         "priceEur": 5.84
       },
@@ -4226,13 +4204,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2022.jpg",
-    "description": "FKS05 Candy Copper Head Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS05 Candy Copper Head Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -4249,7 +4227,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -4259,8 +4237,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -4283,8 +4261,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -4321,13 +4299,13 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2015.jpg",
-    "description": "FKS04 Candy Righteous Gold Metal Flake. Available in .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS04 Candy Righteous Gold Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -4344,7 +4322,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -4354,8 +4332,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -4378,8 +4356,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -4416,14 +4394,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-2005.jpg",
-    "description": "FKS03 Sovereign Gold Metal Flake. Available in .004\u2033, .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS03 Sovereign Gold Metal Flake. Available in .004″, .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Small .008\"",
       "Medium .015\"",
       "Large .025\""
     ],
     "packSizes": [
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -4440,7 +4418,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -4450,8 +4428,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.49,
         "priceEur": 5.25
       },
@@ -4474,8 +4452,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -4498,8 +4476,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -4536,7 +4514,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
     "image": "assets/images/flakes/fk-1992.jpg",
-    "description": "FKS02 Elvis Gold Metal Flake. Available in .002\u2033, .004\u2033, .008\u2033 & .015\u2033\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake\u00a0that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties\u2026\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "FKS02 Elvis Gold Metal Flake. Available in .002″, .004″, .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
       "Ultra Small .002\"",
       "Small .008\"",
@@ -4544,8 +4522,7 @@ export const ECOM_CATALOG = [
       "Large .025\""
     ],
     "packSizes": [
-      "10g Pot",
-      "15g Jar (Gun Mount)",
+      "30g Jar (Gun Mount)",
       "100g Jar (Refill / Trade)",
       "1000g (1 Kilo Trade Pack)"
     ],
@@ -4562,12 +4539,7 @@ export const ECOM_CATALOG = [
         "priceEur": 17.54
       },
       {
-        "packSize": "10g Pot",
-        "priceGbp": 5.99,
-        "priceEur": 7.01
-      },
-      {
-        "packSize": "15g Jar (Gun Mount)",
+        "packSize": "30g Jar (Gun Mount)",
         "priceGbp": 3.99,
         "priceEur": 4.67
       }
@@ -4577,8 +4549,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Ultra Small .002\"",
         "rawFlakeSize": "ultra-small",
-        "packSize": "10g Pot",
-        "rawPackSize": "10g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 5.99,
         "priceEur": 7.01
       },
@@ -4601,8 +4573,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 4.49,
         "priceEur": 5.25
       },
@@ -4625,8 +4597,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -4649,8 +4621,8 @@ export const ECOM_CATALOG = [
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
-        "packSize": "15g Jar (Gun Mount)",
-        "rawPackSize": "15g",
+        "packSize": "30g Jar (Gun Mount)",
+        "rawPackSize": "30g",
         "priceGbp": 3.99,
         "priceEur": 4.67
       },
@@ -4678,16 +4650,15 @@ export const ECOM_CATALOG = [
     "id": "fk-1972",
     "brand": "Flake King",
     "category": "Dry Metal Flake Guns",
-    "flakeType": "Single Colour",
     "name": "Flake King 1050 Dry Metal Flake Gun",
     "sku": "5060733583138",
     "priceGbp": 139.99,
     "priceEur": 163.79,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "PRO GUN SYSTEM",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10501.png?fit=600%2C600&ssl=1",
-    "description": "Introducing our latest gun, designed to be ready for our new range of corroded metal heavy powder blends.\nMachined from Billet Aluminium and then Anodised for maximum protection against all our metallic blend powders. It is like our 1000 gun with a few minor differences first being \u2013 it has not got the flake control valve and as a bonus it comes with the machined and anodised powder pick up tube.\nYou can choose to have the \u201cBarrel & Pot\u201d to be self levelling or fixed \u2013 by simply tightening or loosening the screw in-between the barrel and pot lid (as you can see in the pictures above) and the nozzle can rotate 360 around the tip of the barrel.\nThese guns are not just for the products that we manufacture, they have been used for many different applications \u2013 from spraying pollen to pollenate pine trees to applying non slip particles to surf boards.\nThis particular gun requires a normal size compressor to run and the minimum specification that we recommend would be a 2 CFM and 3 psi up to 20 psi.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "Introducing our latest gun, designed to be ready for our new range of corroded metal heavy powder blends.\nMachined from Billet Aluminium and then Anodised for maximum protection against all our metallic blend powders. It is like our 1000 gun with a few minor differences first being – it has not got the flake control valve and as a bonus it comes with the machined and anodised powder pick up tube.\nYou can choose to have the “Barrel & Pot” to be self levelling or fixed – by simply tightening or loosening the screw in-between the barrel and pot lid (as you can see in the pictures above) and the nozzle can rotate 360 around the tip of the barrel.\nThese guns are not just for the products that we manufacture, they have been used for many different applications – from spraying pollen to pollenate pine trees to applying non slip particles to surf boards.\nThis particular gun requires a normal size compressor to run and the minimum specification that we recommend would be a 2 CFM and 3 psi up to 20 psi.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
@@ -4697,16 +4668,15 @@ export const ECOM_CATALOG = [
     "id": "fk-1970",
     "brand": "Flake King",
     "category": "Dry Metal Flake Guns",
-    "flakeType": "Single Colour",
     "name": "Flake King 550 Mini Dry Metal Flake Gun",
     "sku": "5060733580069",
     "priceGbp": 119.99,
     "priceEur": 140.39,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "FLAKE KING (SINGLE COLOUR)",
+    "badge": "PRO GUN SYSTEM",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5501.png?fit=600%2C600&ssl=1",
-    "description": "This Mini Gun is a smaller version of our Flake King 1000 Gun that runs off an airbrush compressor.\nIt enables you to apply your clear coat with your airbrush and then use the Flake King 500 Mini to apply the flake.\nIt is supplied with a nozzle for easier blending of flake \u201cpasses\u201d and is also supplied with a 1/4\u2033 to 1/8\u2033 adaptor to fit to a standard airbrush airline.\nIdeal for smaller projects \u2013 from bowling pins, skateboard decks, helmets, to bicycle and motorcycle frames.\nOur flakes are supplied in glass jars that simply screw onto the gun, no hassle, no messing.\nTo learn more about the following products \u2013 guns, flake & surface binders please watch the video by clicking this link \u2013\u00a0Product Video",
+    "description": "This Mini Gun is a smaller version of our Flake King 1000 Gun that runs off an airbrush compressor.\nIt enables you to apply your clear coat with your airbrush and then use the Flake King 500 Mini to apply the flake.\nIt is supplied with a nozzle for easier blending of flake “passes” and is also supplied with a 1/4″ to 1/8″ adaptor to fit to a standard airbrush airline.\nIdeal for smaller projects – from bowling pins, skateboard decks, helmets, to bicycle and motorcycle frames.\nOur flakes are supplied in glass jars that simply screw onto the gun, no hassle, no messing.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
@@ -4724,7 +4694,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/10/VAX-JG-GLMSK-Goalie-Mask-Jig-Render-1.jpg",
-    "description": "VsionAir Ice Hockey Goalie Mask Jig\nThe jig allows you to adjust and lock the mask into any position making it extremely comfortable to work on. It also comes with a VFrame extension that enables you to apply a 2\u201d/50mm washer to the inside of the rear head protection plate using either masking tape or hot glue and and then place it on a strong mounted Neodymium magnet to the position it would be on a persons head. Making it perfect for lining up artwork and graphics.\nThe perfect Jig for every aspect of painting from prep. base coating, flaking, clear coating and apply your pinstripe, leafing and art work suitable for airbrush, marker, and normal brushwork to every side including the top.",
+    "description": "VsionAir Ice Hockey Goalie Mask Jig\nThe jig allows you to adjust and lock the mask into any position making it extremely comfortable to work on. It also comes with a VFrame extension that enables you to apply a 2”/50mm washer to the inside of the rear head protection plate using either masking tape or hot glue and and then place it on a strong mounted Neodymium magnet to the position it would be on a persons head. Making it perfect for lining up artwork and graphics.\nThe perfect Jig for every aspect of painting from prep. base coating, flaking, clear coating and apply your pinstripe, leafing and art work suitable for airbrush, marker, and normal brushwork to every side including the top.",
     "sizes": [
       "Standard Rig"
     ],
@@ -4745,7 +4715,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/1000mm_x_1200mm_Vertical_Tool_Bars__Lighting_Camera_Rig_Reworked.png",
-    "description": "The VsioAir Lighting, Camera & Vertical Tool Bar Rig, is designed to provide you with the physical structure to mount lighting, cameras and any of our accessories directly to it. It bolts to the horizontal tool bar and with the use of the IABS Brackets enables you to angle the vertical bars from directly above to 90 degrees behind the work area. This is a real game changer to your work area \u2013 you\u2019ll be amazed at what you can mount to this.\nIt mounts to both our Desk Mount Stand and our Tripod Stand (via our VsionAir Tool Bar). Available in 3 Widths 1m, 1.2m & 1.5m\nTo download the assembly instructions please click on link\nTo download the packing list please click on link",
+    "description": "The VsioAir Lighting, Camera & Vertical Tool Bar Rig, is designed to provide you with the physical structure to mount lighting, cameras and any of our accessories directly to it. It bolts to the horizontal tool bar and with the use of the IABS Brackets enables you to angle the vertical bars from directly above to 90 degrees behind the work area. This is a real game changer to your work area – you’ll be amazed at what you can mount to this.\nIt mounts to both our Desk Mount Stand and our Tripod Stand (via our VsionAir Tool Bar). Available in 3 Widths 1m, 1.2m & 1.5m\nTo download the assembly instructions please click on link\nTo download the packing list please click on link",
     "sizes": [
       "Standard Rig"
     ],
@@ -5165,7 +5135,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/06/Flange-Head-Machine-Screw-Render-Web.png",
-    "description": "VAX-4-FH-8 VsionAir M4 x 8mm Flange Head Machine Screw \u2013 typically used for mounting \u201cClipboard Clip\u201d to Universal Mount Holder.\nPack of 10",
+    "description": "VAX-4-FH-8 VsionAir M4 x 8mm Flange Head Machine Screw – typically used for mounting “Clipboard Clip” to Universal Mount Holder.\nPack of 10",
     "sizes": [
       "Standard Rig"
     ],
@@ -5249,7 +5219,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/06/IABS-Bracket-Render-Web.png",
-    "description": "VAX-IAB-BRKT VsionAir IABS Bracket is used with all our (IABS) Independent Airbrush Stations and Jig.\nAnother versatile bracket that we\u2019re sure you\u2019ll find many uses for.",
+    "description": "VAX-IAB-BRKT VsionAir IABS Bracket is used with all our (IABS) Independent Airbrush Stations and Jig.\nAnother versatile bracket that we’re sure you’ll find many uses for.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5291,7 +5261,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-T-M-SS-Spamrt-Speaker-Render-Reworked.png",
-    "description": "https://youtu.be/szjxjaqZPlk\nWe know that keeping hydrated and relaxed helps the creative juices flowing. So again we\u2019ve thought about how we can help with that.\u00a0 \u00a0\nWe designed a universal mount that holds smart speakers, mugs (not fancy china cups!) and thermal mugs. We\u2019re sure you\u2019ll find other uses for them, when\u00a0you do, please let us know.",
+    "description": "https://youtu.be/szjxjaqZPlk\nWe know that keeping hydrated and relaxed helps the creative juices flowing. So again we’ve thought about how we can help with that.   \nWe designed a universal mount that holds smart speakers, mugs (not fancy china cups!) and thermal mugs. We’re sure you’ll find other uses for them, when you do, please let us know.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5354,7 +5324,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-SPRYGUN-HLDR-Spray-Gun-Render-Reworked.png",
-    "description": "https://youtu.be/EAfa4Os2IzA\nGravity Feed Spray Gun Holder mount anywhere horizontally on our VsionFrame\u00a0TM\u2013 great for in the booth when swapping between applying binders and flake.",
+    "description": "https://youtu.be/EAfa4Os2IzA\nGravity Feed Spray Gun Holder mount anywhere horizontally on our VsionFrame TM– great for in the booth when swapping between applying binders and flake.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5375,7 +5345,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-1000-Holder-Render-Reworked.png",
-    "description": "https://youtu.be/lZvRDf-DNyU\nFlake King 1000/1050 Holder mount anywhere horizontally on our VsionFrame\u00a0TM\u2013 great for in the booth when swapping between applying binders and flake.",
+    "description": "https://youtu.be/lZvRDf-DNyU\nFlake King 1000/1050 Holder mount anywhere horizontally on our VsionFrame TM– great for in the booth when swapping between applying binders and flake.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5396,7 +5366,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-500-HLDR-F0M500-Holder-Render-Reworked.png",
-    "description": "https://youtu.be/vrcLcQAKwvo\nFlake King 500/550 Holder mount anywhere horizontally on our VsionFrame\u00a0TM\u2013 great for in the booth when swapping between applying binders and flake.",
+    "description": "https://youtu.be/vrcLcQAKwvo\nFlake King 500/550 Holder mount anywhere horizontally on our VsionFrame TM– great for in the booth when swapping between applying binders and flake.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5417,7 +5387,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-HOOK-40mm-Hook-Render-reworked.png",
-    "description": "A simple 40mm hook that you can fix anywhere on our VsionFrameTM \u2013 great for hanging anything from a spray gun, to masking tape, stencils or even your hat!",
+    "description": "A simple 40mm hook that you can fix anywhere on our VsionFrameTM – great for hanging anything from a spray gun, to masking tape, stencils or even your hat!",
     "sizes": [
       "Standard Rig"
     ],
@@ -5438,7 +5408,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-PNT-HLDR-Paint-Bottle-Holder-Render-Reworked.png",
-    "description": "https://youtu.be/_-nhoKstnBM\nhttps://youtu.be/_-nhoKstnBM\nPaint Bottle Holder (VAX-PNT-HLDR) \u2013 Another quirky but handy little holder, mount it anywhere \u2013 it holds up to 6 bottles of paint from small square bottles of 30mm to large 4oz Createx bottles. They also bolt together for infinite storage.",
+    "description": "https://youtu.be/_-nhoKstnBM\nhttps://youtu.be/_-nhoKstnBM\nPaint Bottle Holder (VAX-PNT-HLDR) – Another quirky but handy little holder, mount it anywhere – it holds up to 6 bottles of paint from small square bottles of 30mm to large 4oz Createx bottles. They also bolt together for infinite storage.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5459,7 +5429,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-REF-Digital-Reference-Holder-Render-reworked.png",
-    "description": "https://youtu.be/g6bL1qAWi0w\nThis multi-purpose accessory made from powder coated steel can be used in different ways for different uses. Here are a few examples;\n1. It will hold a digital device perfect for reference or watching online Airbrush Courses, enabling you follow like for like.\n2. It can hold printed reference, simply set it at your most comfortable height. 3. It can hold plain paper, great for testing your paint is the right colour and the viscosity correct \u2013 you know the drill!\n4. Use it to hold your stencils on \u2013 dont they always fall on the floor or you can\u2019t find them.\nYou can configure to fasten right or left handed and comes with both digital brackets & sprung clipboard.",
+    "description": "https://youtu.be/g6bL1qAWi0w\nThis multi-purpose accessory made from powder coated steel can be used in different ways for different uses. Here are a few examples;\n1. It will hold a digital device perfect for reference or watching online Airbrush Courses, enabling you follow like for like.\n2. It can hold printed reference, simply set it at your most comfortable height. 3. It can hold plain paper, great for testing your paint is the right colour and the viscosity correct – you know the drill!\n4. Use it to hold your stencils on – dont they always fall on the floor or you can’t find them.\nYou can configure to fasten right or left handed and comes with both digital brackets & sprung clipboard.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5480,7 +5450,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/Regulator_Holder_Assembly.png",
-    "description": "https://youtu.be/pTiOy6g3lwY\nDo you use a quick release and swap between your airbrushes? Well this neat little mounting bracket holds both a Sparmax Pressure Regulator and airline holder \u2013 no more chasing it around the floor.\nIt\u2019s the little details that make the difference.\nSupplied with mounting nuts & bolts.",
+    "description": "https://youtu.be/pTiOy6g3lwY\nDo you use a quick release and swap between your airbrushes? Well this neat little mounting bracket holds both a Sparmax Pressure Regulator and airline holder – no more chasing it around the floor.\nIt’s the little details that make the difference.\nSupplied with mounting nuts & bolts.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5501,7 +5471,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-APCS-Air-Pressure-Cleaning-Pot-Render-Reworked.png",
-    "description": "https://youtu.be/_FdJSHCTCfE\nSometimes using a small bottle of airbrush cleaner just doesn\u2019t cut it, Our 250ml squeeze bottle with small aperture spout enables to put some pressure and volume in there. It is supplied with its own mount so you can keep it to hand.\nCustomers are also using them to hold the reducers/thinners they\u2019re suitable for both water based & solvents products.",
+    "description": "https://youtu.be/_FdJSHCTCfE\nSometimes using a small bottle of airbrush cleaner just doesn’t cut it, Our 250ml squeeze bottle with small aperture spout enables to put some pressure and volume in there. It is supplied with its own mount so you can keep it to hand.\nCustomers are also using them to hold the reducers/thinners they’re suitable for both water based & solvents products.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5627,7 +5597,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-ACH4-Aircap-Holder-4-Render-Reworked.png",
-    "description": "Holds up to 4 needle caps it screws directly to our Vframe \u2013 ideal for our Airbrush Holder Vframes.\nImage shows additional airbrush holders and\nHolds up to 4 needle caps it screws directly to our Vframe \u2013 ideal for our Airbrush Holder Vframes.\nImage shows additional airbrush holders and VFrames.",
+    "description": "Holds up to 4 needle caps it screws directly to our Vframe – ideal for our Airbrush Holder Vframes.\nImage shows additional airbrush holders and\nHolds up to 4 needle caps it screws directly to our Vframe – ideal for our Airbrush Holder Vframes.\nImage shows additional airbrush holders and VFrames.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5648,7 +5618,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-ABH-Airbrush-Holder-Render-Reworked.png",
-    "description": "https://youtu.be/SIJMAgx7J6c\nA simple little holder. That allows you to screw it directly to the VsionFrame\u00a0TM and set the angle of the airbrush \u2013 suitable for all our Tool Bars, and our Independent Airbrush Stations.\nYou can expand the number of holders buy adding our VsionFrame\u00a0TM",
+    "description": "https://youtu.be/SIJMAgx7J6c\nA simple little holder. That allows you to screw it directly to the VsionFrame TM and set the angle of the airbrush – suitable for all our Tool Bars, and our Independent Airbrush Stations.\nYou can expand the number of holders buy adding our VsionFrame TM",
     "sizes": [
       "Standard Rig"
     ],
@@ -5669,7 +5639,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-HG-SKBD-Skateboard-Jig-Assembly-Render-Reworked.png",
-    "description": "We love boards! and what better way to pay homage to them than to have an actual skateboard jig.\n\nThis jig is ideal for all the prep work, priming sanding, base coating, flaking, painting, leafing, striping, clear coating, and polishing. You can set the angle lock it into place and do what you want.\nAll our jigs can be used on both the Tri-Stand and Desk Mount Stand, meaning you can do the \u201cdirty\u201d work in the booth and then just lift them out and take to your studio to apply your artwork and detail. When you\u2019ve finished take them back to the booth and clear coat, cut and polish all on one stand.\nTo download a copy of the Assembly Drawing please click this link\nTo download a copy of the packing list please click this link",
+    "description": "We love boards! and what better way to pay homage to them than to have an actual skateboard jig.\n\nThis jig is ideal for all the prep work, priming sanding, base coating, flaking, painting, leafing, striping, clear coating, and polishing. You can set the angle lock it into place and do what you want.\nAll our jigs can be used on both the Tri-Stand and Desk Mount Stand, meaning you can do the “dirty” work in the booth and then just lift them out and take to your studio to apply your artwork and detail. When you’ve finished take them back to the booth and clear coat, cut and polish all on one stand.\nTo download a copy of the Assembly Drawing please click this link\nTo download a copy of the packing list please click this link",
     "sizes": [
       "Standard Rig"
     ],
@@ -5690,7 +5660,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-JG-TM-Thermal-Mug-Jig-Reworked.png",
-    "description": "We\u2019ve heard that our American brothers and sisters custom paint a lot of thermal mugs such as YETI\u2019s\u00a0TM and the like. We\u2019re such affable people \u201cus Brits\u201d that we wanted to make it easier for you to paint them. It relies on rubber discs that slide into the cup and hold it with suction.\nThey\u2019re set on a threaded rod so you can set the height they sit within the cup. The rod is connected to our VsionAir\u00a0TM Frame and comes with a height adjuster so it simply drops into either the Desk Mount Stand or the TriStand\u00a0TM\nAll our jigs can be used on both the Tri-Stand and Desk Mount Stand, meaning you can do the \u201cdirty\u201d work in the booth and then just lift them out and take to your studio to apply your artwork and detail. When you\u2019ve finished take them back to the booth and clear coat, cut and polish all on one stand.",
+    "description": "We’ve heard that our American brothers and sisters custom paint a lot of thermal mugs such as YETI’s TM and the like. We’re such affable people “us Brits” that we wanted to make it easier for you to paint them. It relies on rubber discs that slide into the cup and hold it with suction.\nThey’re set on a threaded rod so you can set the height they sit within the cup. The rod is connected to our VsionAir TM Frame and comes with a height adjuster so it simply drops into either the Desk Mount Stand or the TriStand TM\nAll our jigs can be used on both the Tri-Stand and Desk Mount Stand, meaning you can do the “dirty” work in the booth and then just lift them out and take to your studio to apply your artwork and detail. When you’ve finished take them back to the booth and clear coat, cut and polish all on one stand.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5711,7 +5681,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-JG-WHL-Wheel-Jig-Render1-Reworked.png",
-    "description": "A very simple little jig that enables you to place a wheel on it and turn it, ideal for spraying or pinstriping. It has a removable top spinner for car wheels and a shaft for motorcycle wheels.\nThat\u2019s it \u2013 simple but really useful !\nAll our jigs can be used on both the Tri-Stand and Desk Mount Stand, meaning you can do the \u201cdirty\u201d work in the booth and then just lift them out and take to your studio to apply your artwork and detail. When you\u2019ve finished take them back to the booth and clear coat, cut and polish all on one stand.",
+    "description": "A very simple little jig that enables you to place a wheel on it and turn it, ideal for spraying or pinstriping. It has a removable top spinner for car wheels and a shaft for motorcycle wheels.\nThat’s it – simple but really useful !\nAll our jigs can be used on both the Tri-Stand and Desk Mount Stand, meaning you can do the “dirty” work in the booth and then just lift them out and take to your studio to apply your artwork and detail. When you’ve finished take them back to the booth and clear coat, cut and polish all on one stand.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5732,7 +5702,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-JG-HLMT-Render-1-Reworked.png",
-    "description": "A very innovative design that utilises a unique chinstrap bracket and heavy duty rubber to hold the helmet to our internal VsionFrameTM, that is connected to another unique rotational ball and clamp mechanism. Giving you the ability to move and lock the helmet in the same way you can move your head.\nAgain it has the height adjuster bracket that fits into our Angle Lock giving you a stable base and the ability to do any type of work on it.\u00a0\nAll our jigs can be used on both the Tri-Stand and Desk Mount Stand, meaning you can do the \u201cdirty\u201d work in the booth and then just lift them out and take to your studio to apply your artwork and detail. When you\u2019ve finished take them back to the booth and clear coat, cut and polish all on one stand.\nDownload the Assembly Drawing by clicking this link\nDownload the Parts & Assemblies Packing List by clicking this link",
+    "description": "A very innovative design that utilises a unique chinstrap bracket and heavy duty rubber to hold the helmet to our internal VsionFrameTM, that is connected to another unique rotational ball and clamp mechanism. Giving you the ability to move and lock the helmet in the same way you can move your head.\nAgain it has the height adjuster bracket that fits into our Angle Lock giving you a stable base and the ability to do any type of work on it. \nAll our jigs can be used on both the Tri-Stand and Desk Mount Stand, meaning you can do the “dirty” work in the booth and then just lift them out and take to your studio to apply your artwork and detail. When you’ve finished take them back to the booth and clear coat, cut and polish all on one stand.\nDownload the Assembly Drawing by clicking this link\nDownload the Parts & Assemblies Packing List by clicking this link",
     "sizes": [
       "Standard Rig"
     ],
@@ -5753,7 +5723,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-JG-MCTNK_VsionAir_Motorcycle_Tank_Jig_reworked.png",
-    "description": "A really cool and useful jig. This jig comes with varying lengths of VsionFrame and different mount options, basically it can handle any tank that has mount points even the \u201cbung\u201d type. The jig enables you to not only spin the tank on its horizontal frame axis but also the vertical axis, allowing you to spray the entire tank whilst being stood on one spot. You can lock the tank at any angle so you can use it for prep work, masking, pin striping, airbrushing and even polishing.\nThis jig will evolve as more tank dimensional information comes to light, any potential items will be made available discounted for existing customers upon proof of original purchase. So keep your receipts!\nIn the kit is a range of sizes of VFrame and various brackets, threaded bars nuts, bolts and threaded bung inserts and a height adjuster. there are also 2 angle lock adjuster brackets to lock the horizontal motion everything when working.\nAll our jigs can be used on both the Tri-Stand and Desk Mount Stand, meaning you can do the \u201cdirty\u201d work in the booth and then just lift them out and take to your studio to apply your artwork and detail. When you\u2019ve finished take them back to the booth and clear coat, cut and polish all on one stand.",
+    "description": "A really cool and useful jig. This jig comes with varying lengths of VsionFrame and different mount options, basically it can handle any tank that has mount points even the “bung” type. The jig enables you to not only spin the tank on its horizontal frame axis but also the vertical axis, allowing you to spray the entire tank whilst being stood on one spot. You can lock the tank at any angle so you can use it for prep work, masking, pin striping, airbrushing and even polishing.\nThis jig will evolve as more tank dimensional information comes to light, any potential items will be made available discounted for existing customers upon proof of original purchase. So keep your receipts!\nIn the kit is a range of sizes of VFrame and various brackets, threaded bars nuts, bolts and threaded bung inserts and a height adjuster. there are also 2 angle lock adjuster brackets to lock the horizontal motion everything when working.\nAll our jigs can be used on both the Tri-Stand and Desk Mount Stand, meaning you can do the “dirty” work in the booth and then just lift them out and take to your studio to apply your artwork and detail. When you’ve finished take them back to the booth and clear coat, cut and polish all on one stand.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5774,7 +5744,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-JG-MCFDR-Render1-Reworked.png",
-    "description": "No more balancing fenders on water filled gallon tins. Held securely by unique screw in fixings that secure the fender.\nUsing our VsionAir\u00a0TM Height Bracket you can spin the fender on the vertical axis \u2013 again allowing you to paint the whole fender whilst stood in one position. You can also lock the jig \u2013 so you can use it for prep work, masking, pin striping, airbrushing and even polishing.\nAll our jigs can be used on both the Tri-Stand and Desk Mount Stand, meaning you can do the \u201cdirty\u201d work in the booth and then just lift them out and take to your studio to apply your artwork and detail. When you\u2019ve finished take them back to the booth and clear coat, cut and polish all on one stand.\nDownload the Assembly Drawing by clicking this link\nDownload the Parts & Assemblies Packing List by clicking this link",
+    "description": "No more balancing fenders on water filled gallon tins. Held securely by unique screw in fixings that secure the fender.\nUsing our VsionAir TM Height Bracket you can spin the fender on the vertical axis – again allowing you to paint the whole fender whilst stood in one position. You can also lock the jig – so you can use it for prep work, masking, pin striping, airbrushing and even polishing.\nAll our jigs can be used on both the Tri-Stand and Desk Mount Stand, meaning you can do the “dirty” work in the booth and then just lift them out and take to your studio to apply your artwork and detail. When you’ve finished take them back to the booth and clear coat, cut and polish all on one stand.\nDownload the Assembly Drawing by clicking this link\nDownload the Parts & Assemblies Packing List by clicking this link",
     "sizes": [
       "Standard Rig"
     ],
@@ -5795,7 +5765,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-JG-GTR-Guitar-Body-Jig-A-Render.png",
-    "description": "VsionAir Electric Guitar Jig.\nComes with everything you need to hold both\u00a0the neck and the body of the guitar. Both jigs have the height adjuster for the VsionFrame\u00a0TM\u00a0 enabling you to rotate the \u201cneck\u201d axis and also lock it into a specific angle, allowing you to spray the entire piece whilst being stood on one spot. Because you can also lock it at any angle, you can use it for prep work, masking, pin striping, airbrushing and even polishing. You can also change the angle enabling you work on the top/bottom straight on \u2013 no bending\nThis jig comes with 1 base mount that sits in the stands (desk & Tri-Stand) with an angle lock adjuster and 2 mount assemblies one for the body and one for the neck.\nAll our jigs can be used on both the Tri-Stand and Desk Mount Stand, meaning you can do the \u201cdirty\u201d work in the booth and then just lift them out and take to your studio to apply your artwork and detail. When you\u2019ve finished take them back to the booth and clear coat, cut and polish all on one stand.\nTo download a copy of the Assembly Drawing please click this link\nTo download a copy of the packing list please click this link",
+    "description": "VsionAir Electric Guitar Jig.\nComes with everything you need to hold both the neck and the body of the guitar. Both jigs have the height adjuster for the VsionFrame TM  enabling you to rotate the “neck” axis and also lock it into a specific angle, allowing you to spray the entire piece whilst being stood on one spot. Because you can also lock it at any angle, you can use it for prep work, masking, pin striping, airbrushing and even polishing. You can also change the angle enabling you work on the top/bottom straight on – no bending\nThis jig comes with 1 base mount that sits in the stands (desk & Tri-Stand) with an angle lock adjuster and 2 mount assemblies one for the body and one for the neck.\nAll our jigs can be used on both the Tri-Stand and Desk Mount Stand, meaning you can do the “dirty” work in the booth and then just lift them out and take to your studio to apply your artwork and detail. When you’ve finished take them back to the booth and clear coat, cut and polish all on one stand.\nTo download a copy of the Assembly Drawing please click this link\nTo download a copy of the packing list please click this link",
     "sizes": [
       "Standard Rig"
     ],
@@ -5816,7 +5786,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-JG-A3VSBD-A3-VsionBoard-Jig_Reworked.png",
-    "description": "The ideal jig if you want to paint on canvass, specialist cards and papers, the Vsionair tm Independent Airbrush Station is able to hold up to A3 (ANSI B) in both landscape and portrait. It\u2019s steel faced making it fantastic to use magnets to hold your stencils and work on.\nThe main structure is made from our unique VFrame tm which means that you can bolt any of our accessories to it.\nThe main VsionBoard tm is finished in a neutral matt cream powder coat.",
+    "description": "The ideal jig if you want to paint on canvass, specialist cards and papers, the Vsionair tm Independent Airbrush Station is able to hold up to A3 (ANSI B) in both landscape and portrait. It’s steel faced making it fantastic to use magnets to hold your stencils and work on.\nThe main structure is made from our unique VFrame tm which means that you can bolt any of our accessories to it.\nThe main VsionBoard tm is finished in a neutral matt cream powder coat.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5837,7 +5807,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-JG-A3VSBD-A3-VsionBoard-Jig_Reworked.png",
-    "description": "The ideal jig if you want to paint on canvass, specialist cards and papers, the Vsionair tm Independent Airbrush Station is able to hold up to A4 (ANSI A) in both landscape or portrait. It\u2019s steel faced making it fantastic to use magnets to hold your stencils and work on.\nThe main structure is made from our unique VFrame tm which means that you can bolt any of our accessories to it.\nThe main VsionBoard tm is finished in a neutral matt cream powder coat.",
+    "description": "The ideal jig if you want to paint on canvass, specialist cards and papers, the Vsionair tm Independent Airbrush Station is able to hold up to A4 (ANSI A) in both landscape or portrait. It’s steel faced making it fantastic to use magnets to hold your stencils and work on.\nThe main structure is made from our unique VFrame tm which means that you can bolt any of our accessories to it.\nThe main VsionBoard tm is finished in a neutral matt cream powder coat.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5900,7 +5870,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/1000mm_x_1200mm_Vertical_Tool_Bars__Lighting_Camera_Rig_Reworked.png",
-    "description": "The VsioAir Lighting, Camera & Vertical Tool Bar Rig, is designed to provide you with the physical structure to mount lighting, cameras and any of our accessories directly to it. It bolts to the horizontal tool bar and with the use of the IABS Brackets enables you to angle the vertical bars from directly above to 90 degrees behind the work area. This is a real game changer to your work area \u2013 you\u2019ll be amazed at what you can mount to this.\nIt mounts to both our Desk Mount Stand and our Tripod Stand (via our VsionAir Tool Bar). Available in 3 Widths 1m, 1.2m & 1.5m\nTo download the assembly instructions please click on link\nTo download the packing list please click on link",
+    "description": "The VsioAir Lighting, Camera & Vertical Tool Bar Rig, is designed to provide you with the physical structure to mount lighting, cameras and any of our accessories directly to it. It bolts to the horizontal tool bar and with the use of the IABS Brackets enables you to angle the vertical bars from directly above to 90 degrees behind the work area. This is a real game changer to your work area – you’ll be amazed at what you can mount to this.\nIt mounts to both our Desk Mount Stand and our Tripod Stand (via our VsionAir Tool Bar). Available in 3 Widths 1m, 1.2m & 1.5m\nTo download the assembly instructions please click on link\nTo download the packing list please click on link",
     "sizes": [
       "Standard Rig"
     ],
@@ -5921,7 +5891,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/1000mm_x_1200mm_Vertical_Tool_Bars__Lighting_Camera_Rig_Reworked.png",
-    "description": "The VsioAir Lighting, Camera & Vertical Tool Bar Rig, is designed to provide you with the physical structure to mount lighting, cameras and any of our accessories directly to it. It bolts to the horizontal tool bar and with the use of the IABS Brackets enables you to angle the vertical bars from directly above to 90 degrees behind the work area. This is a real game changer to your work area \u2013 you\u2019ll be amazed at what you can mount to this.\nIt mounts to both our Desk Mount Stand and our Tripod Stand (via our VsionAir Tool Bar). Available in 3 Widths 1m, 1.2m & 1.5m\nTo download the assembly instructions please click on link\nTp download the packing list please click on link",
+    "description": "The VsioAir Lighting, Camera & Vertical Tool Bar Rig, is designed to provide you with the physical structure to mount lighting, cameras and any of our accessories directly to it. It bolts to the horizontal tool bar and with the use of the IABS Brackets enables you to angle the vertical bars from directly above to 90 degrees behind the work area. This is a real game changer to your work area – you’ll be amazed at what you can mount to this.\nIt mounts to both our Desk Mount Stand and our Tripod Stand (via our VsionAir Tool Bar). Available in 3 Widths 1m, 1.2m & 1.5m\nTo download the assembly instructions please click on link\nTp download the packing list please click on link",
     "sizes": [
       "Standard Rig"
     ],
@@ -5942,7 +5912,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VsionFrame-Render-Reworked.png",
-    "description": "If you want to expand the range of useful accessories to your workstation then look no further than our VsionFrame tm Tool Bar will bolt directly to both our Desk Mount Stand and our Tri-Stand, it will also bolt to the front our our Independent Airbrush Station if you also purchase and additional 2 of our VBrackets.\nThe VsionFrame Tool Bar is available in 5 sizes\u2026\n500mm, 750mm, 1000mm, 1200mm & 1500mm.",
+    "description": "If you want to expand the range of useful accessories to your workstation then look no further than our VsionFrame tm Tool Bar will bolt directly to both our Desk Mount Stand and our Tri-Stand, it will also bolt to the front our our Independent Airbrush Station if you also purchase and additional 2 of our VBrackets.\nThe VsionFrame Tool Bar is available in 5 sizes…\n500mm, 750mm, 1000mm, 1200mm & 1500mm.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5963,7 +5933,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VsionFrame-Render-Reworked.png",
-    "description": "If you want to expand the range of useful accessories to your workstation then look no further than our VsionFrame tm Tool Bar will bolt directly to both our Desk Mount Stand and our Tri-Stand, it will also bolt to the front our our Independent Airbrush Station if you also purchase and additional 2 of our VBrackets.\nThe VsionFrame Tool Bar is available in 5 sizes\u2026\n500mm, 750mm, 1000mm, 1200mm & 1500mm.",
+    "description": "If you want to expand the range of useful accessories to your workstation then look no further than our VsionFrame tm Tool Bar will bolt directly to both our Desk Mount Stand and our Tri-Stand, it will also bolt to the front our our Independent Airbrush Station if you also purchase and additional 2 of our VBrackets.\nThe VsionFrame Tool Bar is available in 5 sizes…\n500mm, 750mm, 1000mm, 1200mm & 1500mm.",
     "sizes": [
       "Standard Rig"
     ],
@@ -5984,7 +5954,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VsionFrame-Render-Reworked.png",
-    "description": "If you want to expand the range of useful accessories to your workstation then look no further than our VsionFrame tm Tool Bar will bolt directly to both our Desk Mount Stand and our Tri-Stand, it will also bolt to the front our our Independent Airbrush Station if you also purchase and additional 2 of our VBrackets.\nThe VsionFrame Tool Bar is available in 5 sizes\u2026\n500mm, 750mm, 1000mm, 1200mm & 1500mm.",
+    "description": "If you want to expand the range of useful accessories to your workstation then look no further than our VsionFrame tm Tool Bar will bolt directly to both our Desk Mount Stand and our Tri-Stand, it will also bolt to the front our our Independent Airbrush Station if you also purchase and additional 2 of our VBrackets.\nThe VsionFrame Tool Bar is available in 5 sizes…\n500mm, 750mm, 1000mm, 1200mm & 1500mm.",
     "sizes": [
       "Standard Rig"
     ],
@@ -6005,7 +5975,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VsionFrame-Render-Reworked.png",
-    "description": "If you want to expand the range of useful accessories to your workstation then look no further than our VsionFrame tm Tool Bar will bolt directly to both our Desk Mount Stand and our Tri-Stand, it will also bolt to the front our our Independent Airbrush Station if you also purchase and additional 2 of our VBrackets.\nThe VsionFrame Tool Bar is available in 5 sizes\u2026\n500mm, 750mm, 1000mm, 1200mm & 1500mm.",
+    "description": "If you want to expand the range of useful accessories to your workstation then look no further than our VsionFrame tm Tool Bar will bolt directly to both our Desk Mount Stand and our Tri-Stand, it will also bolt to the front our our Independent Airbrush Station if you also purchase and additional 2 of our VBrackets.\nThe VsionFrame Tool Bar is available in 5 sizes…\n500mm, 750mm, 1000mm, 1200mm & 1500mm.",
     "sizes": [
       "Standard Rig"
     ],
@@ -6026,7 +5996,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VsionFrame-Render-Reworked.png",
-    "description": "If you want to expand the range of useful accessories to your workstation then look no further than our VsionFrame tm Tool Bar will bolt directly to both our Desk Mount Stand and our Tri-Stand, it will also bolt to the front our our Independent Airbrush Station if you also purchase and additional 2 of our VBrackets.\nThe VsionFrame Tool Bar is available in 5 sizes\u2026\n500mm, 750mm, 1000mm, 1200mm & 1500mm.",
+    "description": "If you want to expand the range of useful accessories to your workstation then look no further than our VsionFrame tm Tool Bar will bolt directly to both our Desk Mount Stand and our Tri-Stand, it will also bolt to the front our our Independent Airbrush Station if you also purchase and additional 2 of our VBrackets.\nThe VsionFrame Tool Bar is available in 5 sizes…\n500mm, 750mm, 1000mm, 1200mm & 1500mm.",
     "sizes": [
       "Standard Rig"
     ],
@@ -6047,7 +6017,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-A3-IABS_VisonAir_Independent_Airbrush_Station_FKLogo.png",
-    "description": "If you only paint on canvass, specialist cards and papers, the Vsionair tm Independent Airbrush Station forms the ideal base. It is able to hold up to A3 (ANSI B) in both landscape and portrait. It\u2019s steel faced making it fantastic to use magnets to hold your stencils and work on.\nThe main structure is made from our unique VFrame tm which means that you can bolt any of our accessories to it. I has stops on the front base to stop it from being pushed away when pressure is applied.\nYou can also purchase additional tool bars that will fasten to the front base enabling you to expand the range off accessories you can add.\nIf you later wish to move to our Desk Mount and or Tri-Stand, we have an upgrade kit which will allow you to convert it, giving you flexibility and peace of mind.\nThe main VsionBoard is now finished in a neutral matt mid grey powder coat. This colour was recommended by Marissa Oosterlee being this colour maintains your eyes colour balance for extreme accuracy of colour matching whilst painting.\nTo download a copy of the Assembly Drawing please click this link\nTo download a copy of the packing list please click this link",
+    "description": "If you only paint on canvass, specialist cards and papers, the Vsionair tm Independent Airbrush Station forms the ideal base. It is able to hold up to A3 (ANSI B) in both landscape and portrait. It’s steel faced making it fantastic to use magnets to hold your stencils and work on.\nThe main structure is made from our unique VFrame tm which means that you can bolt any of our accessories to it. I has stops on the front base to stop it from being pushed away when pressure is applied.\nYou can also purchase additional tool bars that will fasten to the front base enabling you to expand the range off accessories you can add.\nIf you later wish to move to our Desk Mount and or Tri-Stand, we have an upgrade kit which will allow you to convert it, giving you flexibility and peace of mind.\nThe main VsionBoard is now finished in a neutral matt mid grey powder coat. This colour was recommended by Marissa Oosterlee being this colour maintains your eyes colour balance for extreme accuracy of colour matching whilst painting.\nTo download a copy of the Assembly Drawing please click this link\nTo download a copy of the packing list please click this link",
     "sizes": [
       "Standard Rig"
     ],
@@ -6068,7 +6038,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/06/VAX-ALA-Angle-Lock-Adjuster-Render-Web.png",
-    "description": "Our VsionAir Angle & Lock Adjuster is an optional accessory for both our Desk Mount & TriStand it bolts directly to the top bracket.\nIt allows you to drop the jig in it and spin it on the vertical axis freely, but also has the ability to lock the jig at any rotational angle. Making it ideal for locking your parts when performing critical actions, for example welding. taping up \u2013 lining out, striping, airbrushing, polishing.\nFinished in bright zinc.",
+    "description": "Our VsionAir Angle & Lock Adjuster is an optional accessory for both our Desk Mount & TriStand it bolts directly to the top bracket.\nIt allows you to drop the jig in it and spin it on the vertical axis freely, but also has the ability to lock the jig at any rotational angle. Making it ideal for locking your parts when performing critical actions, for example welding. taping up – lining out, striping, airbrushing, polishing.\nFinished in bright zinc.",
     "sizes": [
       "Standard Rig"
     ],
@@ -6110,7 +6080,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/Desk_Mount_Clamp_Assembly_Reworked.png",
-    "description": "Vsionair VAX-DM2 Desk Mount Clamp is made from 4mm steel, it simply slides up Desk Mount down tube and then tightens with two 8mm threaded handles.\nProviding a great unobtrusive mount.\nWe have to say if you\u2019re going to holding really heavy items \u2013 we strongly recommend using the drill and screw method supplied with your desk mount.",
+    "description": "Vsionair VAX-DM2 Desk Mount Clamp is made from 4mm steel, it simply slides up Desk Mount down tube and then tightens with two 8mm threaded handles.\nProviding a great unobtrusive mount.\nWe have to say if you’re going to holding really heavy items – we strongly recommend using the drill and screw method supplied with your desk mount.",
     "sizes": [
       "Standard Rig"
     ],
@@ -6131,7 +6101,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-DM1-Desk-Mount-Assembly.png",
-    "description": "Being made from 6mm thick aluminium plate, it is very strong. The beauty of our platform system is the flexibility you have holding your work piece by simply dropping the jig into the tubed hole and you\u2019re ready to go. You can add all your tools and accessories by bolting the horizontal tool bar to the base.\u00a0 It can be mounted using two methods. Method 1. Drilling holes in the desk top will allow you slide the Desk Mount in and out to accommodate challenging items like fenders (mudguards) or if you don\u2019t want to drill your desk top, you can purchase the Desk Mount Clamp (Method 2) pictured. Finished in our signature red & black powder coat.",
+    "description": "Being made from 6mm thick aluminium plate, it is very strong. The beauty of our platform system is the flexibility you have holding your work piece by simply dropping the jig into the tubed hole and you’re ready to go. You can add all your tools and accessories by bolting the horizontal tool bar to the base.  It can be mounted using two methods. Method 1. Drilling holes in the desk top will allow you slide the Desk Mount in and out to accommodate challenging items like fenders (mudguards) or if you don’t want to drill your desk top, you can purchase the Desk Mount Clamp (Method 2) pictured. Finished in our signature red & black powder coat.",
     "sizes": [
       "Standard Rig"
     ],
@@ -6152,7 +6122,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "VSIONAIR RIG",
     "image": "https://vsionair.com/wp-content/uploads/2021/05/VAX-TRI-Vsion-Air-TriPod-with-Feet.png",
-    "description": "Our TristandTM is made of aluminium, making it very strong and portable. The brackets are designed to be extremely adjustable, having both fixed holes for speed and slots for maximum adjustability.\n\u00a0The square bracket on the top enables you to bolt additional horizontal toolbars to mount your desired accessories. You can add the Angle Lock, this will allow you to lock your jigs on the vertical axis.\u00a0\nImage shows the optional feet. They are not typically needed unless you have a slotted steel floor such as in down draught booths. Finished in red & black powder coat.",
+    "description": "Our TristandTM is made of aluminium, making it very strong and portable. The brackets are designed to be extremely adjustable, having both fixed holes for speed and slots for maximum adjustability.\n The square bracket on the top enables you to bolt additional horizontal toolbars to mount your desired accessories. You can add the Angle Lock, this will allow you to lock your jigs on the vertical axis. \nImage shows the optional feet. They are not typically needed unless you have a slotted steel floor such as in down draught booths. Finished in red & black powder coat.",
     "sizes": [
       "Standard Rig"
     ],

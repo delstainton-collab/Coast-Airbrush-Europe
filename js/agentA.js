@@ -253,10 +253,34 @@ export class MasterPainterAI {
     const q = (userQuery || "").toLowerCase();
     const optimalReducer = this.getOptimalReducer(shopTempC);
     
-    // 1. Check Coverage / Quantity questions (e.g. 100g jar of .025 flake, paint needed for motorcycle)
-    if (q.includes("coverage") || q.includes("how much") || q.includes("how many") || q.includes("how far") || q.includes("100g") || q.includes("30g") || q.includes("sq ft") || q.includes("square")) {
+    // 1. Check Coverage / Quantity questions (e.g. 140g KromaEdge kit, 100g jar of .025 flake, paint needed for motorcycle)
+    const isCoverageQuery = q.includes("coverage") || q.includes("how much") || q.includes("how many") || q.includes("how far") || q.includes("how big") || q.includes("100g") || q.includes("140g") || q.includes("420g") || q.includes("1260g") || q.includes("30g") || q.includes("sq ft") || q.includes("square");
+    const isChromeQuery = q.includes("kroma") || q.includes("krome") || q.includes("kromedge") || q.includes("kromaedge") || q.includes("kromeedge") || (q.includes("chrome") && !q.includes("prep chrome"));
+
+    if (isCoverageQuery) {
       let coverageDetails = "";
-      if (q.includes("flake") || q.includes(".025") || q.includes(".015") || q.includes(".008")) {
+      let matchedKit = null;
+
+      if (isChromeQuery || q.includes("140") || q.includes("420") || q.includes("1260")) {
+        // Kroma Edge Mirror System Coverage (Strict Benchmark: 1 oz mixed covers 2 sq ft)
+        matchedKit = KNOWLEDGE_BASE.sampleKits[0];
+        coverageDetails = `### 🌟 Kroma Edge Mirror System: **Coverage & Kit Yield**\n\n` +
+          `**Standard Coverage Benchmark**: **1 fl oz of mixed KromaEdge covers 2 sq ft** (\`0.5 fl oz per sq ft\`).\n` +
+          `Applied as **ONE continuous wet coat** (target film thickness: \`25 ± 5 µm\` / 1 mil) with **no mist/tack coats**.\n\n` +
+          `• **140g Small Set (5 fl oz mixed / 147 mL)**:\n` +
+          `  - **Coverage**: **10 sq ft** (\`~0.93 m²\`).\n` +
+          `  - **Ideal For**: **1 full motorcycle gas tank** (~6 sq ft with reserve) OR **1 electric guitar body** OR **2 racing helmets**.\n` +
+          `  - **Matching Clear**: Pairs with **Topcoat Clear 180 SET** (\`378g\` mixed).\n\n` +
+          `• **420g Medium Set (15 fl oz mixed / 440 mL)**:\n` +
+          `  - **Coverage**: **30 sq ft** (\`~2.8 m²\`).\n` +
+          `  - **Ideal For**: Complete custom motorcycle tins (tank, front & rear fenders, side covers) or multiple projects.\n` +
+          `  - **Matching Clear**: Pairs with **Topcoat Clear 900 SET** (\`1,890g\` mixed).\n\n` +
+          `• **1260g Large Production Set (45 fl oz mixed / 1.32 L)**:\n` +
+          `  - **Coverage**: **90 sq ft** (\`~8.4 m²\`).\n` +
+          `  - **Ideal For**: Full automotive hoods, roofs, lowrider panels, or commercial production.\n` +
+          `  - **Matching Clear**: Pairs with **Topcoat Clear 3600 SET** (\`7,560g\` mixed).\n\n` +
+          `*(Tip: Gloss black is NOT required! Spray directly over cured sealer or base sanded with #600–#1000 grit.)*`;
+      } else if (q.includes("flake") || q.includes(".025") || q.includes(".015") || q.includes(".008")) {
         const is025 = q.includes(".025");
         const is008 = q.includes(".008");
         const sizeLabel = is025 ? '.025" Large Hex Flake' : is008 ? '.008" Micro Hex Flake' : '.015" Medium Hex Flake';
@@ -283,7 +307,7 @@ export class MasterPainterAI {
         optimalReducer: optimalReducer,
         detectedSubstrate: null,
         equipmentAdvice: null,
-        kit: null,
+        kit: matchedKit,
         markdownResponse: coverageDetails
       };
       this.history.push(consultationResult);
@@ -291,7 +315,7 @@ export class MasterPainterAI {
     }
 
     // 2. Check Kroma Edge specific questions
-    if (q.includes("kroma") || (q.includes("chrome") && !q.includes("prep chrome"))) {
+    if (isChromeQuery) {
       let chromeTdsResponse = `### 🌟 KROMA EDGE — Beyond Reflection (Official TDS)\n\n` +
         `Kroma Edge utilizes **Self-Organization Technology**, where metallic particles rise to the surface of the wet film and align uniformly without plating or polishing.\n\n` +
         `• **Mixing Ratio (by Weight / Parts)**: \`5 : 5 : 2 : 2\`\n` +
@@ -300,6 +324,7 @@ export class MasterPainterAI {
         `  - **Hardener**: 20 g\n` +
         `  - **Mirror Seeds Formula (Metallic Filler)**: 20 g *(Shake well before mixing)*\n\n` +
         `• **Crucial Application Rules**:\n` +
+        `  - **Coverage Benchmark**: **1 fl oz mixed covers 2 sq ft** (\`140g / 5oz set = 10 sq ft\`).\n` +
         `  - **MUST apply ONE continuous wet coat** at >68°F (20°C). Film must remain wet until spraying is done.\n` +
         `  - **DO NOT apply mist coats or tack coats** (will cause pinholes or loss of reflectivity).\n` +
         `  - **Gloss black is NOT required!** Apply over cured primer/sealer or basecoat sanded with #600–#1000 grit.\n` +
