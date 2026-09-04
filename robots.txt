@@ -1,0 +1,28 @@
+# robots.txt for Coast Airbrush Europe (https://coastairbrush.eu)
+User-agent: *
+Allow: /
+Disallow: /crm.html
+Disallow: /scratch_stitch_home.html
+Disallow: /docs/
+
+# AI Search & RAG Crawlers (Generative Engine Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap Location
+Sitemap: https://coastairbrush.eu/sitemap.xml
