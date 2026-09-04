@@ -34,7 +34,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 260.2,
         "priceRetailEur": 306.12,
         "priceRrpIncVat": 312.24,
-        "sku": "KE-MIRROR-140G"
+        "sku": "KE-MIRROR-140G",
+        "hsCode": "3208.90.19",
+        "countryOfOrigin": "JP"
       },
       {
         "packSize": "Medium Kit (420g / 15 oz)",
@@ -45,7 +47,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 709.63,
         "priceRetailEur": 834.86,
         "priceRrpIncVat": 851.56,
-        "sku": "KE-MIRROR-420G"
+        "sku": "KE-MIRROR-420G",
+        "hsCode": "3208.90.19",
+        "countryOfOrigin": "JP"
       },
       {
         "packSize": "Large Kit (1260g / 45 oz)",
@@ -56,7 +60,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 1596.67,
         "priceRetailEur": 1878.44,
         "priceRrpIncVat": 1916,
-        "sku": "KE-MIRROR-1260G"
+        "sku": "KE-MIRROR-1260G",
+        "hsCode": "3208.90.19",
+        "countryOfOrigin": "JP"
       },
       {
         "packSize": "Extra Large Kit (2520g / 90 oz)",
@@ -67,7 +73,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 2874,
         "priceRetailEur": 3381.18,
         "priceRrpIncVat": 3448.8,
-        "sku": "KE-MIRROR-2520G"
+        "sku": "KE-MIRROR-2520G",
+        "hsCode": "3208.90.19",
+        "countryOfOrigin": "JP"
       },
       {
         "packSize": "Ultra Large Kit (10080g / 360 oz)",
@@ -78,7 +86,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 10127.04,
         "priceRetailEur": 11914.16,
         "priceRrpIncVat": 12152.45,
-        "sku": "KE-MIRROR-10080G"
+        "sku": "KE-MIRROR-10080G",
+        "hsCode": "3208.90.19",
+        "countryOfOrigin": "JP"
       }
     ],
     "images": [
@@ -134,7 +144,9 @@ export const ECOM_CATALOG = [
       "Kroma Optical Hardener",
       "Kroma Mirror Seeds Alignment Activator",
       "Complete Mixing & Application Guide"
-    ]
+    ],
+    "hsCode": "3208.90.19",
+    "countryOfOrigin": "JP"
   },
   {
     "id": "kroma-dedicated-topcoat-clear",
@@ -166,7 +178,9 @@ export const ECOM_CATALOG = [
         "priceEur": 73.05,
         "priceRetailGbp": 62.09,
         "priceRetailEur": 73.05,
-        "priceRrpIncVat": 74.51
+        "priceRrpIncVat": 74.51,
+        "hsCode": "3208.10.90",
+        "countryOfOrigin": "JP"
       },
       {
         "packSize": "Topcoat Clear 900 SET (6.0 m²)",
@@ -174,7 +188,9 @@ export const ECOM_CATALOG = [
         "priceEur": 323.51,
         "priceRetailGbp": 274.98,
         "priceRetailEur": 323.51,
-        "priceRrpIncVat": 329.98
+        "priceRrpIncVat": 329.98,
+        "hsCode": "3208.10.90",
+        "countryOfOrigin": "JP"
       },
       {
         "packSize": "Topcoat Clear 3600 SET (24.0 m²)",
@@ -182,7 +198,9 @@ export const ECOM_CATALOG = [
         "priceEur": 1170.59,
         "priceRetailGbp": 995,
         "priceRetailEur": 1170.59,
-        "priceRrpIncVat": 1194
+        "priceRrpIncVat": 1194,
+        "hsCode": "3208.10.90",
+        "countryOfOrigin": "JP"
       }
     ],
     "images": [
@@ -225,7 +243,9 @@ export const ECOM_CATALOG = [
       "Kroma Dedicated Topcoat Clear Base",
       "Kroma Clear Hardener",
       "Kroma High-Flow Optical Thinner"
-    ]
+    ],
+    "hsCode": "3208.10.90",
+    "countryOfOrigin": "JP"
   },
   {
     "id": "fk-2629",
@@ -309,7 +329,9 @@ export const ECOM_CATALOG = [
       "2× Articulated Self-Levelling Barrels & Mounting Accessories",
       "3× Flake Jars (30g & 50g)",
       "Heavy-Duty Lockable Aluminium Flight Case with CNC Foam Inlay"
-    ]
+    ],
+    "hsCode": "8424.20.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2610",
@@ -347,7 +369,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 314.4,
         "priceRetailEur": 367.85,
         "priceRrpExVat": 314.4,
-        "priceRrpIncVat": 377.28
+        "priceRrpIncVat": 377.28,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -356,7 +380,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 33.63,
         "priceRetailEur": 39.35,
         "priceRrpExVat": 33.63,
-        "priceRrpIncVat": 40.35
+        "priceRrpIncVat": 40.35,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -365,7 +391,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 11.08,
         "priceRetailEur": 12.96,
         "priceRrpExVat": 11.08,
-        "priceRrpIncVat": 13.3
+        "priceRrpIncVat": 13.3,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -670,7 +698,9 @@ export const ECOM_CATALOG = [
         "duration": "8:42",
         "badge": "Master Class"
       }
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2603",
@@ -761,7 +791,9 @@ export const ECOM_CATALOG = [
       "1× Airbrush Connector of Your Choice (Iwata, H&S, Badger, or Paasche)",
       "1× 30g Flake King Jar",
       "Precision O-Ring Seal Kit & Instruction Manual"
-    ]
+    ],
+    "hsCode": "8424.20.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2602",
@@ -852,7 +884,9 @@ export const ECOM_CATALOG = [
       "1× 50g Flake King Storage Jar",
       "Standard 1/4\" BSP European Quick-Connect Air Fitting",
       "Official Flake King Technical User Guide"
-    ]
+    ],
+    "hsCode": "8424.20.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2600",
@@ -876,7 +910,9 @@ export const ECOM_CATALOG = [
     "priceRetailGbp": 1.24,
     "priceRetailEur": 1.45,
     "priceRrpExVat": 1.24,
-    "priceRrpIncVat": 1.49
+    "priceRrpIncVat": 1.49,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2598",
@@ -900,7 +936,9 @@ export const ECOM_CATALOG = [
     "priceRetailGbp": 1.1,
     "priceRetailEur": 1.29,
     "priceRrpExVat": 1.1,
-    "priceRrpIncVat": 1.32
+    "priceRrpIncVat": 1.32,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2542",
@@ -924,7 +962,9 @@ export const ECOM_CATALOG = [
     "priceRetailGbp": 108.33,
     "priceRetailEur": 126.75,
     "priceRrpExVat": 108.33,
-    "priceRrpIncVat": 129.99
+    "priceRrpIncVat": 129.99,
+    "hsCode": "8424.20.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2524",
@@ -960,7 +1000,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 626.66,
         "priceRetailEur": 733.19,
         "priceRrpExVat": 626.66,
-        "priceRrpIncVat": 751.99
+        "priceRrpIncVat": 751.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -969,7 +1011,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 64.88,
         "priceRetailEur": 75.91,
         "priceRrpExVat": 64.88,
-        "priceRrpIncVat": 77.85
+        "priceRrpIncVat": 77.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -978,7 +1022,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 20.46,
         "priceRetailEur": 23.94,
         "priceRrpExVat": 20.46,
-        "priceRrpIncVat": 24.55
+        "priceRrpIncVat": 24.55,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -1174,7 +1220,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
-    "stockCode": "FKK01"
+    "stockCode": "FKK01",
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2426",
@@ -1211,7 +1259,9 @@ export const ECOM_CATALOG = [
         "priceRetailEur": 6.49,
         "priceRrpExVat": 5.55,
         "priceRrpIncVat": 6.66,
-        "sku": "FOM1000NZS"
+        "sku": "FOM1000NZS",
+        "hsCode": "8424.90.00",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "Medium Nozzle",
@@ -1223,7 +1273,9 @@ export const ECOM_CATALOG = [
         "priceRetailEur": 6.49,
         "priceRrpExVat": 5.55,
         "priceRrpIncVat": 6.66,
-        "sku": "FOM1000NZM"
+        "sku": "FOM1000NZM",
+        "hsCode": "8424.90.00",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "Large Nozzle",
@@ -1235,9 +1287,13 @@ export const ECOM_CATALOG = [
         "priceRetailEur": 6.49,
         "priceRrpExVat": 5.55,
         "priceRrpIncVat": 6.66,
-        "sku": "FOM1000NZL"
+        "sku": "FOM1000NZL",
+        "hsCode": "8424.90.00",
+        "countryOfOrigin": "GB"
       }
-    ]
+    ],
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2423",
@@ -1261,7 +1317,9 @@ export const ECOM_CATALOG = [
     "priceRetailGbp": 1.65,
     "priceRetailEur": 1.93,
     "priceRrpExVat": 1.65,
-    "priceRrpIncVat": 1.98
+    "priceRrpIncVat": 1.98,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2415",
@@ -1305,7 +1363,9 @@ export const ECOM_CATALOG = [
         "priceRetailEur": 12.03,
         "priceRrpExVat": 10.28,
         "priceRrpIncVat": 12.34,
-        "sku": "FK100100"
+        "sku": "FK100100",
+        "hsCode": "3208.90.19",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "500ml",
@@ -1317,7 +1377,9 @@ export const ECOM_CATALOG = [
         "priceRetailEur": 53.66,
         "priceRrpExVat": 45.86,
         "priceRrpIncVat": 55.03,
-        "sku": "FK100500"
+        "sku": "FK100500",
+        "hsCode": "3208.90.19",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "1000ml",
@@ -1329,9 +1391,13 @@ export const ECOM_CATALOG = [
         "priceRetailEur": 122.52,
         "priceRrpExVat": 104.72,
         "priceRrpIncVat": 125.66,
-        "sku": "FK1001000"
+        "sku": "FK1001000",
+        "hsCode": "3208.90.19",
+        "countryOfOrigin": "GB"
       }
-    ]
+    ],
+    "hsCode": "3208.90.19",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2409",
@@ -1373,7 +1439,9 @@ export const ECOM_CATALOG = [
         "priceRetailEur": 6.55,
         "priceRrpExVat": 5.6,
         "priceRrpIncVat": 6.72,
-        "sku": "FK5550"
+        "sku": "FK5550",
+        "hsCode": "3814.00.90",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100ml",
@@ -1385,9 +1453,13 @@ export const ECOM_CATALOG = [
         "priceRetailEur": 12.92,
         "priceRrpExVat": 11.04,
         "priceRrpIncVat": 13.25,
-        "sku": "FK55100"
+        "sku": "FK55100",
+        "hsCode": "3814.00.90",
+        "countryOfOrigin": "GB"
       }
-    ]
+    ],
+    "hsCode": "3814.00.90",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2401",
@@ -1433,7 +1505,9 @@ export const ECOM_CATALOG = [
         "priceRetailEur": 5.84,
         "priceRrpExVat": 4.99,
         "priceRrpIncVat": 5.99,
-        "sku": "FK5050"
+        "sku": "FK5050",
+        "hsCode": "3208.90.19",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100ml",
@@ -1445,7 +1519,9 @@ export const ECOM_CATALOG = [
         "priceRetailEur": 10.82,
         "priceRrpExVat": 9.25,
         "priceRrpIncVat": 11.1,
-        "sku": "FK50100"
+        "sku": "FK50100",
+        "hsCode": "3208.90.19",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "500ml",
@@ -1457,7 +1533,9 @@ export const ECOM_CATALOG = [
         "priceRetailEur": 47.22,
         "priceRrpExVat": 40.36,
         "priceRrpIncVat": 48.43,
-        "sku": "FK50500"
+        "sku": "FK50500",
+        "hsCode": "3208.90.19",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "1000ml",
@@ -1469,9 +1547,13 @@ export const ECOM_CATALOG = [
         "priceRetailEur": 93.27,
         "priceRrpExVat": 79.72,
         "priceRrpIncVat": 95.66,
-        "sku": "FK501000"
+        "sku": "FK501000",
+        "hsCode": "3208.90.19",
+        "countryOfOrigin": "GB"
       }
-    ]
+    ],
+    "hsCode": "3208.90.19",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2392",
@@ -1587,7 +1669,9 @@ export const ECOM_CATALOG = [
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe24mmB.gif?fit=600%2C600&ssl=1",
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe36mmB.gif?fit=600%2C600&ssl=1",
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe48mmB.gif?fit=600%2C600&ssl=1"
-    ]
+    ],
+    "hsCode": "4811.41.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2380",
@@ -1725,7 +1809,9 @@ export const ECOM_CATALOG = [
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine24mm.png?fit=600%2C600&ssl=1",
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mm.png?fit=600%2C600&ssl=1",
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mmA.png?fit=600%2C600&ssl=1"
-    ]
+    ],
+    "hsCode": "3919.10.80",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2375",
@@ -1757,7 +1843,9 @@ export const ECOM_CATALOG = [
     ],
     "hasTapeOptions": false,
     "tapeWidths": [],
-    "hasPackPriceMatrix": false
+    "hasPackPriceMatrix": false,
+    "hsCode": "3919.10.80",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2366",
@@ -1873,7 +1961,9 @@ export const ECOM_CATALOG = [
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange2mm.png?fit=600%2C600&ssl=1",
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange3mm.png?fit=600%2C600&ssl=1",
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange6mm.png?fit=600%2C600&ssl=1"
-    ]
+    ],
+    "hsCode": "3919.10.80",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2361",
@@ -1905,7 +1995,9 @@ export const ECOM_CATALOG = [
     ],
     "hasTapeOptions": false,
     "tapeWidths": [],
-    "hasPackPriceMatrix": false
+    "hasPackPriceMatrix": false,
+    "hsCode": "3919.10.80",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2352",
@@ -2021,7 +2113,9 @@ export const ECOM_CATALOG = [
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green2mm.png?fit=600%2C600&ssl=1",
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green3mm.png?fit=600%2C600&ssl=1",
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green6mm.png?fit=600%2C600&ssl=1"
-    ]
+    ],
+    "hsCode": "3919.10.80",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2341",
@@ -2055,7 +2149,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 151.9,
         "priceRetailEur": 177.72,
         "priceRrpExVat": 151.9,
-        "priceRrpIncVat": 182.28
+        "priceRrpIncVat": 182.28,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -2064,7 +2160,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 17.38,
         "priceRetailEur": 20.33,
         "priceRrpExVat": 17.38,
-        "priceRrpIncVat": 20.85
+        "priceRrpIncVat": 20.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -2073,7 +2171,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 6.21,
         "priceRetailEur": 7.27,
         "priceRrpExVat": 6.21,
-        "priceRrpIncVat": 7.45
+        "priceRrpIncVat": 7.45,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2178,7 +2278,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2341.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2330",
@@ -2212,7 +2314,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 108.33,
         "priceRetailEur": 126.75,
         "priceRrpExVat": 108.33,
-        "priceRrpIncVat": 129.99
+        "priceRrpIncVat": 129.99,
+        "hsCode": "8424.20.00",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -2221,7 +2325,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 12.49,
         "priceRetailEur": 14.61,
         "priceRrpExVat": 12.49,
-        "priceRrpIncVat": 14.99
+        "priceRrpIncVat": 14.99,
+        "hsCode": "8424.20.00",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -2230,7 +2336,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 4.71,
         "priceRetailEur": 5.51,
         "priceRrpExVat": 4.71,
-        "priceRrpIncVat": 5.65
+        "priceRrpIncVat": 5.65,
+        "hsCode": "8424.20.00",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2336,7 +2444,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "imageWebp": "assets/images/flakes/fk-2330.webp",
-    "stockCode": "FKS23"
+    "stockCode": "FKS23",
+    "hsCode": "8424.20.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2319",
@@ -2370,7 +2480,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 151.9,
         "priceRetailEur": 177.72,
         "priceRrpExVat": 151.9,
-        "priceRrpIncVat": 182.28
+        "priceRrpIncVat": 182.28,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -2379,7 +2491,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 17.38,
         "priceRetailEur": 20.33,
         "priceRrpExVat": 17.38,
-        "priceRrpIncVat": 20.85
+        "priceRrpIncVat": 20.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -2388,7 +2502,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 6.21,
         "priceRetailEur": 7.27,
         "priceRrpExVat": 6.21,
-        "priceRrpIncVat": 7.45
+        "priceRrpIncVat": 7.45,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2493,7 +2609,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2319.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2308",
@@ -2527,7 +2645,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 137.49,
         "priceRetailEur": 160.86,
         "priceRrpExVat": 137.49,
-        "priceRrpIncVat": 164.99
+        "priceRrpIncVat": 164.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -2536,7 +2656,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 16.66,
         "priceRetailEur": 19.49,
         "priceRrpExVat": 16.66,
-        "priceRrpIncVat": 19.99
+        "priceRrpIncVat": 19.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -2545,7 +2667,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 5.41,
         "priceRetailEur": 6.33,
         "priceRrpExVat": 5.41,
-        "priceRrpIncVat": 6.49
+        "priceRrpIncVat": 6.49,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2650,7 +2774,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2308.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2297",
@@ -2684,7 +2810,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 151.9,
         "priceRetailEur": 177.72,
         "priceRrpExVat": 151.9,
-        "priceRrpIncVat": 182.28
+        "priceRrpIncVat": 182.28,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -2693,7 +2821,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 17.38,
         "priceRetailEur": 20.33,
         "priceRrpExVat": 17.38,
-        "priceRrpIncVat": 20.85
+        "priceRrpIncVat": 20.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -2702,7 +2832,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 6.21,
         "priceRetailEur": 7.27,
         "priceRrpExVat": 6.21,
-        "priceRrpIncVat": 7.45
+        "priceRrpIncVat": 7.45,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2807,7 +2939,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2297.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2283",
@@ -2842,7 +2976,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 141.66,
         "priceRetailEur": 165.74,
         "priceRrpExVat": 141.66,
-        "priceRrpIncVat": 169.99
+        "priceRrpIncVat": 169.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -2851,7 +2987,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 14.88,
         "priceRetailEur": 17.41,
         "priceRrpExVat": 14.88,
-        "priceRrpIncVat": 17.85
+        "priceRrpIncVat": 17.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -2860,7 +2998,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 5.46,
         "priceRetailEur": 6.39,
         "priceRrpExVat": 5.46,
-        "priceRrpIncVat": 6.55
+        "priceRrpIncVat": 6.55,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3010,7 +3150,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2283.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2269",
@@ -3045,7 +3187,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 141.66,
         "priceRetailEur": 165.74,
         "priceRrpExVat": 141.66,
-        "priceRrpIncVat": 169.99
+        "priceRrpIncVat": 169.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -3054,7 +3198,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 14.88,
         "priceRetailEur": 17.41,
         "priceRrpExVat": 14.88,
-        "priceRrpIncVat": 17.85
+        "priceRrpIncVat": 17.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -3063,7 +3209,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 5.46,
         "priceRetailEur": 6.39,
         "priceRrpExVat": 5.46,
-        "priceRrpIncVat": 6.55
+        "priceRrpIncVat": 6.55,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3213,7 +3361,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2269.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2255",
@@ -3248,7 +3398,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 141.66,
         "priceRetailEur": 165.74,
         "priceRrpExVat": 141.66,
-        "priceRrpIncVat": 169.99
+        "priceRrpIncVat": 169.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -3257,7 +3409,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 14.88,
         "priceRetailEur": 17.41,
         "priceRrpExVat": 14.88,
-        "priceRrpIncVat": 17.85
+        "priceRrpIncVat": 17.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -3266,7 +3420,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 5.46,
         "priceRetailEur": 6.39,
         "priceRrpExVat": 5.46,
-        "priceRrpIncVat": 6.55
+        "priceRrpIncVat": 6.55,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3416,7 +3572,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2255.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2244",
@@ -3450,7 +3608,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 151.9,
         "priceRetailEur": 177.72,
         "priceRrpExVat": 151.9,
-        "priceRrpIncVat": 182.28
+        "priceRrpIncVat": 182.28,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -3459,7 +3619,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 17.38,
         "priceRetailEur": 20.33,
         "priceRrpExVat": 17.38,
-        "priceRrpIncVat": 20.85
+        "priceRrpIncVat": 20.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -3468,7 +3630,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 6.21,
         "priceRetailEur": 7.27,
         "priceRrpExVat": 6.21,
-        "priceRrpIncVat": 7.45
+        "priceRrpIncVat": 7.45,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3573,7 +3737,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2244.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2233",
@@ -3607,7 +3773,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 108.33,
         "priceRetailEur": 126.75,
         "priceRrpExVat": 108.33,
-        "priceRrpIncVat": 129.99
+        "priceRrpIncVat": 129.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -3616,7 +3784,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 12.49,
         "priceRetailEur": 14.61,
         "priceRrpExVat": 12.49,
-        "priceRrpIncVat": 14.99
+        "priceRrpIncVat": 14.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -3625,7 +3795,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 4.71,
         "priceRetailEur": 5.51,
         "priceRrpExVat": 4.71,
-        "priceRrpIncVat": 5.65
+        "priceRrpIncVat": 5.65,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3730,7 +3902,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2233.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2222",
@@ -3764,7 +3938,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 151.9,
         "priceRetailEur": 177.72,
         "priceRrpExVat": 151.9,
-        "priceRrpIncVat": 182.28
+        "priceRrpIncVat": 182.28,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -3773,7 +3949,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 17.38,
         "priceRetailEur": 20.33,
         "priceRrpExVat": 17.38,
-        "priceRrpIncVat": 20.85
+        "priceRrpIncVat": 20.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -3782,7 +3960,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 6.21,
         "priceRetailEur": 7.27,
         "priceRrpExVat": 6.21,
-        "priceRrpIncVat": 7.45
+        "priceRrpIncVat": 7.45,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3887,7 +4067,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2222.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2208",
@@ -3922,7 +4104,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 141.66,
         "priceRetailEur": 165.74,
         "priceRrpExVat": 141.66,
-        "priceRrpIncVat": 169.99
+        "priceRrpIncVat": 169.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -3931,7 +4115,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 14.88,
         "priceRetailEur": 17.41,
         "priceRrpExVat": 14.88,
-        "priceRrpIncVat": 17.85
+        "priceRrpIncVat": 17.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -3940,7 +4126,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 5.46,
         "priceRetailEur": 6.39,
         "priceRrpExVat": 5.46,
-        "priceRrpIncVat": 6.55
+        "priceRrpIncVat": 6.55,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -4090,7 +4278,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2208.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2194",
@@ -4125,7 +4315,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 141.66,
         "priceRetailEur": 165.74,
         "priceRrpExVat": 141.66,
-        "priceRrpIncVat": 169.99
+        "priceRrpIncVat": 169.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -4134,7 +4326,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 14.88,
         "priceRetailEur": 17.41,
         "priceRrpExVat": 14.88,
-        "priceRrpIncVat": 17.85
+        "priceRrpIncVat": 17.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -4143,7 +4337,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 5.46,
         "priceRetailEur": 6.39,
         "priceRrpExVat": 5.46,
-        "priceRrpIncVat": 6.55
+        "priceRrpIncVat": 6.55,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -4293,7 +4489,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2194.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2183",
@@ -4327,7 +4525,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 108.33,
         "priceRetailEur": 126.75,
         "priceRrpExVat": 108.33,
-        "priceRrpIncVat": 129.99
+        "priceRrpIncVat": 129.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -4336,7 +4536,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 12.49,
         "priceRetailEur": 14.61,
         "priceRrpExVat": 12.49,
-        "priceRrpIncVat": 14.99
+        "priceRrpIncVat": 14.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -4345,7 +4547,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 4.71,
         "priceRetailEur": 5.51,
         "priceRrpExVat": 4.71,
-        "priceRrpIncVat": 5.65
+        "priceRrpIncVat": 5.65,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -4450,7 +4654,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2183.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2172",
@@ -4484,7 +4690,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 108.33,
         "priceRetailEur": 126.75,
         "priceRrpExVat": 108.33,
-        "priceRrpIncVat": 129.99
+        "priceRrpIncVat": 129.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -4493,7 +4701,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 12.49,
         "priceRetailEur": 14.61,
         "priceRrpExVat": 12.49,
-        "priceRrpIncVat": 14.99
+        "priceRrpIncVat": 14.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -4502,7 +4712,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 4.71,
         "priceRetailEur": 5.51,
         "priceRrpExVat": 4.71,
-        "priceRrpIncVat": 5.65
+        "priceRrpIncVat": 5.65,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -4607,7 +4819,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2172.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2158",
@@ -4642,7 +4856,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 141.66,
         "priceRetailEur": 165.74,
         "priceRrpExVat": 141.66,
-        "priceRrpIncVat": 169.99
+        "priceRrpIncVat": 169.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -4651,7 +4867,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 14.88,
         "priceRetailEur": 17.41,
         "priceRrpExVat": 14.88,
-        "priceRrpIncVat": 17.85
+        "priceRrpIncVat": 17.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -4660,7 +4878,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 5.46,
         "priceRetailEur": 6.39,
         "priceRrpExVat": 5.46,
-        "priceRrpIncVat": 6.55
+        "priceRrpIncVat": 6.55,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -4810,7 +5030,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2158.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2147",
@@ -4844,7 +5066,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 108.33,
         "priceRetailEur": 126.75,
         "priceRrpExVat": 108.33,
-        "priceRrpIncVat": 129.99
+        "priceRrpIncVat": 129.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -4853,7 +5077,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 12.49,
         "priceRetailEur": 14.61,
         "priceRrpExVat": 12.49,
-        "priceRrpIncVat": 14.99
+        "priceRrpIncVat": 14.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -4862,7 +5088,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 4.71,
         "priceRetailEur": 5.51,
         "priceRrpExVat": 4.71,
-        "priceRrpIncVat": 5.65
+        "priceRrpIncVat": 5.65,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -4967,7 +5195,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2147.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2133",
@@ -5002,7 +5232,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 141.66,
         "priceRetailEur": 165.74,
         "priceRrpExVat": 141.66,
-        "priceRrpIncVat": 169.99
+        "priceRrpIncVat": 169.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -5011,7 +5243,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 14.88,
         "priceRetailEur": 17.41,
         "priceRrpExVat": 14.88,
-        "priceRrpIncVat": 17.85
+        "priceRrpIncVat": 17.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -5020,7 +5254,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 5.46,
         "priceRetailEur": 6.39,
         "priceRrpExVat": 5.46,
-        "priceRrpIncVat": 6.55
+        "priceRrpIncVat": 6.55,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -5170,7 +5406,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2133.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2122",
@@ -5204,7 +5442,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 151.9,
         "priceRetailEur": 177.72,
         "priceRrpExVat": 151.9,
-        "priceRrpIncVat": 182.28
+        "priceRrpIncVat": 182.28,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -5213,7 +5453,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 17.38,
         "priceRetailEur": 20.33,
         "priceRrpExVat": 17.38,
-        "priceRrpIncVat": 20.85
+        "priceRrpIncVat": 20.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -5222,7 +5464,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 6.21,
         "priceRetailEur": 7.27,
         "priceRrpExVat": 6.21,
-        "priceRrpIncVat": 7.45
+        "priceRrpIncVat": 7.45,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -5327,7 +5571,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2122.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2111",
@@ -5361,7 +5607,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 151.9,
         "priceRetailEur": 177.72,
         "priceRrpExVat": 151.9,
-        "priceRrpIncVat": 182.28
+        "priceRrpIncVat": 182.28,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -5370,7 +5618,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 17.38,
         "priceRetailEur": 20.33,
         "priceRrpExVat": 17.38,
-        "priceRrpIncVat": 20.85
+        "priceRrpIncVat": 20.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -5379,7 +5629,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 6.21,
         "priceRetailEur": 7.27,
         "priceRrpExVat": 6.21,
-        "priceRrpIncVat": 7.45
+        "priceRrpIncVat": 7.45,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -5484,7 +5736,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2111.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2104",
@@ -5518,7 +5772,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 108.33,
         "priceRetailEur": 126.75,
         "priceRrpExVat": 108.33,
-        "priceRrpIncVat": 129.99
+        "priceRrpIncVat": 129.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -5527,7 +5783,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 12.49,
         "priceRetailEur": 14.61,
         "priceRrpExVat": 12.49,
-        "priceRrpIncVat": 14.99
+        "priceRrpIncVat": 14.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -5536,7 +5794,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 4.71,
         "priceRetailEur": 5.51,
         "priceRrpExVat": 4.71,
-        "priceRrpIncVat": 5.65
+        "priceRrpIncVat": 5.65,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -5641,7 +5901,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2104.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2097",
@@ -5675,7 +5937,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 108.33,
         "priceRetailEur": 126.75,
         "priceRrpExVat": 108.33,
-        "priceRrpIncVat": 129.99
+        "priceRrpIncVat": 129.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -5684,7 +5948,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 12.49,
         "priceRetailEur": 14.61,
         "priceRrpExVat": 12.49,
-        "priceRrpIncVat": 14.99
+        "priceRrpIncVat": 14.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -5693,7 +5959,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 4.71,
         "priceRetailEur": 5.51,
         "priceRrpExVat": 4.71,
-        "priceRrpIncVat": 5.65
+        "priceRrpIncVat": 5.65,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -5798,7 +6066,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2097.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2090",
@@ -5832,7 +6102,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 151.9,
         "priceRetailEur": 177.72,
         "priceRrpExVat": 151.9,
-        "priceRrpIncVat": 182.28
+        "priceRrpIncVat": 182.28,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -5841,7 +6113,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 17.38,
         "priceRetailEur": 20.33,
         "priceRrpExVat": 17.38,
-        "priceRrpIncVat": 20.85
+        "priceRrpIncVat": 20.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -5850,7 +6124,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 6.21,
         "priceRetailEur": 7.27,
         "priceRrpExVat": 6.21,
-        "priceRrpIncVat": 7.45
+        "priceRrpIncVat": 7.45,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -5955,7 +6231,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2090.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2080",
@@ -5990,7 +6268,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 141.66,
         "priceRetailEur": 165.74,
         "priceRrpExVat": 141.66,
-        "priceRrpIncVat": 169.99
+        "priceRrpIncVat": 169.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -5999,7 +6279,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 14.88,
         "priceRetailEur": 17.41,
         "priceRrpExVat": 14.88,
-        "priceRrpIncVat": 17.85
+        "priceRrpIncVat": 17.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -6008,7 +6290,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 5.46,
         "priceRetailEur": 6.39,
         "priceRrpExVat": 5.46,
-        "priceRrpIncVat": 6.55
+        "priceRrpIncVat": 6.55,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -6158,7 +6442,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2080.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2070",
@@ -6193,7 +6479,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 141.66,
         "priceRetailEur": 165.74,
         "priceRrpExVat": 141.66,
-        "priceRrpIncVat": 169.99
+        "priceRrpIncVat": 169.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -6202,7 +6490,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 14.88,
         "priceRetailEur": 17.41,
         "priceRrpExVat": 14.88,
-        "priceRrpIncVat": 17.85
+        "priceRrpIncVat": 17.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -6211,7 +6501,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 5.46,
         "priceRetailEur": 6.39,
         "priceRrpExVat": 5.46,
-        "priceRrpIncVat": 6.55
+        "priceRrpIncVat": 6.55,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -6361,7 +6653,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2070.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2060",
@@ -6396,7 +6690,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 141.66,
         "priceRetailEur": 165.74,
         "priceRrpExVat": 141.66,
-        "priceRrpIncVat": 169.99
+        "priceRrpIncVat": 169.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -6405,7 +6701,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 14.88,
         "priceRetailEur": 17.41,
         "priceRrpExVat": 14.88,
-        "priceRrpIncVat": 17.85
+        "priceRrpIncVat": 17.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -6414,7 +6712,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 5.46,
         "priceRetailEur": 6.39,
         "priceRrpExVat": 5.46,
-        "priceRrpIncVat": 6.55
+        "priceRrpIncVat": 6.55,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -6564,7 +6864,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2060.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2053",
@@ -6598,7 +6900,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 108.33,
         "priceRetailEur": 126.75,
         "priceRrpExVat": 108.33,
-        "priceRrpIncVat": 129.99
+        "priceRrpIncVat": 129.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -6607,7 +6911,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 12.49,
         "priceRetailEur": 14.61,
         "priceRrpExVat": 12.49,
-        "priceRrpIncVat": 14.99
+        "priceRrpIncVat": 14.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -6616,7 +6922,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 4.71,
         "priceRetailEur": 5.51,
         "priceRrpExVat": 4.71,
-        "priceRrpIncVat": 5.65
+        "priceRrpIncVat": 5.65,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -6721,7 +7029,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2053.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2043",
@@ -6756,7 +7066,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 141.66,
         "priceRetailEur": 165.74,
         "priceRrpExVat": 141.66,
-        "priceRrpIncVat": 169.99
+        "priceRrpIncVat": 169.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -6765,7 +7077,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 14.88,
         "priceRetailEur": 17.41,
         "priceRrpExVat": 14.88,
-        "priceRrpIncVat": 17.85
+        "priceRrpIncVat": 17.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -6774,7 +7088,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 5.46,
         "priceRetailEur": 6.39,
         "priceRrpExVat": 5.46,
-        "priceRrpIncVat": 6.55
+        "priceRrpIncVat": 6.55,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -6924,7 +7240,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2043.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2036",
@@ -6958,7 +7276,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 108.33,
         "priceRetailEur": 126.75,
         "priceRrpExVat": 108.33,
-        "priceRrpIncVat": 129.99
+        "priceRrpIncVat": 129.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -6967,7 +7287,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 12.49,
         "priceRetailEur": 14.61,
         "priceRrpExVat": 12.49,
-        "priceRrpIncVat": 14.99
+        "priceRrpIncVat": 14.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -6976,7 +7298,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 4.71,
         "priceRetailEur": 5.51,
         "priceRrpExVat": 4.71,
-        "priceRrpIncVat": 5.65
+        "priceRrpIncVat": 5.65,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -7081,7 +7405,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2036.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2029",
@@ -7115,7 +7441,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 151.9,
         "priceRetailEur": 177.72,
         "priceRrpExVat": 151.9,
-        "priceRrpIncVat": 182.28
+        "priceRrpIncVat": 182.28,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -7124,7 +7452,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 17.38,
         "priceRetailEur": 20.33,
         "priceRrpExVat": 17.38,
-        "priceRrpIncVat": 20.85
+        "priceRrpIncVat": 20.85,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -7133,7 +7463,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 6.21,
         "priceRetailEur": 7.27,
         "priceRrpExVat": 6.21,
-        "priceRrpIncVat": 7.45
+        "priceRrpIncVat": 7.45,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -7238,7 +7570,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2029.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2022",
@@ -7272,7 +7606,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 108.33,
         "priceRetailEur": 126.75,
         "priceRrpExVat": 108.33,
-        "priceRrpIncVat": 129.99
+        "priceRrpIncVat": 129.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -7281,7 +7617,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 12.49,
         "priceRetailEur": 14.61,
         "priceRrpExVat": 12.49,
-        "priceRrpIncVat": 14.99
+        "priceRrpIncVat": 14.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -7290,7 +7628,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 4.71,
         "priceRetailEur": 5.51,
         "priceRrpExVat": 4.71,
-        "priceRrpIncVat": 5.65
+        "priceRrpIncVat": 5.65,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -7395,7 +7735,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2022.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2015",
@@ -7429,7 +7771,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 108.33,
         "priceRetailEur": 126.75,
         "priceRrpExVat": 108.33,
-        "priceRrpIncVat": 129.99
+        "priceRrpIncVat": 129.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -7438,7 +7782,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 12.49,
         "priceRetailEur": 14.61,
         "priceRrpExVat": 12.49,
-        "priceRrpIncVat": 14.99
+        "priceRrpIncVat": 14.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -7447,7 +7793,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 4.71,
         "priceRetailEur": 5.51,
         "priceRrpExVat": 4.71,
-        "priceRrpIncVat": 5.65
+        "priceRrpIncVat": 5.65,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -7552,7 +7900,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2015.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-2005",
@@ -7587,7 +7937,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 141.66,
         "priceRetailEur": 165.74,
         "priceRrpExVat": 141.66,
-        "priceRrpIncVat": 169.99
+        "priceRrpIncVat": 169.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -7596,7 +7948,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 12.49,
         "priceRetailEur": 14.61,
         "priceRrpExVat": 12.49,
-        "priceRrpIncVat": 14.99
+        "priceRrpIncVat": 14.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -7605,7 +7959,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 5.46,
         "priceRetailEur": 6.39,
         "priceRrpExVat": 5.46,
-        "priceRrpIncVat": 6.55
+        "priceRrpIncVat": 6.55,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -7755,7 +8111,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-2005.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-1992",
@@ -7791,7 +8149,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 333.33,
         "priceRetailEur": 390,
         "priceRrpExVat": 333.33,
-        "priceRrpIncVat": 399.99
+        "priceRrpIncVat": 399.99,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
@@ -7800,7 +8160,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 33.63,
         "priceRetailEur": 39.35,
         "priceRrpExVat": 33.63,
-        "priceRrpIncVat": 40.35
+        "priceRrpIncVat": 40.35,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       },
       {
         "packSize": "30g Jar (Gun Mount)",
@@ -7809,7 +8171,9 @@ export const ECOM_CATALOG = [
         "priceRetailGbp": 11.08,
         "priceRetailEur": 12.96,
         "priceRrpExVat": 11.08,
-        "priceRrpIncVat": 13.3
+        "priceRrpIncVat": 13.3,
+        "hsCode": "3926.90.97",
+        "countryOfOrigin": "GB"
       }
     ],
     "hasPackPriceMatrix": true,
@@ -8004,7 +8368,9 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/fk-1992.jpg",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
-    ]
+    ],
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-1972",
@@ -8077,7 +8443,9 @@ export const ECOM_CATALOG = [
       "Heavy Powder Pick-Up Tube Assembly",
       "Articulated Self-Levelling Barrel & 360° Rotating Tip",
       "1× 100g Flake Jar & 1/4\" BSP Fitting"
-    ]
+    ],
+    "hsCode": "8424.20.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "fk-1970",
@@ -8152,7 +8520,9 @@ export const ECOM_CATALOG = [
       "Precision Blending Nozzle",
       "1/4\" to 1/8\" BSP Air Line Adaptor",
       "1× 30g Flake Jar & Manual"
-    ]
+    ],
+    "hsCode": "8424.20.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-635",
@@ -8186,7 +8556,9 @@ export const ECOM_CATALOG = [
       }
     ],
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-627",
@@ -8209,7 +8581,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7616.99.90",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-494",
@@ -8232,7 +8606,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-463",
@@ -8255,7 +8631,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-462",
@@ -8278,7 +8656,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-460",
@@ -8301,7 +8681,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-459",
@@ -8324,7 +8706,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-458",
@@ -8347,7 +8731,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-454",
@@ -8370,7 +8756,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-453",
@@ -8393,7 +8781,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-452",
@@ -8416,7 +8806,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-451",
@@ -8439,7 +8831,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-450",
@@ -8462,7 +8856,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-448",
@@ -8485,7 +8881,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-447",
@@ -8508,7 +8906,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-446",
@@ -8531,7 +8931,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-445",
@@ -8554,7 +8956,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-444",
@@ -8577,7 +8981,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-443",
@@ -8600,7 +9006,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-442",
@@ -8623,7 +9031,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-440",
@@ -8646,7 +9056,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-439",
@@ -8669,7 +9081,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-438",
@@ -8692,7 +9106,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-437",
@@ -8715,7 +9131,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-436",
@@ -8738,7 +9156,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-435",
@@ -8761,7 +9181,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-434",
@@ -8784,7 +9206,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-353",
@@ -8807,7 +9231,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-351",
@@ -8830,7 +9256,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-349",
@@ -8853,7 +9281,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-347",
@@ -8876,7 +9306,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.20.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-345",
@@ -8899,7 +9331,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-343",
@@ -8922,7 +9356,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "3926.90.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-341",
@@ -8945,7 +9381,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-339",
@@ -8968,7 +9406,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-336",
@@ -8991,7 +9431,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-328",
@@ -9014,7 +9456,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-326",
@@ -9037,7 +9481,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-324",
@@ -9060,7 +9506,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-323",
@@ -9083,7 +9531,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-322",
@@ -9106,7 +9556,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-321",
@@ -9129,7 +9581,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-319",
@@ -9152,7 +9606,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-317",
@@ -9175,7 +9631,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-314",
@@ -9198,7 +9656,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8424.90.00",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-312",
@@ -9221,7 +9681,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-310",
@@ -9244,7 +9706,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-308",
@@ -9267,7 +9731,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-306",
@@ -9290,7 +9756,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-304",
@@ -9313,7 +9781,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-302",
@@ -9336,7 +9806,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-297",
@@ -9359,7 +9831,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-296",
@@ -9382,7 +9856,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-294",
@@ -9405,7 +9881,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-293",
@@ -9428,7 +9906,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-288",
@@ -9451,7 +9931,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-284",
@@ -9474,7 +9956,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7616.99.90",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-282",
@@ -9497,7 +9981,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7616.99.90",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-281",
@@ -9520,7 +10006,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7616.99.90",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-280",
@@ -9543,7 +10031,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7616.99.90",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-279",
@@ -9566,7 +10056,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7616.99.90",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-278",
@@ -9589,7 +10081,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7616.99.90",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-270",
@@ -9612,7 +10106,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7616.99.90",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-268",
@@ -9635,7 +10131,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7616.99.90",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-265",
@@ -9658,7 +10156,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7318.15.95",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-262",
@@ -9681,7 +10181,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7616.99.90",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-260",
@@ -9704,7 +10206,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-256",
@@ -9727,7 +10231,9 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "8479.89.97",
+    "countryOfOrigin": "GB"
   },
   {
     "id": "va-255",
@@ -9750,6 +10256,8 @@ export const ECOM_CATALOG = [
     ],
     "hasOptions": false,
     "hideFromStorefront": true,
-    "repricingHold": true
+    "repricingHold": true,
+    "hsCode": "7616.99.90",
+    "countryOfOrigin": "GB"
   }
 ];

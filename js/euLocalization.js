@@ -484,10 +484,60 @@ export class EULocalizationManager {
     this.vatNumber = safeStorage.getItem('coast_eu_vat_num') || '';
     this.isVatExempt = safeStorage.getItem('coast_eu_vat_exempt') === 'true';
     this.vatCompanyName = safeStorage.getItem('coast_eu_vat_company') || '';
+
+    // VAT Display Mode: 'ex' (exclusive) or 'inc' (inclusive)
+    const storedVatMode = safeStorage.getItem('coast_vat_display_mode');
+    if (storedVatMode === 'inc' || storedVatMode === 'ex') {
+      this.vatDisplayMode = storedVatMode;
+    } else {
+      // Default: UK to 'ex' with advisory; EU countries to 'inc'
+      this.vatDisplayMode = this.selectedCountryCode === 'GB' ? 'ex' : 'inc';
+    }
+
     this.listeners = [];
 
     // Initialize FX Volatility & Margin Guard Engine
     this.fxEngine = new FXVolatilityEngine(this);
+  }
+
+  getVatDisplayMode() {
+    return this.vatDisplayMode || 'ex';
+  }
+
+  setVatDisplayMode(mode) {
+    if (mode === 'inc' || mode === 'ex') {
+      this.vatDisplayMode = mode;
+      safeStorage.setItem('coast_vat_display_mode', mode);
+      safeStorage.setItem('coast_vat_display_mode_manual', 'true');
+      this.notify();
+    }
+  }
+
+  toggleVatDisplayMode() {
+    const nextMode = this.vatDisplayMode === 'inc' ? 'ex' : 'inc';
+    this.setVatDisplayMode(nextMode);
+    return nextMode;
+  }
+
+  calculatePriceBreakdown(basePriceLocal) {
+    const country = this.getCountry();
+    const isUK = country.code === 'GB';
+    const appliedVatRate = (!isUK && this.isVatExempt) ? 0.0 : (country.vatRate || 0.20);
+    const priceNet = parseFloat(basePriceLocal) || 0;
+    const vatAmount = priceNet * appliedVatRate;
+    const priceGross = priceNet + vatAmount;
+
+    return {
+      priceNet,
+      priceGross,
+      vatAmount,
+      appliedVatRate,
+      vatRatePercent: Math.round(appliedVatRate * 100),
+      isVatExempt: this.isVatExempt,
+      isUK,
+      currencySymbol: country.symbol,
+      currencyCode: country.currency
+    };
   }
 
   syncFxRate(rate) {
@@ -534,6 +584,11 @@ export class EULocalizationManager {
     if (EU_COUNTRIES[code]) {
       this.selectedCountryCode = code;
       safeStorage.setItem('coast_eu_country', code);
+      // Adapt default if user hasn't explicitly chosen a manual preference
+      const manualMode = safeStorage.getItem('coast_vat_display_mode_manual');
+      if (!manualMode) {
+        this.vatDisplayMode = code === 'GB' ? 'ex' : 'inc';
+      }
       this.notify();
     }
   }

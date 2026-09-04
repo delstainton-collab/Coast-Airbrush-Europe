@@ -750,6 +750,18 @@
               token: "CAE_B2B_DIST_DEMO_" + Date.now(),
               user: { company: "Mipa Nordic Logistics B.V.", role: "distributor" }
             };
+          } else if (email.toLowerCase().includes("dave") || email.toLowerCase().includes("coast") || password === "CoastUSA2026!") {
+            data = {
+              success: true,
+              token: "CAE_B2B_STAKEHOLDER_USA_" + Date.now(),
+              user: { company: "Coast Airbrush Inc (USA HQ)", role: "stakeholder", contactName: "David Monning" }
+            };
+          } else if (email.toLowerCase().includes("ryan") || email.toLowerCase().includes("flake") || password === "FlakeKing2026!") {
+            data = {
+              success: true,
+              token: "CAE_B2B_STAKEHOLDER_FK_" + Date.now(),
+              user: { company: "Flake King Ltd (UK HQ)", role: "stakeholder", contactName: "Ryan Francis" }
+            };
           }
         }
 

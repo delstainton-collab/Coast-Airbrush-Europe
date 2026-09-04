@@ -500,6 +500,10 @@ class PaintSystemApp {
     const speedText = document.getElementById('nav-shipping-speed-text');
     const unitBtn = document.getElementById('btn-toggle-units');
     const unitLabel = document.getElementById('label-unit-toggle');
+    const vatToggleExBtn = document.getElementById('btn-vat-toggle-ex');
+    const vatToggleIncBtn = document.getElementById('btn-vat-toggle-inc');
+    const vatAdvisoryBadge = document.getElementById('nav-vat-advisory-badge');
+    const vatAdvisoryText = document.getElementById('nav-vat-advisory-text');
 
     const updateHeaderFromEU = () => {
       const country = this.euLocalization.getCountry();
@@ -508,6 +512,45 @@ class PaintSystemApp {
       if (speedText) speedText.textContent = `${country.flag} ${country.code}: ${country.leadTime.split(' ')[0]} ${country.carrier.split(' ')[0]}`;
       if (unitLabel) unitLabel.textContent = this.euLocalization.unitPreference === 'metric' ? 'METRIC (mL/g)' : 'IMPERIAL (oz/qt)';
       if (langSelect) langSelect.value = this.i18n.getLanguage();
+
+      // Update VAT Display Toggle UI state
+      const vatMode = this.euLocalization.getVatDisplayMode();
+      if (vatToggleExBtn && vatToggleIncBtn) {
+        if (vatMode === 'ex') {
+          vatToggleExBtn.className = 'px-2.5 py-0.5 font-bold transition-all bg-primary text-white cursor-pointer shadow-sm';
+          vatToggleIncBtn.className = 'px-2.5 py-0.5 font-bold transition-all text-neutral-400 hover:text-white bg-transparent cursor-pointer';
+        } else {
+          vatToggleIncBtn.className = 'px-2.5 py-0.5 font-bold transition-all bg-emerald-600 text-white cursor-pointer shadow-sm';
+          vatToggleExBtn.className = 'px-2.5 py-0.5 font-bold transition-all text-neutral-400 hover:text-white bg-transparent cursor-pointer';
+        }
+      }
+
+      // Update Dynamic Advisory Badge for UK & European Customers
+      if (vatAdvisoryBadge && vatAdvisoryText) {
+        vatAdvisoryBadge.classList.remove('hidden');
+        if (country.code === 'GB') {
+          if (vatMode === 'ex') {
+            vatAdvisoryBadge.className = 'hidden sm:inline-flex items-center gap-1 font-mono text-[10px] text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/40';
+            vatAdvisoryText.innerHTML = `UK B2C: Prices shown <strong>Ex-VAT</strong> (20% UK VAT applied at checkout) • Toggle <span class="underline cursor-pointer" onclick="document.getElementById('btn-vat-toggle-inc').click()">'INC VAT'</span> to preview total price`;
+          } else {
+            vatAdvisoryBadge.className = 'hidden sm:inline-flex items-center gap-1 font-mono text-[10px] text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/40';
+            vatAdvisoryText.innerHTML = `UK B2C: Prices shown <strong>Inc-VAT</strong> (includes 20% UK HMRC VAT)`;
+          }
+        } else {
+          // European Destination Country
+          const vatPct = Math.round((country.vatRate || 0.20) * 100);
+          if (this.euLocalization.isVatExempt) {
+            vatAdvisoryBadge.className = 'hidden sm:inline-flex items-center gap-1 font-mono text-[10px] text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/40';
+            vatAdvisoryText.innerHTML = `${country.name}: Verified EU B2B (0% Cross-Border Reverse Charge Active)`;
+          } else if (vatMode === 'inc') {
+            vatAdvisoryBadge.className = 'hidden sm:inline-flex items-center gap-1 font-mono text-[10px] text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/40';
+            vatAdvisoryText.innerHTML = `${country.name}: Prices <strong>Inc. VAT</strong> (${vatPct}% destination tax included) • DDP / IOSS zero customs fees`;
+          } else {
+            vatAdvisoryBadge.className = 'hidden sm:inline-flex items-center gap-1 font-mono text-[10px] text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/40';
+            vatAdvisoryText.innerHTML = `${country.name}: Prices shown <strong>Ex-VAT</strong> (${vatPct}% local VAT calculated at checkout)`;
+          }
+        }
+      }
     };
 
     const applyTranslations = () => {
@@ -564,6 +607,28 @@ class PaintSystemApp {
         applyTranslations();
         this.renderStorefrontGrid();
         this.renderCartSummary(this.shopifyCartManager.getCartSummary());
+      });
+    }
+
+    if (vatToggleExBtn) {
+      vatToggleExBtn.addEventListener('click', () => {
+        this.euLocalization.setVatDisplayMode('ex');
+        updateHeaderFromEU();
+        this.renderStorefrontGrid();
+        if (this.activeModalProduct) {
+          this.openDetailModal(this.activeModalProduct.id);
+        }
+      });
+    }
+
+    if (vatToggleIncBtn) {
+      vatToggleIncBtn.addEventListener('click', () => {
+        this.euLocalization.setVatDisplayMode('inc');
+        updateHeaderFromEU();
+        this.renderStorefrontGrid();
+        if (this.activeModalProduct) {
+          this.openDetailModal(this.activeModalProduct.id);
+        }
       });
     }
 
@@ -2580,9 +2645,21 @@ class PaintSystemApp {
       }
 
       const priceEl = document.getElementById('detail-price');
-      if (priceEl && prices) priceEl.textContent = prices.formattedPrimary;
+      if (priceEl && prices) {
+        priceEl.innerHTML = `
+          <span>${prices.formattedPrimary}</span>
+          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded align-middle ml-2 ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}">${prices.primaryVatBadge}</span>
+        `;
+      }
       const priceSubEl = document.getElementById('detail-price-sub');
-      if (priceSubEl && prices) priceSubEl.textContent = prices.formattedSecondary;
+      if (priceSubEl && prices) {
+        const country = this.euLocalization.getCountry();
+        priceSubEl.innerHTML = `
+          <span class="text-white font-bold">${prices.formattedSecondary}</span>
+          <span class="text-slate-400 ml-1.5">• ${prices.formattedSecondaryCur}</span>
+          ${prices.isUK ? `<span class="text-amber-400 ml-1.5 hidden sm:inline">(20% UK HMRC VAT)</span>` : `<span class="text-emerald-400 ml-1.5 hidden sm:inline">(${prices.vatRatePercent}% ${country.code} Tax)</span>`}
+        `;
+      }
 
       // Render variant controls inside modal
       const variantContainer = document.getElementById('detail-variant-controls');
@@ -2595,7 +2672,7 @@ class PaintSystemApp {
               <select id="detail-select-size" class="mech-select !py-2 !px-3 text-xs w-full" onchange="window.paintApp.onProductVariantChange('${product.id}', 'size', this.value)">
                 ${validSizes.map(s => {
                   const optPrice = this.getProductCalculatedPrice(product, currentSelection.pack, s);
-                  const showPrice = validPacks.length <= 1 && optPrice ? ` (${optPrice.formattedPrimary})` : '';
+                  const showPrice = validPacks.length <= 1 && optPrice ? ` (${optPrice.formattedPrimary} ${optPrice.primaryVatBadge})` : '';
                   return `<option value="${this.escapeHtmlAttr(s)}" ${s === currentSelection.size ? 'selected' : ''}>${s}${showPrice}</option>`;
                 }).join('')}
               </select>
@@ -2609,7 +2686,7 @@ class PaintSystemApp {
               <select id="detail-select-pack" class="mech-select !py-2 !px-3 text-xs w-full" onchange="window.paintApp.onProductVariantChange('${product.id}', 'pack', this.value)">
                 ${validPacks.map(p => {
                   const optPrice = this.getProductCalculatedPrice(product, p, currentSelection.size);
-                  return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} (${optPrice ? optPrice.formattedPrimary : ''})</option>`;
+                  return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} (${optPrice ? optPrice.formattedPrimary + ' ' + optPrice.primaryVatBadge : ''})</option>`;
                 }).join('')}
               </select>
             </div>
@@ -3139,6 +3216,36 @@ class PaintSystemApp {
               country: "Netherlands",
               currency: "EUR",
               discountMultiplier: 0.45
+            }
+          };
+        } else if (email.toLowerCase().includes('dave') || email.toLowerCase().includes('coast') || password === 'CoastUSA2026!') {
+          data = {
+            success: true,
+            token: "CAE_B2B_STAKEHOLDER_USA_" + Date.now(),
+            user: {
+              company: "Coast Airbrush Inc (USA HQ)",
+              contactName: "David Monning",
+              role: "stakeholder",
+              tierLabel: "Brand Principal & Licensor (USA HQ)",
+              vat: "US-CA-92870",
+              country: "United States",
+              currency: "USD",
+              discountMultiplier: 0.40
+            }
+          };
+        } else if (email.toLowerCase().includes('ryan') || email.toLowerCase().includes('flake') || password === 'FlakeKing2026!') {
+          data = {
+            success: true,
+            token: "CAE_B2B_STAKEHOLDER_FK_" + Date.now(),
+            user: {
+              company: "Flake King Ltd (UK HQ)",
+              contactName: "Ryan Francis",
+              role: "stakeholder",
+              tierLabel: "Brand Principal & Licensor (Flake King UK)",
+              vat: "GB876543210",
+              country: "United Kingdom",
+              currency: "GBP",
+              discountMultiplier: 0.40
             }
           };
         }
@@ -3671,22 +3778,40 @@ class PaintSystemApp {
     const gbpRate = 0.85;
     if (finalGbp === null) finalGbp = finalEur * gbpRate;
 
-    let formattedSecondary = '';
-    if (country.currency === 'GBP') {
-      formattedSecondary = `€${finalEur.toFixed(2)} EUR`;
-    } else if (country.currency === 'EUR') {
-      formattedSecondary = `£${finalGbp.toFixed(2)} GBP`;
-    } else {
-      formattedSecondary = `€${finalEur.toFixed(2)} EUR`;
-    }
+    // Multi-country VAT calculation breakdown
+    const breakdown = this.euLocalization.calculatePriceBreakdown(finalLocal);
+    const vatMode = this.euLocalization.getVatDisplayMode(); // 'ex' or 'inc'
+
+    const priceExVat = breakdown.priceNet;
+    const priceIncVat = breakdown.priceGross;
+    const vatRatePercent = breakdown.vatRatePercent;
+
+    // Display values based on active mode
+    const displayPrimaryNumber = vatMode === 'inc' ? priceIncVat : priceExVat;
+    const displaySecondaryNumber = vatMode === 'inc' ? priceExVat : priceIncVat;
+
+    const primaryVatBadge = vatMode === 'inc' ? 'INC VAT' : 'EX VAT';
+    const secondaryVatBadge = vatMode === 'inc' ? 'ex. VAT' : 'inc. VAT';
+    const secondaryCurrencyFormatted = country.currency === 'GBP' ? `€${finalEur.toFixed(2)} EUR` : `£${finalGbp.toFixed(2)} GBP`;
 
     return {
       priceEur: finalEur,
       priceLocal: finalLocal,
+      priceExVat,
+      priceIncVat,
+      vatAmount: breakdown.vatAmount,
+      vatRatePercent,
+      vatMode,
+      isVatExempt: breakdown.isVatExempt,
+      isUK: breakdown.isUK,
+      primaryVatBadge,
+      secondaryVatBadge,
       currencySymbol: country.symbol,
       currencyCode: country.currency,
-      formattedPrimary: `${country.symbol}${finalLocal.toFixed(2)}`,
-      formattedSecondary: formattedSecondary,
+      formattedPrimary: `${country.symbol}${displayPrimaryNumber.toFixed(2)}`,
+      formattedPrimaryWithBadge: `${country.symbol}${displayPrimaryNumber.toFixed(2)} ${primaryVatBadge}`,
+      formattedSecondary: `${country.symbol}${displaySecondaryNumber.toFixed(2)} ${secondaryVatBadge}`,
+      formattedSecondaryCur: secondaryCurrencyFormatted,
       sku: matchedSku || matchedStockCode || prod.sku || 'N/A',
       stockCode: matchedStockCode || matchedSku || prod.stockCode || '',
       barcode: matchedBarcode || prod.barcode || ''
@@ -3836,7 +3961,7 @@ class PaintSystemApp {
               <select id="select-size-${prod.id}" class="mech-select !py-1 !px-2 !text-[11px] leading-tight" onchange="window.paintApp.onProductVariantChange('${prod.id}', 'size', this.value)">
                 ${validSizes.map(s => {
                   const optPrice = this.getProductCalculatedPrice(prod, currentSelection.pack, s);
-                  const showPrice = validPacks.length <= 1 && optPrice ? ` (${optPrice.formattedPrimary})` : '';
+                  const showPrice = validPacks.length <= 1 && optPrice ? ` (${optPrice.formattedPrimary} ${optPrice.primaryVatBadge})` : '';
                   return `<option value="${this.escapeHtmlAttr(s)}" ${s === currentSelection.size ? 'selected' : ''}>${s}${showPrice}</option>`;
                 }).join('')}
               </select>
@@ -3851,7 +3976,7 @@ class PaintSystemApp {
               <select id="select-pack-${prod.id}" class="mech-select !py-1 !px-2 !text-[11px] leading-tight" onchange="window.paintApp.onProductVariantChange('${prod.id}', 'pack', this.value)">
                 ${validPacks.map(p => {
                   const optPrice = this.getProductCalculatedPrice(prod, p, currentSelection.size);
-                  return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} (${optPrice ? optPrice.formattedPrimary : ''})</option>`;
+                  return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} (${optPrice ? optPrice.formattedPrimary + ' ' + optPrice.primaryVatBadge : ''})</option>`;
                 }).join('')}
               </select>
             </div>
@@ -3902,8 +4027,14 @@ class PaintSystemApp {
           <div class="p-4 pt-0 bg-[#141618]">
             <div class="flex items-center justify-between border-t border-white/10 pt-3 mb-3">
               <div>
-                <span id="price-eur-${prod.id}" class="font-headline text-2xl text-white font-extrabold block">${prices.formattedPrimary}</span>
-                <span id="price-gbp-${prod.id}" class="font-mono text-[11px] text-neutral-400">${prices.formattedSecondary}</span>
+                <div class="flex items-baseline gap-1.5 flex-wrap">
+                  <span id="price-eur-${prod.id}" class="font-headline text-2xl text-white font-extrabold block leading-none">${prices.formattedPrimary}</span>
+                  <span id="price-vat-badge-${prod.id}" class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded leading-none ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}">${prices.primaryVatBadge}</span>
+                </div>
+                <div class="flex items-center gap-1.5 mt-1 flex-wrap">
+                  <span id="price-gbp-${prod.id}" class="font-mono text-[11px] text-neutral-300 font-medium">${prices.formattedSecondary}</span>
+                  <span class="font-mono text-[10px] text-neutral-500">(${prices.formattedSecondaryCur})</span>
+                </div>
                 ${this.isB2BMode && this.b2bSession ? `<span class="inline-block mt-1 text-[10px] font-mono text-emerald-400 bg-emerald-950/70 border border-emerald-500/50 px-1.5 py-0.5 rounded font-bold">✓ EX-VAT TRADE RATE</span>` : ''}
               </div>
               <button onclick="window.paintApp.openDetailModal('${prod.id}')" class="text-neutral-300 hover:text-white font-mono text-xs uppercase flex items-center gap-0.5 font-bold cursor-pointer transition-colors">
@@ -3946,8 +4077,13 @@ class PaintSystemApp {
     // Storefront Card Price Elements
     const eurEl = document.getElementById(`price-eur-${prodId}`);
     const gbpEl = document.getElementById(`price-gbp-${prodId}`);
+    const vatBadgeEl = document.getElementById(`price-vat-badge-${prodId}`);
     if (eurEl && prices) {
       eurEl.textContent = prices.formattedPrimary;
+    }
+    if (vatBadgeEl && prices) {
+      vatBadgeEl.textContent = prices.primaryVatBadge;
+      vatBadgeEl.className = `text-[10px] font-mono font-bold px-1.5 py-0.5 rounded leading-none ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}`;
     }
     if (gbpEl && prices) {
       gbpEl.textContent = prices.formattedSecondary;
@@ -3961,8 +4097,20 @@ class PaintSystemApp {
     if (this.activeModalProduct && this.activeModalProduct.id === prodId) {
       const modalPriceEl = document.getElementById('detail-price');
       const modalPriceSubEl = document.getElementById('detail-price-sub');
-      if (modalPriceEl && prices) modalPriceEl.textContent = prices.formattedPrimary;
-      if (modalPriceSubEl && prices) modalPriceSubEl.textContent = prices.formattedSecondary;
+      if (modalPriceEl && prices) {
+        modalPriceEl.innerHTML = `
+          <span>${prices.formattedPrimary}</span>
+          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded align-middle ml-2 ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}">${prices.primaryVatBadge}</span>
+        `;
+      }
+      if (modalPriceSubEl && prices) {
+        const country = this.euLocalization.getCountry();
+        modalPriceSubEl.innerHTML = `
+          <span class="text-white font-bold">${prices.formattedSecondary}</span>
+          <span class="text-slate-400 ml-1.5">• ${prices.formattedSecondaryCur}</span>
+          ${prices.isUK ? `<span class="text-amber-400 ml-1.5 hidden sm:inline">(20% UK HMRC VAT)</span>` : `<span class="text-emerald-400 ml-1.5 hidden sm:inline">(${prices.vatRatePercent}% ${country.code} Tax)</span>`}
+        `;
+      }
       const modalSkuEl = document.getElementById('detail-sku-badge');
       if (modalSkuEl && prices && prices.sku) {
         modalSkuEl.textContent = `SKU: ${prices.sku}${prices.barcode ? ` | EAN: ${prices.barcode}` : ''}`;
@@ -4015,7 +4163,7 @@ class PaintSystemApp {
       const validPacks = prod.packSizes.map(p => isFlake ? this.formatFlakePackSize(p) : p).filter(Boolean);
       const optionsHtml = validPacks.map(p => {
         const optPrice = this.getProductCalculatedPrice(prod, p, currentSelection.size, currentSelection.width);
-        return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} (${optPrice ? optPrice.formattedPrimary : ''})</option>`;
+        return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} (${optPrice ? optPrice.formattedPrimary + ' ' + optPrice.primaryVatBadge : ''})</option>`;
       }).join('');
 
       if (storePackSelect) storePackSelect.innerHTML = optionsHtml;

@@ -246,33 +246,36 @@ body {
   box-shadow: 1px 1px 0px 0px rgba(0,0,0,1);
 }
 
-/* Nav Links */
+/* Nav Links - High Contrast Precision Styling */
 .nav-link {
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
   font-weight: 700;
-  color: #c6c6c6;
+  color: #f3f4f6;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 8px 14px;
   border: 1px solid transparent;
-  transition: all 0.15s ease;
+  border-radius: 4px;
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
 }
 .nav-link:hover {
-  color: #ffb3ac;
-  background: rgba(211, 47, 47, 0.15);
-  border-color: rgba(211, 47, 47, 0.4);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
 }
 .nav-link.active {
-  color: #fff;
+  color: #ffffff;
   background: #d32f2f;
-  border: 1px solid #c6c6c6;
-  box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+  border: 1px solid #ef5350;
+  box-shadow: 0 0 14px rgba(211, 47, 47, 0.45), 2px 2px 0px 0px rgba(0,0,0,1);
 }
 
 /* Custom Filter Checkbox */

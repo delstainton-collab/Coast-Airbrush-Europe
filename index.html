@@ -237,151 +237,166 @@
 <body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
 
   <!-- ========================================================================= -->
-  <!-- OFFICIAL STAKEHOLDER REVIEW & PRE-LAUNCH STAGING BAR -->
   <!-- ========================================================================= -->
-  <div id="stakeholder-review-banner" class="bg-gradient-to-r from-amber-950/95 via-red-950/95 to-amber-950/95 border-b-2 border-amber-500/70 py-2 px-margin-mobile md:px-margin-desktop text-xs font-mono text-amber-200 flex flex-wrap items-center justify-between gap-3 shadow-md sticky top-0 z-[60]">
-    <div class="flex items-center gap-2.5 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-amber-300 font-extrabold text-[10px] tracking-wider uppercase">
-        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse inline-block"></span>
-        STAGING PREVIEW
-      </span>
-      <span class="font-bold text-white tracking-wide text-[11px] sm:text-xs">
-        Coast Airbrush USA Stakeholder Review in Progress
-      </span>
-      <span class="text-amber-400/60 hidden md:inline">•</span>
-      <span class="text-neutral-300 hidden md:inline text-[11px]">
-        Live customer orders paused pending Anaheim sign-off (BOM &amp; Spec testing enabled)
-      </span>
-    </div>
-    <div class="flex items-center gap-3 ml-auto text-[11px]">
-      <a href="dealers.html" class="text-amber-300 hover:text-white underline font-bold">Trade Application Portal</a>
-      <button onclick="window.paintApp &amp;&amp; window.paintApp.showReviewModeModal &amp;&amp; window.paintApp.showReviewModeModal()" class="px-2.5 py-1 bg-black/60 hover:bg-black border border-amber-400/50 text-amber-300 rounded font-bold cursor-pointer transition-colors">
-        Review Status Details
-      </button>
-    </div>
-  </div>
-
+  <!-- MASTER SITE HEADER (UNIFIED STICKY CONTAINER) -->
   <!-- ========================================================================= -->
-  <!-- UK LOGISTICS & WORLDWIDE SHIPPING BANNER -->
-  <!-- ========================================================================= -->
-  <!-- UNIFIED UK LOGISTICS & DISPATCH ANNOUNCEMENT BAR -->
-  <!-- ========================================================================= -->
-  <div id="top-shipping-banner" class="bg-[#0b0c0d] border-b border-white/15 py-2 px-margin-mobile md:px-margin-desktop text-xs font-mono tracking-wide flex flex-wrap justify-between items-center text-neutral-300 gap-3">
-    <div class="flex items-center gap-3 flex-wrap text-[11px] sm:text-xs">
-      <span class="inline-flex items-center gap-1.5 text-white font-bold tracking-wider">
-        <span class="text-sm">🇬🇧</span> UK BONDED DISPATCH
-      </span>
-      <span class="text-secondary/40 hidden sm:inline">•</span>
-      <span class="text-emerald-400 flex items-center gap-1">
-        <span class="material-symbols-outlined text-[15px]">bolt</span> 24/48h Tracked UK &amp; EU Delivery (APC / DHL Express)
-      </span>
-      <span class="text-secondary/40 hidden md:inline">•</span>
-      <span class="text-neutral-200 hidden md:inline">
-        Free Shipping over <strong class="text-amber-300 font-bold">£150 / €175</strong> 🚚
-      </span>
-      <span class="text-secondary/40 hidden lg:inline">•</span>
-      <span class="hidden lg:inline text-emerald-400">100% REACH &amp; VOC Compliant</span>
-    </div>
+  <header id="master-site-header" class="sticky top-0 z-50 w-full flex flex-col bg-surface shadow-[0_4px_24px_rgba(0,0,0,0.85)]">
 
-    <!-- Country, Language & Currency Quick Switcher -->
-    <div class="flex items-center gap-2 ml-auto">
-      <!-- Language Selector -->
-      <div class="flex items-center gap-1 bg-surface-container border border-secondary/60 px-2 py-0.5 rounded text-[11px]">
-        <span class="material-symbols-outlined text-[13px] text-primary">translate</span>
-        <select id="select-site-language" class="bg-transparent text-on-surface text-[11px] font-bold uppercase outline-none cursor-pointer">
-          <option value="en" class="bg-surface text-on-surface">🇬🇧 EN</option>
-          <option value="de" class="bg-surface text-on-surface">🇩🇪 DE</option>
-          <option value="fr" class="bg-surface text-on-surface">🇫🇷 FR</option>
-          <option value="nl" class="bg-surface text-on-surface">🇳🇱 NL</option>
-          <option value="es" class="bg-surface text-on-surface">🇪🇸 ES</option>
-          <option value="it" class="bg-surface text-on-surface">🇮🇹 IT</option>
-          <option value="pl" class="bg-surface text-on-surface">🇵🇱 PL</option>
-        </select>
-      </div>
-
-      <!-- Country Selector -->
-      <div class="flex items-center gap-1 bg-surface-container border border-secondary/60 px-2 py-0.5 rounded text-[11px]">
-        <span id="nav-selected-country-flag" class="text-xs">🇬🇧</span>
-        <select id="select-eu-country" class="bg-transparent text-on-surface text-[11px] font-bold uppercase outline-none cursor-pointer">
-          <option value="GB" class="bg-surface text-on-surface">GB (£)</option>
-          <option value="DE" class="bg-surface text-on-surface">DE (€)</option>
-          <option value="FR" class="bg-surface text-on-surface">FR (€)</option>
-          <option value="NL" class="bg-surface text-on-surface">NL (€)</option>
-          <option value="IT" class="bg-surface text-on-surface">IT (€)</option>
-          <option value="ES" class="bg-surface text-on-surface">ES (€)</option>
-          <option value="PL" class="bg-surface text-on-surface">PL (zł)</option>
-          <option value="BE" class="bg-surface text-on-surface">BE (€)</option>
-          <option value="CH" class="bg-surface text-on-surface">CH (CHF)</option>
-        </select>
-      </div>
-
-      <!-- Preferred Unit Toggle (Metric / Imperial) -->
-      <button id="btn-toggle-units" class="hidden sm:flex items-center gap-1 bg-surface-container border border-secondary/60 px-2 py-0.5 text-[11px] text-secondary hover:text-primary transition-colors cursor-pointer" title="Toggle Unit Preference">
-        <span class="material-symbols-outlined text-[13px]">straighten</span>
-        <span id="label-unit-toggle">METRIC</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- STITCH TOP NAVIGATION BAR -->
-  <!-- ========================================================================= -->
-  <nav class="bg-surface font-label-sm text-label-sm uppercase tracking-widest flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 sticky top-0 z-50 border-b-2 border-secondary shadow-[0_4px_0px_0px_rgba(0,0,0,1)] backdrop-blur">
-    <!-- Logo Area -->
-    <a id="nav-logo-btn" class="flex-shrink-0 flex items-center h-12 w-44 md:w-52 relative cursor-pointer" href="javascript:void(0)">
-      <img alt="COAST AIRBRUSH" class="w-full h-full object-contain transition-transform hover:scale-105" src="assets/images/coast_logo_white.png">
-    </a>
-
-    <!-- Desktop Navigation Links: Department-Led -->
-    <div class="hidden lg:flex items-center space-x-5">
-      <a id="tab-storefront" class="nav-link active" href="javascript:void(0)">SHOP</a>
-      <a href="#dept-kroma-edge" class="nav-link !text-neutral-300 hover:!text-white">KROMA EDGE</a>
-      <a href="#dept-guns" class="nav-link !text-neutral-300 hover:!text-white">GUNS</a>
-      <a href="#dept-flakes" class="nav-link !text-neutral-300 hover:!text-white">FLAKES</a>
-      <a href="#dept-tapes" class="nav-link !text-neutral-300 hover:!text-white">TAPES</a>
-      <a id="tab-calculator" class="nav-link" href="javascript:void(0)">MIX LAB</a>
-      <a id="tab-academy" class="nav-link" href="javascript:void(0)">ACADEMY</a>
-      <a id="nav-about-link" class="nav-link" href="about.html">ABOUT</a>
-    </div>
-
-    <!-- Trailing Actions -->
-    <div class="flex items-center space-x-3">
-      <!-- Quick Mix Pop-up Button -->
-      <button onclick="window.openQuickMixModal && window.openQuickMixModal()" class="hidden md:inline-flex items-center gap-1.5 font-label-xs text-label-xs border-2 border-primary-container bg-surface-container px-3 py-2 text-primary hover:bg-primary-container hover:text-white transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-0.5 active:shadow-none cursor-pointer" title="Open Quick Mix Calculator Pop-up">
-        <span class="material-symbols-outlined text-[16px]">calculate</span> QUICK MIX
-      </button>
-
-      <!-- Authorized Trade & Dealer Portal -->
-      <a href="dealers.html" class="hidden sm:inline-flex items-center gap-1.5 font-label-xs text-label-xs border-2 border-secondary bg-surface-container px-3 py-2 text-on-surface hover:border-primary hover:text-primary transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-0.5 active:shadow-none cursor-pointer" title="Become an Authorized Stockist or Distributor">
-        <span class="material-symbols-outlined text-[16px]">verified_user</span> TRADE / DEALERS
-      </a>
-
-      <!-- Cart Drawer Button -->
-      <button id="btn-toggle-cart-drawer" class="mech-button-primary !py-2 !px-4 text-xs flex items-center gap-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-        <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
-        <span class="hidden sm:inline">CART</span>
-        <span id="header-cart-count" class="bg-surface text-primary font-bold px-1.5 py-0.5 rounded text-[11px]">0</span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Dynamic Active Trade Session Banner (Hidden by default, shown when verified B2B partner logs in) -->
-  <div id="trade-active-banner" class="hidden w-full bg-emerald-950/95 border-b-2 border-emerald-500 text-emerald-100 py-2.5 px-4 z-40 transition-all">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs font-mono">
+    <!-- OFFICIAL STAKEHOLDER REVIEW & PRE-LAUNCH STAGING BAR -->
+    <div id="stakeholder-review-banner" class="bg-gradient-to-r from-amber-950/95 via-red-950/95 to-amber-950/95 border-b border-amber-500/60 py-2 px-margin-mobile md:px-margin-desktop text-xs font-mono text-amber-200 flex flex-wrap items-center justify-between gap-3 shadow-sm">
       <div class="flex items-center gap-2.5 flex-wrap">
-        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500 text-black font-bold text-[11px]">✓</span>
-        <span class="font-bold text-white tracking-wide uppercase text-sm" id="trade-banner-company">Apex Custom Paintworks Ltd</span>
-        <span class="bg-emerald-800/80 px-2.5 py-0.5 rounded text-[10px] text-emerald-200 border border-emerald-400/40 uppercase tracking-wider font-bold" id="trade-banner-tier">Tier 2: Authorized Trade Dealer</span>
-        <span class="text-emerald-300 text-[11px]" id="trade-banner-vat">VAT: GB123456789</span>
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-amber-300 font-extrabold text-[10px] tracking-wider uppercase">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse inline-block"></span>
+          STAGING PREVIEW
+        </span>
+        <span class="font-bold text-white tracking-wide text-[11px] sm:text-xs">
+          Coast Airbrush USA Stakeholder Review in Progress
+        </span>
+        <span class="text-amber-400/60 hidden md:inline">•</span>
+        <span class="text-neutral-300 hidden md:inline text-[11px]">
+          Live customer orders paused pending Placentia HQ sign-off (BOM &amp; Spec testing enabled)
+        </span>
       </div>
-      <div class="flex items-center gap-3">
-        <span class="text-[11px] text-emerald-300 font-bold hidden md:inline">Wholesale pricing unlocked • Ex-VAT billing active</span>
-        <button onclick="window.handleTradeLogout && window.handleTradeLogout()" class="px-3 py-1 bg-rose-950 hover:bg-rose-900 text-rose-200 text-xs font-bold rounded border border-rose-500 transition-colors flex items-center gap-1 cursor-pointer">
-          <span class="material-symbols-outlined text-[14px]">logout</span> Log Out Trade Session
+      <div class="flex items-center gap-3 ml-auto text-[11px]">
+        <a href="dealers.html" class="text-amber-300 hover:text-white underline font-bold">Trade Application Portal</a>
+        <button onclick="window.paintApp && window.paintApp.showReviewModeModal && window.paintApp.showReviewModeModal()" class="px-2.5 py-1 bg-black/60 hover:bg-black border border-amber-400/50 text-amber-300 rounded font-bold cursor-pointer transition-colors">
+          Review Status Details
         </button>
       </div>
     </div>
-  </div>
+
+    <!-- UNIFIED UK LOGISTICS & DISPATCH ANNOUNCEMENT BAR -->
+    <div id="top-shipping-banner" class="bg-[#0b0c0d] border-b border-white/10 py-2 px-margin-mobile md:px-margin-desktop text-xs font-mono tracking-wide flex flex-wrap justify-between items-center text-neutral-300 gap-3">
+      <div class="flex items-center gap-3 flex-wrap text-[11px] sm:text-xs">
+        <span class="inline-flex items-center gap-1.5 text-white font-bold tracking-wider">
+          <span class="text-sm">🇬🇧</span> UK BONDED DISPATCH
+        </span>
+        <span class="text-secondary/40 hidden sm:inline">•</span>
+        <span class="text-emerald-400 flex items-center gap-1">
+          <span class="material-symbols-outlined text-[15px]">bolt</span> 24/48h Tracked UK &amp; EU Delivery (APC / DHL Express)
+        </span>
+        <span class="text-secondary/40 hidden md:inline">•</span>
+        <span class="text-neutral-200 hidden md:inline">
+          Free Shipping over <strong class="text-amber-300 font-bold">£150 / €175</strong> 🚚
+        </span>
+        <span class="text-secondary/40 hidden lg:inline">•</span>
+        <span class="hidden lg:inline text-emerald-400 font-medium">100% REACH &amp; VOC Compliant</span>
+        <span class="text-secondary/40 hidden xl:inline">•</span>
+        <!-- Dynamic VAT Advisory Badge for UK & European Customers -->
+        <span id="nav-vat-advisory-badge" class="hidden sm:inline-flex items-center gap-1 font-mono text-[10px] text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/40" title="VAT status details for your destination country">
+          <span class="material-symbols-outlined text-[13px] text-amber-400">info</span>
+          <span id="nav-vat-advisory-text">UK B2C: Prices shown Ex-VAT (20% UK VAT applied at checkout)</span>
+        </span>
+      </div>
+
+      <!-- Country, Language & Currency Quick Switcher -->
+      <div class="flex items-center gap-2 ml-auto">
+        <!-- Language Selector -->
+        <div class="flex items-center gap-1 bg-surface-container border border-secondary/60 px-2 py-0.5 rounded text-[11px]">
+          <span class="material-symbols-outlined text-[13px] text-primary">translate</span>
+          <select id="select-site-language" class="bg-transparent text-on-surface text-[11px] font-bold uppercase outline-none cursor-pointer">
+            <option value="en" class="bg-surface text-on-surface">🇬🇧 EN</option>
+            <option value="de" class="bg-surface text-on-surface">🇩🇪 DE</option>
+            <option value="fr" class="bg-surface text-on-surface">🇫🇷 FR</option>
+            <option value="nl" class="bg-surface text-on-surface">🇳🇱 NL</option>
+            <option value="es" class="bg-surface text-on-surface">🇪🇸 ES</option>
+            <option value="it" class="bg-surface text-on-surface">🇮🇹 IT</option>
+            <option value="pl" class="bg-surface text-on-surface">🇵🇱 PL</option>
+          </select>
+        </div>
+
+        <!-- Country Selector -->
+        <div class="flex items-center gap-1 bg-surface-container border border-secondary/60 px-2 py-0.5 rounded text-[11px]">
+          <span id="nav-selected-country-flag" class="text-xs">🇬🇧</span>
+          <select id="select-eu-country" class="bg-transparent text-on-surface text-[11px] font-bold uppercase outline-none cursor-pointer">
+            <option value="GB" class="bg-surface text-on-surface">GB (£)</option>
+            <option value="DE" class="bg-surface text-on-surface">DE (€)</option>
+            <option value="FR" class="bg-surface text-on-surface">FR (€)</option>
+            <option value="NL" class="bg-surface text-on-surface">NL (€)</option>
+            <option value="IT" class="bg-surface text-on-surface">IT (€)</option>
+            <option value="ES" class="bg-surface text-on-surface">ES (€)</option>
+            <option value="PL" class="bg-surface text-on-surface">PL (zł)</option>
+            <option value="BE" class="bg-surface text-on-surface">BE (€)</option>
+            <option value="CH" class="bg-surface text-on-surface">CH (CHF)</option>
+            <option value="SE" class="bg-surface text-on-surface">SE (kr)</option>
+          </select>
+        </div>
+
+        <!-- VAT Display Mode Switcher (Ex VAT / Inc VAT) -->
+        <div id="nav-vat-toggle-group" class="flex items-center bg-surface-container border border-secondary/60 rounded text-[11px] font-mono overflow-hidden shadow-sm" title="Toggle prices between Exclusive and Inclusive of VAT">
+          <button type="button" id="btn-vat-toggle-ex" class="px-2 py-0.5 font-bold transition-all text-neutral-400 hover:text-white cursor-pointer" title="Display prices excluding VAT">EX VAT</button>
+          <div class="w-[1px] h-3.5 bg-secondary/60"></div>
+          <button type="button" id="btn-vat-toggle-inc" class="px-2 py-0.5 font-bold transition-all text-neutral-400 hover:text-white cursor-pointer" title="Display prices including VAT">INC VAT</button>
+        </div>
+
+        <!-- Preferred Unit Toggle (Metric / Imperial) -->
+        <button id="btn-toggle-units" class="hidden sm:flex items-center gap-1 bg-surface-container border border-secondary/60 px-2 py-0.5 text-[11px] text-secondary hover:text-primary transition-colors cursor-pointer" title="Toggle Unit Preference">
+          <span class="material-symbols-outlined text-[13px]">straighten</span>
+          <span id="label-unit-toggle">METRIC</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN NAVIGATION BAR -->
+    <nav class="bg-surface font-label-sm text-label-sm uppercase tracking-widest flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-3.5 border-b-2 border-secondary/50 backdrop-blur">
+      <!-- Logo Area: Full Unclipped California Heritage Lockup -->
+      <a id="nav-logo-btn" class="flex-shrink-0 flex items-center h-12 w-48 md:w-56 relative cursor-pointer" href="javascript:void(0)" title="Coast Airbrush Europe Home">
+        <img alt="COAST AIRBRUSH" class="w-full h-full object-contain object-left transition-transform hover:scale-105" src="assets/images/coast_logo_white.png">
+      </a>
+
+      <!-- Desktop Navigation Links: Department-Led with Crisp Contrast -->
+      <div class="hidden lg:flex items-center space-x-2 xl:space-x-3">
+        <a id="tab-storefront" class="nav-link active" href="javascript:void(0)">SHOP</a>
+        <a href="#dept-kroma-edge" class="nav-link">KROMA EDGE</a>
+        <a href="#dept-guns" class="nav-link">GUNS</a>
+        <a href="#dept-flakes" class="nav-link">FLAKES</a>
+        <a href="#dept-tapes" class="nav-link">TAPES</a>
+        <a id="tab-calculator" class="nav-link" href="javascript:void(0)">MIX LAB</a>
+        <a id="tab-academy" class="nav-link" href="javascript:void(0)">ACADEMY</a>
+        <a id="nav-about-link" class="nav-link" href="about.html">ABOUT</a>
+      </div>
+
+      <!-- Trailing Actions: Elevated B2B & Conversion Hierarchy -->
+      <div class="flex items-center space-x-3">
+        <!-- Quick Mix Pop-up Button -->
+        <button onclick="window.openQuickMixModal && window.openQuickMixModal()" class="hidden md:inline-flex items-center gap-1.5 font-mono text-xs font-bold border border-amber-500/70 bg-surface-container text-amber-300 hover:bg-amber-500/20 hover:text-white px-3 py-2 rounded transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-0.5 cursor-pointer" title="Open Quick Mix Calculator Pop-up">
+          <span class="material-symbols-outlined text-[16px] text-amber-400">calculate</span> QUICK MIX
+        </button>
+
+        <!-- Authorized Trade & Dealer Portal -->
+        <a href="dealers.html" class="hidden sm:inline-flex items-center gap-2 font-mono text-xs font-bold border border-emerald-500/70 bg-emerald-950/60 text-emerald-300 hover:bg-emerald-900 hover:text-white hover:border-emerald-400 px-3.5 py-2 rounded transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-0.5 cursor-pointer" title="Trade Portal: Wholesale Pricing, VAT Exemption & Stockist Distribution">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>B2B TRADE &amp; DEALERS</span>
+        </a>
+
+        <!-- Cart Drawer Button -->
+        <button id="btn-toggle-cart-drawer" class="mech-button-primary !py-2 !px-4 text-xs flex items-center gap-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] bg-primary-container text-white font-bold border border-red-400 hover:brightness-110 active:translate-y-0.5 transition-all">
+          <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+          <span class="hidden sm:inline">CART</span>
+          <span id="header-cart-count" class="bg-black/80 text-white font-extrabold px-2 py-0.5 rounded text-[11px] border border-white/20">0</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Dynamic Active Trade Session Banner (Hidden by default, shown when verified B2B partner logs in) -->
+    <div id="trade-active-banner" class="hidden w-full bg-emerald-950/95 border-b-2 border-emerald-500 text-emerald-100 py-2.5 px-4 z-40 transition-all">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs font-mono">
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500 text-black font-bold text-[11px]">✓</span>
+          <span class="font-bold text-white tracking-wide uppercase text-sm" id="trade-banner-company">Apex Custom Paintworks Ltd</span>
+          <span class="bg-emerald-800/80 px-2.5 py-0.5 rounded text-[10px] text-emerald-200 border border-emerald-400/40 uppercase tracking-wider font-bold" id="trade-banner-tier">Tier 2: Authorized Trade Dealer</span>
+          <span class="text-emerald-300 text-[11px]" id="trade-banner-vat">VAT: GB123456789</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-[11px] text-emerald-300 font-bold hidden md:inline">Wholesale pricing unlocked • Ex-VAT billing active</span>
+          <button onclick="window.handleTradeLogout && window.handleTradeLogout()" class="px-3 py-1 bg-rose-950 hover:bg-rose-900 text-rose-200 text-xs font-bold rounded border border-rose-500 transition-colors flex items-center gap-1 cursor-pointer">
+            <span class="material-symbols-outlined text-[14px]">logout</span> Log Out Trade Session
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </header>
 
   <!-- Mobile Secondary Navigation Bar -->
   <div class="lg:hidden bg-surface-container-low border-b-2 border-secondary flex overflow-x-auto py-2 px-4 gap-2 text-xs">
@@ -404,13 +419,13 @@
     <!-- ========================================================================= -->
     <!-- HERO SECTION: THE OFFICIAL EUROPEAN HUB & PORTFOLIO ANNOUNCEMENT -->
     <!-- ========================================================================= -->
-    <section class="relative w-full py-16 lg:py-24 bg-surface-container-lowest border-b-2 border-secondary overflow-hidden min-h-[580px] lg:min-h-[660px] flex items-center">
+    <section class="relative w-full py-16 lg:py-24 bg-surface-container-lowest border-b-2 border-secondary/60 overflow-hidden min-h-[600px] lg:min-h-[680px] flex items-center">
       
       <!-- Ambient Slideshow: Real Optical Finishes -->
       <div id="hero-crossfade-container" class="hero-crossfade-container">
-        <div class="hero-crossfade-slide active" style="background-image: url('Images/kromaedge/kroma-helmet-mirror.jpg'); background-position: center right 15%;" data-caption="01/06 • 99.4% Specular Mirror Racing Helmet (Standard 2K Clearcoat)" data-badge="Standard 2K Clearcoat Applied"></div>
+        <div class="hero-crossfade-slide active" style="background-image: url('Images/Promo Images/Cleaned Skull Image.jpeg'); background-position: center right 18%;" data-caption="01/06 • 100% Mirror Anatomic Chrome Skull (Zero Gray Haze)" data-badge="Zero Gray Clouding"></div>
         <div class="hero-crossfade-slide" style="background-image: url('Images/kromaedge/kroma-silver-surfer-wave.jpg'); background-position: center right 10%;" data-caption="02/06 • Full-Scale Silver Surfer on Ocean Wave (Pier Sunset)" data-badge="Full Figure Liquid Chrome"></div>
-        <div class="hero-crossfade-slide" style="background-image: url('Images/Promo Images/Cleaned Skull Image.jpeg'); background-position: center right 18%;" data-caption="03/06 • 100% Mirror Anatomic Chrome Skull (Zero Gray Haze)" data-badge="Zero Gray Clouding"></div>
+        <div class="hero-crossfade-slide" style="background-image: url('Images/kromaedge/kroma-helmet-mirror.jpg'); background-position: center right 15%;" data-caption="03/06 • 99.4% Specular Mirror Racing Helmet (Standard 2K Clearcoat)" data-badge="Standard 2K Clearcoat Applied"></div>
         <div class="hero-crossfade-slide" style="background-image: url('Images/kromaedge/kroma-silver-surfer-front.jpg'); background-position: center right 15%;" data-caption="04/06 • Liquid Metal Silver Surfer Front Profile (HVLP Applied)" data-badge="HVLP 1.3mm Tip Applied"></div>
         <div class="hero-crossfade-slide" style="background-image: url('Images/kromaedge/kroma-silver-surfer-back.jpg'); background-position: center right 15%;" data-caption="05/06 • Back Anatomy &amp; Platelet Alignment Reflection" data-badge="Self-Aligning Platelets"></div>
         <div class="hero-crossfade-slide" style="background-image: url('assets/images/flake_buggy_hero.jpg'); background-position: center right 10%;" data-caption="06/06 • Custom Flake Sand Rail &amp; Chassis (Coast Signature)" data-badge="Coast Signature Flake Finish"></div>
@@ -426,22 +441,24 @@
           
           <div class="lg:col-span-9 space-y-5 max-w-3xl">
             <!-- Authority Pill -->
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/70 border border-primary/50 backdrop-blur-md font-mono text-[11px] text-primary font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(211,47,47,0.3)]">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>✦ OFFICIAL EUROPEAN MASTER HUB</span>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/85 border border-primary/60 backdrop-blur-md font-mono text-[11px] text-white font-bold uppercase tracking-wider shadow-[0_0_18px_rgba(211,47,47,0.35)]">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="text-neutral-200">✦ OFFICIAL EUROPEAN MASTER HUB</span>
+              <span class="text-neutral-500">•</span>
+              <span class="text-amber-300">PLACENTIA, CA AUTHORIZED</span>
             </div>
 
             <!-- Approved Master Headline & Statement -->
             <div class="space-y-3">
-              <h1 class="font-headline text-3xl sm:text-5xl lg:text-6xl uppercase text-white tracking-tight leading-[1.08] drop-shadow-[0_4px_30px_rgba(0,0,0,1)]">
-                THE EUROPEAN HUB FOR <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-primary">KROMA EDGE CHROME, FLAKE KING &amp; VSIONAIR</span>
+              <h1 class="font-headline text-3xl sm:text-5xl lg:text-6xl uppercase text-white tracking-tight leading-[1.06] drop-shadow-[0_4px_30px_rgba(0,0,0,1)] font-black">
+                THE EUROPEAN MASTER HUB FOR <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-primary-container">KROMA EDGE CHROME, FLAKE KING &amp; VSIONAIR</span>
               </h1>
-              <p class="font-headline text-lg sm:text-2xl text-primary font-medium tracking-wide drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
-                ...with lots more coming to European &amp; UK custom painters.
+              <p class="font-headline text-base sm:text-xl text-neutral-200 font-medium tracking-wide drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
+                Engineered for automotive refinishers, custom shops &amp; airbrush artists across Europe.
               </p>
               <p class="font-body text-sm sm:text-base text-neutral-300 font-normal leading-relaxed max-w-2xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                Direct UK bonded dispatch, technical data formulation, and professional mixing systems for automotive refinishers, airbrush artists, and motorcycle builders across Europe.
+                Direct European bonded dispatch from our UK logistics center. Zero US import customs, next-day tracked APC &amp; DHL Express, full EU REACH &amp; VOC regulatory compliance, and factory-authorized technical support.
               </p>
             </div>
 
@@ -449,48 +466,64 @@
             <div class="pt-2">
               <span class="text-xs font-mono text-neutral-400 uppercase tracking-wider block mb-2 font-semibold">Jump to Department:</span>
               <div class="flex flex-wrap items-center gap-2">
-                <a href="#dept-kroma-edge" class="mech-btn-candy !py-2.5 !px-4 text-xs tracking-wider flex items-center gap-1.5 rounded">
+                <a href="#dept-kroma-edge" class="mech-btn-candy !py-2.5 !px-4 text-xs tracking-wider flex items-center gap-1.5 rounded shadow-[0_0_14px_rgba(211,47,47,0.45)]">
                   <span>01 • Kroma Edge Chrome</span>
                   <span class="material-symbols-outlined text-sm">arrow_downward</span>
                 </a>
-                <a href="#dept-guns" class="bg-surface-container border border-primary/70 hover:border-primary text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-colors flex items-center gap-1.5">
+                <a href="#dept-guns" class="bg-surface-container border border-amber-500/70 hover:border-amber-400 text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-amber-500/10">
                   <span class="text-amber-400 font-bold">02 • Flake King Guns</span>
                   <span class="material-symbols-outlined text-sm">arrow_downward</span>
                 </a>
-                <a href="#dept-flakes" class="bg-surface-container border border-white/20 hover:border-white text-neutral-200 hover:text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-colors flex items-center gap-1.5">
+                <a href="#dept-flakes" class="bg-surface-container border border-white/20 hover:border-white text-neutral-200 hover:text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-white/5">
                   <span>03 • Metal Flakes</span>
                   <span class="material-symbols-outlined text-sm">arrow_downward</span>
                 </a>
-                <a href="#dept-tapes" class="bg-surface-container border border-white/20 hover:border-white text-neutral-200 hover:text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-colors flex items-center gap-1.5">
+                <a href="#dept-tapes" class="bg-surface-container border border-white/20 hover:border-white text-neutral-200 hover:text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-white/5">
                   <span>04 • Fine Line Tapes</span>
                   <span class="material-symbols-outlined text-sm">arrow_downward</span>
                 </a>
-                <a href="#section-booth-proof" class="bg-surface-container border border-rose-500/50 hover:border-rose-500 text-rose-300 hover:text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-colors flex items-center gap-1.5">
+                <a href="#section-booth-proof" class="bg-surface-container border border-rose-500/60 hover:border-rose-400 text-rose-300 hover:text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-rose-500/10">
                   <span class="material-symbols-outlined text-sm text-rose-400">smart_display</span>
                   <span class="text-rose-300 font-bold">Video Proof</span>
                   <span class="material-symbols-outlined text-sm">arrow_downward</span>
                 </a>
-                <a href="#dept-vsionair" class="bg-surface-container border border-white/20 hover:border-white text-neutral-300 hover:text-white font-mono text-xs uppercase px-3 py-2.5 rounded transition-colors flex items-center gap-1.5">
-                  <span class="text-neutral-400">05 • VsionAir</span>
-                  <span class="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded font-bold">Repricing</span>
+                <a href="#dept-vsionair" class="bg-surface-container border border-white/20 hover:border-white text-neutral-300 hover:text-white font-mono text-xs uppercase px-3 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-white/5">
+                  <span class="text-neutral-300">05 • VsionAir</span>
+                  <span class="text-[9px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">2026 Direct</span>
                 </a>
               </div>
+            </div>
+
+            <!-- B2B Dealer & Distributor Quick Onboarding Hook -->
+            <div class="flex items-center gap-2 pt-1 font-mono text-xs text-neutral-300">
+              <span class="text-amber-400 font-bold">💼 TRADE &amp; WHOLESALE:</span>
+              <span>Bodyshops, Retailers &amp; Importers —</span>
+              <a href="dealers.html" class="text-emerald-400 hover:text-emerald-300 font-bold underline flex items-center gap-1 transition-colors">
+                Apply for Trade Pricing &amp; Net Ex-VAT Billing <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+              </a>
             </div>
 
             <!-- Trust Line -->
             <div class="flex items-center gap-2 font-mono text-[11px] text-neutral-400 pt-1">
               <span class="material-symbols-outlined text-[15px] text-emerald-400">verified_user</span>
-              <span>Dispatched from UK Hub • Tracked APC Overnight &amp; DHL Express • 100% REACH &amp; VOC Certified</span>
+              <span>Dispatched from UK Hub • Tracked APC Overnight &amp; DHL Express • 100% REACH &amp; VOC Certified • Zero US Customs</span>
             </div>
 
           </div>
 
           <!-- Specimen Watermark Badge (Desktop) -->
           <div class="hidden lg:flex lg:col-span-3 justify-end items-center pointer-events-none">
-            <div class="p-4 rounded-xl bg-black/50 border border-white/10 backdrop-blur-sm text-right space-y-1">
-              <span class="text-[10px] font-mono uppercase tracking-widest text-primary block">LIVE FINISH SPECIMEN</span>
-              <span class="text-xs font-mono font-bold text-white block" id="hero-artifact-badge">Standard 2K Clearcoat Applied</span>
-              <span class="text-[10px] font-mono text-neutral-400 block">Specular Reflectivity: 99.4%</span>
+            <div class="p-4 rounded-xl bg-black/80 border border-white/15 backdrop-blur-md text-right space-y-1.5 shadow-2xl">
+              <div class="flex items-center justify-end gap-1.5 text-[10px] font-mono uppercase tracking-widest text-primary font-bold">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>LIVE FINISH SPECIMEN</span>
+              </div>
+              <span class="text-xs font-mono font-extrabold text-white block" id="hero-artifact-badge">Zero Gray Clouding</span>
+              <div class="text-[10px] font-mono text-neutral-300 space-y-0.5">
+                <span class="block">Reflectivity: <strong class="text-emerald-400 font-bold">99.4% Specular Index</strong></span>
+                <span class="block text-neutral-400">Topcoat: Standard 2K Urethane Clear</span>
+                <span class="block text-neutral-400">Regulation: 100% EU REACH &amp; VOC</span>
+              </div>
             </div>
           </div>
 
@@ -504,7 +537,7 @@
             </button>
             <div id="hero-slide-caption" class="font-mono text-xs text-white/95 flex items-center gap-2 select-none">
               <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
-              <span id="hero-caption-text">01/06 • 99.4% Specular Mirror Racing Helmet (Standard 2K Clearcoat)</span>
+              <span id="hero-caption-text">01/06 • 100% Mirror Anatomic Chrome Skull (Zero Gray Haze)</span>
             </div>
             <button onclick="window.nextHeroSlide && window.nextHeroSlide()" class="w-6 h-6 rounded-full bg-white/10 hover:bg-primary text-white flex items-center justify-center transition-all cursor-pointer" aria-label="Next Slide">
               <span class="material-symbols-outlined text-sm">chevron_right</span>
@@ -512,9 +545,9 @@
           </div>
 
           <div id="hero-slide-dots" class="flex items-center gap-2 bg-black/70 px-3.5 py-2 rounded-full border border-white/15 backdrop-blur-md">
-            <button onclick="window.setHeroSlide && window.setHeroSlide(0)" class="hero-indicator-dot active" title="01 • Racing Helmet"></button>
+            <button onclick="window.setHeroSlide && window.setHeroSlide(0)" class="hero-indicator-dot active" title="01 • Chrome Skull"></button>
             <button onclick="window.setHeroSlide && window.setHeroSlide(1)" class="hero-indicator-dot" title="02 • Wave Surfer"></button>
-            <button onclick="window.setHeroSlide && window.setHeroSlide(2)" class="hero-indicator-dot" title="03 • Chrome Skull"></button>
+            <button onclick="window.setHeroSlide && window.setHeroSlide(2)" class="hero-indicator-dot" title="03 • Racing Helmet"></button>
             <button onclick="window.setHeroSlide && window.setHeroSlide(3)" class="hero-indicator-dot" title="04 • Surfer Profile"></button>
             <button onclick="window.setHeroSlide && window.setHeroSlide(4)" class="hero-indicator-dot" title="05 • Surfer Back"></button>
             <button onclick="window.setHeroSlide && window.setHeroSlide(5)" class="hero-indicator-dot" title="06 • Flake Buggy"></button>
@@ -5879,7 +5912,7 @@
               Official Partner Review Mode
             </h3>
             <p class="font-mono text-xs text-amber-400 font-bold">
-              Coast Airbrush USA (Anaheim, CA) • Operational Sign-off Phase
+              Coast Airbrush USA (Placentia, CA) • Operational Sign-off Phase
             </p>
           </div>
         </div>
@@ -5892,7 +5925,7 @@
         <div class="p-3 bg-black/40 border border-amber-500/40 rounded text-xs font-mono text-amber-200 flex items-start gap-2.5">
           <span class="material-symbols-outlined text-amber-400 text-[18px] flex-shrink-0 mt-0.5">lock_clock</span>
           <div>
-            <strong>LIVE CHECKOUT PAUSED:</strong> To ensure operational perfection, commercial ordering is held until Dave and the Coast Airbrush Anaheim leadership team complete their audit of technical data sheets, European pricing matrices, and formulation calculators.
+            <strong>LIVE CHECKOUT PAUSED:</strong> To ensure operational perfection, commercial ordering is held until Dave and the Coast Airbrush Placentia leadership team complete their audit of technical data sheets, European pricing matrices, and formulation calculators.
           </div>
         </div>
 
