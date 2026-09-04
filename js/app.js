@@ -3864,7 +3864,7 @@ class PaintSystemApp {
         card.innerHTML = `
           <div>
             <div onclick="window.paintApp && window.paintApp.openDetailModal('${prod.id}')" class="h-52 relative border-b border-white/10 overflow-hidden product-studio-stage flex items-center justify-center p-4 rounded-t cursor-pointer" title="Click to view product details &amp; options">
-              <img class="w-full h-full object-contain filter contrast-110 drop-shadow-[0_12px_20px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-500" src="${prod.image || fallbackImg}" alt="${prod.name}" onerror="this.onerror=null; this.src='${fallbackImg}'">
+              <img id="card-img-${prod.id}" class="w-full h-full object-contain filter contrast-110 drop-shadow-[0_12px_20px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-500" src="${prod.image || fallbackImg}" alt="${prod.name}" onerror="this.onerror=null; this.src='${fallbackImg}'">
               <div class="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
                 <span class="bg-black/80 border border-white/20 text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded tracking-wider backdrop-blur-sm">${(prod.brand || 'COAST').toUpperCase()}</span>
                 ${prod.images && prod.images.length > 1 ? `<span class="bg-black/80 border border-sky-500/50 text-sky-300 font-mono text-[9px] font-bold px-1.5 py-0.5 rounded tracking-wider backdrop-blur-sm flex items-center gap-0.5 shadow"><span class="material-symbols-outlined text-[11px]">photo_library</span> ${prod.images.length} PHOTOS</span>` : ''}
@@ -3966,6 +3966,26 @@ class PaintSystemApp {
       const modalSkuEl = document.getElementById('detail-sku-badge');
       if (modalSkuEl && prices && prices.sku) {
         modalSkuEl.textContent = `SKU: ${prices.sku}${prices.barcode ? ` | EAN: ${prices.barcode}` : ''}`;
+      }
+    }
+
+    // Dynamic image update if variant has specific image
+    let variantImage = null;
+    if (prod.tapePriceMatrix && prod.tapePriceMatrix.length > 0) {
+      const targetWidth = currentSelection.size || currentSelection.width;
+      const match = prod.tapePriceMatrix.find(t => t.width === targetWidth || this.matchPackToken(targetWidth, t.width));
+      if (match && match.image) variantImage = match.image;
+    } else if (prod.variants && prod.variants.length > 0) {
+      const targetSize = currentSelection.size || currentSelection.pack;
+      const match = prod.variants.find(v => v.tapeWidth === targetSize || v.rawWidth === targetSize);
+      if (match && match.image) variantImage = match.image;
+    }
+    if (variantImage) {
+      const cardImg = document.getElementById(`card-img-${prodId}`);
+      if (cardImg) cardImg.src = variantImage;
+      if (this.activeModalProduct && this.activeModalProduct.id === prodId) {
+        const modalImg = document.getElementById('detail-img');
+        if (modalImg) modalImg.src = variantImage;
       }
     }
 

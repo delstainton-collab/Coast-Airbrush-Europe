@@ -11,11 +11,11 @@
       "sale_price": "24999",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
@@ -36,11 +36,11 @@
         "max_amount": "35999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -360,11 +360,11 @@
       "sale_price": "10665",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -476,11 +476,11 @@
       "sale_price": "12999",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
@@ -498,11 +498,11 @@
       "sale_price": "149",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
@@ -520,11 +520,11 @@
       "sale_price": "132",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
@@ -542,11 +542,11 @@
       "sale_price": "0",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
@@ -567,11 +567,11 @@
         "max_amount": "65999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -803,11 +803,11 @@
       "sale_price": "2649",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
@@ -825,11 +825,11 @@
       "sale_price": "2640",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
@@ -847,11 +847,11 @@
       "sale_price": "699",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
@@ -869,11 +869,11 @@
       "sale_price": "349",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
@@ -894,11 +894,11 @@
         "max_amount": "799"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -954,11 +954,11 @@
       "sale_price": "5999",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
@@ -976,11 +976,11 @@
       "sale_price": "3999",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
@@ -1001,11 +1001,11 @@
         "max_amount": "3999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -1092,11 +1092,11 @@
         "max_amount": "3999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -1180,11 +1180,11 @@
       "sale_price": "333",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -1254,11 +1254,11 @@
       "sale_price": "198",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
@@ -1279,11 +1279,11 @@
         "max_amount": "12566"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -1356,11 +1356,11 @@
         "max_amount": "1325"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -1419,11 +1419,11 @@
         "max_amount": "9896"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -1496,11 +1496,11 @@
         "max_amount": "432"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -1536,39 +1536,117 @@
     "variations": [
       {
         "id": 2397,
+        "sku": "TPCP18",
+        "barcode": "5060733583145",
+        "price": "168",
+        "regular_price": "168",
+        "sale_price": "168",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "18mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23970,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe18mmB.gif?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe18mmB.gif?fit=600%2C600&ssl=1"
+        }
       },
       {
         "id": 2398,
+        "sku": "TPCP24",
+        "barcode": "5060733580250",
+        "price": "216",
+        "regular_price": "216",
+        "sale_price": "216",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "24mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23980,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe24mmB.gif?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe24mmB.gif?fit=600%2C600&ssl=1"
+        }
       },
       {
         "id": 2399,
+        "sku": "TPCP36",
+        "barcode": "5060733580267",
+        "price": "324",
+        "regular_price": "324",
+        "sale_price": "324",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "36mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23990,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe36mmB.gif?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe36mmB.gif?fit=600%2C600&ssl=1"
+        }
       },
       {
         "id": 2400,
+        "sku": "TPCP48",
+        "barcode": "5060733580274",
+        "price": "432",
+        "regular_price": "432",
+        "sale_price": "432",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "48mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 24000,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe48mmB.gif?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe48mmB.gif?fit=600%2C600&ssl=1"
+        }
+      }
+    ],
+    "images": [
+      {
+        "id": 23920,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe18mmB.gif?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe18mmB.gif?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "UltiMask Crepe Masking Tape - 1",
+        "alt": "UltiMask Crepe Masking Tape"
+      },
+      {
+        "id": 23921,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe24mmB.gif?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe24mmB.gif?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "UltiMask Crepe Masking Tape - 2",
+        "alt": "UltiMask Crepe Masking Tape"
+      },
+      {
+        "id": 23922,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe36mmB.gif?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe36mmB.gif?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "UltiMask Crepe Masking Tape - 3",
+        "alt": "UltiMask Crepe Masking Tape"
+      },
+      {
+        "id": 23923,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe48mmB.gif?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe48mmB.gif?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "UltiMask Crepe Masking Tape - 4",
+        "alt": "UltiMask Crepe Masking Tape"
       }
     ]
   },
@@ -1587,11 +1665,11 @@
         "max_amount": "699"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -1632,48 +1710,154 @@
     "variations": [
       {
         "id": 2387,
+        "sku": "TPFL6",
+        "barcode": "5060733583299",
+        "price": "199",
+        "regular_price": "199",
+        "sale_price": "199",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "6mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23870,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine6mm.png?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine6mm.png?fit=600%2C600&ssl=1"
+        }
       },
       {
         "id": 2388,
+        "sku": "TPFL9",
+        "barcode": "5060733583305",
+        "price": "229",
+        "regular_price": "229",
+        "sale_price": "229",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "9mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23880,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine9mm.png?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine9mm.png?fit=600%2C600&ssl=1"
+        }
       },
       {
         "id": 2389,
+        "sku": "TPFL12",
+        "barcode": "5060733583312",
+        "price": "249",
+        "regular_price": "249",
+        "sale_price": "249",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "12mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23890,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine12mm.png?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine12mm.png?fit=600%2C600&ssl=1"
+        }
       },
       {
         "id": 2390,
+        "sku": "TPFL24",
+        "barcode": "5060733583329",
+        "price": "399",
+        "regular_price": "399",
+        "sale_price": "399",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "24mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23900,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine24mm.png?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine24mm.png?fit=600%2C600&ssl=1"
+        }
       },
       {
         "id": 2391,
+        "sku": "TPFL48",
+        "barcode": "5060733583336",
+        "price": "699",
+        "regular_price": "699",
+        "sale_price": "699",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "48mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23910,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mm.png?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mm.png?fit=600%2C600&ssl=1"
+        }
+      }
+    ],
+    "images": [
+      {
+        "id": 23800,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine6mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine6mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Flat Line Masking Tape - 1",
+        "alt": "Prime Flat Line Masking Tape"
+      },
+      {
+        "id": 23801,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine9mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine9mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Flat Line Masking Tape - 2",
+        "alt": "Prime Flat Line Masking Tape"
+      },
+      {
+        "id": 23802,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine12mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine12mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Flat Line Masking Tape - 3",
+        "alt": "Prime Flat Line Masking Tape"
+      },
+      {
+        "id": 23803,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine24mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine24mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Flat Line Masking Tape - 4",
+        "alt": "Prime Flat Line Masking Tape"
+      },
+      {
+        "id": 23804,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Flat Line Masking Tape - 5",
+        "alt": "Prime Flat Line Masking Tape"
+      },
+      {
+        "id": 23805,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mmA.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mmA.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Flat Line Masking Tape - 6",
+        "alt": "Prime Flat Line Masking Tape"
       }
     ]
   },
@@ -1689,15 +1873,53 @@
       "sale_price": "1899",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
-    "variations": []
+    "variations": [],
+    "images": [
+      {
+        "id": 23750,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Orange Fine Line Mixed Set - 1",
+        "alt": "Prime Orange Fine Line Mixed Set"
+      },
+      {
+        "id": 23751,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Orange Fine Line Mixed Set - 2",
+        "alt": "Prime Orange Fine Line Mixed Set"
+      },
+      {
+        "id": 23752,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange2mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange2mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Orange Fine Line Mixed Set - 3",
+        "alt": "Prime Orange Fine Line Mixed Set"
+      },
+      {
+        "id": 23753,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange3mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange3mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Orange Fine Line Mixed Set - 4",
+        "alt": "Prime Orange Fine Line Mixed Set"
+      }
+    ]
   },
   {
     "id": 2366,
@@ -1714,11 +1936,11 @@
         "max_amount": "499"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -1754,39 +1976,117 @@
     "variations": [
       {
         "id": 2371,
+        "sku": "TPOR1",
+        "barcode": "5060733583244",
+        "price": "349",
+        "regular_price": "349",
+        "sale_price": "349",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "1mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23710,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1"
+        }
       },
       {
         "id": 2372,
+        "sku": "TPOR2",
+        "barcode": "5060733583251",
+        "price": "399",
+        "regular_price": "399",
+        "sale_price": "399",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "2mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23720,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange2mm.png?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange2mm.png?fit=600%2C600&ssl=1"
+        }
       },
       {
         "id": 2373,
+        "sku": "TPOR3",
+        "barcode": "5060733583268",
+        "price": "449",
+        "regular_price": "449",
+        "sale_price": "449",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "3mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23730,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange3mm.png?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange3mm.png?fit=600%2C600&ssl=1"
+        }
       },
       {
         "id": 2374,
+        "sku": "TPOR6",
+        "barcode": "5060733583275",
+        "price": "499",
+        "regular_price": "499",
+        "sale_price": "499",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "6mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23740,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange6mm.png?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange6mm.png?fit=600%2C600&ssl=1"
+        }
+      }
+    ],
+    "images": [
+      {
+        "id": 23660,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Orange Fine Line - 1",
+        "alt": "Prime Orange Fine Line"
+      },
+      {
+        "id": 23661,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange2mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange2mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Orange Fine Line - 2",
+        "alt": "Prime Orange Fine Line"
+      },
+      {
+        "id": 23662,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange3mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange3mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Orange Fine Line - 3",
+        "alt": "Prime Orange Fine Line"
+      },
+      {
+        "id": 23663,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange6mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange6mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Orange Fine Line - 4",
+        "alt": "Prime Orange Fine Line"
       }
     ]
   },
@@ -1802,15 +2102,53 @@
       "sale_price": "1899",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
-    "variations": []
+    "variations": [],
+    "images": [
+      {
+        "id": 23610,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebGreenProSet.jpg?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebGreenProSet.jpg?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Green Fine Line Mixed Set - 1",
+        "alt": "Prime Green Fine Line Mixed Set"
+      },
+      {
+        "id": 23611,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Green Fine Line Mixed Set - 2",
+        "alt": "Prime Green Fine Line Mixed Set"
+      },
+      {
+        "id": 23612,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green2mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green2mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Green Fine Line Mixed Set - 3",
+        "alt": "Prime Green Fine Line Mixed Set"
+      },
+      {
+        "id": 23613,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green3mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green3mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Green Fine Line Mixed Set - 4",
+        "alt": "Prime Green Fine Line Mixed Set"
+      }
+    ]
   },
   {
     "id": 2352,
@@ -1827,11 +2165,11 @@
         "max_amount": "499"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -1867,39 +2205,117 @@
     "variations": [
       {
         "id": 2357,
+        "sku": "TPGR1",
+        "barcode": "5060733583190",
+        "price": "349",
+        "regular_price": "349",
+        "sale_price": "349",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "1mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23570,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1"
+        }
       },
       {
         "id": 2358,
+        "sku": "TPGR2",
+        "barcode": "5060733583206",
+        "price": "399",
+        "regular_price": "399",
+        "sale_price": "399",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "2mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23580,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green2mm.png?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green2mm.png?fit=600%2C600&ssl=1"
+        }
       },
       {
         "id": 2359,
+        "sku": "TPGR3",
+        "barcode": "5060733583213",
+        "price": "449",
+        "regular_price": "449",
+        "sale_price": "449",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "3mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23590,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green3mm.png?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green3mm.png?fit=600%2C600&ssl=1"
+        }
       },
       {
         "id": 2360,
+        "sku": "TPGR6",
+        "barcode": "5060733583220",
+        "price": "499",
+        "regular_price": "499",
+        "sale_price": "499",
         "attributes": [
           {
             "name": "Tape Width",
             "value": "6mm"
           }
-        ]
+        ],
+        "image": {
+          "id": 23600,
+          "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green6mm.png?fit=600%2C600&ssl=1",
+          "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green6mm.png?fit=600%2C600&ssl=1"
+        }
+      }
+    ],
+    "images": [
+      {
+        "id": 23520,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Green Fine Line Tape - 1",
+        "alt": "Prime Green Fine Line Tape"
+      },
+      {
+        "id": 23521,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green2mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green2mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Green Fine Line Tape - 2",
+        "alt": "Prime Green Fine Line Tape"
+      },
+      {
+        "id": 23522,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green3mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green3mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Green Fine Line Tape - 3",
+        "alt": "Prime Green Fine Line Tape"
+      },
+      {
+        "id": 23523,
+        "src": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green6mm.png?fit=600%2C600&ssl=1",
+        "thumbnail": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green6mm.png?fit=600%2C600&ssl=1",
+        "srcset": "",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "name": "Prime Green Fine Line Tape - 4",
+        "alt": "Prime Green Fine Line Tape"
       }
     ]
   },
@@ -1918,11 +2334,11 @@
         "max_amount": "16499"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -2064,11 +2480,11 @@
         "max_amount": "12999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -2210,11 +2626,11 @@
         "max_amount": "16499"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -2356,11 +2772,11 @@
         "max_amount": "16499"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -2502,11 +2918,11 @@
         "max_amount": "16499"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -2648,11 +3064,11 @@
         "max_amount": "16999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -2835,11 +3251,11 @@
       "sale_price": "0",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -3025,11 +3441,11 @@
         "max_amount": "16999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -3212,11 +3628,11 @@
       "sale_price": "0",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -3358,11 +3774,11 @@
         "max_amount": "12999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -3504,11 +3920,11 @@
         "max_amount": "16499"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -3650,11 +4066,11 @@
         "max_amount": "16999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -3840,11 +4256,11 @@
         "max_amount": "16999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -4030,11 +4446,11 @@
         "max_amount": "12999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -4176,11 +4592,11 @@
         "max_amount": "12999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -4322,11 +4738,11 @@
         "max_amount": "16999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -4512,11 +4928,11 @@
         "max_amount": "12999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -4658,11 +5074,11 @@
         "max_amount": "16999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -4848,11 +5264,11 @@
         "max_amount": "16499"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -4994,11 +5410,11 @@
         "max_amount": "16499"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -5140,11 +5556,11 @@
         "max_amount": "12999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -5286,11 +5702,11 @@
         "max_amount": "12999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -5432,11 +5848,11 @@
         "max_amount": "16499"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -5578,11 +5994,11 @@
         "max_amount": "16999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -5768,11 +6184,11 @@
         "max_amount": "16999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -5958,11 +6374,11 @@
         "max_amount": "16999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -6148,11 +6564,11 @@
         "max_amount": "12999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -6294,11 +6710,11 @@
         "max_amount": "16999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -6484,11 +6900,11 @@
         "max_amount": "12999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -6630,11 +7046,11 @@
         "max_amount": "16499"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -6776,11 +7192,11 @@
         "max_amount": "12999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -6922,11 +7338,11 @@
         "max_amount": "12999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -7068,11 +7484,11 @@
         "max_amount": "16999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -7258,11 +7674,11 @@
         "max_amount": "39999"
       },
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [
@@ -7494,11 +7910,11 @@
       "sale_price": "12999",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],
@@ -7516,11 +7932,11 @@
       "sale_price": "11999",
       "price_range": null,
       "currency_code": "GBP",
-      "currency_symbol": "\u00a3",
+      "currency_symbol": "£",
       "currency_minor_unit": 2,
       "currency_decimal_separator": ".",
       "currency_thousand_separator": ",",
-      "currency_prefix": "\u00a3",
+      "currency_prefix": "£",
       "currency_suffix": ""
     },
     "attributes": [],

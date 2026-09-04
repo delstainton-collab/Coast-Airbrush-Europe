@@ -1485,19 +1485,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe18mmB.gif?fit=600%2C600&ssl=1",
-    "description": "Available in 18mm, 24mm, 36mm & 48mm widths\nUltiMask Crepe Masking Tape is a general all-round crepe tape for masking off areas when spraying vehicles. It is ideally suited to use with other Flake King products, with a strong adhesion and is heat-resistant to temperatures of 80C/176F. UltiMask Crepe Masking Tape can be easily removed, leaving no residue and is available in widths from 19mm to 48mm. UltiMask Crepe Masking Tape is the perfect high-quality everyday tape. Supplied individually packed to keep clean and dry.",
+    "description": "Available in 18mm, 24mm, 36mm & 48mm widths\nUltiMask Crepe Masking Tape is a general all-round crepe tape for masking off areas when spraying vehicles. It is ideally suited to use with other Flake King products, with a strong adhesion and is heat-resistant to temperatures of 80C/176F. UltiMask Crepe Masking Tape can be easily removed, leaving no residue and is available in widths from 19mm to 48mm. UltiMask Crepe Masking Tape is the perfect high-quality everyday tape. Supplied individually packed to keep clean and dry.",
     "sizes": [
       "18mm x 50m",
       "24mm x 50m",
       "36mm x 50m",
       "48mm x 50m"
     ],
-    "packSizes": [
-      "18mm x 50m",
-      "24mm x 50m",
-      "36mm x 50m",
-      "48mm x 50m"
-    ],
+    "packSizes": [],
     "hasOptions": true,
     "tapeWidths": [
       "18mm x 50m",
@@ -1510,37 +1505,73 @@ export const ECOM_CATALOG = [
         "width": "18mm x 50m",
         "priceGbp": 1.4,
         "priceEur": 1.65,
+        "priceRetailGbp": 1.4,
+        "priceRetailEur": 1.64,
+        "priceRrpExVat": 1.4,
         "priceRrpIncVat": 1.68,
+        "priceDealerGbp": 1.05,
+        "priceDealerEur": 1.23,
+        "priceDistributorGbp": 0.7,
+        "priceDistributorEur": 0.82,
+        "discountPercent": 50,
         "stockCode": "TPCP18",
         "sku": "TPCP18",
-        "barcode": "5060733583145"
+        "barcode": "5060733583145",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe18mmB.gif?fit=600%2C600&ssl=1"
       },
       {
         "width": "24mm x 50m",
         "priceGbp": 1.8,
         "priceEur": 2.12,
+        "priceRetailGbp": 1.8,
+        "priceRetailEur": 2.11,
+        "priceRrpExVat": 1.8,
         "priceRrpIncVat": 2.16,
+        "priceDealerGbp": 1.35,
+        "priceDealerEur": 1.58,
+        "priceDistributorGbp": 0.9,
+        "priceDistributorEur": 1.05,
+        "discountPercent": 50,
         "stockCode": "TPCP24",
         "sku": "TPCP24",
-        "barcode": "5060733580250"
+        "barcode": "5060733580250",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe24mmB.gif?fit=600%2C600&ssl=1"
       },
       {
         "width": "36mm x 50m",
         "priceGbp": 2.7,
         "priceEur": 3.18,
+        "priceRetailGbp": 2.7,
+        "priceRetailEur": 3.16,
+        "priceRrpExVat": 2.7,
         "priceRrpIncVat": 3.24,
+        "priceDealerGbp": 2.03,
+        "priceDealerEur": 2.38,
+        "priceDistributorGbp": 1.35,
+        "priceDistributorEur": 1.58,
+        "discountPercent": 50,
         "stockCode": "TPCP36",
         "sku": "TPCP36",
-        "barcode": "5060733580267"
+        "barcode": "5060733580267",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe36mmB.gif?fit=600%2C600&ssl=1"
       },
       {
         "width": "48mm x 50m",
         "priceGbp": 3.6,
         "priceEur": 4.24,
+        "priceRetailGbp": 3.6,
+        "priceRetailEur": 4.21,
+        "priceRrpExVat": 3.6,
         "priceRrpIncVat": 4.32,
+        "priceDealerGbp": 2.7,
+        "priceDealerEur": 3.16,
+        "priceDistributorGbp": 1.8,
+        "priceDistributorEur": 2.11,
+        "discountPercent": 50,
         "stockCode": "TPCP48",
         "sku": "TPCP48",
-        "barcode": "5060733580274"
+        "barcode": "5060733580274",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe48mmB.gif?fit=600%2C600&ssl=1"
       }
     ],
     "hasTapeOptions": true,
@@ -1550,56 +1581,12 @@ export const ECOM_CATALOG = [
     "priceRetailEur": 1.64,
     "priceRrpExVat": 1.4,
     "priceRrpIncVat": 1.68,
-    "hasPackPriceMatrix": true,
-    "packPriceMatrix": [
-      {
-        "packSize": "18mm x 50m",
-        "stockCode": "TPCP18",
-        "barcode": "5060733583145",
-        "priceGbp": 1.4,
-        "priceEur": 1.64,
-        "priceRetailGbp": 1.4,
-        "priceRetailEur": 1.64,
-        "priceRrpExVat": 1.4,
-        "priceRrpIncVat": 1.68,
-        "sku": "TPCP18"
-      },
-      {
-        "packSize": "24mm x 50m",
-        "stockCode": "TPCP24",
-        "barcode": "5060733580250",
-        "priceGbp": 1.8,
-        "priceEur": 2.11,
-        "priceRetailGbp": 1.8,
-        "priceRetailEur": 2.11,
-        "priceRrpExVat": 1.8,
-        "priceRrpIncVat": 2.16,
-        "sku": "TPCP24"
-      },
-      {
-        "packSize": "36mm x 50m",
-        "stockCode": "TPCP36",
-        "barcode": "5060733580267",
-        "priceGbp": 2.7,
-        "priceEur": 3.16,
-        "priceRetailGbp": 2.7,
-        "priceRetailEur": 3.16,
-        "priceRrpExVat": 2.7,
-        "priceRrpIncVat": 3.24,
-        "sku": "TPCP36"
-      },
-      {
-        "packSize": "48mm x 50m",
-        "stockCode": "TPCP48",
-        "barcode": "5060733580274",
-        "priceGbp": 3.6,
-        "priceEur": 4.21,
-        "priceRetailGbp": 3.6,
-        "priceRetailEur": 4.21,
-        "priceRrpExVat": 3.6,
-        "priceRrpIncVat": 4.32,
-        "sku": "TPCP48"
-      }
+    "hasPackPriceMatrix": false,
+    "images": [
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe18mmB.gif?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe24mmB.gif?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe36mmB.gif?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe48mmB.gif?fit=600%2C600&ssl=1"
     ]
   },
   {
@@ -1614,7 +1601,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine6mm.png?fit=600%2C600&ssl=1",
-    "description": "Prime Flat Line Masking Tape\nAvailable in 6mm, 9mm, 12mm, 24mm & 48mm widths\nPrime Flat Line Orange is our precision masking solution for masking rubbers, plastics, mouldings, trims, canvass and artboards – both paper and synthetic airbrush papers. Summed up it is a flat non-bleed tape that adheres to surfaces that conventional masking tape would not!\nConstructed from “washi” or better known as rice paper, this non-bleed tape is suitable for fine-line work as well as general masking. Developed for high end industrial, commercial model makers, scenery, film, automotive, and artists applications. Ideal for placing over existing artwork or vinyl fine lines as the tape is so translucent it allows you see through it to cut and remove the necessary areas.\nThe flexible, water-proof, advanced acrylic adhesive means that it will adhere to surfaces that standard masking tape would otherwise not; resistant to 110C/230F, available in widths from 6mm upwards. However, we can produce this to any width required subject to quantity.",
+    "description": "Prime Flat Line Masking Tape\nAvailable in 6mm, 9mm, 12mm, 24mm & 48mm widths\nPrime Flat Line Orange is our precision masking solution for masking rubbers, plastics, mouldings, trims, canvass and artboards – both paper and synthetic airbrush papers. Summed up it is a flat non-bleed tape that adheres to surfaces that conventional masking tape would not!\nConstructed from “washi” or better known as rice paper, this non-bleed tape is suitable for fine-line work as well as general masking. Developed for high end industrial, commercial model makers, scenery, film, automotive, and artists applications. Ideal for placing over existing artwork or vinyl fine lines as the tape is so translucent it allows you see through it to cut and remove the necessary areas.\nThe flexible, water-proof, advanced acrylic adhesive means that it will adhere to surfaces that standard masking tape would otherwise not; resistant to 110C/230F, available in widths from 6mm upwards. However, we can produce this to any width required subject to quantity.",
     "sizes": [
       "6mm x 50m",
       "9mm x 50m",
@@ -1622,13 +1609,7 @@ export const ECOM_CATALOG = [
       "24mm x 50m",
       "48mm x 50m"
     ],
-    "packSizes": [
-      "6mm x 50m",
-      "9mm x 50m",
-      "12mm x 50m",
-      "24mm x 50m",
-      "48mm x 50m"
-    ],
+    "packSizes": [],
     "hasOptions": true,
     "tapeWidths": [
       "6mm x 50m",
@@ -1642,46 +1623,91 @@ export const ECOM_CATALOG = [
         "width": "6mm x 50m",
         "priceGbp": 1.66,
         "priceEur": 1.95,
+        "priceRetailGbp": 1.66,
+        "priceRetailEur": 1.94,
+        "priceRrpExVat": 1.66,
         "priceRrpIncVat": 1.99,
+        "priceDealerGbp": 1.25,
+        "priceDealerEur": 1.46,
+        "priceDistributorGbp": 0.83,
+        "priceDistributorEur": 0.97,
+        "discountPercent": 50,
         "stockCode": "TPFL6",
         "sku": "TPFL6",
-        "barcode": "5060733583299"
+        "barcode": "5060733583299",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine6mm.png?fit=600%2C600&ssl=1"
       },
       {
         "width": "9mm x 50m",
         "priceGbp": 1.91,
         "priceEur": 2.25,
+        "priceRetailGbp": 1.91,
+        "priceRetailEur": 2.23,
+        "priceRrpExVat": 1.91,
         "priceRrpIncVat": 2.29,
+        "priceDealerGbp": 1.43,
+        "priceDealerEur": 1.67,
+        "priceDistributorGbp": 0.95,
+        "priceDistributorEur": 1.11,
+        "discountPercent": 50,
         "stockCode": "TPFL9",
         "sku": "TPFL9",
-        "barcode": "5060733583305"
+        "barcode": "5060733583305",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine9mm.png?fit=600%2C600&ssl=1"
       },
       {
         "width": "12mm x 50m",
         "priceGbp": 2.08,
         "priceEur": 2.45,
+        "priceRetailGbp": 2.08,
+        "priceRetailEur": 2.43,
+        "priceRrpExVat": 2.08,
         "priceRrpIncVat": 2.49,
+        "priceDealerGbp": 1.56,
+        "priceDealerEur": 1.83,
+        "priceDistributorGbp": 1.03,
+        "priceDistributorEur": 1.21,
+        "discountPercent": 50,
         "stockCode": "TPFL12",
         "sku": "TPFL12",
-        "barcode": "5060733583312"
+        "barcode": "5060733583312",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine12mm.png?fit=600%2C600&ssl=1"
       },
       {
         "width": "24mm x 50m",
         "priceGbp": 3.33,
         "priceEur": 3.92,
+        "priceRetailGbp": 3.33,
+        "priceRetailEur": 3.9,
+        "priceRrpExVat": 3.33,
         "priceRrpIncVat": 3.99,
+        "priceDealerGbp": 2.49,
+        "priceDealerEur": 2.91,
+        "priceDistributorGbp": 1.65,
+        "priceDistributorEur": 1.93,
+        "discountPercent": 50,
         "stockCode": "TPFL24",
         "sku": "TPFL24",
-        "barcode": "5060733583329"
+        "barcode": "5060733583329",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine24mm.png?fit=600%2C600&ssl=1"
       },
       {
         "width": "48mm x 50m",
         "priceGbp": 5.83,
         "priceEur": 6.86,
+        "priceRetailGbp": 5.83,
+        "priceRetailEur": 6.82,
+        "priceRrpExVat": 5.83,
         "priceRrpIncVat": 6.99,
+        "priceDealerGbp": 4.37,
+        "priceDealerEur": 5.11,
+        "priceDistributorGbp": 2.9,
+        "priceDistributorEur": 3.39,
+        "discountPercent": 50,
         "stockCode": "TPFL48",
         "sku": "TPFL48",
-        "barcode": "5060733583336"
+        "barcode": "5060733583336",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mm.png?fit=600%2C600&ssl=1"
       }
     ],
     "hasTapeOptions": true,
@@ -1691,68 +1717,14 @@ export const ECOM_CATALOG = [
     "priceRetailEur": 1.94,
     "priceRrpExVat": 1.66,
     "priceRrpIncVat": 1.99,
-    "hasPackPriceMatrix": true,
-    "packPriceMatrix": [
-      {
-        "packSize": "6mm x 50m",
-        "stockCode": "TPFL6",
-        "barcode": "5060733583299",
-        "priceGbp": 1.66,
-        "priceEur": 1.94,
-        "priceRetailGbp": 1.66,
-        "priceRetailEur": 1.94,
-        "priceRrpExVat": 1.66,
-        "priceRrpIncVat": 1.99,
-        "sku": "TPFL6"
-      },
-      {
-        "packSize": "9mm x 50m",
-        "stockCode": "TPFL9",
-        "barcode": "5060733583305",
-        "priceGbp": 1.91,
-        "priceEur": 2.23,
-        "priceRetailGbp": 1.91,
-        "priceRetailEur": 2.23,
-        "priceRrpExVat": 1.91,
-        "priceRrpIncVat": 2.29,
-        "sku": "TPFL9"
-      },
-      {
-        "packSize": "12mm x 50m",
-        "stockCode": "TPFL12",
-        "barcode": "5060733583312",
-        "priceGbp": 2.08,
-        "priceEur": 2.43,
-        "priceRetailGbp": 2.08,
-        "priceRetailEur": 2.43,
-        "priceRrpExVat": 2.08,
-        "priceRrpIncVat": 2.49,
-        "sku": "TPFL12"
-      },
-      {
-        "packSize": "24mm x 50m",
-        "stockCode": "TPFL24",
-        "barcode": "5060733583329",
-        "priceGbp": 3.33,
-        "priceEur": 3.9,
-        "priceRetailGbp": 3.33,
-        "priceRetailEur": 3.9,
-        "priceRrpExVat": 3.33,
-        "priceRrpIncVat": 3.99,
-        "sku": "TPFL24"
-      },
-      {
-        "packSize": "48mm x 50m",
-        "stockCode": "TPFL48",
-        "barcode": "5060733583336",
-        "priceGbp": 5.83,
-        "priceEur": 6.82,
-        "priceRetailGbp": 5.83,
-        "priceRetailEur": 6.82,
-        "priceRrpExVat": 5.83,
-        "priceRrpIncVat": 6.99,
-        "sku": "TPFL48"
-      }
+    "hasPackPriceMatrix": false,
+    "images": [
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine6mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine9mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine12mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine24mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mmA.png?fit=600%2C600&ssl=1"
     ]
   },
   {
@@ -1767,7 +1739,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1",
-    "description": "Prime Orange Fine Line Mixed Set\nSizes included: 1 x 1mm, 1 x 2mm, 2 x 3mm\nOur Prime Orange Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime green fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 138°C/280°F for at least 45 minutes; after painting, it can be cleanly removed leaving a defined line with no adhesive residue.",
+    "description": "Prime Orange Fine Line Mixed Set\nSizes included: 1 x 1mm, 1 x 2mm, 2 x 3mm\nOur Prime Orange Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime green fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 138°C/280°F for at least 45 minutes; after painting, it can be cleanly removed leaving a defined line with no adhesive residue.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
@@ -1776,7 +1748,16 @@ export const ECOM_CATALOG = [
     "priceRetailGbp": 15.83,
     "priceRetailEur": 18.52,
     "priceRrpExVat": 15.83,
-    "priceRrpIncVat": 18.99
+    "priceRrpIncVat": 18.99,
+    "images": [
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange2mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange3mm.png?fit=600%2C600&ssl=1"
+    ],
+    "hasTapeOptions": false,
+    "tapeWidths": [],
+    "hasPackPriceMatrix": false
   },
   {
     "id": "fk-2366",
@@ -1790,19 +1771,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
-    "description": "Available in 1mm, 2mm, 3mm & 6mm widths\nOur Prime Orange Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime green fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 138°C/280°F for at least 45 minutes; after painting, it can be cleanly removed leaving a defined line with no adhesive residue.",
+    "description": "Available in 1mm, 2mm, 3mm & 6mm widths\nOur Prime Orange Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime green fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 138°C/280°F for at least 45 minutes; after painting, it can be cleanly removed leaving a defined line with no adhesive residue.",
     "sizes": [
       "1mm x 55m",
       "2mm x 55m",
       "3mm x 55m",
       "6mm x 55m"
     ],
-    "packSizes": [
-      "1mm x 55m",
-      "2mm x 55m",
-      "3mm x 55m",
-      "6mm x 55m"
-    ],
+    "packSizes": [],
     "hasOptions": true,
     "stockCode": "TPOR1",
     "barcode": "5060733583244",
@@ -1810,57 +1786,7 @@ export const ECOM_CATALOG = [
     "priceRetailEur": 3.4,
     "priceRrpExVat": 2.91,
     "priceRrpIncVat": 3.49,
-    "hasPackPriceMatrix": true,
-    "packPriceMatrix": [
-      {
-        "packSize": "1mm x 55m",
-        "stockCode": "TPOR1",
-        "barcode": "5060733583244",
-        "priceGbp": 2.91,
-        "priceEur": 3.4,
-        "priceRetailGbp": 2.91,
-        "priceRetailEur": 3.4,
-        "priceRrpExVat": 2.91,
-        "priceRrpIncVat": 3.49,
-        "sku": "TPOR1"
-      },
-      {
-        "packSize": "2mm x 55m",
-        "stockCode": "TPOR2",
-        "barcode": "5060733583251",
-        "priceGbp": 3.33,
-        "priceEur": 3.9,
-        "priceRetailGbp": 3.33,
-        "priceRetailEur": 3.9,
-        "priceRrpExVat": 3.33,
-        "priceRrpIncVat": 3.99,
-        "sku": "TPOR2"
-      },
-      {
-        "packSize": "3mm x 55m",
-        "stockCode": "TPOR3",
-        "barcode": "5060733583268",
-        "priceGbp": 3.74,
-        "priceEur": 4.38,
-        "priceRetailGbp": 3.74,
-        "priceRetailEur": 4.38,
-        "priceRrpExVat": 3.74,
-        "priceRrpIncVat": 4.49,
-        "sku": "TPOR3"
-      },
-      {
-        "packSize": "6mm x 55m",
-        "stockCode": "TPOR6",
-        "barcode": "5060733583275",
-        "priceGbp": 4.16,
-        "priceEur": 4.87,
-        "priceRetailGbp": 4.16,
-        "priceRetailEur": 4.87,
-        "priceRrpExVat": 4.16,
-        "priceRrpIncVat": 4.99,
-        "sku": "TPOR6"
-      }
-    ],
+    "hasPackPriceMatrix": false,
     "tapeWidths": [
       "1mm x 55m",
       "2mm x 55m",
@@ -1873,38 +1799,80 @@ export const ECOM_CATALOG = [
         "width": "1mm x 55m",
         "priceGbp": 2.91,
         "priceEur": 3.42,
+        "priceRetailGbp": 2.91,
+        "priceRetailEur": 3.4,
+        "priceRrpExVat": 2.91,
         "priceRrpIncVat": 3.49,
+        "priceDealerGbp": 2.18,
+        "priceDealerEur": 2.55,
+        "priceDistributorGbp": 1.46,
+        "priceDistributorEur": 1.71,
+        "discountPercent": 50,
         "stockCode": "TPOR1",
         "sku": "TPOR1",
-        "barcode": "5060733583244"
+        "barcode": "5060733583244",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1"
       },
       {
         "width": "2mm x 55m",
         "priceGbp": 3.33,
         "priceEur": 3.92,
+        "priceRetailGbp": 3.33,
+        "priceRetailEur": 3.9,
+        "priceRrpExVat": 3.33,
         "priceRrpIncVat": 3.99,
+        "priceDealerGbp": 2.49,
+        "priceDealerEur": 2.91,
+        "priceDistributorGbp": 1.66,
+        "priceDistributorEur": 1.94,
+        "discountPercent": 50,
         "stockCode": "TPOR2",
         "sku": "TPOR2",
-        "barcode": "5060733583251"
+        "barcode": "5060733583251",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange2mm.png?fit=600%2C600&ssl=1"
       },
       {
         "width": "3mm x 55m",
         "priceGbp": 3.74,
         "priceEur": 4.4,
+        "priceRetailGbp": 3.74,
+        "priceRetailEur": 4.38,
+        "priceRrpExVat": 3.74,
         "priceRrpIncVat": 4.49,
+        "priceDealerGbp": 2.81,
+        "priceDealerEur": 3.29,
+        "priceDistributorGbp": 1.86,
+        "priceDistributorEur": 2.18,
+        "discountPercent": 50,
         "stockCode": "TPOR3",
         "sku": "TPOR3",
-        "barcode": "5060733583268"
+        "barcode": "5060733583268",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange3mm.png?fit=600%2C600&ssl=1"
       },
       {
         "width": "6mm x 55m",
         "priceGbp": 4.16,
         "priceEur": 4.89,
+        "priceRetailGbp": 4.16,
+        "priceRetailEur": 4.87,
+        "priceRrpExVat": 4.16,
         "priceRrpIncVat": 4.99,
+        "priceDealerGbp": 3.12,
+        "priceDealerEur": 3.65,
+        "priceDistributorGbp": 2.08,
+        "priceDistributorEur": 2.43,
+        "discountPercent": 50,
         "stockCode": "TPOR6",
         "sku": "TPOR6",
-        "barcode": "5060733583275"
+        "barcode": "5060733583275",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange6mm.png?fit=600%2C600&ssl=1"
       }
+    ],
+    "images": [
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange2mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange3mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange6mm.png?fit=600%2C600&ssl=1"
     ]
   },
   {
@@ -1919,7 +1887,7 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebGreenProSet.jpg?fit=600%2C600&ssl=1",
-    "description": "Prime Green Fine Line Mixed Set\nSizes included: 1 x 1mm, 1 x 2mm, 2 x 3mm\nOur Prime Green Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime orange fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 132° C/270° F for at least 30 minutes.",
+    "description": "Prime Green Fine Line Mixed Set\nSizes included: 1 x 1mm, 1 x 2mm, 2 x 3mm\nOur Prime Green Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime orange fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 132° C/270° F for at least 30 minutes.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
@@ -1928,7 +1896,16 @@ export const ECOM_CATALOG = [
     "priceRetailGbp": 15.83,
     "priceRetailEur": 18.52,
     "priceRrpExVat": 15.83,
-    "priceRrpIncVat": 18.99
+    "priceRrpIncVat": 18.99,
+    "images": [
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebGreenProSet.jpg?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green2mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green3mm.png?fit=600%2C600&ssl=1"
+    ],
+    "hasTapeOptions": false,
+    "tapeWidths": [],
+    "hasPackPriceMatrix": false
   },
   {
     "id": "fk-2352",
@@ -1942,19 +1919,14 @@ export const ECOM_CATALOG = [
     "isPreOrder": false,
     "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
-    "description": "Available in 1mm, 2mm, 3mm & 6mm widths\nOur Prime Green Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime orange fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 132° C/270° F for at least 30 minutes.",
+    "description": "Available in 1mm, 2mm, 3mm & 6mm widths\nOur Prime Green Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime orange fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 132° C/270° F for at least 30 minutes.",
     "sizes": [
       "1mm x 55m",
       "2mm x 55m",
       "3mm x 55m",
       "6mm x 55m"
     ],
-    "packSizes": [
-      "1mm x 55m",
-      "2mm x 55m",
-      "3mm x 55m",
-      "6mm x 55m"
-    ],
+    "packSizes": [],
     "hasOptions": true,
     "tapeWidths": [
       "1mm x 55m",
@@ -1967,37 +1939,73 @@ export const ECOM_CATALOG = [
         "width": "1mm x 55m",
         "priceGbp": 2.91,
         "priceEur": 3.42,
+        "priceRetailGbp": 2.91,
+        "priceRetailEur": 3.4,
+        "priceRrpExVat": 2.91,
         "priceRrpIncVat": 3.49,
+        "priceDealerGbp": 2.18,
+        "priceDealerEur": 2.55,
+        "priceDistributorGbp": 1.46,
+        "priceDistributorEur": 1.71,
+        "discountPercent": 50,
         "stockCode": "TPGR1",
         "sku": "TPGR1",
-        "barcode": "5060733583190"
+        "barcode": "5060733583190",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1"
       },
       {
         "width": "2mm x 55m",
         "priceGbp": 3.33,
         "priceEur": 3.92,
+        "priceRetailGbp": 3.33,
+        "priceRetailEur": 3.9,
+        "priceRrpExVat": 3.33,
         "priceRrpIncVat": 3.99,
+        "priceDealerGbp": 2.49,
+        "priceDealerEur": 2.91,
+        "priceDistributorGbp": 1.66,
+        "priceDistributorEur": 1.94,
+        "discountPercent": 50,
         "stockCode": "TPGR2",
         "sku": "TPGR2",
-        "barcode": "5060733583206"
+        "barcode": "5060733583206",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green2mm.png?fit=600%2C600&ssl=1"
       },
       {
         "width": "3mm x 55m",
         "priceGbp": 3.74,
         "priceEur": 4.4,
+        "priceRetailGbp": 3.74,
+        "priceRetailEur": 4.38,
+        "priceRrpExVat": 3.74,
         "priceRrpIncVat": 4.49,
+        "priceDealerGbp": 2.81,
+        "priceDealerEur": 3.29,
+        "priceDistributorGbp": 1.86,
+        "priceDistributorEur": 2.18,
+        "discountPercent": 50,
         "stockCode": "TPGR3",
         "sku": "TPGR3",
-        "barcode": "5060733583213"
+        "barcode": "5060733583213",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green3mm.png?fit=600%2C600&ssl=1"
       },
       {
         "width": "6mm x 55m",
         "priceGbp": 4.16,
         "priceEur": 4.89,
+        "priceRetailGbp": 4.16,
+        "priceRetailEur": 4.87,
+        "priceRrpExVat": 4.16,
         "priceRrpIncVat": 4.99,
+        "priceDealerGbp": 3.12,
+        "priceDealerEur": 3.65,
+        "priceDistributorGbp": 2.08,
+        "priceDistributorEur": 2.43,
+        "discountPercent": 50,
         "stockCode": "TPGR6",
         "sku": "TPGR6",
-        "barcode": "5060733583220"
+        "barcode": "5060733583220",
+        "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green6mm.png?fit=600%2C600&ssl=1"
       }
     ],
     "hasTapeOptions": true,
@@ -2007,56 +2015,12 @@ export const ECOM_CATALOG = [
     "priceRetailEur": 3.4,
     "priceRrpExVat": 2.91,
     "priceRrpIncVat": 3.49,
-    "hasPackPriceMatrix": true,
-    "packPriceMatrix": [
-      {
-        "packSize": "1mm x 55m",
-        "stockCode": "TPGR1",
-        "barcode": "5060733583190",
-        "priceGbp": 2.91,
-        "priceEur": 3.4,
-        "priceRetailGbp": 2.91,
-        "priceRetailEur": 3.4,
-        "priceRrpExVat": 2.91,
-        "priceRrpIncVat": 3.49,
-        "sku": "TPGR1"
-      },
-      {
-        "packSize": "2mm x 55m",
-        "stockCode": "TPGR2",
-        "barcode": "5060733583206",
-        "priceGbp": 3.33,
-        "priceEur": 3.9,
-        "priceRetailGbp": 3.33,
-        "priceRetailEur": 3.9,
-        "priceRrpExVat": 3.33,
-        "priceRrpIncVat": 3.99,
-        "sku": "TPGR2"
-      },
-      {
-        "packSize": "3mm x 55m",
-        "stockCode": "TPGR3",
-        "barcode": "5060733583213",
-        "priceGbp": 3.74,
-        "priceEur": 4.38,
-        "priceRetailGbp": 3.74,
-        "priceRetailEur": 4.38,
-        "priceRrpExVat": 3.74,
-        "priceRrpIncVat": 4.49,
-        "sku": "TPGR3"
-      },
-      {
-        "packSize": "6mm x 55m",
-        "stockCode": "TPGR6",
-        "barcode": "5060733583220",
-        "priceGbp": 4.16,
-        "priceEur": 4.87,
-        "priceRetailGbp": 4.16,
-        "priceRetailEur": 4.87,
-        "priceRrpExVat": 4.16,
-        "priceRrpIncVat": 4.99,
-        "sku": "TPGR6"
-      }
+    "hasPackPriceMatrix": false,
+    "images": [
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green2mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green3mm.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green6mm.png?fit=600%2C600&ssl=1"
     ]
   },
   {

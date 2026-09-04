@@ -375,90 +375,594 @@
       "brand": "Flake King",
       "name": "UltiMask Crepe Masking Tape",
       "sku": "ultimask-crepe-masking-tape",
-      "priceGbp": 1.68,
-      "priceEur": 1.97,
-      "permalink": "https://www.flakeking.com/product/ultimask-crepe-masking-tape/",
-      "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe18mmB.gif?fit=600%2C600&ssl=1",
-      "description": "Available in 18mm, 24mm, 36mm & 48mm widths\nUltiMask Crepe Masking Tape is a general all-round crepe tape for masking off areas when spraying vehicles. It is ideally suited to use with other Flake King products, with a strong adhesion and is heat-resistant to temperatures of 80C/176F. UltiMask Crepe Masking Tape can be easily removed, leaving no residue and is available in widths from 19mm to 48mm. UltiMask Crepe Masking Tape is the perfect high-quality everyday tape. Supplied individually packed to keep clean and dry.",
+      "type": "variable",
+      "hasOptions": true,
+      "hasMultipleWidths": true,
       "categories": [
         "Masking Products"
       ],
-      "badge": "FLAKE KING"
+      "badge": "FINE LINE PRO",
+      "rollLength": "50m",
+      "priceGbp": 1.68,
+      "priceEur": 1.97,
+      "priceRangeGbp": {
+        "minIncVat": 1.68,
+        "maxIncVat": 4.32,
+        "minExVat": 1.4,
+        "maxExVat": 3.6
+      },
+      "priceRangeEur": {
+        "min": 1.64,
+        "max": 4.21
+      },
+      "permalink": "https://www.flakeking.com/product/ultimask-crepe-masking-tape/",
+      "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe18mmB.gif?fit=600%2C600&ssl=1",
+      "images": [
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe18mmB.gif?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe24mmB.gif?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe36mmB.gif?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe48mmB.gif?fit=600%2C600&ssl=1"
+      ],
+      "description": "Available in 18mm, 24mm, 36mm & 48mm widths\nUltiMask Crepe Masking Tape is a general all-round crepe tape for masking off areas when spraying vehicles. It is ideally suited to use with other Flake King products, with a strong adhesion and is heat-resistant to temperatures of 80C/176F. UltiMask Crepe Masking Tape can be easily removed, leaving no residue and is available in widths from 19mm to 48mm. UltiMask Crepe Masking Tape is the perfect high-quality everyday tape. Supplied individually packed to keep clean and dry.",
+      "tapeWidths": [
+        "18mm x 50m",
+        "24mm x 50m",
+        "36mm x 50m",
+        "48mm x 50m"
+      ],
+      "sizes": [
+        "18mm x 50m",
+        "24mm x 50m",
+        "36mm x 50m",
+        "48mm x 50m"
+      ],
+      "variants": [
+        {
+          "variationId": 2397,
+          "tapeWidth": "18mm x 50m",
+          "rawWidth": "18mm",
+          "stockCode": "TPCP18",
+          "sku": "TPCP18",
+          "barcode": "5060733583145",
+          "priceGbpIncVat": 1.68,
+          "priceGbpExVat": 1.4,
+          "priceEur": 1.64,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe18mmB.gif?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "50m",
+            "width": "18mm",
+            "height": ""
+          },
+          "inStock": true
+        },
+        {
+          "variationId": 2398,
+          "tapeWidth": "24mm x 50m",
+          "rawWidth": "24mm",
+          "stockCode": "TPCP24",
+          "sku": "TPCP24",
+          "barcode": "5060733580250",
+          "priceGbpIncVat": 2.16,
+          "priceGbpExVat": 1.8,
+          "priceEur": 2.11,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe24mmB.gif?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "50m",
+            "width": "24mm",
+            "height": ""
+          },
+          "inStock": true
+        },
+        {
+          "variationId": 2399,
+          "tapeWidth": "36mm x 50m",
+          "rawWidth": "36mm",
+          "stockCode": "TPCP36",
+          "sku": "TPCP36",
+          "barcode": "5060733580267",
+          "priceGbpIncVat": 3.24,
+          "priceGbpExVat": 2.7,
+          "priceEur": 3.16,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe36mmB.gif?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "50m",
+            "width": "36mm",
+            "height": ""
+          },
+          "inStock": true
+        },
+        {
+          "variationId": 2400,
+          "tapeWidth": "48mm x 50m",
+          "rawWidth": "48mm",
+          "stockCode": "TPCP48",
+          "sku": "TPCP48",
+          "barcode": "5060733580274",
+          "priceGbpIncVat": 4.32,
+          "priceGbpExVat": 3.6,
+          "priceEur": 4.21,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe48mmB.gif?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "50m",
+            "width": "48mm",
+            "height": ""
+          },
+          "inStock": true
+        }
+      ]
     },
     {
       "id": "2380",
       "brand": "Flake King",
       "name": "Prime Flat Line Masking Tape",
       "sku": "prime-flat-line-masking-tape",
-      "priceGbp": 1.99,
-      "priceEur": 2.33,
-      "permalink": "https://www.flakeking.com/product/prime-flat-line-masking-tape/",
-      "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine6mm.png?fit=600%2C600&ssl=1",
-      "description": "Prime Flat Line Masking Tape\nAvailable in 6mm, 9mm, 12mm, 24mm & 48mm widths\nPrime Flat Line Orange is our precision masking solution for masking rubbers, plastics, mouldings, trims, canvass and artboards – both paper and synthetic airbrush papers. Summed up it is a flat non-bleed tape that adheres to surfaces that conventional masking tape would not!\nConstructed from “washi” or better known as rice paper, this non-bleed tape is suitable for fine-line work as well as general masking. Developed for high end industrial, commercial model makers, scenery, film, automotive, and artists applications. Ideal for placing over existing artwork or vinyl fine lines as the tape is so translucent it allows you see through it to cut and remove the necessary areas.\nThe flexible, water-proof, advanced acrylic adhesive means that it will adhere to surfaces that standard masking tape would otherwise not; resistant to 110C/230F, available in widths from 6mm upwards. However, we can produce this to any width required subject to quantity.",
+      "type": "variable",
+      "hasOptions": true,
+      "hasMultipleWidths": true,
       "categories": [
         "Masking Products"
       ],
-      "badge": "FLAKE KING"
+      "badge": "FINE LINE PRO",
+      "rollLength": "50m",
+      "priceGbp": 1.99,
+      "priceEur": 2.33,
+      "priceRangeGbp": {
+        "minIncVat": 1.99,
+        "maxIncVat": 6.99,
+        "minExVat": 1.66,
+        "maxExVat": 5.83
+      },
+      "priceRangeEur": {
+        "min": 1.94,
+        "max": 6.82
+      },
+      "permalink": "https://www.flakeking.com/product/prime-flat-line-masking-tape/",
+      "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine6mm.png?fit=600%2C600&ssl=1",
+      "images": [
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine6mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine9mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine12mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine24mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mmA.png?fit=600%2C600&ssl=1"
+      ],
+      "description": "Prime Flat Line Masking Tape\nAvailable in 6mm, 9mm, 12mm, 24mm & 48mm widths\nPrime Flat Line Orange is our precision masking solution for masking rubbers, plastics, mouldings, trims, canvass and artboards – both paper and synthetic airbrush papers. Summed up it is a flat non-bleed tape that adheres to surfaces that conventional masking tape would not!\nConstructed from “washi” or better known as rice paper, this non-bleed tape is suitable for fine-line work as well as general masking. Developed for high end industrial, commercial model makers, scenery, film, automotive, and artists applications. Ideal for placing over existing artwork or vinyl fine lines as the tape is so translucent it allows you see through it to cut and remove the necessary areas.\nThe flexible, water-proof, advanced acrylic adhesive means that it will adhere to surfaces that standard masking tape would otherwise not; resistant to 110C/230F, available in widths from 6mm upwards. However, we can produce this to any width required subject to quantity.",
+      "tapeWidths": [
+        "6mm x 50m",
+        "9mm x 50m",
+        "12mm x 50m",
+        "24mm x 50m",
+        "48mm x 50m"
+      ],
+      "sizes": [
+        "6mm x 50m",
+        "9mm x 50m",
+        "12mm x 50m",
+        "24mm x 50m",
+        "48mm x 50m"
+      ],
+      "variants": [
+        {
+          "variationId": 2387,
+          "tapeWidth": "6mm x 50m",
+          "rawWidth": "6mm",
+          "stockCode": "TPFL6",
+          "sku": "TPFL6",
+          "barcode": "5060733583299",
+          "priceGbpIncVat": 1.99,
+          "priceGbpExVat": 1.66,
+          "priceEur": 1.94,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine6mm.png?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "50m",
+            "width": "6mm",
+            "height": ""
+          },
+          "inStock": true
+        },
+        {
+          "variationId": 2388,
+          "tapeWidth": "9mm x 50m",
+          "rawWidth": "9mm",
+          "stockCode": "TPFL9",
+          "sku": "TPFL9",
+          "barcode": "5060733583305",
+          "priceGbpIncVat": 2.29,
+          "priceGbpExVat": 1.91,
+          "priceEur": 2.23,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine9mm.png?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "50m",
+            "width": "9mm",
+            "height": ""
+          },
+          "inStock": true
+        },
+        {
+          "variationId": 2389,
+          "tapeWidth": "12mm x 50m",
+          "rawWidth": "12mm",
+          "stockCode": "TPFL12",
+          "sku": "TPFL12",
+          "barcode": "5060733583312",
+          "priceGbpIncVat": 2.49,
+          "priceGbpExVat": 2.08,
+          "priceEur": 2.43,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine12mm.png?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "50m",
+            "width": "12mm",
+            "height": ""
+          },
+          "inStock": true
+        },
+        {
+          "variationId": 2390,
+          "tapeWidth": "24mm x 50m",
+          "rawWidth": "24mm",
+          "stockCode": "TPFL24",
+          "sku": "TPFL24",
+          "barcode": "5060733583329",
+          "priceGbpIncVat": 3.99,
+          "priceGbpExVat": 3.33,
+          "priceEur": 3.9,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine24mm.png?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "50m",
+            "width": "24mm",
+            "height": ""
+          },
+          "inStock": true
+        },
+        {
+          "variationId": 2391,
+          "tapeWidth": "48mm x 50m",
+          "rawWidth": "48mm",
+          "stockCode": "TPFL48",
+          "sku": "TPFL48",
+          "barcode": "5060733583336",
+          "priceGbpIncVat": 6.99,
+          "priceGbpExVat": 5.83,
+          "priceEur": 6.82,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mm.png?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "50m",
+            "width": "48mm",
+            "height": ""
+          },
+          "inStock": true
+        }
+      ]
     },
     {
       "id": "2375",
       "brand": "Flake King",
       "name": "Prime Orange Fine Line Mixed Set",
-      "sku": "5060733583282",
-      "priceGbp": 18.99,
-      "priceEur": 22.22,
-      "permalink": "https://www.flakeking.com/product/prime-orange-fine-line-mixed-set/",
-      "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1",
-      "description": "Prime Orange Fine Line Mixed Set\nSizes included: 1 x 1mm, 1 x 2mm, 2 x 3mm\nOur Prime Orange Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime green fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 138°C/280°F for at least 45 minutes; after painting, it can be cleanly removed leaving a defined line with no adhesive residue.",
+      "sku": "TPORMix",
+      "type": "simple",
+      "hasOptions": false,
+      "hasMultipleWidths": false,
       "categories": [
         "Masking Products"
       ],
-      "badge": "FLAKE KING"
+      "badge": "FINE LINE PRO",
+      "rollLength": "55m",
+      "priceGbp": 18.99,
+      "priceEur": 22.24,
+      "priceRangeGbp": null,
+      "priceRangeEur": null,
+      "permalink": "https://www.flakeking.com/product/prime-orange-fine-line-mixed-set/",
+      "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1",
+      "images": [
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange2mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange3mm.png?fit=600%2C600&ssl=1"
+      ],
+      "description": "Prime Orange Fine Line Mixed Set\nSizes included: 1 x 1mm, 1 x 2mm, 2 x 3mm\nOur Prime Orange Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime green fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 138°C/280°F for at least 45 minutes; after painting, it can be cleanly removed leaving a defined line with no adhesive residue.",
+      "tapeWidths": [],
+      "sizes": [],
+      "variants": [
+        {
+          "variationId": 2375,
+          "tapeWidth": "Set",
+          "rawWidth": "Set",
+          "stockCode": "TPORMix",
+          "sku": "TPORMix",
+          "barcode": "5060733583282",
+          "priceGbpIncVat": 18.99,
+          "priceGbpExVat": 15.83,
+          "priceEur": 18.52,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1",
+          "inStock": true
+        }
+      ]
     },
     {
       "id": "2366",
       "brand": "Flake King",
       "name": "Prime Orange Fine Line",
       "sku": "prime-orange-fine-line",
-      "priceGbp": 3.49,
-      "priceEur": 4.08,
-      "permalink": "https://www.flakeking.com/product/prime-orange-fine-line/",
-      "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
-      "description": "Available in 1mm, 2mm, 3mm & 6mm widths\nOur Prime Orange Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime green fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 138°C/280°F for at least 45 minutes; after painting, it can be cleanly removed leaving a defined line with no adhesive residue.",
+      "type": "variable",
+      "hasOptions": true,
+      "hasMultipleWidths": true,
       "categories": [
         "Masking Products"
       ],
-      "badge": "FLAKE KING"
+      "badge": "FINE LINE PRO",
+      "rollLength": "55m",
+      "priceGbp": 3.49,
+      "priceEur": 4.09,
+      "priceRangeGbp": {
+        "minIncVat": 3.49,
+        "maxIncVat": 4.99,
+        "minExVat": 2.91,
+        "maxExVat": 4.16
+      },
+      "priceRangeEur": {
+        "min": 3.4,
+        "max": 4.87
+      },
+      "permalink": "https://www.flakeking.com/product/prime-orange-fine-line/",
+      "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
+      "images": [
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange2mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange3mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange6mm.png?fit=600%2C600&ssl=1"
+      ],
+      "description": "Available in 1mm, 2mm, 3mm & 6mm widths\nOur Prime Orange Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime green fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 138°C/280°F for at least 45 minutes; after painting, it can be cleanly removed leaving a defined line with no adhesive residue.",
+      "tapeWidths": [
+        "1mm x 55m",
+        "2mm x 55m",
+        "3mm x 55m",
+        "6mm x 55m"
+      ],
+      "sizes": [
+        "1mm x 55m",
+        "2mm x 55m",
+        "3mm x 55m",
+        "6mm x 55m"
+      ],
+      "variants": [
+        {
+          "variationId": 2371,
+          "tapeWidth": "1mm x 55m",
+          "rawWidth": "1mm",
+          "stockCode": "TPOR1",
+          "sku": "TPOR1",
+          "barcode": "5060733583244",
+          "priceGbpIncVat": 3.49,
+          "priceGbpExVat": 2.91,
+          "priceEur": 3.4,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "55m",
+            "width": "1mm",
+            "height": ""
+          },
+          "inStock": true
+        },
+        {
+          "variationId": 2372,
+          "tapeWidth": "2mm x 55m",
+          "rawWidth": "2mm",
+          "stockCode": "TPOR2",
+          "sku": "TPOR2",
+          "barcode": "5060733583251",
+          "priceGbpIncVat": 3.99,
+          "priceGbpExVat": 3.33,
+          "priceEur": 3.9,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange2mm.png?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "55m",
+            "width": "2mm",
+            "height": ""
+          },
+          "inStock": true
+        },
+        {
+          "variationId": 2373,
+          "tapeWidth": "3mm x 55m",
+          "rawWidth": "3mm",
+          "stockCode": "TPOR3",
+          "sku": "TPOR3",
+          "barcode": "5060733583268",
+          "priceGbpIncVat": 4.49,
+          "priceGbpExVat": 3.74,
+          "priceEur": 4.38,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange3mm.png?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "55m",
+            "width": "3mm",
+            "height": ""
+          },
+          "inStock": true
+        },
+        {
+          "variationId": 2374,
+          "tapeWidth": "6mm x 55m",
+          "rawWidth": "6mm",
+          "stockCode": "TPOR6",
+          "sku": "TPOR6",
+          "barcode": "5060733583275",
+          "priceGbpIncVat": 4.99,
+          "priceGbpExVat": 4.16,
+          "priceEur": 4.87,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange6mm.png?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "55m",
+            "width": "6mm",
+            "height": ""
+          },
+          "inStock": true
+        }
+      ]
     },
     {
       "id": "2361",
       "brand": "Flake King",
       "name": "Prime Green Fine Line Mixed Set",
-      "sku": "5060733583237",
-      "priceGbp": 18.99,
-      "priceEur": 22.22,
-      "permalink": "https://www.flakeking.com/product/prime-green-fine-line-mixed-set/",
-      "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebGreenProSet.jpg?fit=600%2C600&ssl=1",
-      "description": "Prime Green Fine Line Mixed Set\nSizes included: 1 x 1mm, 1 x 2mm, 2 x 3mm\nOur Prime Green Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime orange fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 132° C/270° F for at least 30 minutes.",
+      "sku": "TPGRMix",
+      "type": "simple",
+      "hasOptions": false,
+      "hasMultipleWidths": false,
       "categories": [
         "Masking Products"
       ],
-      "badge": "FLAKE KING"
+      "badge": "FINE LINE PRO",
+      "rollLength": "55m",
+      "priceGbp": 18.99,
+      "priceEur": 22.24,
+      "priceRangeGbp": null,
+      "priceRangeEur": null,
+      "permalink": "https://www.flakeking.com/product/prime-green-fine-line-mixed-set/",
+      "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebGreenProSet.jpg?fit=600%2C600&ssl=1",
+      "images": [
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebGreenProSet.jpg?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green2mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green3mm.png?fit=600%2C600&ssl=1"
+      ],
+      "description": "Prime Green Fine Line Mixed Set\nSizes included: 1 x 1mm, 1 x 2mm, 2 x 3mm\nOur Prime Green Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime orange fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 132° C/270° F for at least 30 minutes.",
+      "tapeWidths": [],
+      "sizes": [],
+      "variants": [
+        {
+          "variationId": 2361,
+          "tapeWidth": "Set",
+          "rawWidth": "Set",
+          "stockCode": "TPGRMix",
+          "sku": "TPGRMix",
+          "barcode": "5060733583237",
+          "priceGbpIncVat": 18.99,
+          "priceGbpExVat": 15.83,
+          "priceEur": 18.52,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebGreenProSet.jpg?fit=600%2C600&ssl=1",
+          "inStock": true
+        }
+      ]
     },
     {
       "id": "2352",
       "brand": "Flake King",
       "name": "Prime Green Fine Line Tape",
       "sku": "prime-green-fine-line-tape",
-      "priceGbp": 3.49,
-      "priceEur": 4.08,
-      "permalink": "https://www.flakeking.com/product/prime-green-fine-line-tape/",
-      "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
-      "description": "Available in 1mm, 2mm, 3mm & 6mm widths\nOur Prime Green Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime orange fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 132° C/270° F for at least 30 minutes.",
+      "type": "variable",
+      "hasOptions": true,
+      "hasMultipleWidths": true,
       "categories": [
         "Masking Products"
       ],
-      "badge": "FLAKE KING"
+      "badge": "FINE LINE PRO",
+      "rollLength": "55m",
+      "priceGbp": 3.49,
+      "priceEur": 4.09,
+      "priceRangeGbp": {
+        "minIncVat": 3.49,
+        "maxIncVat": 4.99,
+        "minExVat": 2.91,
+        "maxExVat": 4.16
+      },
+      "priceRangeEur": {
+        "min": 3.4,
+        "max": 4.87
+      },
+      "permalink": "https://www.flakeking.com/product/prime-green-fine-line-tape/",
+      "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
+      "images": [
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green2mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green3mm.png?fit=600%2C600&ssl=1",
+        "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green6mm.png?fit=600%2C600&ssl=1"
+      ],
+      "description": "Available in 1mm, 2mm, 3mm & 6mm widths\nOur Prime Green Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime orange fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 132° C/270° F for at least 30 minutes.",
+      "tapeWidths": [
+        "1mm x 55m",
+        "2mm x 55m",
+        "3mm x 55m",
+        "6mm x 55m"
+      ],
+      "sizes": [
+        "1mm x 55m",
+        "2mm x 55m",
+        "3mm x 55m",
+        "6mm x 55m"
+      ],
+      "variants": [
+        {
+          "variationId": 2357,
+          "tapeWidth": "1mm x 55m",
+          "rawWidth": "1mm",
+          "stockCode": "TPGR1",
+          "sku": "TPGR1",
+          "barcode": "5060733583190",
+          "priceGbpIncVat": 3.49,
+          "priceGbpExVat": 2.91,
+          "priceEur": 3.4,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "55m",
+            "width": "1mm",
+            "height": ""
+          },
+          "inStock": true
+        },
+        {
+          "variationId": 2358,
+          "tapeWidth": "2mm x 55m",
+          "rawWidth": "2mm",
+          "stockCode": "TPGR2",
+          "sku": "TPGR2",
+          "barcode": "5060733583206",
+          "priceGbpIncVat": 3.99,
+          "priceGbpExVat": 3.33,
+          "priceEur": 3.9,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green2mm.png?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "55m",
+            "width": "2mm",
+            "height": ""
+          },
+          "inStock": true
+        },
+        {
+          "variationId": 2359,
+          "tapeWidth": "3mm x 55m",
+          "rawWidth": "3mm",
+          "stockCode": "TPGR3",
+          "sku": "TPGR3",
+          "barcode": "5060733583213",
+          "priceGbpIncVat": 4.49,
+          "priceGbpExVat": 3.74,
+          "priceEur": 4.38,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green3mm.png?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "55m",
+            "width": "3mm",
+            "height": ""
+          },
+          "inStock": true
+        },
+        {
+          "variationId": 2360,
+          "tapeWidth": "6mm x 55m",
+          "rawWidth": "6mm",
+          "stockCode": "TPGR6",
+          "sku": "TPGR6",
+          "barcode": "5060733583220",
+          "priceGbpIncVat": 4.99,
+          "priceGbpExVat": 4.16,
+          "priceEur": 4.87,
+          "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green6mm.png?fit=600%2C600&ssl=1",
+          "dimensions": {
+            "length": "55m",
+            "width": "6mm",
+            "height": ""
+          },
+          "inStock": true
+        }
+      ]
     },
     {
       "id": "2341",
