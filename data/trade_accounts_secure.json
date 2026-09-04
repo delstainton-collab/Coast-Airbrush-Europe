@@ -1,0 +1,53 @@
+[
+  {
+    "id": "acc_apex_custom_uk",
+    "email": "sarah.j@apexpaint.co.uk",
+    "password": "ApexCustom2026!",
+    "company": "Apex Custom Paintworks Ltd",
+    "contactName": "Sarah Jensen",
+    "role": "dealer",
+    "tierLabel": "Tier 2: Authorized Trade Dealer",
+    "vat": "GB123456789",
+    "eori": "GB123456789000",
+    "country": "United Kingdom",
+    "currency": "GBP",
+    "discountMultiplier": 0.7,
+    "paymentTerms": "Net 30 Days",
+    "approved": true,
+    "approvedAt": "2026-02-15T09:00:00Z"
+  },
+  {
+    "id": "acc_mipa_nordic_eu",
+    "email": "distributor@mipa-nordic.eu",
+    "password": "Distributor2026!",
+    "company": "Mipa Nordic Logistics B.V.",
+    "contactName": "Karl Heinz",
+    "role": "distributor",
+    "tierLabel": "Tier 1: Master Regional Distributor",
+    "vat": "NL999999999B01",
+    "eori": "NL999999999000",
+    "country": "Netherlands",
+    "currency": "EUR",
+    "discountMultiplier": 0.45,
+    "paymentTerms": "Net 60 Days / Pallet Allocation",
+    "approved": true,
+    "approvedAt": "2026-01-10T10:30:00Z"
+  },
+  {
+    "id": "acc_bavaria_de",
+    "email": "klaus@bavariakustom.de",
+    "password": "Bavaria2026!",
+    "company": "Bavaria Kustom Works",
+    "contactName": "Klaus Weber",
+    "role": "dealer",
+    "tierLabel": "Tier 2: Trade Dealer (Pending Approval)",
+    "vat": "DE345678901",
+    "eori": "DE345678901000",
+    "country": "Germany",
+    "currency": "EUR",
+    "discountMultiplier": 0.7,
+    "paymentTerms": "Pending Compliance Review",
+    "approved": false,
+    "approvedAt": null
+  }
+]

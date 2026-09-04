@@ -3,7 +3,7 @@
 import { recommendContainerPack } from './mixingEngine.js';
 
 export class ShopifyCartManager {
-  constructor(shopifyDomain = "shop.coastairbrush.eu") {
+  constructor(shopifyDomain = "coastairbrush.eu") {
     this.shopifyDomain = shopifyDomain;
     this.cartItems = JSON.parse(localStorage.getItem('coast_cart_items') || '[]');
     this.listeners = [];
@@ -45,26 +45,31 @@ export class ShopifyCartManager {
    * Adds entire mixed recipe BOM into Shopify Cart Drawer
    */
   addRecipeToShopifyCart(recipe, projectName = "Custom Color Mix") {
-    if (!recipe || !recipe.steps) return;
+    const items = recipe ? (recipe.steps || recipe.components) : null;
+    if (!items || !items.length) return false;
 
-    recipe.steps.forEach(step => {
-      const sku = step.productSku || 'KE-BASE-1L';
-      const name = step.componentName || 'Custom Blend Component';
-      const basePriceEur = 28.50;
+    items.forEach(step => {
+      const sku = step.productSku || step.sku || 'KE-BASE-1L';
+      const name = step.componentName || step.name || 'Custom Blend Component';
+      const basePriceEur = (step.selectedProduct && step.selectedProduct.priceEur) || step.priceEur || 28.50;
+      const targetWeight = (step.targetWeightGrams !== undefined ? step.targetWeightGrams : (step.individualWeightGrams || 0));
+      const cumulativeWeight = (step.cumulativeWeightGrams !== undefined ? step.cumulativeWeightGrams : 0);
+      const volumeMl = Math.round(step.volumeMl || 0);
 
       this.addItem({
         sku: sku,
         title: name,
         priceEur: basePriceEur,
         quantity: 1,
-        variantDetails: `${Math.round(step.volumeMl)} mL / ${step.targetWeightGrams.toFixed(1)}g`,
+        variantDetails: `${volumeMl} mL / ${targetWeight.toFixed(1)}g`,
         properties: {
-          "Mixed Formula": recipe.systemName || "Custom Mix",
-          "Target Scale Weight": `${step.cumulativeWeightGrams}g`,
-          "Volume Needed": `${step.volumeMl}mL`
+          "Mixed Formula": recipe.systemName || projectName || "Custom Mix",
+          "Target Scale Weight": `${cumulativeWeight.toFixed(1)}g`,
+          "Volume Needed": `${volumeMl}mL`
         }
       });
     });
+    return true;
   }
 
   removeItem(index) {

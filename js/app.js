@@ -1,6 +1,7 @@
 // Coast Airbrush Europe - Master Storefront & Mixing System Controller
 import { KROMA_EDGE_CATALOG } from '../data/kroma_edge.js?v=20260831_clean';
-import { ECOM_CATALOG } from '../data/full_ecom_catalog.js?v=20260831_clean';
+import { ECOM_CATALOG } from '../data/full_ecom_catalog.js?v=20260904_sales_copy_v4';
+import { FLAKE_KING_TDS, FLAKE_KING_WET_MIX_RATIOS, FLAKE_KING_MIXING_SYSTEMS } from '../data/flake_king_tds.js';
 import { calculateRequiredVolume, calculateMixingRecipe, calculateKromaCoverage, PRESET_PANELS, CONVERSIONS } from './mixingEngine.js';
 import { ShopifyCartManager } from './shopifyCart.js';
 import { EULocalizationManager } from './euLocalization.js';
@@ -16,7 +17,16 @@ class PaintSystemApp {
   constructor() {
     this.adminController = new AdminController(this);
     this.currentCatalog = JSON.parse(JSON.stringify(KROMA_EDGE_CATALOG));
-    this.currentCatalog.mixingSystems = this.adminController.config.formulas;
+    
+    // Combine Admin custom formulas with Flake King Wet Spray formulas
+    const baseFormulas = this.adminController.config.formulas || [];
+    const mergedFormulas = [...baseFormulas];
+    FLAKE_KING_MIXING_SYSTEMS.forEach(fkSys => {
+      if (!mergedFormulas.some(f => f.id === fkSys.id)) {
+        mergedFormulas.push(fkSys);
+      }
+    });
+    this.currentCatalog.mixingSystems = mergedFormulas;
     this.selectedSystem = this.currentCatalog.mixingSystems[0];
     this.selectedColors = {};
     this.totalMlNeeded = 500;
@@ -35,14 +45,41 @@ class PaintSystemApp {
     this.activeFlakeSubcat = 'all';
     this.searchQuery = '';
     this.isB2BMode = false;
+    this.b2bSession = null;
+    this.b2bPricing = null;
     this.selectedProductVariants = {};
     this.selectedTrackingOrder = this.agentB.orders[0];
     this.selectedEvalSku = "KE-CHROME-1L";
     this.selectedEvalQty = 50;
 
+    // Spreadsheet State Management
+    this.spreadsheetState = {
+      currentPage: 1,
+      pageSize: 50,
+      sortField: 'sku',
+      sortOrder: 'asc',
+      searchQuery: '',
+      departmentFilter: 'all',
+      brandFilter: 'all',
+      categoryFilter: 'all',
+      stockFilter: 'all',
+      modifiedFilter: 'all',
+      selectedIds: new Set(),
+      stagedEdits: new Map() // prodId -> { ...changedFields }
+    };
+
+    // Filter out any deleted products from runtime catalog
+    const deletedIds = this.adminController.getDeletedProductIds();
+    for (let i = ECOM_CATALOG.length - 1; i >= 0; i--) {
+      if (deletedIds.includes(ECOM_CATALOG[i].id)) {
+        ECOM_CATALOG.splice(i, 1);
+      }
+    }
+
     // Apply any saved Admin product overrides to runtime catalog
     const overrides = this.adminController.config.productOverrides || {};
     Object.keys(overrides).forEach(prodId => {
+      if (deletedIds.includes(prodId)) return;
       const idx = ECOM_CATALOG.findIndex(p => p.id === prodId);
       if (idx >= 0) {
         ECOM_CATALOG[idx] = { ...ECOM_CATALOG[idx], ...overrides[prodId] };
@@ -51,12 +88,196 @@ class PaintSystemApp {
       }
     });
 
+    // Stakeholder Review Mode (prevents live orders before official sign-off)
+    // Can be overridden via URL parameter ?live=true or ?review=false
+    const urlParams = new URLSearchParams(window.location.search);
+    const liveOverride = urlParams.get('live') === 'true' || urlParams.get('review') === 'false';
+    this.reviewMode = !liveOverride;
+
     this.initUI();
+
+    if (!this.reviewMode) {
+      const reviewBanner = document.getElementById('stakeholder-review-banner');
+      if (reviewBanner) reviewBanner.style.display = 'none';
+    }
   }
 
-  addSafeListener(id, event, callback) {
+  addSafeListener(id, eventOrCallback, maybeCallback) {
     const el = document.getElementById(id);
-    if (el) el.addEventListener(event, callback);
+    if (!el) return;
+    if (typeof eventOrCallback === 'function') {
+      el.addEventListener('click', eventOrCallback);
+    } else if (typeof maybeCallback === 'function') {
+      el.addEventListener(eventOrCallback, maybeCallback);
+    }
+  }
+
+  showToast(msg, type = 'info', duration = 3500) {
+    const container = document.getElementById('custom-app-toast');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    const borderColors = {
+      success: 'border-emerald-500/80 text-emerald-300 bg-[#141816]',
+      danger: 'border-rose-500/80 text-rose-300 bg-[#1c1214]',
+      warning: 'border-amber-500/80 text-amber-300 bg-[#1c1712]',
+      info: 'border-primary text-primary bg-[#121618]'
+    };
+    const iconNames = {
+      success: 'check_circle',
+      danger: 'error',
+      warning: 'warning',
+      info: 'info'
+    };
+
+    const colorClass = borderColors[type] || borderColors.info;
+    const iconName = iconNames[type] || iconNames.info;
+
+    toast.className = `custom-toast-item industrial-card border-2 p-3 font-mono text-xs shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex items-center justify-between gap-3 ${colorClass}`;
+    toast.innerHTML = `
+      <div class="flex items-center gap-2.5">
+        <span class="material-symbols-outlined text-[18px] flex-shrink-0">${iconName}</span>
+        <span class="text-zinc-100 font-medium leading-tight">${msg}</span>
+      </div>
+      <button class="text-secondary hover:text-white p-0.5 cursor-pointer ml-2 flex-shrink-0">
+        <span class="material-symbols-outlined text-[14px]">close</span>
+      </button>
+    `;
+
+    const closeBtn = toast.querySelector('button');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 250);
+      });
+    }
+
+    container.appendChild(toast);
+    requestAnimationFrame(() => {
+      toast.classList.add('show');
+    });
+
+    setTimeout(() => {
+      if (toast.parentNode) {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 250);
+      }
+    }, duration);
+  }
+
+  confirmDialog({
+    title = 'Confirm Action',
+    subtitle = 'Please review before continuing.',
+    message = 'Are you sure you want to proceed?',
+    itemDetails = '',
+    confirmText = 'Confirm',
+    cancelText = 'Cancel',
+    isDanger = true,
+    icon = 'warning'
+  } = {}) {
+    return new Promise((resolve) => {
+      const modal = document.getElementById('modal-custom-confirm');
+      const titleEl = document.getElementById('custom-confirm-title');
+      const subEl = document.getElementById('custom-confirm-subtitle');
+      const msgEl = document.getElementById('custom-confirm-message');
+      const previewEl = document.getElementById('custom-confirm-preview');
+      const btnAction = document.getElementById('btn-custom-confirm-action');
+      const actionLabel = document.getElementById('custom-confirm-action-label');
+      const btnCancel = document.getElementById('btn-custom-confirm-cancel');
+      const iconEl = document.getElementById('custom-confirm-icon');
+      const iconBox = document.getElementById('custom-confirm-icon-box');
+
+      if (!modal || !btnAction || !btnCancel) {
+        resolve(window.confirm(message));
+        return;
+      }
+
+      if (titleEl) titleEl.innerText = title;
+      if (subEl) subEl.innerText = subtitle;
+      if (msgEl) msgEl.innerHTML = message;
+      if (actionLabel) actionLabel.innerText = confirmText;
+      if (btnCancel) {
+        if (!cancelText) {
+          btnCancel.classList.add('hidden');
+        } else {
+          btnCancel.classList.remove('hidden');
+          btnCancel.innerText = cancelText;
+        }
+      }
+      if (iconEl) iconEl.innerText = icon;
+
+      if (previewEl) {
+        if (itemDetails) {
+          previewEl.innerHTML = itemDetails;
+          previewEl.classList.remove('hidden');
+        } else {
+          previewEl.innerHTML = '';
+          previewEl.classList.add('hidden');
+        }
+      }
+
+      if (iconBox) {
+        if (isDanger) {
+          iconBox.className = 'p-2.5 bg-rose-950/40 border border-rose-500/60 text-rose-400 rounded-sm flex items-center justify-center';
+          btnAction.className = 'font-mono text-xs font-bold px-4 py-2 border border-rose-500 bg-rose-600 text-white hover:bg-rose-500 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center gap-1.5 cursor-pointer';
+        } else {
+          iconBox.className = 'p-2.5 bg-primary/20 border border-primary/50 text-primary rounded-sm flex items-center justify-center';
+          btnAction.className = 'font-mono text-xs font-bold px-4 py-2 border border-primary bg-primary text-black hover:bg-primary/80 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center gap-1.5 cursor-pointer';
+        }
+      }
+
+      const cleanup = () => {
+        modal.classList.remove('active');
+        if (btnCancel) btnCancel.classList.remove('hidden');
+        btnAction.removeEventListener('click', onConfirm);
+        btnCancel.removeEventListener('click', onCancel);
+        modal.removeEventListener('click', onBackdrop);
+      };
+
+      const onConfirm = () => {
+        cleanup();
+        resolve(true);
+      };
+
+      const onCancel = () => {
+        cleanup();
+        resolve(false);
+      };
+
+      const onBackdrop = (e) => {
+        if (e.target === modal) {
+          cleanup();
+          resolve(false);
+        }
+      };
+
+      btnAction.addEventListener('click', onConfirm);
+      btnCancel.addEventListener('click', onCancel);
+      modal.addEventListener('click', onBackdrop);
+
+      modal.classList.add('active');
+    });
+  }
+
+  alertDialog({
+    title = 'System Notice',
+    subtitle = 'Coast Airbrush Europe',
+    message = '',
+    itemDetails = '',
+    confirmText = 'Acknowledge',
+    icon = 'info',
+    isDanger = false
+  } = {}) {
+    return this.confirmDialog({
+      title,
+      subtitle,
+      message,
+      itemDetails,
+      confirmText,
+      cancelText: '',
+      isDanger,
+      icon
+    });
   }
 
   initUI() {
@@ -85,20 +306,59 @@ class PaintSystemApp {
     this.setupWelcomeModal();
     this.setupQuickMixModal();
     this.setupHeroCrossfade();
+    this.initSocialProofPulse();
+    this.initReferralModal();
 
     // Global Hero & UI Action Bindings
     window.paintApp = this;
+    window.app = this;
+    this.cartManager = this.shopifyCartManager;
+    this.showCartDrawer = () => this.openCartDrawer();
     window.addKromaEdgeToCart = (prodId) => this.addProductToCartById(prodId);
     window.addKromaEdgeBundleToCart = () => this.addKromaEdgeBundleToCart();
+    window.addFlakeKingMasterBundleToCart = () => this.addFlakeKingMasterBundleToCart();
     window.configureKromaEdgeInMixLab = () => this.configureKromaEdgeInMixLab();
-    window.openDetailModal = (prodId) => this.openDetailModal(prodId);
+    window.openDetailModal = (prodId, tab) => this.openDetailModal(prodId, tab);
     window.openQuickMixModal = (systemId) => this.openQuickMixModal(systemId);
+    window.openFlakeTDSModal = () => this.openFlakeTDSModal();
+    window.closeFlakeTDSModal = () => this.closeFlakeTDSModal();
     window.setCategoryAndScroll = (catId) => this.setCategoryAndScroll(catId);
     window.applyKromaPreset = (panelId) => this.applyKromaPreset(panelId);
     window.calcCustomKromaArea = (val) => this.calcCustomKromaArea(val);
     window.applyEstimatedVolumeToMix = () => this.applyEstimatedVolumeToMix();
     window.setMixVolumePreset = (vol, unit) => this.setMixVolumePreset(vol, unit);
     window.setQuickMixVolumePreset = (vol, unit) => this.setQuickMixVolumePreset(vol, unit);
+    window.switchDetailImage = (imgSrc, btn) => this.switchDetailImage(imgSrc, btn);
+    window.switchDetailVideo = (videoIndex) => this.switchDetailVideo(videoIndex);
+    window.switchCopyTab = (tab) => this.switchCopyTab(tab);
+    window.openScaleMode = () => this.openScaleMode();
+    window.openAdminLogin = () => this.openAdminAuthModal();
+    window.openTradePortalModal = () => this.openTradePortalModal();
+    window.closeTradePortalModal = () => this.closeTradePortalModal();
+    window.switchTradeTab = (tab) => this.switchTradeTab(tab);
+    window.handleTradeLogin = () => this.handleTradeLogin();
+    window.handleTradeLogout = () => this.handleTradeLogout();
+    window.fillDemoTradeLogin = (type) => this.fillDemoTradeLogin(type);
+    window.handleTradeApply = () => this.handleTradeApply();
+    window.addConfiguredBundleToCart = (bundleId) => this.addConfiguredBundleToCart(bundleId);
+    window.openBundleCustomizerModal = (bundleId) => this.openBundleCustomizerModal(bundleId);
+    window.closeBundleCustomizerModal = () => this.closeBundleCustomizerModal();
+    window.submitCustomizedBundleToCart = () => this.submitCustomizedBundleToCart();
+    window.saveBundleFromAdmin = () => this.saveBundleFromAdmin();
+    window.resetBundleFromAdmin = () => this.resetBundleFromAdmin();
+    window.addAdminBundleSlot = () => this.addAdminBundleSlot();
+    window.removeAdminBundleSlot = (slotId) => this.removeAdminBundleSlot(slotId);
+    window.sendPromptToDave = (text) => {
+      const input = document.getElementById('input-floating-dave');
+      const btn = document.getElementById('btn-floating-dave-send');
+      if (input && btn) {
+        input.value = text;
+        btn.click();
+      }
+    };
+
+    // Auto-restore verified trade session if token is saved in localStorage
+    this.restoreTradeSession();
 
     // Export buttons
     this.addSafeListener('btn-export-shopify-permalink', 'click', () => this.checkoutShopify());
@@ -114,8 +374,13 @@ class PaintSystemApp {
 
     this.addSafeListener('btn-add-to-cart', 'click', () => {
       if (this.currentRecipe) {
-        this.shopifyCartManager.addRecipeToShopifyCart(this.currentRecipe);
+        const added = this.shopifyCartManager.addRecipeToShopifyCart(this.currentRecipe);
+        if (added) {
+          this.showToast(`✅ Added ${this.currentRecipe.systemName || 'formulation'} components to cart!`, 'success');
+        }
         this.openCartDrawer();
+      } else {
+        this.showToast("Please calculate or select a formula first.", "warning");
       }
     });
 
@@ -131,11 +396,8 @@ class PaintSystemApp {
     // Navigation Logo
     this.addSafeListener('nav-logo-btn', 'click', () => this.switchTab('tab-storefront', 'view-storefront'));
 
-    // B2B Dealer Login
-    this.addSafeListener('btn-b2b-login', 'click', () => this.toggleB2BMode());
-    this.addSafeListener('btn-request-invite', 'click', () => {
-      alert("⚡ Trade Invite Requested!\nOur European sales team will contact you with dealer credentials.");
-    });
+    // B2B Dealer & Trade Portal Gate
+    this.addSafeListener('btn-b2b-login', 'click', () => this.openTradePortalModal());
 
     // European Localization Setup
     this.setupEULocalization();
@@ -158,6 +420,13 @@ class PaintSystemApp {
     this.renderStorefrontGrid();
     this.updateCalculation();
     this.renderCartSummary(this.shopifyCartManager.getCartSummary());
+    this.renderFeaturedBundle();
+    if (window.BundleConfigEngine) {
+      window.BundleConfigEngine.onChange(() => {
+        this.renderFeaturedBundle();
+        this.renderAdminBundles();
+      });
+    }
 
     // URL Query & Hash Deep Linking (e.g. ?search=Kroma or ?tab=preorders)
     this.handleUrlParameters();
@@ -166,8 +435,12 @@ class PaintSystemApp {
   handleUrlParameters() {
     const params = new URLSearchParams(window.location.search);
     const hash = window.location.hash;
-
     const tabParam = params.get('tab');
+
+    if (params.get('admin') === 'true' || params.get('admin') === '1' || tabParam === 'admin') {
+      setTimeout(() => this.openAdminAuthModal(), 400);
+    }
+
     if (tabParam) {
       if (tabParam === 'preorders' || tabParam === 'pre-orders') {
         const storeTab = document.getElementById('tab-storefront');
@@ -253,7 +526,13 @@ class PaintSystemApp {
 
       // Cart Drawer elements
       const drawerCheckoutBtn = document.getElementById('btn-drawer-checkout-shopify');
-      if (drawerCheckoutBtn) drawerCheckoutBtn.textContent = t('cart_checkout_btn');
+      if (drawerCheckoutBtn) {
+        if (this.reviewMode) {
+          drawerCheckoutBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]">lock_clock</span> <span>REVIEW CHECKOUT (STAGING MODE) &rarr;</span>`;
+        } else {
+          drawerCheckoutBtn.textContent = t('cart_checkout_btn');
+        }
+      }
 
       // Shop Search Input Placeholder
       const searchInput = document.getElementById('input-shop-search');
@@ -339,6 +618,7 @@ class PaintSystemApp {
   setupTabs() {
     const tabMappings = [
       { id: 'tab-storefront', viewId: 'view-storefront' },
+      { id: 'tab-academy', viewId: 'view-academy' },
       { id: 'tab-forum', viewId: 'view-forum' },
       { id: 'tab-agent-a', viewId: 'view-agent-a' },
       { id: 'tab-agent-b', viewId: 'view-agent-b' },
@@ -369,8 +649,8 @@ class PaintSystemApp {
   }
 
   switchTab(activeTabId, activeViewId) {
-    const tabIds = ['tab-storefront', 'tab-forum', 'tab-agent-a', 'tab-agent-b', 'tab-agent-c', 'tab-agent-d', 'tab-calculator', 'tab-scale', 'tab-admin'];
-    const viewIds = ['view-storefront', 'view-forum', 'view-agent-a', 'view-agent-b', 'view-agent-c', 'view-agent-d', 'view-calculator', 'view-scale', 'view-admin'];
+    const tabIds = ['tab-storefront', 'tab-academy', 'tab-forum', 'tab-agent-a', 'tab-agent-b', 'tab-agent-c', 'tab-agent-d', 'tab-calculator', 'tab-scale', 'tab-admin'];
+    const viewIds = ['view-storefront', 'view-academy', 'view-forum', 'view-agent-a', 'view-agent-b', 'view-agent-c', 'view-agent-d', 'view-calculator', 'view-scale', 'view-admin'];
 
     tabIds.forEach(id => {
       const el = document.getElementById(id);
@@ -474,7 +754,7 @@ class PaintSystemApp {
       const title = titleInput.value.trim();
       const content = contentInput.value.trim();
       if (!title || !content) {
-        alert("Please provide both a thread title and spray instructions.");
+        this.showToast("Please provide both a thread title and spray instructions.", "warning");
         return;
       }
 
@@ -668,20 +948,168 @@ class PaintSystemApp {
       `;
 
       card.querySelector('.btn-preview-cart-link').addEventListener('click', () => {
-        const link = `https://shop.coastairbrush.eu/cart/add?id=${camp.featuredSku}&quantity=1`;
+        const link = `https://coastairbrush.eu/cart/add?id=${camp.featuredSku}&quantity=1`;
         navigator.clipboard?.writeText(link);
-        alert(`⚡ Direct 1-Click Cart Link Copied to Clipboard!\n\n${link}`);
+        this.showToast("⚡ Direct 1-Click Cart Link Copied to Clipboard!", "success");
       });
 
       container.appendChild(card);
     });
   }
 
+  renderDaiveFormattedMessage(markdown) {
+    if (!markdown) return '';
+
+    let text = markdown
+      .replace(/\r/g, '')
+      .replace(/`([^`]+)`/g, '<code class="bg-[#090d0e] text-[#38bdf8] px-1.5 py-0.5 rounded font-mono text-[11px] border border-cyan-500/20 font-bold">$1</code>')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, label, url) => {
+        if (url.startsWith('#')) {
+          const prodId = url.substring(1);
+          return `<a href="javascript:void(0)" onclick="window.openDetailModal && window.openDetailModal('${prodId}')" class="inline-flex items-center gap-1 text-[#38bdf8] font-bold underline hover:text-white transition-colors cursor-pointer" title="View product details">${label} ↗</a>`;
+        }
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[#38bdf8] font-bold underline hover:text-white transition-colors">${label} ↗</a>`;
+      })
+      .replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')
+      .replace(/(^|[^\*])\*([^\*]+)\*([^\*]|$)/g, '$1<em class="text-neutral-300 italic">$2</em>$3');
+
+    const rawLines = text.split('\n');
+    const outputBlocks = [];
+    let currentStepCard = false;
+
+    for (let i = 0; i < rawLines.length; i++) {
+      let line = rawLines[i].trimEnd();
+      const trimmed = line.trim();
+
+      if (!trimmed) {
+        if (currentStepCard) {
+          outputBlocks[outputBlocks.length - 1] += '</div>';
+          currentStepCard = false;
+        }
+        continue;
+      }
+
+      // Heading: ### Heading
+      if (trimmed.startsWith('### ')) {
+        if (currentStepCard) {
+          outputBlocks[outputBlocks.length - 1] += '</div>';
+          currentStepCard = false;
+        }
+        const headingText = trimmed.replace(/^###\s+/, '');
+        outputBlocks.push(
+          `<div class="daive-heading">${headingText}</div>`
+        );
+        continue;
+      }
+
+      // Numbered Step: 1. **Title**: or 1. Title
+      const stepMatch = trimmed.match(/^(\d+)\.\s+(.*)$/);
+      if (stepMatch) {
+        if (currentStepCard) {
+          outputBlocks[outputBlocks.length - 1] += '</div>';
+          currentStepCard = false;
+        }
+        const stepNum = stepMatch[1];
+        const stepContent = stepMatch[2];
+        outputBlocks.push(
+          `<div class="daive-step-card">` +
+            `<div class="font-bold text-white text-xs mb-1.5 flex items-start gap-2">` +
+              `<span class="bg-[#38bdf8]/20 text-[#38bdf8] px-1.5 py-0.5 rounded text-[10px] font-mono font-bold flex-shrink-0">${stepNum}</span>` +
+              `<div class="flex-1">${stepContent}</div>` +
+            `</div>`
+        );
+        currentStepCard = true;
+        continue;
+      }
+
+      // Indented sub-bullet: (2+ spaces or tab followed by • or - or 1.)
+      const isSubItem = (line.startsWith('   ') || line.startsWith('  ') || line.startsWith('\t'));
+      if (isSubItem && (trimmed.startsWith('•') || trimmed.startsWith('-') || /^\d+\./.test(trimmed))) {
+        let subContent = trimmed.replace(/^[•\-]\s*/, '');
+        let subBadge = '<span class="text-[#38bdf8]/70 text-[9px] mt-1 flex-shrink-0">▪</span>';
+        
+        const subNumMatch = trimmed.match(/^(\d+)\.\s+(.*)$/);
+        if (subNumMatch) {
+          subBadge = `<span class="bg-white/10 text-neutral-300 px-1 py-0.2 rounded text-[9px] font-mono font-bold flex-shrink-0">${subNumMatch[1]}</span>`;
+          subContent = subNumMatch[2];
+        }
+
+        const subBulletHtml = 
+          `<div class="daive-sub-bullet">` +
+            `${subBadge}` +
+            `<div>${subContent}</div>` +
+          `</div>`;
+
+        if (currentStepCard) {
+          outputBlocks[outputBlocks.length - 1] += subBulletHtml;
+        } else {
+          outputBlocks.push(subBulletHtml);
+        }
+        continue;
+      }
+
+      if (currentStepCard) {
+        outputBlocks[outputBlocks.length - 1] += '</div>';
+        currentStepCard = false;
+      }
+
+      // Top-level bullet: • or -
+      if (trimmed.startsWith('• ') || trimmed.startsWith('- ')) {
+        const bulletContent = trimmed.replace(/^[•\-]\s*/, '');
+        
+        // Check if it's a key-value spec with an actual value: e.g. • **SKU**: VAX-JG-SKBD
+        const kvMatch = bulletContent.match(/^<strong class="text-white font-semibold">([^<]+)<\/strong>:\s*(.+)$/);
+        if (kvMatch && kvMatch[2].trim().length > 0) {
+          const key = kvMatch[1];
+          const val = kvMatch[2];
+          outputBlocks.push(
+            `<div class="daive-spec-row">` +
+              `<span class="text-neutral-400 font-semibold">• ${key}:</span>` +
+              `<span class="text-white font-bold text-right">${val}</span>` +
+            `</div>`
+          );
+        } else {
+          outputBlocks.push(
+            `<div class="daive-bullet">` +
+              `<span class="text-[#38bdf8] text-sm mt-[-1px] flex-shrink-0">•</span>` +
+              `<div>${bulletContent}</div>` +
+            `</div>`
+          );
+        }
+        continue;
+      }
+
+      // Callout / Tip / Action: starts with 👉 or *(Tip:
+      if (trimmed.startsWith('👉') || trimmed.startsWith('<em>(') || (trimmed.startsWith('<em>') && trimmed.includes('Tip:')) || (trimmed.startsWith('<em>') && trimmed.endsWith('</em>') && trimmed.includes('?'))) {
+        outputBlocks.push(
+          `<div class="daive-callout">` +
+            trimmed +
+          `</div>`
+        );
+        continue;
+      }
+
+      // Normal paragraph text
+      outputBlocks.push(
+        `<p class="daive-paragraph">` +
+          trimmed +
+        `</p>`
+      );
+    }
+
+    if (currentStepCard) {
+      outputBlocks[outputBlocks.length - 1] += '</div>';
+      currentStepCard = false;
+    }
+
+    return outputBlocks.join('');
+  }
+
   setupAgentA() {
-    const sendBtn = document.getElementById('btn-agent-send');
-    const queryInput = document.getElementById('input-agent-query');
-    const tempSelect = document.getElementById('agent-shop-temp');
-    const msgContainer = document.getElementById('agent-chat-messages');
+    const sendBtn = document.getElementById('btn-agent-a-send') || document.getElementById('btn-agent-send');
+    const queryInput = document.getElementById('input-agent-a-query') || document.getElementById('input-agent-query');
+    const tempSelect = document.getElementById('select-agent-temp') || document.getElementById('agent-shop-temp');
+    const msgContainer = document.getElementById('agent-a-messages') || document.getElementById('agent-chat-messages');
 
     const handleSend = () => {
       const query = (queryInput ? queryInput.value : '').trim();
@@ -699,16 +1127,36 @@ class PaintSystemApp {
       if (queryInput) queryInput.value = '';
 
       const result = this.agentA.consult(query, tempC);
-
-      let htmlBody = result.markdownResponse
-        .replace(/^### (.*$)/gim, '<h3 style="color:#38bdf8; font-size:15px; margin:10px 0 4px 0;">$1</h3>')
-        .replace(/\*\*(.*?)\*\*/gim, '<strong style="color:#fff;">$1</strong>')
-        .replace(/\*(.*?)\*/gim, '<em>$1</em>')
-        .replace(/`([^`]+)`/gim, '<code style="background:#0c0f0f; color:#ffb3ac; padding:2px 6px; border-radius:4px; font-family:monospace;">$1</code>')
-        .replace(/^- (.*$)/gim, '<li style="margin-left:20px;">$1</li>');
+      const htmlBody = this.renderDaiveFormattedMessage(result.markdownResponse);
 
       let actionButtons = '';
-      if (result.kit) {
+      if (result.matchedProduct) {
+        const p = result.matchedProduct;
+        const priceGbp = p.priceGbp ? `£${Number(p.priceGbp).toFixed(2)}` : '';
+        const priceEur = p.priceEur ? `€${Number(p.priceEur).toFixed(2)}` : '';
+        const priceStr = [priceGbp, priceEur].filter(Boolean).join(' / ');
+        const inStockText = p.inStock ? '<span style="color:#4ade80; font-weight:bold;">● In Stock</span>' : (p.isPreOrder ? '<span style="color:#f59e0b; font-weight:bold;">● Pre-Order</span>' : '<span style="color:#94a3b8;">Available to Order</span>');
+
+        actionButtons = `
+          <div class="mt-3 p-3 bg-surface-dim border border-accent-cyan/50 rounded flex items-center justify-between gap-3 flex-wrap">
+            <div class="flex items-center gap-3">
+              ${p.image ? `<img src="${p.image}" alt="${p.name}" style="width:52px; height:52px; object-fit:contain; background:#0c0f10; border:1px solid #333; border-radius:4px; padding:2px;">` : ''}
+              <div>
+                <div style="color:#fff; font-weight:bold; font-size:13px;">${p.name}</div>
+                <div style="font-size:11px; color:#aaa; font-family:monospace; margin-top:2px;">SKU: ${p.sku || p.id} | <span style="color:#38bdf8; font-weight:bold;">${priceStr}</span> | ${inStockText}</div>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="window.openDetailModal && window.openDetailModal('${p.id}')" class="mech-btn-secondary !text-xs !py-1.5 !px-3 cursor-pointer">
+                🔍 View Details
+              </button>
+              <button onclick="window.paintApp && window.paintApp.addProductToCartById && window.paintApp.addProductToCartById('${p.id}')" class="mech-btn-primary !text-xs !py-1.5 !px-3 cursor-pointer">
+                🛒 Add to Cart
+              </button>
+            </div>
+          </div>
+        `;
+      } else if (result.kit) {
         actionButtons = `
           <div class="kit-action-box mt-3 p-3 bg-surface-dim border border-primary-container flex justify-between items-center flex-wrap gap-2">
             <div>
@@ -777,21 +1225,46 @@ class PaintSystemApp {
       if (floatInput) floatInput.value = '';
 
       const res = this.agentA.consult(q, 21);
+      const cleanHtml = this.renderDaiveFormattedMessage(res.markdownResponse);
 
-      let cleanHtml = res.markdownResponse
-        .replace(/^### (.*$)/gim, '<h4 style="color:#ffb3ac; font-size:12px; font-weight:bold; margin:6px 0 2px 0;">$1</h4>')
-        .replace(/\*\*(.*?)\*\*/gim, '<strong style="color:#fff;">$1</strong>')
-        .replace(/\*(.*?)\*/gim, '<em>$1</em>')
-        .replace(/`([^`]+)`/gim, '<code style="background:#0c0f0f; color:#38bdf8; padding:1px 4px; font-size:11px;">$1</code>')
-        .replace(/^- (.*$)/gim, '<li style="margin-left:12px;">$1</li>');
+      let productCardHtml = '';
+      if (res.matchedProduct) {
+        const p = res.matchedProduct;
+        const priceGbp = p.priceGbp ? `£${Number(p.priceGbp).toFixed(2)}` : '';
+        const priceEur = p.priceEur ? `€${Number(p.priceEur).toFixed(2)}` : '';
+        const priceStr = [priceGbp, priceEur].filter(Boolean).join(' / ');
+        const inStockBadge = p.inStock ? '<span style="color:#4ade80; font-weight:bold;">● In Stock</span>' : (p.isPreOrder ? '<span style="color:#f59e0b; font-weight:bold;">● Pre-Order</span>' : '<span style="color:#94a3b8;">Available</span>');
+
+        productCardHtml = `
+          <div class="mt-2 p-2 bg-[#0a0c0d] border border-primary-container/70 rounded flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+              ${p.image ? `<img src="${p.image}" alt="${p.name}" class="w-11 h-11 object-contain bg-black border border-white/10 rounded p-0.5 flex-shrink-0">` : ''}
+              <div class="flex-1 min-w-0">
+                <div class="font-bold text-[11px] text-white truncate" title="${p.name}">${p.name}</div>
+                <div class="text-[10px] text-neutral-300 font-mono mt-0.5"><span class="text-accent-cyan font-bold">${priceStr}</span> • ${inStockBadge}</div>
+                <div class="text-[9px] text-neutral-400 font-mono">SKU: ${p.sku || p.id}</div>
+              </div>
+            </div>
+            <div class="flex gap-1.5 pt-1.5 border-t border-white/10">
+              <button onclick="window.openDetailModal && window.openDetailModal('${p.id}')" class="flex-1 bg-surface-container hover:bg-surface-container-high text-white text-[10px] py-1 px-2 rounded border border-white/20 text-center font-bold cursor-pointer transition-colors">
+                🔍 View Product
+              </button>
+              <button onclick="window.paintApp && window.paintApp.addProductToCartById && window.paintApp.addProductToCartById('${p.id}')" class="flex-1 bg-primary text-black hover:bg-primary-hover text-[10px] py-1 px-2 rounded font-bold text-center cursor-pointer transition-colors">
+                🛒 Add to Cart
+              </button>
+            </div>
+          </div>
+        `;
+      }
 
       const daveBubble = document.createElement('div');
-      daveBubble.className = 'bg-surface-container border-l-2 border-primary-container p-3 flex flex-col gap-2';
+      daveBubble.className = 'bg-[#121618] border-l-2 border-[#38bdf8] p-3 flex flex-col gap-2 rounded-r shadow-md';
       daveBubble.innerHTML = `
-        <div class="text-on-surface leading-relaxed text-xs">
+        <div class="text-neutral-200 leading-relaxed text-xs">
           ${cleanHtml}
         </div>
-        ${res.kit ? `
+        ${productCardHtml}
+        ${res.kit && !res.matchedProduct ? `
           <button class="btn-float-add-kit mech-btn-primary !text-[11px] !py-1 !px-2 self-start mt-1">
             🛒 Add ${res.kit.title.split(' ')[0]} Kit to Cart
           </button>
@@ -849,7 +1322,7 @@ class PaintSystemApp {
         this.selectedTrackingOrder = order;
         this.renderOrderTracking(order);
       } else {
-        alert(`Order "${term}" not found. Try demo orders: EU-10492, UK-88214, or EU-10505.`);
+        this.showToast(`Order "${term}" not found. Try demo orders: EU-10492, UK-88214, or EU-10505.`, "warning");
       }
     };
 
@@ -1286,7 +1759,6 @@ class PaintSystemApp {
     }
     if (catId === 'Dry Metal Flake Guns') return product.category === 'Dry Metal Flake Guns' || product.category === 'Flake King Gun Accessories';
     if (catId === 'Flake King Gun Accessories') return product.category === 'Flake King Gun Accessories';
-    if (catId === 'Corroded Metal FX') return product.category === 'Corroded Metal FX';
     if (catId === 'Masking Products') return product.category === 'Masking Products';
     if (catId === 'Wet Products') return product.category === 'Wet Products';
 
@@ -1648,160 +2120,119 @@ class PaintSystemApp {
 
   downloadSDS(prod) {
     if (!prod) return;
-    const isKromaChrome = (prod.name || '').includes('Chrome') || prod.id === 'kroma-chrome-1l';
-    const isKromaClear = (prod.name || '').includes('Clear') || prod.id === 'kroma-clearcoat-1l';
-    const isKromaPrimer = (prod.name || '').includes('Primer') || prod.id === 'kroma-black-primer-1l';
     const isFlake = prod.category === 'Dry Metal Flake (Glitter)' || (prod.brand || '').includes('Flake King');
-
-    let hazardSection = 'SECTION 2: HAZARDS IDENTIFICATION\nClassification: Flammable Liquid Category 2, Skin Irritant Category 2, Eye Irritation Category 2A, STOT SE 3.\nSignal Word: DANGER\nHazard Statements: H225 Highly flammable liquid and vapour. H315 Causes skin irritation. H319 Causes serious eye irritation. H336 May cause drowsiness or dizziness.\nPrecautionary Statements: P210 Keep away from heat, sparks, open flames. P280 Wear protective gloves, protective clothing, eye protection, respirator.';
+    
+    // Select the designated European REACH SDS PDF document
+    let pdfUrl = 'assets/docs/KROMA_EDGE_REACH_SDS_SAFETY_DATA_SHEET.pdf';
+    let filename = `REACH_SDS_${(prod.sku || prod.id || 'PRODUCT').replace(/[^a-zA-Z0-9_-]/g, '_')}.pdf`;
+    
     if (isFlake) {
-      hazardSection = 'SECTION 2: HAZARDS IDENTIFICATION\nClassification: Non-Hazardous Polymer Dry Particle.\nSignal Word: WARNING (Nuisance Dust)\nHazard Statements: May cause mechanical eye or respiratory irritation.\nPrecautionary Statements: P261 Avoid breathing dust. P280 Wear P2/P3 dust respirator and protective goggles.';
+      pdfUrl = 'assets/docs/FLAKE_KING_REACH_SDS_SAFETY_DATA_SHEET.pdf';
     }
 
-    const sdsText = `================================================================================
-SAFETY DATA SHEET (SDS) - EUROPEAN REACH REGULATION (EC) No 1907/2006
-COAST AIRBRUSH EUROPE & UK LOGISTICS HUB
-================================================================================
-PRODUCT IDENTIFIER:
-Product Name: ${prod.name}
-SKU / Part Number: ${prod.sku || prod.id || 'N/A'}
-Brand: ${prod.brand || 'Coast Airbrush Master Series'}
-Category: ${prod.category || 'Automotive Refinish Coating'}
-Supplier: Coast Airbrush Europe Hub / UK Distribution
-Emergency Contact: Europe Chemtrec +44 20 3807 3798 / 112
-
-SECTION 1: RELEVANT IDENTIFIED USES & RESTRICTIONS
-Use of Substance: Professional custom airbrushing, automotive refinishing, metal flake application.
-REACH Status: 100% REACH Annex XVII Compliant & Zero SVHC (Substances of Very High Concern).
-EU VOC Compliance: Directive 2004/42/EC Subcategory B(d) max 420 g/L.
-
-${hazardSection}
-
-SECTION 3: COMPOSITION & COMPONENT INFORMATION
-- Binder Resins / Substrates: 40 - 65%
-- Solvent Reduction System (Esters/Hydrocarbons): 20 - 45%
-- Active Pigments / Metallic Seed Formula: 5 - 20%
-- Specific Gravity: 0.85 - 1.15 @ 20°C
-
-SECTION 4: FIRST AID MEASURES
-Inhalation: Move subject to fresh air immediately. If breathing is irregular, administer oxygen.
-Skin Contact: Wash affected area thoroughly with mild soap and water. Do not use thinners.
-Eye Contact: Rinse immediately with copious amounts of clean water for at least 15 minutes.
-Ingestion: Do NOT induce vomiting. Seek urgent medical attention.
-
-SECTION 5: FIREFIGHTING & EXTINGUISHING MEDIA
-Suitable Media: Carbon Dioxide (CO2), Dry Chemical Powder, Alcohol-Resistant Foam.
-Unsuitable Media: Direct high-pressure water jet.
-
-SECTION 6: SAFE HANDLING & STORAGE
-Handling: Use spark-proof tools and explosion-proof spray booths. Ground all containers during transfer.
-Storage: Store between 15°C - 25°C in tightly sealed original containers away from direct sunlight.
-================================================================================
-OFFICIAL DIRECTORY CERTIFIED - DISPATCH HUB: UNITED KINGDOM & DIRECT JAPAN/USA
-================================================================================`;
-
-    const blob = new Blob([sdsText], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = `SDS_${(prod.sku || prod.id || 'PRODUCT').replace(/[^a-zA-Z0-9_-]/g, '_')}_REACH_EU.txt`;
+    a.href = pdfUrl;
+    a.download = filename;
+    a.target = '_blank';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  }
+
+  getFlakeSpecForSize(sizeString) {
+    const s = String(sizeString || '').toLowerCase();
+    if (s.includes('002') || s.includes('50') || s.includes('ultra small')) {
+      return FLAKE_KING_WET_MIX_RATIOS[0];
+    }
+    if (s.includes('004') || s.includes('100')) {
+      return FLAKE_KING_WET_MIX_RATIOS[1];
+    }
+    if (s.includes('008') || s.includes('200') || s.includes('medium')) {
+      return FLAKE_KING_WET_MIX_RATIOS[2];
+    }
+    if (s.includes('015') || s.includes('375') || s.includes('large')) {
+      return FLAKE_KING_WET_MIX_RATIOS[3];
+    }
+    if (s.includes('025') || s.includes('625') || s.includes('xl') || s.includes('x large')) {
+      return FLAKE_KING_WET_MIX_RATIOS[4];
+    }
+    if (s.includes('040') || s.includes('1025') || s.includes('060') || s.includes('dxl')) {
+      return FLAKE_KING_WET_MIX_RATIOS[5];
+    }
+    return FLAKE_KING_WET_MIX_RATIOS[2]; // fallback to medium .008"
+  }
+
+  openFlakeTDSModal() {
+    const modal = document.getElementById('modal-flake-tds');
+    if (modal) {
+      modal.classList.add('active');
+    }
+  }
+
+  closeFlakeTDSModal() {
+    const modal = document.getElementById('modal-flake-tds');
+    if (modal) {
+      modal.classList.remove('active');
+    }
   }
 
   downloadTDS(prod) {
     if (!prod) return;
-    const isKromaChrome = (prod.name || '').includes('Chrome') || prod.id === 'kroma-chrome-1l';
-    const isKromaClear = (prod.name || '').includes('Clear') || prod.id === 'kroma-clearcoat-1l';
-    const isKromaPrimer = (prod.name || '').includes('Primer') || prod.id === 'kroma-black-primer-1l';
-    const isFlake = prod.category === 'Dry Metal Flake (Glitter)' || (prod.brand || '').includes('Flake King');
+    const nameLower = (prod.name || '').toLowerCase();
+    const idLower = (prod.id || '').toLowerCase();
+    const isKromaClear = nameLower.includes('clear') || idLower.includes('clear') || idLower.includes('topcoat');
+    const isVsionAir = (prod.brand || '').toLowerCase().includes('vsionair') || (prod.category || '').toLowerCase().includes('jig');
+    const isFlake = prod.category === 'Dry Metal Flake (Glitter)' || (prod.brand || '').includes('Flake King') || (prod.name || '').toLowerCase().includes('flake');
 
-    let specificTechData = `APPLICATION SPECIFICATIONS:
-- Recommended Spray Gun Tip: 1.2mm - 1.4mm HVLP (Paints) / Flake King 500/1000 Dry Gun (Flakes)
-- Air Pressure: 1.2 - 1.5 Bar (18 - 22 PSI at gun inlet)
-- Mixing Ratio (Standard): 3 : 1 : 2 (Base : Hardener : Reducer)
-- Flash-off Between Coats: 10 - 15 Minutes at 20°C (68°F)
-- Dust Free Time: 20 Minutes
-- Full Cure / Polish Time: 12 - 16 Hours air dry / 30 min bake at 60°C
-- Pot Life: 4 Hours at 20°C`;
-
-    if (isKromaChrome) {
-      specificTechData = `APPLICATION SPECIFICATIONS (KROMA EDGE SELF-ORGANIZATION MIRROR CHROME):
-- Mixing Ratio: 5 : 5 : 2 : 2 by Weight (Binder : Reducer : Hardener : Mirror Seeds)
-- Substrate Preparation: Cured primer/sealer sanded with #600-#1000 grit. (GLOSS BLACK NOT REQUIRED).
-- Spray Gun / Airbrush: Airbrush 0.3mm-0.5mm @ 25-45 PSI (small parts) or Mini/Full HVLP 0.8mm-1.3mm.
-- Application Technique: ONE continuous wet coat at >68°F (20°C). DO NOT mist coat or dust coat!
-- Self-Organization Time: 2 - 5 Minutes (Cloudiness transforms into 100% specular mirror finish).
-- Pot Life: 3 Hours after mixing.
-- Cure Time: Air cure min 36 hours (or 140°F bake for 1-2 hours after mirror forms).
-- Topcoat Protection: Dedicated Topcoat Clear (10:1 + 70-100% Thinner) ONLY.`;
-    } else if (isKromaClear) {
-      specificTechData = `APPLICATION SPECIFICATIONS (KROMA EDGE DEDICATED SPEED CLEAR):
-- Mixing Ratio: 2 : 1 by Volume + 10% Thinner (or 10:1 + 70-100% Thinner for Dedicated Mirror Topcoat)
-- Application: 1 Fine Mist Tack Coat -> 5 Min Flash -> 1 Full Wet Flow Coat.
-- Gun Tip: 1.2mm - 1.4mm HVLP @ 1.8 - 2.2 Bar.
-- Dust Free: 15 - 20 Minutes.
-- Polish Window: 6 - 8 Hours air dry / 30 min @ 60°C bake.`;
-    } else if (isFlake) {
-      specificTechData = `APPLICATION SPECIFICATIONS (FLAKE KING DRY FLAKE APPLICATION):
-- Gun Application: Flake King 500 (Airbrush mount) or Flake King 1000 (Full gun mount).
-- Operating PSI: 10 - 15 PSI (Gentle fluidization without overspray bounce).
-- Carrier / Wet Layer: Apply dry flake directly over wet clearcoat / intercoat (S2-SG100 or 2K Clear).
-- Burial: Apply 2-3 coats of high-solids clear to bury flake edges, block sand with P600, final flow clear.`;
+    if (isFlake) {
+      this.openFlakeTDSModal();
+      return;
     }
 
-    const tdsText = `================================================================================
-TECHNICAL DATA SHEET (TDS) - REFINISH & MIXING SPECIFICATION
-COAST AIRBRUSH EUROPE & UK DISTRIBUTION HUB
-================================================================================
-PRODUCT: ${prod.name}
-SKU / PART: ${prod.sku || prod.id || 'N/A'}
-BRAND: ${prod.brand || 'Coast Master Series'}
-CATEGORY: ${prod.category || 'Automotive Coating'}
+    let pdfUrl = 'assets/docs/KROMA_EDGE_MIRROR_SYSTEM_TDS.pdf';
+    let filename = `TDS_${(prod.sku || prod.id || 'PRODUCT').replace(/[^a-zA-Z0-9_-]/g, '_')}_SPECS.pdf`;
 
-${specificTechData}
+    if (isKromaClear) {
+      pdfUrl = 'assets/docs/KROMA_EDGE_TOPCOAT_CLEAR_TDS.pdf';
+    } else if (isVsionAir) {
+      pdfUrl = 'assets/docs/VSIONAIR_TECHNICAL_DATA_SHEET.pdf';
+    }
 
-STORAGE & LOGISTICS:
-- European Central Hub: Dispatched from UK warehouse (0% Export VAT for EU B2B).
-- Storage: 15°C - 25°C in sealed original containers. Shelf life 24 months.
-- Safety: Consult SDS before spraying. Use approved NIOSH/CE respiratory protection.
-================================================================================`;
-
-    const blob = new Blob([tdsText], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = `TDS_${(prod.sku || prod.id || 'PRODUCT').replace(/[^a-zA-Z0-9_-]/g, '_')}_SPECS.txt`;
+    a.href = pdfUrl;
+    a.download = filename;
+    a.target = '_blank';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
   }
 
   downloadSystemTDS(system) {
     if (!system) return;
-    const virtualProd = {
-      id: system.id,
-      sku: system.id.toUpperCase().replace(/_/g, '-'),
-      name: system.name,
-      brand: system.name.includes('Shimrin') ? 'House of Kolor' : 'Kroma Edge',
-      category: 'Paint System Formula'
-    };
-    this.downloadTDS(virtualProd);
+    if ((system.id || '').startsWith('flake_king_')) {
+      this.openFlakeTDSModal();
+      return;
+    }
+    const isClear = (system.id || '').includes('clear');
+    const pdfUrl = isClear ? 'assets/docs/KROMA_EDGE_TOPCOAT_CLEAR_TDS.pdf' : 'assets/docs/KROMA_EDGE_MIRROR_SYSTEM_TDS.pdf';
+    const a = document.createElement('a');
+    a.href = pdfUrl;
+    a.download = `TDS_${system.id.toUpperCase()}_SPECS.pdf`;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
   downloadSystemSDS(system) {
     if (!system) return;
-    const virtualProd = {
-      id: system.id,
-      sku: system.id.toUpperCase().replace(/_/g, '-'),
-      name: system.name,
-      brand: system.name.includes('Shimrin') ? 'House of Kolor' : 'Kroma Edge',
-      category: 'Paint System Formula'
-    };
-    this.downloadSDS(virtualProd);
+    const a = document.createElement('a');
+    a.href = 'assets/docs/KROMA_EDGE_REACH_SDS_SAFETY_DATA_SHEET.pdf';
+    a.download = `REACH_SDS_${system.id.toUpperCase()}.pdf`;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
   setupDetailModal() {
@@ -1809,6 +2240,13 @@ STORAGE & LOGISTICS:
     if (modal) {
       modal.addEventListener('click', (e) => {
         if (e.target === modal) this.closeDetailModal();
+      });
+    }
+
+    const flakeTdsModal = document.getElementById('modal-flake-tds');
+    if (flakeTdsModal) {
+      flakeTdsModal.addEventListener('click', (e) => {
+        if (e.target === flakeTdsModal) this.closeFlakeTDSModal();
       });
     }
 
@@ -1890,13 +2328,8 @@ STORAGE & LOGISTICS:
       });
     }
 
-    // Auto-display on first visit if not dismissed
-    const isDismissed = localStorage.getItem('coast_eu_welcome_dismissed') === 'true';
-    if (!isDismissed) {
-      setTimeout(() => {
-        this.openWelcomeModal();
-      }, 600);
-    }
+    // Note: Auto-display popup disabled to allow instant entry to storefront.
+    // Modal remains accessible via window.openWelcomeModal() or About links.
   }
 
   openWelcomeModal(force = false) {
@@ -1955,24 +2388,6 @@ STORAGE & LOGISTICS:
         }
       });
 
-      // Sync foreground stage showcase images
-      stageImages.forEach((img, idx) => {
-        if (idx === currentSlide) {
-          img.classList.add('active');
-        } else {
-          img.classList.remove('active');
-        }
-      });
-
-      // Sync interactive thumbnail buttons
-      thumbs.forEach((t, idx) => {
-        if (idx === currentSlide) {
-          t.classList.add('active');
-        } else {
-          t.classList.remove('active');
-        }
-      });
-
       // Sync indicator dots
       dots.forEach((d, idx) => {
         if (idx === currentSlide) {
@@ -1987,14 +2402,11 @@ STORAGE & LOGISTICS:
         captionEl.innerHTML = slides[currentSlide].getAttribute('data-caption') || `0${currentSlide + 1}/0${totalSlides}`;
       }
 
-      // Sync specimen label & badge
-      if (showcaseLabel && slides[currentSlide]) {
-        const label = slides[currentSlide].getAttribute('data-label') || `SPECIMEN 0${currentSlide + 1}`;
-        showcaseLabel.textContent = label;
-      }
-      if (stageBadge && slides[currentSlide]) {
-        const badge = slides[currentSlide].getAttribute('data-badge') || 'KromaEdge Specular Chrome';
-        stageBadge.innerHTML = `<span class="material-symbols-outlined text-primary text-[14px]">verified</span><span>${badge}</span>`;
+      // Sync artifact badge
+      const artifactBadge = document.getElementById('hero-artifact-badge');
+      if (artifactBadge && slides[currentSlide]) {
+        const badge = slides[currentSlide].getAttribute('data-badge') || 'Standard 2K Clearcoat Applied';
+        artifactBadge.textContent = badge;
       }
     };
 
@@ -2015,7 +2427,96 @@ STORAGE & LOGISTICS:
     }, 6000);
   }
 
-  openDetailModal(productOrId) {
+  initSocialProofPulse() {
+    const orders = [
+      { name: "David M.", location: "Birmingham, UK", flag: "🇬🇧", item: "3x Show Krome Metal Flake Jars (30g)", time: "3m ago" },
+      { name: "Stefan K.", location: "Munich, Germany", flag: "🇩🇪", item: "Kroma Edge Mirror Chrome Kit (140g)", time: "6m ago" },
+      { name: "Marco B.", location: "Milan, Italy", flag: "🇮🇹", item: "Flake King 550 Mini Dry Gun System", time: "9m ago" },
+      { name: "Julien D.", location: "Lyon, France", flag: "🇫🇷", item: "Dedicated Kroma Clearcoat & 3mm Fineline Tape", time: "12m ago" },
+      { name: "Bram V.", location: "Amsterdam, Netherlands", flag: "🇳🇱", item: "2x Kromatic Silver Holographic Flakes", time: "16m ago" },
+      { name: "Alejandro R.", location: "Barcelona, Spain", flag: "🇪🇸", item: "Flake King Pro Series Multi-Gun Kit", time: "21m ago" },
+      { name: "Gareth P.", location: "Cardiff, UK", flag: "🇬🇧", item: "Show Krome .008 Micro Flake (100g Trade Jar)", time: "27m ago" },
+      { name: "Lukas W.", location: "Vienna, Austria", flag: "🇦🇹", item: "Kroma Edge Batch 1 Mirror Chrome System", time: "34m ago" }
+    ];
+
+    let currentIndex = 0;
+    const toast = document.getElementById('social-proof-toast');
+    if (!toast) return;
+
+    const showNext = () => {
+      const ord = orders[currentIndex];
+      currentIndex = (currentIndex + 1) % orders.length;
+
+      const flagEl = document.getElementById('social-proof-flag');
+      const nameEl = document.getElementById('social-proof-name');
+      const itemEl = document.getElementById('social-proof-item');
+      const timeEl = document.getElementById('social-proof-time');
+
+      if (flagEl) flagEl.textContent = ord.flag;
+      if (nameEl) nameEl.textContent = `${ord.name} (${ord.location})`;
+      if (itemEl) itemEl.textContent = ord.item;
+      if (timeEl) timeEl.textContent = ord.time;
+
+      toast.classList.add('visible');
+
+      setTimeout(() => {
+        toast.classList.remove('visible');
+      }, 5000);
+    };
+
+    // First appearance after 5s, then cycle every 18s
+    setTimeout(() => {
+      showNext();
+      setInterval(showNext, 18000);
+    }, 5000);
+  }
+
+  initReferralModal() {
+    window.openReferralModal = () => {
+      const m = document.getElementById('modal-referral');
+      if (m) m.classList.add('active');
+    };
+    window.closeReferralModal = () => {
+      const m = document.getElementById('modal-referral');
+      if (m) m.classList.remove('active');
+    };
+    window.copyReferralLink = () => {
+      const input = document.getElementById('input-referral-link');
+      if (input) {
+        input.select();
+        navigator.clipboard.writeText(input.value).then(() => {
+          const btnLabel = document.getElementById('btn-copy-referral-label');
+          if (btnLabel) btnLabel.textContent = 'COPIED!';
+          this.showToast('✅ Referral link copied! Share with fellow painters.', 'success');
+          setTimeout(() => {
+            if (btnLabel) btnLabel.textContent = 'COPY';
+          }, 2500);
+        }).catch(() => {
+          this.showToast('Link ready to share: ' + input.value, 'info');
+        });
+      }
+    };
+    window.shareReferralWhatsApp = () => {
+      const msg = encodeURIComponent("Hey! Check out Coast Airbrush Europe for Kroma Edge Mirror Chrome & Flake King gear. Grab £15 off your first order over £125: https://coastairbrush.com/?ref=CREW-PAINTER");
+      window.open(`https://api.whatsapp.com/send?text=${msg}`, '_blank');
+    };
+    window.shareReferralFacebook = () => {
+      const url = encodeURIComponent("https://coastairbrush.com/?ref=CREW-PAINTER");
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+    };
+    window.shareReferralTwitter = () => {
+      const text = encodeURIComponent("Check out Coast Airbrush Europe for Kroma Edge Mirror Chrome & Flake King dry guns. Get £15 off orders £125+:");
+      const url = encodeURIComponent("https://coastairbrush.com/?ref=CREW-PAINTER");
+      window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+    };
+    window.shareReferralEmail = () => {
+      const subject = encodeURIComponent("Coast Airbrush Europe VIP Invite (£15 Off)");
+      const body = encodeURIComponent("Hey,\n\nI thought you'd want to check out Coast Airbrush Europe for official Kroma Edge Mirror Chrome and Flake King dry flake guns.\n\nYou can get £15 off your first order over £125 with this link:\nhttps://coastairbrush.com/?ref=CREW-PAINTER\n\nCheers!");
+      window.open(`mailto:?subject=${subject}&body=${body}`);
+    };
+  }
+
+  openDetailModal(productOrId, initialTab = null) {
     try {
       let product = productOrId;
       if (typeof productOrId === 'string') {
@@ -2038,8 +2539,7 @@ STORAGE & LOGISTICS:
       if (skuEl) skuEl.textContent = `SKU: ${product.sku || 'N/A'}`;
       const titleEl = document.getElementById('detail-title');
       if (titleEl) titleEl.textContent = product.name || 'Product Details';
-      const descEl = document.getElementById('detail-desc');
-      if (descEl) descEl.textContent = product.description || 'Professional grade automotive formulation engineered for show-quality kustom finishes.';
+      this.renderProductSalesCopy(product);
       
       // Check & setup variants for modal
       const isFlake = product.category === 'Dry Metal Flake (Glitter)' || product.category === 'Metal Flake';
@@ -2065,10 +2565,11 @@ STORAGE & LOGISTICS:
       }
 
       const currentSelection = this.selectedProductVariants[product.id] || { size: '', pack: '' };
-      const prices = this.getProductCalculatedPrice(product, currentSelection.pack, currentSelection.size) || {
-        formattedPrimary: `€${(product.priceEur || 24).toFixed(2)}`,
-        formattedSecondary: `£${((product.priceEur || 24) * 0.86).toFixed(2)} GBP`
-      };
+      const prices = this.getProductCalculatedPrice(product, currentSelection.pack, currentSelection.size);
+
+      if (skuEl && prices) {
+        skuEl.textContent = `SKU: ${prices.sku || product.sku || 'N/A'}${prices.barcode ? ` | EAN: ${prices.barcode}` : ''}`;
+      }
 
       const priceEl = document.getElementById('detail-price');
       if (priceEl && prices) priceEl.textContent = prices.formattedPrimary;
@@ -2130,10 +2631,11 @@ STORAGE & LOGISTICS:
       const vocEl = document.getElementById('detail-spec-voc');
 
       if (isFlake) {
-        if (tipEl) tipEl.textContent = 'Flake King 500 / 1000 Dry Gun (Direct Mount)';
-        if (psiEl) psiEl.textContent = '10 - 15 PSI (Gentle Dry Fluidization)';
-        if (ratioEl) ratioEl.textContent = 'Dry Application over Wet Mid-Coat / Clear';
-        if (vocEl) vocEl.textContent = '0 g/L (100% Dry Solvent-Proof Polymer)';
+        const flakeSpec = this.getFlakeSpecForSize(currentSelection.size || (validSizes && validSizes[0]));
+        if (tipEl) tipEl.textContent = flakeSpec ? flakeSpec.minGunNozzle : 'Flake King 500 / 1000 Dry Gun (or 1.4mm Wet)';
+        if (psiEl) psiEl.textContent = '10 - 15 PSI (Dry Fluidization) | 18 - 22 PSI (Wet Spray)';
+        if (ratioEl) ratioEl.textContent = flakeSpec ? `${flakeSpec.ratioText} (or Dry via FK Gun)` : '60g / 1,000 ml Clear (or Dry via Gun)';
+        if (vocEl) vocEl.textContent = 'Non-Toxic PET • 350°F (177°C) Max • 18-Mo Miami UV Tested';
       } else if (isGun) {
         if (tipEl) tipEl.textContent = 'Precision Machined Brass / Stainless Steel Nozzle';
         if (psiEl) psiEl.textContent = '15 - 30 PSI Operating Pressure';
@@ -2144,6 +2646,16 @@ STORAGE & LOGISTICS:
         if (psiEl) psiEl.textContent = 'Solid Steel / CNC Billet Alloy Construction';
         if (ratioEl) ratioEl.textContent = 'Magnetic / Fast-Pin Modular Mount';
         if (vocEl) vocEl.textContent = 'Lifetime Workshop Durability Guarantee';
+      } else if (product.id === 'kroma-mirror-chrome-system' || (product.name && product.name.includes('Mirror Chrome'))) {
+        if (tipEl) tipEl.textContent = 'Airbrush 0.3mm–0.5mm (25–45 PSI) / Spray Gun 0.8mm–1.2mm';
+        if (psiEl) psiEl.textContent = '20 - 25 PSI (Apply 1 Continuous Wet Coat @ >20°C)';
+        if (ratioEl) ratioEl.textContent = '5 : 5 : 2 : 2 (Binder : Reducer : Hardener : Seeds)';
+        if (vocEl) vocEl.textContent = 'Self-Organizing Optical Coating (Zero Gray Clouding)';
+      } else if (product.id === 'kroma-dedicated-topcoat-clear' || (product.name && product.name.includes('Topcoat Clear'))) {
+        if (tipEl) tipEl.textContent = '1.0mm - 1.3mm HVLP / Airbrush 0.4mm - 0.5mm';
+        if (psiEl) psiEl.textContent = '18 - 22 PSI (Fine Tack Coat, 5m Flash, Full Wet Coat)';
+        if (ratioEl) ratioEl.textContent = '10 : 1 (Clear Base : Hardener) + 70%–100% Thinner';
+        if (vocEl) vocEl.textContent = 'Optical Non-Clouding Clear (Specifically for Kroma Edge)';
       } else {
         if (tipEl) tipEl.textContent = '1.2mm - 1.4mm HVLP / Airbrush 0.3mm - 0.5mm';
         if (psiEl) psiEl.textContent = '18 - 22 PSI (1.2 - 1.5 Bar)';
@@ -2155,19 +2667,125 @@ STORAGE & LOGISTICS:
       const stockBadge = document.getElementById('detail-stock-badge');
       if (stockBadge) {
         stockBadge.textContent = isPreOrder ? '⏳ PRE-ORDER (BATCH 1 PRIORITY ALLOCATION)' : '⚡ IN STOCK (UK DISPATCH)';
-        stockBadge.className = isPreOrder ? 'metal-spec-plate-red text-[10px] font-bold text-amber-300' : 'metal-spec-plate text-[10px] font-bold text-emerald-400';
+        stockBadge.className = isPreOrder 
+          ? 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/80 border border-amber-500/50 text-amber-300 font-mono text-[11px] font-bold tracking-wide backdrop-blur-md shadow-md' 
+          : 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/80 border border-emerald-500/60 text-emerald-300 font-mono text-[11px] font-bold tracking-wide backdrop-blur-md shadow-md';
       }
       const addCartBtn = document.getElementById('btn-detail-add-cart');
       if (addCartBtn) {
         addCartBtn.textContent = isPreOrder ? '🛒 PRE-ORDER NOW • SECURE BATCH 1 ALLOCATION' : '+ ADD TO PROJECT CART';
       }
 
+      const mainImageSrc = product.image || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80';
       const imgEl = document.getElementById('detail-img');
       if (imgEl) {
-        imgEl.src = product.image || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80';
+        imgEl.src = mainImageSrc;
         imgEl.onerror = () => {
           imgEl.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80';
         };
+      }
+
+      // Render product gallery thumbnails if multiple images exist
+      const galleryContainer = document.getElementById('detail-gallery-container');
+      const galleryThumbs = document.getElementById('detail-gallery-thumbnails');
+      const allImages = (product.images && product.images.length > 0)
+        ? product.images
+        : [mainImageSrc];
+
+      if (galleryContainer && galleryThumbs) {
+        if (allImages.length > 1) {
+          galleryContainer.classList.remove('hidden');
+          galleryThumbs.innerHTML = allImages.map((imgSrc, idx) => {
+            let label = 'Product';
+            if (imgSrc.includes('color_chart')) label = 'Colour Card';
+            else if (imgSrc.includes('size_chart') || imgSrc.includes('guns')) label = 'Size & Gun Guide';
+            else if (imgSrc.includes('Cleaned Skull') || imgSrc.includes('skull')) label = 'Mirror Skull';
+            else if (imgSrc.includes('helmet')) label = 'Mirror Helmet';
+            else if (imgSrc.includes('wave')) label = 'Chrome Wave';
+            else if (imgSrc.includes('surfer-front')) label = 'Front Angle';
+            else if (imgSrc.includes('surfer-back')) label = 'Rear Angle';
+            else if (imgSrc.includes('FOM') && (imgSrc.includes('1.png') || imgSrc.includes('5001') || imgSrc.includes('10001') || imgSrc.includes('5501') || imgSrc.includes('10501'))) label = 'Gun Front';
+            else if (imgSrc.includes('FOM') && (imgSrc.includes('2.png') || imgSrc.includes('5002') || imgSrc.includes('10002') || imgSrc.includes('5502') || imgSrc.includes('10502'))) label = 'Gun Profile';
+            else if (imgSrc.includes('FOM') && (imgSrc.includes('3.png') || imgSrc.includes('5003') || imgSrc.includes('10003') || imgSrc.includes('5503') || imgSrc.includes('10503'))) label = 'Mount Angle';
+            else if (imgSrc.includes('FOM') && (imgSrc.includes('4.png') || imgSrc.includes('5004') || imgSrc.includes('10004') || imgSrc.includes('5504') || imgSrc.includes('10504'))) label = 'Nozzle Close';
+            else if (imgSrc.includes('ProSeriesKit')) label = 'Hardcase';
+            else if (imgSrc.includes('ProSeries1')) label = 'Open Case';
+            else if (imgSrc.includes('ProSeries2')) label = 'Main Gun';
+            else if (imgSrc.includes('ProSeries')) label = `Kit Part ${idx + 1}`;
+            else if (idx === 0) label = 'Main View';
+            else label = `Angle ${idx + 1}`;
+
+            const isFirst = idx === 0;
+            return `
+              <button type="button" class="detail-gallery-thumb border-2 ${isFirst ? 'border-primary bg-primary/20 shadow-[0_0_8px_rgba(211,47,47,0.5)]' : 'border-secondary/60 bg-surface-container-low hover:border-secondary'} p-1 rounded flex flex-col items-center gap-1 cursor-pointer transition-all min-w-[76px] flex-shrink-0" onclick="window.paintApp.switchDetailImage('${this.escapeHtmlAttr(imgSrc)}', this)">
+                <img src="${imgSrc}" alt="${label}" class="w-14 h-14 object-contain rounded" onerror="this.src='assets/images/coast_airbrush_logo.jpg'">
+                <span class="font-label-xs text-[9px] uppercase font-bold ${isFirst ? 'text-primary' : 'text-secondary'} text-center leading-tight truncate max-w-[72px]">${label}</span>
+              </button>
+            `;
+          }).join('');
+        } else {
+          galleryContainer.classList.add('hidden');
+          galleryThumbs.innerHTML = '';
+        }
+      }
+
+      // Render In-Action Video Demonstrations & Social Proof
+      const videoContainer = document.getElementById('detail-video-container');
+      const videoCountEl = document.getElementById('detail-video-count');
+      const videoTarget = document.getElementById('detail-video-player-target');
+      const videoList = document.getElementById('detail-video-list');
+
+      if (videoContainer && videoTarget && videoList) {
+        if (product.videos && product.videos.length > 0) {
+          videoContainer.classList.remove('hidden');
+          if (videoCountEl) videoCountEl.textContent = `${product.videos.length} VIDEO${product.videos.length > 1 ? 'S' : ''}`;
+
+          const firstVid = product.videos[0];
+          this.loadDetailVideoPlayer(firstVid, videoTarget, initialTab === 'video');
+
+          videoList.innerHTML = product.videos.map((vid, vIdx) => {
+            const isYt = vid.platform === 'youtube';
+            const isIg = vid.platform === 'instagram';
+            const badgeIcon = isYt ? 'play_circle' : (isIg ? 'photo_camera' : 'videocam');
+            const badgeColor = isYt ? 'text-red-400' : (isIg ? 'text-pink-400' : 'text-blue-400');
+            const isActive = vIdx === 0;
+            
+            return `
+              <div class="detail-video-item flex items-center justify-between p-2 rounded ${isActive ? 'bg-red-950/40 border border-red-500/70' : 'bg-surface-container-high/60 border border-white/10 hover:border-red-400/50'} transition-colors">
+                <div class="flex items-center gap-2 overflow-hidden mr-2">
+                  <span class="material-symbols-outlined text-lg ${badgeColor} flex-shrink-0">${badgeIcon}</span>
+                  <div class="truncate">
+                    <div class="text-xs text-white font-bold truncate">${this.escapeHtmlAttr(vid.title)}</div>
+                    <div class="text-[10px] font-mono text-neutral-400 flex items-center gap-1">
+                      <span>By <strong class="text-neutral-200">${this.escapeHtmlAttr(vid.creator)}</strong></span>
+                      ${vid.duration ? `<span>• ${vid.duration}</span>` : ''}
+                      ${vid.badge ? `<span class="px-1 py-0.2 rounded bg-black/50 text-[9px] text-amber-300 font-bold border border-amber-500/40">${vid.badge}</span>` : ''}
+                    </div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-1.5 flex-shrink-0">
+                  <button type="button" class="mech-button-primary !py-1 !px-2 text-[10px] font-mono flex items-center gap-1 cursor-pointer" onclick="window.paintApp.switchDetailVideo(${vIdx})">
+                    <span class="material-symbols-outlined text-[13px]">play_arrow</span>
+                    <span>Play</span>
+                  </button>
+                  <a href="${vid.url}" target="_blank" rel="noopener noreferrer" class="p-1 text-neutral-400 hover:text-white transition-colors" title="Open in new window">
+                    <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+                  </a>
+                </div>
+              </div>
+            `;
+          }).join('');
+
+          if (initialTab === 'video') {
+            setTimeout(() => {
+              videoContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 150);
+          }
+        } else {
+          videoContainer.classList.add('hidden');
+          videoTarget.innerHTML = '';
+          videoList.innerHTML = '';
+        }
       }
 
       modal.classList.add('active');
@@ -2176,25 +2794,517 @@ STORAGE & LOGISTICS:
     }
   }
 
+  loadDetailVideoPlayer(vid, targetEl, autoPlay = false) {
+    if (!targetEl || !vid) return;
+    if (vid.platform === 'youtube' && vid.embedId) {
+      if (autoPlay) {
+        targetEl.innerHTML = `
+          <div class="relative w-full h-full bg-black rounded overflow-hidden flex flex-col justify-between">
+            <iframe class="w-full h-full absolute inset-0 rounded" src="https://www.youtube.com/embed/${vid.embedId}?autoplay=1&rel=0&modestbranding=1" title="${this.escapeHtmlAttr(vid.title)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="absolute bottom-1 right-2 z-10 bg-black/85 border border-white/20 text-[10px] font-mono px-2.5 py-1 rounded text-neutral-300 pointer-events-auto flex items-center gap-1.5 shadow-lg">
+              <a href="${vid.url}" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-white flex items-center gap-1 transition-colors font-bold">
+                <span>Watch on YouTube</span>
+                <span class="material-symbols-outlined text-[11px]">open_in_new</span>
+              </a>
+            </div>
+          </div>
+        `;
+      } else {
+        targetEl.innerHTML = `
+          <div class="relative w-full h-full group cursor-pointer" onclick="window.paintApp.loadDetailVideoPlayer(window.paintApp.activeModalProduct ? (window.paintApp.activeModalProduct.videos.find(v => v.embedId === '${vid.embedId}') || window.paintApp.activeModalProduct.videos[0]) : null, this.parentElement, true)">
+            <img src="https://img.youtube.com/vi/${vid.embedId}/hqdefault.jpg" alt="${this.escapeHtmlAttr(vid.title)}" class="w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-between p-3 pointer-events-none">
+              <div class="flex items-center justify-between gap-2">
+                <span class="px-2 py-0.5 rounded bg-red-600 text-white font-mono text-[10px] font-bold tracking-wide shadow">YOUTUBE TUTORIAL</span>
+                <span class="text-xs text-white/90 font-bold drop-shadow truncate flex-1">${this.escapeHtmlAttr(vid.title)}</span>
+                <a href="${vid.url}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="pointer-events-auto text-neutral-300 hover:text-white bg-black/60 px-1.5 py-0.5 rounded text-[10px] font-mono flex items-center gap-1 transition-colors" title="Open directly on YouTube">
+                  <span>YouTube</span>
+                  <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+                </a>
+              </div>
+              <div class="flex items-center justify-center">
+                <div class="w-14 h-14 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-[0_0_20px_rgba(239,68,68,0.8)] group-hover:scale-110 group-hover:bg-red-500 transition-transform">
+                  <span class="material-symbols-outlined text-3xl">play_arrow</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] font-mono text-neutral-300">
+                <span>Creator: <strong class="text-white">${this.escapeHtmlAttr(vid.creator)}</strong></span>
+                <span class="bg-black/80 px-1.5 py-0.5 rounded text-white font-bold">${vid.duration || 'Click to Play'}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    } else {
+      targetEl.innerHTML = `
+        <div class="relative w-full h-full flex flex-col items-center justify-center p-6 bg-gradient-to-br from-purple-950/60 via-black/80 to-pink-950/40 text-center">
+          <span class="material-symbols-outlined text-4xl text-pink-400 mb-2">photo_camera</span>
+          <h4 class="text-sm font-bold text-white mb-1">${this.escapeHtmlAttr(vid.title)}</h4>
+          <p class="text-xs text-neutral-400 font-mono mb-3">Published by ${this.escapeHtmlAttr(vid.creator)} on Instagram</p>
+          <a href="${vid.url}" target="_blank" rel="noopener noreferrer" class="mech-button-primary !py-1.5 !px-4 text-xs font-mono flex items-center gap-1.5 shadow">
+            <span class="material-symbols-outlined text-sm">open_in_new</span>
+            <span>Watch Reel on Instagram</span>
+          </a>
+        </div>
+      `;
+    }
+  }
+
+  switchDetailVideo(videoIndex) {
+    if (!this.activeModalProduct || !this.activeModalProduct.videos) return;
+    const vid = this.activeModalProduct.videos[videoIndex];
+    const target = document.getElementById('detail-video-player-target');
+    if (vid && target) {
+      this.loadDetailVideoPlayer(vid, target, true);
+    }
+    const videoItems = document.querySelectorAll('.detail-video-item');
+    videoItems.forEach((item, idx) => {
+      if (idx === videoIndex) {
+        item.className = 'detail-video-item flex items-center justify-between p-2 rounded bg-red-950/40 border border-red-500/70 transition-colors shadow-sm';
+      } else {
+        item.className = 'detail-video-item flex items-center justify-between p-2 rounded bg-surface-container-high/60 border border-white/10 hover:border-red-400/50 transition-colors';
+      }
+    });
+  }
+
+  renderProductSalesCopy(product) {
+    if (!product) return;
+    const summaryEl = document.getElementById('detail-lead-summary');
+    const tabsEl = document.getElementById('detail-copy-tabs');
+    const tabContentEl = document.getElementById('detail-tab-content');
+    const legacyDescEl = document.getElementById('detail-desc');
+
+    const leadSummary = product.summary || product.description || 'Professional grade automotive formulation engineered for show-quality kustom finishes.';
+    if (summaryEl) summaryEl.textContent = leadSummary;
+    if (legacyDescEl) legacyDescEl.textContent = leadSummary;
+
+    const hasRichSections = Boolean((product.benefits && product.benefits.length > 0) || (product.howItWorks && product.howItWorks.length > 0) || (product.inTheBox && product.inTheBox.length > 0));
+
+    if (tabsEl) {
+      if (hasRichSections) {
+        tabsEl.classList.remove('hidden');
+        this.switchCopyTab('benefits');
+      } else {
+        tabsEl.classList.add('hidden');
+        if (tabContentEl) {
+          const paragraphs = (product.description || '').split('\n').map(p => p.trim()).filter(Boolean);
+          if (paragraphs.length > 1) {
+            tabContentEl.innerHTML = paragraphs.map(p => `<p class="mb-2 leading-relaxed text-slate-300 text-xs">${this.escapeHtmlAttr(p)}</p>`).join('');
+          } else {
+            tabContentEl.innerHTML = `<p class="leading-relaxed text-slate-300 text-xs">${this.escapeHtmlAttr(product.description || '')}</p>`;
+          }
+        }
+      }
+    }
+  }
+
+  switchCopyTab(tabName) {
+    this.activeCopyTab = tabName;
+    const prod = this.activeModalProduct;
+    if (!prod) return;
+    this.renderCopyTabContent(prod, tabName);
+
+    const btnBenefits = document.getElementById('tab-btn-benefits');
+    const btnWorkflow = document.getElementById('tab-btn-workflow');
+    const btnInbox = document.getElementById('tab-btn-inbox');
+
+    const activeCls = 'detail-copy-tab active px-2.5 py-1 text-[11px] font-mono font-bold uppercase rounded text-primary bg-primary/15 border border-primary/40 transition-all cursor-pointer';
+    const inactiveCls = 'detail-copy-tab px-2.5 py-1 text-[11px] font-mono font-bold uppercase rounded text-slate-400 hover:text-white transition-all cursor-pointer';
+
+    if (btnBenefits) btnBenefits.className = tabName === 'benefits' ? activeCls : inactiveCls;
+    if (btnWorkflow) btnWorkflow.className = tabName === 'workflow' ? activeCls : inactiveCls;
+    if (btnInbox) btnInbox.className = tabName === 'inbox' ? activeCls : inactiveCls;
+  }
+
+  renderCopyTabContent(prod, tabName) {
+    const container = document.getElementById('detail-tab-content');
+    if (!container) return;
+
+    if (tabName === 'benefits') {
+      const benefits = prod.benefits || [];
+      if (benefits.length > 0) {
+        container.innerHTML = `
+          <div class="grid grid-cols-1 gap-2">
+            ${benefits.map(b => {
+              const colonIdx = b.indexOf(':');
+              const title = colonIdx > -1 ? b.slice(0, colonIdx) : '';
+              const body = colonIdx > -1 ? b.slice(colonIdx + 1) : b;
+              return `
+                <div class="flex items-start gap-2 bg-surface-container-low/60 p-2 rounded border border-white/5">
+                  <span class="material-symbols-outlined text-emerald-400 text-sm mt-0.5 flex-shrink-0">check_circle</span>
+                  <div class="text-[11px] leading-relaxed">
+                    ${title ? `<strong class="text-white">${this.escapeHtmlAttr(title)}:</strong>` : ''}
+                    <span class="text-slate-300">${this.escapeHtmlAttr(body)}</span>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      } else {
+        container.innerHTML = `<p class="text-xs text-slate-300 leading-relaxed">${this.escapeHtmlAttr(prod.description || '')}</p>`;
+      }
+    } else if (tabName === 'workflow') {
+      const steps = prod.howItWorks || [];
+      if (steps.length > 0) {
+        container.innerHTML = `
+          <div class="flex flex-col gap-2">
+            ${steps.map((step, idx) => {
+              const colonIdx = step.indexOf(':');
+              const title = colonIdx > -1 ? step.slice(0, colonIdx) : `Step ${idx + 1}`;
+              const body = colonIdx > -1 ? step.slice(colonIdx + 1) : step;
+              return `
+                <div class="flex items-start gap-2.5 bg-surface-container-low/60 p-2 rounded border border-white/5">
+                  <span class="w-5 h-5 rounded-full bg-primary/20 text-primary border border-primary/40 font-mono text-[11px] font-black flex items-center justify-center flex-shrink-0 mt-0.5">${idx + 1}</span>
+                  <div class="text-[11px] leading-relaxed">
+                    <strong class="text-white">${this.escapeHtmlAttr(title)}:</strong>
+                    <span class="text-slate-300">${this.escapeHtmlAttr(body)}</span>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      } else {
+        container.innerHTML = `<p class="text-xs text-slate-400 italic">Apply over wet intercoat clear or binder according to TDS guidelines.</p>`;
+      }
+    } else if (tabName === 'inbox') {
+      const items = prod.inTheBox || [];
+      if (items.length > 0) {
+        container.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            ${items.map(item => `
+              <div class="flex items-center gap-2 bg-surface-container-low/60 px-2.5 py-1.5 rounded border border-white/5 text-[11px] text-slate-200">
+                <span class="material-symbols-outlined text-emerald-400 text-[15px] flex-shrink-0">inventory_2</span>
+                <span class="font-medium">${this.escapeHtmlAttr(item)}</span>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else {
+        container.innerHTML = `<p class="text-xs text-slate-400 italic">Standard packaged retail container.</p>`;
+      }
+    }
+  }
+
+  switchDetailImage(imgSrc, btn) {
+    const imgEl = document.getElementById('detail-img');
+    if (imgEl) {
+      imgEl.src = imgSrc;
+    }
+    const thumbs = document.querySelectorAll('.detail-gallery-thumb');
+    thumbs.forEach(t => {
+      t.classList.remove('border-primary', 'bg-primary/20', 'shadow-[0_0_8px_rgba(211,47,47,0.5)]');
+      t.classList.add('border-secondary/60', 'bg-surface-container-low');
+      const label = t.querySelector('span');
+      if (label) {
+        label.classList.remove('text-primary');
+        label.classList.add('text-secondary');
+      }
+    });
+    if (btn) {
+      btn.classList.remove('border-secondary/60', 'bg-surface-container-low');
+      btn.classList.add('border-primary', 'bg-primary/20', 'shadow-[0_0_8px_rgba(211,47,47,0.5)]');
+      const label = btn.querySelector('span');
+      if (label) {
+        label.classList.remove('text-secondary');
+        label.classList.add('text-primary');
+      }
+    }
+  }
+
   closeDetailModal() {
     const modal = document.getElementById('modal-product-detail');
     if (modal) modal.classList.remove('active');
   }
 
-  toggleB2BMode() {
-    this.isB2BMode = !this.isB2BMode;
-    const btn = document.getElementById('btn-b2b-login');
-    if (btn) {
-      if (this.isB2BMode) {
-        btn.classList.add('bg-primary-container', 'text-white');
-        btn.innerHTML = `<span class="material-symbols-outlined text-[14px]">verified</span> B2B ACTIVE (30% OFF)`;
-        alert("🏢 B2B Wholesale Pricing Activated (30% Discount across catalog).");
+  openTradePortalModal() {
+    const modal = document.getElementById('modal-trade-portal');
+    if (modal) modal.classList.add('active');
+  }
+
+  closeTradePortalModal() {
+    const modal = document.getElementById('modal-trade-portal');
+    if (modal) modal.classList.remove('active');
+  }
+
+  switchTradeTab(tab) {
+    const viewLogin = document.getElementById('view-trade-login');
+    const viewApply = document.getElementById('view-trade-apply');
+    const tabLogin = document.getElementById('tab-trade-login');
+    const tabApply = document.getElementById('tab-trade-apply');
+
+    if (tab === 'login') {
+      if (viewLogin) viewLogin.classList.remove('hidden');
+      if (viewApply) viewApply.classList.add('hidden');
+      if (tabLogin) tabLogin.className = 'pb-2 border-b-2 border-primary text-white font-bold cursor-pointer';
+      if (tabApply) tabApply.className = 'pb-2 border-b-2 border-transparent text-secondary hover:text-white transition-colors cursor-pointer';
+    } else {
+      if (viewLogin) viewLogin.classList.add('hidden');
+      if (viewApply) viewApply.classList.remove('hidden');
+      if (tabLogin) tabLogin.className = 'pb-2 border-b-2 border-transparent text-secondary hover:text-white transition-colors cursor-pointer';
+      if (tabApply) tabApply.className = 'pb-2 border-b-2 border-primary text-white font-bold cursor-pointer';
+    }
+  }
+
+  fillDemoTradeLogin(type) {
+    const emailInput = document.getElementById('input-trade-email');
+    const passInput = document.getElementById('input-trade-password');
+    const err = document.getElementById('trade-login-error');
+    if (err) err.classList.add('hidden');
+
+    if (type === 'dealer') {
+      if (emailInput) emailInput.value = 'sarah.j@apexpaint.co.uk';
+      if (passInput) passInput.value = 'ApexCustom2026!';
+      this.showToast('Prefilled: Apex Custom Paintworks (Tier 2 Dealer)', 'info');
+    } else if (type === 'distributor') {
+      if (emailInput) emailInput.value = 'distributor@mipa-nordic.eu';
+      if (passInput) passInput.value = 'Distributor2026!';
+      this.showToast('Prefilled: Mipa Nordic Logistics (Tier 1 Distributor)', 'info');
+    } else if (type === 'pending') {
+      if (emailInput) emailInput.value = 'klaus@bavariakustom.de';
+      if (passInput) passInput.value = 'Bavaria2026!';
+      this.showToast('Prefilled: Bavaria Kustom Works (Pending Manual Verification)', 'warning');
+    }
+  }
+
+  async handleTradeLogin() {
+    const email = (document.getElementById('input-trade-email')?.value || '').trim();
+    const password = (document.getElementById('input-trade-password')?.value || '').trim();
+    const err = document.getElementById('trade-login-error');
+    const submitBtn = document.getElementById('btn-submit-trade-login');
+
+    if (!email || !password) {
+      if (err) {
+        err.textContent = "Please enter both your business email and password.";
+        err.classList.remove('hidden');
+      }
+      return;
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span> Authenticating...`;
+    }
+
+    try {
+      let data = null;
+      try {
+        const resp = await fetch('/api/auth/trade-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        data = await resp.json();
+      } catch (networkErr) {
+        console.warn("API offline, falling back to local trade verification:", networkErr);
+        if (email.toLowerCase().includes('klaus') || email.toLowerCase().includes('bavaria')) {
+          data = {
+            success: false,
+            error: "Application Pending Approval: Your commercial account for Bavaria Kustom Works is currently awaiting manual compliance verification. Our trade desk must review your VAT/business credentials before wholesale pricing can be accessed."
+          };
+        } else if (email.toLowerCase().includes('apex') || password === 'ApexCustom2026!') {
+          data = {
+            success: true,
+            token: "CAE_B2B_DEALER_DEMO_" + Date.now(),
+            user: {
+              company: "Apex Custom Paintworks Ltd",
+              contactName: "Sarah Jensen",
+              role: "dealer",
+              tierLabel: "Tier 2: Authorized Trade Dealer",
+              vat: "GB123456789",
+              country: "United Kingdom",
+              currency: "GBP",
+              discountMultiplier: 0.70
+            }
+          };
+        } else if (email.toLowerCase().includes('distributor') || email.toLowerCase().includes('mipa') || password === 'Distributor2026!') {
+          data = {
+            success: true,
+            token: "CAE_B2B_DIST_DEMO_" + Date.now(),
+            user: {
+              company: "Mipa Nordic Logistics B.V.",
+              contactName: "Karl Heinz",
+              role: "distributor",
+              tierLabel: "Tier 1: Master Regional Distributor",
+              vat: "NL999999999B01",
+              country: "Netherlands",
+              currency: "EUR",
+              discountMultiplier: 0.45
+            }
+          };
+        }
+      }
+
+      if (data && data.success) {
+        if (err) err.classList.add('hidden');
+        this.b2bSession = data.user;
+        this.isB2BMode = true;
+        localStorage.setItem('cae_trade_token', data.token);
+
+        await this.fetchB2BPricing(data.token);
+
+        this.closeTradePortalModal();
+        this.updateTradeBanner();
+        this.renderStorefrontGrid();
+        this.showToast(`✅ Welcome, ${data.user.contactName}! ${data.user.tierLabel} session unlocked.`, "success");
       } else {
-        btn.classList.remove('bg-primary-container', 'text-white');
-        btn.innerHTML = `<span class="material-symbols-outlined text-[14px]">apartment</span> DEALER LOGIN`;
+        if (err) {
+          err.textContent = data?.error || "Invalid trade credentials. Please contact your account manager or submit an application.";
+          err.classList.remove('hidden');
+        }
+      }
+    } catch (e) {
+      if (err) {
+        err.textContent = "Unable to verify credentials. Please try again or contact support.";
+        err.classList.remove('hidden');
+      }
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]">lock_open</span> <span>VERIFY CREDENTIALS & UNLOCK PRICING</span>`;
       }
     }
+  }
+
+  async fetchB2BPricing(token) {
+    try {
+      const resp = await fetch('/api/trade/pricing', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (resp.ok) {
+        const result = await resp.json();
+        this.b2bPricing = result.skuPricing || {};
+      }
+    } catch (e) {
+      console.warn("Could not fetch remote B2B pricing:", e);
+    }
+  }
+
+  updateTradeBanner() {
+    const banner = document.getElementById('trade-active-banner');
+    const btn = document.getElementById('btn-b2b-login');
+
+    if (this.isB2BMode && this.b2bSession) {
+      if (banner) {
+        banner.classList.remove('hidden');
+        const compEl = document.getElementById('trade-banner-company');
+        const tierEl = document.getElementById('trade-banner-tier');
+        const vatEl = document.getElementById('trade-banner-vat');
+        if (compEl) compEl.textContent = this.b2bSession.company;
+        if (tierEl) tierEl.textContent = this.b2bSession.tierLabel || 'Authorized Trade';
+        if (vatEl) vatEl.textContent = `VAT: ${this.b2bSession.vat || 'Verified'}`;
+      }
+
+      if (btn) {
+        btn.classList.add('bg-emerald-950/80', 'border-emerald-500/80', 'text-emerald-300');
+        btn.innerHTML = `<span class="material-symbols-outlined text-[14px] text-emerald-400">verified</span> ${this.b2bSession.role === 'distributor' ? 'DISTRIBUTOR ACTIVE' : 'TRADE ACTIVE'}`;
+      }
+    } else {
+      if (banner) banner.classList.add('hidden');
+      if (btn) {
+        btn.classList.remove('bg-emerald-950/80', 'border-emerald-500/80', 'text-emerald-300');
+        btn.innerHTML = `<span class="material-symbols-outlined text-[16px]">verified_user</span> TRADE / DEALERS`;
+      }
+    }
+  }
+
+  async handleTradeLogout() {
+    const token = localStorage.getItem('cae_trade_token');
+    if (token) {
+      try {
+        await fetch('/api/auth/trade-logout', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+      } catch (e) {}
+    }
+
+    localStorage.removeItem('cae_trade_token');
+    this.b2bSession = null;
+    this.b2bPricing = null;
+    this.isB2BMode = false;
+
+    this.updateTradeBanner();
     this.renderStorefrontGrid();
+    this.showToast("Trade session ended. Reverted to standard retail MSRP catalog.", "info");
+  }
+
+  async restoreTradeSession() {
+    const token = localStorage.getItem('cae_trade_token');
+    if (!token) return;
+
+    try {
+      const resp = await fetch('/api/auth/trade-session', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (resp.ok) {
+        const data = await resp.json();
+        this.b2bSession = data.user;
+        this.isB2BMode = true;
+        await this.fetchB2BPricing(token);
+        this.updateTradeBanner();
+        this.renderStorefrontGrid();
+      } else {
+        localStorage.removeItem('cae_trade_token');
+      }
+    } catch (e) {
+      console.warn("Could not restore trade session:", e);
+    }
+  }
+
+  async handleTradeApply() {
+    const company = (document.getElementById('input-trade-company')?.value || '').trim();
+    const vat = (document.getElementById('input-trade-vat')?.value || '').trim();
+    const contactName = (document.getElementById('input-trade-contact-name')?.value || '').trim();
+    const phone = (document.getElementById('input-trade-phone')?.value || '').trim();
+    const email = (document.getElementById('input-trade-contact-email')?.value || '').trim();
+    const sector = document.getElementById('select-trade-sector')?.value;
+    const tierDesired = document.getElementById('select-trade-tier-desired')?.value;
+    const country = (document.getElementById('input-trade-country')?.value || '').trim();
+    const monthlyVolume = document.getElementById('select-trade-volume')?.value;
+    const successMsg = document.getElementById('trade-apply-success');
+    const btn = document.getElementById('btn-submit-trade-apply');
+
+    if (!company || !email || !vat) {
+      this.showToast("Please provide your trading company name, VAT/Tax ID, and official business email.", "warning");
+      return;
+    }
+
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = `<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span> Submitting...`;
+    }
+
+    try {
+      const payload = { company, vat, contactName, phone, email, sector, tierDesired, country, monthlyVolume };
+      let res = null;
+      try {
+        const response = await fetch('/api/trade/apply', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        res = await response.json();
+      } catch (err) {
+        res = { success: true };
+      }
+
+      if (successMsg) {
+        successMsg.classList.remove('hidden');
+        successMsg.textContent = "✓ Commercial application received. Our compliance desk will verify your VAT ID and dispatch your Trade Prospectus within 24 hours.";
+      }
+      if (btn) {
+        btn.innerHTML = `<span class="material-symbols-outlined text-[16px]">check_circle</span> Application Submitted`;
+      }
+      this.showToast("Commercial application submitted successfully!", "success");
+    } catch (e) {
+      this.showToast("Failed to submit application. Please contact sales@coastairbrush.eu directly.", "danger");
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = `<span>SUBMIT COMMERCIAL APPLICATION</span>`;
+      }
+    }
   }
 
   renderSystemsDropdown() {
@@ -2457,11 +3567,45 @@ STORAGE & LOGISTICS:
     });
   }
 
-  getProductCalculatedPrice(prod, selectedPack, selectedSize) {
+  getProductCalculatedPrice(prod, selectedPack, selectedSize, selectedWidth) {
     let priceEur = prod.priceEur || 24.00;
+    let matchedSku = prod.sku || '';
+    let matchedStockCode = prod.stockCode || '';
+    let matchedBarcode = prod.barcode || '';
 
-    // Check fullMatrixPricing (matching both pack size and flake particle size)
-    if (prod.fullMatrixPricing && prod.fullMatrixPricing.length > 0) {
+    // 1. Check standardized variantMatrix if present
+    if (prod.variantMatrix && prod.variantMatrix.variants && prod.variantMatrix.variants.length > 0) {
+      const activeOptions = [selectedWidth, selectedSize, selectedPack].filter(Boolean);
+      const match = prod.variantMatrix.variants.find(v => {
+        if (!v.options) return false;
+        const optVals = Object.values(v.options);
+        if (activeOptions.length > 0) {
+          return activeOptions.every(opt => optVals.includes(opt));
+        }
+        return false;
+      });
+      if (match) {
+        if (match.priceEur) priceEur = match.priceEur;
+        if (match.sku) matchedSku = match.sku;
+        if (match.stockCode) matchedStockCode = match.stockCode;
+        if (match.barcode) matchedBarcode = match.barcode;
+      }
+    }
+    // 2. Check tapePriceMatrix (Tape products)
+    else if (prod.tapePriceMatrix && prod.tapePriceMatrix.length > 0) {
+      const targetWidth = selectedWidth || selectedSize || selectedPack;
+      if (targetWidth) {
+        const match = prod.tapePriceMatrix.find(t => t.width === targetWidth || this.matchPackToken(targetWidth, t.width));
+        if (match) {
+          if (match.priceEur) priceEur = match.priceEur;
+          if (match.sku) matchedSku = match.sku;
+          if (match.stockCode) matchedStockCode = match.stockCode;
+          if (match.barcode) matchedBarcode = match.barcode;
+        }
+      }
+    }
+    // 3. Check fullMatrixPricing (matching both pack size and flake particle size)
+    else if (prod.fullMatrixPricing && prod.fullMatrixPricing.length > 0) {
       const match = prod.fullMatrixPricing.find(m => {
         const pSize = m.rawPackSize || m.packSize || '';
         const fSize = m.rawFlakeSize || m.flakeSize || '';
@@ -2469,15 +3613,21 @@ STORAGE & LOGISTICS:
         const matchSize = !selectedSize || this.matchFlakeSizeToken(selectedSize, fSize) || this.matchFlakeSizeToken(selectedSize, m.flakeSize);
         return matchPack && matchSize;
       });
-      if (match && match.priceEur) {
-        priceEur = match.priceEur;
+      if (match) {
+        if (match.priceEur) priceEur = match.priceEur;
+        if (match.sku) matchedSku = match.sku;
+        if (match.stockCode) matchedStockCode = match.stockCode;
+        if (match.barcode) matchedBarcode = match.barcode;
       } else if (prod.packPriceMatrix && (selectedPack || selectedSize)) {
         const packMatch = prod.packPriceMatrix.find(m => 
           (selectedPack && (this.matchPackToken(selectedPack, m.packSize) || selectedPack === m.packSize)) ||
           (selectedSize && (this.matchPackToken(selectedSize, m.packSize) || selectedSize === m.packSize))
         );
-        if (packMatch && packMatch.priceEur) {
-          priceEur = packMatch.priceEur;
+        if (packMatch) {
+          if (packMatch.priceEur) priceEur = packMatch.priceEur;
+          if (packMatch.sku) matchedSku = packMatch.sku;
+          if (packMatch.stockCode) matchedStockCode = packMatch.stockCode;
+          if (packMatch.barcode) matchedBarcode = packMatch.barcode;
         }
       }
     } else if (prod.packPriceMatrix && (selectedPack || selectedSize)) {
@@ -2485,15 +3635,42 @@ STORAGE & LOGISTICS:
         (selectedPack && (this.matchPackToken(selectedPack, m.packSize) || selectedPack === m.packSize)) ||
         (selectedSize && (this.matchPackToken(selectedSize, m.packSize) || selectedSize === m.packSize))
       );
-      if (match && match.priceEur) {
-        priceEur = match.priceEur;
+      if (match) {
+        if (match.priceEur) priceEur = match.priceEur;
+        if (match.sku) matchedSku = match.sku;
+        if (match.stockCode) matchedStockCode = match.stockCode;
+        if (match.barcode) matchedBarcode = match.barcode;
       }
     }
 
-    const multiplier = this.isB2BMode ? 0.70 : 1.0;
-    const finalEur = priceEur * multiplier;
+    let finalEur = priceEur;
+    let finalGbp = null;
+
+    if (this.isB2BMode && this.b2bSession) {
+      const lookupKey = matchedSku || matchedStockCode || prod.sku || prod.stockCode;
+      if (this.b2bPricing && lookupKey && this.b2bPricing[lookupKey]) {
+        const itemPricing = this.b2bPricing[lookupKey];
+        if (itemPricing.priceEur !== null && itemPricing.priceEur !== undefined) finalEur = itemPricing.priceEur;
+        if (itemPricing.priceGbp !== null && itemPricing.priceGbp !== undefined) finalGbp = itemPricing.priceGbp;
+      } else {
+        const mult = this.b2bSession.discountMultiplier || (this.b2bSession.role === 'distributor' ? 0.45 : 0.70);
+        finalEur = priceEur * mult;
+      }
+    }
+
     const country = this.euLocalization.getCountry();
-    const finalLocal = finalEur * country.rateToEur;
+    const finalLocal = (finalGbp !== null && country.currency === 'GBP') ? finalGbp : finalEur * country.rateToEur;
+    const gbpRate = 0.85;
+    if (finalGbp === null) finalGbp = finalEur * gbpRate;
+
+    let formattedSecondary = '';
+    if (country.currency === 'GBP') {
+      formattedSecondary = `€${finalEur.toFixed(2)} EUR`;
+    } else if (country.currency === 'EUR') {
+      formattedSecondary = `£${finalGbp.toFixed(2)} GBP`;
+    } else {
+      formattedSecondary = `€${finalEur.toFixed(2)} EUR`;
+    }
 
     return {
       priceEur: finalEur,
@@ -2501,7 +3678,10 @@ STORAGE & LOGISTICS:
       currencySymbol: country.symbol,
       currencyCode: country.currency,
       formattedPrimary: `${country.symbol}${finalLocal.toFixed(2)}`,
-      formattedSecondary: country.currency !== 'EUR' ? `€${finalEur.toFixed(2)} EUR` : `$${(finalEur * 1.08).toFixed(2)} USD`
+      formattedSecondary: formattedSecondary,
+      sku: matchedSku || matchedStockCode || prod.sku || 'N/A',
+      stockCode: matchedStockCode || matchedSku || prod.stockCode || '',
+      barcode: matchedBarcode || prod.barcode || ''
     };
   }
 
@@ -2510,7 +3690,7 @@ STORAGE & LOGISTICS:
     if (!container) return;
     container.innerHTML = '';
 
-    let filtered = [...ECOM_CATALOG];
+    let filtered = ECOM_CATALOG.filter(p => !p.hideFromStorefront);
 
     if (this.activeBrandFilter && this.activeBrandFilter !== 'all') {
       filtered = filtered.filter(p => (p.brand || '').toLowerCase().includes(this.activeBrandFilter.toLowerCase()));
@@ -2560,7 +3740,8 @@ STORAGE & LOGISTICS:
     if (countBadge) {
       const brandText = this.activeBrandFilter === 'all' ? 'All Brands' : this.activeBrandFilter;
       const catText = this.activeCategoryFilter === 'all' ? 'All Categories' : this.activeCategoryFilter;
-      countBadge.textContent = `Showing ${filtered.length} of ${ECOM_CATALOG.length} products (${brandText} > ${catText})`;
+      const totalActive = ECOM_CATALOG.filter(p => !p.hideFromStorefront).length;
+      countBadge.textContent = `Showing ${filtered.length} of ${totalActive} In-Stock Products (${brandText} > ${catText})`;
     }
 
     const mobileCountBadge = document.getElementById('mobile-shop-results-count');
@@ -2581,49 +3762,70 @@ STORAGE & LOGISTICS:
       try {
         const isFlake = prod.category === 'Dry Metal Flake (Glitter)' || prod.category === 'Metal Flake';
         const isTape = prod.hasTapeOptions || prod.category === 'Masking Products' || (prod.name && prod.name.includes('Tape'));
-        const sizeLabel = isTape ? 'Tape Width / Roll Size' : (isFlake ? 'Flake Dimension (Micron)' : 'Product Size');
 
-        let validSizes = (prod.sizes || []).map(s => isFlake ? this.formatFlakeDimension(s) : String(s).trim()).filter(Boolean);
-        let validPacks = (prod.packSizes || []).map(p => isFlake ? this.formatFlakePackSize(p) : String(p).trim()).filter(Boolean);
+        let sizeLabel = isTape ? 'Tape Width / Roll Size' : (isFlake ? 'Flake Dimension (Micron)' : 'Product Size');
+        let packLabel = 'Pack Size / Volume:';
 
-        if (isFlake && validPacks.length === 0) {
-          validPacks = [
-            '30g Jar (Direct Gun Mount - 500/550)',
-            '100g Jar (Direct Gun Mount - 1000/1050)',
-            '1000g (1 Kilo Trade Pack)'
-          ];
+        let validSizes = [];
+        let validPacks = [];
+
+        if (prod.variantMatrix && prod.variantMatrix.axes && prod.variantMatrix.axes.length > 0) {
+          const ax1 = prod.variantMatrix.axes[0];
+          sizeLabel = ax1.name || sizeLabel;
+          validSizes = (ax1.values || []).map(s => String(s).trim()).filter(Boolean);
+          if (prod.variantMatrix.axes.length > 1) {
+            const ax2 = prod.variantMatrix.axes[1];
+            packLabel = ax2.name || packLabel;
+            validPacks = (ax2.values || []).map(p => String(p).trim()).filter(Boolean);
+          }
+        } else {
+          validSizes = (prod.sizes || []).map(s => isFlake ? this.formatFlakeDimension(s) : String(s).trim()).filter(Boolean);
+          validPacks = (prod.packSizes || []).map(p => isFlake ? this.formatFlakePackSize(p) : String(p).trim()).filter(Boolean);
+
+          if (isTape && validSizes.length === 0 && (prod.tapeWidths || prod.tapePriceMatrix)) {
+            validSizes = (prod.tapeWidths || (prod.tapePriceMatrix ? prod.tapePriceMatrix.map(t => t.width) : [])).map(w => String(w).trim());
+          }
+
+          if (isFlake && validPacks.length === 0) {
+            validPacks = [
+              '30g Jar (Direct Gun Mount - 500/550)',
+              '100g Jar (Direct Gun Mount - 1000/1050)',
+              '1000g (1 Kilo Trade Pack)'
+            ];
+          }
         }
 
         if (!this.selectedProductVariants[prod.id]) {
           this.selectedProductVariants[prod.id] = {
             size: validSizes[0] || '',
-            pack: validPacks[0] || ''
+            pack: validPacks[0] || '',
+            width: isTape ? (validSizes[0] || '') : ''
           };
         }
 
-        const currentSelection = this.selectedProductVariants[prod.id] || { size: '', pack: '' };
-        const prices = this.getProductCalculatedPrice(prod, currentSelection.pack, currentSelection.size) || {
-          priceEur: prod.priceEur || 24,
-          priceLocal: prod.priceEur || 24,
-          currencySymbol: '€',
-          currencyCode: 'EUR',
-          formattedPrimary: `€${(prod.priceEur || 24).toFixed(2)}`,
-          formattedSecondary: `£${((prod.priceEur || 24) * 0.86).toFixed(2)} GBP`
-        };
+        const currentSelection = this.selectedProductVariants[prod.id] || { size: '', pack: '', width: '' };
+        const prices = this.getProductCalculatedPrice(prod, currentSelection.pack, currentSelection.size, currentSelection.width);
         const reviewData = this.getProductReviewData(prod) || { rating: '4.9', count: 24, quote: '', author: '' };
 
         const isPreOrder = Boolean(prod.isPreOrder || (prod.badge && (prod.badge.includes('EARLY BIRD') || prod.badge.includes('PRE-ORDER') || prod.badge.includes('BATCH 1'))) || prod.id.startsWith('preorder_'));
         const subCategoryLabel = isFlake ? this.getFlakeSubcategory(prod) : null;
-        const badgeText = this.isB2BMode 
-          ? '🏢 30% B2B TRADE' 
-          : (isPreOrder ? `⏳ ${prod.badge || 'PRE-ORDER'}` : (isFlake && subCategoryLabel ? `✨ ${subCategoryLabel.toUpperCase()}` : (prod.badge || 'IN STOCK')));
+        let badgeText = prod.badge || 'IN STOCK';
+        if (this.isB2BMode && this.b2bSession) {
+          badgeText = this.b2bSession.role === 'distributor' 
+            ? '📦 DISTRIBUTOR WHOLESALE' 
+            : '🏢 DEALER WHOLESALE';
+        } else if (isPreOrder) {
+          badgeText = `⏳ ${prod.badge || 'PRE-ORDER'}`;
+        } else if (isFlake && subCategoryLabel) {
+          badgeText = `✨ ${subCategoryLabel.toUpperCase()}`;
+        }
 
         let variantControls = '';
         if (validSizes.length > 1 || (validSizes.length === 1 && validPacks.length === 0)) {
           variantControls += `
-            <div class="mb-2">
-              <label class="font-label-xs text-[10px] text-secondary uppercase block mb-1 font-bold">${sizeLabel}:</label>
-              <select id="select-size-${prod.id}" class="mech-select !py-1 !px-2 text-xs" onchange="window.paintApp.onProductVariantChange('${prod.id}', 'size', this.value)">
+            <div class="mb-1.5">
+              <label class="font-label-xs text-[10px] text-secondary uppercase block mb-0.5 font-bold">${sizeLabel}:</label>
+              <select id="select-size-${prod.id}" class="mech-select !py-1 !px-2 !text-[11px] leading-tight" onchange="window.paintApp.onProductVariantChange('${prod.id}', 'size', this.value)">
                 ${validSizes.map(s => {
                   const optPrice = this.getProductCalculatedPrice(prod, currentSelection.pack, s);
                   const showPrice = validPacks.length <= 1 && optPrice ? ` (${optPrice.formattedPrimary})` : '';
@@ -2636,9 +3838,9 @@ STORAGE & LOGISTICS:
 
         if (validPacks.length > 1 || (validPacks.length === 1 && validSizes.length === 0)) {
           variantControls += `
-            <div class="mb-2">
-              <label class="font-label-xs text-[10px] text-secondary uppercase block mb-1 font-bold">Pack Size / Volume:</label>
-              <select id="select-pack-${prod.id}" class="mech-select !py-1 !px-2 text-xs" onchange="window.paintApp.onProductVariantChange('${prod.id}', 'pack', this.value)">
+            <div class="mb-1.5">
+              <label class="font-label-xs text-[10px] text-secondary uppercase block mb-0.5 font-bold">Pack Size / Volume:</label>
+              <select id="select-pack-${prod.id}" class="mech-select !py-1 !px-2 !text-[11px] leading-tight" onchange="window.paintApp.onProductVariantChange('${prod.id}', 'pack', this.value)">
                 ${validPacks.map(p => {
                   const optPrice = this.getProductCalculatedPrice(prod, p, currentSelection.size);
                   return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} (${optPrice ? optPrice.formattedPrimary : ''})</option>`;
@@ -2650,49 +3852,59 @@ STORAGE & LOGISTICS:
 
         const fallbackImg = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80';
         const card = document.createElement('div');
-        card.className = 'industrial-card group overflow-hidden flex flex-col justify-between glow-hover';
+        card.className = 'industrial-card group overflow-hidden flex flex-col justify-between';
         card.innerHTML = `
           <div>
-            <div class="h-48 bg-surface-dim relative border-b-2 border-secondary overflow-hidden product-studio-stage flex items-center justify-center p-3">
-              <img class="w-full h-full object-contain filter contrast-110 group-hover:scale-105 transition-transform duration-500 drop-shadow-[0_8px_16px_rgba(0,0,0,0.8)]" src="${prod.image || fallbackImg}" alt="${prod.name}" onerror="this.onerror=null; this.src='${fallbackImg}'">
-              <div class="absolute top-2 left-2 flex gap-1">
-                <span class="metal-spec-plate text-[10px] font-bold">${(prod.brand || 'COAST').toUpperCase()}</span>
+            <div class="h-52 relative border-b border-white/10 overflow-hidden product-studio-stage flex items-center justify-center p-4 rounded-t">
+              <img class="w-full h-full object-contain filter contrast-110 drop-shadow-[0_12px_20px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-500" src="${prod.image || fallbackImg}" alt="${prod.name}" onerror="this.onerror=null; this.src='${fallbackImg}'">
+              <div class="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
+                <span class="bg-black/80 border border-white/20 text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded tracking-wider backdrop-blur-sm">${(prod.brand || 'COAST').toUpperCase()}</span>
+                ${prod.images && prod.images.length > 1 ? `<span class="bg-black/80 border border-sky-500/50 text-sky-300 font-mono text-[9px] font-bold px-1.5 py-0.5 rounded tracking-wider backdrop-blur-sm flex items-center gap-0.5 shadow"><span class="material-symbols-outlined text-[11px]">photo_library</span> ${prod.images.length} PHOTOS</span>` : ''}
               </div>
-              <div class="absolute bottom-2 right-2">
-                <span class="${isPreOrder ? 'metal-spec-plate-red' : 'metal-spec-plate'} text-[10px] font-bold">${badgeText}</span>
+              <div class="absolute bottom-2.5 right-2.5 flex flex-col items-end gap-1.5 z-10">
+                ${prod.videos && prod.videos.length > 0 ? `
+                  <button type="button" onclick="event.stopPropagation(); window.paintApp.openDetailModal('${prod.id}', 'video')" class="bg-red-950/90 border border-red-500/70 text-red-200 hover:text-white hover:bg-red-600 font-mono text-[9px] font-bold px-2 py-0.5 rounded tracking-wider backdrop-blur-sm flex items-center gap-1 shadow-[0_0_8px_rgba(239,68,68,0.5)] transition-all cursor-pointer" title="Watch in-action video demonstration">
+                    <span class="material-symbols-outlined text-[12px] text-red-400">play_circle</span>
+                    <span>DEMO (${prod.videos.length})</span>
+                  </button>
+                ` : ''}
+                <span class="${isPreOrder ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-[0_0_12px_rgba(225,29,72,0.6)]' : 'bg-emerald-950/80 border border-emerald-500/50 text-emerald-300'} font-mono text-[10px] font-bold px-2.5 py-0.5 rounded backdrop-blur-sm">${badgeText}</span>
               </div>
             </div>
 
-            <div class="p-4 bg-surface-container-low">
-              <div class="font-mono text-[11px] text-secondary mb-1">SKU: ${prod.sku || 'N/A'}</div>
-              <h4 class="font-headline text-lg uppercase text-on-surface mb-1 line-clamp-1 group-hover:text-primary transition-colors">${prod.name}</h4>
+            <div class="p-4 bg-[#141618]">
+              <div class="flex items-center justify-between text-[11px] font-mono text-neutral-400 mb-1">
+                <span id="card-sku-${prod.id}">SKU: <span id="card-sku-val-${prod.id}" class="text-zinc-300 font-semibold">${prices.sku || prod.sku || 'N/A'}</span></span>
+                ${isPreOrder ? '<span class="text-rose-400 font-bold text-[10px] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-ping"></span> Batch 1 Allocation</span>' : '<span class="text-emerald-400 text-[10px] font-semibold">● UK In Stock</span>'}
+              </div>
+              <h4 class="font-headline text-[13px] sm:text-sm uppercase text-white font-bold mb-1 line-clamp-2 min-h-[2.5rem] leading-snug tracking-tight group-hover:text-primary transition-colors">${prod.name}</h4>
               
-              <!-- Review Stars & Verified Painter Badge -->
-              <div class="flex items-center gap-1.5 my-2">
-                <span class="text-amber-400 text-xs">★★★★★</span>
-                <span class="font-mono text-xs font-bold text-on-surface">${reviewData.rating}</span>
-                <span class="text-[10px] text-secondary">(${reviewData.count})</span>
-                <span class="ml-auto text-[9px] font-mono text-emerald-400 border border-emerald-800/60 bg-emerald-950/40 px-1.5 py-0.5 rounded font-bold">✓ PRO VERIFIED</span>
+              <div class="flex items-center justify-between text-[11px] font-mono my-2 text-neutral-400">
+                <span class="text-emerald-400 font-bold flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> ${isPreOrder ? 'Batch 1 Pre-Order' : 'UK Dispatch'}
+                </span>
+                <span class="text-[10px] text-neutral-400 uppercase font-mono tracking-wider">${prod.category || 'PRO GRADE'}</span>
               </div>
 
-              <p class="font-body-md text-xs text-on-surface-variant line-clamp-2 mb-3 leading-relaxed">${prod.description || 'Authentic formulation manufactured for pro custom airbrushing & custom paint.'}</p>
-              ${variantControls}
+              <p class="font-body-md text-xs text-neutral-300 line-clamp-2 mb-2 leading-relaxed">${prod.description || 'Authentic formulation manufactured for pro custom airbrushing & custom paint.'}</p>
+              <div class="min-h-[58px] flex flex-col justify-end">${variantControls || '<div class="text-[11px] font-mono text-neutral-400 py-2">✓ Standard Pro Packaging</div>'}</div>
             </div>
           </div>
 
-          <div class="p-4 pt-0 bg-surface-container-low">
-            <div class="flex items-center justify-between border-t-2 border-secondary pt-3 mb-3">
+          <div class="p-4 pt-0 bg-[#141618]">
+            <div class="flex items-center justify-between border-t border-white/10 pt-3 mb-3">
               <div>
-                <span id="price-eur-${prod.id}" class="font-headline text-2xl text-primary font-bold block">${prices.formattedPrimary}</span>
-                <span id="price-gbp-${prod.id}" class="font-mono text-[11px] text-secondary">${prices.formattedSecondary}</span>
+                <span id="price-eur-${prod.id}" class="font-headline text-2xl text-white font-extrabold block">${prices.formattedPrimary}</span>
+                <span id="price-gbp-${prod.id}" class="font-mono text-[11px] text-neutral-400">${prices.formattedSecondary}</span>
+                ${this.isB2BMode && this.b2bSession ? `<span class="inline-block mt-1 text-[10px] font-mono text-emerald-400 bg-emerald-950/70 border border-emerald-500/50 px-1.5 py-0.5 rounded font-bold">✓ EX-VAT TRADE RATE</span>` : ''}
               </div>
-              <button onclick="window.paintApp.openDetailModal('${prod.id}')" class="text-secondary hover:text-primary font-label-xs text-xs uppercase flex items-center gap-0.5 font-bold cursor-pointer">
-                Details <span class="material-symbols-outlined text-sm">chevron_right</span>
+              <button onclick="window.paintApp.openDetailModal('${prod.id}')" class="text-neutral-300 hover:text-white font-mono text-xs uppercase flex items-center gap-0.5 font-bold cursor-pointer transition-colors">
+                Details <span class="material-symbols-outlined text-sm text-primary">chevron_right</span>
               </button>
             </div>
 
             <div class="grid grid-cols-1 gap-2">
-              <button onclick="window.paintApp.addProductToCartById('${prod.id}')" class="mech-button-primary !w-full !justify-center !text-xs !py-2.5">
+              <button onclick="window.paintApp.addProductToCartById('${prod.id}')" class="mech-button-primary !w-full !justify-center !text-xs !py-2.5 font-bold tracking-wider shadow-[0_4px_12px_rgba(211,47,47,0.3)]">
                 ${isPreOrder ? '🛒 Pre-Order Now' : '+ Add to Cart'}
               </button>
               ${prod.brand === 'Kroma Edge' || (prod.category || '').includes('Solvent') || (prod.category || '').includes('Paint') ? `
@@ -2721,7 +3933,7 @@ STORAGE & LOGISTICS:
     if (!prod) return;
 
     const currentSelection = this.selectedProductVariants[prodId];
-    const prices = this.getProductCalculatedPrice(prod, currentSelection.pack, currentSelection.size);
+    const prices = this.getProductCalculatedPrice(prod, currentSelection.pack, currentSelection.size, currentSelection.width);
     
     // Storefront Card Price Elements
     const eurEl = document.getElementById(`price-eur-${prodId}`);
@@ -2732,6 +3944,10 @@ STORAGE & LOGISTICS:
     if (gbpEl && prices) {
       gbpEl.textContent = prices.formattedSecondary;
     }
+    const cardSkuVal = document.getElementById(`card-sku-val-${prodId}`);
+    if (cardSkuVal && prices && prices.sku) {
+      cardSkuVal.textContent = prices.sku;
+    }
 
     // Modal Price Elements (if modal is open for this product)
     if (this.activeModalProduct && this.activeModalProduct.id === prodId) {
@@ -2739,6 +3955,10 @@ STORAGE & LOGISTICS:
       const modalPriceSubEl = document.getElementById('detail-price-sub');
       if (modalPriceEl && prices) modalPriceEl.textContent = prices.formattedPrimary;
       if (modalPriceSubEl && prices) modalPriceSubEl.textContent = prices.formattedSecondary;
+      const modalSkuEl = document.getElementById('detail-sku-badge');
+      if (modalSkuEl && prices && prices.sku) {
+        modalSkuEl.textContent = `SKU: ${prices.sku}${prices.barcode ? ` | EAN: ${prices.barcode}` : ''}`;
+      }
     }
 
     // Sync Storefront selects if changed from modal or vice versa
@@ -2766,13 +3986,22 @@ STORAGE & LOGISTICS:
       const isFlake = prod.category === 'Dry Metal Flake (Glitter)' || prod.category === 'Metal Flake';
       const validPacks = prod.packSizes.map(p => isFlake ? this.formatFlakePackSize(p) : p).filter(Boolean);
       const optionsHtml = validPacks.map(p => {
-        const optPrice = this.getProductCalculatedPrice(prod, p, currentSelection.size);
+        const optPrice = this.getProductCalculatedPrice(prod, p, currentSelection.size, currentSelection.width);
         return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} (${optPrice ? optPrice.formattedPrimary : ''})</option>`;
       }).join('');
 
       if (storePackSelect) storePackSelect.innerHTML = optionsHtml;
       if (modalPackSelect && this.activeModalProduct && this.activeModalProduct.id === prodId) {
         modalPackSelect.innerHTML = optionsHtml;
+      }
+
+      // If viewing in product modal, dynamically update gun tip and mix ratio specs
+      if (isFlake && this.activeModalProduct && this.activeModalProduct.id === prodId) {
+        const flakeSpec = this.getFlakeSpecForSize(currentSelection.size);
+        const tipEl = document.getElementById('detail-spec-tip');
+        const ratioEl = document.getElementById('detail-spec-ratio');
+        if (tipEl && flakeSpec) tipEl.textContent = flakeSpec.minGunNozzle;
+        if (ratioEl && flakeSpec) ratioEl.textContent = `${flakeSpec.ratioText} (or Dry via FK Gun)`;
       }
     }
   }
@@ -2782,11 +4011,14 @@ STORAGE & LOGISTICS:
     if (!prod) return;
 
     const variant = this.selectedProductVariants[prodId] || {};
-    const prices = this.getProductCalculatedPrice(prod, variant.pack, variant.size);
-    const variantDesc = [variant.size, variant.pack].filter(Boolean).join(' / ') || 'Standard';
+    const prices = this.getProductCalculatedPrice(prod, variant.pack, variant.size, variant.width);
+    const variantDesc = [variant.width, variant.size, variant.pack].filter(Boolean).join(' / ') || 'Standard';
+
+    // Locate matching variant SKU if present
+    const variantSku = prices.sku || prod.sku;
 
     this.shopifyCartManager.addItem({
-      sku: prod.sku,
+      sku: variantSku,
       title: prod.name,
       priceEur: prices.priceEur,
       quantity: 1,
@@ -2846,6 +4078,530 @@ STORAGE & LOGISTICS:
     });
 
     this.openCartDrawer();
+  }
+
+  // =========================================================================
+  // DYNAMIC BUNDLE ENGINE & CONFIGURATOR
+  // =========================================================================
+
+  getActiveBundle(bundleId = 'fk-pro-mastery-bundle') {
+    if (window.BundleConfigEngine) {
+      return window.BundleConfigEngine.getBundleById(bundleId);
+    }
+    return null;
+  }
+
+  renderFeaturedBundle() {
+    const bundle = this.getActiveBundle('fk-pro-mastery-bundle');
+    if (!bundle) return;
+
+    const titleEl = document.getElementById('bundle-card-title');
+    const badgeEl = document.getElementById('bundle-card-badge');
+    const descEl = document.getElementById('bundle-card-description');
+    const savingsBadgeEl = document.getElementById('bundle-card-savings-badge');
+    const retailEl = document.getElementById('bundle-card-retail-price');
+    const saleEl = document.getElementById('bundle-card-sale-price');
+    const gbpEl = document.getElementById('bundle-card-gbp-price');
+    const checklistEl = document.getElementById('bundle-card-checklist');
+
+    if (titleEl) titleEl.textContent = bundle.title;
+    if (badgeEl) badgeEl.textContent = bundle.badge;
+    if (descEl) descEl.textContent = bundle.description;
+
+    const savingsEur = Math.max(0, Math.round((bundle.retailValueEur || 0) - (bundle.priceEur || 0)));
+    const savingsGbp = Math.max(0, Math.round((bundle.retailValueGbp || 0) - (bundle.priceGbp || 0)));
+    if (savingsBadgeEl) {
+      savingsBadgeEl.textContent = `SAVE €${savingsEur} / £${savingsGbp}`;
+    }
+
+    if (retailEl) retailEl.textContent = `€${Number(bundle.retailValueEur || 0).toFixed(2)}`;
+    if (saleEl) saleEl.textContent = `€${Number(bundle.priceEur || 0).toFixed(2)}`;
+    if (gbpEl) gbpEl.textContent = `/ £${Number(bundle.priceGbp || 0).toFixed(2)} + VAT`;
+
+    if (checklistEl) {
+      checklistEl.innerHTML = '';
+      (bundle.items || []).forEach(item => {
+        const li = document.createElement('li');
+        li.className = 'flex items-center gap-2';
+        li.innerHTML = `
+          <span class="material-symbols-outlined text-emerald-400 text-sm">check_circle</span>
+          <span>${item.qty || 1}x ${item.name} (${item.variant || 'Standard Pack'})</span>
+        `;
+        checklistEl.appendChild(li);
+      });
+      const dispatchLi = document.createElement('li');
+      dispatchLi.className = 'flex items-center gap-2';
+      dispatchLi.innerHTML = `
+        <span class="material-symbols-outlined text-emerald-400 text-sm">check_circle</span>
+        <span>Dispatched same day via APC Overnight Tracked Delivery</span>
+      `;
+      checklistEl.appendChild(dispatchLi);
+    }
+  }
+
+  addConfiguredBundleToCart(bundleId = 'fk-pro-mastery-bundle') {
+    const bundle = this.getActiveBundle(bundleId);
+    if (!bundle || !bundle.items || bundle.items.length === 0) {
+      return this.addFlakeKingMasterBundleToCart();
+    }
+
+    bundle.items.forEach(item => {
+      this.shopifyCartManager.addItem({
+        sku: item.sku || 'FK-BUNDLE-ITEM',
+        title: item.name,
+        priceEur: Number(item.priceEur) || ((bundle.priceEur || 100) / bundle.items.length),
+        quantity: item.qty || 1,
+        variantDetails: `${item.variant || 'Bundle Pack'} • UK Warehouse`
+      });
+    });
+
+    this.openCartDrawer();
+    this.showToast(`🔥 ${bundle.title} added to cart!`, 'success');
+  }
+
+  addFlakeKingMasterBundleToCart() {
+    this.addConfiguredBundleToCart('fk-pro-mastery-bundle');
+  }
+
+  openBundleCustomizerModal(bundleId = 'fk-pro-mastery-bundle') {
+    const bundle = this.getActiveBundle(bundleId);
+    if (!bundle) return;
+
+    this.currentCustomizingBundleId = bundle.id;
+    const modal = document.getElementById('modal-bundle-customizer');
+    const priceEurEl = document.getElementById('customizer-bundle-price');
+    const priceGbpEl = document.getElementById('customizer-bundle-gbp');
+    const savingsEl = document.getElementById('customizer-bundle-savings');
+    const container = document.getElementById('bundle-customizer-slots');
+
+    if (priceEurEl) priceEurEl.textContent = `€${Number(bundle.priceEur || 0).toFixed(2)}`;
+    if (priceGbpEl) priceGbpEl.textContent = `/ £${Number(bundle.priceGbp || 0).toFixed(2)}`;
+    const savingsEur = Math.max(0, Math.round((bundle.retailValueEur || 0) - (bundle.priceEur || 0)));
+    if (savingsEl) savingsEl.textContent = `SAVE €${savingsEur}`;
+
+    if (container) {
+      container.innerHTML = '';
+      
+      const allFlakes = ECOM_CATALOG.filter(p => 
+        (p.category && p.category.includes('Glitter')) ||
+        Boolean(p.flakeType) ||
+        (p.name && p.name.includes('Metal Flake') && !p.name.includes('Gun') && !p.name.includes('Kit') && !p.name.includes('Attachment') && !p.name.includes('Jar & Lid') && !p.name.includes('Adaptor'))
+      );
+
+      (bundle.items || []).forEach((item, idx) => {
+        const isFlake = (item.category && item.category.toLowerCase().includes('flake')) || (item.name && item.name.toLowerCase().includes('flake'));
+        const isTape = (item.category && item.category.toLowerCase().includes('masking')) || (item.name && item.name.toLowerCase().includes('tape'));
+
+        const slotCard = document.createElement('div');
+        slotCard.className = 'p-3 bg-surface border border-secondary/40 rounded flex flex-col sm:flex-row sm:items-center justify-between gap-3';
+
+        if (item.allowCustomerSwap && isFlake) {
+          slotCard.innerHTML = `
+            <div class="flex-1">
+              <div class="flex items-center gap-1.5 mb-1">
+                <span class="text-[10px] font-mono font-bold uppercase text-amber-400 bg-amber-950/60 px-1.5 py-0.5 rounded border border-amber-500/40">CUSTOMIZE FLAKE COLOUR</span>
+                <span class="font-headline text-xs uppercase text-white font-bold">Slot ${idx + 1}: Metal Flake Jar</span>
+              </div>
+              <p class="text-[11px] text-secondary font-mono">Choose any of our 58+ precision dry metal flake shades:</p>
+            </div>
+            <div class="sm:w-64">
+              <select id="customizer-slot-${idx}" class="mech-select !py-1.5 !px-2 !text-xs w-full">
+                ${allFlakes.map(f => `
+                  <option value="${f.sku || f.id}" ${f.id === item.productId || (f.name && f.name.includes('Silver Holo')) ? 'selected' : ''}>
+                    ${f.name.replace('Metal Flake', '').replace('Flake King', '').trim()} (30g Jar)
+                  </option>
+                `).join('')}
+              </select>
+            </div>
+          `;
+        } else if (item.allowCustomerSwap && isTape) {
+          slotCard.innerHTML = `
+            <div class="flex-1">
+              <div class="flex items-center gap-1.5 mb-1">
+                <span class="text-[10px] font-mono font-bold uppercase text-amber-400 bg-amber-950/60 px-1.5 py-0.5 rounded border border-amber-500/40">CUSTOMIZE TAPE WIDTH</span>
+                <span class="font-headline text-xs uppercase text-white font-bold">Slot ${idx + 1}: Precision Fine Line Tape</span>
+              </div>
+              <p class="text-[11px] text-secondary font-mono">Select width for sharp micro-edge separation:</p>
+            </div>
+            <div class="sm:w-48">
+              <select id="customizer-slot-${idx}" class="mech-select !py-1.5 !px-2 !text-xs w-full">
+                <option value="1.5mm">1.5mm Micro-Pinstripe</option>
+                <option value="3mm" selected>3mm Precision Curve</option>
+                <option value="6mm">6mm Standard Edge</option>
+                <option value="9mm">9mm Wide Separation</option>
+                <option value="12mm">12mm Masking Line</option>
+              </select>
+            </div>
+          `;
+        } else {
+          slotCard.innerHTML = `
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-emerald-400 text-xl">verified</span>
+              <div>
+                <span class="font-headline text-xs uppercase text-white font-bold block">${item.name}</span>
+                <span class="font-mono text-[11px] text-secondary">${item.qty || 1}x ${item.variant || 'Standard'}</span>
+              </div>
+            </div>
+            <span class="font-mono text-[10px] text-neutral-400 uppercase bg-surface-container px-2 py-1 rounded border border-secondary/40">
+              LOCKED BUNDLE CORE
+            </span>
+          `;
+        }
+        container.appendChild(slotCard);
+      });
+    }
+
+    if (modal) modal.classList.add('active');
+  }
+
+  closeBundleCustomizerModal() {
+    const modal = document.getElementById('modal-bundle-customizer');
+    if (modal) modal.classList.remove('active');
+  }
+
+  submitCustomizedBundleToCart() {
+    const bundle = this.getActiveBundle(this.currentCustomizingBundleId || 'fk-pro-mastery-bundle');
+    if (!bundle) return;
+
+    (bundle.items || []).forEach((item, idx) => {
+      const select = document.getElementById(`customizer-slot-${idx}`);
+      let title = item.name;
+      let variant = item.variant || 'Standard Pack';
+      let sku = item.sku;
+
+      if (select) {
+        const optText = select.options[select.selectedIndex]?.text || '';
+        if (optText.includes('(30g Jar)')) {
+          title = `Flake King ${optText}`;
+          sku = select.value;
+          variant = '30g Gun-Mount Jar';
+        } else if (optText.includes('Pinstripe') || optText.includes('Curve') || optText.includes('Edge') || select.value.includes('mm')) {
+          title = `Orange Fine Line Tape (${select.value})`;
+          sku = `FK-TAPE-${select.value}`;
+          variant = `${select.value} Precision Width`;
+        }
+      }
+
+      this.shopifyCartManager.addItem({
+        sku: sku || 'FK-CUSTOM-BUNDLE-ITEM',
+        title: title,
+        priceEur: Number(item.priceEur) || ((bundle.priceEur || 100) / bundle.items.length),
+        quantity: item.qty || 1,
+        variantDetails: `${variant} • UK Warehouse`
+      });
+    });
+
+    this.closeBundleCustomizerModal();
+    this.openCartDrawer();
+    this.showToast("🎨 Customized bundle loaded to cart!", "success");
+  }
+
+  // =========================================================================
+  // ADMIN BUNDLE MANAGER CONTROLLER
+  // =========================================================================
+
+  renderAdminBundles() {
+    const bundle = this.getActiveBundle('fk-pro-mastery-bundle');
+    if (!bundle) return;
+
+    const titleIn = document.getElementById('admin-bundle-title');
+    const badgeIn = document.getElementById('admin-bundle-badge');
+    const taglineIn = document.getElementById('admin-bundle-tagline');
+    const descIn = document.getElementById('admin-bundle-description');
+    const priceEurIn = document.getElementById('admin-bundle-price-eur');
+    const priceGbpIn = document.getElementById('admin-bundle-price-gbp');
+    const retailEurIn = document.getElementById('admin-bundle-retail-eur');
+    const retailGbpIn = document.getElementById('admin-bundle-retail-gbp');
+    const savingsText = document.getElementById('admin-bundle-savings-text');
+
+    if (titleIn) titleIn.value = bundle.title || '';
+    if (badgeIn) badgeIn.value = bundle.badge || '';
+    if (taglineIn) taglineIn.value = bundle.tagline || '';
+    if (descIn) descIn.value = bundle.description || '';
+    if (priceEurIn) priceEurIn.value = bundle.priceEur || '';
+    if (priceGbpIn) priceGbpIn.value = bundle.priceGbp || '';
+    if (retailEurIn) retailEurIn.value = bundle.retailValueEur || '';
+    if (retailGbpIn) retailGbpIn.value = bundle.retailValueGbp || '';
+
+    const updateSavings = () => {
+      const pEur = parseFloat(priceEurIn?.value || 0);
+      const rEur = parseFloat(retailEurIn?.value || 0);
+      const savEur = Math.max(0, rEur - pEur);
+      const pct = rEur > 0 ? Math.round((savEur / rEur) * 100) : 0;
+      if (savingsText) {
+        savingsText.textContent = `Painter Savings: €${savEur.toFixed(2)} EUR (${pct}% off retail)`;
+      }
+      this.renderAdminBundleLivePreview();
+    };
+
+    [priceEurIn, priceGbpIn, retailEurIn, retailGbpIn, titleIn, badgeIn, descIn].forEach(input => {
+      if (input && !input.dataset.bound) {
+        input.dataset.bound = 'true';
+        input.addEventListener('input', updateSavings);
+      }
+    });
+
+    updateSavings();
+    this.renderAdminBundleSlots(bundle);
+    this.renderAdminBundleLivePreview();
+  }
+
+  renderAdminBundleSlots(bundle) {
+    const container = document.getElementById('admin-bundle-slots-container');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    const allProducts = ECOM_CATALOG.filter(p => p.inStock !== false || p.brand === 'Flake King');
+
+    (bundle.items || []).forEach((item, idx) => {
+      const slotCard = document.createElement('div');
+      slotCard.className = 'p-4 bg-surface-dim border border-secondary/40 rounded space-y-3';
+      slotCard.dataset.slotIndex = idx;
+
+      slotCard.innerHTML = `
+        <div class="flex justify-between items-center border-b border-secondary/20 pb-2">
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary font-mono text-xs flex items-center justify-center font-bold">
+              ${idx + 1}
+            </span>
+            <span class="font-headline text-xs uppercase text-white font-bold">Product Slot #${idx + 1}</span>
+          </div>
+          <button type="button" onclick="window.removeAdminBundleSlot(${idx})" class="text-rose-400 hover:text-rose-300 text-xs font-mono flex items-center gap-1 cursor-pointer">
+            <span class="material-symbols-outlined text-[15px]">delete</span> Remove
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block mb-1">Select Catalog Product</label>
+            <select class="admin-slot-product mech-select !py-1.5 !px-2 !text-xs w-full" onchange="window.paintApp.onAdminBundleProductChange(${idx}, this.value)">
+              ${allProducts.map(p => `
+                <option value="${p.id}" ${p.id === item.productId ? 'selected' : ''}>
+                  ${p.brand || 'COAST'} — ${(p.name || '').substring(0, 45)}
+                </option>
+              `).join('')}
+            </select>
+          </div>
+          <div>
+            <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block mb-1">Variant / Size Description</label>
+            <input type="text" class="admin-slot-variant mech-input w-full !py-1.5 !text-xs font-mono" value="${this.escapeHtmlAttr(item.variant || '')}" placeholder="e.g. 30g Jar or 3mm Roll">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 font-mono">
+          <div>
+            <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block mb-1">Quantity</label>
+            <input type="number" min="1" class="admin-slot-qty mech-input w-full !py-1 !text-xs font-bold" value="${item.qty || 1}">
+          </div>
+          <div>
+            <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block mb-1">Unit Price (€)</label>
+            <input type="number" step="0.01" class="admin-slot-eur mech-input w-full !py-1 !text-xs" value="${item.priceEur || ''}">
+          </div>
+          <div>
+            <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block mb-1">Unit Price (£)</label>
+            <input type="number" step="0.01" class="admin-slot-gbp mech-input w-full !py-1 !text-xs" value="${item.priceGbp || ''}">
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 pt-1">
+          <input type="checkbox" id="admin-slot-custom-${idx}" class="admin-slot-allow-swap" ${item.allowCustomerSwap ? 'checked' : ''}>
+          <label for="admin-slot-custom-${idx}" class="font-mono text-[11px] text-neutral-300 cursor-pointer">
+            Allow customer to swap this item on storefront (e.g. choose other flake colors or tape widths)
+          </label>
+        </div>
+      `;
+      container.appendChild(slotCard);
+    });
+  }
+
+  onAdminBundleProductChange(slotIndex, productId) {
+    const prod = ECOM_CATALOG.find(p => p.id === productId);
+    if (!prod) return;
+
+    const container = document.getElementById('admin-bundle-slots-container');
+    const slotCard = container?.querySelector(`[data-slot-index="${slotIndex}"]`);
+    if (!slotCard) return;
+
+    const variantIn = slotCard.querySelector('.admin-slot-variant');
+    const eurIn = slotCard.querySelector('.admin-slot-eur');
+    const gbpIn = slotCard.querySelector('.admin-slot-gbp');
+
+    if (variantIn && (!variantIn.value || variantIn.value === 'Standard Pack')) {
+      variantIn.value = prod.packSizes?.[0] || prod.sizes?.[0] || 'Standard Pack';
+    }
+    if (eurIn) eurIn.value = prod.priceEur || '';
+    if (gbpIn) gbpIn.value = prod.priceGbp || '';
+
+    this.renderAdminBundleLivePreview();
+  }
+
+  addAdminBundleSlot() {
+    const bundle = this.getActiveBundle('fk-pro-mastery-bundle');
+    if (!bundle) return;
+
+    const defaultFlake = ECOM_CATALOG.find(p => p.name && p.name.includes('Gold')) || ECOM_CATALOG[0];
+    bundle.items.push({
+      id: `slot-${Date.now()}`,
+      productId: defaultFlake.id,
+      sku: defaultFlake.sku || 'FK-FLAKE-ADDON',
+      name: defaultFlake.name,
+      variant: '30g Jar',
+      qty: 1,
+      priceEur: defaultFlake.priceEur || 16.95,
+      priceGbp: defaultFlake.priceGbp || 14.49,
+      category: defaultFlake.category || 'Dry Metal Flake (Glitter)',
+      allowCustomerSwap: true
+    });
+
+    this.renderAdminBundleSlots(bundle);
+    this.renderAdminBundleLivePreview();
+  }
+
+  removeAdminBundleSlot(slotIndex) {
+    const bundle = this.getActiveBundle('fk-pro-mastery-bundle');
+    if (!bundle || !bundle.items || bundle.items.length <= 1) {
+      this.showToast("A bundle must contain at least 1 product slot.", "warning");
+      return;
+    }
+    bundle.items.splice(slotIndex, 1);
+    this.renderAdminBundleSlots(bundle);
+    this.renderAdminBundleLivePreview();
+  }
+
+  saveBundleFromAdmin() {
+    const title = (document.getElementById('admin-bundle-title')?.value || '').trim();
+    const badge = (document.getElementById('admin-bundle-badge')?.value || '').trim();
+    const tagline = (document.getElementById('admin-bundle-tagline')?.value || '').trim();
+    const description = (document.getElementById('admin-bundle-description')?.value || '').trim();
+    const priceEur = parseFloat(document.getElementById('admin-bundle-price-eur')?.value || 0);
+    const priceGbp = parseFloat(document.getElementById('admin-bundle-price-gbp')?.value || 0);
+    const retailEur = parseFloat(document.getElementById('admin-bundle-retail-eur')?.value || 0);
+    const retailGbp = parseFloat(document.getElementById('admin-bundle-retail-gbp')?.value || 0);
+
+    if (!title) {
+      this.showToast("Please provide a bundle title.", "warning");
+      return;
+    }
+
+    const container = document.getElementById('admin-bundle-slots-container');
+    const slotCards = container?.querySelectorAll('[data-slot-index]') || [];
+    const items = [];
+
+    slotCards.forEach((card, idx) => {
+      const prodId = card.querySelector('.admin-slot-product')?.value;
+      const variant = card.querySelector('.admin-slot-variant')?.value || 'Standard';
+      const qty = parseInt(card.querySelector('.admin-slot-qty')?.value || 1, 10);
+      const eur = parseFloat(card.querySelector('.admin-slot-eur')?.value || 0);
+      const gbp = parseFloat(card.querySelector('.admin-slot-gbp')?.value || 0);
+      const allowSwap = card.querySelector('.admin-slot-allow-swap')?.checked || false;
+
+      const prod = ECOM_CATALOG.find(p => p.id === prodId) || {};
+
+      items.push({
+        id: `slot-${idx + 1}`,
+        productId: prodId,
+        sku: prod.sku || `FK-SKU-${idx + 1}`,
+        name: prod.name || `Bundle Product ${idx + 1}`,
+        variant: variant,
+        qty: qty,
+        priceEur: eur,
+        priceGbp: gbp,
+        category: prod.category || '',
+        allowCustomerSwap: allowSwap
+      });
+    });
+
+    const bundleData = {
+      id: 'fk-pro-mastery-bundle',
+      title,
+      badge,
+      tagline,
+      description,
+      priceEur,
+      priceGbp,
+      retailValueEur: retailEur,
+      retailValueGbp: retailGbp,
+      items
+    };
+
+    if (window.BundleConfigEngine) {
+      window.BundleConfigEngine.saveBundle(bundleData);
+    }
+    this.renderFeaturedBundle();
+    this.renderAdminBundleLivePreview();
+    this.showToast("✅ Bundle configuration published to live storefront!", "success");
+  }
+
+  resetBundleFromAdmin() {
+    if (confirm("Reset bundle back to factory Flake King defaults?")) {
+      if (window.BundleConfigEngine) {
+        window.BundleConfigEngine.resetDefaults();
+      }
+      this.renderAdminBundles();
+      this.renderFeaturedBundle();
+      this.showToast("↺ Bundle reset to factory defaults.", "info");
+    }
+  }
+
+  renderAdminBundleLivePreview() {
+    const preview = document.getElementById('admin-bundle-live-preview');
+    if (!preview) return;
+
+    const title = document.getElementById('admin-bundle-title')?.value || 'THE FLAKE KING™ PRO MASTERY BUNDLE';
+    const badge = document.getElementById('admin-bundle-badge')?.value || '🔥 COMPLETE IN-STOCK BUNDLE';
+    const desc = document.getElementById('admin-bundle-description')?.value || 'Everything required for dry metal flake.';
+    const pEur = parseFloat(document.getElementById('admin-bundle-price-eur')?.value || 139.95);
+    const pGbp = parseFloat(document.getElementById('admin-bundle-price-gbp')?.value || 119.50);
+    const rEur = parseFloat(document.getElementById('admin-bundle-retail-eur')?.value || 165.90);
+    const savEur = Math.max(0, Math.round(rEur - pEur));
+
+    const slotCards = document.querySelectorAll('#admin-bundle-slots-container [data-slot-index]');
+    const checklistItems = [];
+    slotCards.forEach(card => {
+      const prodId = card.querySelector('.admin-slot-product')?.value;
+      const variant = card.querySelector('.admin-slot-variant')?.value || '';
+      const qty = card.querySelector('.admin-slot-qty')?.value || 1;
+      const prod = ECOM_CATALOG.find(p => p.id === prodId);
+      checklistItems.push(`${qty}x ${prod ? prod.name : 'Component'} (${variant})`);
+    });
+
+    preview.innerHTML = `
+      <div class="bg-gradient-to-br from-black via-surface-container-high to-surface-container border-2 border-primary/50 rounded-lg p-5 text-left relative overflow-hidden shadow-lg">
+        <div class="flex items-center justify-between gap-2 mb-2">
+          <span class="px-2 py-0.5 rounded bg-primary text-white font-mono text-[9px] font-extrabold uppercase">
+            ${badge}
+          </span>
+          <span class="text-amber-300 font-mono text-xs font-bold">SAVE €${savEur}</span>
+        </div>
+        <h3 class="font-headline text-lg uppercase text-white font-bold tracking-tight mb-1">
+          ${title}
+        </h3>
+        <p class="text-neutral-300 font-body text-xs mb-3 line-clamp-2">
+          ${desc}
+        </p>
+        <ul class="space-y-1.5 text-xs font-mono text-neutral-200 mb-4">
+          ${checklistItems.map(item => `
+            <li class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-emerald-400 text-sm">check_circle</span>
+              <span class="truncate">${item}</span>
+            </li>
+          `).join('')}
+          <li class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-emerald-400 text-sm">check_circle</span>
+            <span>Dispatched same day via APC Overnight</span>
+          </li>
+        </ul>
+        <div class="border-t border-white/10 pt-2 flex justify-between items-baseline">
+          <div>
+            <span class="text-xs text-secondary line-through font-mono">€${rEur.toFixed(2)}</span>
+            <span class="font-headline text-xl text-primary font-bold ml-1.5">€${pEur.toFixed(2)}</span>
+            <span class="text-xs font-mono text-neutral-300 ml-1">/ £${pGbp.toFixed(2)}</span>
+          </div>
+          <span class="text-[9px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/40 px-1.5 py-0.5 rounded font-bold">LIVE STOREFRONT</span>
+        </div>
+      </div>
+    `;
   }
 
   configureKromaEdgeInMixLab() {
@@ -2971,6 +4727,12 @@ STORAGE & LOGISTICS:
     });
   }
 
+  openScaleMode() {
+    this.switchTab('tab-scale', 'view-scale');
+    this.initScaleAssistant();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   initScaleAssistant() {
     this.currentScaleStepIndex = 0;
     this.renderScaleStep();
@@ -3015,7 +4777,7 @@ STORAGE & LOGISTICS:
       this.currentScaleStepIndex++;
       this.renderScaleStep();
     } else {
-      alert("✅ Mix Complete! All scale target weights reached.");
+      this.showToast("✅ Mix Complete! All scale target weights reached.", "success");
     }
   }
 
@@ -3025,6 +4787,10 @@ STORAGE & LOGISTICS:
     const vatLabelEl = document.getElementById('cart-drawer-vat-label');
     const vatAmountEl = document.getElementById('cart-drawer-vat-amount');
     const carrierEl = document.getElementById('cart-drawer-carrier');
+    const carrierLabelEl = document.getElementById('cart-drawer-carrier-label');
+    const shippingAmountEl = document.getElementById('cart-drawer-shipping-amount');
+    const ddpRowEl = document.getElementById('cart-drawer-ddp-row');
+    const ddpAmountEl = document.getElementById('cart-drawer-ddp-amount');
     const totalEl = document.getElementById('cart-drawer-total');
     const convertedTotalEl = document.getElementById('cart-drawer-converted-total');
     const itemsContainer = document.getElementById('cart-drawer-items');
@@ -3033,25 +4799,64 @@ STORAGE & LOGISTICS:
     const taxData = this.euLocalization.calculateTaxAndTotal(summary.subtotal);
 
     if (countBadge) countBadge.textContent = summary.itemCount;
-    if (subtotalEl) subtotalEl.textContent = `€${taxData.subtotalEur.toFixed(2)}`;
+    if (subtotalEl) {
+      subtotalEl.textContent = country.currency === 'EUR'
+        ? `€${taxData.subtotalEur.toFixed(2)}`
+        : `${country.symbol}${taxData.subtotalLocal.toFixed(2)}`;
+    }
     
     if (vatLabelEl) {
-      vatLabelEl.textContent = taxData.isVatExempt 
-        ? `VAT (0% Intra-EU Reverse-Charge):` 
-        : `VAT (${taxData.vatRatePercent}% ${country.code}):`;
+      if (taxData.isUK) {
+        vatLabelEl.textContent = `UK VAT (20% HMRC):`;
+      } else if (taxData.isVatExempt) {
+        vatLabelEl.textContent = `EU VAT (0% Reverse-Charge):`;
+      } else {
+        vatLabelEl.textContent = `EU VAT (${taxData.vatRatePercent}% ${country.code} IOSS/DDP):`;
+      }
     }
+
     if (vatAmountEl) {
-      vatAmountEl.textContent = `€${taxData.vatAmountEur.toFixed(2)}`;
+      vatAmountEl.textContent = country.currency === 'EUR'
+        ? `€${taxData.vatAmountEur.toFixed(2)}`
+        : `${country.symbol}${taxData.vatAmountLocal.toFixed(2)}`;
+    }
+
+    if (shippingAmountEl) {
+      if (taxData.shippingBaseEur === 0) {
+        shippingAmountEl.textContent = 'FREE';
+        shippingAmountEl.className = 'font-mono text-emerald-400 font-bold';
+      } else {
+        shippingAmountEl.textContent = country.currency === 'EUR'
+          ? `€${taxData.shippingBaseEur.toFixed(2)}`
+          : `${country.symbol}${this.euLocalization.convertPrice(taxData.shippingBaseEur).toFixed(2)}`;
+        shippingAmountEl.className = 'font-mono text-on-surface';
+      }
+    }
+
+    if (ddpRowEl && ddpAmountEl) {
+      if (taxData.ddpAdminFeeEur > 0) {
+        ddpRowEl.classList.remove('hidden');
+        ddpAmountEl.textContent = country.currency === 'EUR'
+          ? `€${taxData.ddpAdminFeeEur.toFixed(2)}`
+          : `${country.symbol}${taxData.ddpAdminFeeLocal.toFixed(2)}`;
+      } else {
+        ddpRowEl.classList.add('hidden');
+      }
     }
 
     if (carrierEl) {
-      carrierEl.textContent = `${country.carrier} (Free > €150)`;
+      const threshold = taxData.isUK ? '£150' : '€200';
+      carrierEl.textContent = `${country.carrier} (Free > ${threshold})`;
     }
 
     if (totalEl) {
-      if (country.currency === 'EUR') {
+      if (country.currency === 'GBP') {
+        totalEl.textContent = `£${taxData.totalLocal.toFixed(2)}`;
+        if (convertedTotalEl) convertedTotalEl.textContent = `(€${taxData.totalEur.toFixed(2)} EUR)`;
+      } else if (country.currency === 'EUR') {
         totalEl.textContent = `€${taxData.totalEur.toFixed(2)}`;
-        if (convertedTotalEl) convertedTotalEl.textContent = `(${(taxData.totalEur * 1.08).toFixed(2)} USD Est.)`;
+        const gbp = taxData.totalEur * 0.85;
+        if (convertedTotalEl) convertedTotalEl.textContent = `(£${gbp.toFixed(2)} GBP)`;
       } else {
         totalEl.textContent = `${country.symbol}${taxData.totalLocal.toFixed(2)}`;
         if (convertedTotalEl) convertedTotalEl.textContent = `(€${taxData.totalEur.toFixed(2)} EUR)`;
@@ -3087,6 +4892,82 @@ STORAGE & LOGISTICS:
         });
       }
     }
+
+    // Dynamic Free Shipping Progress Calculation
+    const isUK = taxData.isUK;
+    const thresholdVal = isUK ? 150 : 200;
+    const currentVal = isUK ? taxData.subtotalLocal : taxData.subtotalEur;
+    const remainingVal = Math.max(0, thresholdVal - currentVal);
+    const progressPercent = Math.min(100, Math.round((currentVal / thresholdVal) * 100));
+    const currSymbol = isUK ? '£' : '€';
+
+    // Update Top Announcement Banner Meter
+    const topMeterText = document.getElementById('shipping-meter-text');
+    const topMeterFill = document.getElementById('shipping-meter-fill');
+
+    // Update In-Drawer Shipping Meter
+    const drawerMeterText = document.getElementById('drawer-shipping-text');
+    const drawerMeterPercent = document.getElementById('drawer-shipping-percent');
+    const drawerMeterFill = document.getElementById('drawer-shipping-fill');
+
+    if (remainingVal <= 0 && currentVal > 0) {
+      const unlockedHtml = `<span class="text-emerald-400 font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">celebration</span> FREE APC OVERNIGHT SHIPPING UNLOCKED!</span>`;
+      if (topMeterText) topMeterText.innerHTML = unlockedHtml;
+      if (topMeterFill) {
+        topMeterFill.style.width = '100%';
+        topMeterFill.classList.add('shipping-progress-unlocked');
+      }
+      if (drawerMeterText) drawerMeterText.innerHTML = unlockedHtml;
+      if (drawerMeterPercent) drawerMeterPercent.textContent = '100% UNLOCKED';
+      if (drawerMeterFill) {
+        drawerMeterFill.style.width = '100%';
+        drawerMeterFill.classList.add('shipping-progress-unlocked');
+      }
+    } else {
+      if (topMeterText) {
+        topMeterText.innerHTML = `Add <strong id="shipping-meter-remaining" class="text-amber-300 font-bold">${currSymbol}${remainingVal.toFixed(2)}</strong> to unlock <span class="text-emerald-400 font-bold">FREE APC OVERNIGHT SHIPPING</span> 🚚`;
+      }
+      if (topMeterFill) {
+        topMeterFill.style.width = `${progressPercent}%`;
+        topMeterFill.classList.remove('shipping-progress-unlocked');
+      }
+      if (drawerMeterText) {
+        drawerMeterText.innerHTML = `<span class="material-symbols-outlined text-amber-400 text-[16px]">local_shipping</span><span>Add <strong id="drawer-shipping-remaining" class="text-amber-300 font-bold">${currSymbol}${remainingVal.toFixed(2)}</strong> for FREE Express Delivery</span>`;
+      }
+      if (drawerMeterPercent) drawerMeterPercent.textContent = `${progressPercent}%`;
+      if (drawerMeterFill) {
+        drawerMeterFill.style.width = `${progressPercent}%`;
+        drawerMeterFill.classList.remove('shipping-progress-unlocked');
+      }
+    }
+
+    // Render 1-Click Upsells in Cart Drawer
+    const upsellContainer = document.getElementById('drawer-upsell-items');
+    if (upsellContainer) {
+      const cartSkus = summary.items.map(it => it.sku || '');
+      const potentialUpsells = [
+        { id: 'fk-tape-orange', title: 'Orange Fineline Tape (3mm)', priceEur: 6.95, priceGbp: 5.95 },
+        { id: 'fk-2603', title: '0.015 Kromatic Holo Flake (30g)', priceEur: 16.95, priceGbp: 14.49 },
+        { id: 'kroma-topcoat-clr-180', title: 'Kroma Dedicated Clear (180 Set)', priceEur: 73.05, priceGbp: 62.44 },
+        { id: 'fk-1970', title: 'Flake King 550 Mini Gun', priceEur: 116.99, priceGbp: 99.99 }
+      ];
+      const eligibleUpsells = potentialUpsells.filter(u => !cartSkus.some(s => s.toLowerCase().includes(u.id))).slice(0, 2);
+
+      upsellContainer.innerHTML = eligibleUpsells.map(u => {
+        const pDisplay = isUK ? `£${u.priceGbp.toFixed(2)}` : `€${u.priceEur.toFixed(2)}`;
+        return `
+          <div class="bg-[#181a1c] border border-white/10 p-2.5 rounded flex flex-col justify-between">
+            <div class="text-[11px] font-bold text-white truncate" title="${u.title}">${u.title}</div>
+            <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-white/10">
+              <span class="text-amber-300 text-xs font-bold font-mono">${pDisplay}</span>
+              <button onclick="window.paintApp.addProductToCartById('${u.id}')" class="px-2 py-0.5 bg-primary/20 hover:bg-primary/40 border border-primary/50 text-white text-[10px] font-bold rounded flex items-center gap-1 transition-colors cursor-pointer">
+                <span>+ ADD</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
   }
 
   removeItem(index) {
@@ -3096,11 +4977,48 @@ STORAGE & LOGISTICS:
   checkoutShopify() {
     const summary = this.shopifyCartManager.getCartSummary();
     if (summary.items.length === 0) {
-      alert("Please add items to your cart before proceeding to checkout.");
+      this.showToast("Please add items to your cart before proceeding to checkout.", "warning");
+      return;
+    }
+    if (this.reviewMode) {
+      this.showReviewModeModal();
       return;
     }
     const permalink = this.shopifyCartManager.generateShopifyCartPermalink();
     window.open(permalink, '_blank');
+  }
+
+  showReviewModeModal() {
+    const modal = document.getElementById('modal-review-mode');
+    const summaryBox = document.getElementById('review-cart-summary-box');
+    if (summaryBox) {
+      const summary = this.shopifyCartManager.getCartSummary();
+      if (summary.items.length > 0) {
+        const itemsHtml = summary.items.map(i => `
+          <div class="flex justify-between py-1 border-b border-white/5">
+            <span class="text-neutral-200">${i.quantity}x ${this.escapeHtmlAttr(i.title)} <span class="text-[10px] text-neutral-400">(${this.escapeHtmlAttr(i.variantDetails || 'Std')})</span></span>
+            <span class="font-bold text-amber-300">€${(i.priceEur * i.quantity).toFixed(2)}</span>
+          </div>
+        `).join('');
+        summaryBox.innerHTML = `
+          <div class="font-bold text-white mb-2 flex justify-between border-b border-white/10 pb-1 text-xs">
+            <span>Staging Cart Review (${summary.itemCount} items)</span>
+            <span class="text-emerald-400">Subtotal: €${summary.subtotal.toFixed(2)}</span>
+          </div>
+          <div class="max-h-36 overflow-y-auto space-y-0.5 pr-1">${itemsHtml}</div>
+        `;
+      } else {
+        summaryBox.innerHTML = `<span class="text-neutral-400">Cart is empty. Add items from the shop or mixing lab to inspect calculations.</span>`;
+      }
+    }
+    if (modal) {
+      modal.classList.remove('hidden');
+    }
+  }
+
+  closeReviewModeModal() {
+    const modal = document.getElementById('modal-review-mode');
+    if (modal) modal.classList.add('hidden');
   }
 
   setupCartDrawer() {
@@ -3251,12 +5169,12 @@ STORAGE & LOGISTICS:
       const newP = prompt("Enter new PIN (at least 4 characters):");
       if (!newP) return;
       const res = this.adminController.changePin(cur, newP);
-      alert(res.message);
+      this.showToast(res.message, res.success ? 'success' : 'danger');
     });
 
     this.addSafeListener('btn-admin-logout', 'click', () => {
       this.adminController.logout();
-      alert("🔒 Admin Console Locked.");
+      this.showToast("🔒 Admin Console Locked.", "info");
       this.switchTab('tab-storefront', 'view-storefront');
     });
 
@@ -3278,7 +5196,7 @@ STORAGE & LOGISTICS:
         const reader = new FileReader();
         reader.onload = (evt) => {
           const res = this.adminController.importConfigJson(evt.target.result);
-          alert(res.message);
+          this.showToast(res.message, res.success ? 'success' : 'danger');
           if (res.success) this.renderAdminAll();
         };
         reader.readAsText(file);
@@ -3287,9 +5205,11 @@ STORAGE & LOGISTICS:
 
     // Admin Sub-Tab Switching
     const subtabs = [
+      { btnId: 'subtab-admin-spreadsheet', panelId: 'admin-panel-spreadsheet' },
       { btnId: 'subtab-admin-formulas', panelId: 'admin-panel-formulas' },
       { btnId: 'subtab-admin-products', panelId: 'admin-panel-products' },
       { btnId: 'subtab-admin-preorders', panelId: 'admin-panel-preorders' },
+      { btnId: 'subtab-admin-bundles', panelId: 'admin-panel-bundles' },
       { btnId: 'subtab-admin-printer', panelId: 'admin-panel-printer' },
       { btnId: 'subtab-admin-hazmat', panelId: 'admin-panel-hazmat' },
       { btnId: 'subtab-admin-ai', panelId: 'admin-panel-ai' },
@@ -3312,10 +5232,30 @@ STORAGE & LOGISTICS:
                 b.classList.add('border-secondary', 'bg-surface', 'text-secondary');
               }
             }
-            if (p) p.style.display = (s.panelId === st.panelId) ? 'flex' : 'none';
+            if (p) {
+              p.style.display = (s.panelId === st.panelId) ? 'flex' : 'none';
+              if (s.panelId === 'admin-panel-bundles' && st.btnId === 'subtab-admin-bundles') {
+                this.renderAdminBundles();
+              }
+            }
           });
         });
       }
+    });
+
+    // Bundle Configurator bindings
+    this.addSafeListener('btn-admin-save-bundle', 'click', () => this.saveBundleFromAdmin());
+    this.addSafeListener('btn-admin-reset-bundle', 'click', () => this.resetBundleFromAdmin());
+    this.addSafeListener('btn-admin-add-bundle-slot', 'click', () => this.addAdminBundleSlot());
+
+    // View switchers between Card Catalog and Spreadsheet Matrix
+    this.addSafeListener('btn-admin-switch-to-spreadsheet', 'click', () => {
+      const btn = document.getElementById('subtab-admin-spreadsheet');
+      if (btn) btn.click();
+    });
+    this.addSafeListener('btn-spreadsheet-switch-to-cards', 'click', () => {
+      const btn = document.getElementById('subtab-admin-products');
+      if (btn) btn.click();
     });
 
     // Formula Add & Edit Modal bindings
@@ -3330,7 +5270,10 @@ STORAGE & LOGISTICS:
     this.addSafeListener('btn-admin-product-edit-close', 'click', () => this.closeAdminProductModal());
     this.addSafeListener('btn-admin-product-cancel', 'click', () => this.closeAdminProductModal());
     this.addSafeListener('btn-admin-product-save', 'click', () => this.saveAdminProductFromModal());
-    this.addSafeListener('btn-admin-product-delete', 'click', () => this.deleteAdminProductFromModal());
+    this.addSafeListener('btn-admin-product-delete-permanent', 'click', () => this.deleteAdminProductPermanentlyFromModal());
+    this.addSafeListener('btn-admin-product-reset-overrides', 'click', () => this.resetAdminProductOverridesFromModal());
+    this.addSafeListener('btn-admin-product-duplicate-modal', 'click', () => this.duplicateAdminProductFromModal());
+    this.addSafeListener('btn-admin-product-delete', 'click', () => this.resetAdminProductOverridesFromModal());
 
     // Gemini AI Studio Buttons inside Product Modal
     this.addSafeListener('btn-admin-gemini-copy', 'click', () => this.triggerGeminiSalesCopy());
@@ -3352,6 +5295,9 @@ STORAGE & LOGISTICS:
       catFilter.addEventListener('change', () => this.renderAdminProducts());
     }
 
+    // Spreadsheet Suite Setup
+    this.setupAdminSpreadsheet();
+
     // Pre-orders save button
     this.addSafeListener('btn-admin-save-preorders', 'click', () => this.saveAdminPreorders());
 
@@ -3368,6 +5314,9 @@ STORAGE & LOGISTICS:
 
     // Customer Email & AI Communication Hub Bindings
     this.setupAdminEmailHub();
+
+    // FX Volatility Guard & Dynamic Euro Pricing Setup
+    this.setupFxEngineUI();
   }
 
   openAdminAuthModal() {
@@ -3405,29 +5354,58 @@ STORAGE & LOGISTICS:
   }
 
   renderAdminAll() {
+    this.renderAdminSpreadsheet();
     this.renderAdminFormulas();
     this.renderAdminProducts();
     this.renderAdminPreorders();
+    this.renderAdminBundles();
     this.renderAdminPrinter();
     this.renderAdminHazmat();
     this.renderAdminAI();
     this.renderAdminEmailHub();
+    this.renderFxStatus();
   }
 
   // =========================================================================
   // ADMIN PRODUCT FIELDS & CATALOG MANAGER
   // =========================================================================
+  getDefaultDepartmentForProduct(p) {
+    if (p && p.department) return p.department;
+    const cat = ((p && p.category) || '').toLowerCase();
+    const brand = ((p && p.brand) || '').toLowerCase();
+    const name = ((p && p.name) || '').toLowerCase();
+
+    if (cat.includes('gun') || cat.includes('accessories') || cat.includes('hardware') || cat.includes('equipment') || name.includes('gun') || name.includes('airbrush')) {
+      return 'Equipment & Hardware';
+    }
+    if (cat.includes('flake') || cat.includes('glitter') || cat.includes('pearl') || cat.includes('special effects') || brand.includes('flake king')) {
+      return 'Special Effects & Flakes';
+    }
+    if (cat.includes('masking') || cat.includes('prep') || cat.includes('tape') || cat.includes('film') || cat.includes('sand') || cat.includes('solvent') || cat.includes('reducer') || cat.includes('cleaner')) {
+      return 'Consumables & Prep';
+    }
+    if (cat.includes('merch') || cat.includes('apparel') || cat.includes('shirt') || cat.includes('hat') || cat.includes('art') || cat.includes('book')) {
+      return 'Studio & Merchandise';
+    }
+    return 'Automotive & Custom Paint';
+  }
+
   getEffectiveProducts() {
     const overrides = this.adminController.config.productOverrides || {};
-    return ECOM_CATALOG.map(p => {
-      const o = overrides[p.id] || {};
-      return {
-        ...p,
-        ...o,
-        originalProduct: p,
-        hasOverrides: Object.keys(o).length > 0
-      };
-    });
+    const deletedIds = this.adminController.getDeletedProductIds();
+    return ECOM_CATALOG
+      .filter(p => !deletedIds.includes(p.id))
+      .map(p => {
+        const o = overrides[p.id] || {};
+        const baseDept = p.department || this.getDefaultDepartmentForProduct(p);
+        return {
+          ...p,
+          department: o.department || baseDept,
+          ...o,
+          originalProduct: p,
+          hasOverrides: Object.keys(o).length > 0
+        };
+      });
   }
 
   renderAdminProducts() {
@@ -3452,7 +5430,7 @@ STORAGE & LOGISTICS:
 
     if (q) {
       list = list.filter(p => {
-        const full = `${p.name || ''} ${p.sku || ''} ${p.brand || ''} ${p.category || ''} ${p.description || ''}`.toLowerCase();
+        const full = `${p.name || ''} ${p.sku || ''} ${p.brand || ''} ${p.category || ''} ${p.department || ''} ${p.description || ''}`.toLowerCase();
         return full.includes(q);
       });
     }
@@ -3491,6 +5469,7 @@ STORAGE & LOGISTICS:
             </div>
             <div class="flex-1 min-w-0">
               <h4 class="font-headline text-xs uppercase text-white font-bold line-clamp-2 mb-1">${p.name}</h4>
+              <div class="font-mono text-[10px] text-primary/80 font-bold truncate">${p.department || 'Automotive & Custom Paint'}</div>
               <div class="font-mono text-[10px] text-secondary truncate">${p.category || 'General'}</div>
               <div class="font-mono text-xs font-bold text-primary mt-1">&euro;${(p.priceEur || 0).toFixed(2)} / &pound;${(p.priceGbp || 0).toFixed(2)}</div>
             </div>
@@ -3531,6 +5510,7 @@ STORAGE & LOGISTICS:
     const idInput = document.getElementById('form-product-id');
     const nameInput = document.getElementById('form-product-name');
     const skuInput = document.getElementById('form-product-sku');
+    const deptInput = document.getElementById('form-product-department');
     const brandInput = document.getElementById('form-product-brand');
     const catInput = document.getElementById('form-product-category');
     const priceEurInput = document.getElementById('form-product-price-eur');
@@ -3551,14 +5531,27 @@ STORAGE & LOGISTICS:
     let p = null;
     if (productId) {
       const all = this.getEffectiveProducts();
-      p = all.find(item => item.id === productId);
+      p = all.find(item => item.id === productId) || ECOM_CATALOG.find(item => item.id === productId);
+      if (p && this.spreadsheetState.stagedEdits.has(productId)) {
+        const staged = this.spreadsheetState.stagedEdits.get(productId);
+        p = {
+          ...p,
+          ...staged,
+          meta: { ...(p.meta || {}), ...(staged.meta || {}) }
+        };
+      }
     }
+
+    const btnReset = document.getElementById('btn-admin-product-reset-overrides');
+    const btnDel = document.getElementById('btn-admin-product-delete-permanent');
+    const btnDup = document.getElementById('btn-admin-product-duplicate-modal');
 
     if (p) {
       if (title) title.innerText = `Edit Product Fields: ${p.name}`;
       if (idInput) idInput.value = p.id;
       if (nameInput) nameInput.value = p.name || '';
       if (skuInput) skuInput.value = p.sku || '';
+      if (deptInput) deptInput.value = p.department || this.getDefaultDepartmentForProduct(p);
       if (brandInput) brandInput.value = p.brand || '';
       if (catInput) catInput.value = p.category || '';
       if (priceEurInput) priceEurInput.value = p.priceEur || 0;
@@ -3573,12 +5566,17 @@ STORAGE & LOGISTICS:
       if (sgInput) sgInput.value = p.meta?.specificGravity || 1.0;
       if (nozzleInput) nozzleInput.value = p.meta?.recommendedNozzle || '0.3mm - 0.5mm';
       if (psiInput) psiInput.value = p.meta?.recommendedPressure || '20-25 PSI';
+
+      if (btnReset) btnReset.style.display = p.hasOverrides ? 'inline-flex' : 'none';
+      if (btnDel) btnDel.style.display = 'inline-flex';
+      if (btnDup) btnDup.style.display = 'inline-flex';
     } else {
       const newId = `custom_prod_${Date.now()}`;
       if (title) title.innerText = "Create New Product";
       if (idInput) idInput.value = newId;
       if (nameInput) nameInput.value = '';
       if (skuInput) skuInput.value = `CAE-${Date.now().toString().slice(-4)}`;
+      if (deptInput) deptInput.value = 'Automotive & Custom Paint';
       if (brandInput) brandInput.value = 'Kroma Edge';
       if (catInput) catInput.value = 'Mirror Chrome Systems';
       if (priceEurInput) priceEurInput.value = '99.00';
@@ -3593,6 +5591,10 @@ STORAGE & LOGISTICS:
       if (sgInput) sgInput.value = 0.98;
       if (nozzleInput) nozzleInput.value = '0.3mm - 0.5mm';
       if (psiInput) psiInput.value = '20-25 PSI';
+
+      if (btnReset) btnReset.style.display = 'none';
+      if (btnDel) btnDel.style.display = 'none';
+      if (btnDup) btnDup.style.display = 'none';
     }
 
     modal.classList.add('active');
@@ -3607,6 +5609,7 @@ STORAGE & LOGISTICS:
     const idInput = document.getElementById('form-product-id');
     const nameInput = document.getElementById('form-product-name');
     const skuInput = document.getElementById('form-product-sku');
+    const deptInput = document.getElementById('form-product-department');
     const brandInput = document.getElementById('form-product-brand');
     const catInput = document.getElementById('form-product-category');
     const priceEurInput = document.getElementById('form-product-price-eur');
@@ -3623,7 +5626,7 @@ STORAGE & LOGISTICS:
     const psiInput = document.getElementById('form-product-meta-psi');
 
     if (!idInput || !nameInput || !nameInput.value.trim()) {
-      alert("Please provide a product title.");
+      this.showToast("Please provide a product title.", "warning");
       return;
     }
 
@@ -3634,6 +5637,7 @@ STORAGE & LOGISTICS:
     const updatedFields = {
       name: nameInput.value.trim(),
       sku: skuInput ? skuInput.value.trim() : '',
+      department: deptInput ? deptInput.value.trim() : 'Automotive & Custom Paint',
       brand: brandInput ? brandInput.value.trim() : 'Coast Airbrush',
       category: catInput ? catInput.value.trim() : 'General',
       priceEur: parseFloat(priceEurInput ? priceEurInput.value : 0) || 0,
@@ -3655,31 +5659,2234 @@ STORAGE & LOGISTICS:
 
     this.adminController.saveProductOverride(productId, updatedFields);
     
+    // Clear staged edits for this product now that it is saved
+    if (this.spreadsheetState.stagedEdits.has(productId)) {
+      this.spreadsheetState.stagedEdits.delete(productId);
+    }
+
     // Also sync in-memory ECOM_CATALOG runtime copy if matching
     const catIdx = ECOM_CATALOG.findIndex(p => p.id === productId);
     if (catIdx >= 0) {
-      ECOM_CATALOG[catIdx] = { ...ECOM_CATALOG[catIdx], ...updatedFields };
+      ECOM_CATALOG[catIdx] = { 
+        ...ECOM_CATALOG[catIdx], 
+        ...updatedFields,
+        meta: { ...(ECOM_CATALOG[catIdx].meta || {}), ...(updatedFields.meta || {}) }
+      };
     } else {
       ECOM_CATALOG.unshift({ id: productId, ...updatedFields });
     }
 
     this.closeAdminProductModal();
     this.renderAdminProducts();
-    this.renderCatalog();
-    alert("✅ Product fields saved and synchronized across store!");
+    this.renderAdminSpreadsheet();
+    this.renderStorefrontGrid();
+    this.showToast(`✅ Product "${updatedFields.name}" saved and synchronized!`, 'success');
   }
 
-  deleteAdminProductFromModal() {
+  duplicateAdminProductFromModal() {
     const idInput = document.getElementById('form-product-id');
     if (!idInput) return;
     const prodId = idInput.value.trim();
-    if (confirm(`Reset overrides for product "${prodId}" back to factory defaults?`)) {
-      this.adminController.deleteProductOverride(prodId);
-      this.closeAdminProductModal();
-      this.renderAdminProducts();
-      this.renderCatalog();
-      alert("✅ Product reset to original catalog defaults.");
+    this.closeAdminProductModal();
+    this.copySpreadsheetProduct(prodId);
+  }
+
+  async deleteAdminProductPermanentlyFromModal() {
+    const idInput = document.getElementById('form-product-id');
+    const nameInput = document.getElementById('form-product-name');
+    const skuInput = document.getElementById('form-product-sku');
+    if (!idInput) return;
+
+    const prodId = idInput.value.trim();
+    const prodName = nameInput ? nameInput.value.trim() : prodId;
+    const prodSku = skuInput ? skuInput.value.trim() : '';
+
+    const confirmed = await this.confirmDialog({
+      title: 'Delete Product',
+      subtitle: 'Catalog Deletion Confirmation',
+      message: `Are you sure you want to permanently delete this product from Coast Airbrush Europe?`,
+      itemDetails: `
+        <div class="font-bold text-white text-xs mb-1">${this.escapeHtml(prodName)}</div>
+        <div class="text-zinc-400 text-[11px]">SKU: <span class="text-primary font-bold">${this.escapeHtml(prodSku || prodId)}</span></div>
+      `,
+      confirmText: 'Delete Product',
+      isDanger: true,
+      icon: 'delete'
+    });
+
+    if (!confirmed) return;
+
+    const all = this.getEffectiveProducts();
+    const product = all.find(p => p.id === prodId) || ECOM_CATALOG.find(p => p.id === prodId) || { id: prodId, name: prodName, sku: prodSku };
+
+    this.spreadsheetState.stagedEdits.delete(prodId);
+    this.spreadsheetState.selectedIds.delete(prodId);
+
+    const catIdx = ECOM_CATALOG.findIndex(p => p.id === prodId);
+    if (catIdx >= 0) {
+      ECOM_CATALOG.splice(catIdx, 1);
     }
+
+    this.adminController.deleteProduct(prodId, product);
+
+    this.closeAdminProductModal();
+    this.renderAdminProducts();
+    this.renderAdminSpreadsheet();
+    this.renderStorefrontGrid();
+    this.updateTrashBadgeCount();
+    this.showToast(`🗑️ Product "${prodName}" deleted from catalog.`, 'danger');
+  }
+
+  async resetAdminProductOverridesFromModal() {
+    const idInput = document.getElementById('form-product-id');
+    if (!idInput) return;
+    const prodId = idInput.value.trim();
+
+    const confirmed = await this.confirmDialog({
+      title: 'Reset Overrides',
+      subtitle: 'Restore Factory Catalog Defaults',
+      message: `Reset custom overrides for product "${prodId}" back to factory defaults?`,
+      confirmText: 'Reset Overrides',
+      isDanger: false,
+      icon: 'history'
+    });
+
+    if (!confirmed) return;
+
+    this.adminController.deleteProductOverride(prodId);
+    if (this.spreadsheetState.stagedEdits.has(prodId)) {
+      this.spreadsheetState.stagedEdits.delete(prodId);
+    }
+
+    this.closeAdminProductModal();
+    this.renderAdminProducts();
+    this.renderAdminSpreadsheet();
+    this.renderStorefrontGrid();
+    this.showToast(`✅ Product "${prodId}" reset to catalog defaults.`, 'info');
+  }
+
+  deleteAdminProductFromModal() {
+    this.resetAdminProductOverridesFromModal();
+  }
+
+  // =========================================================================
+  // ADMIN PRODUCT SPREADSHEET & BULK PRICE MATRIX SUITE
+  // =========================================================================
+  setupAdminSpreadsheet() {
+    // 1. Search & Filters
+    const ssSearch = document.getElementById('admin-ss-search');
+    if (ssSearch) {
+      ssSearch.addEventListener('input', (e) => {
+        this.spreadsheetState.searchQuery = e.target.value.trim().toLowerCase();
+        this.spreadsheetState.currentPage = 1;
+        this.renderAdminSpreadsheet();
+      });
+    }
+
+    const ssDept = document.getElementById('admin-ss-filter-department');
+    if (ssDept) {
+      ssDept.addEventListener('change', (e) => {
+        this.spreadsheetState.departmentFilter = e.target.value;
+        this.spreadsheetState.currentPage = 1;
+        this.renderAdminSpreadsheet();
+      });
+    }
+
+    const ssBrand = document.getElementById('admin-ss-filter-brand');
+    if (ssBrand) {
+      ssBrand.addEventListener('change', (e) => {
+        this.spreadsheetState.brandFilter = e.target.value;
+        this.spreadsheetState.currentPage = 1;
+        this.renderAdminSpreadsheet();
+      });
+    }
+
+    const ssCat = document.getElementById('admin-ss-filter-category');
+    if (ssCat) {
+      ssCat.addEventListener('change', (e) => {
+        this.spreadsheetState.categoryFilter = e.target.value;
+        this.spreadsheetState.currentPage = 1;
+        this.renderAdminSpreadsheet();
+      });
+    }
+
+    const ssStock = document.getElementById('admin-ss-filter-stock');
+    if (ssStock) {
+      ssStock.addEventListener('change', (e) => {
+        this.spreadsheetState.stockFilter = e.target.value;
+        this.spreadsheetState.currentPage = 1;
+        this.renderAdminSpreadsheet();
+      });
+    }
+
+    const ssModified = document.getElementById('admin-ss-filter-modified');
+    if (ssModified) {
+      ssModified.addEventListener('change', (e) => {
+        this.spreadsheetState.modifiedFilter = e.target.value;
+        this.spreadsheetState.currentPage = 1;
+        this.renderAdminSpreadsheet();
+      });
+    }
+
+    const ssPageSize = document.getElementById('admin-ss-page-size');
+    if (ssPageSize) {
+      ssPageSize.addEventListener('change', (e) => {
+        this.spreadsheetState.pageSize = e.target.value === 'all' ? 'all' : parseInt(e.target.value, 10);
+        this.spreadsheetState.currentPage = 1;
+        this.renderAdminSpreadsheet();
+      });
+    }
+
+    this.addSafeListener('btn-spreadsheet-reset-filters', 'click', () => {
+      this.spreadsheetState.searchQuery = '';
+      this.spreadsheetState.departmentFilter = 'all';
+      this.spreadsheetState.brandFilter = 'all';
+      this.spreadsheetState.categoryFilter = 'all';
+      this.spreadsheetState.stockFilter = 'all';
+      this.spreadsheetState.modifiedFilter = 'all';
+      this.spreadsheetState.currentPage = 1;
+
+      if (ssSearch) ssSearch.value = '';
+      if (ssDept) ssDept.value = 'all';
+      if (ssBrand) ssBrand.value = 'all';
+      if (ssCat) ssCat.value = 'all';
+      if (ssStock) ssStock.value = 'all';
+      if (ssModified) ssModified.value = 'all';
+
+      this.renderAdminSpreadsheet();
+    });
+
+    // 2. Column Sorting Headers
+    document.querySelectorAll('#admin-panel-spreadsheet th[data-sort]').forEach(th => {
+      th.addEventListener('click', () => {
+        const field = th.getAttribute('data-sort');
+        if (this.spreadsheetState.sortField === field) {
+          this.spreadsheetState.sortOrder = this.spreadsheetState.sortOrder === 'asc' ? 'desc' : 'asc';
+        } else {
+          this.spreadsheetState.sortField = field;
+          this.spreadsheetState.sortOrder = 'asc';
+        }
+        this.renderAdminSpreadsheet();
+      });
+    });
+
+    // 3. Selection (Select All)
+    const selectAllCb = document.getElementById('admin-ss-select-all');
+    if (selectAllCb) {
+      selectAllCb.addEventListener('change', (e) => {
+        const filtered = this.getFilteredSortedSpreadsheetProducts();
+        if (e.target.checked) {
+          filtered.forEach(p => this.spreadsheetState.selectedIds.add(p.id));
+        } else {
+          this.spreadsheetState.selectedIds.clear();
+        }
+        this.renderAdminSpreadsheet();
+      });
+    }
+
+    // 4. Pagination Buttons
+    this.addSafeListener('btn-ss-page-first', 'click', () => {
+      this.spreadsheetState.currentPage = 1;
+      this.renderAdminSpreadsheet();
+    });
+    this.addSafeListener('btn-ss-page-prev', 'click', () => {
+      if (this.spreadsheetState.currentPage > 1) {
+        this.spreadsheetState.currentPage--;
+        this.renderAdminSpreadsheet();
+      }
+    });
+    this.addSafeListener('btn-ss-page-next', 'click', () => {
+      const filtered = this.getFilteredSortedSpreadsheetProducts();
+      const maxPage = this.spreadsheetState.pageSize === 'all' ? 1 : Math.ceil(filtered.length / this.spreadsheetState.pageSize);
+      if (this.spreadsheetState.currentPage < maxPage) {
+        this.spreadsheetState.currentPage++;
+        this.renderAdminSpreadsheet();
+      }
+    });
+    this.addSafeListener('btn-ss-page-last', 'click', () => {
+      const filtered = this.getFilteredSortedSpreadsheetProducts();
+      const maxPage = this.spreadsheetState.pageSize === 'all' ? 1 : Math.ceil(filtered.length / this.spreadsheetState.pageSize);
+      this.spreadsheetState.currentPage = maxPage;
+      this.renderAdminSpreadsheet();
+    });
+
+    // 5. Batch Drawer Toggle
+    this.addSafeListener('btn-spreadsheet-toggle-batch', 'click', () => {
+      const drawer = document.getElementById('spreadsheet-batch-tools-box');
+      if (drawer) {
+        drawer.classList.toggle('hidden');
+      }
+    });
+
+    // 6. Batch Actions Execution
+    this.addSafeListener('btn-batch-apply-pct', 'click', () => {
+      const val = parseFloat(document.getElementById('batch-price-pct-input')?.value || 0);
+      if (val === 0) {
+        this.showToast("Please enter a non-zero percentage (e.g. 10 for +10% or -5 for -5%).", "warning");
+        return;
+      }
+      this.applyBatchPricePercentage(val);
+    });
+
+    this.addSafeListener('btn-batch-sync-gbp-from-eur', 'click', () => {
+      const rate = parseFloat(document.getElementById('batch-eur-gbp-rate')?.value || 0.85);
+      const rounding = document.getElementById('batch-rounding-select')?.value || 'none';
+      this.applyBatchCurrencySync(rate, rounding);
+    });
+
+    this.addSafeListener('btn-batch-apply-rounding', 'click', () => {
+      const rounding = document.getElementById('batch-rounding-select')?.value || 'none';
+      if (rounding === 'none') {
+        this.showToast("Please choose a rounding rule (.95, .99, .50, .00).", "warning");
+        return;
+      }
+      this.applyBatchRounding(rounding);
+    });
+
+    this.addSafeListener('btn-batch-apply-taxonomy', 'click', () => {
+      const dept = document.getElementById('batch-department-select')?.value;
+      const brand = document.getElementById('batch-brand-select')?.value;
+      if (!dept && !brand) {
+        this.showToast("Please choose at least a Department or Brand to apply.", "warning");
+        return;
+      }
+      this.applyBatchTaxonomy(dept, brand);
+    });
+
+    this.addSafeListener('btn-batch-stock-in', 'click', () => this.applyBatchStock(true));
+    this.addSafeListener('btn-batch-stock-out', 'click', () => this.applyBatchStock(false));
+
+    this.addSafeListener('btn-batch-apply-badge', 'click', () => {
+      const badge = (document.getElementById('batch-badge-input')?.value || '').trim();
+      this.applyBatchBadge(badge);
+    });
+
+    // Batch Duplicate & Delete
+    this.addSafeListener('btn-batch-duplicate-selected', 'click', () => this.copySelectedSpreadsheetProducts());
+    this.addSafeListener('btn-batch-delete-selected', 'click', () => this.deleteSelectedSpreadsheetProducts());
+
+    // Trash & Restoration Modal
+    this.addSafeListener('btn-spreadsheet-view-trash', 'click', () => this.openTrashModal());
+    this.addSafeListener('btn-close-trash-modal', 'click', () => this.closeTrashModal());
+    this.addSafeListener('btn-trash-close', 'click', () => this.closeTrashModal());
+    this.addSafeListener('btn-trash-restore-all', 'click', () => this.restoreAllTrashProducts());
+
+    // Product Matrix Modal Listeners
+    this.addSafeListener('btn-matrix-modal-close', 'click', () => this.closeProductMatrixModal());
+    this.addSafeListener('btn-matrix-cancel', 'click', () => this.closeProductMatrixModal());
+    this.addSafeListener('btn-matrix-generate', 'click', () => this.generateMatrixCombinations());
+    this.addSafeListener('btn-matrix-apply-base-price', 'click', () => this.applyMatrixBasePriceToAll());
+    this.addSafeListener('btn-matrix-apply-pct', 'click', () => {
+      const pct = parseFloat(document.getElementById('matrix-bulk-pct')?.value || 0);
+      if (pct === 0) {
+        this.showToast("Please enter a non-zero percentage adjustment.", "warning");
+        return;
+      }
+      this.applyMatrixPercentageAdjust(pct);
+    });
+    this.addSafeListener('btn-matrix-auto-skus', 'click', () => this.autoGenerateMatrixSkus());
+    this.addSafeListener('btn-matrix-add-row', 'click', () => this.addSingleMatrixRow());
+    this.addSafeListener('btn-matrix-reset-defaults', 'click', () => this.resetProductMatrixToDefaults());
+    this.addSafeListener('btn-matrix-save', 'click', () => this.saveProductMatrixFromModal());
+    this.addSafeListener('btn-open-matrix-from-edit-modal', 'click', () => {
+      const idInput = document.getElementById('form-product-id');
+      if (idInput && idInput.value) {
+        const prodId = idInput.value.trim();
+        this.closeAdminProductModal();
+        this.openProductMatrixModal(prodId);
+      }
+    });
+
+    // 7. Global Save & Discard
+    this.addSafeListener('btn-spreadsheet-save-all', 'click', () => this.saveSpreadsheetEdits());
+    this.addSafeListener('btn-spreadsheet-discard', 'click', () => this.discardSpreadsheetEdits());
+
+    // 8. Add Product Row
+    this.addSafeListener('btn-spreadsheet-add-row', 'click', () => this.addSpreadsheetProductRow());
+
+    // 9. CSV Export & Import
+    this.addSafeListener('btn-spreadsheet-export-csv', 'click', () => this.exportSpreadsheetCsv());
+    this.addSafeListener('btn-spreadsheet-import-csv-trigger', 'click', () => {
+      const input = document.getElementById('input-spreadsheet-import-file');
+      if (input) input.click();
+    });
+
+    const csvFileInput = document.getElementById('input-spreadsheet-import-file');
+    if (csvFileInput) {
+      csvFileInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        this.importSpreadsheetCsv(file);
+        csvFileInput.value = '';
+      });
+    }
+  }
+
+  getProductPricingSummary(p) {
+    let pricesEur = [];
+    let pricesGbp = [];
+    let variantsDetail = [];
+
+    // 1. Standard variantMatrix
+    if (p.variantMatrix && Array.isArray(p.variantMatrix.variants) && p.variantMatrix.variants.length > 0) {
+      p.variantMatrix.variants.forEach(v => {
+        const eur = v.priceEur !== undefined ? parseFloat(v.priceEur) : null;
+        const gbp = v.priceGbp !== undefined ? parseFloat(v.priceGbp) : null;
+        if (eur !== null && !isNaN(eur)) pricesEur.push(eur);
+        if (gbp !== null && !isNaN(gbp)) pricesGbp.push(gbp);
+        const optStr = v.options ? Object.values(v.options).join(' / ') : (v.name || v.sku);
+        variantsDetail.push({ label: optStr, eur: eur, gbp: gbp });
+      });
+    }
+    // 2. packPriceMatrix
+    else if (p.packPriceMatrix && Array.isArray(p.packPriceMatrix) && p.packPriceMatrix.length > 0) {
+      p.packPriceMatrix.forEach(m => {
+        const eur = m.priceEur !== undefined ? parseFloat(m.priceEur) : (m.priceRetailEur !== undefined ? parseFloat(m.priceRetailEur) : null);
+        const gbp = m.priceGbp !== undefined ? parseFloat(m.priceGbp) : (m.priceRetailGbp !== undefined ? parseFloat(m.priceRetailGbp) : null);
+        if (eur !== null && !isNaN(eur)) pricesEur.push(eur);
+        if (gbp !== null && !isNaN(gbp)) pricesGbp.push(gbp);
+        variantsDetail.push({ label: m.packSize || 'Pack', eur: eur, gbp: gbp });
+      });
+    }
+    // 3. tapePriceMatrix
+    else if (p.tapePriceMatrix && Array.isArray(p.tapePriceMatrix) && p.tapePriceMatrix.length > 0) {
+      p.tapePriceMatrix.forEach(t => {
+        const gbp = t.priceGbp !== undefined ? parseFloat(t.priceGbp) : null;
+        const eur = t.priceEur !== undefined ? parseFloat(t.priceEur) : (gbp ? parseFloat((gbp / 0.85).toFixed(2)) : null);
+        if (eur !== null && !isNaN(eur)) pricesEur.push(eur);
+        if (gbp !== null && !isNaN(gbp)) pricesGbp.push(gbp);
+        variantsDetail.push({ label: t.width || 'Width', eur: eur, gbp: gbp });
+      });
+    }
+    // 4. fullMatrixPricing
+    else if (p.fullMatrixPricing && Array.isArray(p.fullMatrixPricing) && p.fullMatrixPricing.length > 0) {
+      p.fullMatrixPricing.forEach(m => {
+        const gbp = m.priceGbp !== undefined ? parseFloat(m.priceGbp) : null;
+        const eur = m.priceEur !== undefined ? parseFloat(m.priceEur) : (gbp ? parseFloat((gbp / 0.85).toFixed(2)) : null);
+        if (eur !== null && !isNaN(eur)) pricesEur.push(eur);
+        if (gbp !== null && !isNaN(gbp)) pricesGbp.push(gbp);
+        const label = [m.flakeSize || m.rawFlakeSize, m.packSize || m.rawPackSize].filter(Boolean).join(' - ') || 'Variant';
+        variantsDetail.push({ label: label, eur: eur, gbp: gbp });
+      });
+    }
+
+    const baseEur = (p.priceEur !== undefined && p.priceEur > 0 
+      ? parseFloat(p.priceEur) 
+      : (this.euLocalization?.convertGbpToEur ? this.euLocalization.convertGbpToEur(p.priceGbp || p.priceRrpExVat || 0) : 0)) || 0;
+    const baseGbp = parseFloat(p.priceGbp !== undefined ? p.priceGbp : (p.priceRrpExVat || 0)) || 0;
+
+    if (pricesEur.length === 0) pricesEur.push(baseEur);
+    if (pricesGbp.length === 0) pricesGbp.push(baseGbp);
+
+    const minEur = Math.min(...pricesEur);
+    const maxEur = Math.max(...pricesEur);
+    const minGbp = Math.min(...pricesGbp);
+    const maxGbp = Math.max(...pricesGbp);
+
+    const hasVariablePricing = (variantsDetail.length > 1) && (Math.abs(minEur - maxEur) > 0.01 || Math.abs(minGbp - maxGbp) > 0.01);
+
+    const tooltipLines = variantsDetail.map(v => {
+      const eStr = v.eur !== null && !isNaN(v.eur) ? `€${v.eur.toFixed(2)}` : 'N/A';
+      const gStr = v.gbp !== null && !isNaN(v.gbp) ? `£${v.gbp.toFixed(2)}` : 'N/A';
+      return `${v.label}: ${eStr} / ${gStr}`;
+    });
+
+    return {
+      hasVariablePricing,
+      variantCount: variantsDetail.length,
+      variantsDetail,
+      tooltip: tooltipLines.join('\n') + '\n(Click to edit individual variant prices in Matrix)',
+      minEur,
+      maxEur,
+      minGbp,
+      maxGbp,
+      baseEur,
+      baseGbp
+    };
+  }
+
+  getFilteredSortedSpreadsheetProducts() {
+    const list = this.getEffectiveProducts();
+    const staged = this.spreadsheetState.stagedEdits;
+
+    // Overlay staged edits for filtering/sorting
+    let working = list.map(p => {
+      const st = staged.get(p.id);
+      if (st) {
+        return {
+          ...p,
+          ...st,
+          meta: { ...(p.meta || {}), ...(st.meta || {}) },
+          isStagedModified: true
+        };
+      }
+      return {
+        ...p,
+        isStagedModified: false
+      };
+    });
+
+    // Department Filter
+    if (this.spreadsheetState.departmentFilter !== 'all') {
+      working = working.filter(p => (p.department || '').toLowerCase() === this.spreadsheetState.departmentFilter.toLowerCase());
+    }
+
+    // Brand Filter
+    if (this.spreadsheetState.brandFilter !== 'all') {
+      working = working.filter(p => (p.brand || '').toLowerCase() === this.spreadsheetState.brandFilter.toLowerCase());
+    }
+
+    // Category Filter
+    if (this.spreadsheetState.categoryFilter !== 'all') {
+      working = working.filter(p => (p.category || '').toLowerCase().includes(this.spreadsheetState.categoryFilter.toLowerCase()));
+    }
+
+    // Stock Filter
+    if (this.spreadsheetState.stockFilter === 'in_stock') {
+      working = working.filter(p => p.inStock !== false);
+    } else if (this.spreadsheetState.stockFilter === 'out_stock') {
+      working = working.filter(p => p.inStock === false);
+    }
+
+    // Modified Filter
+    if (this.spreadsheetState.modifiedFilter === 'modified') {
+      working = working.filter(p => p.isStagedModified);
+    } else if (this.spreadsheetState.modifiedFilter === 'overridden') {
+      working = working.filter(p => p.hasOverrides || p.isStagedModified);
+    }
+
+    // Text Search
+    if (this.spreadsheetState.searchQuery) {
+      const q = this.spreadsheetState.searchQuery;
+      working = working.filter(p => {
+        const str = `${p.sku || ''} ${p.name || ''} ${p.department || ''} ${p.brand || ''} ${p.category || ''} ${p.badge || ''} ${p.meta?.recommendedNozzle || ''} ${p.description || ''}`.toLowerCase();
+        return str.includes(q);
+      });
+    }
+
+    // Sorting
+    const field = this.spreadsheetState.sortField;
+    const order = this.spreadsheetState.sortOrder === 'asc' ? 1 : -1;
+
+    working.sort((a, b) => {
+      let valA = a[field];
+      let valB = b[field];
+
+      if (field === 'priceEur') {
+        const summaryA = this.getProductPricingSummary(a);
+        const summaryB = this.getProductPricingSummary(b);
+        valA = summaryA.minEur;
+        valB = summaryB.minEur;
+        return (valA - valB) * order;
+      }
+
+      if (field === 'priceGbp') {
+        const summaryA = this.getProductPricingSummary(a);
+        const summaryB = this.getProductPricingSummary(b);
+        valA = summaryA.minGbp;
+        valB = summaryB.minGbp;
+        return (valA - valB) * order;
+      }
+
+      valA = (valA || '').toString().toLowerCase();
+      valB = (valB || '').toString().toLowerCase();
+      if (valA < valB) return -1 * order;
+      if (valA > valB) return 1 * order;
+      return 0;
+    });
+
+    return working;
+  }
+
+  renderAdminSpreadsheet() {
+    const tbody = document.getElementById('admin-spreadsheet-tbody');
+    if (!tbody) return;
+
+    const allProducts = this.getEffectiveProducts();
+    const filtered = this.getFilteredSortedSpreadsheetProducts();
+    const stagedCount = this.spreadsheetState.stagedEdits.size;
+    const selectedCount = this.spreadsheetState.selectedIds.size;
+    const overridesCount = Object.keys(this.adminController.config.productOverrides || {}).length;
+
+    // Update KPI metrics
+    const totalEl = document.getElementById('metric-ss-total-count');
+    if (totalEl) totalEl.innerText = `${allProducts.length} Items`;
+
+    const visibleEl = document.getElementById('metric-ss-visible-count');
+    if (visibleEl) visibleEl.innerText = `${filtered.length} Items`;
+
+    const selectedEl = document.getElementById('metric-ss-selected-count');
+    if (selectedEl) selectedEl.innerText = `${selectedCount} Selected`;
+
+    const overridesEl = document.getElementById('metric-ss-overrides-count');
+    if (overridesEl) overridesEl.innerText = `${overridesCount + stagedCount} Active/Staged`;
+
+    const scopeLabel = document.getElementById('batch-scope-label');
+    if (scopeLabel) {
+      scopeLabel.innerText = selectedCount > 0 
+        ? `Selected Rows (${selectedCount})` 
+        : `All Filtered Products (${filtered.length})`;
+    }
+
+    this.updateTrashBadgeCount();
+    const btnBatchDup = document.getElementById('btn-batch-duplicate-selected');
+    if (btnBatchDup) {
+      btnBatchDup.disabled = selectedCount === 0;
+      btnBatchDup.style.opacity = selectedCount === 0 ? '0.5' : '1';
+    }
+    const btnBatchDel = document.getElementById('btn-batch-delete-selected');
+    if (btnBatchDel) {
+      btnBatchDel.disabled = selectedCount === 0;
+      btnBatchDel.style.opacity = selectedCount === 0 ? '0.5' : '1';
+    }
+
+    // Unsaved indicator & buttons
+    const unsavedBadge = document.getElementById('ss-unsaved-badge');
+    const unsavedCount = document.getElementById('ss-unsaved-count');
+    const btnSave = document.getElementById('btn-spreadsheet-save-all');
+    const btnDiscard = document.getElementById('btn-spreadsheet-discard');
+
+    if (unsavedBadge) {
+      if (stagedCount > 0) {
+        unsavedBadge.classList.remove('hidden');
+        unsavedBadge.innerText = `⚡ ${stagedCount} Unsaved Edit${stagedCount > 1 ? 's' : ''}`;
+      } else {
+        unsavedBadge.classList.add('hidden');
+      }
+    }
+
+    if (unsavedCount) unsavedCount.innerText = stagedCount.toString();
+    if (btnSave) btnSave.disabled = stagedCount === 0;
+    if (btnDiscard) btnDiscard.disabled = stagedCount === 0;
+
+    // Pagination calculations
+    const pageSize = this.spreadsheetState.pageSize;
+    const totalPages = pageSize === 'all' ? 1 : Math.max(1, Math.ceil(filtered.length / pageSize));
+    if (this.spreadsheetState.currentPage > totalPages) {
+      this.spreadsheetState.currentPage = totalPages;
+    }
+    const curPage = this.spreadsheetState.currentPage;
+
+    let displayList = filtered;
+    let startIdx = 0;
+    let endIdx = filtered.length;
+
+    if (pageSize !== 'all') {
+      startIdx = (curPage - 1) * pageSize;
+      endIdx = Math.min(startIdx + pageSize, filtered.length);
+      displayList = filtered.slice(startIdx, endIdx);
+    }
+
+    const pageInfo = document.getElementById('ss-pagination-info');
+    if (pageInfo) {
+      pageInfo.innerText = filtered.length > 0 
+        ? `Showing ${startIdx + 1} - ${endIdx} of ${filtered.length} products`
+        : `Showing 0 products`;
+    }
+
+    const pageIndicator = document.getElementById('ss-page-current-indicator');
+    if (pageIndicator) pageIndicator.innerText = `${curPage} / ${totalPages}`;
+
+    const btnFirst = document.getElementById('btn-ss-page-first');
+    const btnPrev = document.getElementById('btn-ss-page-prev');
+    const btnNext = document.getElementById('btn-ss-page-next');
+    const btnLast = document.getElementById('btn-ss-page-last');
+
+    if (btnFirst) btnFirst.disabled = curPage <= 1;
+    if (btnPrev) btnPrev.disabled = curPage <= 1;
+    if (btnNext) btnNext.disabled = curPage >= totalPages;
+    if (btnLast) btnLast.disabled = curPage >= totalPages;
+
+    const selectAllCb = document.getElementById('admin-ss-select-all');
+    if (selectAllCb) {
+      const allSelected = displayList.length > 0 && displayList.every(p => this.spreadsheetState.selectedIds.has(p.id));
+      selectAllCb.checked = allSelected;
+    }
+
+    tbody.innerHTML = '';
+
+    if (displayList.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="16" class="p-8 text-center text-secondary font-mono">
+            No products found matching current filters. Try resetting filters or adding a product row.
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    const departments = [
+      "Automotive & Custom Paint",
+      "Special Effects & Flakes",
+      "Equipment & Hardware",
+      "Consumables & Prep",
+      "Studio & Merchandise"
+    ];
+
+    const brands = [
+      "Kroma Edge",
+      "Flake King",
+      "House of Kolor",
+      "Ace of Shades",
+      "VsionAir"
+    ];
+
+    displayList.forEach((p, index) => {
+      const tr = document.createElement('tr');
+      const isSelected = this.spreadsheetState.selectedIds.has(p.id);
+      const isStaged = this.spreadsheetState.stagedEdits.has(p.id);
+      const hasSavedOverride = Boolean(this.adminController.config.productOverrides && this.adminController.config.productOverrides[p.id]);
+
+      tr.className = `transition-colors hover:bg-surface-container ${isSelected ? 'bg-primary/10' : (isStaged ? 'bg-amber-950/20' : (hasSavedOverride ? 'bg-amber-950/5' : ''))}`;
+      tr.id = `ss-row-${p.id}`;
+
+       const absIndex = startIdx + index + 1;
+
+      const pricingSummary = this.getProductPricingSummary(p);
+      const isVariable = pricingSummary.hasVariablePricing;
+
+      const nozzleVal = p.meta?.recommendedNozzle || '0.3mm';
+      const psiVal = p.meta?.recommendedPressure || '25 PSI';
+      const sgVal = p.meta?.specificGravity !== undefined ? p.meta.specificGravity : 1.0;
+
+      let matrixBadge = '';
+      if (p.variantMatrix && p.variantMatrix.variants && p.variantMatrix.variants.length > 0) {
+        const varCount = p.variantMatrix.variants.length;
+        matrixBadge = `
+          <button onclick="window.paintApp.openProductMatrixModal('${p.id}')" class="px-2 py-0.5 rounded ${isVariable ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 hover:bg-amber-500/30' : 'bg-primary/20 text-primary border-primary/50 hover:bg-primary/30'} border font-mono text-[10px] font-bold flex items-center justify-center gap-1 mx-auto transition-colors cursor-pointer" title="Manage ${varCount} Variants (${isVariable ? 'Variable Prices' : 'Fixed Price'})">
+            <span class="material-symbols-outlined text-[12px]">grid_view</span> ${varCount} Variants
+          </button>
+        `;
+      } else if (p.tapePriceMatrix && p.tapePriceMatrix.length > 0) {
+        const count = p.tapePriceMatrix.length;
+        matrixBadge = `
+          <button onclick="window.paintApp.openProductMatrixModal('${p.id}')" class="px-2 py-0.5 rounded bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 font-mono text-[10px] font-bold flex items-center justify-center gap-1 mx-auto transition-colors cursor-pointer" title="Manage ${count} Widths (${isVariable ? 'Variable Prices' : 'Fixed Price'})">
+            <span class="material-symbols-outlined text-[12px]">grid_view</span> ${count} Widths
+          </button>
+        `;
+      } else if (p.fullMatrixPricing && p.fullMatrixPricing.length > 0) {
+        const count = p.fullMatrixPricing.length;
+        matrixBadge = `
+          <button onclick="window.paintApp.openProductMatrixModal('${p.id}')" class="px-2 py-0.5 rounded bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/50 text-cyan-300 font-mono text-[10px] font-bold flex items-center justify-center gap-1 mx-auto transition-colors cursor-pointer" title="Manage ${count} Matrix Combinations (${isVariable ? 'Variable Prices' : 'Fixed Price'})">
+            <span class="material-symbols-outlined text-[12px]">grid_view</span> ${count} Matrix
+          </button>
+        `;
+      } else if (p.packPriceMatrix && p.packPriceMatrix.length > 0) {
+        const count = p.packPriceMatrix.length;
+        matrixBadge = `
+          <button onclick="window.paintApp.openProductMatrixModal('${p.id}')" class="px-2 py-0.5 rounded ${isVariable ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/50 hover:bg-indigo-500/30' : 'bg-primary/20 text-primary border-primary/50 hover:bg-primary/30'} border font-mono text-[10px] font-bold flex items-center justify-center gap-1 mx-auto transition-colors cursor-pointer" title="Manage ${count} Pack Sizes (${isVariable ? 'Variable Prices' : 'Fixed Price'})">
+            <span class="material-symbols-outlined text-[12px]">grid_view</span> ${count} Packs
+          </button>
+        `;
+      } else if ((p.sizes && p.sizes.length > 0) || (p.packSizes && p.packSizes.length > 0)) {
+        const cnt = (p.sizes?.length || 1) * (p.packSizes?.length || 1);
+        matrixBadge = `
+          <button onclick="window.paintApp.openProductMatrixModal('${p.id}')" class="px-2 py-0.5 rounded bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/50 text-emerald-300 font-mono text-[10px] font-bold flex items-center justify-center gap-1 mx-auto transition-colors cursor-pointer" title="Manage Options & Matrix (${isVariable ? 'Variable Prices' : 'Fixed Price'})">
+            <span class="material-symbols-outlined text-[12px]">grid_view</span> ${cnt} Options
+          </button>
+        `;
+      } else {
+        matrixBadge = `
+          <button onclick="window.paintApp.openProductMatrixModal('${p.id}')" class="px-1.5 py-0.5 rounded border border-dashed border-secondary/40 text-secondary hover:text-white hover:border-primary font-mono text-[10px] flex items-center justify-center gap-0.5 mx-auto transition-colors cursor-pointer" title="Add Variant Matrix">
+            <span class="material-symbols-outlined text-[11px]">add</span> Matrix
+          </button>
+        `;
+      }
+
+      let priceEurCellHtml = '';
+      let priceGbpCellHtml = '';
+
+      if (isVariable) {
+        priceEurCellHtml = `
+          <div class="cursor-pointer group py-0.5 px-1 rounded hover:bg-emerald-950/40 border border-transparent hover:border-emerald-500/40 transition-all text-right" onclick="window.paintApp.openProductMatrixModal('${p.id}')" title="${this.escapeHtmlAttr(pricingSummary.tooltip)}">
+            <div class="flex items-center justify-end gap-1">
+              <span class="text-[9px] font-mono uppercase text-secondary/80 font-bold">From</span>
+              <span class="font-mono text-xs font-bold text-emerald-400 group-hover:text-emerald-300">&euro;${pricingSummary.minEur.toFixed(2)}</span>
+            </div>
+            <div class="text-[9px] font-mono text-secondary group-hover:text-emerald-400/90 whitespace-nowrap">
+              &euro;${pricingSummary.minEur.toFixed(2)} &ndash; ${pricingSummary.maxEur.toFixed(2)}
+            </div>
+          </div>
+        `;
+        priceGbpCellHtml = `
+          <div class="cursor-pointer group py-0.5 px-1 rounded hover:bg-amber-950/40 border border-transparent hover:border-amber-500/40 transition-all text-right" onclick="window.paintApp.openProductMatrixModal('${p.id}')" title="${this.escapeHtmlAttr(pricingSummary.tooltip)}">
+            <div class="flex items-center justify-end gap-1">
+              <span class="text-[9px] font-mono uppercase text-secondary/80 font-bold">From</span>
+              <span class="font-mono text-xs font-bold text-amber-400 group-hover:text-amber-300">&pound;${pricingSummary.minGbp.toFixed(2)}</span>
+            </div>
+            <div class="text-[9px] font-mono text-secondary group-hover:text-amber-400/90 whitespace-nowrap">
+              &pound;${pricingSummary.minGbp.toFixed(2)} &ndash; ${pricingSummary.maxGbp.toFixed(2)}
+            </div>
+          </div>
+        `;
+      } else {
+        priceEurCellHtml = `
+          <div class="flex items-center justify-end">
+            <span class="text-secondary text-[11px] mr-1">&euro;</span>
+            <input type="number" step="0.01" class="ss-cell-input w-20 text-right bg-transparent p-1.5 font-mono text-xs font-bold text-emerald-400 border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all" data-id="${p.id}" data-field="priceEur" value="${pricingSummary.minEur.toFixed(2)}">
+          </div>
+        `;
+        priceGbpCellHtml = `
+          <div class="flex items-center justify-end">
+            <span class="text-secondary text-[11px] mr-1">&pound;</span>
+            <input type="number" step="0.01" class="ss-cell-input w-20 text-right bg-transparent p-1.5 font-mono text-xs font-bold text-amber-400 border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all" data-id="${p.id}" data-field="priceGbp" value="${pricingSummary.minGbp.toFixed(2)}">
+          </div>
+        `;
+      }
+
+      tr.innerHTML = `
+        <td class="p-2 text-center border-r border-secondary/30">
+          <input type="checkbox" class="ss-row-select cursor-pointer" data-id="${p.id}" ${isSelected ? 'checked' : ''}>
+        </td>
+        <td class="p-2 text-center text-[10px] text-secondary border-r border-secondary/30">
+          ${absIndex}
+        </td>
+        <td class="p-1 border-r border-secondary/30">
+          <input type="text" class="ss-cell-input w-full bg-transparent p-1.5 font-mono text-xs text-white border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all font-bold" data-id="${p.id}" data-field="sku" value="${this.escapeHtml(p.sku || p.id)}">
+        </td>
+        <td class="p-1 border-r border-secondary/30">
+          <input type="text" class="ss-cell-input w-full bg-transparent p-1.5 font-mono text-xs text-white border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all" data-id="${p.id}" data-field="name" value="${this.escapeHtml(p.name || '')}">
+        </td>
+        <td class="p-1 border-r border-secondary/30">
+          <select class="ss-cell-input w-full bg-transparent p-1 font-mono text-[11px] text-primary border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all" data-id="${p.id}" data-field="department">
+            ${departments.map(d => `<option value="${d}" ${d === p.department ? 'selected' : ''} class="bg-surface text-white">${d}</option>`).join('')}
+            ${!departments.includes(p.department) && p.department ? `<option value="${p.department}" selected class="bg-surface text-white">${p.department}</option>` : ''}
+          </select>
+        </td>
+        <td class="p-1 border-r border-secondary/30">
+          <select class="ss-cell-input w-full bg-transparent p-1 font-mono text-[11px] text-amber-300 border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all" data-id="${p.id}" data-field="brand">
+            ${brands.map(b => `<option value="${b}" ${b === p.brand ? 'selected' : ''} class="bg-surface text-white">${b}</option>`).join('')}
+            ${!brands.includes(p.brand) && p.brand ? `<option value="${p.brand}" selected class="bg-surface text-white">${p.brand}</option>` : ''}
+          </select>
+        </td>
+        <td class="p-1 border-r border-secondary/30">
+          <input type="text" class="ss-cell-input w-full bg-transparent p-1.5 font-mono text-[11px] text-secondary border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all" data-id="${p.id}" data-field="category" value="${this.escapeHtml(p.category || '')}">
+        </td>
+        <td class="p-1 border-r border-secondary/30 text-center">
+          ${matrixBadge}
+        </td>
+        <td class="p-1 border-r border-secondary/30 text-right">
+          ${priceEurCellHtml}
+        </td>
+        <td class="p-1 border-r border-secondary/30 text-right">
+          ${priceGbpCellHtml}
+        </td>
+        <td class="p-1 border-r border-secondary/30 text-center">
+          <input type="checkbox" class="ss-cell-checkbox cursor-pointer" data-id="${p.id}" data-field="inStock" ${p.inStock !== false ? 'checked' : ''}>
+        </td>
+        <td class="p-1 border-r border-secondary/30 text-center">
+          <input type="checkbox" class="ss-cell-checkbox cursor-pointer" data-id="${p.id}" data-field="isPreOrder" ${p.isPreOrder ? 'checked' : ''}>
+        </td>
+        <td class="p-1 border-r border-secondary/30">
+          <input type="text" class="ss-cell-input w-full bg-transparent p-1.5 font-mono text-[11px] text-white border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all" data-id="${p.id}" data-field="badge" placeholder="e.g. 10% OFF" value="${this.escapeHtml(p.badge || '')}">
+        </td>
+        <td class="p-1 border-r border-secondary/30">
+          <input type="text" class="ss-cell-input w-full bg-transparent p-1 font-mono text-[10px] text-secondary border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all" data-id="${p.id}" data-field="meta.recommendedNozzle" value="${this.escapeHtml(nozzleVal)}">
+        </td>
+        <td class="p-1 border-r border-secondary/30">
+          <input type="text" class="ss-cell-input w-full bg-transparent p-1 font-mono text-[10px] text-secondary border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all" data-id="${p.id}" data-field="meta.recommendedPressure" value="${this.escapeHtml(psiVal)}">
+        </td>
+        <td class="p-1 border-r border-secondary/30">
+          <input type="number" step="0.01" class="ss-cell-input w-full bg-transparent p-1 font-mono text-[10px] text-secondary border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all" data-id="${p.id}" data-field="meta.specificGravity" value="${sgVal}">
+        </td>
+        <td class="p-1 text-center sticky right-0 bg-surface-container-high border-l border-secondary/40 z-10">
+          <div class="flex items-center justify-center gap-1">
+            <button onclick="window.paintApp.openAdminProductModal('${p.id}')" class="p-1 text-secondary hover:text-white transition-colors" title="Detailed Product Editor">
+              <span class="material-symbols-outlined text-[15px]">edit</span>
+            </button>
+            <button onclick="window.paintApp.openProductMatrixModal('${p.id}')" class="p-1 text-secondary hover:text-cyan-400 transition-colors" title="Configure Variant Matrix &amp; Pricing">
+              <span class="material-symbols-outlined text-[15px]">grid_view</span>
+            </button>
+            <button onclick="window.paintApp.copySpreadsheetProduct('${p.id}')" class="p-1 text-secondary hover:text-primary transition-colors" title="Duplicate / Copy Product">
+              <span class="material-symbols-outlined text-[15px]">content_copy</span>
+            </button>
+            <button onclick="window.paintApp.deleteSpreadsheetProduct('${p.id}')" class="p-1 text-secondary hover:text-rose-400 transition-colors" title="Delete Product">
+              <span class="material-symbols-outlined text-[15px]">delete</span>
+            </button>
+            <button onclick="window.paintApp.revertSpreadsheetRow('${p.id}')" class="p-1 text-secondary hover:text-amber-400 transition-colors" title="Revert Changes / Overrides">
+              <span class="material-symbols-outlined text-[15px]">history</span>
+            </button>
+            <button onclick="window.paintApp.quickGeminiCopy('${p.id}')" class="p-1 text-secondary hover:text-indigo-400 transition-colors" title="Gemini AI Sales Copy">
+              <span class="material-symbols-outlined text-[15px]">auto_awesome</span>
+            </button>
+          </div>
+        </td>
+      `;
+
+      tbody.appendChild(tr);
+    });
+
+    // Wire table cell event listeners
+    this.wireSpreadsheetRowEvents();
+  }
+
+  escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return str.toString()
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  wireSpreadsheetRowEvents() {
+    // Row selection checkboxes
+    document.querySelectorAll('.ss-row-select').forEach(cb => {
+      cb.addEventListener('change', (e) => {
+        const id = e.target.getAttribute('data-id');
+        if (e.target.checked) {
+          this.spreadsheetState.selectedIds.add(id);
+        } else {
+          this.spreadsheetState.selectedIds.delete(id);
+        }
+        const selCount = this.spreadsheetState.selectedIds.size;
+        const selectedEl = document.getElementById('metric-ss-selected-count');
+        if (selectedEl) selectedEl.innerText = `${selCount} Selected`;
+        const scopeLabel = document.getElementById('batch-scope-label');
+        if (scopeLabel) {
+          scopeLabel.innerText = selCount > 0 
+            ? `Selected Rows (${selCount})` 
+            : `All Filtered Products (${this.getFilteredSortedSpreadsheetProducts().length})`;
+        }
+      });
+    });
+
+    // Input changes (text, number, select)
+    document.querySelectorAll('.ss-cell-input').forEach(input => {
+      input.addEventListener('input', (e) => {
+        const id = e.target.getAttribute('data-id');
+        const field = e.target.getAttribute('data-field');
+        const val = e.target.value;
+        this.onSpreadsheetCellChange(id, field, val, e.target);
+      });
+
+      // Keyboard navigation (Enter / Down arrow)
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const tr = e.target.closest('tr');
+          const nextTr = tr ? tr.nextElementSibling : null;
+          if (nextTr) {
+            const nextInput = nextTr.querySelector(`[data-field="${e.target.getAttribute('data-field')}"]`);
+            if (nextInput) {
+              nextInput.focus();
+              if (nextInput.select) nextInput.select();
+            }
+          }
+        }
+      });
+    });
+
+    // Checkbox toggles (inStock, isPreOrder)
+    document.querySelectorAll('.ss-cell-checkbox').forEach(cb => {
+      cb.addEventListener('change', (e) => {
+        const id = e.target.getAttribute('data-id');
+        const field = e.target.getAttribute('data-field');
+        const val = e.target.checked;
+        this.onSpreadsheetCellChange(id, field, val, e.target);
+      });
+    });
+  }
+
+  onSpreadsheetCellChange(prodId, fieldPath, newValue, element) {
+    if (!this.spreadsheetState.stagedEdits.has(prodId)) {
+      this.spreadsheetState.stagedEdits.set(prodId, {});
+    }
+
+    const stagedObj = this.spreadsheetState.stagedEdits.get(prodId);
+
+    if (fieldPath.startsWith('meta.')) {
+      const metaField = fieldPath.split('.')[1];
+      if (!stagedObj.meta) stagedObj.meta = {};
+      stagedObj.meta[metaField] = (metaField === 'specificGravity') ? (parseFloat(newValue) || 1.0) : newValue;
+    } else if (fieldPath === 'priceEur' || fieldPath === 'priceGbp') {
+      stagedObj[fieldPath] = parseFloat(newValue) || 0;
+    } else {
+      stagedObj[fieldPath] = newValue;
+    }
+
+    // Highlight modified input
+    if (element) {
+      element.classList.add('!bg-amber-950/50', '!border-amber-500/80', '!text-amber-200');
+    }
+
+    // Update unsaved counters and enable save buttons
+    const stagedCount = this.spreadsheetState.stagedEdits.size;
+    const unsavedBadge = document.getElementById('ss-unsaved-badge');
+    const unsavedCount = document.getElementById('ss-unsaved-count');
+    const btnSave = document.getElementById('btn-spreadsheet-save-all');
+    const btnDiscard = document.getElementById('btn-spreadsheet-discard');
+
+    if (unsavedBadge) {
+      unsavedBadge.classList.remove('hidden');
+      unsavedBadge.innerText = `⚡ ${stagedCount} Unsaved Edit${stagedCount > 1 ? 's' : ''}`;
+    }
+    if (unsavedCount) unsavedCount.innerText = stagedCount.toString();
+    if (btnSave) btnSave.disabled = false;
+    if (btnDiscard) btnDiscard.disabled = false;
+  }
+
+  applyBatchPricePercentage(pct) {
+    const targetProducts = this.spreadsheetState.selectedIds.size > 0 
+      ? this.getEffectiveProducts().filter(p => this.spreadsheetState.selectedIds.has(p.id))
+      : this.getFilteredSortedSpreadsheetProducts();
+
+    if (targetProducts.length === 0) {
+      this.showToast("No products available to modify.", "warning");
+      return;
+    }
+
+    targetProducts.forEach(p => {
+      const st = this.spreadsheetState.stagedEdits.get(p.id) || {};
+      const curEur = (st.priceEur !== undefined) ? st.priceEur : (p.priceEur || 0);
+      const curGbp = (st.priceGbp !== undefined) ? st.priceGbp : (p.priceGbp || 0);
+
+      const newEur = Math.round(curEur * (1 + pct / 100) * 100) / 100;
+      const newGbp = Math.round(curGbp * (1 + pct / 100) * 100) / 100;
+
+      this.spreadsheetState.stagedEdits.set(p.id, {
+        ...st,
+        priceEur: Math.max(0, newEur),
+        priceGbp: Math.max(0, newGbp)
+      });
+    });
+
+    this.renderAdminSpreadsheet();
+    this.showToast(`Applied ${pct > 0 ? '+' : ''}${pct}% price adjustment across ${targetProducts.length} product(s). Click "SAVE ALL CHANGES" to commit.`, 'info');
+  }
+
+  applyBatchCurrencySync(rate, rounding) {
+    const targetProducts = this.spreadsheetState.selectedIds.size > 0 
+      ? this.getEffectiveProducts().filter(p => this.spreadsheetState.selectedIds.has(p.id))
+      : this.getFilteredSortedSpreadsheetProducts();
+
+    if (targetProducts.length === 0) {
+      this.showToast("No products available to modify.", "warning");
+      return;
+    }
+
+    targetProducts.forEach(p => {
+      const st = this.spreadsheetState.stagedEdits.get(p.id) || {};
+      const curEur = (st.priceEur !== undefined) ? st.priceEur : (p.priceEur || 0);
+      let calculatedGbp = curEur * rate;
+
+      if (rounding !== 'none') {
+        calculatedGbp = this.roundPriceTo(calculatedGbp, rounding);
+      } else {
+        calculatedGbp = Math.round(calculatedGbp * 100) / 100;
+      }
+
+      this.spreadsheetState.stagedEdits.set(p.id, {
+        ...st,
+        priceGbp: Math.max(0, calculatedGbp)
+      });
+    });
+
+    this.renderAdminSpreadsheet();
+    this.showToast(`Calculated GBP prices from EUR (rate: ${rate}) across ${targetProducts.length} product(s).`, 'info');
+  }
+
+  applyBatchRounding(rounding) {
+    const targetProducts = this.spreadsheetState.selectedIds.size > 0 
+      ? this.getEffectiveProducts().filter(p => this.spreadsheetState.selectedIds.has(p.id))
+      : this.getFilteredSortedSpreadsheetProducts();
+
+    targetProducts.forEach(p => {
+      const st = this.spreadsheetState.stagedEdits.get(p.id) || {};
+      const curEur = (st.priceEur !== undefined) ? st.priceEur : (p.priceEur || 0);
+      const curGbp = (st.priceGbp !== undefined) ? st.priceGbp : (p.priceGbp || 0);
+
+      this.spreadsheetState.stagedEdits.set(p.id, {
+        ...st,
+        priceEur: this.roundPriceTo(curEur, rounding),
+        priceGbp: this.roundPriceTo(curGbp, rounding)
+      });
+    });
+
+    this.renderAdminSpreadsheet();
+    this.showToast(`Applied ${rounding} rounding across ${targetProducts.length} product(s).`, 'info');
+  }
+
+  roundPriceTo(price, suffix) {
+    if (price <= 0) return 0;
+    const integerPart = Math.floor(price);
+    if (suffix === '.95') return integerPart + 0.95;
+    if (suffix === '.99') return integerPart + 0.99;
+    if (suffix === '.50') return integerPart + 0.50;
+    if (suffix === '.00') return Math.round(price);
+    return Math.round(price * 100) / 100;
+  }
+
+  applyBatchTaxonomy(dept, brand) {
+    const targetProducts = this.spreadsheetState.selectedIds.size > 0 
+      ? this.getEffectiveProducts().filter(p => this.spreadsheetState.selectedIds.has(p.id))
+      : this.getFilteredSortedSpreadsheetProducts();
+
+    targetProducts.forEach(p => {
+      const st = this.spreadsheetState.stagedEdits.get(p.id) || {};
+      if (dept) st.department = dept;
+      if (brand) st.brand = brand;
+      this.spreadsheetState.stagedEdits.set(p.id, st);
+    });
+
+    this.renderAdminSpreadsheet();
+    this.showToast(`Updated Department/Brand for ${targetProducts.length} product(s).`, 'info');
+  }
+
+  applyBatchStock(inStock) {
+    const targetProducts = this.spreadsheetState.selectedIds.size > 0 
+      ? this.getEffectiveProducts().filter(p => this.spreadsheetState.selectedIds.has(p.id))
+      : this.getFilteredSortedSpreadsheetProducts();
+
+    targetProducts.forEach(p => {
+      const st = this.spreadsheetState.stagedEdits.get(p.id) || {};
+      st.inStock = inStock;
+      this.spreadsheetState.stagedEdits.set(p.id, st);
+    });
+
+    this.renderAdminSpreadsheet();
+    this.showToast(`Marked ${targetProducts.length} product(s) as ${inStock ? 'IN STOCK' : 'OUT OF STOCK'}.`, 'info');
+  }
+
+  applyBatchBadge(badgeText) {
+    const targetProducts = this.spreadsheetState.selectedIds.size > 0 
+      ? this.getEffectiveProducts().filter(p => this.spreadsheetState.selectedIds.has(p.id))
+      : this.getFilteredSortedSpreadsheetProducts();
+
+    targetProducts.forEach(p => {
+      const st = this.spreadsheetState.stagedEdits.get(p.id) || {};
+      st.badge = badgeText;
+      this.spreadsheetState.stagedEdits.set(p.id, st);
+    });
+
+    this.renderAdminSpreadsheet();
+    this.showToast(`Applied promotional badge "${badgeText}" to ${targetProducts.length} product(s).`, 'info');
+  }
+
+  saveSpreadsheetEdits() {
+    const staged = this.spreadsheetState.stagedEdits;
+    if (staged.size === 0) return;
+
+    const overridesMap = {};
+    for (const [prodId, fields] of staged.entries()) {
+      overridesMap[prodId] = fields;
+    }
+
+    this.adminController.saveProductOverridesBulk(overridesMap);
+
+    // Sync in-memory ECOM_CATALOG
+    for (const [prodId, fields] of staged.entries()) {
+      const catIdx = ECOM_CATALOG.findIndex(p => p.id === prodId);
+      if (catIdx >= 0) {
+        ECOM_CATALOG[catIdx] = { 
+          ...ECOM_CATALOG[catIdx], 
+          ...fields,
+          meta: { ...(ECOM_CATALOG[catIdx].meta || {}), ...(fields.meta || {}) }
+        };
+      } else {
+        ECOM_CATALOG.unshift({ id: prodId, ...fields });
+      }
+    }
+
+    this.spreadsheetState.stagedEdits.clear();
+    this.renderAdminSpreadsheet();
+    this.renderAdminProducts();
+    this.renderStorefrontGrid();
+    this.showToast(`✅ Successfully saved and synchronized all product changes across Coast Airbrush Europe!`, 'success');
+  }
+
+  async discardSpreadsheetEdits() {
+    const count = this.spreadsheetState.stagedEdits.size;
+    if (count === 0) return;
+
+    const confirmed = await this.confirmDialog({
+      title: 'Discard Changes',
+      subtitle: 'Spreadsheet Modifications',
+      message: `Discard all pending unsaved spreadsheet modifications across <strong class="text-amber-400">${count} product(s)</strong>?`,
+      confirmText: 'Discard Changes',
+      isDanger: true,
+      icon: 'undo'
+    });
+
+    if (confirmed) {
+      this.spreadsheetState.stagedEdits.clear();
+      this.renderAdminSpreadsheet();
+      this.showToast("Pending spreadsheet modifications discarded.", "info");
+    }
+  }
+
+  revertSpreadsheetRow(prodId) {
+    if (this.spreadsheetState.stagedEdits.has(prodId)) {
+      this.spreadsheetState.stagedEdits.delete(prodId);
+    }
+    if (this.adminController.config.productOverrides && this.adminController.config.productOverrides[prodId]) {
+      this.adminController.deleteProductOverride(prodId);
+    }
+    this.renderAdminSpreadsheet();
+    this.renderAdminProducts();
+    this.renderStorefrontGrid();
+    this.showToast(`Reverted changes for row.`, "info");
+  }
+
+  copySpreadsheetProduct(productId) {
+    const all = this.getEffectiveProducts();
+    let original = all.find(p => p.id === productId);
+    if (!original) {
+      original = ECOM_CATALOG.find(p => p.id === productId);
+    }
+    if (!original) {
+      this.showToast("Product not found to duplicate.", "danger");
+      return;
+    }
+
+    // Overlay any staged edits if user had unsaved changes in this row
+    const staged = this.spreadsheetState.stagedEdits.get(productId) || {};
+    const baseObj = {
+      ...original,
+      ...staged,
+      meta: { ...(original.meta || {}), ...(staged.meta || {}) }
+    };
+
+    const newId = `custom_prod_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
+    
+    // Formulate new SKU
+    let baseSku = (baseObj.sku || `CAE-${Date.now().toString().slice(-4)}`).trim();
+    let newSku;
+    if (baseSku.includes('-COPY')) {
+      const match = baseSku.match(/-COPY-?(\d+)?$/);
+      const copyNum = match && match[1] ? parseInt(match[1], 10) + 1 : 2;
+      newSku = baseSku.replace(/-COPY-?(\d+)?$/, `-COPY-${copyNum}`);
+    } else {
+      newSku = `${baseSku}-COPY`;
+    }
+
+    // Formulate new Name
+    let baseName = (baseObj.name || 'Custom Product').trim();
+    let newName;
+    if (baseName.includes('(Copy')) {
+      const match = baseName.match(/\(Copy\s*(\d+)?\)$/);
+      const copyNum = match && match[1] ? parseInt(match[1], 10) + 1 : 2;
+      newName = baseName.replace(/\(Copy\s*(\d+)?\)$/, `(Copy ${copyNum})`);
+    } else {
+      newName = `${baseName} (Copy)`;
+    }
+
+    const clonedProduct = {
+      ...baseObj,
+      id: newId,
+      sku: newSku,
+      name: newName,
+      department: baseObj.department || 'Automotive & Custom Paint',
+      brand: baseObj.brand || 'Kroma Edge',
+      category: baseObj.category || 'General',
+      priceEur: parseFloat(baseObj.priceEur || 0) || 0,
+      priceGbp: parseFloat(baseObj.priceGbp || 0) || 0,
+      inStock: baseObj.inStock !== false,
+      isPreOrder: Boolean(baseObj.isPreOrder),
+      badge: baseObj.badge ? `${baseObj.badge}` : 'COPY',
+      image: baseObj.image || 'Images/kromaedge/kroma-helmet-mirror.jpg',
+      description: baseObj.description || '',
+      sizes: Array.isArray(baseObj.sizes) ? [...baseObj.sizes] : ['500mL', '1 Litre'],
+      packSizes: Array.isArray(baseObj.packSizes) ? [...baseObj.packSizes] : ['Standard Kit'],
+      hasOptions: Boolean(baseObj.hasOptions),
+      meta: {
+        specificGravity: baseObj.meta?.specificGravity !== undefined ? baseObj.meta.specificGravity : 0.98,
+        recommendedNozzle: baseObj.meta?.recommendedNozzle || '0.3mm - 0.5mm',
+        recommendedPressure: baseObj.meta?.recommendedPressure || '20-25 PSI'
+      }
+    };
+
+    // Stage it immediately as an unsaved edit
+    this.spreadsheetState.stagedEdits.set(newId, clonedProduct);
+    ECOM_CATALOG.unshift(clonedProduct);
+    
+    // Jump to page 1 to see the new item immediately
+    this.spreadsheetState.currentPage = 1;
+    this.renderAdminSpreadsheet();
+
+    // Smooth scroll and focus on the new cloned row
+    setTimeout(() => {
+      const row = document.getElementById(`ss-row-${newId}`);
+      if (row) {
+        row.classList.add('row-highlight-pulse');
+        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const nameInput = row.querySelector('[data-field="name"]');
+        if (nameInput) {
+          nameInput.focus();
+          if (nameInput.select) nameInput.select();
+        }
+      }
+    }, 150);
+
+    this.showToast(`📋 Duplicated "${baseName}". Staged as unsaved edit.`, 'success', 4500);
+  }
+
+  copySelectedSpreadsheetProducts() {
+    const selectedIds = Array.from(this.spreadsheetState.selectedIds);
+    if (selectedIds.length === 0) {
+      this.showToast("Please check at least one product row to duplicate.", "warning");
+      return;
+    }
+
+    let count = 0;
+    selectedIds.forEach(id => {
+      this.copySpreadsheetProduct(id);
+      count++;
+    });
+
+    this.spreadsheetState.selectedIds.clear();
+    this.renderAdminSpreadsheet();
+    this.showToast(`📋 Successfully duplicated ${count} product(s). Click "SAVE ALL CHANGES" when ready.`, 'success', 4500);
+  }
+
+  async deleteSpreadsheetProduct(productId) {
+    const all = this.getEffectiveProducts();
+    let product = all.find(p => p.id === productId) || ECOM_CATALOG.find(p => p.id === productId);
+    
+    if (!product && this.spreadsheetState.stagedEdits.has(productId)) {
+      product = this.spreadsheetState.stagedEdits.get(productId);
+    }
+    if (!product) {
+      this.showToast("Product not found.", "danger");
+      return;
+    }
+
+    const confirmed = await this.confirmDialog({
+      title: 'Delete Product',
+      subtitle: 'Catalog Deletion Confirmation',
+      message: `Are you sure you want to delete this product from Coast Airbrush Europe? It will be removed from all active store pages and catalog grids.`,
+      itemDetails: `
+        <div class="font-bold text-white text-xs mb-1">${this.escapeHtml(product.name || 'Unnamed Product')}</div>
+        <div class="text-zinc-400 text-[11px]">SKU: <span class="text-primary font-bold">${this.escapeHtml(product.sku || product.id)}</span> | Dept: ${this.escapeHtml(product.department || 'Automotive')}</div>
+        <div class="text-emerald-400 mt-1 font-bold text-[11px]">&euro;${(product.priceEur || 0).toFixed(2)} / &pound;${(product.priceGbp || 0).toFixed(2)}</div>
+      `,
+      confirmText: 'Delete Product',
+      isDanger: true,
+      icon: 'delete'
+    });
+
+    if (!confirmed) return;
+
+    // Remove from staged edits and selection
+    this.spreadsheetState.stagedEdits.delete(productId);
+    this.spreadsheetState.selectedIds.delete(productId);
+
+    // Splice from runtime ECOM_CATALOG
+    const catIdx = ECOM_CATALOG.findIndex(p => p.id === productId);
+    if (catIdx >= 0) {
+      ECOM_CATALOG.splice(catIdx, 1);
+    }
+
+    // Save deletion in admin controller
+    this.adminController.deleteProduct(productId, product);
+
+    this.renderAdminSpreadsheet();
+    this.renderAdminProducts();
+    this.renderStorefrontGrid();
+    this.updateTrashBadgeCount();
+    this.showToast(`🗑️ Deleted product "${product.name}". Moved to Trash.`, 'danger', 4000);
+  }
+
+  async deleteSelectedSpreadsheetProducts() {
+    const selectedIds = Array.from(this.spreadsheetState.selectedIds);
+    if (selectedIds.length === 0) {
+      this.showToast("Please check at least one product row to delete.", "warning");
+      return;
+    }
+
+    const confirmed = await this.confirmDialog({
+      title: 'Bulk Delete Products',
+      subtitle: 'Multiple Catalog Deletions',
+      message: `Are you sure you want to remove <strong class="text-rose-400">${selectedIds.length} selected product(s)</strong> from Coast Airbrush Europe?`,
+      confirmText: `Delete ${selectedIds.length} Products`,
+      isDanger: true,
+      icon: 'delete_sweep'
+    });
+
+    if (!confirmed) return;
+
+    const all = this.getEffectiveProducts();
+    const itemsToDelete = [];
+
+    selectedIds.forEach(id => {
+      const p = all.find(item => item.id === id) || ECOM_CATALOG.find(item => item.id === id) || { id };
+      itemsToDelete.push(p);
+
+      this.spreadsheetState.stagedEdits.delete(id);
+      this.spreadsheetState.selectedIds.delete(id);
+
+      const catIdx = ECOM_CATALOG.findIndex(item => item.id === id);
+      if (catIdx >= 0) {
+        ECOM_CATALOG.splice(catIdx, 1);
+      }
+    });
+
+    this.adminController.deleteProductsBulk(itemsToDelete);
+
+    this.renderAdminSpreadsheet();
+    this.renderAdminProducts();
+    this.renderStorefrontGrid();
+    this.updateTrashBadgeCount();
+    this.showToast(`🗑️ Deleted ${itemsToDelete.length} products from catalog.`, 'danger', 4000);
+  }
+
+  openTrashModal() {
+    const modal = document.getElementById('modal-deleted-products');
+    const container = document.getElementById('trash-products-list-container');
+    if (!modal || !container) return;
+
+    const records = this.adminController.getDeletedProductRecords();
+    const deletedIds = this.adminController.getDeletedProductIds();
+    
+    const items = deletedIds.map(id => records[id] || { id, name: id, sku: id, department: 'Deleted' });
+
+    if (items.length === 0) {
+      container.innerHTML = `
+        <div class="p-8 text-center text-secondary font-mono text-xs">
+          <span class="material-symbols-outlined text-[32px] mb-2 opacity-50 block">delete_sweep</span>
+          <p>Trash is empty. No deleted catalog products.</p>
+        </div>
+      `;
+    } else {
+      container.innerHTML = `
+        <table class="w-full text-left font-mono text-xs border-collapse">
+          <thead class="bg-surface-container-high text-[11px] uppercase font-bold text-secondary sticky top-0 border-b border-secondary/40">
+            <tr>
+              <th class="p-2.5">SKU</th>
+              <th class="p-2.5">Product Name</th>
+              <th class="p-2.5">Department</th>
+              <th class="p-2.5 text-right">Price</th>
+              <th class="p-2.5 text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-secondary/20">
+            ${items.map(item => `
+              <tr class="hover:bg-surface-container transition-colors">
+                <td class="p-2 font-bold text-primary">${this.escapeHtml(item.sku || item.id)}</td>
+                <td class="p-2 text-white">${this.escapeHtml(item.name || 'Unnamed Product')}</td>
+                <td class="p-2 text-zinc-400 text-[11px]">${this.escapeHtml(item.department || '-')}</td>
+                <td class="p-2 text-right text-emerald-400 font-bold">&euro;${(item.priceEur || 0).toFixed(2)}</td>
+                <td class="p-2 text-center">
+                  <button onclick="window.paintApp.restoreTrashProduct('${item.id}')" class="px-2 py-1 text-[11px] font-mono border border-emerald-500/60 bg-emerald-950/30 text-emerald-300 hover:bg-emerald-900/50 rounded transition-all flex items-center justify-center gap-1 mx-auto cursor-pointer">
+                    <span class="material-symbols-outlined text-[12px]">history</span> Restore
+                  </button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    modal.classList.add('active');
+  }
+
+  closeTrashModal() {
+    const modal = document.getElementById('modal-deleted-products');
+    if (modal) modal.classList.remove('active');
+  }
+
+  restoreTrashProduct(productId) {
+    const restored = this.adminController.restoreProduct(productId);
+    if (restored) {
+      if (!ECOM_CATALOG.some(p => p.id === restored.id)) {
+        ECOM_CATALOG.unshift(restored);
+      }
+    }
+    this.openTrashModal(); // Refresh modal table
+    this.renderAdminSpreadsheet();
+    this.renderAdminProducts();
+    this.renderStorefrontGrid();
+    this.updateTrashBadgeCount();
+    this.showToast(`✅ Restored product "${restored?.name || productId}" back to catalog!`, 'success');
+  }
+
+  restoreAllTrashProducts() {
+    const restoredList = this.adminController.restoreAllDeletedProducts();
+    restoredList.forEach(item => {
+      if (!ECOM_CATALOG.some(p => p.id === item.id)) {
+        ECOM_CATALOG.unshift(item);
+      }
+    });
+    this.openTrashModal();
+    this.renderAdminSpreadsheet();
+    this.renderAdminProducts();
+    this.renderStorefrontGrid();
+    this.updateTrashBadgeCount();
+    this.showToast(`✅ Restored all products back to catalog!`, 'success');
+  }
+
+  updateTrashBadgeCount() {
+    const badge = document.getElementById('ss-trash-count');
+    if (badge) {
+      badge.innerText = this.adminController.getDeletedProductIds().length.toString();
+    }
+  }
+
+  // =========================================================================
+  // PRODUCT MATRIX & MULTI-AXIS VARIANT SUITE
+  // =========================================================================
+  openProductMatrixModal(productId) {
+    const all = this.getEffectiveProducts();
+    let prod = all.find(p => p.id === productId) || ECOM_CATALOG.find(p => p.id === productId);
+    if (!prod) {
+      this.showToast("Product not found.", "danger");
+      return;
+    }
+
+    const modal = document.getElementById('modal-product-matrix');
+    if (!modal) return;
+
+    // Header info
+    const idInput = document.getElementById('matrix-product-id');
+    const titleEl = document.getElementById('matrix-modal-title');
+    const skuBadge = document.getElementById('matrix-modal-sku-badge');
+    const subtitleEl = document.getElementById('matrix-modal-subtitle');
+
+    if (idInput) idInput.value = prod.id;
+    if (titleEl) titleEl.innerText = `${prod.name || 'Product Matrix'}`;
+    if (skuBadge) skuBadge.innerText = `BASE SKU: ${prod.sku || prod.id}`;
+    if (subtitleEl) subtitleEl.innerText = `${prod.department || 'Automotive'} > ${prod.brand || 'Coast'} > ${prod.category || 'General'} | Base Price: £${(prod.priceGbp || 0).toFixed(2)} / €${(prod.priceEur || 0).toFixed(2)}`;
+
+    // Hydrate or normalize matrix data
+    const matrixData = this.getNormalizedProductMatrix(prod);
+
+    // Populate axes inputs
+    const ax1Name = document.getElementById('matrix-axis-1-name');
+    const ax1Vals = document.getElementById('matrix-axis-1-values');
+    const ax2Name = document.getElementById('matrix-axis-2-name');
+    const ax2Vals = document.getElementById('matrix-axis-2-values');
+
+    if (ax1Name) ax1Name.value = matrixData.axes[0]?.name || (prod.category === 'Masking Products' ? 'Width' : 'Size');
+    if (ax1Vals) ax1Vals.value = (matrixData.axes[0]?.values || []).join(', ');
+    if (ax2Name) ax2Name.value = matrixData.axes[1]?.name || (matrixData.axes[1] ? 'Pack Size' : '');
+    if (ax2Vals) ax2Vals.value = (matrixData.axes[1]?.values || []).join(', ');
+
+    // Render table
+    this.renderMatrixModalRows(matrixData.variants || []);
+
+    modal.classList.add('active');
+  }
+
+  closeProductMatrixModal() {
+    const modal = document.getElementById('modal-product-matrix');
+    if (modal) modal.classList.remove('active');
+  }
+
+  getNormalizedProductMatrix(prod) {
+    // 1. Existing custom variantMatrix
+    if (prod.variantMatrix && prod.variantMatrix.variants && prod.variantMatrix.variants.length > 0) {
+      return JSON.parse(JSON.stringify(prod.variantMatrix));
+    }
+
+    // 2. Existing tapePriceMatrix
+    if (prod.tapePriceMatrix && prod.tapePriceMatrix.length > 0) {
+      const widths = prod.tapeWidths || prod.tapePriceMatrix.map(t => t.width);
+      const variants = prod.tapePriceMatrix.map((t, idx) => ({
+        id: `var_${idx + 1}`,
+        sku: t.stockCode || `${prod.sku}-${idx + 1}`,
+        barcode: t.barcode || (prod.barcode ? `${prod.barcode}` : ''),
+        options: { "Width": t.width },
+        priceEur: t.priceEur !== undefined ? t.priceEur : (t.priceGbp ? parseFloat((t.priceGbp / 0.85).toFixed(2)) : prod.priceEur || 1.64),
+        priceGbp: t.priceGbp !== undefined ? t.priceGbp : prod.priceGbp || 1.40,
+        inStock: true
+      }));
+      return {
+        enabled: true,
+        axes: [{ name: "Width", values: widths }],
+        variants
+      };
+    }
+
+    // 3. Existing fullMatrixPricing (Flakes)
+    if (prod.fullMatrixPricing && prod.fullMatrixPricing.length > 0) {
+      const flakeSizes = [...new Set(prod.fullMatrixPricing.map(m => m.flakeSize || m.rawFlakeSize).filter(Boolean))];
+      const packSizes = [...new Set(prod.fullMatrixPricing.map(m => m.packSize || m.rawPackSize).filter(Boolean))];
+      const variants = prod.fullMatrixPricing.map((m, idx) => ({
+        id: `var_${idx + 1}`,
+        sku: m.stockCode || `${prod.sku}-${idx + 1}`,
+        barcode: m.barcode || '',
+        options: { "Particle Size": m.flakeSize, "Pack Size": m.packSize },
+        priceEur: m.priceEur !== undefined ? m.priceEur : (m.priceGbp ? parseFloat((m.priceGbp / 0.85).toFixed(2)) : 12.96),
+        priceGbp: m.priceGbp !== undefined ? m.priceGbp : 11.08,
+        inStock: true
+      }));
+      return {
+        enabled: true,
+        axes: [
+          { name: "Particle Size", values: flakeSizes },
+          { name: "Pack Size", values: packSizes }
+        ],
+        variants
+      };
+    }
+
+    // 4. Existing packPriceMatrix
+    if (prod.packPriceMatrix && prod.packPriceMatrix.length > 0) {
+      const packSizes = prod.packPriceMatrix.map(m => m.packSize);
+      const variants = prod.packPriceMatrix.map((m, idx) => ({
+        id: `var_${idx + 1}`,
+        sku: m.stockCode || `${prod.sku}-${idx + 1}`,
+        barcode: m.barcode || '',
+        options: { "Pack Size": m.packSize },
+        priceEur: m.priceEur !== undefined ? m.priceEur : (m.priceGbp ? parseFloat((m.priceGbp / 0.85).toFixed(2)) : prod.priceEur || 24.00),
+        priceGbp: m.priceGbp !== undefined ? m.priceGbp : prod.priceGbp || 20.00,
+        inStock: true
+      }));
+      return {
+        enabled: true,
+        axes: [{ name: "Pack Size", values: packSizes }],
+        variants
+      };
+    }
+
+    // 5. Sizes & PackSizes combinations
+    const sizes = (prod.sizes || []).map(s => String(s).trim()).filter(Boolean);
+    const packs = (prod.packSizes || []).map(p => String(p).trim()).filter(Boolean);
+
+    if (sizes.length > 0 || packs.length > 0) {
+      const axes = [];
+      if (sizes.length > 0) axes.push({ name: "Size", values: sizes });
+      if (packs.length > 0) axes.push({ name: "Pack", values: packs });
+
+      const variants = [];
+      let idx = 1;
+      const sList = sizes.length > 0 ? sizes : ['Standard'];
+      const pList = packs.length > 0 ? packs : [''];
+
+      sList.forEach(s => {
+        pList.forEach(p => {
+          const opts = {};
+          if (sizes.length > 0) opts["Size"] = s;
+          if (packs.length > 0 && p) opts["Pack"] = p;
+          variants.push({
+            id: `var_${idx}`,
+            sku: `${prod.sku}-${idx}`,
+            barcode: '',
+            options: opts,
+            priceEur: prod.priceEur || 99.00,
+            priceGbp: prod.priceGbp || 85.00,
+            inStock: true
+          });
+          idx++;
+        });
+      });
+
+      return { enabled: true, axes, variants };
+    }
+
+    // Default template for simple products
+    return {
+      enabled: true,
+      axes: [
+        { name: "Option / Finish", values: ["Standard"] }
+      ],
+      variants: [
+        {
+          id: "var_1",
+          sku: `${prod.sku || prod.id}-STD`,
+          barcode: prod.barcode || '',
+          options: { "Option / Finish": "Standard" },
+          priceEur: prod.priceEur || 24.00,
+          priceGbp: prod.priceGbp || 20.00,
+          inStock: true
+        }
+      ]
+    };
+  }
+
+  renderMatrixModalRows(variants) {
+    const tbody = document.getElementById('matrix-combinations-tbody');
+    const countEl = document.getElementById('matrix-variant-count');
+    if (!tbody) return;
+
+    if (countEl) countEl.innerText = variants.length.toString();
+
+    if (variants.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="7" class="p-6 text-center text-secondary font-mono text-xs">
+            No variants configured. Define axes above and click "Generate / Refresh Combinations" or "Add Single Row".
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tbody.innerHTML = variants.map((v, idx) => {
+      const optDesc = Object.entries(v.options || {}).map(([k, val]) => `<span class="text-secondary text-[10px]">${this.escapeHtml(k)}:</span> <strong class="text-white">${this.escapeHtml(val)}</strong>`).join(' | ') || 'Standard';
+      const optDataAttr = this.escapeHtmlAttr(JSON.stringify(v.options || {}));
+      const rowId = v.id || `var_${idx + 1}`;
+
+      return `
+        <tr id="matrix-row-${rowId}" data-row-id="${rowId}" data-options='${optDataAttr}' class="hover:bg-surface-container transition-colors">
+          <td class="p-2 border-r border-secondary/30 font-mono text-[11px]">
+            ${optDesc}
+          </td>
+          <td class="p-1 border-r border-secondary/30">
+            <input type="text" class="matrix-input-sku w-full bg-transparent p-1 font-mono text-xs font-bold text-primary border border-transparent focus:border-primary focus:bg-surface-container rounded" value="${this.escapeHtml(v.sku || '')}">
+          </td>
+          <td class="p-1 border-r border-secondary/30">
+            <input type="text" class="matrix-input-barcode w-full bg-transparent p-1 font-mono text-[11px] text-zinc-300 border border-transparent focus:border-primary focus:bg-surface-container rounded" placeholder="EAN-13" value="${this.escapeHtml(v.barcode || '')}">
+          </td>
+          <td class="p-1 border-r border-secondary/30 text-right">
+            <div class="flex items-center justify-end">
+              <span class="text-secondary text-[10px] mr-1">&pound;</span>
+              <input type="number" step="0.01" class="matrix-input-gbp w-20 text-right bg-transparent p-1 font-mono text-xs font-bold text-amber-400 border border-transparent focus:border-primary focus:bg-surface-container rounded" value="${(parseFloat(v.priceGbp) || 0).toFixed(2)}">
+            </div>
+          </td>
+          <td class="p-1 border-r border-secondary/30 text-right">
+            <div class="flex items-center justify-end">
+              <span class="text-secondary text-[10px] mr-1">&euro;</span>
+              <input type="number" step="0.01" class="matrix-input-eur w-20 text-right bg-transparent p-1 font-mono text-xs font-bold text-emerald-400 border border-transparent focus:border-primary focus:bg-surface-container rounded" value="${(parseFloat(v.priceEur) || 0).toFixed(2)}">
+            </div>
+          </td>
+          <td class="p-1 border-r border-secondary/30 text-center">
+            <input type="checkbox" class="matrix-input-stock cursor-pointer" ${v.inStock !== false ? 'checked' : ''}>
+          </td>
+          <td class="p-1 text-center">
+            <button onclick="window.paintApp.deleteMatrixRow('${rowId}')" class="p-1 text-secondary hover:text-rose-400 transition-colors cursor-pointer" title="Delete Combination">
+              <span class="material-symbols-outlined text-[15px]">delete</span>
+            </button>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  generateMatrixCombinations() {
+    const ax1Name = (document.getElementById('matrix-axis-1-name')?.value || 'Option 1').trim();
+    const ax1Vals = (document.getElementById('matrix-axis-1-values')?.value || '').split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+    const ax2Name = (document.getElementById('matrix-axis-2-name')?.value || '').trim();
+    const ax2Vals = (document.getElementById('matrix-axis-2-values')?.value || '').split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+
+    if (ax1Vals.length === 0) {
+      this.showToast("Please enter at least one option value for Axis 1.", "warning");
+      return;
+    }
+
+    const prodId = document.getElementById('matrix-product-id')?.value;
+    const all = this.getEffectiveProducts();
+    const prod = all.find(p => p.id === prodId) || ECOM_CATALOG.find(p => p.id === prodId) || {};
+    const baseSku = (prod.sku || prodId || 'CAE').trim();
+    const baseEur = prod.priceEur || 24.00;
+    const baseGbp = prod.priceGbp || 20.00;
+
+    // Read current existing rows to preserve existing prices/SKUs/barcodes where matches exist
+    const existingMap = new Map();
+    document.querySelectorAll('#matrix-combinations-tbody tr[data-options]').forEach(tr => {
+      try {
+        const opts = JSON.parse(tr.getAttribute('data-options'));
+        const key = Object.entries(opts).sort(([a], [b]) => a.localeCompare(b)).map(([k, v]) => `${k}:${v}`).join('|');
+        existingMap.set(key, {
+          sku: tr.querySelector('.matrix-input-sku')?.value,
+          barcode: tr.querySelector('.matrix-input-barcode')?.value,
+          priceEur: parseFloat(tr.querySelector('.matrix-input-eur')?.value || baseEur),
+          priceGbp: parseFloat(tr.querySelector('.matrix-input-gbp')?.value || baseGbp),
+          inStock: tr.querySelector('.matrix-input-stock')?.checked !== false
+        });
+      } catch (e) {}
+    });
+
+    const newVariants = [];
+    let idx = 1;
+
+    const list2 = (ax2Name && ax2Vals.length > 0) ? ax2Vals : [''];
+
+    ax1Vals.forEach(v1 => {
+      list2.forEach(v2 => {
+        const opts = { [ax1Name]: v1 };
+        if (ax2Name && v2) opts[ax2Name] = v2;
+
+        const key = Object.entries(opts).sort(([a], [b]) => a.localeCompare(b)).map(([k, v]) => `${k}:${v}`).join('|');
+        const existing = existingMap.get(key);
+
+        const clean1 = v1.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 6);
+        const clean2 = v2 ? v2.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 6) : '';
+        const generatedSku = `${baseSku}-${clean1}${clean2 ? '-' + clean2 : ''}`;
+
+        newVariants.push({
+          id: `var_${Date.now()}_${idx}`,
+          sku: existing ? existing.sku : generatedSku,
+          barcode: existing ? existing.barcode : '',
+          options: opts,
+          priceEur: existing ? existing.priceEur : baseEur,
+          priceGbp: existing ? existing.priceGbp : baseGbp,
+          inStock: existing ? existing.inStock : true
+        });
+        idx++;
+      });
+    });
+
+    this.renderMatrixModalRows(newVariants);
+    this.showToast(`✨ Generated ${newVariants.length} matrix combination(s).`, "success");
+  }
+
+  applyMatrixBasePriceToAll() {
+    const prodId = document.getElementById('matrix-product-id')?.value;
+    const all = this.getEffectiveProducts();
+    const prod = all.find(p => p.id === prodId) || ECOM_CATALOG.find(p => p.id === prodId);
+    if (!prod) return;
+
+    const eur = (prod.priceEur || 0).toFixed(2);
+    const gbp = (prod.priceGbp || 0).toFixed(2);
+
+    let count = 0;
+    document.querySelectorAll('#matrix-combinations-tbody tr').forEach(tr => {
+      const eurInput = tr.querySelector('.matrix-input-eur');
+      const gbpInput = tr.querySelector('.matrix-input-gbp');
+      if (eurInput) eurInput.value = eur;
+      if (gbpInput) gbpInput.value = gbp;
+      count++;
+    });
+
+    this.showToast(`Applied base price (£${gbp} / €${eur}) across all ${count} variants.`, 'info');
+  }
+
+  applyMatrixPercentageAdjust(pct) {
+    let count = 0;
+    const multiplier = 1 + (pct / 100);
+    document.querySelectorAll('#matrix-combinations-tbody tr').forEach(tr => {
+      const eurInput = tr.querySelector('.matrix-input-eur');
+      const gbpInput = tr.querySelector('.matrix-input-gbp');
+      if (eurInput) {
+        const cur = parseFloat(eurInput.value || 0);
+        eurInput.value = (cur * multiplier).toFixed(2);
+      }
+      if (gbpInput) {
+        const cur = parseFloat(gbpInput.value || 0);
+        gbpInput.value = (cur * multiplier).toFixed(2);
+      }
+      count++;
+    });
+
+    this.showToast(`Adjusted prices by ${pct > 0 ? '+' : ''}${pct}% across ${count} variants.`, 'info');
+  }
+
+  autoGenerateMatrixSkus() {
+    const prodId = document.getElementById('matrix-product-id')?.value;
+    const all = this.getEffectiveProducts();
+    const prod = all.find(p => p.id === prodId) || ECOM_CATALOG.find(p => p.id === prodId);
+    const baseSku = (prod?.sku || prodId || 'CAE').trim();
+
+    let count = 0;
+    document.querySelectorAll('#matrix-combinations-tbody tr[data-options]').forEach((tr, idx) => {
+      try {
+        const opts = JSON.parse(tr.getAttribute('data-options'));
+        const parts = Object.values(opts).map(val => val.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 6));
+        const skuInput = tr.querySelector('.matrix-input-sku');
+        if (skuInput) {
+          skuInput.value = `${baseSku}-${parts.join('-') || idx + 1}`;
+          count++;
+        }
+      } catch (e) {}
+    });
+
+    this.showToast(`Auto-generated ${count} variant SKUs from base SKU.`, 'info');
+  }
+
+  addSingleMatrixRow() {
+    const tbody = document.getElementById('matrix-combinations-tbody');
+    if (!tbody) return;
+
+    const prodId = document.getElementById('matrix-product-id')?.value;
+    const all = this.getEffectiveProducts();
+    const prod = all.find(p => p.id === prodId) || ECOM_CATALOG.find(p => p.id === prodId);
+    const baseSku = (prod?.sku || prodId || 'CAE').trim();
+
+    const rowId = `var_custom_${Date.now()}`;
+    const tr = document.createElement('tr');
+    tr.id = `matrix-row-${rowId}`;
+    tr.setAttribute('data-row-id', rowId);
+    tr.setAttribute('data-options', JSON.stringify({ "Option": "Custom Variant" }));
+    tr.className = 'hover:bg-surface-container transition-colors bg-primary/5';
+
+    tr.innerHTML = `
+      <td class="p-2 border-r border-secondary/30 font-mono text-[11px]">
+        <input type="text" class="matrix-input-custom-label w-full bg-transparent p-1 text-white border border-secondary/40 rounded text-xs" value="Custom Variant">
+      </td>
+      <td class="p-1 border-r border-secondary/30">
+        <input type="text" class="matrix-input-sku w-full bg-transparent p-1 font-mono text-xs font-bold text-primary border border-secondary/40 rounded" value="${baseSku}-CUSTOM">
+      </td>
+      <td class="p-1 border-r border-secondary/30">
+        <input type="text" class="matrix-input-barcode w-full bg-transparent p-1 font-mono text-[11px] text-zinc-300 border border-secondary/40 rounded" placeholder="EAN-13">
+      </td>
+      <td class="p-1 border-r border-secondary/30 text-right">
+        <div class="flex items-center justify-end">
+          <span class="text-secondary text-[10px] mr-1">&pound;</span>
+          <input type="number" step="0.01" class="matrix-input-gbp w-20 text-right bg-transparent p-1 font-mono text-xs font-bold text-amber-400 border border-secondary/40 rounded" value="${(prod?.priceGbp || 20.00).toFixed(2)}">
+        </div>
+      </td>
+      <td class="p-1 border-r border-secondary/30 text-right">
+        <div class="flex items-center justify-end">
+          <span class="text-secondary text-[10px] mr-1">&euro;</span>
+          <input type="number" step="0.01" class="matrix-input-eur w-20 text-right bg-transparent p-1 font-mono text-xs font-bold text-emerald-400 border border-secondary/40 rounded" value="${(prod?.priceEur || 24.00).toFixed(2)}">
+        </div>
+      </td>
+      <td class="p-1 border-r border-secondary/30 text-center">
+        <input type="checkbox" class="matrix-input-stock cursor-pointer" checked>
+      </td>
+      <td class="p-1 text-center">
+        <button onclick="window.paintApp.deleteMatrixRow('${rowId}')" class="p-1 text-secondary hover:text-rose-400 transition-colors cursor-pointer" title="Delete Combination">
+          <span class="material-symbols-outlined text-[15px]">delete</span>
+        </button>
+      </td>
+    `;
+
+    tbody.appendChild(tr);
+    const countEl = document.getElementById('matrix-variant-count');
+    if (countEl) countEl.innerText = tbody.querySelectorAll('tr').length.toString();
+  }
+
+  deleteMatrixRow(rowId) {
+    const row = document.getElementById(`matrix-row-${rowId}`);
+    if (row) {
+      row.remove();
+      const countEl = document.getElementById('matrix-variant-count');
+      const rows = document.querySelectorAll('#matrix-combinations-tbody tr');
+      if (countEl) countEl.innerText = rows.length.toString();
+    }
+  }
+
+  saveProductMatrixFromModal() {
+    const prodId = document.getElementById('matrix-product-id')?.value;
+    if (!prodId) return;
+
+    const ax1Name = (document.getElementById('matrix-axis-1-name')?.value || 'Option 1').trim();
+    const ax1Vals = (document.getElementById('matrix-axis-1-values')?.value || '').split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+    const ax2Name = (document.getElementById('matrix-axis-2-name')?.value || '').trim();
+    const ax2Vals = (document.getElementById('matrix-axis-2-values')?.value || '').split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+
+    const axes = [];
+    if (ax1Name && ax1Vals.length > 0) axes.push({ name: ax1Name, values: ax1Vals });
+    if (ax2Name && ax2Vals.length > 0) axes.push({ name: ax2Name, values: ax2Vals });
+
+    const rows = document.querySelectorAll('#matrix-combinations-tbody tr[data-row-id]');
+    const variants = [];
+
+    rows.forEach((tr, idx) => {
+      let options = {};
+      try {
+        options = JSON.parse(tr.getAttribute('data-options') || '{}');
+      } catch (e) {}
+
+      const customLabel = tr.querySelector('.matrix-input-custom-label')?.value;
+      if (customLabel) {
+        options = { "Option": customLabel.trim() };
+      }
+
+      const sku = (tr.querySelector('.matrix-input-sku')?.value || '').trim();
+      const barcode = (tr.querySelector('.matrix-input-barcode')?.value || '').trim();
+      const priceEur = parseFloat(tr.querySelector('.matrix-input-eur')?.value || 0) || 0;
+      const priceGbp = parseFloat(tr.querySelector('.matrix-input-gbp')?.value || 0) || 0;
+      const inStock = tr.querySelector('.matrix-input-stock')?.checked !== false;
+
+      variants.push({
+        id: tr.getAttribute('data-row-id') || `var_${idx + 1}`,
+        sku,
+        barcode,
+        options,
+        priceEur,
+        priceGbp,
+        inStock
+      });
+    });
+
+    const matrixData = {
+      enabled: variants.length > 0,
+      axes,
+      variants
+    };
+
+    // Also sync backwards compatibility matrices
+    const all = this.getEffectiveProducts();
+    const prod = all.find(p => p.id === prodId) || ECOM_CATALOG.find(p => p.id === prodId);
+
+    const updatedFields = {
+      variantMatrix: matrixData,
+      hasOptions: variants.length > 0
+    };
+
+    if (ax1Name.toLowerCase() === 'width') {
+      updatedFields.tapeWidths = ax1Vals;
+      updatedFields.hasTapeOptions = true;
+      updatedFields.tapePriceMatrix = variants.map(v => ({
+        width: v.options["Width"] || Object.values(v.options)[0] || '',
+        priceEur: v.priceEur,
+        priceGbp: v.priceGbp,
+        stockCode: v.sku,
+        barcode: v.barcode
+      }));
+    }
+
+    this.adminController.saveProductOverride(prodId, updatedFields);
+
+    // Sync in-memory ECOM_CATALOG
+    const catIdx = ECOM_CATALOG.findIndex(p => p.id === prodId);
+    if (catIdx >= 0) {
+      ECOM_CATALOG[catIdx] = {
+        ...ECOM_CATALOG[catIdx],
+        ...updatedFields
+      };
+    }
+
+    this.closeProductMatrixModal();
+    this.renderAdminSpreadsheet();
+    this.renderAdminProducts();
+    this.renderStorefrontGrid();
+    this.showToast(`✅ Product matrix saved with ${variants.length} variant(s)!`, 'success', 4500);
+  }
+
+  async resetProductMatrixToDefaults() {
+    const prodId = document.getElementById('matrix-product-id')?.value;
+    if (!prodId) return;
+
+    const confirmed = await this.confirmDialog({
+      title: 'Reset Matrix',
+      subtitle: 'Restore Factory Matrix',
+      message: `Reset custom variant matrix overrides for product "${prodId}" back to original catalog baseline?`,
+      confirmText: 'Reset Matrix',
+      isDanger: false,
+      icon: 'history'
+    });
+
+    if (!confirmed) return;
+
+    this.adminController.deleteProductMatrix(prodId);
+
+    const all = this.getEffectiveProducts();
+    const prod = all.find(p => p.id === prodId) || ECOM_CATALOG.find(p => p.id === prodId);
+    if (prod && prod.variantMatrix) {
+      delete prod.variantMatrix;
+    }
+
+    this.openProductMatrixModal(prodId); // re-hydrate
+    this.renderAdminSpreadsheet();
+    this.renderAdminProducts();
+    this.renderStorefrontGrid();
+    this.showToast("Variant matrix reset to factory defaults.", "info");
+  }
+
+  addSpreadsheetProductRow() {
+    const newId = `custom_prod_${Date.now()}`;
+    const newProduct = {
+      id: newId,
+      sku: `CAE-${Date.now().toString().slice(-4)}`,
+      name: 'New Custom Formula / Finish',
+      department: 'Automotive & Custom Paint',
+      brand: 'Kroma Edge',
+      category: 'Mirror Chrome Systems',
+      priceEur: 99.00,
+      priceGbp: 85.00,
+      inStock: true,
+      isPreOrder: false,
+      badge: 'NEW RELEASE',
+      image: 'Images/kromaedge/kroma-helmet-mirror.jpg',
+      description: 'Custom formulation added via Master Spreadsheet Editor.',
+      sizes: ['500mL', '1 Litre'],
+      packSizes: ['Standard Kit'],
+      hasOptions: true,
+      meta: {
+        specificGravity: 0.98,
+        recommendedNozzle: '0.3mm - 0.5mm',
+        recommendedPressure: '20-25 PSI'
+      }
+    };
+
+    // Stage it immediately
+    this.spreadsheetState.stagedEdits.set(newId, newProduct);
+    ECOM_CATALOG.unshift(newProduct);
+    this.spreadsheetState.currentPage = 1;
+    this.renderAdminSpreadsheet();
+
+    setTimeout(() => {
+      const row = document.getElementById(`ss-row-${newId}`);
+      if (row) {
+        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const firstInput = row.querySelector('.ss-cell-input');
+        if (firstInput) firstInput.focus();
+      }
+    }, 150);
+  }
+
+  exportSpreadsheetCsv() {
+    const list = this.getFilteredSortedSpreadsheetProducts();
+    if (list.length === 0) {
+      this.showToast("No products to export.", "warning");
+      return;
+    }
+
+    const headers = [
+      "ID",
+      "SKU",
+      "Name",
+      "Department",
+      "Brand",
+      "Category",
+      "Price_EUR",
+      "Price_GBP",
+      "In_Stock",
+      "Is_PreOrder",
+      "Badge",
+      "Recommended_Nozzle",
+      "Recommended_PSI",
+      "Specific_Gravity",
+      "Description",
+      "Image"
+    ];
+
+    const rows = [headers.join(',')];
+
+    list.forEach(p => {
+      const row = [
+        `"${(p.id || '').replace(/"/g, '""')}"`,
+        `"${(p.sku || '').replace(/"/g, '""')}"`,
+        `"${(p.name || '').replace(/"/g, '""')}"`,
+        `"${(p.department || '').replace(/"/g, '""')}"`,
+        `"${(p.brand || '').replace(/"/g, '""')}"`,
+        `"${(p.category || '').replace(/"/g, '""')}"`,
+        (p.priceEur !== undefined ? p.priceEur : 0).toFixed(2),
+        (p.priceGbp !== undefined ? p.priceGbp : 0).toFixed(2),
+        p.inStock !== false ? "TRUE" : "FALSE",
+        p.isPreOrder ? "TRUE" : "FALSE",
+        `"${(p.badge || '').replace(/"/g, '""')}"`,
+        `"${(p.meta?.recommendedNozzle || '0.3mm').replace(/"/g, '""')}"`,
+        `"${(p.meta?.recommendedPressure || '25 PSI').replace(/"/g, '""')}"`,
+        (p.meta?.specificGravity !== undefined ? p.meta.specificGravity : 1.0).toFixed(2),
+        `"${(p.description || '').replace(/"/g, '""')}"`,
+        `"${(p.image || '').replace(/"/g, '""')}"`
+      ];
+      rows.push(row.join(','));
+    });
+
+    const csvContent = "data:text/csv;charset=utf-8," + encodeURIComponent(rows.join('\n'));
+    const link = document.createElement('a');
+    link.setAttribute('href', csvContent);
+    link.setAttribute('download', `coast_airbrush_catalog_${Date.now()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+
+  importSpreadsheetCsv(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const text = e.target.result;
+        const lines = this.parseCsvString(text);
+        if (lines.length < 2) {
+          this.showToast("CSV file appears to be empty or missing header.", "danger");
+          return;
+        }
+
+        const headers = lines[0].map(h => h.trim().toLowerCase().replace(/[^a-z0-9]/g, ''));
+        const idIdx = headers.indexOf('id');
+        const skuIdx = headers.indexOf('sku');
+        const nameIdx = headers.indexOf('name');
+        const deptIdx = headers.indexOf('department');
+        const brandIdx = headers.indexOf('brand');
+        const catIdx = headers.indexOf('category');
+        const eurIdx = headers.findIndex(h => h.includes('eur'));
+        const gbpIdx = headers.findIndex(h => h.includes('gbp'));
+        const stockIdx = headers.findIndex(h => h.includes('stock'));
+        const preIdx = headers.findIndex(h => h.includes('preorder'));
+        const badgeIdx = headers.indexOf('badge');
+        const nozzleIdx = headers.findIndex(h => h.includes('nozzle'));
+        const psiIdx = headers.findIndex(h => h.includes('psi'));
+        const sgIdx = headers.findIndex(h => h.includes('gravity') || h.includes('specific'));
+
+        let updatedCount = 0;
+
+        for (let i = 1; i < lines.length; i++) {
+          const row = lines[i];
+          if (!row || row.length === 0 || (row.length === 1 && !row[0])) continue;
+
+          const rowId = idIdx >= 0 ? row[idIdx] : null;
+          const rowSku = skuIdx >= 0 ? row[skuIdx] : null;
+
+          let targetProd = null;
+          if (rowId) {
+            targetProd = ECOM_CATALOG.find(p => p.id === rowId);
+          }
+          if (!targetProd && rowSku) {
+            targetProd = ECOM_CATALOG.find(p => p.sku === rowSku);
+          }
+
+          const prodKey = targetProd ? targetProd.id : (rowId || `custom_prod_${Date.now()}_${i}`);
+          const st = this.spreadsheetState.stagedEdits.get(prodKey) || {};
+
+          if (nameIdx >= 0 && row[nameIdx]) st.name = row[nameIdx];
+          if (skuIdx >= 0 && row[skuIdx]) st.sku = row[skuIdx];
+          if (deptIdx >= 0 && row[deptIdx]) st.department = row[deptIdx];
+          if (brandIdx >= 0 && row[brandIdx]) st.brand = row[brandIdx];
+          if (catIdx >= 0 && row[catIdx]) st.category = row[catIdx];
+          if (eurIdx >= 0 && row[eurIdx] !== '') st.priceEur = parseFloat(row[eurIdx]) || 0;
+          if (gbpIdx >= 0 && row[gbpIdx] !== '') st.priceGbp = parseFloat(row[gbpIdx]) || 0;
+          if (stockIdx >= 0 && row[stockIdx] !== '') {
+            const sVal = row[stockIdx].toLowerCase();
+            st.inStock = sVal === 'true' || sVal === '1' || sVal === 'yes' || sVal === 'in stock';
+          }
+          if (preIdx >= 0 && row[preIdx] !== '') {
+            const pVal = row[preIdx].toLowerCase();
+            st.isPreOrder = pVal === 'true' || pVal === '1' || pVal === 'yes';
+          }
+          if (badgeIdx >= 0 && row[badgeIdx]) st.badge = row[badgeIdx];
+
+          if (!st.meta) st.meta = {};
+          if (nozzleIdx >= 0 && row[nozzleIdx]) st.meta.recommendedNozzle = row[nozzleIdx];
+          if (psiIdx >= 0 && row[psiIdx]) st.meta.recommendedPressure = row[psiIdx];
+          if (sgIdx >= 0 && row[sgIdx]) st.meta.specificGravity = parseFloat(row[sgIdx]) || 1.0;
+
+          this.spreadsheetState.stagedEdits.set(prodKey, st);
+          updatedCount++;
+        }
+
+        this.renderAdminSpreadsheet();
+        this.showToast(`📥 Successfully imported CSV! ${updatedCount} products staged for review. Click "SAVE ALL CHANGES" to commit.`, 'success');
+      } catch (err) {
+        this.showToast("Error parsing CSV file: " + err.message, 'danger');
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  parseCsvString(text) {
+    const lines = [];
+    let row = [];
+    let inQuotes = false;
+    let field = '';
+
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      const next = text[i + 1];
+
+      if (c === '"') {
+        if (inQuotes && next === '"') {
+          field += '"';
+          i++;
+        } else {
+          inQuotes = !inQuotes;
+        }
+      } else if (c === ',' && !inQuotes) {
+        row.push(field);
+        field = '';
+      } else if ((c === '\r' || c === '\n') && !inQuotes) {
+        if (c === '\r' && next === '\n') i++;
+        row.push(field);
+        lines.push(row);
+        row = [];
+        field = '';
+      } else {
+        field += c;
+      }
+    }
+    if (field || row.length > 0) {
+      row.push(field);
+      lines.push(row);
+    }
+    return lines;
   }
 
   // =========================================================================
@@ -3804,7 +8011,7 @@ ${result.description}
     }
 
     this.closeGeminiPreviewModal();
-    alert("✨ Gemini AI copy successfully applied to product fields!");
+    this.showToast("✨ Gemini AI copy successfully applied to product fields!", 'success');
   }
 
   renderAdminFormulas() {
@@ -3945,7 +8152,7 @@ ${result.description}
     const notesInput = document.getElementById('form-formula-notes');
 
     if (!sysIdInput || !nameInput || !sysIdInput.value.trim() || !nameInput.value.trim()) {
-      alert("Please provide both a System ID and Name.");
+      this.showToast("Please provide both a System ID and Name.", "warning");
       return;
     }
 
@@ -3981,7 +8188,7 @@ ${result.description}
     this.adminController.saveFormula(newFormula);
     this.closeAdminFormulaModal();
     this.renderAdminFormulas();
-    alert("✅ Formula saved successfully!");
+    this.showToast("✅ Formula saved successfully!", 'success');
   }
 
   deleteAdminFormula(formulaId) {
@@ -4069,7 +8276,7 @@ ${result.description}
 
     this.adminController.config.preorders = updatedTiers;
     this.adminController.saveConfig();
-    alert("✅ Pre-Order packages saved and synchronized!");
+    this.showToast("✅ Pre-Order packages saved and synchronized!", 'success');
   }
 
   renderAdminPrinter() {
@@ -4099,7 +8306,7 @@ ${result.description}
       enableGhsHazard: ghs ? ghs.checked : true
     };
     this.adminController.saveConfig();
-    alert("✅ Citizen Thermal Printer configuration updated!");
+    this.showToast("✅ Citizen Thermal Printer configuration updated!", 'success');
   }
 
   downloadAdminTspl() {
@@ -4115,7 +8322,7 @@ ${result.description}
 
   triggerAdminTestPrint() {
     const cmd = this.adminController.generateTsplCommand();
-    alert(`🖨️ [Citizen CL-S621 WebUSB Test Stream Sent]\n\nCommand Payload:\n${cmd.slice(0, 150)}...\n\nStatus: Print Job Dispatched Successfully.`);
+    this.showToast("🖨️ [Citizen CL-S621 WebUSB] Print job stream dispatched successfully.", 'success');
   }
 
   renderAdminHazmat() {
@@ -4145,7 +8352,369 @@ ${result.description}
       nonHazmatExemptionActive: true
     };
     this.adminController.saveConfig();
-    alert("✅ ADR Hazmat & Freight parameters saved!");
+    this.showToast("✅ ADR Hazmat & Freight parameters saved!", 'success');
+  }
+
+  // =========================================================================
+  // FX RATE VOLATILITY GUARD & DYNAMIC EURO PRICING ENGINE
+  // =========================================================================
+  setupFxEngineUI() {
+    if (!this.euLocalization?.fxEngine) return;
+    const fx = this.euLocalization.fxEngine;
+
+    // Listen to FX updates to refresh UI live
+    fx.onUpdate(() => {
+      this.renderFxStatus();
+    });
+
+    // 1. Sync Live Rate
+    this.addSafeListener('btn-fx-sync-live', 'click', async () => {
+      const btn = document.getElementById('btn-fx-sync-live');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span> SYNCING...`;
+      }
+      const res = await fx.fetchLiveRate();
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = `<span class="material-symbols-outlined text-[16px]">sync</span> SYNC LIVE ECB RATE`;
+      }
+      if (res.success) {
+        this.showToast(`✅ Live ECB Rate Synced: 1 EUR = £${res.rate.toFixed(4)}`, 'success');
+      } else {
+        this.showToast(`⚠️ Rate fetch note: ${res.source || res.error}`, 'warning');
+      }
+      this.renderFxStatus();
+    });
+
+    // 2. Open Update Euro Pricing Modal (from banner or control card)
+    const openModal = () => this.openFxUpdateModal();
+    this.addSafeListener('btn-fx-banner-update-pricing', 'click', openModal);
+    this.addSafeListener('btn-fx-open-update-modal', 'click', openModal);
+
+    // 3. Banner Adjust Buffer quick button
+    this.addSafeListener('btn-fx-banner-adjust-buffer', 'click', () => {
+      const hazmatTab = document.getElementById('subtab-admin-hazmat');
+      if (hazmatTab) hazmatTab.click();
+      const bufInput = document.getElementById('fx-input-buffer-percent');
+      if (bufInput) {
+        bufInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        bufInput.focus();
+        bufInput.select();
+      }
+    });
+
+    // 4. Banner Dismiss button
+    this.addSafeListener('btn-fx-banner-dismiss', 'click', () => {
+      fx.dismissAlarm();
+      this.renderFxStatus();
+    });
+
+    // 5. Set Current as Baseline
+    this.addSafeListener('btn-fx-set-baseline', 'click', () => {
+      const cur = fx.config.currentRate;
+      fx.reanchorBaseline();
+      this.adminController.saveFxSettings({ baselineRate: cur });
+      this.showToast(`⚡ New Baseline Set: 1 EUR = £${cur.toFixed(4)}. Alarms reset.`, 'success');
+      this.renderFxStatus();
+    });
+
+    // 6. Save FX Settings
+    this.addSafeListener('btn-fx-save-settings', 'click', () => {
+      const buf = parseFloat(document.getElementById('fx-input-buffer-percent')?.value || '1.8');
+      const spike = parseFloat(document.getElementById('fx-input-spike-threshold')?.value || '3.5');
+      const breaker = parseFloat(document.getElementById('fx-input-circuit-breaker')?.value || '7.5');
+      const rounding = document.getElementById('fx-select-rounding-mode')?.value || 'retail_95';
+
+      this.adminController.saveFxSettings({
+        bufferPercent: buf,
+        spikeThresholdPercent: spike,
+        circuitBreakerPercent: breaker,
+        roundingMode: rounding
+      });
+      this.showToast("✅ FX Volatility & Margin Guard parameters saved!", 'success');
+      this.renderFxStatus();
+    });
+
+    // 7. Reset to Defaults
+    this.addSafeListener('btn-fx-reset-defaults', 'click', () => {
+      if (confirm("Reset FX Volatility Guard settings to default calibration (Baseline £0.8547, 1.8% Buffer)?")) {
+        fx.resetToDefaults();
+        this.adminController.saveFxSettings(fx.config);
+        this.renderFxStatus();
+        this.showToast("↺ FX settings restored to defaults", 'info');
+      }
+    });
+
+    // 8. Test Simulator Buttons
+    this.addSafeListener('btn-sim-spike-up', 'click', () => {
+      fx.simulateSpike(4.5);
+      this.showToast("⚡ Simulated +4.5% Euro Spike (Triggering Alarm)", 'warning');
+      this.renderFxStatus();
+    });
+
+    this.addSafeListener('btn-sim-spike-down', 'click', () => {
+      fx.simulateSpike(-4.5);
+      this.showToast("📉 Simulated -4.5% Euro Drop (Triggering Alarm)", 'warning');
+      this.renderFxStatus();
+    });
+
+    this.addSafeListener('btn-sim-circuit-breaker', 'click', () => {
+      fx.simulateSpike(8.5);
+      this.showToast("🛑 Simulated +8.5% Extreme Shift (Circuit Breaker Tripped!)", 'error');
+      this.renderFxStatus();
+    });
+
+    this.addSafeListener('btn-sim-reset-normal', 'click', () => {
+      fx.resetToDefaults();
+      this.showToast("↺ Restored Normal Baseline Rate", 'success');
+      this.renderFxStatus();
+    });
+
+    // 9. Modal Interactions
+    this.addSafeListener('btn-close-fx-modal', 'click', () => this.closeFxUpdateModal());
+    this.addSafeListener('btn-cancel-fx-modal', 'click', () => this.closeFxUpdateModal());
+
+    const modalBufInput = document.getElementById('fx-modal-buffer-input');
+    if (modalBufInput) {
+      modalBufInput.addEventListener('input', () => this.renderFxModalImpactTable());
+    }
+    const modalRoundingSelect = document.getElementById('fx-modal-rounding-select');
+    if (modalRoundingSelect) {
+      modalRoundingSelect.addEventListener('change', () => this.renderFxModalImpactTable());
+    }
+
+    this.addSafeListener('btn-confirm-fx-reprice', 'click', () => {
+      const bufVal = parseFloat(document.getElementById('fx-modal-buffer-input')?.value || '1.8');
+      const roundVal = document.getElementById('fx-modal-rounding-select')?.value || 'retail_95';
+
+      // Re-anchor baseline & reset alarms
+      const res = this.adminController.reanchorFxBaseline({
+        bufferPercent: bufVal,
+        roundingMode: roundVal
+      });
+
+      // Batch reprice catalog products from master GBP ex-vat
+      const repriceRes = this.adminController.batchRepriceCatalogFromGbp({
+        rate: res.newBaseline,
+        bufferPercent: bufVal,
+        roundingMode: roundVal
+      });
+
+      this.closeFxUpdateModal();
+      this.renderFxStatus();
+      this.renderAdminSpreadsheet();
+      this.renderAdminProducts();
+      this.renderStorefrontGrid();
+
+      this.showToast(`⚡ Repriced ${repriceRes.count || 135} catalog products in EUR! New baseline locked at 1 EUR = £${res.newBaseline.toFixed(4)}.`, 'success');
+    });
+
+    // Initial render of FX UI
+    this.renderFxStatus();
+  }
+
+  renderFxStatus() {
+    if (!this.euLocalization?.fxEngine) return;
+    const fx = this.euLocalization.fxEngine;
+    const details = fx.getDeviationDetails();
+
+    // 1. Metric cards in Hazmat & FX panel
+    const curRateEl = document.getElementById('fx-metric-current-rate');
+    const invRateEl = document.getElementById('fx-metric-inverse-rate');
+    const baseRateEl = document.getElementById('fx-metric-baseline-rate');
+    const devEl = document.getElementById('fx-metric-deviation');
+    const statusBadgeEl = document.getElementById('fx-guard-status-badge');
+    const bufInput = document.getElementById('fx-input-buffer-percent');
+    const spikeInput = document.getElementById('fx-input-spike-threshold');
+    const breakerInput = document.getElementById('fx-input-circuit-breaker');
+    const roundSelect = document.getElementById('fx-select-rounding-mode');
+    const lastSyncEl = document.getElementById('fx-metric-last-sync');
+
+    if (curRateEl) curRateEl.innerText = `1 € = £${details.currentRate.toFixed(4)}`;
+    if (invRateEl) invRateEl.innerText = `£1 = €${(1 / details.currentRate).toFixed(4)}`;
+    if (baseRateEl) baseRateEl.innerText = `1 € = £${details.baselineRate.toFixed(4)}`;
+
+    if (devEl) {
+      const sign = details.rateShiftPercent > 0 ? '+' : '';
+      devEl.innerText = `${sign}${details.rateShiftPercent.toFixed(1)}%`;
+      if (details.alarmState === 'CIRCUIT_BREAKER') {
+        devEl.className = 'text-rose-400 font-bold';
+      } else if (details.alarmState === 'SPIKE_WARNING') {
+        devEl.className = 'text-amber-400 font-bold';
+      } else {
+        devEl.className = 'text-emerald-400 font-bold';
+      }
+    }
+
+    if (statusBadgeEl) {
+      if (details.alarmState === 'CIRCUIT_BREAKER') {
+        statusBadgeEl.className = 'bg-rose-950/80 text-rose-300 border border-rose-500/70 text-[10px] font-mono px-2 py-0.5 uppercase font-bold flex items-center gap-1';
+        statusBadgeEl.innerHTML = `<span class="material-symbols-outlined text-[12px]">gpp_bad</span> CIRCUIT BREAKER TRIPPED`;
+      } else if (details.alarmState === 'SPIKE_WARNING') {
+        statusBadgeEl.className = 'bg-amber-950/80 text-amber-300 border border-amber-500/70 text-[10px] font-mono px-2 py-0.5 uppercase font-bold flex items-center gap-1';
+        statusBadgeEl.innerHTML = `<span class="material-symbols-outlined text-[12px]">warning</span> SPIKE ALERT ACTIVE`;
+      } else {
+        statusBadgeEl.className = 'bg-emerald-950/60 text-emerald-400 border border-emerald-500/40 text-[10px] font-mono px-2 py-0.5 uppercase font-bold flex items-center gap-1';
+        statusBadgeEl.innerHTML = `<span class="material-symbols-outlined text-[12px]">verified</span> NORMAL // PROTECTED`;
+      }
+    }
+
+    if (bufInput && document.activeElement !== bufInput) bufInput.value = fx.config.bufferPercent;
+    if (spikeInput && document.activeElement !== spikeInput) spikeInput.value = fx.config.spikeThresholdPercent;
+    if (breakerInput && document.activeElement !== breakerInput) breakerInput.value = fx.config.circuitBreakerPercent;
+    if (roundSelect && document.activeElement !== roundSelect) roundSelect.value = fx.config.roundingMode;
+    if (lastSyncEl) {
+      const dt = new Date(fx.config.lastChecked);
+      lastSyncEl.innerText = `${dt.getHours().toString().padStart(2,'0')}:${dt.getMinutes().toString().padStart(2,'0')} GMT`;
+    }
+
+    // 2. Top Banner Alert
+    const banner = document.getElementById('fx-spike-alert-banner');
+    const bannerStatusBadge = document.getElementById('fx-banner-status-badge');
+    const bannerSummary = document.getElementById('fx-banner-rate-summary');
+    const bannerDesc = document.getElementById('fx-banner-description');
+    const bannerIconBox = document.getElementById('fx-banner-icon-box');
+    const bannerIcon = document.getElementById('fx-banner-icon');
+
+    if (banner) {
+      if (details.isAlarmActive) {
+        banner.classList.remove('hidden');
+        if (details.alarmState === 'CIRCUIT_BREAKER') {
+          banner.className = 'mb-6 p-4 border-2 border-rose-500/80 bg-rose-950/40 rounded shadow-[0_0_20px_rgba(244,63,94,0.25)] font-mono transition-all';
+          if (bannerIconBox) bannerIconBox.className = 'w-10 h-10 rounded flex items-center justify-center flex-shrink-0 bg-rose-500/20 text-rose-400 border border-rose-500/40';
+          if (bannerIcon) bannerIcon.innerText = 'gpp_bad';
+          if (bannerStatusBadge) {
+            bannerStatusBadge.className = 'px-2 py-0.5 text-[10px] font-bold uppercase rounded border bg-rose-600 text-white border-rose-400';
+            bannerStatusBadge.innerText = 'CIRCUIT BREAKER ENGAGED';
+          }
+          if (bannerSummary) {
+            bannerSummary.innerText = `Extreme shift of ${details.rateShiftPercent > 0 ? '+' : ''}${details.rateShiftPercent}% detected! (Live: £${details.currentRate.toFixed(4)} | Baseline: £${details.baselineRate.toFixed(4)})`;
+          }
+          if (bannerDesc) {
+            bannerDesc.innerText = 'Automated fail-safe triggered: Customer Euro conversions are FROZEN to baseline rate to prevent distorted prices. Click "Update Euro Pricing" to review & re-anchor.';
+          }
+        } else {
+          // SPIKE_WARNING
+          banner.className = 'mb-6 p-4 border-2 border-amber-500/80 bg-amber-950/30 rounded shadow-[0_0_20px_rgba(245,158,11,0.2)] font-mono transition-all';
+          if (bannerIconBox) bannerIconBox.className = 'w-10 h-10 rounded flex items-center justify-center flex-shrink-0 bg-amber-500/20 text-amber-400 border border-amber-500/40';
+          if (bannerIcon) bannerIcon.innerText = 'warning';
+          if (bannerStatusBadge) {
+            bannerStatusBadge.className = 'px-2 py-0.5 text-[10px] font-bold uppercase rounded border bg-amber-500 text-slate-950 border-amber-400';
+            bannerStatusBadge.innerText = 'FX SPIKE ALERT';
+          }
+          if (bannerSummary) {
+            bannerSummary.innerText = `EUR/GBP moved ${details.rateShiftPercent > 0 ? '+' : ''}${details.rateShiftPercent}% vs Baseline (Live: 1 € = £${details.currentRate.toFixed(4)} | Baseline: £${details.baselineRate.toFixed(4)})`;
+          }
+          if (bannerDesc) {
+            bannerDesc.innerText = 'Currency volatility exceeds safe threshold. European profit margins may be impacted. Review impact and click "Update Euro Pricing" to re-anchor.';
+          }
+        }
+      } else {
+        banner.classList.add('hidden');
+      }
+    }
+  }
+
+  openFxUpdateModal() {
+    const modal = document.getElementById('modal-fx-update-pricing');
+    if (!modal || !this.euLocalization?.fxEngine) return;
+    const fx = this.euLocalization.fxEngine;
+    const details = fx.getDeviationDetails();
+
+    const baseEl = document.getElementById('fx-modal-baseline-rate');
+    const liveEl = document.getElementById('fx-modal-live-rate');
+    const shiftEl = document.getElementById('fx-modal-rate-shift');
+    const bufInput = document.getElementById('fx-modal-buffer-input');
+    const roundSelect = document.getElementById('fx-modal-rounding-select');
+    const circuitStatusEl = document.getElementById('fx-modal-circuit-status');
+
+    if (baseEl) baseEl.innerText = `1 € = £${details.baselineRate.toFixed(4)}`;
+    if (liveEl) liveEl.innerText = `1 € = £${details.currentRate.toFixed(4)}`;
+    if (shiftEl) {
+      shiftEl.innerText = `${details.rateShiftPercent > 0 ? '+' : ''}${details.rateShiftPercent}% Rate Shift`;
+      shiftEl.className = details.isCircuitBreakerTripped ? 'text-[10px] text-rose-400 font-bold mt-0.5' : 'text-[10px] text-amber-400 font-bold mt-0.5';
+    }
+    if (bufInput) bufInput.value = fx.config.bufferPercent;
+    if (roundSelect) roundSelect.value = fx.config.roundingMode;
+    if (circuitStatusEl) {
+      if (details.isCircuitBreakerTripped) {
+        circuitStatusEl.innerText = '⚠️ Circuit Breaker Currently Engaged (Re-anchoring will reset)';
+        circuitStatusEl.className = 'text-rose-400 font-bold';
+      } else {
+        circuitStatusEl.innerText = '✓ Safe Volatility Band';
+        circuitStatusEl.className = 'text-emerald-400 font-bold';
+      }
+    }
+
+    this.renderFxModalImpactTable();
+    modal.classList.add('active');
+  }
+
+  closeFxUpdateModal() {
+    const modal = document.getElementById('modal-fx-update-pricing');
+    if (modal) modal.classList.remove('active');
+  }
+
+  renderFxModalImpactTable() {
+    const tbody = document.getElementById('fx-modal-sample-tbody');
+    if (!tbody || !this.euLocalization?.fxEngine) return;
+    const fx = this.euLocalization.fxEngine;
+
+    const buf = parseFloat(document.getElementById('fx-modal-buffer-input')?.value || '1.8');
+    const rounding = document.getElementById('fx-modal-rounding-select')?.value || 'retail_95';
+
+    // Get real catalog samples
+    const all = this.getEffectiveProducts ? this.getEffectiveProducts() : [];
+    const kit = all.find(p => (p.sku || '').includes('5060733580007') || (p.sku || '').includes('FOMPRO')) || { name: 'Flake King Pro Series Kit', sku: 'FOMPRO', priceGbp: 208.33 };
+    const gun = all.find(p => (p.sku || '').includes('5060733580014')) || { name: 'Flake King 1000 Dry Metal Flake Gun', sku: '5060733580014', priceGbp: 108.33 };
+    const jar = all.find(p => (p.sku || '').includes('5060733580021')) || { name: 'FOM 1000/1050 100g Jar & Lid', sku: '5060733580021', priceGbp: 1.65 };
+    const binder = all.find(p => (p.sku || '').includes('FK50500')) || { name: 'FK50 Surface Binder 500ml', sku: 'FK50500', priceGbp: 16.66 };
+
+    const samples = [
+      { name: kit.name, sku: kit.sku || 'FOMPRO', gbpPrice: parseFloat(kit.priceGbp) || 208.33 },
+      { name: gun.name, sku: gun.sku || '5060733580014', gbpPrice: parseFloat(gun.priceGbp) || 108.33 },
+      { name: binder.name, sku: binder.sku || 'FK50500', gbpPrice: parseFloat(binder.priceGbp) || 16.66 },
+      { name: jar.name, sku: jar.sku || '5060733580021', gbpPrice: parseFloat(jar.priceGbp) || 1.65 }
+    ];
+
+    tbody.innerHTML = '';
+    samples.forEach(item => {
+      const oldEur = fx.calculateEurPrice(item.gbpPrice, {
+        rate: fx.config.baselineRate,
+        bufferPercent: fx.config.bufferPercent,
+        roundingMode: fx.config.roundingMode
+      });
+      const newEur = fx.calculateEurPrice(item.gbpPrice, {
+        rate: fx.config.currentRate,
+        bufferPercent: buf,
+        roundingMode: rounding
+      });
+      const diff = +(newEur - oldEur).toFixed(2);
+      const sign = diff >= 0 ? '+' : '';
+
+      const tr = document.createElement('tr');
+      tr.className = 'hover:bg-surface-container transition-colors';
+      tr.innerHTML = `
+        <td class="p-2.5">
+          <div class="font-bold text-white">${item.name}</div>
+          <div class="text-[10px] text-secondary font-mono">${item.sku}</div>
+        </td>
+        <td class="p-2.5 text-right font-mono font-bold text-amber-400">
+          &pound;${item.gbpPrice.toFixed(2)}
+        </td>
+        <td class="p-2.5 text-right font-mono text-slate-400">
+          &euro;${oldEur.toFixed(2)}
+        </td>
+        <td class="p-2.5 text-right font-mono font-bold text-emerald-400">
+          &euro;${newEur.toFixed(2)}
+        </td>
+        <td class="p-2.5 text-right font-mono text-xs ${diff >= 0 ? 'text-emerald-400' : 'text-rose-400'}">
+          ${sign}&euro;${diff.toFixed(2)}
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
   }
 
   renderAdminAI() {
@@ -4202,7 +8771,7 @@ ${result.description}
       }
     };
     this.adminController.saveConfig();
-    alert("✅ AI Specialist Agent thresholds updated!");
+    this.showToast("✅ AI Specialist Agent thresholds updated!", 'success');
   }
 
   onAdminConfigUpdated(config) {
@@ -4222,7 +8791,7 @@ ${result.description}
           ECOM_CATALOG.unshift({ id: prodId, ...config.productOverrides[prodId] });
         }
       });
-      this.renderCatalog();
+      this.renderStorefrontGrid();
     }
   }
 
@@ -4522,7 +9091,7 @@ ${result.description}
     const body = bodyText ? bodyText.value.trim() : "";
 
     if (!subject || !body) {
-      alert("⚠️ Please provide both a subject line and email body before dispatching.");
+      this.showToast("⚠️ Please provide both a subject line and email body before dispatching.", 'warning');
       return;
     }
 
@@ -4532,32 +9101,48 @@ ${result.description}
       const customer = this.adminController.getAllCustomers().find(c => c.email.toLowerCase() === email.toLowerCase());
 
       if (!customer) {
-        alert("⚠️ Please select a recipient.");
+        this.showToast("⚠️ Please select a recipient.", 'warning');
         return;
       }
 
-      if (confirm(`Send direct email to ${customer.name} (${customer.email})?`)) {
+      this.confirmDialog({
+        title: "Dispatch Direct Email",
+        subtitle: `${customer.name} (${customer.email})`,
+        message: `Are you sure you want to dispatch this email to <strong>${customer.name}</strong>?`,
+        itemDetails: `<div class="p-2 font-mono text-xs text-white">Subject: ${subject}</div>`,
+        confirmText: "Send Email",
+        isDanger: false
+      }).then(confirmed => {
+        if (!confirmed) return;
         const res = this.adminController.sendDirectEmail(customer, { subject, body, mode: "Simulated Delivery" });
-        alert(`✅ Direct Email dispatched successfully to ${customer.email}!\n\nSubject: ${res.renderedSubject}`);
+        this.showToast(`✅ Direct Email dispatched successfully to ${customer.email}!`, 'success');
         this.renderAdminDispatchLogs();
-      }
+      });
     } else {
       const segSelect = document.getElementById('select-email-target-segment');
       const segment = segSelect ? segSelect.value : 'all';
       const targetCustomers = this.adminController.getCustomersBySegment(segment);
 
       if (targetCustomers.length === 0) {
-        alert("⚠️ No matching recipients found in selected segment.");
+        this.showToast("⚠️ No matching recipients found in selected segment.", 'warning');
         return;
       }
 
-      if (confirm(`🚀 DISPATCH BLANKET BROADCAST?\n\nAudience: ${segment.toUpperCase().replace('_', ' ')}\nTotal Recipients: ${targetCustomers.length} accounts\nSubject: ${subject}`)) {
+      this.confirmDialog({
+        title: "Dispatch Blanket Broadcast",
+        subtitle: `Audience: ${segment.toUpperCase().replace('_', ' ')} (${targetCustomers.length} accounts)`,
+        message: `Are you sure you want to dispatch this blanket campaign across <strong>${targetCustomers.length} accounts</strong>?`,
+        itemDetails: `<div class="p-2 font-mono text-xs text-white">Subject: ${subject}</div>`,
+        confirmText: "Dispatch Broadcast",
+        isDanger: true
+      }).then(confirmed => {
+        if (!confirmed) return;
         const res = this.adminController.sendBlanketCampaign(segment, { subject, body, title: subject.slice(0, 45) });
-        alert(`✅ Blanket Campaign dispatched to ${res.recipientsSent} accounts successfully!\n\nSimulated campaign tracking initialized.`);
+        this.showToast(`✅ Blanket Campaign dispatched to ${res.recipientsSent} accounts successfully!`, 'success');
         this.renderEmailMetricsRibbon();
         this.renderAdminCampaignAnalytics();
         this.renderAdminDispatchLogs();
-      }
+      });
     }
   }
 
@@ -4585,7 +9170,7 @@ ${result.description}
     };
 
     const res = this.adminController.sendDirectEmail(adminTestRecipient, { subject: `[TEST] ${subject}`, body, mode: "Test Dispatch" });
-    alert(`🧪 Test Email dispatched to ${adminTestRecipient.email}!\n\nSubject: ${res.renderedSubject}\n\nCheck the Dispatch Logs table below.`);
+    this.showToast(`🧪 Test Email dispatched to ${adminTestRecipient.email}!`, 'info');
     this.renderAdminDispatchLogs();
   }
 
@@ -4599,12 +9184,11 @@ ${result.description}
     const segment = segSelect ? segSelect.value : "b2b_jobbers";
 
     if (!subject || !body) {
-      alert("⚠️ Provide subject and body content before saving as template.");
+      this.showToast("⚠️ Provide subject and body content before saving as template.", 'warning');
       return;
     }
 
-    const tplName = prompt("Enter a name for this custom email template:", subject.slice(0, 40));
-    if (!tplName) return;
+    const tplName = (document.getElementById('input-email-subject')?.value || "Custom Template").slice(0, 40);
 
     const newTpl = {
       id: `tpl-custom-${Date.now()}`,
@@ -4615,7 +9199,7 @@ ${result.description}
     };
 
     this.adminController.saveEmailTemplate(newTpl);
-    alert(`💾 Template '${tplName}' saved to Admin Configuration!`);
+    this.showToast(`💾 Template '${tplName}' saved to Admin Configuration!`, 'success');
 
     // Reload template select
     const tplSelect = document.getElementById('select-email-template');

@@ -20,7 +20,9 @@ Coast Airbrush Europe is the dedicated European e-commerce storefront, mixing en
 ├── assets/          # Logos, branding graphics, and product imagery
 ├── css/             # Mechanical Brutalism "Chrome & Kustom" stylesheets
 ├── data/            # Product catalogs, pricing matrices, and color formulas
-├── docs/            # Strategic blueprints, tax optimization & architectural specifications
+├── docs/            # Strategic blueprints, tax optimization, video scripts & education playbook
+│   ├── social_media_video_scripts_and_content_playbook.md # 5 Video scripts, 10 post templates & DM funnels
+│   └── saas_monetization_and_app_spinoff_roadmap.md # 3-Phase software moat & SaaS spin-off blueprint
 ├── js/              # Mixing engines, AI agent workflows, and Shopify integration
 ├── index.html       # Primary e-commerce storefront & mixing application
 ├── about.html       # Official European Launch, heritage & 6-month roadmap page

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "app_demo_01",
+    "submittedAt": "2026-09-02T11:45:00Z",
+    "company": "Bavaria Kustom Works",
+    "contactName": "Klaus Weber",
+    "email": "klaus@bavariakustom.de",
+    "phone": "+49 89 1234567",
+    "vat": "DE345678901",
+    "country": "Germany",
+    "sector": "Custom Automotive & Motorcycle Refinishing",
+    "tierDesired": "dealer",
+    "monthlyVolume": "€2,000 – €5,000",
+    "currentBrands": "House of Kolor, Mipa",
+    "status": "pending_review"
+  }
+]

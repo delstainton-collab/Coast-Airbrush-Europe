@@ -46,7 +46,7 @@ export const MOCK_ORDERS = [
     carrier: "DPD UK Hazmat Express",
     trackingNumber: "DPD-UK-9948201849",
     estimatedDelivery: "2026-09-01",
-    vatRate: 0.20, // 20% UK Postponed VAT Accounting (PVA)
+    vatRate: 0.20, // 20% Standard UK Domestic VAT (HMRC reclaimable)
     items: [
       { sku: "FK-500-GUN", name: "Flake King 500 Dry Flake Spray Gun", qty: 1, priceUSD: 189.00 },
       { sku: "FK-MICRO-SILVER", name: "Flake King 0.015 Holographic Silver 100g", qty: 3, priceUSD: 24.00 },
@@ -156,10 +156,10 @@ export class OrderConciergeAI {
       invoiceNumber: `INV-CAE-${order.orderId}`,
       invoiceDate: new Date(order.orderDate).toLocaleDateString("en-GB"),
       seller: {
-        company: "Coast Airbrush Europe B.V.",
-        address: "Distributieweg 44, 2645 EJ Delfgauw, Netherlands",
-        eori: "NL861928401B01",
-        vatId: "NL861928401B01 / UK PVA: GB992810284"
+        company: "Coast Airbrush Europe / UK Hub",
+        address: "Unit 4, Silverstone Park, Towcester, NN12 8TJ, UK",
+        eori: "GB992810284000 / NL861928401B01",
+        vatId: "GB992810284 (UK) / NL861928401B01 (EU IOSS)"
       },
       buyer: {
         name: order.customerName,

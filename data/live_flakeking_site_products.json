@@ -1,0 +1,7529 @@
+[
+  {
+    "id": 2629,
+    "name": "Flake King Pro Series Kit",
+    "slug": "flake-king-pro-series-kit",
+    "sku": "5060733580007-1",
+    "permalink": "https://www.flakeking.com/product/flake-king-pro-series-kit/",
+    "prices": {
+      "price": "24999",
+      "regular_price": "24999",
+      "sale_price": "24999",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 2610,
+    "name": "Show Krome Metal Flake",
+    "slug": "show-krome-metal-flake-copy",
+    "sku": "show-krome-metal-flake-1",
+    "permalink": "https://www.flakeking.com/product/show-krome-metal-flake-copy/",
+    "prices": {
+      "price": "399",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "35999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 117,
+            "name": "DXL",
+            "slug": "dxl"
+          },
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          },
+          {
+            "id": 112,
+            "name": "Ultra Small",
+            "slug": "ultra-small"
+          },
+          {
+            "id": 116,
+            "name": "XLarge",
+            "slug": "xlarge"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 118,
+            "name": "10g",
+            "slug": "10g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2611,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "ultra-small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "10g"
+          }
+        ]
+      },
+      {
+        "id": 2612,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "ultra-small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2613,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "ultra-small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2614,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2615,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2616,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2617,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2618,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2619,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2620,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2621,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2622,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2623,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "xlarge"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2624,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "xlarge"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2625,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "xlarge"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2626,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "dxl"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2627,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "dxl"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2628,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "dxl"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2603,
+    "name": "Flake King 500 &#8211; Dry Metal Flake Airbrush Attachment",
+    "slug": "flake-king-500-dry-metal-flake-airbrush-attachment",
+    "sku": "flake-king-500-dry-metal-flake-airbrush-attachment-1",
+    "permalink": "https://www.flakeking.com/product/flake-king-500-dry-metal-flake-airbrush-attachment/",
+    "prices": {
+      "price": "10665",
+      "regular_price": "10665",
+      "sale_price": "10665",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 3,
+        "name": "Airbrush Connector",
+        "taxonomy": "pa_airbrush-connector",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 103,
+            "name": "Badger Anthem Adaptor",
+            "slug": "badger-anthem-adaptor"
+          },
+          {
+            "id": 104,
+            "name": "Harder & Steenbeck Evolution Adaptor",
+            "slug": "harder-steenbeck-evolution-adaptor"
+          },
+          {
+            "id": 101,
+            "name": "Iwata Eclipse HPC Adaptor",
+            "slug": "iwata-eclipse-hpc-adaptor"
+          },
+          {
+            "id": 105,
+            "name": "Iwata Neo Adaptor",
+            "slug": "iwata-neo-adaptor"
+          },
+          {
+            "id": 102,
+            "name": "Iwata Revolution Adaptor",
+            "slug": "iwata-revolution-adaptor"
+          },
+          {
+            "id": 106,
+            "name": "Paasche Talon Adaptor",
+            "slug": "paasche-talon-adaptor"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2604,
+        "attributes": [
+          {
+            "name": "Airbrush Connector",
+            "value": "iwata-eclipse-hpc-adaptor"
+          }
+        ]
+      },
+      {
+        "id": 2605,
+        "attributes": [
+          {
+            "name": "Airbrush Connector",
+            "value": "iwata-revolution-adaptor"
+          }
+        ]
+      },
+      {
+        "id": 2606,
+        "attributes": [
+          {
+            "name": "Airbrush Connector",
+            "value": "badger-anthem-adaptor"
+          }
+        ]
+      },
+      {
+        "id": 2607,
+        "attributes": [
+          {
+            "name": "Airbrush Connector",
+            "value": "harder-steenbeck-evolution-adaptor"
+          }
+        ]
+      },
+      {
+        "id": 2608,
+        "attributes": [
+          {
+            "name": "Airbrush Connector",
+            "value": "iwata-neo-adaptor"
+          }
+        ]
+      },
+      {
+        "id": 2609,
+        "attributes": [
+          {
+            "name": "Airbrush Connector",
+            "value": "paasche-talon-adaptor"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2602,
+    "name": "Flake King 1000 Dry Metal Flake Gun",
+    "slug": "flake-king-1000-dry-metal-flake-gun",
+    "sku": "5060733580014-1",
+    "permalink": "https://www.flakeking.com/product/flake-king-1000-dry-metal-flake-gun/",
+    "prices": {
+      "price": "12999",
+      "regular_price": "12999",
+      "sale_price": "12999",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 2600,
+    "name": "FOM 1000/1050 50g Jar &#038; Lid",
+    "slug": "fom-1000-1050-50g-jar-lid",
+    "sku": "",
+    "permalink": "https://www.flakeking.com/product/fom-1000-1050-50g-jar-lid/",
+    "prices": {
+      "price": "149",
+      "regular_price": "149",
+      "sale_price": "149",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 2598,
+    "name": "FOM 500/550 Spare 30g Jar &#038; Lid",
+    "slug": "fom-500-550-spare-30g-jar-lid",
+    "sku": "",
+    "permalink": "https://www.flakeking.com/product/fom-500-550-spare-30g-jar-lid/",
+    "prices": {
+      "price": "132",
+      "regular_price": "132",
+      "sale_price": "132",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 2542,
+    "name": "Flake O Matic 1000",
+    "slug": "flake-o-matic-1000",
+    "sku": "",
+    "permalink": "https://www.flakeking.com/product/flake-o-matic-1000/",
+    "prices": {
+      "price": "0",
+      "regular_price": "0",
+      "sale_price": "0",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 2524,
+    "name": "Kromatic Show Krome Metal Flake",
+    "slug": "kromatic-show-krome-metal-flake",
+    "sku": "",
+    "permalink": "https://www.flakeking.com/product/kromatic-show-krome-metal-flake/",
+    "prices": {
+      "price": "499",
+      "regular_price": "499",
+      "sale_price": "499",
+      "price_range": {
+        "min_amount": "499",
+        "max_amount": "65999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          },
+          {
+            "id": 112,
+            "name": "Ultra Small",
+            "slug": "ultra-small"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 118,
+            "name": "10g",
+            "slug": "10g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2536,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "ultra-small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2537,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "ultra-small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "10g"
+          }
+        ]
+      },
+      {
+        "id": 2535,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "ultra-small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2534,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2533,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2532,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2531,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2530,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2529,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2528,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2527,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2526,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2473,
+    "name": "Corroded Metals Pump Kit",
+    "slug": "corroded-metals-pump-kit",
+    "sku": "5060733583381",
+    "permalink": "https://www.flakeking.com/product/corroded-metals-pump-kit/",
+    "prices": {
+      "price": "2649",
+      "regular_price": "2649",
+      "sale_price": "2649",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 2467,
+    "name": "Corroded Metals Mini Shaker Kit",
+    "slug": "corroded-metals-mini-shaker-kit",
+    "sku": "5060733583374",
+    "permalink": "https://www.flakeking.com/product/corroded-metals-mini-shaker-kit/",
+    "prices": {
+      "price": "2640",
+      "regular_price": "2640",
+      "sale_price": "2640",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 2465,
+    "name": "Corrosion Activator 750ml Concentrated",
+    "slug": "corrosion-activator-750ml-concentrated",
+    "sku": "5060733580243",
+    "permalink": "https://www.flakeking.com/product/corrosion-activator-750ml-concentrated/",
+    "prices": {
+      "price": "699",
+      "regular_price": "699",
+      "sale_price": "699",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 2463,
+    "name": "Patina FX Sponge",
+    "slug": "patina-fx-sponge",
+    "sku": "5060733580281",
+    "permalink": "https://www.flakeking.com/product/patina-fx-sponge/",
+    "prices": {
+      "price": "349",
+      "regular_price": "349",
+      "sale_price": "349",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 2458,
+    "name": "Corrosion Activator Ready Mixed",
+    "slug": "corrosion-activator-ready-mixed",
+    "sku": "corrosion-activator-ready-mixed",
+    "permalink": "https://www.flakeking.com/product/corrosion-activator-ready-mixed/",
+    "prices": {
+      "price": "449",
+      "regular_price": "449",
+      "sale_price": "449",
+      "price_range": {
+        "min_amount": "449",
+        "max_amount": "799"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 2,
+        "name": "Size",
+        "taxonomy": "pa_size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 176,
+            "name": "100ml",
+            "slug": "100ml"
+          },
+          {
+            "id": 199,
+            "name": "750ml",
+            "slug": "750ml"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2461,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "100ml"
+          }
+        ]
+      },
+      {
+        "id": 2462,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "750ml"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2453,
+    "name": "Flake King 1000 Corroded Metal Kit",
+    "slug": "flake-king-1000-corroded-metal-kit",
+    "sku": "5060733580151",
+    "permalink": "https://www.flakeking.com/product/flake-king-1000-corroded-metal-kit/",
+    "prices": {
+      "price": "5999",
+      "regular_price": "5999",
+      "sale_price": "5999",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 2449,
+    "name": "Flake King 500/550 Corroded Metal Kit",
+    "slug": "flake-king-500550-corroded-metal-kit",
+    "sku": "5060733580144",
+    "permalink": "https://www.flakeking.com/product/flake-king-500550-corroded-metal-kit/",
+    "prices": {
+      "price": "3999",
+      "regular_price": "3999",
+      "sale_price": "3999",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 2440,
+    "name": "Corroded Coppa Refill",
+    "slug": "corroded-coppa-refill",
+    "sku": "corroded-coppa-refill",
+    "permalink": "https://www.flakeking.com/product/corroded-coppa-refill/",
+    "prices": {
+      "price": "699",
+      "regular_price": "699",
+      "sale_price": "699",
+      "price_range": {
+        "min_amount": "699",
+        "max_amount": "3999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 2,
+        "name": "Size",
+        "taxonomy": "pa_size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 193,
+            "name": "150g",
+            "slug": "150g"
+          },
+          {
+            "id": 194,
+            "name": "300g",
+            "slug": "300g"
+          },
+          {
+            "id": 192,
+            "name": "45g",
+            "slug": "45g"
+          },
+          {
+            "id": 195,
+            "name": "600g",
+            "slug": "600g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2445,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "45g"
+          }
+        ]
+      },
+      {
+        "id": 2446,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "150g"
+          }
+        ]
+      },
+      {
+        "id": 2447,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "300g"
+          }
+        ]
+      },
+      {
+        "id": 2448,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "600g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2431,
+    "name": "Vintage Iron Refill",
+    "slug": "vintage-iron-refill",
+    "sku": "vintage-iron-refill",
+    "permalink": "https://www.flakeking.com/product/vintage-iron-refill/",
+    "prices": {
+      "price": "699",
+      "regular_price": "699",
+      "sale_price": "699",
+      "price_range": {
+        "min_amount": "699",
+        "max_amount": "3999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 2,
+        "name": "Size",
+        "taxonomy": "pa_size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 190,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 188,
+            "name": "250g",
+            "slug": "250g"
+          },
+          {
+            "id": 189,
+            "name": "500g",
+            "slug": "500g"
+          },
+          {
+            "id": 187,
+            "name": "70g",
+            "slug": "70g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2436,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "70g"
+          }
+        ]
+      },
+      {
+        "id": 2437,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "250g"
+          }
+        ]
+      },
+      {
+        "id": 2438,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "500g"
+          }
+        ]
+      },
+      {
+        "id": 2439,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2426,
+    "name": "Flake King 1000 Nozzle",
+    "slug": "flake-king-1000-nozzle",
+    "sku": "flake-king-1000-nozzle",
+    "permalink": "https://www.flakeking.com/product/flake-king-1000-nozzle/",
+    "prices": {
+      "price": "333",
+      "regular_price": "333",
+      "sale_price": "333",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 2,
+        "name": "Size",
+        "taxonomy": "pa_size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 81,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 82,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 83,
+            "name": "Small",
+            "slug": "small"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2428,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "small"
+          }
+        ]
+      },
+      {
+        "id": 2429,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "medium"
+          }
+        ]
+      },
+      {
+        "id": 2430,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "large"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2423,
+    "name": "FOM 1000/1050 100g Jar and Standard Lid",
+    "slug": "flake-king-1000-jar-and-standard-lid",
+    "sku": "5060733580021",
+    "permalink": "https://www.flakeking.com/product/flake-king-1000-jar-and-standard-lid/",
+    "prices": {
+      "price": "198",
+      "regular_price": "198",
+      "sale_price": "198",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 2415,
+    "name": "FK100 Prime Black Base",
+    "slug": "fk100-prime-black-base",
+    "sku": "fk100-prime-black-base",
+    "permalink": "https://www.flakeking.com/product/fk100-prime-black-base/",
+    "prices": {
+      "price": "1234",
+      "regular_price": "1234",
+      "sale_price": "1234",
+      "price_range": {
+        "min_amount": "1234",
+        "max_amount": "12566"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 2,
+        "name": "Size",
+        "taxonomy": "pa_size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 178,
+            "name": "1000ml",
+            "slug": "1000ml"
+          },
+          {
+            "id": 176,
+            "name": "100ml",
+            "slug": "100ml"
+          },
+          {
+            "id": 177,
+            "name": "500ml",
+            "slug": "500ml"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2420,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "100ml"
+          }
+        ]
+      },
+      {
+        "id": 2421,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "500ml"
+          }
+        ]
+      },
+      {
+        "id": 2422,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "1000ml"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2409,
+    "name": "FK55 Thinner",
+    "slug": "fk55-thinner",
+    "sku": "fk55-thinner",
+    "permalink": "https://www.flakeking.com/product/fk55-thinner/",
+    "prices": {
+      "price": "672",
+      "regular_price": "672",
+      "sale_price": "672",
+      "price_range": {
+        "min_amount": "672",
+        "max_amount": "1325"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 2,
+        "name": "Size",
+        "taxonomy": "pa_size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 176,
+            "name": "100ml",
+            "slug": "100ml"
+          },
+          {
+            "id": 180,
+            "name": "50ml",
+            "slug": "50ml"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2413,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "50ml"
+          }
+        ]
+      },
+      {
+        "id": 2414,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "100ml"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2401,
+    "name": "FK50 Surface Binder",
+    "slug": "fk50-surface-binder",
+    "sku": "fk50-surface-binder",
+    "permalink": "https://www.flakeking.com/product/fk50-surface-binder/",
+    "prices": {
+      "price": "1110",
+      "regular_price": "1110",
+      "sale_price": "1110",
+      "price_range": {
+        "min_amount": "1110",
+        "max_amount": "9896"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 2,
+        "name": "Size",
+        "taxonomy": "pa_size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 178,
+            "name": "1000ml",
+            "slug": "1000ml"
+          },
+          {
+            "id": 176,
+            "name": "100ml",
+            "slug": "100ml"
+          },
+          {
+            "id": 177,
+            "name": "500ml",
+            "slug": "500ml"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2406,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "1000ml"
+          }
+        ]
+      },
+      {
+        "id": 2408,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "100ml"
+          }
+        ]
+      },
+      {
+        "id": 2407,
+        "attributes": [
+          {
+            "name": "Size",
+            "value": "500ml"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2392,
+    "name": "UltiMask Crepe Masking Tape",
+    "slug": "ultimask-crepe-masking-tape",
+    "sku": "ultimask-crepe-masking-tape",
+    "permalink": "https://www.flakeking.com/product/ultimask-crepe-masking-tape/",
+    "prices": {
+      "price": "168",
+      "regular_price": "168",
+      "sale_price": "168",
+      "price_range": {
+        "min_amount": "168",
+        "max_amount": "432"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 6,
+        "name": "Tape Width",
+        "taxonomy": "pa_tape-width",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 172,
+            "name": "18mm",
+            "slug": "18mm"
+          },
+          {
+            "id": 169,
+            "name": "24mm",
+            "slug": "24mm"
+          },
+          {
+            "id": 173,
+            "name": "36mm",
+            "slug": "36mm"
+          },
+          {
+            "id": 170,
+            "name": "48mm",
+            "slug": "48mm"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2397,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "18mm"
+          }
+        ]
+      },
+      {
+        "id": 2398,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "24mm"
+          }
+        ]
+      },
+      {
+        "id": 2399,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "36mm"
+          }
+        ]
+      },
+      {
+        "id": 2400,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "48mm"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2380,
+    "name": "Prime Flat Line Masking Tape",
+    "slug": "prime-flat-line-masking-tape",
+    "sku": "prime-flat-line-masking-tape",
+    "permalink": "https://www.flakeking.com/product/prime-flat-line-masking-tape/",
+    "prices": {
+      "price": "199",
+      "regular_price": "199",
+      "sale_price": "199",
+      "price_range": {
+        "min_amount": "199",
+        "max_amount": "699"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 6,
+        "name": "Tape Width",
+        "taxonomy": "pa_tape-width",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 168,
+            "name": "12mm",
+            "slug": "12mm"
+          },
+          {
+            "id": 169,
+            "name": "24mm",
+            "slug": "24mm"
+          },
+          {
+            "id": 170,
+            "name": "48mm",
+            "slug": "48mm"
+          },
+          {
+            "id": 162,
+            "name": "6mm",
+            "slug": "6mm"
+          },
+          {
+            "id": 167,
+            "name": "9mm",
+            "slug": "9mm"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2387,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "6mm"
+          }
+        ]
+      },
+      {
+        "id": 2388,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "9mm"
+          }
+        ]
+      },
+      {
+        "id": 2389,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "12mm"
+          }
+        ]
+      },
+      {
+        "id": 2390,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "24mm"
+          }
+        ]
+      },
+      {
+        "id": 2391,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "48mm"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2375,
+    "name": "Prime Orange Fine Line Mixed Set",
+    "slug": "prime-orange-fine-line-mixed-set",
+    "sku": "5060733583282",
+    "permalink": "https://www.flakeking.com/product/prime-orange-fine-line-mixed-set/",
+    "prices": {
+      "price": "1899",
+      "regular_price": "1899",
+      "sale_price": "1899",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 2366,
+    "name": "Prime Orange Fine Line",
+    "slug": "prime-orange-fine-line",
+    "sku": "prime-orange-fine-line",
+    "permalink": "https://www.flakeking.com/product/prime-orange-fine-line/",
+    "prices": {
+      "price": "349",
+      "regular_price": "349",
+      "sale_price": "349",
+      "price_range": {
+        "min_amount": "349",
+        "max_amount": "499"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 6,
+        "name": "Tape Width",
+        "taxonomy": "pa_tape-width",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 159,
+            "name": "1mm",
+            "slug": "1mm"
+          },
+          {
+            "id": 160,
+            "name": "2mm",
+            "slug": "2mm"
+          },
+          {
+            "id": 161,
+            "name": "3mm",
+            "slug": "3mm"
+          },
+          {
+            "id": 162,
+            "name": "6mm",
+            "slug": "6mm"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2371,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "1mm"
+          }
+        ]
+      },
+      {
+        "id": 2372,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "2mm"
+          }
+        ]
+      },
+      {
+        "id": 2373,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "3mm"
+          }
+        ]
+      },
+      {
+        "id": 2374,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "6mm"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2361,
+    "name": "Prime Green Fine Line Mixed Set",
+    "slug": "prime-green-fine-line-mixed-set",
+    "sku": "5060733583237",
+    "permalink": "https://www.flakeking.com/product/prime-green-fine-line-mixed-set/",
+    "prices": {
+      "price": "1899",
+      "regular_price": "1899",
+      "sale_price": "1899",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 2352,
+    "name": "Prime Green Fine Line Tape",
+    "slug": "prime-green-fine-line-tape",
+    "sku": "prime-green-fine-line-tape",
+    "permalink": "https://www.flakeking.com/product/prime-green-fine-line-tape/",
+    "prices": {
+      "price": "349",
+      "regular_price": "349",
+      "sale_price": "349",
+      "price_range": {
+        "min_amount": "349",
+        "max_amount": "499"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 6,
+        "name": "Tape Width",
+        "taxonomy": "pa_tape-width",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 159,
+            "name": "1mm",
+            "slug": "1mm"
+          },
+          {
+            "id": 160,
+            "name": "2mm",
+            "slug": "2mm"
+          },
+          {
+            "id": 161,
+            "name": "3mm",
+            "slug": "3mm"
+          },
+          {
+            "id": 162,
+            "name": "6mm",
+            "slug": "6mm"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2357,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "1mm"
+          }
+        ]
+      },
+      {
+        "id": 2358,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "2mm"
+          }
+        ]
+      },
+      {
+        "id": 2359,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "3mm"
+          }
+        ]
+      },
+      {
+        "id": 2360,
+        "attributes": [
+          {
+            "name": "Tape Width",
+            "value": "6mm"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2341,
+    "name": "Kromatic Black Asteroid Metal Flake",
+    "slug": "kromatic-asteroid-metal-flake",
+    "sku": "kromatic-asteroid-metal-flake",
+    "permalink": "https://www.flakeking.com/product/kromatic-asteroid-metal-flake/",
+    "prices": {
+      "price": "499",
+      "regular_price": "499",
+      "sale_price": "499",
+      "price_range": {
+        "min_amount": "499",
+        "max_amount": "16499"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2346,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2347,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2348,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2349,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2350,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2351,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2330,
+    "name": "Gun Metal Metal Flake",
+    "slug": "gun-metal-metal-flake",
+    "sku": "gun-metal-metal-flake",
+    "permalink": "https://www.flakeking.com/product/gun-metal-metal-flake/",
+    "prices": {
+      "price": "399",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "12999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2335,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2336,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2337,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2338,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2339,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2340,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2319,
+    "name": "Kromatic Elvis Gold Metal Flake",
+    "slug": "kromatic-elvis-gold-metal-flake",
+    "sku": "kromatic-elvis-gold-metal-flake",
+    "permalink": "https://www.flakeking.com/product/kromatic-elvis-gold-metal-flake/",
+    "prices": {
+      "price": "499",
+      "regular_price": "499",
+      "sale_price": "499",
+      "price_range": {
+        "min_amount": "499",
+        "max_amount": "16499"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2324,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2325,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2326,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2327,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2328,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2329,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2308,
+    "name": "Dragon Koi Flake",
+    "slug": "dragon-koi-flake",
+    "sku": "dragon-koi-flake",
+    "permalink": "https://www.flakeking.com/product/dragon-koi-flake/",
+    "prices": {
+      "price": "499",
+      "regular_price": "499",
+      "sale_price": "499",
+      "price_range": {
+        "min_amount": "499",
+        "max_amount": "16499"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2313,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2314,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2315,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2316,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2317,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2318,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2297,
+    "name": "Water Dragon Flake",
+    "slug": "water-dragon-flake",
+    "sku": "water-dragon-flake",
+    "permalink": "https://www.flakeking.com/product/water-dragon-flake/",
+    "prices": {
+      "price": "499",
+      "regular_price": "499",
+      "sale_price": "499",
+      "price_range": {
+        "min_amount": "499",
+        "max_amount": "16499"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2302,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2303,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2304,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2305,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2306,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2307,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2283,
+    "name": "Candy Cobalt Blue Metal Flake",
+    "slug": "candy-cobalt-blue-metal-flake",
+    "sku": "candy-cobalt-blue-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-cobalt-blue-metal-flake/",
+    "prices": {
+      "price": "449",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "16999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2288,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2289,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2290,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2291,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2292,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2293,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2294,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2295,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2296,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2269,
+    "name": "Candy Turquoise Blue Metal Flake",
+    "slug": "candy-turquoise-blue-metal-flake",
+    "sku": "candy-turquoise-blue-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-turquoise-blue-metal-flake/",
+    "prices": {
+      "price": "0",
+      "regular_price": "0",
+      "sale_price": "0",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2274,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2275,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2276,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2277,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2278,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2279,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2280,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2281,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2282,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2255,
+    "name": "Candy Azura Blue Metal Flake",
+    "slug": "candy-azura-blue-metal-flake",
+    "sku": "candy-azura-blue-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-azura-blue-metal-flake/",
+    "prices": {
+      "price": "449",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "16999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2260,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2261,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2262,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2263,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2264,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2265,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2266,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2267,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2268,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2244,
+    "name": "Kromatic Blue Flake",
+    "slug": "kromatic-blue-flake",
+    "sku": "kromatic-blue-flake",
+    "permalink": "https://www.flakeking.com/product/kromatic-blue-flake/",
+    "prices": {
+      "price": "0",
+      "regular_price": "0",
+      "sale_price": "0",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2249,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2250,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2251,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2252,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2253,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2254,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2233,
+    "name": "Candy Light Blue Metal Flake",
+    "slug": "candy-light-blue-metal-flake",
+    "sku": "candy-light-blue-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-light-blue-metal-flake/",
+    "prices": {
+      "price": "399",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "12999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2238,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2239,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2240,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2241,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2242,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2243,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2222,
+    "name": "Kromatic Poison Green Metal Flake",
+    "slug": "kromatic-poison-green-metal-flake",
+    "sku": "kromatic-poison-green-metal-flake",
+    "permalink": "https://www.flakeking.com/product/kromatic-poison-green-metal-flake/",
+    "prices": {
+      "price": "499",
+      "regular_price": "499",
+      "sale_price": "499",
+      "price_range": {
+        "min_amount": "499",
+        "max_amount": "16499"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2227,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2228,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2229,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2230,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2231,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2232,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2208,
+    "name": "Candy Emerald Green Metal Flake",
+    "slug": "candy-emerald-green-metal-flake",
+    "sku": "candy-emerald-green-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-emerald-green-metal-flake/",
+    "prices": {
+      "price": "449",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "16999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2213,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2214,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2215,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2216,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2217,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2218,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2219,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2220,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2221,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2194,
+    "name": "Candy Poison Green Metal Flake",
+    "slug": "candy-poison-green-metal-flake",
+    "sku": "candy-poison-green-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-poison-green-metal-flake/",
+    "prices": {
+      "price": "449",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "16999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2199,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2200,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2201,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2202,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2203,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2204,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2205,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2206,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2207,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2183,
+    "name": "Candy Lime Green Metal Flake",
+    "slug": "candy-lime-green-metal-flake",
+    "sku": "candy-lime-green-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-lime-green-metal-flake/",
+    "prices": {
+      "price": "399",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "12999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2188,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2189,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2190,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2191,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2192,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2193,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2172,
+    "name": "Candy Peacock Metal Flake",
+    "slug": "peacock-metal-flake",
+    "sku": "peacock-metal-flake",
+    "permalink": "https://www.flakeking.com/product/peacock-metal-flake/",
+    "prices": {
+      "price": "399",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "12999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2177,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2178,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2179,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2180,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2181,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2182,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2158,
+    "name": "Candy Purple Heart Metal Flake",
+    "slug": "candy-purple-heart-metal-flake",
+    "sku": "candy-purple-heart-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-purple-heart-metal-flake/",
+    "prices": {
+      "price": "449",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "16999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2163,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2164,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2165,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2166,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2167,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2168,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2169,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2170,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2171,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2147,
+    "name": "Sky Purple Metal Flake",
+    "slug": "sky-purple-metal-flake",
+    "sku": "sky-purple-metal-flake",
+    "permalink": "https://www.flakeking.com/product/sky-purple-metal-flake/",
+    "prices": {
+      "price": "399",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "12999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2152,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2153,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2154,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2155,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2156,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2157,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2133,
+    "name": "Candy Fewsha Metal Flake",
+    "slug": "candy-fewsha-metal-flake",
+    "sku": "candy-fewsha-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-fewsha-metal-flake/",
+    "prices": {
+      "price": "449",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "16999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2138,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2139,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2140,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2141,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2142,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2143,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2144,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2145,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2146,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2122,
+    "name": "Kromatic Lavender Metal Flake",
+    "slug": "kromatic-lavender-metal-flake",
+    "sku": "kromatic-lavender-metal-flake",
+    "permalink": "https://www.flakeking.com/product/kromatic-lavender-metal-flake/",
+    "prices": {
+      "price": "499",
+      "regular_price": "499",
+      "sale_price": "499",
+      "price_range": {
+        "min_amount": "499",
+        "max_amount": "16499"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2127,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2128,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2129,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2130,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2131,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2132,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2111,
+    "name": "Kromatic Bubble Gum Metal Flake",
+    "slug": "kromatic-bubble-gum-metal-flake",
+    "sku": "kromatic-bubble-gum-metal-flake",
+    "permalink": "https://www.flakeking.com/product/kromatic-bubble-gum-metal-flake/",
+    "prices": {
+      "price": "499",
+      "regular_price": "499",
+      "sale_price": "499",
+      "price_range": {
+        "min_amount": "499",
+        "max_amount": "16499"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2116,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2117,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2118,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2119,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2120,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2121,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2104,
+    "name": "Candy Pink Metal Flake",
+    "slug": "candy-pink-metal-flake",
+    "sku": "candy-pink-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-pink-metal-flake/",
+    "prices": {
+      "price": "399",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "12999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2105,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2106,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2107,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2108,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2109,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2110,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2097,
+    "name": "Fire Purple Metal Flake",
+    "slug": "fire-purple-metal-flake",
+    "sku": "fire-purple-metal-flake",
+    "permalink": "https://www.flakeking.com/product/fire-purple-metal-flake/",
+    "prices": {
+      "price": "399",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "12999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2098,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2099,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2100,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2101,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2102,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2103,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2090,
+    "name": "Kromatic Volcano Red Metal Flake",
+    "slug": "kromatic-volcano-red-metal-flake",
+    "sku": "kromatic-volcano-red-metal-flake",
+    "permalink": "https://www.flakeking.com/product/kromatic-volcano-red-metal-flake/",
+    "prices": {
+      "price": "499",
+      "regular_price": "499",
+      "sale_price": "499",
+      "price_range": {
+        "min_amount": "499",
+        "max_amount": "16499"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2091,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2092,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2093,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2094,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2095,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2096,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2080,
+    "name": "Candy Bright Red Metal Flake",
+    "slug": "candy-bright-red-metal-flake",
+    "sku": "candy-bright-red-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-bright-red-metal-flake/",
+    "prices": {
+      "price": "449",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "16999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2081,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2082,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2083,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2084,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2085,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2086,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2087,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2088,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2089,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2070,
+    "name": "Candy Apple Red Metal Flake",
+    "slug": "candy-apple-red-metal-flake",
+    "sku": "candy-apple-red-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-apple-red-metal-flake/",
+    "prices": {
+      "price": "449",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "16999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2071,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2072,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2073,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2074,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2075,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2076,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2077,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2078,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2079,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2060,
+    "name": "Candy Tangy Orange Metal Flake",
+    "slug": "candy-tangy-orange-metal-flake",
+    "sku": "candy-tangy-orange-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-tangy-orange-metal-flake/",
+    "prices": {
+      "price": "399",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "16999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2061,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2062,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2063,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2064,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2065,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2066,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2067,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2068,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2069,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2053,
+    "name": "Fizzy Green Metal Flake",
+    "slug": "fizzy-green-metal-flake",
+    "sku": "fizzy-green-metal-flake",
+    "permalink": "https://www.flakeking.com/product/fizzy-green-metal-flake/",
+    "prices": {
+      "price": "399",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "12999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2054,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2055,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2056,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2057,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2058,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2059,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2043,
+    "name": "Candy Extreme Yellow Metal Flake",
+    "slug": "candy-extreme-yellow-metal-flake",
+    "sku": "candy-extreme-yellow-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-extreme-yellow-metal-flake/",
+    "prices": {
+      "price": "399",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "16999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2044,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2045,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2046,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2047,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2048,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2049,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2050,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2051,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2052,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2036,
+    "name": "Nevada Sands Metal Flake",
+    "slug": "nevada-sands-metal-flake",
+    "sku": "nevada-sands-metal-flake",
+    "permalink": "https://www.flakeking.com/product/nevada-sands-metal-flake/",
+    "prices": {
+      "price": "0",
+      "regular_price": "0",
+      "sale_price": "0",
+      "price_range": {
+        "min_amount": "0",
+        "max_amount": "12999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2037,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2038,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2039,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2040,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2041,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2042,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2029,
+    "name": "Kromatic Copper Head Metal Flake",
+    "slug": "kromatic-copper-head-metal-flake",
+    "sku": "kromatic-copper-head-metal-flake",
+    "permalink": "https://www.flakeking.com/product/kromatic-copper-head-metal-flake/",
+    "prices": {
+      "price": "499",
+      "regular_price": "499",
+      "sale_price": "499",
+      "price_range": {
+        "min_amount": "499",
+        "max_amount": "16499"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2030,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2031,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2032,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2033,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2034,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2035,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2022,
+    "name": "Candy Copper Head Metal Flake",
+    "slug": "candy-copper-head-metal-flake",
+    "sku": "candy-copper-head-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-copper-head-metal-flake/",
+    "prices": {
+      "price": "399",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "12999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2023,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2024,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2025,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2026,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2027,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2028,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2015,
+    "name": "Candy Righteous Gold Metal Flake",
+    "slug": "candy-righteous-gold-metal-flake",
+    "sku": "candy-righteous-gold-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-righteous-gold-metal-flake/",
+    "prices": {
+      "price": "399",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "12999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2016,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2017,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2018,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2019,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2020,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2021,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2005,
+    "name": "Candy Sovereign Gold Metal Flake",
+    "slug": "candy-sovereign-gold-metal-flake",
+    "sku": "candy-sovereign-gold-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-sovereign-gold-metal-flake/",
+    "prices": {
+      "price": "449",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "16999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 2006,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2007,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2008,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2009,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2010,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2011,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2012,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2013,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2014,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1992,
+    "name": "Candy Elvis Gold Metal Flake",
+    "slug": "candy-elvis-gold-metal-flake",
+    "sku": "candy-elvis-gold-metal-flake",
+    "permalink": "https://www.flakeking.com/product/candy-elvis-gold-metal-flake/",
+    "prices": {
+      "price": "599",
+      "regular_price": "399",
+      "sale_price": "399",
+      "price_range": {
+        "min_amount": "399",
+        "max_amount": "39999"
+      },
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [
+      {
+        "id": 4,
+        "name": "Flake Size",
+        "taxonomy": "pa_flake-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 115,
+            "name": "Large",
+            "slug": "large"
+          },
+          {
+            "id": 114,
+            "name": "Medium",
+            "slug": "medium"
+          },
+          {
+            "id": 113,
+            "name": "Small",
+            "slug": "small"
+          },
+          {
+            "id": 112,
+            "name": "Ultra Small",
+            "slug": "ultra-small"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pot Size",
+        "taxonomy": "pa_pot-size",
+        "has_variations": true,
+        "terms": [
+          {
+            "id": 120,
+            "name": "1000g",
+            "slug": "1000g"
+          },
+          {
+            "id": 119,
+            "name": "100g",
+            "slug": "100g"
+          },
+          {
+            "id": 118,
+            "name": "10g",
+            "slug": "10g"
+          },
+          {
+            "id": 121,
+            "name": "15g",
+            "slug": "15g"
+          }
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "id": 1993,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "ultra-small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "10g"
+          }
+        ]
+      },
+      {
+        "id": 1994,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "ultra-small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 1995,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "ultra-small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 1996,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 1997,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 1998,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "small"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 1999,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2000,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2001,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "medium"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      },
+      {
+        "id": 2002,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "15g"
+          }
+        ]
+      },
+      {
+        "id": 2003,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "100g"
+          }
+        ]
+      },
+      {
+        "id": 2004,
+        "attributes": [
+          {
+            "name": "Flake Size",
+            "value": "large"
+          },
+          {
+            "name": "Pot Size",
+            "value": "1000g"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1972,
+    "name": "Flake King 1050 Dry Metal Flake Gun",
+    "slug": "flake-king-1050-dry-metal-flake-gun",
+    "sku": "5060733583138",
+    "permalink": "https://www.flakeking.com/product/flake-king-1050-dry-metal-flake-gun/",
+    "prices": {
+      "price": "12999",
+      "regular_price": "12999",
+      "sale_price": "12999",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  },
+  {
+    "id": 1970,
+    "name": "Flake King 550 Mini Dry Metal Flake Gun",
+    "slug": "flake-king-550-mini-dry-metal-flake-gun",
+    "sku": "5060733580069",
+    "permalink": "https://www.flakeking.com/product/flake-king-550-mini-dry-metal-flake-gun/",
+    "prices": {
+      "price": "11999",
+      "regular_price": "11999",
+      "sale_price": "11999",
+      "price_range": null,
+      "currency_code": "GBP",
+      "currency_symbol": "\u00a3",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "\u00a3",
+      "currency_suffix": ""
+    },
+    "attributes": [],
+    "variations": []
+  }
+]

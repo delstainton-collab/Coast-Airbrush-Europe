@@ -3,57 +3,88 @@
 export const VIRAL_CAMPAIGNS = [
   {
     id: "camp_001",
-    title: "Liquid Mirror Chrome on Chopper Tank",
+    title: "Kroma Edge 2K Mirror Chrome (Self-Organization Tech)",
     platform: "Instagram Reels",
     scheduledTime: "Today @ 18:30 CET (Peak European Engagement)",
     videoUrl: "https://lh3.googleusercontent.com/aida/AEtjO1Vhrrnuz3jyhR4A0VX8t7zfqmk0kYdRywsYSqJWXeW8Oco_wrh0AZMEPer9BfEyRuPQ94qoCa3JT_UuxD3aP5BBBwduH7LkKrN06tLjmOT1NRwztFGa8s0DXLr8PUMQPRGBsaqrGbgL3iJxKqi_goQBP-DNY8em3IbknCAhqczGmb0Lfr1P_5cwsl_ds1OcfCK1QnQ57Vfe5ZYh9feqsvgIkBSNRYEgSktNsB_HaTEu3y83TgcqNevPUarJ",
-    hook: "Is this real chrome or spray paint? 🤯 Watch Kroma Edge mirror up in real time!",
-    caption: "Stop paying €2,000 for electroplating. Kroma Edge Sprayable Mirror Chrome lets you spray real liquid metal directly over high-gloss black with a 0.8mm mini gun. In stock across EU & UK hubs with 24h dispatch! 🚀",
-    hashtags: ["#KromaEdge", "#LiquidChrome", "#CustomPaint", "#ChopperBuild", "#AirbrushArt", "#CustomGraphics"],
+    hook: "Is this real electroplated chrome or spray paint? 🤯 Watch Kroma Edge mirror up in real time!",
+    caption: "Stop paying €2,000 for chrome electroplating. Kroma Edge 2K Sprayable Mirror Chrome uses Self-Organization Technology where metallic mirror seeds rise to the surface. And yes—IT STAYS CLEAR UNDER TOPCOAT CLEAR! 🚀 In stock across EU & UK hubs with 24h dispatch.",
+    hashtags: ["#KromaEdge", "#LiquidChrome", "#SelfOrganization", "#CustomPaint", "#ChopperBuild", "#AirbrushArt"],
     featuredSku: "KE-CHROME-1L",
-    featuredProduct: "Kroma Edge Mirror Spray Chrome System (1 Litre)",
+    featuredProduct: "Kroma Edge Mirror Spray Chrome 2K System (1 Litre)",
     priceUSD: 145.00,
-    projectedViews: "85.4K",
-    estConversionRate: "3.8%"
+    projectedViews: "115.4K",
+    estConversionRate: "4.8%"
   },
   {
     id: "camp_002",
-    title: "Dry Flake Spraying with Flake King 500",
+    title: "The Flake King 1000: Dry Flake vs. Wet Spray",
     platform: "TikTok",
     scheduledTime: "Tomorrow @ 19:00 CET",
     videoUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBYjvbnNECBYPygPVQ1XL5eFtbNAmCtclEB4Fs-w1E49c54w1fzpbaTbq8eSxt34Ynv0Qhlga9hV304V0qQncK8geyEPrG_3inqk1VVoJkvEagwpqgWsdEV7Mf5gmBGF78EL1zUnPTSs9LluAu4MUIL3hjsUZxJbGFm9Nl7c71CIJQ66TnHKdxpYgzJ47g5QeLUTaGxConxq3L2h6aFOBEyyiLhIO_ID7C-TZ2P6VxDLLLO0XiHbNbMqA",
-    hook: "Why mixing flake in clearcoat is RUINING your metalflake paint jobs 🚫✨",
-    caption: "The Flake King 500 dry flake gun shoots 0.015\" hex flake completely DRY onto wet intercoat clear. Zero clogged fluid tips, zero buried flake sinking to the bottom. Get yours before this batch sells out!",
-    hashtags: ["#FlakeKing", "#MetalFlake", "#LowriderPaint", "#CustomHelmet", "#GarageLife"],
-    featuredSku: "FK-500-GUN",
-    featuredProduct: "Flake King 500 Dry Flake Spray Gun",
-    priceUSD: 189.00,
-    projectedViews: "142.0K",
-    estConversionRate: "4.2%"
+    hook: "Why mixing metal flake into clearcoat is RUINING your paint guns 🚫✨",
+    caption: "The Flake King 1000 shoots flake completely DRY into wet clear. 70% less clearcoat used, zero gun clogs, and excess dry flake just brushes right off. Save 2-3 days on your next motorcycle paint job!",
+    hashtags: ["#FlakeKing", "#FlakeKing1000", "#MetalFlake", "#LowriderPaint", "#CustomHelmet", "#HarleyCustom"],
+    featuredSku: "FK-1000-GUN",
+    featuredProduct: "Flake King 1000 Professional Dry Flake Gun",
+    priceUSD: 219.00,
+    projectedViews: "168.0K",
+    estConversionRate: "5.2%"
   },
   {
     id: "camp_003",
-    title: "Nebula Color-Shift Pearl Masterclass",
+    title: "Flake King 500 Airbrush Adapter (Rookie PSI Mistake)",
     platform: "YouTube Shorts",
     scheduledTime: "Wednesday @ 17:00 CET",
     videoUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBU8kCBWAmdFaGsVAGlOict2oqcARIbnI7p-eNn0NUwUBdwR5TtiYD3b_TNtwaieX0IBB99hle6vpUv6qU4DYPXX9NWILucwcy0_leBFqbdE8LFD8j0yzRN-zOKh225Fdz1bfM40IZh4-bNxCJw5oIH65KbEQJ4POOIBejKJfCcAmaX6eMOBFZOelse4U0VfRRuyHaD7Er66aLBSLDJZ8kYHzda3_1mQf0iB0Rm_aIdRPWPxSdz1j8FMw",
-    hook: "The secret to spraying Nebula Color-Shift Pearl without clouding or blotches 🏎️🔥",
-    caption: "Step-by-step ratio guide: Jet Black gloss ground coat + Kroma Edge Nebula Pearl in intercoat binder with 2K Speed Clearcoat. Complete kit link in bio!",
-    hashtags: ["#KromaEdge", "#ColorShift", "#CustomAirbrush", "#CustomBike", "#AirbrushTutorial"],
-    featuredSku: "KE-PEARL-NEB",
-    featuredProduct: "Kroma Edge Nebula Color-Shift Pearl 25g",
+    hook: "The #1 mistake with dry flake guns: Do NOT spray at 40 PSI! 🛑",
+    caption: "Turn your regulator down to 5–10 PSI! The Flake King uses a low-velocity venturi stream. Let the dry flake drift gently into the wet clear coat for glass-flat coverage.",
+    hashtags: ["#FlakeKing500", "#AirbrushTips", "#MetalFlake", "#CustomAirbrush", "#GuitarPainting"],
+    featuredSku: "FK-500-GUN",
+    featuredProduct: "Flake King 500 Airbrush Dry Flake Adapter",
+    priceUSD: 189.00,
+    projectedViews: "88.5K",
+    estConversionRate: "4.5%"
+  },
+  {
+    id: "camp_004",
+    title: "Flake King Prime Fine Line Tape: Satisfying ASMR Peel",
+    platform: "Instagram Reels",
+    scheduledTime: "Thursday @ 18:00 CET",
+    videoUrl: "https://lh3.googleusercontent.com/aida/AEtjO1Vhrrnuz3jyhR4A0VX8t7zfqmk0kYdRywsYSqJWXeW8Oco_wrh0AZMEPer9BfEyRuPQ94qoCa3JT_UuxD3aP5BBBwduH7LkKrN06tLjmOT1NRwztFGa8s0DXLr8PUMQPRGBsaqrGbgL3iJxKqi_goQBP-DNY8em3IbknCAhqczGmb0Lfr1P_5cwsl_ds1OcfCK1QnQ57Vfe5ZYh9feqsvgIkBSNRYEgSktNsB_HaTEu3y83TgcqNevPUarJ",
+    hook: "Sound up for the most satisfying tape peel you'll see all week 🎧🤤",
+    caption: "No bleed. No glue residue. Flake King Prime Green thermally stabilised translucent PVC lets you see your layout grid underneath, and bends around compound curves without lifting. Master mixed set available now at Coast Airbrush Europe.",
+    hashtags: ["#FlakeKing", "#PrimeGreen", "#FineLineTape", "#TapePeel", "#Satisfying", "#CustomGraphics"],
+    featuredSku: "FK-TAPE-SET",
+    featuredProduct: "Flake King Prime Green Fine Line Mixed Set",
     priceUSD: 28.50,
-    projectedViews: "62.8K",
-    estConversionRate: "5.1%"
+    projectedViews: "245.0K",
+    estConversionRate: "6.4%"
+  },
+  {
+    id: "camp_005",
+    title: "Metal Flake Sizing Masterclass: 50µm to 1025µm",
+    platform: "TikTok",
+    scheduledTime: "Friday @ 19:30 CET",
+    videoUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBYjvbnNECBYPygPVQ1XL5eFtbNAmCtclEB4Fs-w1E49c54w1fzpbaTbq8eSxt34Ynv0Qhlga9hV304V0qQncK8geyEPrG_3inqk1VVoJkvEagwpqgWsdEV7Mf5gmBGF78EL1zUnPTSs9LluAu4MUIL3hjsUZxJbGFm9Nl7c71CIJQ66TnHKdxpYgzJ47g5QeLUTaGxConxq3L2h6aFOBEyyiLhIO_ID7C-TZ2P6VxDLLLO0XiHbNbMqA",
+    hook: "Which flake size do you need for your custom build? 🔍",
+    caption: "From 50µm micro-pearl shimmer up to 1025µm monster hex flake. All certified lightfast for 18+ months UV stability under Florida sun testing. Check out all 40+ colors on CoastAirbrush.eu.",
+    hashtags: ["#FlakeKing", "#MetalFlake", "#CustomPaintGuide", "#LowriderEurope", "#AirbrushSupplies"],
+    featuredSku: "FK-FLAKE-SET",
+    featuredProduct: "Flake King Master Rainbow Flake 5-Jar Pack",
+    priceUSD: 79.00,
+    projectedViews: "94.2K",
+    estConversionRate: "4.9%"
   }
 ];
 
 export const TRENDING_HASHTAGS = [
-  { tag: "#KromaEdge", posts24h: "18.6K", velocity: "+64%", sentiment: "Viral" },
-  { tag: "#FlakeKing", posts24h: "9.1K", velocity: "+29%", sentiment: "High" },
-  { tag: "#CustomAirbrush", posts24h: "14.4K", velocity: "+18%", sentiment: "Steady" },
-  { tag: "#AirbrushArt", posts24h: "24.9K", velocity: "+15%", sentiment: "High" },
-  { tag: "#CustomPaint", posts24h: "31.2K", velocity: "+22%", sentiment: "Very High" }
+  { tag: "#KromaEdge", posts24h: "24.6K", velocity: "+72%", sentiment: "Viral" },
+  { tag: "#FlakeKing", posts24h: "12.8K", velocity: "+45%", sentiment: "High" },
+  { tag: "#TapePeel", posts24h: "38.2K", velocity: "+88%", sentiment: "Viral" },
+  { tag: "#CustomAirbrush", posts24h: "16.4K", velocity: "+18%", sentiment: "Steady" },
+  { tag: "#AirbrushArt", posts24h: "29.9K", velocity: "+20%", sentiment: "High" },
+  { tag: "#CustomPaint", posts24h: "42.5K", velocity: "+28%", sentiment: "Very High" }
 ];
 
 export class SocialGrowthAI {
@@ -70,13 +101,19 @@ export class SocialGrowthAI {
     const text = (messageText || "").toLowerCase();
     let matchedCampaign = this.campaigns[0]; // Default chrome
 
-    if (text.includes("flake") || text.includes("glitter") || text.includes("gun") || text.includes("sparkle")) {
-      matchedCampaign = this.campaigns[1]; // Flake King
-    } else if (text.includes("pearl") || text.includes("shift") || text.includes("color") || text.includes("nebula")) {
-      matchedCampaign = this.campaigns[2]; // Nebula Pearl
+    if (text.includes("tape") || text.includes("masking") || text.includes("peel") || text.includes("bleed") || text.includes("line") || text.includes("green")) {
+      matchedCampaign = this.campaigns[3]; // Flake King Prime Green Tape
+    } else if (text.includes("psi") || text.includes("pressure") || text.includes("adapter") || text.includes("airbrush")) {
+      matchedCampaign = this.campaigns[2]; // Flake King 500
+    } else if (text.includes("size") || text.includes("micron") || text.includes("color") || text.includes("hex")) {
+      matchedCampaign = this.campaigns[4]; // Flake King Flake Set
+    } else if (text.includes("flake") || text.includes("gun") || text.includes("dry") || text.includes("glitter") || text.includes("1000")) {
+      matchedCampaign = this.campaigns[1]; // Flake King 1000
+    } else if (text.includes("chrome") || text.includes("mirror") || text.includes("reflection") || text.includes("kroma")) {
+      matchedCampaign = this.campaigns[0]; // Kroma Edge Chrome
     }
 
-    const permalink = `https://shop.coastairbrush.eu/cart/add?id=${matchedCampaign.featuredSku}&quantity=1&ref=agent_c_social`;
+    const permalink = `https://coastairbrush.eu/cart/add?id=${matchedCampaign.featuredSku}&quantity=1&ref=agent_c_social`;
 
     const reply = {
       userQuery: messageText,

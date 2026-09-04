@@ -44,18 +44,28 @@ export function calculateKromaCoverage({ sqft = 0, sqm = 0 }) {
   // 140g (5oz) covers up to 10 sq ft
   // 420g (15oz) covers up to 30 sq ft
   // 1260g (45oz) covers up to 90 sq ft
+  // 2520g (90oz) covers up to 180 sq ft
+  // 10080g (360oz) covers up to 700 sq ft
   let recommendedKit = "KromaEdge 140g / 5oz Kit (covers up to 10 sq ft)";
   let recommendedClear = "Topcoat Clear 180 SET (378g)";
-  let kitSku = "kroma-chrome-140g";
+  let kitSku = "KE-MIRROR-140G";
   
-  if (chromeFlOz > 15 || effectiveSqFt > 30) {
-    recommendedKit = "KromaEdge 1L / 1260g Large Kit (covers up to 90 sq ft)";
-    recommendedClear = "Topcoat Clear 900 SET / 3600 SET";
-    kitSku = "kroma-chrome-1l";
+  if (chromeFlOz > 90 || effectiveSqFt > 180) {
+    recommendedKit = "KromaEdge 10080g / 360oz Ultra Large Kit (covers up to 700 sq ft)";
+    recommendedClear = "Topcoat Clear 3600 SET (x3)";
+    kitSku = "KE-MIRROR-10080G";
+  } else if (chromeFlOz > 45 || effectiveSqFt > 90) {
+    recommendedKit = "KromaEdge 2520g / 90oz Extra Large Kit (covers up to 180 sq ft)";
+    recommendedClear = "Topcoat Clear 3600 SET (7,560g)";
+    kitSku = "KE-MIRROR-2520G";
+  } else if (chromeFlOz > 15 || effectiveSqFt > 30) {
+    recommendedKit = "KromaEdge 1260g / 45oz Large Kit (covers up to 90 sq ft)";
+    recommendedClear = "Topcoat Clear 3600 SET / 900 SET";
+    kitSku = "KE-MIRROR-1260G";
   } else if (chromeFlOz > 5 || effectiveSqFt > 10) {
     recommendedKit = "KromaEdge 420g / 15oz Medium Kit (covers up to 30 sq ft)";
     recommendedClear = "Topcoat Clear 900 SET (1,890g)";
-    kitSku = "kroma-chrome-420g";
+    kitSku = "KE-MIRROR-420G";
   }
 
   return {

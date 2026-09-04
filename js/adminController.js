@@ -17,7 +17,11 @@ export class AdminController {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        if (!parsed.deletedProductIds) {
+          parsed.deletedProductIds = [];
+        }
+        return parsed;
       } catch (e) {
         console.error("Failed to parse admin config, resetting to default", e);
       }
@@ -29,6 +33,7 @@ export class AdminController {
         lastLogin: null
       },
       productOverrides: {},
+      deletedProductIds: [],
       customProductFields: [
         { key: "specificGravity", label: "Specific Gravity (g/mL)", type: "number", default: 1.0 },
         { key: "recommendedNozzle", label: "Recommended Nozzle (mm)", type: "text", default: "0.3mm - 0.5mm" },
@@ -39,30 +44,23 @@ export class AdminController {
       formulas: JSON.parse(JSON.stringify(KROMA_EDGE_CATALOG.mixingSystems)),
       preorders: JSON.parse(JSON.stringify(PREORDER_PACKAGES)),
       printer: {
-        model: 'Citizen CL-S621 / CL-E300',
-        dpi: 203,
-        labelWidthMm: 100,
-        labelHeightMm: 150,
+        model: 'Standard Inkjet Printer (A4 Combined Shipping Sheet)',
+        dpi: 300,
+        paperSize: 'A4 Portrait',
+        labelWidthMm: 194,
+        labelHeightMm: 275,
         enableGhsHazard: true,
-        hazmatCode: 'UN1263 CLASS 3 FLAMMABLE LIQUID',
-        tsplTemplate: `SIZE 4,6
-GAP 0.12,0
-DIRECTION 1
-CLS
-BOX 20,20,780,1180,4
-TEXT 40,40,"3",0,1,1,"COAST AIRBRUSH EUROPE - MIX LAB"
-TEXT 40,80,"2",0,1,1,"BATCH: {BATCH_ID}  |  ORDER: {ORDER_ID}"
-TEXT 40,120,"2",0,1,1,"SYSTEM: {SYSTEM_NAME}"
-BARCODE 40,170,"128",80,1,0,2,4,"{SKU}-{BATCH_ID}"
-TEXT 40,280,"2",0,1,1,"{COMPONENTS_BREAKDOWN}"
-TEXT 40,1050,"2",0,1,1,"{HAZMAT_NOTICE}"
-PRINT 1,1`
+        hazmatCode: 'UN1263 CLASS 3 FLAMMABLE LIQUID (ADR LQ)',
+        format: 'A4_COMBINED_INKJET'
       },
       hazmat: {
+        preferredUkCarrier: 'APC Overnight (Depot 128)',
         maxInnerVolumeMl: 5000,
         maxOuterGrossKg: 30,
-        ukSurchargeEur: 8.50,
-        euMainlandSurchargeEur: 12.00,
+        ukBaseFreightGbp: 7.95,
+        ukFreeDeliveryThresholdGbp: 150.00,
+        lqHazardSurchargeGbp: 1.25,
+        fuelSurchargePercent: 9.5,
         nonHazmatExemptionActive: true
       },
       aiAgents: {
@@ -268,11 +266,133 @@ PRINT 1,1`
     return this.config.productOverrides[productId];
   }
 
+  saveProductOverridesBulk(overridesMap) {
+    if (!this.config.productOverrides) {
+      this.config.productOverrides = {};
+    }
+    const timestamp = new Date().toISOString();
+    for (const [productId, fields] of Object.entries(overridesMap)) {
+      this.config.productOverrides[productId] = {
+        ...(this.config.productOverrides[productId] || {}),
+        ...fields,
+        updatedAt: timestamp
+      };
+    }
+    this.saveConfig();
+    return this.config.productOverrides;
+  }
+
   deleteProductOverride(productId) {
     if (this.config.productOverrides && this.config.productOverrides[productId]) {
       delete this.config.productOverrides[productId];
       this.saveConfig();
     }
+  }
+
+  saveProductMatrix(productId, matrixData) {
+    if (!this.config.productOverrides) {
+      this.config.productOverrides = {};
+    }
+    const current = this.config.productOverrides[productId] || {};
+    this.config.productOverrides[productId] = {
+      ...current,
+      variantMatrix: matrixData,
+      hasOptions: Boolean(matrixData && matrixData.variants && matrixData.variants.length > 0),
+      updatedAt: new Date().toISOString()
+    };
+    this.saveConfig();
+    return this.config.productOverrides[productId];
+  }
+
+  deleteProductMatrix(productId) {
+    if (this.config.productOverrides && this.config.productOverrides[productId]) {
+      delete this.config.productOverrides[productId].variantMatrix;
+      this.saveConfig();
+    }
+  }
+
+  deleteProduct(productId, productSnapshot = null) {
+    if (!this.config.deletedProductIds) {
+      this.config.deletedProductIds = [];
+    }
+    if (!this.config.deletedProductRecords) {
+      this.config.deletedProductRecords = {};
+    }
+    if (!this.config.deletedProductIds.includes(productId)) {
+      this.config.deletedProductIds.push(productId);
+    }
+    if (productSnapshot) {
+      this.config.deletedProductRecords[productId] = {
+        ...productSnapshot,
+        deletedAt: new Date().toISOString()
+      };
+    }
+    if (this.config.productOverrides && this.config.productOverrides[productId]) {
+      delete this.config.productOverrides[productId];
+    }
+    this.saveConfig();
+    return this.config.deletedProductIds;
+  }
+
+  deleteProductsBulk(items) {
+    if (!this.config.deletedProductIds) {
+      this.config.deletedProductIds = [];
+    }
+    if (!this.config.deletedProductRecords) {
+      this.config.deletedProductRecords = {};
+    }
+    items.forEach(item => {
+      const id = typeof item === 'string' ? item : item.id;
+      const snapshot = typeof item === 'object' ? item : null;
+      if (!this.config.deletedProductIds.includes(id)) {
+        this.config.deletedProductIds.push(id);
+      }
+      if (snapshot) {
+        this.config.deletedProductRecords[id] = {
+          ...snapshot,
+          deletedAt: new Date().toISOString()
+        };
+      }
+      if (this.config.productOverrides && this.config.productOverrides[id]) {
+        delete this.config.productOverrides[id];
+      }
+    });
+    this.saveConfig();
+    return this.config.deletedProductIds;
+  }
+
+  restoreProduct(productId) {
+    let restoredRecord = null;
+    if (this.config.deletedProductIds) {
+      this.config.deletedProductIds = this.config.deletedProductIds.filter(id => id !== productId);
+    }
+    if (this.config.deletedProductRecords && this.config.deletedProductRecords[productId]) {
+      restoredRecord = { ...this.config.deletedProductRecords[productId] };
+      delete this.config.deletedProductRecords[productId];
+    }
+    this.saveConfig();
+    return restoredRecord;
+  }
+
+  restoreAllDeletedProducts() {
+    const records = Object.values(this.config.deletedProductRecords || {});
+    this.config.deletedProductIds = [];
+    this.config.deletedProductRecords = {};
+    this.saveConfig();
+    return records;
+  }
+
+  getDeletedProductIds() {
+    return this.config.deletedProductIds || [];
+  }
+
+  getDeletedProductRecords() {
+    return this.config.deletedProductRecords || {};
+  }
+
+  resetAllProductOverrides() {
+    this.config.productOverrides = {};
+    this.saveConfig();
   }
 
   saveCustomField(fieldDef) {
@@ -866,6 +986,69 @@ PRINT 1,1`;
       this.config.emailHub.dispatchLogs = [];
       this.saveConfig();
     }
+  }
+
+  // FX Volatility & Margin Guard Management
+  saveFxSettings(settings = {}) {
+    if (!this.config.fx) {
+      this.config.fx = {};
+    }
+    this.config.fx = {
+      ...this.config.fx,
+      ...settings,
+      updatedAt: new Date().toISOString()
+    };
+    this.saveConfig();
+
+    if (this.app?.euLocalization?.fxEngine) {
+      this.app.euLocalization.fxEngine.updateConfig(settings);
+    }
+    return this.config.fx;
+  }
+
+  reanchorFxBaseline(options = {}) {
+    if (!this.app?.euLocalization?.fxEngine) {
+      return { success: false, message: "FX Engine not initialized" };
+    }
+    const res = this.app.euLocalization.fxEngine.reanchorBaseline(options);
+    this.saveFxSettings({
+      baselineRate: res.newBaseline,
+      bufferPercent: res.bufferPercent,
+      roundingMode: res.roundingMode
+    });
+    return res;
+  }
+
+  batchRepriceCatalogFromGbp(options = {}) {
+    if (!this.app?.euLocalization?.fxEngine) {
+      return { success: 0 };
+    }
+    const fx = this.app.euLocalization.fxEngine;
+    const products = this.app.getEffectiveProducts ? this.app.getEffectiveProducts() : [];
+    const bulkMap = {};
+    let count = 0;
+
+    products.forEach(p => {
+      const gbpBase = parseFloat(p.priceGbp) || parseFloat(p.priceRrpExVat) || 0;
+      if (gbpBase > 0) {
+        const newEur = fx.calculateEurPrice(gbpBase, options);
+        bulkMap[p.id] = { priceEur: newEur };
+        // Update in-memory runtime catalog as well
+        p.priceEur = newEur;
+        count++;
+      }
+    });
+
+    if (Object.keys(bulkMap).length > 0) {
+      this.saveProductOverridesBulk(bulkMap);
+    }
+
+    return {
+      success: true,
+      count,
+      rateUsed: options.rate || fx.getEffectiveRate(),
+      bufferUsed: options.bufferPercent !== undefined ? options.bufferPercent : fx.config.bufferPercent
+    };
   }
 
   resetToFactoryDefaults() {

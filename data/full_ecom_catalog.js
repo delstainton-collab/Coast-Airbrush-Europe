@@ -5,17 +5,19 @@ export const ECOM_CATALOG = [
     "category": "Mirror Chrome Systems",
     "name": "Kroma Edge Self-Organizing Mirror Chrome System",
     "sku": "KE-MIRROR-SYS",
-    "priceGbp": 149.95,
-    "priceEur": 175.44,
-    "inStock": true,
-    "isPreOrder": false,
-    "badge": "KROMA SIGNATURE",
-    "image": "Images/kromaedge/kroma-helmet-mirror.jpg",
+    "priceGbp": 260.2,
+    "priceEur": 306.12,
+    "inStock": false,
+    "isPreOrder": true,
+    "badge": "BATCH 1 PRE-ORDER",
+    "image": "Images/Promo Images/Cleaned Skull Image.jpeg",
     "description": "The world's first self-organizing 2K optical coating that delivers a flawless, non-clouding mirror finish across any industry. Chemically bonds and aligns metallic particles to lock in true mirror reflection over plastics, wood, 3D resin, aluminum, and steel without requiring a gloss black groundcoat. Mix ratio 5:5:2:2 (Binder : Reducer : Hardener : Mirror Seeds).",
     "sizes": [
-      "Small Kit (140g)",
-      "Medium Kit (420g)",
-      "Large Kit (1260g)"
+      "Small Kit (140g / 5 oz)",
+      "Medium Kit (420g / 15 oz)",
+      "Large Kit (1260g / 45 oz)",
+      "Extra Large Kit (2520g / 90 oz)",
+      "Ultra Large Kit (10080g / 360 oz)"
     ],
     "packSizes": [
       "Complete 4-Part Kit"
@@ -24,20 +26,114 @@ export const ECOM_CATALOG = [
     "hasFullMatrix": false,
     "packPriceMatrix": [
       {
-        "packSize": "Small Kit (140g)",
-        "priceGbp": 149.95,
-        "priceEur": 175.44
+        "packSize": "Small Kit (140g / 5 oz)",
+        "stockCode": "KE-MIRROR-140G",
+        "coverage": "7–10 sq ft (0.5 m²)",
+        "priceGbp": 260.2,
+        "priceEur": 306.12,
+        "priceRetailGbp": 260.2,
+        "priceRetailEur": 306.12,
+        "priceRrpIncVat": 312.24,
+        "sku": "KE-MIRROR-140G"
       },
       {
-        "packSize": "Medium Kit (420g)",
-        "priceGbp": 349.95,
-        "priceEur": 409.44
+        "packSize": "Medium Kit (420g / 15 oz)",
+        "stockCode": "KE-MIRROR-420G",
+        "coverage": "22–30 sq ft (1.5 m²)",
+        "priceGbp": 709.63,
+        "priceEur": 834.86,
+        "priceRetailGbp": 709.63,
+        "priceRetailEur": 834.86,
+        "priceRrpIncVat": 851.56,
+        "sku": "KE-MIRROR-420G"
       },
       {
-        "packSize": "Large Kit (1260g)",
-        "priceGbp": 899.95,
-        "priceEur": 1052.94
+        "packSize": "Large Kit (1260g / 45 oz)",
+        "stockCode": "KE-MIRROR-1260G",
+        "coverage": "68–90 sq ft (4.0 m²)",
+        "priceGbp": 1596.67,
+        "priceEur": 1878.44,
+        "priceRetailGbp": 1596.67,
+        "priceRetailEur": 1878.44,
+        "priceRrpIncVat": 1916,
+        "sku": "KE-MIRROR-1260G"
+      },
+      {
+        "packSize": "Extra Large Kit (2520g / 90 oz)",
+        "stockCode": "KE-MIRROR-2520G",
+        "coverage": "135–180 sq ft (8.0 m²)",
+        "priceGbp": 2874,
+        "priceEur": 3381.18,
+        "priceRetailGbp": 2874,
+        "priceRetailEur": 3381.18,
+        "priceRrpIncVat": 3448.8,
+        "sku": "KE-MIRROR-2520G"
+      },
+      {
+        "packSize": "Ultra Large Kit (10080g / 360 oz)",
+        "stockCode": "KE-MIRROR-10080G",
+        "coverage": "500–700 sq ft (32.0 m²)",
+        "priceGbp": 10127.04,
+        "priceEur": 11914.16,
+        "priceRetailGbp": 10127.04,
+        "priceRetailEur": 11914.16,
+        "priceRrpIncVat": 12152.45,
+        "sku": "KE-MIRROR-10080G"
       }
+    ],
+    "images": [
+      "Images/Promo Images/Cleaned Skull Image.jpeg",
+      "Images/kromaedge/kroma-helmet-mirror.jpg",
+      "Images/kromaedge/kroma-skull-mirror.jpg",
+      "Images/kromaedge/kroma-silver-surfer-wave.jpg"
+    ],
+    "videos": [
+      {
+        "platform": "youtube",
+        "title": "Perfect Chrome in Minutes: Spray Chrome Mirror Finish with 2K Clear (DIY Method)",
+        "creator": "Hype Universal",
+        "url": "https://www.youtube.com/watch?v=ag3aDYxdKQ0",
+        "embedId": "ag3aDYxdKQ0",
+        "duration": "7:15",
+        "badge": "Chrome Tutorial"
+      },
+      {
+        "platform": "youtube",
+        "title": "Silver Chrome Spray with Topcoat Demonstration",
+        "creator": "Eureka Auto",
+        "url": "https://www.youtube.com/watch?v=4NAz3k5N6rk",
+        "embedId": "4NAz3k5N6rk",
+        "duration": "5:40",
+        "badge": "Application Guide"
+      },
+      {
+        "platform": "youtube",
+        "title": "Armored Komodo ChromaFlair Pigment - Review & Tutorial",
+        "creator": "Custom Paint Lab",
+        "url": "https://www.youtube.com/watch?v=a5ssSjMgnRE",
+        "embedId": "a5ssSjMgnRE",
+        "duration": "8:50",
+        "badge": "Pigment Review"
+      }
+    ],
+    "summary": "The world's first self-organizing 2K optical mirror coating. Delivers a flawless, true chrome reflection over plastics, wood, 3D resin, aluminium, and steel without requiring a black basecoat or flame treatment.",
+    "benefits": [
+      "Zero Gray Clouding: Patented microscopic metallic alignment particles lay completely flat to reflect 98%+ visible light like real chrome plating.",
+      "No Black Basecoat Required: Bonds chemically and optically to a wide variety of primed or cleared substrates.",
+      "Easy 1-Wet-Coat Application: Sprays at 20–25 PSI with standard airbrushes (0.3–0.5mm) or mini spray guns (0.8–1.2mm).",
+      "UV Stable & Non-Oxidizing: Resistant to yellowing and peeling when paired with Kroma Dedicated Clear."
+    ],
+    "howItWorks": [
+      "Step 1 - Smooth Base: Ensure substrate is completely smooth and cured (gloss finish).",
+      "Step 2 - Apply Kroma Chrome: Spray 1 continuous, wet, uniform coat of mixed Kroma Chrome at 20–25 PSI. Watch the mirror self-organize as carrier flashes.",
+      "Step 3 - Lock With Dedicated Clear: After 30 minutes flash, apply Kroma Edge Dedicated Topcoat Clear to seal without dulling."
+    ],
+    "inTheBox": [
+      "Kroma Mirror Chrome Base",
+      "Kroma Dedicated Reducer",
+      "Kroma Optical Hardener",
+      "Kroma Mirror Seeds Alignment Activator",
+      "Complete Mixing & Application Guide"
     ]
   },
   {
@@ -46,11 +142,11 @@ export const ECOM_CATALOG = [
     "category": "Dedicated Clearcoats",
     "name": "Kroma Edge Dedicated Topcoat Clear System",
     "sku": "KE-TOPCOAT-CLR",
-    "priceGbp": 89.95,
-    "priceEur": 105.24,
-    "inStock": true,
-    "isPreOrder": false,
-    "badge": "ULTRA HIGH CLARITY",
+    "priceGbp": 62.09,
+    "priceEur": 73.05,
+    "inStock": false,
+    "isPreOrder": true,
+    "badge": "BATCH 1 PRE-ORDER",
     "image": "Images/kromaedge/kroma-silver-surfer-front.jpg",
     "description": "Specifically engineered topcoat clear for Kroma Edge Chrome systems with ultra-low turbidity and maximum optical clarity. Formulated to prevent clouding, lifting, or solvent reactivation of the aligned metallic mirror layer. Mix ratio 10:1 (Clear Base : Hardener) + 70-100% Dedicated Thinner.",
     "sizes": [
@@ -66,19 +162,69 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "Topcoat Clear 180 SET (1.5 m²)",
-        "priceGbp": 89.95,
-        "priceEur": 105.24
+        "priceGbp": 62.09,
+        "priceEur": 73.05,
+        "priceRetailGbp": 62.09,
+        "priceRetailEur": 73.05,
+        "priceRrpIncVat": 74.51
       },
       {
         "packSize": "Topcoat Clear 900 SET (6.0 m²)",
-        "priceGbp": 249.95,
-        "priceEur": 292.44
+        "priceGbp": 274.98,
+        "priceEur": 323.51,
+        "priceRetailGbp": 274.98,
+        "priceRetailEur": 323.51,
+        "priceRrpIncVat": 329.98
       },
       {
         "packSize": "Topcoat Clear 3600 SET (24.0 m²)",
-        "priceGbp": 699.95,
-        "priceEur": 818.94
+        "priceGbp": 995,
+        "priceEur": 1170.59,
+        "priceRetailGbp": 995,
+        "priceRetailEur": 1170.59,
+        "priceRrpIncVat": 1194
       }
+    ],
+    "images": [
+      "Images/kromaedge/kroma-silver-surfer-front.jpg",
+      "Images/kromaedge/kroma-silver-surfer-back.jpg",
+      "Images/kromaedge/kroma-silver-surfer-wave.jpg"
+    ],
+    "videos": [
+      {
+        "platform": "youtube",
+        "title": "Silver Chrome Spray with Topcoat Demonstration",
+        "creator": "Eureka Auto",
+        "url": "https://www.youtube.com/watch?v=4NAz3k5N6rk",
+        "embedId": "4NAz3k5N6rk",
+        "duration": "5:40",
+        "badge": "Topcoat Guide"
+      },
+      {
+        "platform": "youtube",
+        "title": "Perfect Chrome in Minutes: Spray Chrome Mirror Finish with 2K Clear (DIY Method)",
+        "creator": "Hype Universal",
+        "url": "https://www.youtube.com/watch?v=ag3aDYxdKQ0",
+        "embedId": "ag3aDYxdKQ0",
+        "duration": "7:15",
+        "badge": "Chrome Tutorial"
+      }
+    ],
+    "summary": "Ultra-low turbidity 2K topcoat clear specifically formulated for Kroma Edge Mirror Chrome. Seals and protects mirror finishes with zero clouding, lifting, or solvent reactivation.",
+    "benefits": [
+      "100% Non-Clouding Optical Clarity: Specially balanced solvent formulation will not attack or rearrange the mirror chrome metallic flake layer.",
+      "High Gloss & Scratch Resistance: Hardens to an automotive-grade 2K protective shell resistant to weathering and wash chemicals.",
+      "Versatile Mix Ratio: 10:1 (Base : Hardener) + 70–100% Dedicated Thinner for glass-like flow out."
+    ],
+    "howItWorks": [
+      "Step 1 - Flash Off Chrome: Allow Kroma Chrome coat to dry for minimum 30 minutes at 20°C (68°F).",
+      "Step 2 - Tack Coat: Apply one very light dusting / tack coat of Dedicated Clear at 18–22 PSI. Allow 5 minutes flash.",
+      "Step 3 - Wet Gloss Coat: Apply one full wet coat to achieve maximum gloss depth and UV protection."
+    ],
+    "inTheBox": [
+      "Kroma Dedicated Topcoat Clear Base",
+      "Kroma Clear Hardener",
+      "Kroma High-Flow Optical Thinner"
     ]
   },
   {
@@ -86,18 +232,84 @@ export const ECOM_CATALOG = [
     "brand": "Flake King",
     "category": "Dry Metal Flake Guns",
     "name": "Flake King Pro Series Kit",
-    "sku": "5060733580007-1",
-    "priceGbp": 249.99,
-    "priceEur": 292.49,
+    "sku": "FOMPRO",
+    "priceGbp": 208.33,
+    "priceEur": 243.75,
     "inStock": true,
     "isPreOrder": false,
     "badge": "PRO GUN SYSTEM",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ProSeriesKit2.jpg?fit=600%2C600&ssl=1",
-    "description": "The Pro Series Kit encompasses all three dry metal flake guns.\nThe kit is supplied with all the components that will enable you to assemble any of the 3 following guns – 500 airbrush (supplied with an Iwata Eclipse airbrush connector) , 550 mini gun and our very popular 1000 gun.\nAll components come in a cool rugged aluminium flight case as well as the aluminium components being anodised now in our flagship Red (photo’s to follow) .\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
+    "description": "The Flake King Pro Series Kit is the ultimate dry metal flake solution for the professional custom painter. Housed in a rugged aluminium flight case, the kit includes all components required to assemble the Flake King 500 airbrush attachment, 550 mini gun, and 1000 full-size spray gun. Machined from aircraft-grade billet aluminium with red anodising.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
-    "hasFullMatrix": true
+    "hasFullMatrix": true,
+    "stockCode": "FOMPRO",
+    "barcode": "5060733580007",
+    "priceRetailGbp": 208.33,
+    "priceRetailEur": 243.75,
+    "priceRrpExVat": 208.33,
+    "priceRrpIncVat": 249.99,
+    "images": [
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ProSeriesKit2.jpg?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ProSeries1.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ProSeries2.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ProSeries3.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ProSeries4.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ProSeries5.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ProSeries6.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ProSeries7.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ProSeries8.png?fit=600%2C600&ssl=1"
+    ],
+    "videos": [
+      {
+        "platform": "youtube",
+        "title": "FLAKE KING PRO SET FULL REVIEW with bonus FLAKE & LACE LOWRIDER STYLE",
+        "creator": "Dred fx Custom Paint",
+        "url": "https://www.youtube.com/watch?v=pYKBnNwXiPs",
+        "embedId": "pYKBnNwXiPs",
+        "duration": "14:35",
+        "badge": "Pro Review"
+      },
+      {
+        "platform": "youtube",
+        "title": "How To Spray Metal Flake Using The Flake King 1000 Dry Metal Flake Spray Gun",
+        "creator": "Tony's Refinishing",
+        "url": "https://www.youtube.com/watch?v=YmE-kCQLjvM",
+        "embedId": "YmE-kCQLjvM",
+        "duration": "8:42",
+        "badge": "Master Tutorial"
+      },
+      {
+        "platform": "youtube",
+        "title": "How to metal flake with Flake King Guns.",
+        "creator": "SM Designs Airbrush",
+        "url": "https://www.youtube.com/watch?v=13SQPoGvjk8",
+        "embedId": "13SQPoGvjk8",
+        "duration": "12:15",
+        "badge": "Pro Demonstration"
+      }
+    ],
+    "summary": "The ultimate master custom painter system. Encompasses all three Flake King dry flake guns (500 Airbrush Attachment, 550 Mini Gun, and 1000 Full-Size Gun) in a heavy-duty CNC-cut aluminium flight case.",
+    "benefits": [
+      "All 3 Gun Configurations in 1 Case: Seamlessly switch between micro detail airbrush work (FK-500), mid-size parts (FK-550 Mini), and large automotive panels (FK-1000).",
+      "Signature Red Anodised CNC Billet: Precision machined and anodised in Flake King's signature high-durability red finish.",
+      "Maximum Workshop Versatility: Everything needed to tackle projects from guitars and helmets up to complete cars, boats, and large architectural installations.",
+      "Save Over £45 vs Buying Individually: Includes complete nozzle sets, adaptors, air fittings, and sample jars."
+    ],
+    "howItWorks": [
+      "Step 1 - Select Configuration: Choose the FK-500 for airbrush detail, FK-550 Mini for medium parts, or FK-1000 for full panels.",
+      "Step 2 - Apply Over Wet Clear: Spray your target area with wet intercoat clear or binder, then spray flake dry at 10–15 PSI.",
+      "Step 3 - Reclaim & Clearcoat: Blow off unbonded dry flake for reuse, then seal with 2K clearcoat."
+    ],
+    "inTheBox": [
+      "Flake King 1000 Pro Gun Body with In-Line Valve & 3 Dispersion Nozzles",
+      "Flake King 550 Mini Gun with 1/4\" to 1/8\" Airline Adaptor",
+      "Flake King 500 Airbrush Adaptor Body (Iwata Eclipse Connector Included)",
+      "2× Articulated Self-Levelling Barrels & Mounting Accessories",
+      "3× Flake Jars (30g & 50g)",
+      "Heavy-Duty Lockable Aluminium Flight Case with CNC Foam Inlay"
+    ]
   },
   {
     "id": "fk-2610",
@@ -106,8 +318,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Show Krome Metal Flake",
     "sku": "show-krome-metal-flake-1",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -130,18 +342,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 119.99,
-        "priceEur": 140.39
+        "priceGbp": 314.4,
+        "priceEur": 367.85,
+        "priceRetailGbp": 314.4,
+        "priceRetailEur": 367.85,
+        "priceRrpExVat": 314.4,
+        "priceRrpIncVat": 377.28
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 33.63,
+        "priceEur": 39.35,
+        "priceRetailGbp": 33.63,
+        "priceRetailEur": 39.35,
+        "priceRrpExVat": 33.63,
+        "priceRrpIncVat": 40.35
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 11.08,
+        "priceEur": 12.96,
+        "priceRetailGbp": 11.08,
+        "priceRetailEur": 12.96,
+        "priceRrpExVat": 11.08,
+        "priceRrpIncVat": 13.3
       }
     ],
     "hasPackPriceMatrix": true,
@@ -151,162 +375,316 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "ultra-small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 5.99,
-        "priceEur": 7.01
+        "priceGbp": 11.08,
+        "priceEur": 12.96,
+        "stockCode": "FKS015030",
+        "barcode": "5060733580373",
+        "priceRetailGbp": 11.08,
+        "priceRetailEur": 12.96,
+        "priceRrpExVat": 11.08,
+        "priceRrpIncVat": 13.3,
+        "sku": "FKS015030"
       },
       {
         "flakeSize": "Ultra Small .002\"",
         "rawFlakeSize": "ultra-small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 39.99,
-        "priceEur": 46.79
+        "priceGbp": 33.63,
+        "priceEur": 39.35,
+        "stockCode": "FKS0150100",
+        "barcode": "5060733580380",
+        "priceRetailGbp": 33.63,
+        "priceRetailEur": 39.35,
+        "priceRrpExVat": 33.63,
+        "priceRrpIncVat": 40.35,
+        "sku": "FKS0150100"
       },
       {
         "flakeSize": "Ultra Small .002\"",
         "rawFlakeSize": "ultra-small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 359.99,
-        "priceEur": 421.19
+        "priceGbp": 314.4,
+        "priceEur": 367.85,
+        "stockCode": "FKS01501000",
+        "barcode": "5060733580397",
+        "priceRetailGbp": 314.4,
+        "priceRetailEur": 367.85,
+        "priceRrpExVat": 314.4,
+        "priceRrpIncVat": 377.28,
+        "sku": "FKS01501000"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "stockCode": "FKS0110030",
+        "barcode": "5060733580403",
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55,
+        "sku": "FKS0110030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 16.99,
-        "priceEur": 19.88
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "stockCode": "FKS01100100",
+        "barcode": "5060733580410",
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85,
+        "sku": "FKS01100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 159.99,
-        "priceEur": 187.19
+        "priceGbp": 126.9,
+        "priceEur": 148.47,
+        "stockCode": "FKS011001000",
+        "barcode": "5060733580427",
+        "priceRetailGbp": 126.9,
+        "priceRetailEur": 148.47,
+        "priceRrpExVat": 126.9,
+        "priceRrpIncVat": 152.28,
+        "sku": "FKS011001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0120030",
+        "barcode": "5060733580434",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0120030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS01200100",
+        "barcode": "5060733580441",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS01200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 119.99,
-        "priceEur": 140.39
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS012001000",
+        "barcode": "5060733580458",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS012001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0137530",
+        "barcode": "5060733580465",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0137530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS01375100",
+        "barcode": "5060733580472",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS01375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 119.99,
-        "priceEur": 140.39
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS013751000",
+        "barcode": "5060733580489",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS013751000"
       },
       {
         "flakeSize": "XL .040\"",
         "rawFlakeSize": "xlarge",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0162530",
+        "barcode": "5060733580496",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0162530"
       },
       {
         "flakeSize": "XL .040\"",
         "rawFlakeSize": "xlarge",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS01625100",
+        "barcode": "5060733580502",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS01625100"
       },
       {
         "flakeSize": "XL .040\"",
         "rawFlakeSize": "xlarge",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 119.99,
-        "priceEur": 140.39
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS016251000",
+        "barcode": "5060733580519",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS016251000"
       },
       {
         "flakeSize": "DXL .060\"",
         "rawFlakeSize": "dxl",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS01101530",
+        "barcode": "5060733580526",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS01101530"
       },
       {
         "flakeSize": "DXL .060\"",
         "rawFlakeSize": "dxl",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS011015100",
+        "barcode": "5060733580533",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS011015100"
       },
       {
         "flakeSize": "DXL .060\"",
         "rawFlakeSize": "dxl",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 119.99,
-        "priceEur": 140.39
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS0110151000",
+        "barcode": "5060733580540",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS0110151000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2610.webp"
+    "imageWebp": "assets/images/flakes/fk-2610.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2610.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ],
+    "videos": [
+      {
+        "platform": "youtube",
+        "title": "Testing the Flake King 1000 and Spraying Holographic Flake",
+        "creator": "KADxM",
+        "url": "https://www.youtube.com/watch?v=GZlRF6icaR8",
+        "embedId": "GZlRF6icaR8",
+        "duration": "6:30",
+        "badge": "Application Demo"
+      },
+      {
+        "platform": "youtube",
+        "title": "How To Spray Metal Flake Using The Flake King 1000 Dry Metal Flake Spray Gun",
+        "creator": "Tony's Refinishing",
+        "url": "https://www.youtube.com/watch?v=YmE-kCQLjvM",
+        "embedId": "YmE-kCQLjvM",
+        "duration": "8:42",
+        "badge": "Master Class"
+      }
+    ]
   },
   {
     "id": "fk-2603",
     "brand": "Flake King",
     "category": "Dry Metal Flake Guns",
     "name": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
-    "sku": "flake-king-500-dry-metal-flake-airbrush-attachment-1",
-    "priceGbp": 106.65,
-    "priceEur": 124.78,
+    "sku": "FOM500",
+    "priceGbp": 83.33,
+    "priceEur": 97.5,
     "inStock": true,
     "isPreOrder": false,
     "badge": "PRO GUN SYSTEM",
-    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/PaascheTalonAdaptorA.gif?fit=600%2C600&ssl=1",
-    "description": "Ideal for small jobs up to the size of a motorcycle helmet, skateboards, simply push fits directly on the front of the airbrush.\nRuns off an airbrush compressor\nRequires an adaptor specific to a model of airbrush sold separately.\nThe available adaptors are: Iwata Eclipse…\nThe Flake King 500 Airbrush Attachment is available with 5 different airbrush connectors. your purchase of the Flake King 500 includes one connector of your choice that fit the following airbrushes..\n\nIwata BCS Eclipse, HPC\nIwata BCR Revolution\nIwata Neo\nBadger 105, 3155, 360\nHarder & Steenbeck Evolution\nPaasche Talon\n\nAll connectors are also available to purchase individually.\nTo fit an adaptor loosen the screw inside the lid, push the adaptor in and tighten the screw. Some adaptors are a really tight fit you can overcome this by simply licking your little finger and running it around the o’ring making it a lot easier to push on.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
+    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5001.png?fit=600%2C600&ssl=1",
+    "description": "The Flake King 500 transforms your existing airbrush into a professional dry flake gun. Ideal for small-to-medium custom projects including helmets, guitars, skateboards, and model kits. Powered entirely by your airbrush compressor at 10–15 PSI, it sprays dry flake into wet binder with zero contamination to your airbrush needle or nozzle.",
     "sizes": [
       "Iwata Eclipse BCS/HPC",
       "Iwata Revolution BCR",
@@ -317,34 +695,173 @@ export const ECOM_CATALOG = [
     ],
     "packSizes": [],
     "hasOptions": true,
-    "hasFullMatrix": true
+    "hasFullMatrix": true,
+    "stockCode": "FOM500",
+    "barcode": "5060733580076",
+    "priceRetailGbp": 83.33,
+    "priceRetailEur": 97.5,
+    "priceRrpExVat": 83.33,
+    "priceRrpIncVat": 99.99,
+    "images": [
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5001.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5002.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5003.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5004.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5005.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5006.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5007.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5008.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM500A.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM500B.png?fit=600%2C600&ssl=1"
+    ],
+    "videos": [
+      {
+        "platform": "youtube",
+        "title": "Apply Dry Flake with Your Iwata NEO Airbrush using Flake King 500",
+        "creator": "SprayGunner Com",
+        "url": "https://www.youtube.com/watch?v=exKU91XDlek",
+        "embedId": "exKU91XDlek",
+        "duration": "4:18",
+        "badge": "Airbrush Tutorial"
+      },
+      {
+        "platform": "youtube",
+        "title": "First Use Of My Flake King 500 Airbrush Adaptor",
+        "creator": "Ttxela Adventures!",
+        "url": "https://www.youtube.com/watch?v=cTMq71sZ7LE",
+        "embedId": "cTMq71sZ7LE",
+        "duration": "7:22",
+        "badge": "Live Test"
+      },
+      {
+        "platform": "youtube",
+        "title": "I Bought A Flake King 500 Airbrush Adaptor - Full Overview",
+        "creator": "Ttxela Adventures!",
+        "url": "https://www.youtube.com/watch?v=45fGgDbDkSg",
+        "embedId": "45fGgDbDkSg",
+        "duration": "5:40",
+        "badge": "Product Review"
+      }
+    ],
+    "summary": "Converts your standard dual-action airbrush into a precision dry flake applicator. Ideal for custom helmets, skateboards, RC bodies, guitars, and fine studio artwork.",
+    "benefits": [
+      "Zero Airbrush Contamination: Never put metallic flake through your fine 0.3mm or 0.5mm airbrush fluid nozzle again. Flake is applied completely dry onto wet intercoat clear.",
+      "Runs On Standard Airbrush Compressors: Requires only 10–15 PSI, making it 100% compatible with compact studio and garage compressors.",
+      "Interchangeable Precision Adaptors: Precision CNC brass adaptors available for Iwata, Badger, Harder & Steenbeck, and Paasche airbrushes.",
+      "Instant Push-Fit Mounting: Slides directly over the air cap with an internal airtight seal. Swap between detail airbrushing and flaking in seconds.",
+      "Direct 30g/50g Jar Mount: Uses standard screw-on Flake King jars for mess-free handling and rapid color switches."
+    ],
+    "howItWorks": [
+      "Step 1 - Prepare Substrate: Spray your artwork and apply a wet coat of airbrush intercoat clear or binder.",
+      "Step 2 - Attach & Spray: Slip the Flake King 500 onto your airbrush nozzle and spray dry flake at 10–15 PSI onto the wet clear.",
+      "Step 3 - Seal: Remove attachment, blow off excess dry flake, and lock down with final clearcoat."
+    ],
+    "inTheBox": [
+      "Flake King 500 Push-Fit Body & Jar Assembly",
+      "1× Airbrush Connector of Your Choice (Iwata, H&S, Badger, or Paasche)",
+      "1× 30g Flake King Jar",
+      "Precision O-Ring Seal Kit & Instruction Manual"
+    ]
   },
   {
     "id": "fk-2602",
     "brand": "Flake King",
     "category": "Dry Metal Flake Guns",
     "name": "Flake King 1000 Dry Metal Flake Gun",
-    "sku": "5060733580014-1",
-    "priceGbp": 129.99,
-    "priceEur": 152.09,
+    "sku": "FOM1000",
+    "priceGbp": 108.33,
+    "priceEur": 126.75,
     "inStock": true,
     "isPreOrder": false,
     "badge": "PRO GUN SYSTEM",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10001.png?fit=600%2C600&ssl=1",
-    "description": "Introducing our latest version of the Flake King 1000 Dry Flake Applicator Gun\nIdeal for any size item that you wish to flake – from bowling balls up to vehicles and even large areas such as walls in your home, restaurant or theme park rides.\nThe ultimate dry flake applicator used by many professional and hobby custom painters worldwide.\nIf you’re in the market for a dry flake applicator that doesn’t just spit flake out randomly then you’ve come to the right place.\nThis gun doesn’t rely on pick up tubes that can cause flake “flurries” it truly agitates the flake and draws it out consistently giving you professional results.\nEvery aspect of this gun is controllable from the air agitation and application pressure to the volume of flake you want to dispense via the in line flake valve. We’ve even fine tuned 3 different sized colour coded nozzles to help you blend larger areas easier.\nWe’ve even given you multiple ways to apply the flake – you can set the barrel to be self levelling or rigid dependent upon your spraying style. In fact the barrel is now removable so you can blow your flake into the clear either from the gun handle or if you prefer you can turn the flake valve off.\nOur flake is supplied in ready to use pots/jars simply screw onto the gun – no messing.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
+    "description": "The Flake King 1000 is the industry-standard dry metal flake applicator gun used by professional custom painters worldwide. Engineered to spray dry flake directly into wet intercoat clear, it eliminates fluid gun contamination, saves up to 70% in clearcoat, and prevents clumping. Features patented Venturi agitation, an in-line metering valve, and 3 color-coded nozzles for total application control.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
-    "hasFullMatrix": true
+    "hasFullMatrix": true,
+    "stockCode": "FOM1000",
+    "barcode": "5060733580014",
+    "priceRetailGbp": 108.33,
+    "priceRetailEur": 126.75,
+    "priceRrpExVat": 108.33,
+    "priceRrpIncVat": 129.99,
+    "images": [
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10001.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10002.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10003.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10004.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10005.png?fit=600%2C600&ssl=1"
+    ],
+    "videos": [
+      {
+        "platform": "youtube",
+        "title": "How To Spray Metal Flake Using The Flake King 1000 Dry Metal Flake Spray Gun",
+        "creator": "Tony's Refinishing",
+        "url": "https://www.youtube.com/watch?v=YmE-kCQLjvM",
+        "embedId": "YmE-kCQLjvM",
+        "duration": "8:42",
+        "badge": "Master Tutorial"
+      },
+      {
+        "platform": "youtube",
+        "title": "How to metal flake with Flake King Guns.",
+        "creator": "SM Designs Airbrush",
+        "url": "https://www.youtube.com/watch?v=13SQPoGvjk8",
+        "embedId": "13SQPoGvjk8",
+        "duration": "12:15",
+        "badge": "Pro Demonstration"
+      },
+      {
+        "platform": "youtube",
+        "title": "Testing the Flake King 1000 and Spraying Holographic Flake",
+        "creator": "KADxM",
+        "url": "https://www.youtube.com/watch?v=GZlRF6icaR8",
+        "embedId": "GZlRF6icaR8",
+        "duration": "6:30",
+        "badge": "Live Test"
+      },
+      {
+        "platform": "youtube",
+        "title": "Flake King 1000 Dry Flake Gun Video Short",
+        "creator": "Flake King",
+        "url": "https://www.youtube.com/watch?v=XlaytQc3RcI",
+        "embedId": "XlaytQc3RcI",
+        "duration": "0:59",
+        "badge": "Official Demo"
+      }
+    ],
+    "summary": "The industry-standard professional dry flake applicator gun. Engineered to spray dry metal flake directly into wet intercoat clear with zero fluid gun contamination, up to 70% clearcoat savings, and zero clumping.",
+    "benefits": [
+      "Zero Gun Contamination: 100% dry flake application. Flake never enters your fluid nozzle, needle, or fluid passages, eliminating hours of gun teardown and cleanup.",
+      "Save Up To 70% Clearcoat & Sanding: Flake lays down completely flat upon impact into wet binder — no heavy bury coats or endless block sanding required.",
+      "Patented Venturi Agitation (10–15 PSI): Internal air agitation continuously fluidizes the flake, drawing it out smoothly with zero spitting or \"flurries\".",
+      "3 Color-Coded Precision Nozzles: Includes fine, medium, and wide dispersion nozzles for effortless blending and panel coverage from motorcycle helmets to full vehicles.",
+      "Dual-Mode Articulated Barrel: Set the barrel to self-levelling or locked rigid depending on spraying angles and contours.",
+      "Direct-to-Jar Threading: Screws directly onto standard 50g & 100g Flake King jars for mess-free, instant color changes."
+    ],
+    "howItWorks": [
+      "Step 1 - Base & Wet Clear: Apply your base color, then spray a wet coat of intercoat clear or binder.",
+      "Step 2 - Apply Dry Flake: While the clear is wet, spray dry flake at 10–15 PSI using the Flake King 1000. Flake instantly locks flat into the wet film.",
+      "Step 3 - Blow Off & Clear: Allow binder to flash, lightly blow off loose excess dry flake (which can be reclaimed!), and seal with 2–3 coats of 2K clearcoat."
+    ],
+    "inTheBox": [
+      "Flake King 1000 Gun Body with In-Line Metering Valve",
+      "3× Color-Coded Precision Dispersion Nozzles (Fine, Medium, Wide)",
+      "Articulated Self-Levelling Barrel Assembly",
+      "1× 50g Flake King Storage Jar",
+      "Standard 1/4\" BSP European Quick-Connect Air Fitting",
+      "Official Flake King Technical User Guide"
+    ]
   },
   {
     "id": "fk-2600",
     "brand": "Flake King",
     "category": "Flake King Gun Accessories",
     "name": "FOM 1000/1050 50g Jar & Lid",
-    "sku": "FK-2600",
-    "priceGbp": 1.49,
-    "priceEur": 1.74,
+    "sku": "FOM50gJarLid",
+    "priceGbp": 1.24,
+    "priceEur": 1.45,
     "inStock": true,
     "isPreOrder": false,
     "badge": "GENUINE ACCESSORY",
@@ -353,16 +870,22 @@ export const ECOM_CATALOG = [
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
-    "hasFullMatrix": true
+    "hasFullMatrix": true,
+    "stockCode": "FOM50gJarLid",
+    "barcode": "5060733583169",
+    "priceRetailGbp": 1.24,
+    "priceRetailEur": 1.45,
+    "priceRrpExVat": 1.24,
+    "priceRrpIncVat": 1.49
   },
   {
     "id": "fk-2598",
     "brand": "Flake King",
     "category": "Flake King Gun Accessories",
     "name": "FOM 500/550 Spare 30g Jar & Lid",
-    "sku": "FK-2598",
-    "priceGbp": 1.32,
-    "priceEur": 1.54,
+    "sku": "FOM500JL",
+    "priceGbp": 1.1,
+    "priceEur": 1.29,
     "inStock": true,
     "isPreOrder": false,
     "badge": "GENUINE ACCESSORY",
@@ -371,16 +894,22 @@ export const ECOM_CATALOG = [
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
-    "hasFullMatrix": true
+    "hasFullMatrix": true,
+    "stockCode": "FOM500JL",
+    "barcode": "5060733580137",
+    "priceRetailGbp": 1.1,
+    "priceRetailEur": 1.29,
+    "priceRrpExVat": 1.1,
+    "priceRrpIncVat": 1.32
   },
   {
     "id": "fk-2542",
     "brand": "Flake King",
     "category": "Dry Metal Flake Guns",
     "name": "Flake O Matic 1000",
-    "sku": "FK-2542",
-    "priceGbp": 11.95,
-    "priceEur": 13.95,
+    "sku": "FOM1000",
+    "priceGbp": 108.33,
+    "priceEur": 126.75,
     "inStock": true,
     "isPreOrder": false,
     "badge": "PRO GUN SYSTEM",
@@ -389,7 +918,13 @@ export const ECOM_CATALOG = [
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
-    "hasFullMatrix": true
+    "hasFullMatrix": true,
+    "stockCode": "FOM1000",
+    "barcode": "5060733580014",
+    "priceRetailGbp": 108.33,
+    "priceRetailEur": 126.75,
+    "priceRrpExVat": 108.33,
+    "priceRrpIncVat": 129.99
   },
   {
     "id": "fk-2524",
@@ -397,9 +932,9 @@ export const ECOM_CATALOG = [
     "category": "Dry Metal Flake (Glitter)",
     "flakeType": "Single Colour",
     "name": "Kromatic Show Krome Metal Flake",
-    "sku": "FK-2524",
-    "priceGbp": 4.99,
-    "priceEur": 5.84,
+    "sku": "kromatic-show-krome-metal-flake",
+    "priceGbp": 6.21,
+    "priceEur": 7.27,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -420,18 +955,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 626.66,
+        "priceEur": 733.19,
+        "priceRetailGbp": 626.66,
+        "priceRetailEur": 733.19,
+        "priceRrpExVat": 626.66,
+        "priceRrpIncVat": 751.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 64.88,
+        "priceEur": 75.91,
+        "priceRetailGbp": 64.88,
+        "priceRetailEur": 75.91,
+        "priceRrpExVat": 64.88,
+        "priceRrpIncVat": 77.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 20.46,
+        "priceEur": 23.94,
+        "priceRetailGbp": 20.46,
+        "priceRetailEur": 23.94,
+        "priceRrpExVat": 20.46,
+        "priceRrpIncVat": 24.55
       }
     ],
     "hasPackPriceMatrix": true,
@@ -441,337 +988,193 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "ultra-small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 69.99,
-        "priceEur": 81.89
+        "priceGbp": 64.88,
+        "priceEur": 75.91,
+        "stockCode": "FKK0150100",
+        "barcode": "5060733582421",
+        "priceRetailGbp": 64.88,
+        "priceRetailEur": 75.91,
+        "priceRrpExVat": 64.88,
+        "priceRrpIncVat": 77.85,
+        "sku": "FKK0150100"
       },
       {
         "flakeSize": "Ultra Small .002\"",
         "rawFlakeSize": "ultra-small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 11.99,
-        "priceEur": 14.03
+        "priceGbp": 20.46,
+        "priceEur": 23.94,
+        "stockCode": "FKK015030",
+        "barcode": "5060733582414",
+        "priceRetailGbp": 20.46,
+        "priceRetailEur": 23.94,
+        "priceRrpExVat": 20.46,
+        "priceRrpIncVat": 24.55,
+        "sku": "FKK015030"
       },
       {
         "flakeSize": "Ultra Small .002\"",
         "rawFlakeSize": "ultra-small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 659.99,
-        "priceEur": 772.19
+        "priceGbp": 626.66,
+        "priceEur": 733.19,
+        "stockCode": "FKK01501000",
+        "barcode": "5060733582438",
+        "priceRetailGbp": 626.66,
+        "priceRetailEur": 733.19,
+        "priceRrpExVat": 626.66,
+        "priceRrpIncVat": 751.99,
+        "sku": "FKK01501000"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 6.99,
-        "priceEur": 8.18
+        "priceGbp": 9.99,
+        "priceEur": 11.69,
+        "stockCode": "FKK0110030",
+        "barcode": "5060733582445",
+        "priceRetailGbp": 9.99,
+        "priceRetailEur": 11.69,
+        "priceRrpExVat": 9.99,
+        "priceRrpIncVat": 11.99,
+        "sku": "FKK0110030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 35.99,
-        "priceEur": 42.11
+        "priceGbp": 29.99,
+        "priceEur": 35.09,
+        "stockCode": "FKK01100100",
+        "barcode": "5060733582452",
+        "priceRetailGbp": 29.99,
+        "priceRetailEur": 35.09,
+        "priceRrpExVat": 29.99,
+        "priceRrpIncVat": 35.99,
+        "sku": "FKK01100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 349.99,
-        "priceEur": 409.49
+        "priceGbp": 291.66,
+        "priceEur": 341.24,
+        "stockCode": "FKK011001000",
+        "barcode": "5060733582469",
+        "priceRetailGbp": 291.66,
+        "priceRetailEur": 341.24,
+        "priceRrpExVat": 291.66,
+        "priceRrpIncVat": 349.99,
+        "sku": "FKK011001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK0120030",
+        "barcode": "5060733582476",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK0120030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK01200100",
+        "barcode": "5060733582483",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK01200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK012001000",
+        "barcode": "5060733582490",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK012001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK0137530",
+        "barcode": "5060733582506",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK0137530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK01375100",
+        "barcode": "5060733582513",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK01375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK013751000",
+        "barcode": "5060733582520",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK013751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2524.webp"
-  },
-  {
-    "id": "fk-2473",
-    "brand": "Flake King",
-    "category": "Corroded Metal FX",
-    "name": "Corroded Metals Pump Kit",
-    "sku": "5060733583381",
-    "priceGbp": 26.49,
-    "priceEur": 30.99,
-    "inStock": true,
-    "isPreOrder": false,
-    "badge": "CORRODED FX",
-    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/PumpKit1_1.png?fit=600%2C600&ssl=1",
-    "description": "Corroded Metals Pump Kit \nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
-    "sizes": [],
-    "packSizes": [],
-    "hasOptions": false
-  },
-  {
-    "id": "fk-2467",
-    "brand": "Flake King",
-    "category": "Corroded Metal FX",
-    "name": "Corroded Metals Mini Shaker Kit",
-    "sku": "5060733583374",
-    "priceGbp": 26.4,
-    "priceEur": 30.89,
-    "inStock": true,
-    "isPreOrder": false,
-    "badge": "CORRODED FX",
-    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ShakerKit_1.png?fit=600%2C600&ssl=1",
-    "description": "Corroded Metals Mini Shaker Kit\nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
-    "sizes": [],
-    "packSizes": [],
-    "hasOptions": false
-  },
-  {
-    "id": "fk-2465",
-    "brand": "Flake King",
-    "category": "Corroded Metal FX",
-    "name": "Corrosion Activator 750ml Concentrated",
-    "sku": "5060733580243",
-    "priceGbp": 6.99,
-    "priceEur": 8.18,
-    "inStock": true,
-    "isPreOrder": false,
-    "badge": "CORRODED FX",
-    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/CMFXNH750_2.png?fit=600%2C600&ssl=1",
-    "description": "Corrosion Activator 750ml Concentrated\nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
-    "sizes": [],
-    "packSizes": [],
-    "hasOptions": false
-  },
-  {
-    "id": "fk-2463",
-    "brand": "Flake King",
-    "category": "Corroded Metal FX",
-    "name": "Patina FX Sponge",
-    "sku": "5060733580281",
-    "priceGbp": 3.49,
-    "priceEur": 4.08,
-    "inStock": true,
-    "isPreOrder": false,
-    "badge": "CORRODED FX",
-    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/PatinaSponge.png?fit=600%2C600&ssl=1",
-    "description": "Patina FX Sponge for our amazing Corroded Metal FX Kit!\nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
-    "sizes": [],
-    "packSizes": [],
-    "hasOptions": false
-  },
-  {
-    "id": "fk-2458",
-    "brand": "Flake King",
-    "category": "Corroded Metal FX",
-    "name": "Corrosion Activator Ready Mixed",
-    "sku": "corrosion-activator-ready-mixed",
-    "priceGbp": 4.49,
-    "priceEur": 5.25,
-    "inStock": true,
-    "isPreOrder": false,
-    "badge": "CORRODED FX",
-    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/CMFXNH100_2.png?fit=600%2C600&ssl=1",
-    "description": "Corrosion Activator Ready Mixed\nAvailable in 100ml & 750ml \nWelcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
-    "sizes": [],
-    "packSizes": [],
-    "hasOptions": false
-  },
-  {
-    "id": "fk-2453",
-    "brand": "Flake King",
-    "category": "Corroded Metal FX",
-    "name": "Flake King 1000 Corroded Metal Kit",
-    "sku": "5060733580151",
-    "priceGbp": 169.99,
-    "priceEur": 198.89,
-    "inStock": true,
-    "isPreOrder": false,
-    "badge": "CORRODED FX",
-    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/CMFX1000Kit_1.png?fit=600%2C600&ssl=1",
-    "description": "Welcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
-    "sizes": [],
-    "packSizes": [],
-    "hasOptions": false,
-    "hasFullMatrix": true
-  },
-  {
-    "id": "fk-2449",
-    "brand": "Flake King",
-    "category": "Corroded Metal FX",
-    "name": "Flake King 500/550 Corroded Metal Kit",
-    "sku": "5060733580144",
-    "priceGbp": 149.99,
-    "priceEur": 175.49,
-    "inStock": true,
-    "isPreOrder": false,
-    "badge": "CORRODED FX",
-    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/CMFX500Kit_1.png?fit=600%2C600&ssl=1",
-    "description": "Welcome to our new range of Corroded Metal Kits.\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
-    "sizes": [],
-    "packSizes": [],
-    "hasOptions": false,
-    "hasFullMatrix": true
-  },
-  {
-    "id": "fk-2440",
-    "brand": "Flake King",
-    "category": "Corroded Metal FX",
-    "name": "Corroded Coppa Refill",
-    "sku": "corroded-coppa-refill",
-    "priceGbp": 6.99,
-    "priceEur": 8.18,
-    "inStock": true,
-    "isPreOrder": false,
-    "badge": "CORRODED FX",
-    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/CMFXCU45.png?fit=600%2C600&ssl=1",
-    "description": "Corroded Coppa Refill for our amazing range of Corroded Metal Kits!\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
-    "sizes": [
-      "45g",
-      "150g",
-      "300g",
-      "600g"
+    "imageWebp": "assets/images/flakes/fk-2524.webp",
+    "priceRetailGbp": 6.21,
+    "priceRetailEur": 7.27,
+    "priceRrpExVat": 6.21,
+    "images": [
+      "assets/images/flakes/fk-2524.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
     ],
-    "packSizes": [],
-    "hasOptions": true,
-    "packPriceMatrix": [],
-    "hasPackPriceMatrix": true,
-    "fullMatrixPricing": [
-      {
-        "flakeSize": "45g",
-        "rawFlakeSize": "45g",
-        "packSize": "",
-        "rawPackSize": "",
-        "priceGbp": 6.99,
-        "priceEur": 8.18
-      },
-      {
-        "flakeSize": "150g",
-        "rawFlakeSize": "150g",
-        "packSize": "",
-        "rawPackSize": "",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
-      },
-      {
-        "flakeSize": "300g",
-        "rawFlakeSize": "300g",
-        "packSize": "",
-        "rawPackSize": "",
-        "priceGbp": 27.99,
-        "priceEur": 32.75
-      },
-      {
-        "flakeSize": "600g",
-        "rawFlakeSize": "600g",
-        "packSize": "",
-        "rawPackSize": "",
-        "priceGbp": 39.99,
-        "priceEur": 46.79
-      }
-    ]
-  },
-  {
-    "id": "fk-2431",
-    "brand": "Flake King",
-    "category": "Corroded Metal FX",
-    "name": "Vintage Iron Refill",
-    "sku": "vintage-iron-refill",
-    "priceGbp": 6.99,
-    "priceEur": 8.18,
-    "inStock": true,
-    "isPreOrder": false,
-    "badge": "CORRODED FX",
-    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/CMFXFE70.png?fit=600%2C600&ssl=1",
-    "description": "Heavy Vintage Iron Refill for our amazing Corroded Metal Kits!\nOur kits are designed so that you can apply our extremely dense, heavy Vintage Iron & Corroded Coppa powders directly to the wet paint or clear, exposing them in readiness for you to simply spray our “Corroder” directly to the surface and wait – the longer you leave it on the more corroded it will become.\nMinimum amount of work – for maximum effect.\nWhen you’re happy with the level of corrosion, just wash the corroder off and leave the item to dry.\nAs this is an organic finish, if you do not protect it, it will continue to corrode. You can inhibit this by applying a clear protective coating of your choice for example a matt or gloss would work fine, however we do suggest you run your own tests as applying clear will potentially change the colours in the corrosion.\nThe kits are available for all 3 guns they are supplied in 500/550 version and a version for our ever popular 1000 gun.\nIt is important that you purchase a kit first as it has our metal powder pick up tube within the kit. Without this the guns will not work on their own.\nWhy apply our metal powders dry?\nFirstly, there is no contamination of metal powders in your existing spray equipment it’s in our Flake King Dry gun, and whether you’re switching from Flake to metal powders it’s easy to simply blow the gun through with compressed air.\nSecondly the surface of the powder is exposed as it hasn’t been applied by a carrier. This makes the process quicker – by spraying the surface with our corroder and that’s it. If you’re in a hot environment you may have to wrap your item in some plastic allowing it to sweat and corrode – if it’s too hot the water will evaporate and reduce the corrosion.",
-    "sizes": [
-      "70g",
-      "250g",
-      "500g",
-      "1000g"
-    ],
-    "packSizes": [],
-    "hasOptions": true,
-    "packPriceMatrix": [],
-    "hasPackPriceMatrix": true,
-    "fullMatrixPricing": [
-      {
-        "flakeSize": "70g",
-        "rawFlakeSize": "70g",
-        "packSize": "",
-        "rawPackSize": "",
-        "priceGbp": 6.99,
-        "priceEur": 8.18
-      },
-      {
-        "flakeSize": "250g",
-        "rawFlakeSize": "250g",
-        "packSize": "",
-        "rawPackSize": "",
-        "priceGbp": 13.99,
-        "priceEur": 16.37
-      },
-      {
-        "flakeSize": "500g",
-        "rawFlakeSize": "500g",
-        "packSize": "",
-        "rawPackSize": "",
-        "priceGbp": 27.99,
-        "priceEur": 32.75
-      },
-      {
-        "flakeSize": "1000g",
-        "rawFlakeSize": "1000g",
-        "packSize": "",
-        "rawPackSize": "",
-        "priceGbp": 39.99,
-        "priceEur": 46.79
-      }
-    ]
+    "stockCode": "FKK01"
   },
   {
     "id": "fk-2426",
@@ -779,8 +1182,8 @@ export const ECOM_CATALOG = [
     "category": "Flake King Gun Accessories",
     "name": "Flake King 1000 Nozzle",
     "sku": "flake-king-1000-nozzle",
-    "priceGbp": 19.99,
-    "priceEur": 23.39,
+    "priceGbp": 5.55,
+    "priceEur": 6.49,
     "inStock": true,
     "isPreOrder": false,
     "badge": "GENUINE ACCESSORY",
@@ -789,16 +1192,61 @@ export const ECOM_CATALOG = [
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
-    "hasFullMatrix": true
+    "hasFullMatrix": true,
+    "stockCode": "FOM1000NZS",
+    "barcode": "5060733580038",
+    "priceRetailGbp": 5.55,
+    "priceRetailEur": 6.49,
+    "priceRrpExVat": 5.55,
+    "priceRrpIncVat": 6.66,
+    "hasPackPriceMatrix": true,
+    "packPriceMatrix": [
+      {
+        "packSize": "Small Nozzle",
+        "stockCode": "FOM1000NZS",
+        "barcode": "5060733580038",
+        "priceGbp": 5.55,
+        "priceEur": 6.49,
+        "priceRetailGbp": 5.55,
+        "priceRetailEur": 6.49,
+        "priceRrpExVat": 5.55,
+        "priceRrpIncVat": 6.66,
+        "sku": "FOM1000NZS"
+      },
+      {
+        "packSize": "Medium Nozzle",
+        "stockCode": "FOM1000NZM",
+        "barcode": "5060733580045",
+        "priceGbp": 5.55,
+        "priceEur": 6.49,
+        "priceRetailGbp": 5.55,
+        "priceRetailEur": 6.49,
+        "priceRrpExVat": 5.55,
+        "priceRrpIncVat": 6.66,
+        "sku": "FOM1000NZM"
+      },
+      {
+        "packSize": "Large Nozzle",
+        "stockCode": "FOM1000NZL",
+        "barcode": "5060733580052",
+        "priceGbp": 5.55,
+        "priceEur": 6.49,
+        "priceRetailGbp": 5.55,
+        "priceRetailEur": 6.49,
+        "priceRrpExVat": 5.55,
+        "priceRrpIncVat": 6.66,
+        "sku": "FOM1000NZL"
+      }
+    ]
   },
   {
     "id": "fk-2423",
     "brand": "Flake King",
     "category": "Flake King Gun Accessories",
     "name": "FOM 1000/1050 100g Jar and Standard Lid",
-    "sku": "5060733580021",
-    "priceGbp": 1.58,
-    "priceEur": 1.85,
+    "sku": "FOM1000Jar",
+    "priceGbp": 1.65,
+    "priceEur": 1.93,
     "inStock": true,
     "isPreOrder": false,
     "badge": "GENUINE ACCESSORY",
@@ -807,7 +1255,13 @@ export const ECOM_CATALOG = [
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
-    "hasFullMatrix": true
+    "hasFullMatrix": true,
+    "stockCode": "FOM1000Jar",
+    "barcode": "5060733580021",
+    "priceRetailGbp": 1.65,
+    "priceRetailEur": 1.93,
+    "priceRrpExVat": 1.65,
+    "priceRrpIncVat": 1.98
   },
   {
     "id": "fk-2415",
@@ -815,16 +1269,69 @@ export const ECOM_CATALOG = [
     "category": "Wet Products",
     "name": "FK100 Prime Black Base",
     "sku": "fk100-prime-black-base",
-    "priceGbp": 12.34,
-    "priceEur": 14.44,
+    "priceGbp": 10.28,
+    "priceEur": 12.03,
     "inStock": true,
     "isPreOrder": false,
     "badge": "PRO WET BINDER",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FK100FamilyWeb_1.jpg?fit=600%2C600&ssl=1",
     "description": "Available in 100ml, 500ml & 1 Litre Bottles\nWhen we considered the perfect colour for our Metal Flake, we had to look no further than FK100 our prime black base that offers incredible adhesion to the wide ranging array of primers on the market today.\nAgain, as it’s water based, it’s better for the environment, inert and will not react with previously applied products it also easier to ship (worldwide)\nPrime Black Base will adhere to properly prepared surfaces such as existing finishes, primer, plastic, vinyl, fibreglass, wood and most substrates.\nPrime black base is be the perfect companion for our FK50 Surface binder to adhere to.",
-    "sizes": [],
-    "packSizes": [],
-    "hasOptions": false
+    "sizes": [
+      "100ml",
+      "500ml",
+      "1000ml (1 Litre)"
+    ],
+    "packSizes": [
+      "100ml",
+      "500ml",
+      "1000ml (1 Litre)"
+    ],
+    "hasOptions": true,
+    "stockCode": "FK100100",
+    "barcode": "5060733583152",
+    "priceRetailGbp": 10.28,
+    "priceRetailEur": 12.03,
+    "priceRrpExVat": 10.28,
+    "priceRrpIncVat": 12.34,
+    "hasPackPriceMatrix": true,
+    "packPriceMatrix": [
+      {
+        "packSize": "100ml",
+        "stockCode": "FK100100",
+        "barcode": "5060733583152",
+        "priceGbp": 10.28,
+        "priceEur": 12.03,
+        "priceRetailGbp": 10.28,
+        "priceRetailEur": 12.03,
+        "priceRrpExVat": 10.28,
+        "priceRrpIncVat": 12.34,
+        "sku": "FK100100"
+      },
+      {
+        "packSize": "500ml",
+        "stockCode": "FK100500",
+        "barcode": "5060733583176",
+        "priceGbp": 45.86,
+        "priceEur": 53.66,
+        "priceRetailGbp": 45.86,
+        "priceRetailEur": 53.66,
+        "priceRrpExVat": 45.86,
+        "priceRrpIncVat": 55.03,
+        "sku": "FK100500"
+      },
+      {
+        "packSize": "1000ml",
+        "stockCode": "FK1001000",
+        "barcode": "5060733583183",
+        "priceGbp": 104.72,
+        "priceEur": 122.52,
+        "priceRetailGbp": 104.72,
+        "priceRetailEur": 122.52,
+        "priceRrpExVat": 104.72,
+        "priceRrpIncVat": 125.66,
+        "sku": "FK1001000"
+      }
+    ]
   },
   {
     "id": "fk-2409",
@@ -832,16 +1339,55 @@ export const ECOM_CATALOG = [
     "category": "Wet Products",
     "name": "FK55 Thinner",
     "sku": "fk55-thinner",
-    "priceGbp": 6.72,
-    "priceEur": 7.86,
+    "priceGbp": 5.6,
+    "priceEur": 6.55,
     "inStock": true,
     "isPreOrder": false,
     "badge": "PRO WET BINDER",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FK55FamilyWeb.jpg?fit=600%2C600&ssl=1",
     "description": "Available in 50ml & 100ml\nThis is our go to thinner for both our FK50 Surface Binder and our FK100 Prime Base. It can be added to a maximum of 10% volume.\nIt will also be our standard thinners for all new wet products moving forward.",
-    "sizes": [],
-    "packSizes": [],
-    "hasOptions": false
+    "sizes": [
+      "50ml",
+      "100ml"
+    ],
+    "packSizes": [
+      "50ml",
+      "100ml"
+    ],
+    "hasOptions": true,
+    "stockCode": "FK5550",
+    "barcode": "5060733580342",
+    "priceRetailGbp": 5.6,
+    "priceRetailEur": 6.55,
+    "priceRrpExVat": 5.6,
+    "priceRrpIncVat": 6.72,
+    "hasPackPriceMatrix": true,
+    "packPriceMatrix": [
+      {
+        "packSize": "50ml",
+        "stockCode": "FK5550",
+        "barcode": "5060733580342",
+        "priceGbp": 5.6,
+        "priceEur": 6.55,
+        "priceRetailGbp": 5.6,
+        "priceRetailEur": 6.55,
+        "priceRrpExVat": 5.6,
+        "priceRrpIncVat": 6.72,
+        "sku": "FK5550"
+      },
+      {
+        "packSize": "100ml",
+        "stockCode": "FK55100",
+        "barcode": "5060733580359",
+        "priceGbp": 11.04,
+        "priceEur": 12.92,
+        "priceRetailGbp": 11.04,
+        "priceRetailEur": 12.92,
+        "priceRrpExVat": 11.04,
+        "priceRrpIncVat": 13.25,
+        "sku": "FK55100"
+      }
+    ]
   },
   {
     "id": "fk-2401",
@@ -849,16 +1395,83 @@ export const ECOM_CATALOG = [
     "category": "Wet Products",
     "name": "FK50 Surface Binder",
     "sku": "fk50-surface-binder",
-    "priceGbp": 11.1,
-    "priceEur": 12.99,
+    "priceGbp": 4.99,
+    "priceEur": 5.84,
     "inStock": true,
     "isPreOrder": false,
     "badge": "PRO WET BINDER",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FK50Familyweb.jpg?fit=600%2C600&ssl=1",
     "description": "Available in 100ml, 500ml & 1 Litre Bottles\nFK50 Surface binder is a water based adhesion product, that can applied by brush, dabbed on with a sponge or sprayed on with Spray gun or Airbrush (when thinned with FK55 Thinners).\nDeveloped to stay open longer than a typical solvent or existing water based product with reduced potential of sagging when applied in a medium to wet coat. Its primary use is for the application of our Dry Metal Flakes (Industrial/Commercial Glitters) and our dry blended metal powders.\nWhy is it better than, for example a solvent binder or 2k clear?\nWell as it’s water based, it’s better for the environment, inert will not react with previously applied products, easier to ship (worldwide) and there are no sensible limitations on how many coats that can be applied (within reason).\nIt also produces a nice clean edge, for masking removal, allowing you to now be able to produce coloured flake designs rather than traditional methods of silver base and coloured “candy” dyes on top. Coloured flake will last longer in direct sunlight than candy dye based products.\nAn additional bonus the FK50 Surface binder when applied over a complete flaked area, reduces the amount of clear coat required.\nFK50 will adhere to properly prepared surfaces such as existing finishes, primer, plastic, vinyl, fibreglass, wood and most substrates.",
-    "sizes": [],
-    "packSizes": [],
-    "hasOptions": false
+    "sizes": [
+      "50ml",
+      "100ml",
+      "500ml",
+      "1000ml (1 Litre)"
+    ],
+    "packSizes": [
+      "50ml",
+      "100ml",
+      "500ml",
+      "1000ml (1 Litre)"
+    ],
+    "hasOptions": true,
+    "stockCode": "FK5050",
+    "barcode": "5060733580298",
+    "priceRetailGbp": 4.99,
+    "priceRetailEur": 5.84,
+    "priceRrpExVat": 4.99,
+    "priceRrpIncVat": 5.99,
+    "hasPackPriceMatrix": true,
+    "packPriceMatrix": [
+      {
+        "packSize": "50ml",
+        "stockCode": "FK5050",
+        "barcode": "5060733580298",
+        "priceGbp": 4.99,
+        "priceEur": 5.84,
+        "priceRetailGbp": 4.99,
+        "priceRetailEur": 5.84,
+        "priceRrpExVat": 4.99,
+        "priceRrpIncVat": 5.99,
+        "sku": "FK5050"
+      },
+      {
+        "packSize": "100ml",
+        "stockCode": "FK50100",
+        "barcode": "5060733580304",
+        "priceGbp": 9.25,
+        "priceEur": 10.82,
+        "priceRetailGbp": 9.25,
+        "priceRetailEur": 10.82,
+        "priceRrpExVat": 9.25,
+        "priceRrpIncVat": 11.1,
+        "sku": "FK50100"
+      },
+      {
+        "packSize": "500ml",
+        "stockCode": "FK50500",
+        "barcode": "5060733580328",
+        "priceGbp": 40.36,
+        "priceEur": 47.22,
+        "priceRetailGbp": 40.36,
+        "priceRetailEur": 47.22,
+        "priceRrpExVat": 40.36,
+        "priceRrpIncVat": 48.43,
+        "sku": "FK50500"
+      },
+      {
+        "packSize": "1000ml",
+        "stockCode": "FK501000",
+        "barcode": "5060733580335",
+        "priceGbp": 79.72,
+        "priceEur": 93.27,
+        "priceRetailGbp": 79.72,
+        "priceRetailEur": 93.27,
+        "priceRrpExVat": 79.72,
+        "priceRrpIncVat": 95.66,
+        "sku": "FK501000"
+      }
+    ]
   },
   {
     "id": "fk-2392",
@@ -866,51 +1479,128 @@ export const ECOM_CATALOG = [
     "category": "Masking Products",
     "name": "UltiMask Crepe Masking Tape",
     "sku": "ultimask-crepe-masking-tape",
-    "priceGbp": 1.68,
-    "priceEur": 1.97,
+    "priceGbp": 1.4,
+    "priceEur": 1.65,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe18mmB.gif?fit=600%2C600&ssl=1",
     "description": "Available in 18mm, 24mm, 36mm & 48mm widths\nUltiMask Crepe Masking Tape is a general all-round crepe tape for masking off areas when spraying vehicles. It is ideally suited to use with other Flake King products, with a strong adhesion and is heat-resistant to temperatures of 80C/176F. UltiMask Crepe Masking Tape can be easily removed, leaving no residue and is available in widths from 19mm to 48mm. UltiMask Crepe Masking Tape is the perfect high-quality everyday tape. Supplied individually packed to keep clean and dry.",
-    "sizes": [],
-    "packSizes": [],
-    "hasOptions": false,
+    "sizes": [
+      "18mm x 50m",
+      "24mm x 50m",
+      "36mm x 50m",
+      "48mm x 50m"
+    ],
+    "packSizes": [
+      "18mm x 50m",
+      "24mm x 50m",
+      "36mm x 50m",
+      "48mm x 50m"
+    ],
+    "hasOptions": true,
     "tapeWidths": [
-      "1/16\" (1.5mm x 55m)",
-      "1/8\" (3.0mm x 55m)",
-      "1/4\" (6.0mm x 55m)",
-      "1/2\" (12.0mm x 55m)",
-      "3/4\" (19.0mm x 55m)"
+      "18mm x 50m",
+      "24mm x 50m",
+      "36mm x 50m",
+      "48mm x 50m"
     ],
     "tapePriceMatrix": [
       {
-        "width": "1/16\" (1.5mm x 55m)",
-        "priceGbp": 6.95,
-        "priceEur": 7.95
+        "width": "18mm x 50m",
+        "priceGbp": 1.4,
+        "priceEur": 1.65,
+        "priceRrpIncVat": 1.68,
+        "stockCode": "TPCP18",
+        "sku": "TPCP18",
+        "barcode": "5060733583145"
       },
       {
-        "width": "1/8\" (3.0mm x 55m)",
-        "priceGbp": 8.5,
-        "priceEur": 9.95
+        "width": "24mm x 50m",
+        "priceGbp": 1.8,
+        "priceEur": 2.12,
+        "priceRrpIncVat": 2.16,
+        "stockCode": "TPCP24",
+        "sku": "TPCP24",
+        "barcode": "5060733580250"
       },
       {
-        "width": "1/4\" (6.0mm x 55m)",
-        "priceGbp": 9.95,
-        "priceEur": 11.95
+        "width": "36mm x 50m",
+        "priceGbp": 2.7,
+        "priceEur": 3.18,
+        "priceRrpIncVat": 3.24,
+        "stockCode": "TPCP36",
+        "sku": "TPCP36",
+        "barcode": "5060733580267"
       },
       {
-        "width": "1/2\" (12.0mm x 55m)",
-        "priceGbp": 12.95,
-        "priceEur": 14.95
-      },
-      {
-        "width": "3/4\" (19.0mm x 55m)",
-        "priceGbp": 15.5,
-        "priceEur": 17.95
+        "width": "48mm x 50m",
+        "priceGbp": 3.6,
+        "priceEur": 4.24,
+        "priceRrpIncVat": 4.32,
+        "stockCode": "TPCP48",
+        "sku": "TPCP48",
+        "barcode": "5060733580274"
       }
     ],
-    "hasTapeOptions": true
+    "hasTapeOptions": true,
+    "stockCode": "TPCP18",
+    "barcode": "5060733583145",
+    "priceRetailGbp": 1.4,
+    "priceRetailEur": 1.64,
+    "priceRrpExVat": 1.4,
+    "priceRrpIncVat": 1.68,
+    "hasPackPriceMatrix": true,
+    "packPriceMatrix": [
+      {
+        "packSize": "18mm x 50m",
+        "stockCode": "TPCP18",
+        "barcode": "5060733583145",
+        "priceGbp": 1.4,
+        "priceEur": 1.64,
+        "priceRetailGbp": 1.4,
+        "priceRetailEur": 1.64,
+        "priceRrpExVat": 1.4,
+        "priceRrpIncVat": 1.68,
+        "sku": "TPCP18"
+      },
+      {
+        "packSize": "24mm x 50m",
+        "stockCode": "TPCP24",
+        "barcode": "5060733580250",
+        "priceGbp": 1.8,
+        "priceEur": 2.11,
+        "priceRetailGbp": 1.8,
+        "priceRetailEur": 2.11,
+        "priceRrpExVat": 1.8,
+        "priceRrpIncVat": 2.16,
+        "sku": "TPCP24"
+      },
+      {
+        "packSize": "36mm x 50m",
+        "stockCode": "TPCP36",
+        "barcode": "5060733580267",
+        "priceGbp": 2.7,
+        "priceEur": 3.16,
+        "priceRetailGbp": 2.7,
+        "priceRetailEur": 3.16,
+        "priceRrpExVat": 2.7,
+        "priceRrpIncVat": 3.24,
+        "sku": "TPCP36"
+      },
+      {
+        "packSize": "48mm x 50m",
+        "stockCode": "TPCP48",
+        "barcode": "5060733580274",
+        "priceGbp": 3.6,
+        "priceEur": 4.21,
+        "priceRetailGbp": 3.6,
+        "priceRetailEur": 4.21,
+        "priceRrpExVat": 3.6,
+        "priceRrpIncVat": 4.32,
+        "sku": "TPCP48"
+      }
+    ]
   },
   {
     "id": "fk-2380",
@@ -918,60 +1608,161 @@ export const ECOM_CATALOG = [
     "category": "Masking Products",
     "name": "Prime Flat Line Masking Tape",
     "sku": "prime-flat-line-masking-tape",
-    "priceGbp": 1.99,
-    "priceEur": 2.33,
+    "priceGbp": 1.66,
+    "priceEur": 1.95,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine6mm.png?fit=600%2C600&ssl=1",
     "description": "Prime Flat Line Masking Tape\nAvailable in 6mm, 9mm, 12mm, 24mm & 48mm widths\nPrime Flat Line Orange is our precision masking solution for masking rubbers, plastics, mouldings, trims, canvass and artboards – both paper and synthetic airbrush papers. Summed up it is a flat non-bleed tape that adheres to surfaces that conventional masking tape would not!\nConstructed from “washi” or better known as rice paper, this non-bleed tape is suitable for fine-line work as well as general masking. Developed for high end industrial, commercial model makers, scenery, film, automotive, and artists applications. Ideal for placing over existing artwork or vinyl fine lines as the tape is so translucent it allows you see through it to cut and remove the necessary areas.\nThe flexible, water-proof, advanced acrylic adhesive means that it will adhere to surfaces that standard masking tape would otherwise not; resistant to 110C/230F, available in widths from 6mm upwards. However, we can produce this to any width required subject to quantity.",
-    "sizes": [],
-    "packSizes": [],
-    "hasOptions": false,
+    "sizes": [
+      "6mm x 50m",
+      "9mm x 50m",
+      "12mm x 50m",
+      "24mm x 50m",
+      "48mm x 50m"
+    ],
+    "packSizes": [
+      "6mm x 50m",
+      "9mm x 50m",
+      "12mm x 50m",
+      "24mm x 50m",
+      "48mm x 50m"
+    ],
+    "hasOptions": true,
     "tapeWidths": [
-      "1/16\" (1.5mm x 55m)",
-      "1/8\" (3.0mm x 55m)",
-      "1/4\" (6.0mm x 55m)",
-      "1/2\" (12.0mm x 55m)",
-      "3/4\" (19.0mm x 55m)"
+      "6mm x 50m",
+      "9mm x 50m",
+      "12mm x 50m",
+      "24mm x 50m",
+      "48mm x 50m"
     ],
     "tapePriceMatrix": [
       {
-        "width": "1/16\" (1.5mm x 55m)",
-        "priceGbp": 6.95,
-        "priceEur": 7.95
+        "width": "6mm x 50m",
+        "priceGbp": 1.66,
+        "priceEur": 1.95,
+        "priceRrpIncVat": 1.99,
+        "stockCode": "TPFL6",
+        "sku": "TPFL6",
+        "barcode": "5060733583299"
       },
       {
-        "width": "1/8\" (3.0mm x 55m)",
-        "priceGbp": 8.5,
-        "priceEur": 9.95
+        "width": "9mm x 50m",
+        "priceGbp": 1.91,
+        "priceEur": 2.25,
+        "priceRrpIncVat": 2.29,
+        "stockCode": "TPFL9",
+        "sku": "TPFL9",
+        "barcode": "5060733583305"
       },
       {
-        "width": "1/4\" (6.0mm x 55m)",
-        "priceGbp": 9.95,
-        "priceEur": 11.95
+        "width": "12mm x 50m",
+        "priceGbp": 2.08,
+        "priceEur": 2.45,
+        "priceRrpIncVat": 2.49,
+        "stockCode": "TPFL12",
+        "sku": "TPFL12",
+        "barcode": "5060733583312"
       },
       {
-        "width": "1/2\" (12.0mm x 55m)",
-        "priceGbp": 12.95,
-        "priceEur": 14.95
+        "width": "24mm x 50m",
+        "priceGbp": 3.33,
+        "priceEur": 3.92,
+        "priceRrpIncVat": 3.99,
+        "stockCode": "TPFL24",
+        "sku": "TPFL24",
+        "barcode": "5060733583329"
       },
       {
-        "width": "3/4\" (19.0mm x 55m)",
-        "priceGbp": 15.5,
-        "priceEur": 17.95
+        "width": "48mm x 50m",
+        "priceGbp": 5.83,
+        "priceEur": 6.86,
+        "priceRrpIncVat": 6.99,
+        "stockCode": "TPFL48",
+        "sku": "TPFL48",
+        "barcode": "5060733583336"
       }
     ],
-    "hasTapeOptions": true
+    "hasTapeOptions": true,
+    "stockCode": "TPFL6",
+    "barcode": "5060733583299",
+    "priceRetailGbp": 1.66,
+    "priceRetailEur": 1.94,
+    "priceRrpExVat": 1.66,
+    "priceRrpIncVat": 1.99,
+    "hasPackPriceMatrix": true,
+    "packPriceMatrix": [
+      {
+        "packSize": "6mm x 50m",
+        "stockCode": "TPFL6",
+        "barcode": "5060733583299",
+        "priceGbp": 1.66,
+        "priceEur": 1.94,
+        "priceRetailGbp": 1.66,
+        "priceRetailEur": 1.94,
+        "priceRrpExVat": 1.66,
+        "priceRrpIncVat": 1.99,
+        "sku": "TPFL6"
+      },
+      {
+        "packSize": "9mm x 50m",
+        "stockCode": "TPFL9",
+        "barcode": "5060733583305",
+        "priceGbp": 1.91,
+        "priceEur": 2.23,
+        "priceRetailGbp": 1.91,
+        "priceRetailEur": 2.23,
+        "priceRrpExVat": 1.91,
+        "priceRrpIncVat": 2.29,
+        "sku": "TPFL9"
+      },
+      {
+        "packSize": "12mm x 50m",
+        "stockCode": "TPFL12",
+        "barcode": "5060733583312",
+        "priceGbp": 2.08,
+        "priceEur": 2.43,
+        "priceRetailGbp": 2.08,
+        "priceRetailEur": 2.43,
+        "priceRrpExVat": 2.08,
+        "priceRrpIncVat": 2.49,
+        "sku": "TPFL12"
+      },
+      {
+        "packSize": "24mm x 50m",
+        "stockCode": "TPFL24",
+        "barcode": "5060733583329",
+        "priceGbp": 3.33,
+        "priceEur": 3.9,
+        "priceRetailGbp": 3.33,
+        "priceRetailEur": 3.9,
+        "priceRrpExVat": 3.33,
+        "priceRrpIncVat": 3.99,
+        "sku": "TPFL24"
+      },
+      {
+        "packSize": "48mm x 50m",
+        "stockCode": "TPFL48",
+        "barcode": "5060733583336",
+        "priceGbp": 5.83,
+        "priceEur": 6.82,
+        "priceRetailGbp": 5.83,
+        "priceRetailEur": 6.82,
+        "priceRrpExVat": 5.83,
+        "priceRrpIncVat": 6.99,
+        "sku": "TPFL48"
+      }
+    ]
   },
   {
     "id": "fk-2375",
     "brand": "Flake King",
     "category": "Masking Products",
     "name": "Prime Orange Fine Line Mixed Set",
-    "sku": "5060733583282",
-    "priceGbp": 18.99,
-    "priceEur": 22.22,
+    "sku": "TPORMix",
+    "priceGbp": 15.83,
+    "priceEur": 18.52,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FINE LINE PRO",
@@ -979,7 +1770,13 @@ export const ECOM_CATALOG = [
     "description": "Prime Orange Fine Line Mixed Set\nSizes included: 1 x 1mm, 1 x 2mm, 2 x 3mm\nOur Prime Orange Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime green fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 138°C/280°F for at least 45 minutes; after painting, it can be cleanly removed leaving a defined line with no adhesive residue.",
     "sizes": [],
     "packSizes": [],
-    "hasOptions": false
+    "hasOptions": false,
+    "stockCode": "TPORMix",
+    "barcode": "5060733583282",
+    "priceRetailGbp": 15.83,
+    "priceRetailEur": 18.52,
+    "priceRrpExVat": 15.83,
+    "priceRrpIncVat": 18.99
   },
   {
     "id": "fk-2366",
@@ -987,25 +1784,137 @@ export const ECOM_CATALOG = [
     "category": "Masking Products",
     "name": "Prime Orange Fine Line",
     "sku": "prime-orange-fine-line",
-    "priceGbp": 3.49,
-    "priceEur": 4.08,
+    "priceGbp": 2.91,
+    "priceEur": 3.42,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1",
     "description": "Available in 1mm, 2mm, 3mm & 6mm widths\nOur Prime Orange Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime green fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 138°C/280°F for at least 45 minutes; after painting, it can be cleanly removed leaving a defined line with no adhesive residue.",
-    "sizes": [],
-    "packSizes": [],
-    "hasOptions": false
+    "sizes": [
+      "1mm x 55m",
+      "2mm x 55m",
+      "3mm x 55m",
+      "6mm x 55m"
+    ],
+    "packSizes": [
+      "1mm x 55m",
+      "2mm x 55m",
+      "3mm x 55m",
+      "6mm x 55m"
+    ],
+    "hasOptions": true,
+    "stockCode": "TPOR1",
+    "barcode": "5060733583244",
+    "priceRetailGbp": 2.91,
+    "priceRetailEur": 3.4,
+    "priceRrpExVat": 2.91,
+    "priceRrpIncVat": 3.49,
+    "hasPackPriceMatrix": true,
+    "packPriceMatrix": [
+      {
+        "packSize": "1mm x 55m",
+        "stockCode": "TPOR1",
+        "barcode": "5060733583244",
+        "priceGbp": 2.91,
+        "priceEur": 3.4,
+        "priceRetailGbp": 2.91,
+        "priceRetailEur": 3.4,
+        "priceRrpExVat": 2.91,
+        "priceRrpIncVat": 3.49,
+        "sku": "TPOR1"
+      },
+      {
+        "packSize": "2mm x 55m",
+        "stockCode": "TPOR2",
+        "barcode": "5060733583251",
+        "priceGbp": 3.33,
+        "priceEur": 3.9,
+        "priceRetailGbp": 3.33,
+        "priceRetailEur": 3.9,
+        "priceRrpExVat": 3.33,
+        "priceRrpIncVat": 3.99,
+        "sku": "TPOR2"
+      },
+      {
+        "packSize": "3mm x 55m",
+        "stockCode": "TPOR3",
+        "barcode": "5060733583268",
+        "priceGbp": 3.74,
+        "priceEur": 4.38,
+        "priceRetailGbp": 3.74,
+        "priceRetailEur": 4.38,
+        "priceRrpExVat": 3.74,
+        "priceRrpIncVat": 4.49,
+        "sku": "TPOR3"
+      },
+      {
+        "packSize": "6mm x 55m",
+        "stockCode": "TPOR6",
+        "barcode": "5060733583275",
+        "priceGbp": 4.16,
+        "priceEur": 4.87,
+        "priceRetailGbp": 4.16,
+        "priceRetailEur": 4.87,
+        "priceRrpExVat": 4.16,
+        "priceRrpIncVat": 4.99,
+        "sku": "TPOR6"
+      }
+    ],
+    "tapeWidths": [
+      "1mm x 55m",
+      "2mm x 55m",
+      "3mm x 55m",
+      "6mm x 55m"
+    ],
+    "hasTapeOptions": true,
+    "tapePriceMatrix": [
+      {
+        "width": "1mm x 55m",
+        "priceGbp": 2.91,
+        "priceEur": 3.42,
+        "priceRrpIncVat": 3.49,
+        "stockCode": "TPOR1",
+        "sku": "TPOR1",
+        "barcode": "5060733583244"
+      },
+      {
+        "width": "2mm x 55m",
+        "priceGbp": 3.33,
+        "priceEur": 3.92,
+        "priceRrpIncVat": 3.99,
+        "stockCode": "TPOR2",
+        "sku": "TPOR2",
+        "barcode": "5060733583251"
+      },
+      {
+        "width": "3mm x 55m",
+        "priceGbp": 3.74,
+        "priceEur": 4.4,
+        "priceRrpIncVat": 4.49,
+        "stockCode": "TPOR3",
+        "sku": "TPOR3",
+        "barcode": "5060733583268"
+      },
+      {
+        "width": "6mm x 55m",
+        "priceGbp": 4.16,
+        "priceEur": 4.89,
+        "priceRrpIncVat": 4.99,
+        "stockCode": "TPOR6",
+        "sku": "TPOR6",
+        "barcode": "5060733583275"
+      }
+    ]
   },
   {
     "id": "fk-2361",
     "brand": "Flake King",
     "category": "Masking Products",
     "name": "Prime Green Fine Line Mixed Set",
-    "sku": "5060733583237",
-    "priceGbp": 18.99,
-    "priceEur": 22.22,
+    "sku": "TPGRMix",
+    "priceGbp": 15.83,
+    "priceEur": 18.52,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FINE LINE PRO",
@@ -1013,7 +1922,13 @@ export const ECOM_CATALOG = [
     "description": "Prime Green Fine Line Mixed Set\nSizes included: 1 x 1mm, 1 x 2mm, 2 x 3mm\nOur Prime Green Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime orange fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 132° C/270° F for at least 30 minutes.",
     "sizes": [],
     "packSizes": [],
-    "hasOptions": false
+    "hasOptions": false,
+    "stockCode": "TPGRMix",
+    "barcode": "5060733583237",
+    "priceRetailGbp": 15.83,
+    "priceRetailEur": 18.52,
+    "priceRrpExVat": 15.83,
+    "priceRrpIncVat": 18.99
   },
   {
     "id": "fk-2352",
@@ -1021,51 +1936,128 @@ export const ECOM_CATALOG = [
     "category": "Masking Products",
     "name": "Prime Green Fine Line Tape",
     "sku": "prime-green-fine-line-tape",
-    "priceGbp": 3.49,
-    "priceEur": 4.08,
+    "priceGbp": 2.91,
+    "priceEur": 3.42,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FINE LINE PRO",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green1mm.png?fit=600%2C600&ssl=1",
     "description": "Available in 1mm, 2mm, 3mm & 6mm widths\nOur Prime Green Fine Line Tape uses thermally stabilised PVC backing with a rubber based pressure sensitive adhesive. Thinner and more translucent than other Fine Line Tapes making it ideal for seeing through to painted surfaces. Like our prime orange fine line it is extremely versatile, perfect for intricate, delicate and multi-layer masking perfect for undulating surfaces and capable of tight radius curves. Developed for high end industrial, commercial model makers, scenery, film and automotive applications. Heat resistant to temperatures up to 132° C/270° F for at least 30 minutes.",
-    "sizes": [],
-    "packSizes": [],
-    "hasOptions": false,
+    "sizes": [
+      "1mm x 55m",
+      "2mm x 55m",
+      "3mm x 55m",
+      "6mm x 55m"
+    ],
+    "packSizes": [
+      "1mm x 55m",
+      "2mm x 55m",
+      "3mm x 55m",
+      "6mm x 55m"
+    ],
+    "hasOptions": true,
     "tapeWidths": [
-      "1/16\" (1.5mm x 55m)",
-      "1/8\" (3.0mm x 55m)",
-      "1/4\" (6.0mm x 55m)",
-      "1/2\" (12.0mm x 55m)",
-      "3/4\" (19.0mm x 55m)"
+      "1mm x 55m",
+      "2mm x 55m",
+      "3mm x 55m",
+      "6mm x 55m"
     ],
     "tapePriceMatrix": [
       {
-        "width": "1/16\" (1.5mm x 55m)",
-        "priceGbp": 6.95,
-        "priceEur": 7.95
+        "width": "1mm x 55m",
+        "priceGbp": 2.91,
+        "priceEur": 3.42,
+        "priceRrpIncVat": 3.49,
+        "stockCode": "TPGR1",
+        "sku": "TPGR1",
+        "barcode": "5060733583190"
       },
       {
-        "width": "1/8\" (3.0mm x 55m)",
-        "priceGbp": 8.5,
-        "priceEur": 9.95
+        "width": "2mm x 55m",
+        "priceGbp": 3.33,
+        "priceEur": 3.92,
+        "priceRrpIncVat": 3.99,
+        "stockCode": "TPGR2",
+        "sku": "TPGR2",
+        "barcode": "5060733583206"
       },
       {
-        "width": "1/4\" (6.0mm x 55m)",
-        "priceGbp": 9.95,
-        "priceEur": 11.95
+        "width": "3mm x 55m",
+        "priceGbp": 3.74,
+        "priceEur": 4.4,
+        "priceRrpIncVat": 4.49,
+        "stockCode": "TPGR3",
+        "sku": "TPGR3",
+        "barcode": "5060733583213"
       },
       {
-        "width": "1/2\" (12.0mm x 55m)",
-        "priceGbp": 12.95,
-        "priceEur": 14.95
-      },
-      {
-        "width": "3/4\" (19.0mm x 55m)",
-        "priceGbp": 15.5,
-        "priceEur": 17.95
+        "width": "6mm x 55m",
+        "priceGbp": 4.16,
+        "priceEur": 4.89,
+        "priceRrpIncVat": 4.99,
+        "stockCode": "TPGR6",
+        "sku": "TPGR6",
+        "barcode": "5060733583220"
       }
     ],
-    "hasTapeOptions": true
+    "hasTapeOptions": true,
+    "stockCode": "TPGR1",
+    "barcode": "5060733583190",
+    "priceRetailGbp": 2.91,
+    "priceRetailEur": 3.4,
+    "priceRrpExVat": 2.91,
+    "priceRrpIncVat": 3.49,
+    "hasPackPriceMatrix": true,
+    "packPriceMatrix": [
+      {
+        "packSize": "1mm x 55m",
+        "stockCode": "TPGR1",
+        "barcode": "5060733583190",
+        "priceGbp": 2.91,
+        "priceEur": 3.4,
+        "priceRetailGbp": 2.91,
+        "priceRetailEur": 3.4,
+        "priceRrpExVat": 2.91,
+        "priceRrpIncVat": 3.49,
+        "sku": "TPGR1"
+      },
+      {
+        "packSize": "2mm x 55m",
+        "stockCode": "TPGR2",
+        "barcode": "5060733583206",
+        "priceGbp": 3.33,
+        "priceEur": 3.9,
+        "priceRetailGbp": 3.33,
+        "priceRetailEur": 3.9,
+        "priceRrpExVat": 3.33,
+        "priceRrpIncVat": 3.99,
+        "sku": "TPGR2"
+      },
+      {
+        "packSize": "3mm x 55m",
+        "stockCode": "TPGR3",
+        "barcode": "5060733583213",
+        "priceGbp": 3.74,
+        "priceEur": 4.38,
+        "priceRetailGbp": 3.74,
+        "priceRetailEur": 4.38,
+        "priceRrpExVat": 3.74,
+        "priceRrpIncVat": 4.49,
+        "sku": "TPGR3"
+      },
+      {
+        "packSize": "6mm x 55m",
+        "stockCode": "TPGR6",
+        "barcode": "5060733583220",
+        "priceGbp": 4.16,
+        "priceEur": 4.87,
+        "priceRetailGbp": 4.16,
+        "priceRetailEur": 4.87,
+        "priceRrpExVat": 4.16,
+        "priceRrpIncVat": 4.99,
+        "sku": "TPGR6"
+      }
+    ]
   },
   {
     "id": "fk-2341",
@@ -1074,8 +2066,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Kromatic Black Asteroid Metal Flake",
     "sku": "kromatic-asteroid-metal-flake",
-    "priceGbp": 4.99,
-    "priceEur": 5.84,
+    "priceGbp": 6.21,
+    "priceEur": 7.27,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -1094,18 +2086,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45
       }
     ],
     "hasPackPriceMatrix": true,
@@ -1115,52 +2119,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK1320030",
+        "barcode": "5060733582957",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK1320030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK13200100",
+        "barcode": "5060733582964",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK13200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK132001000",
+        "barcode": "5060733582971",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK132001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK1337530",
+        "barcode": "5060733582988",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK1337530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK13375100",
+        "barcode": "5060733582995",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK13375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK133751000",
+        "barcode": "5060733583008",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK133751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2341.webp"
+    "imageWebp": "assets/images/flakes/fk-2341.webp",
+    "priceRetailGbp": 6.21,
+    "priceRetailEur": 7.27,
+    "priceRrpExVat": 6.21,
+    "images": [
+      "assets/images/flakes/fk-2341.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2330",
@@ -1169,16 +2223,16 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Gun Metal Metal Flake",
     "sku": "gun-metal-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
-    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FKS231600x1067.png?fit=600%2C600&ssl=1",
+    "image": "assets/images/flakes/fk-2330.jpg",
     "description": "FKS23 Gun Metal Metal Flake. Available in .008″ & .015″\nIf you are looking for pure commercial/industrial grade Glitters or Metal Flake that are specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine. All of which require metal flake glitter with outstanding physical and chemical properties…\nThen you have come to the right company!\nFlake King Polyester Flake was specifically designed to meet the requirements of manufacturers of decorated fabrics, adhesives, vinyl, sheeting, plastic molding, inks, paints, in industries such as automotive, leisure, commercial properties, theme parks, marine and many more, all of which require metal flake glitter with outstanding physical and chemical properties.\nA full chart of colours can be found in the images.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
     "sizes": [
-      "Medium .015\"",
-      "Large .025\""
+      "Medium .008\"",
+      "Large .015\""
     ],
     "packSizes": [
       "30g Jar (Gun Mount)",
@@ -1189,72 +2243,136 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65
       }
     ],
     "hasPackPriceMatrix": true,
     "fullMatrixPricing": [
       {
-        "flakeSize": "Medium .015\"",
+        "flakeSize": "Medium .008\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS2320030",
+        "barcode": "5060733582117",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS2320030"
       },
       {
-        "flakeSize": "Medium .015\"",
+        "flakeSize": "Medium .008\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS23200100",
+        "barcode": "5060733582124",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS23200100"
       },
       {
-        "flakeSize": "Medium .015\"",
+        "flakeSize": "Medium .008\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS232001000",
+        "barcode": "5060733582131",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS232001000"
       },
       {
-        "flakeSize": "Large .025\"",
+        "flakeSize": "Large .015\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS2337530",
+        "barcode": "5060733582148",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS2337530"
       },
       {
-        "flakeSize": "Large .025\"",
+        "flakeSize": "Large .015\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS23375100",
+        "barcode": "5060733582155",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS23375100"
       },
       {
-        "flakeSize": "Large .025\"",
+        "flakeSize": "Large .015\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS233751000",
+        "barcode": "5060733582162",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS233751000"
       }
     ],
-    "hasFullMatrix": true
+    "hasFullMatrix": true,
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2330.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ],
+    "imageWebp": "assets/images/flakes/fk-2330.webp",
+    "stockCode": "FKS23"
   },
   {
     "id": "fk-2319",
@@ -1263,8 +2381,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Kromatic Elvis Gold Metal Flake",
     "sku": "kromatic-elvis-gold-metal-flake",
-    "priceGbp": 4.99,
-    "priceEur": 5.84,
+    "priceGbp": 6.21,
+    "priceEur": 7.27,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -1283,18 +2401,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45
       }
     ],
     "hasPackPriceMatrix": true,
@@ -1304,52 +2434,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK0220030",
+        "barcode": "5060733582537",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK0220030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK02200100",
+        "barcode": "5060733582544",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK02200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK022001000",
+        "barcode": "5060733582551",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK022001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK0237530",
+        "barcode": "5060733582568",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK0237530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK02375100",
+        "barcode": "5060733582575",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK02375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK023751000",
+        "barcode": "5060733582582",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK023751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2319.webp"
+    "imageWebp": "assets/images/flakes/fk-2319.webp",
+    "priceRetailGbp": 6.21,
+    "priceRetailEur": 7.27,
+    "priceRrpExVat": 6.21,
+    "images": [
+      "assets/images/flakes/fk-2319.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2308",
@@ -1358,8 +2538,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Dragon Koi Flake",
     "sku": "dragon-koi-flake",
-    "priceGbp": 4.99,
-    "priceEur": 5.84,
+    "priceGbp": 5.41,
+    "priceEur": 6.33,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -1378,18 +2558,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 137.49,
+        "priceEur": 160.86,
+        "priceRetailGbp": 137.49,
+        "priceRetailEur": 160.86,
+        "priceRrpExVat": 137.49,
+        "priceRrpIncVat": 164.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 16.66,
+        "priceEur": 19.49,
+        "priceRetailGbp": 16.66,
+        "priceRetailEur": 19.49,
+        "priceRrpExVat": 16.66,
+        "priceRrpIncVat": 19.99
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 5.41,
+        "priceEur": 6.33,
+        "priceRetailGbp": 5.41,
+        "priceRetailEur": 6.33,
+        "priceRrpExVat": 5.41,
+        "priceRrpIncVat": 6.49
       }
     ],
     "hasPackPriceMatrix": true,
@@ -1399,52 +2591,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 5.41,
+        "priceEur": 6.33,
+        "stockCode": "FKI0220030",
+        "barcode": "5060733583077",
+        "priceRetailGbp": 5.41,
+        "priceRetailEur": 6.33,
+        "priceRrpExVat": 5.41,
+        "priceRrpIncVat": 6.49,
+        "sku": "FKI0220030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 16.66,
+        "priceEur": 19.49,
+        "stockCode": "FKI02200100",
+        "barcode": "5060733583084",
+        "priceRetailGbp": 16.66,
+        "priceRetailEur": 19.49,
+        "priceRrpExVat": 16.66,
+        "priceRrpIncVat": 19.99,
+        "sku": "FKI02200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 137.49,
+        "priceEur": 160.86,
+        "stockCode": "FKI022001000",
+        "barcode": "5060733583091",
+        "priceRetailGbp": 137.49,
+        "priceRetailEur": 160.86,
+        "priceRrpExVat": 137.49,
+        "priceRrpIncVat": 164.99,
+        "sku": "FKI022001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 5.41,
+        "priceEur": 6.33,
+        "stockCode": "FKI0237530",
+        "barcode": "5060733583107",
+        "priceRetailGbp": 5.41,
+        "priceRetailEur": 6.33,
+        "priceRrpExVat": 5.41,
+        "priceRrpIncVat": 6.49,
+        "sku": "FKI0237530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 16.66,
+        "priceEur": 19.49,
+        "stockCode": "FKI02375100",
+        "barcode": "5060733583114",
+        "priceRetailGbp": 16.66,
+        "priceRetailEur": 19.49,
+        "priceRrpExVat": 16.66,
+        "priceRrpIncVat": 19.99,
+        "sku": "FKI02375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 137.49,
+        "priceEur": 160.86,
+        "stockCode": "FKI023751000",
+        "barcode": "5060733583121",
+        "priceRetailGbp": 137.49,
+        "priceRetailEur": 160.86,
+        "priceRrpExVat": 137.49,
+        "priceRrpIncVat": 164.99,
+        "sku": "FKI023751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2308.webp"
+    "imageWebp": "assets/images/flakes/fk-2308.webp",
+    "priceRetailGbp": 5.41,
+    "priceRetailEur": 6.33,
+    "priceRrpExVat": 5.41,
+    "images": [
+      "assets/images/flakes/fk-2308.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2297",
@@ -1453,8 +2695,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Water Dragon Flake",
     "sku": "water-dragon-flake",
-    "priceGbp": 4.99,
-    "priceEur": 5.84,
+    "priceGbp": 6.21,
+    "priceEur": 7.27,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -1473,18 +2715,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45
       }
     ],
     "hasPackPriceMatrix": true,
@@ -1494,52 +2748,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKI0120030",
+        "barcode": "5060733583015",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKI0120030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKI01200100",
+        "barcode": "5060733583022",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKI01200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKI012001000",
+        "barcode": "5060733583039",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKI012001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKI0137530",
+        "barcode": "5060733583046",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKI0137530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKI01375100",
+        "barcode": "5060733583053",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKI01375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKI013751000",
+        "barcode": "5060733583060",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKI013751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2297.webp"
+    "imageWebp": "assets/images/flakes/fk-2297.webp",
+    "priceRetailGbp": 6.21,
+    "priceRetailEur": 7.27,
+    "priceRrpExVat": 6.21,
+    "images": [
+      "assets/images/flakes/fk-2297.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2283",
@@ -1548,8 +2852,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Cobalt Blue Metal Flake",
     "sku": "candy-cobalt-blue-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -1569,18 +2873,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55
       }
     ],
     "hasPackPriceMatrix": true,
@@ -1590,76 +2906,147 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.49,
-        "priceEur": 5.25
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "stockCode": "FKS2010030",
+        "barcode": "5060733581936",
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55,
+        "sku": "FKS2010030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 16.99,
-        "priceEur": 19.88
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "stockCode": "FKS20100100",
+        "barcode": "5060733581943",
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85,
+        "sku": "FKS20100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 169.99,
-        "priceEur": 198.89
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "stockCode": "FKS201001000",
+        "barcode": "5060733581950",
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99,
+        "sku": "FKS201001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS2020030",
+        "barcode": "5060733581967",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS2020030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS20200100",
+        "barcode": "5060733581974",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS20200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS202001000",
+        "barcode": "5060733581981",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS202001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS2037530",
+        "barcode": "5060733581998",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS2037530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS20375100",
+        "barcode": "5060733582001",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS20375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS203751000",
+        "barcode": "5060733582018",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS203751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2283.webp"
+    "imageWebp": "assets/images/flakes/fk-2283.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2283.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2269",
@@ -1668,8 +3055,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Turquoise Blue Metal Flake",
     "sku": "candy-turquoise-blue-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -1689,18 +3076,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55
       }
     ],
     "hasPackPriceMatrix": true,
@@ -1710,76 +3109,147 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.49,
-        "priceEur": 5.25
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "stockCode": "FKS2110030",
+        "barcode": "5060733582025",
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55,
+        "sku": "FKS2110030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 16.99,
-        "priceEur": 19.88
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "stockCode": "FKS21100100",
+        "barcode": "5060733582032",
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85,
+        "sku": "FKS21100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 169.99,
-        "priceEur": 198.89
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "stockCode": "FKS211001000",
+        "barcode": "5060733582049",
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99,
+        "sku": "FKS211001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS2120030",
+        "barcode": "5060733582056",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS2120030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS21200100",
+        "barcode": "5060733582063",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS21200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS212001000",
+        "barcode": "5060733582070",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS212001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS2137530",
+        "barcode": "5060733582087",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS2137530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS21375100",
+        "barcode": "5060733582094",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS21375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS213751000",
+        "barcode": "5060733582100",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS213751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2269.webp"
+    "imageWebp": "assets/images/flakes/fk-2269.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2269.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2255",
@@ -1788,8 +3258,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Azura Blue Metal Flake",
     "sku": "candy-azura-blue-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -1809,18 +3279,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55
       }
     ],
     "hasPackPriceMatrix": true,
@@ -1830,76 +3312,147 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.49,
-        "priceEur": 5.25
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "stockCode": "FKS1910030",
+        "barcode": "5060733581844",
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55,
+        "sku": "FKS1910030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 16.99,
-        "priceEur": 19.88
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "stockCode": "FKS19100100",
+        "barcode": "5060733581851",
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85,
+        "sku": "FKS19100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 169.99,
-        "priceEur": 198.89
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "stockCode": "FKS191001000",
+        "barcode": "5060733581868",
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99,
+        "sku": "FKS191001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1920030",
+        "barcode": "5060733581875",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1920030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS19200100",
+        "barcode": "5060733581882",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS19200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS192001000",
+        "barcode": "5060733581899",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS192001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1937530",
+        "barcode": "5060733581905",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1937530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS19375100",
+        "barcode": "5060733581912",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS19375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS193751000",
+        "barcode": "5060733581929",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS193751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2255.webp"
+    "imageWebp": "assets/images/flakes/fk-2255.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2255.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2244",
@@ -1908,8 +3461,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Kromatic Blue Flake",
     "sku": "kromatic-blue-flake",
-    "priceGbp": 4.99,
-    "priceEur": 5.84,
+    "priceGbp": 6.21,
+    "priceEur": 7.27,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -1928,18 +3481,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45
       }
     ],
     "hasPackPriceMatrix": true,
@@ -1949,52 +3514,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK1020030",
+        "barcode": "5060733582773",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK1020030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK10200100",
+        "barcode": "5060733582780",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK10200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK102001000",
+        "barcode": "5060733582797",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK102001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK1037530",
+        "barcode": "5060733582803",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK1037530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK10375100",
+        "barcode": "5060733582810",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK10375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK103751000",
+        "barcode": "5060733582827",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK103751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2244.webp"
+    "imageWebp": "assets/images/flakes/fk-2244.webp",
+    "priceRetailGbp": 6.21,
+    "priceRetailEur": 7.27,
+    "priceRrpExVat": 6.21,
+    "images": [
+      "assets/images/flakes/fk-2244.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2233",
@@ -2003,8 +3618,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Light Blue Metal Flake",
     "sku": "candy-light-blue-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -2023,18 +3638,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2044,52 +3671,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1820030",
+        "barcode": "5060733581783",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1820030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS18200100",
+        "barcode": "5060733581790",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS18200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS182001000",
+        "barcode": "5060733581806",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS182001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1837530",
+        "barcode": "5060733581813",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1837530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS18375100",
+        "barcode": "5060733581820",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS18375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS183751000",
+        "barcode": "5060733581837",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS183751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2233.webp"
+    "imageWebp": "assets/images/flakes/fk-2233.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2233.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2222",
@@ -2098,8 +3775,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Kromatic Poison Green Metal Flake",
     "sku": "kromatic-poison-green-metal-flake",
-    "priceGbp": 4.99,
-    "priceEur": 5.84,
+    "priceGbp": 6.21,
+    "priceEur": 7.27,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -2118,18 +3795,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2139,52 +3828,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK1220030",
+        "barcode": "5060733582896",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK1220030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK12200100",
+        "barcode": "5060733582902",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK12200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK122001000",
+        "barcode": "5060733582919",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK122001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK1237530",
+        "barcode": "5060733582926",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK1237530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK12375100",
+        "barcode": "5060733582933",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK12375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK123751000",
+        "barcode": "5060733582940",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK123751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2222.webp"
+    "imageWebp": "assets/images/flakes/fk-2222.webp",
+    "priceRetailGbp": 6.21,
+    "priceRetailEur": 7.27,
+    "priceRrpExVat": 6.21,
+    "images": [
+      "assets/images/flakes/fk-2222.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2208",
@@ -2193,8 +3932,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Emerald Green Metal Flake",
     "sku": "candy-emerald-green-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -2214,18 +3953,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2235,76 +3986,147 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.49,
-        "priceEur": 5.25
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "stockCode": "FKS1710030",
+        "barcode": "5060733581691",
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55,
+        "sku": "FKS1710030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 16.99,
-        "priceEur": 19.88
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "stockCode": "FKS17100100",
+        "barcode": "5060733581707",
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85,
+        "sku": "FKS17100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 169.99,
-        "priceEur": 198.89
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "stockCode": "FKS171001000",
+        "barcode": "5060733581714",
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99,
+        "sku": "FKS171001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1720030",
+        "barcode": "5060733581721",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1720030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS17200100",
+        "barcode": "5060733581738",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS17200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS172001000",
+        "barcode": "5060733581745",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS172001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1737530",
+        "barcode": "5060733581752",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1737530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS17375100",
+        "barcode": "5060733581769",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS17375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS173751000",
+        "barcode": "5060733581776",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS173751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2208.webp"
+    "imageWebp": "assets/images/flakes/fk-2208.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2208.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2194",
@@ -2313,8 +4135,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Poison Green Metal Flake",
     "sku": "candy-poison-green-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -2334,18 +4156,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2355,76 +4189,147 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.49,
-        "priceEur": 5.25
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "stockCode": "FKS1610030",
+        "barcode": "5060733581608",
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55,
+        "sku": "FKS1610030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 16.99,
-        "priceEur": 19.88
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "stockCode": "FKS16100100",
+        "barcode": "5060733581615",
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85,
+        "sku": "FKS16100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 169.99,
-        "priceEur": 198.89
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "stockCode": "FKS161001000",
+        "barcode": "5060733581622",
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99,
+        "sku": "FKS161001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1620030",
+        "barcode": "5060733581639",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1620030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS16200100",
+        "barcode": "5060733581646",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS16200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS162001000",
+        "barcode": "5060733581653",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS162001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1637530",
+        "barcode": "5060733581660",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1637530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS16375100",
+        "barcode": "5060733581677",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS16375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS163751000",
+        "barcode": "5060733581684",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS163751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2194.webp"
+    "imageWebp": "assets/images/flakes/fk-2194.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2194.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2183",
@@ -2433,8 +4338,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Lime Green Metal Flake",
     "sku": "candy-lime-green-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -2453,18 +4358,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2474,52 +4391,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1520030",
+        "barcode": "5060733581547",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1520030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS15200100",
+        "barcode": "5060733581554",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS15200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS152001000",
+        "barcode": "5060733581561",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS152001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1537530",
+        "barcode": "5060733581578",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1537530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS15375100",
+        "barcode": "5060733581585",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS15375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS153751000",
+        "barcode": "5060733581592",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS153751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2183.webp"
+    "imageWebp": "assets/images/flakes/fk-2183.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2183.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2172",
@@ -2528,8 +4495,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Peacock Metal Flake",
     "sku": "peacock-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -2548,18 +4515,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2569,52 +4548,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKM2420030",
+        "barcode": "5060733582292",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKM2420030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKM24200100",
+        "barcode": "5060733582308",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKM24200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKM242001000",
+        "barcode": "5060733582315",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKM242001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKM2437530",
+        "barcode": "5060733582322",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKM2437530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKM24375100",
+        "barcode": "5060733582339",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKM24375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKM243751000",
+        "barcode": "5060733582346",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKM243751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2172.webp"
+    "imageWebp": "assets/images/flakes/fk-2172.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2172.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2158",
@@ -2623,8 +4652,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Purple Heart Metal Flake",
     "sku": "candy-purple-heart-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -2644,18 +4673,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2665,76 +4706,147 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.49,
-        "priceEur": 5.25
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "stockCode": "FKS1410030",
+        "barcode": "5060733581455",
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55,
+        "sku": "FKS1410030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 16.99,
-        "priceEur": 19.88
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "stockCode": "FKS14100100",
+        "barcode": "5060733581462",
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85,
+        "sku": "FKS14100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 169.99,
-        "priceEur": 198.89
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "stockCode": "FKS141001000",
+        "barcode": "5060733581479",
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99,
+        "sku": "FKS141001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1420030",
+        "barcode": "5060733581486",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1420030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS14200100",
+        "barcode": "5060733581493",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS14200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS142001000",
+        "barcode": "5060733581509",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS142001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1437530",
+        "barcode": "5060733581516",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1437530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS14375100",
+        "barcode": "5060733581523",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS14375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS143751000",
+        "barcode": "5060733581530",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS143751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2158.webp"
+    "imageWebp": "assets/images/flakes/fk-2158.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2158.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2147",
@@ -2743,8 +4855,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Sky Purple Metal Flake",
     "sku": "sky-purple-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -2763,18 +4875,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2784,52 +4908,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKM2220030",
+        "barcode": "5060733582179",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKM2220030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKM22200100",
+        "barcode": "5060733582186",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKM22200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKM222001000",
+        "barcode": "5060733582193",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKM222001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKM2237530",
+        "barcode": "5060733582209",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKM2237530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKM22375100",
+        "barcode": "5060733582216",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKM22375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKM223751000",
+        "barcode": "5060733582223",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKM223751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2147.webp"
+    "imageWebp": "assets/images/flakes/fk-2147.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2147.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2133",
@@ -2838,8 +5012,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Fewsha Metal Flake",
     "sku": "candy-fewsha-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -2859,18 +5033,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2880,76 +5066,147 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.49,
-        "priceEur": 5.25
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "stockCode": "FKS1110030",
+        "barcode": "5060733581301",
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55,
+        "sku": "FKS1110030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 16.99,
-        "priceEur": 19.88
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "stockCode": "FKS11100100",
+        "barcode": "5060733581318",
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85,
+        "sku": "FKS11100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 169.99,
-        "priceEur": 198.89
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "stockCode": "FKS111001000",
+        "barcode": "5060733581325",
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99,
+        "sku": "FKS111001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1120030",
+        "barcode": "5060733581332",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1120030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS11200100",
+        "barcode": "5060733581349",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS11200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS112001000",
+        "barcode": "5060733581356",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS112001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1137530",
+        "barcode": "5060733581363",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1137530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS11375100",
+        "barcode": "5060733581370",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS11375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS113751000",
+        "barcode": "5060733581387",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS113751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2133.webp"
+    "imageWebp": "assets/images/flakes/fk-2133.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2133.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2122",
@@ -2958,8 +5215,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Kromatic Lavender Metal Flake",
     "sku": "kromatic-lavender-metal-flake",
-    "priceGbp": 4.99,
-    "priceEur": 5.84,
+    "priceGbp": 6.21,
+    "priceEur": 7.27,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -2978,18 +5235,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45
       }
     ],
     "hasPackPriceMatrix": true,
@@ -2999,52 +5268,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK0820030",
+        "barcode": "5060733582711",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK0820030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK08200100",
+        "barcode": "5060733582728",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK08200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK082001000",
+        "barcode": "5060733582735",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK082001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK0837530",
+        "barcode": "5060733582742",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK0837530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK08375100",
+        "barcode": "5060733582759",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK08375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK083751000",
+        "barcode": "5060733582766",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK083751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2122.webp"
+    "imageWebp": "assets/images/flakes/fk-2122.webp",
+    "priceRetailGbp": 6.21,
+    "priceRetailEur": 7.27,
+    "priceRrpExVat": 6.21,
+    "images": [
+      "assets/images/flakes/fk-2122.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2111",
@@ -3053,8 +5372,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Kromatic Bubble Gum Metal Flake",
     "sku": "kromatic-bubble-gum-metal-flake",
-    "priceGbp": 4.99,
-    "priceEur": 5.84,
+    "priceGbp": 6.21,
+    "priceEur": 7.27,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -3073,18 +5392,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3094,52 +5425,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK1120030",
+        "barcode": "5060733582834",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK1120030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK11200100",
+        "barcode": "5060733582841",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK11200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK112001000",
+        "barcode": "5060733582858",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK112001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK1137530",
+        "barcode": "5060733582865",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK1137530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK11375100",
+        "barcode": "5060733582872",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK11375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK113751000",
+        "barcode": "5060733582889",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK113751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2111.webp"
+    "imageWebp": "assets/images/flakes/fk-2111.webp",
+    "priceRetailGbp": 6.21,
+    "priceRetailEur": 7.27,
+    "priceRrpExVat": 6.21,
+    "images": [
+      "assets/images/flakes/fk-2111.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2104",
@@ -3148,8 +5529,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Pink Metal Flake",
     "sku": "candy-pink-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -3168,18 +5549,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3189,52 +5582,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1220030",
+        "barcode": "5060733581394",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1220030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS12200100",
+        "barcode": "5060733581400",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS12200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS122001000",
+        "barcode": "5060733581417",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS122001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1237530",
+        "barcode": "5060733581424",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1237530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS12375100",
+        "barcode": "5060733581431",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS12375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS123751000",
+        "barcode": "5060733581448",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS123751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2104.webp"
+    "imageWebp": "assets/images/flakes/fk-2104.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2104.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2097",
@@ -3243,8 +5686,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Fire Purple Metal Flake",
     "sku": "fire-purple-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -3263,18 +5706,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3284,52 +5739,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKM2520030",
+        "barcode": "5060733582353",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKM2520030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKM25200100",
+        "barcode": "5060733582360",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKM25200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKM252001000",
+        "barcode": "5060733582377",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKM252001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKM2537530",
+        "barcode": "5060733582384",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKM2537530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKM25375100",
+        "barcode": "5060733582391",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKM25375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKM253751000",
+        "barcode": "5060733582407",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKM253751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2097.webp"
+    "imageWebp": "assets/images/flakes/fk-2097.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2097.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2090",
@@ -3338,8 +5843,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Kromatic Volcano Red Metal Flake",
     "sku": "kromatic-volcano-red-metal-flake",
-    "priceGbp": 4.99,
-    "priceEur": 5.84,
+    "priceGbp": 6.21,
+    "priceEur": 7.27,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -3358,18 +5863,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3379,52 +5896,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK0420030",
+        "barcode": "5060733582650",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK0420030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK04200100",
+        "barcode": "5060733582667",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK04200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK042001000",
+        "barcode": "5060733582674",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK042001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK0437515",
+        "barcode": "5060733582681",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK0437515"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK04375100",
+        "barcode": "5060733582698",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK04375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK043751000",
+        "barcode": "5060733582704",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK043751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2090.webp"
+    "imageWebp": "assets/images/flakes/fk-2090.webp",
+    "priceRetailGbp": 6.21,
+    "priceRetailEur": 7.27,
+    "priceRrpExVat": 6.21,
+    "images": [
+      "assets/images/flakes/fk-2090.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2080",
@@ -3433,8 +6000,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Bright Red Metal Flake",
     "sku": "candy-bright-red-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -3454,18 +6021,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3475,76 +6054,147 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.49,
-        "priceEur": 5.25
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "stockCode": "FKS1010030",
+        "barcode": "5060733581219",
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55,
+        "sku": "FKS1010030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 16.99,
-        "priceEur": 19.88
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "stockCode": "FKS10100100",
+        "barcode": "5060733581226",
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85,
+        "sku": "FKS10100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 169.99,
-        "priceEur": 198.89
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "stockCode": "FKS101001000",
+        "barcode": "5060733581233",
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99,
+        "sku": "FKS101001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1020030",
+        "barcode": "5060733581240",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1020030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS10200100",
+        "barcode": "5060733581257",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS10200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS102001000",
+        "barcode": "5060733581264",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS102001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS1037530",
+        "barcode": "5060733581271",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS1037530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS10375100",
+        "barcode": "5060733581288",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS10375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS103751000",
+        "barcode": "5060733581295",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS103751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2080.webp"
+    "imageWebp": "assets/images/flakes/fk-2080.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2080.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2070",
@@ -3553,8 +6203,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Apple Red Metal Flake",
     "sku": "candy-apple-red-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -3574,18 +6224,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3595,76 +6257,147 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.49,
-        "priceEur": 5.25
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "stockCode": "FKS0910030",
+        "barcode": "5060733581127",
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55,
+        "sku": "FKS0910030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "stockCode": "FKS09100100",
+        "barcode": "5060733581134",
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85,
+        "sku": "FKS09100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 169.99,
-        "priceEur": 198.89
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "stockCode": "FKS091001000",
+        "barcode": "5060733581141",
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99,
+        "sku": "FKS091001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0920030",
+        "barcode": "5060733581158",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0920030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS09200100",
+        "barcode": "5060733581165",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS09200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS092001000",
+        "barcode": "5060733581172",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS092001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0937530",
+        "barcode": "5060733581189",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0937530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS09375100",
+        "barcode": "5060733581196",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS09375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS093751000",
+        "barcode": "5060733581202",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS093751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2070.webp"
+    "imageWebp": "assets/images/flakes/fk-2070.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2070.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2060",
@@ -3673,8 +6406,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Tangy Orange Metal Flake",
     "sku": "candy-tangy-orange-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -3694,18 +6427,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3715,76 +6460,147 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "stockCode": "FKS0810030",
+        "barcode": "5060733581035",
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55,
+        "sku": "FKS0810030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "stockCode": "FKS08100100",
+        "barcode": "5060733581042",
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85,
+        "sku": "FKS08100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 169.99,
-        "priceEur": 198.89
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "stockCode": "FKS081001000",
+        "barcode": "5060733581059",
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99,
+        "sku": "FKS081001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0820030",
+        "barcode": "5060733581066",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0820030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS08200100",
+        "barcode": "5060733581073",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS08200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS082001000",
+        "barcode": "5060733581080",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS082001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0837530",
+        "barcode": "5060733581097",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0837530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS08375100",
+        "barcode": "5060733581103",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS08375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS083751000",
+        "barcode": "5060733581110",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS083751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2060.webp"
+    "imageWebp": "assets/images/flakes/fk-2060.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2060.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2053",
@@ -3793,8 +6609,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Fizzy Green Metal Flake",
     "sku": "fizzy-green-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -3813,18 +6629,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3834,52 +6662,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKM2320030",
+        "barcode": "5060733582230",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKM2320030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKM23200100",
+        "barcode": "5060733582247",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKM23200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKM232001000",
+        "barcode": "5060733582254",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKM232001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKM2337530",
+        "barcode": "5060733582261",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKM2337530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKM23375100",
+        "barcode": "5060733582278",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKM23375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKM233751000",
+        "barcode": "5060733582285",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKM233751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2053.webp"
+    "imageWebp": "assets/images/flakes/fk-2053.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2053.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2043",
@@ -3888,8 +6766,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Extreme Yellow Metal Flake",
     "sku": "candy-extreme-yellow-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.7,
+    "priceEur": 5.5,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -3909,18 +6787,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55
       }
     ],
     "hasPackPriceMatrix": true,
@@ -3930,76 +6820,147 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "stockCode": "FKS0710030",
+        "barcode": "5060733580946",
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55,
+        "sku": "FKS0710030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 16.99,
-        "priceEur": 19.88
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "stockCode": "FKS07100100",
+        "barcode": "5060733580953",
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85,
+        "sku": "FKS07100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 169.99,
-        "priceEur": 198.89
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "stockCode": "FKS071001000",
+        "barcode": "5060733580960",
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99,
+        "sku": "FKS071001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0720030",
+        "barcode": "5060733580977",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0720030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS07200100",
+        "barcode": "5060733580984",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS07200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS072001000",
+        "barcode": "5060733580991",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS072001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.7,
+        "priceEur": 5.5,
+        "stockCode": "FKS0737530",
+        "barcode": "5060733580004",
+        "priceRetailGbp": 4.7,
+        "priceRetailEur": 5.5,
+        "priceRrpExVat": 4.7,
+        "priceRrpIncVat": 5.64,
+        "sku": "FKS0737530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS07375100",
+        "barcode": "5060733581011",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS07375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS073751000",
+        "barcode": "5060733581028",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS073751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2043.webp"
+    "imageWebp": "assets/images/flakes/fk-2043.webp",
+    "priceRetailGbp": 4.7,
+    "priceRetailEur": 5.5,
+    "priceRrpExVat": 4.7,
+    "images": [
+      "assets/images/flakes/fk-2043.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2036",
@@ -4008,8 +6969,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Nevada Sands Metal Flake",
     "sku": "nevada-sands-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -4028,18 +6989,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65
       }
     ],
     "hasPackPriceMatrix": true,
@@ -4049,52 +7022,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0620030",
+        "barcode": "5060733580885",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0620030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS06200100",
+        "barcode": "5060733580892",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS06200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS062001000",
+        "barcode": "5060733580908",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS062001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0637530",
+        "barcode": "5060733580915",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0637530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS06375100",
+        "barcode": "5060733580922",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS06375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS063751000",
+        "barcode": "5060733580939",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS063751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2036.webp"
+    "imageWebp": "assets/images/flakes/fk-2036.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2036.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2029",
@@ -4103,8 +7126,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Kromatic Copper Head Metal Flake",
     "sku": "kromatic-copper-head-metal-flake",
-    "priceGbp": 4.99,
-    "priceEur": 5.84,
+    "priceGbp": 6.21,
+    "priceEur": 7.27,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -4123,18 +7146,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45
       }
     ],
     "hasPackPriceMatrix": true,
@@ -4144,52 +7179,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK0320030",
+        "barcode": "5060733582599",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK0320030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK03200100",
+        "barcode": "5060733582605",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK03200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK032001000",
+        "barcode": "5060733582612",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK032001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.99,
-        "priceEur": 5.84
+        "priceGbp": 6.21,
+        "priceEur": 7.27,
+        "stockCode": "FKK0337530",
+        "barcode": "5060733582629",
+        "priceRetailGbp": 6.21,
+        "priceRetailEur": 7.27,
+        "priceRrpExVat": 6.21,
+        "priceRrpIncVat": 7.45,
+        "sku": "FKK0337530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 19.99,
-        "priceEur": 23.39
+        "priceGbp": 17.38,
+        "priceEur": 20.33,
+        "stockCode": "FKK03375100",
+        "barcode": "5060733582636",
+        "priceRetailGbp": 17.38,
+        "priceRetailEur": 20.33,
+        "priceRrpExVat": 17.38,
+        "priceRrpIncVat": 20.85,
+        "sku": "FKK03375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 164.99,
-        "priceEur": 193.04
+        "priceGbp": 151.9,
+        "priceEur": 177.72,
+        "stockCode": "FKK033751000",
+        "barcode": "5060733582643",
+        "priceRetailGbp": 151.9,
+        "priceRetailEur": 177.72,
+        "priceRrpExVat": 151.9,
+        "priceRrpIncVat": 182.28,
+        "sku": "FKK033751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2029.webp"
+    "imageWebp": "assets/images/flakes/fk-2029.webp",
+    "priceRetailGbp": 6.21,
+    "priceRetailEur": 7.27,
+    "priceRrpExVat": 6.21,
+    "images": [
+      "assets/images/flakes/fk-2029.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2022",
@@ -4198,8 +7283,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Copper Head Metal Flake",
     "sku": "candy-copper-head-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -4218,18 +7303,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65
       }
     ],
     "hasPackPriceMatrix": true,
@@ -4239,52 +7336,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0520030",
+        "barcode": "5060733580823",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0520030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS05200100",
+        "barcode": "5060733580830",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS05200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS052001000",
+        "barcode": "5060733580847",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS052001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0537530",
+        "barcode": "5060733580854",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0537530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS05375100",
+        "barcode": "5060733580861",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS05375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS053751000",
+        "barcode": "5060733580878",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS053751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2022.webp"
+    "imageWebp": "assets/images/flakes/fk-2022.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2022.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2015",
@@ -4293,8 +7440,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Righteous Gold Metal Flake",
     "sku": "candy-righteous-gold-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -4313,18 +7460,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65
       }
     ],
     "hasPackPriceMatrix": true,
@@ -4334,52 +7493,102 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0420030",
+        "barcode": "5060733580762",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0420030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS04200100",
+        "barcode": "5060733580779",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS04200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS042001000",
+        "barcode": "5060733580786",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS042001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0437530",
+        "barcode": "5060733580793",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0437530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS04375100",
+        "barcode": "5060733580809",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS04375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS043751000",
+        "barcode": "5060733580816",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS043751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2015.webp"
+    "imageWebp": "assets/images/flakes/fk-2015.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2015.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-2005",
@@ -4388,8 +7597,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Sovereign Gold Metal Flake",
     "sku": "candy-sovereign-gold-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -4409,18 +7618,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55
       }
     ],
     "hasPackPriceMatrix": true,
@@ -4430,76 +7651,147 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.49,
-        "priceEur": 5.25
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "stockCode": "FKS0310030",
+        "barcode": "5060733580670",
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55,
+        "sku": "FKS0310030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS03100100",
+        "barcode": "5060733580687",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS03100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 169.99,
-        "priceEur": 198.89
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "stockCode": "FKS031001000",
+        "barcode": "5060733580694",
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99,
+        "sku": "FKS031001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0320030",
+        "barcode": "5060733580700",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0320030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS03200100",
+        "barcode": "5060733580717",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS03200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS032001000",
+        "barcode": "5060733580724",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS032001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0337530",
+        "barcode": "5060733580731",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0337530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS03375100",
+        "barcode": "5060733580748",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS03375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS033751000",
+        "barcode": "5060733580755",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS033751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-2005.webp"
+    "imageWebp": "assets/images/flakes/fk-2005.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-2005.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-1992",
@@ -4508,8 +7800,8 @@ export const ECOM_CATALOG = [
     "flakeType": "Single Colour",
     "name": "Candy Elvis Gold Metal Flake",
     "sku": "candy-elvis-gold-metal-flake",
-    "priceGbp": 3.99,
-    "priceEur": 4.67,
+    "priceGbp": 4.71,
+    "priceEur": 5.51,
     "inStock": true,
     "isPreOrder": false,
     "badge": "FLAKE KING (SINGLE COLOUR)",
@@ -4530,18 +7822,30 @@ export const ECOM_CATALOG = [
     "packPriceMatrix": [
       {
         "packSize": "1000g (1 Kilo Trade Pack)",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 333.33,
+        "priceEur": 390,
+        "priceRetailGbp": 333.33,
+        "priceRetailEur": 390,
+        "priceRrpExVat": 333.33,
+        "priceRrpIncVat": 399.99
       },
       {
         "packSize": "100g Jar (Refill / Trade)",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 33.63,
+        "priceEur": 39.35,
+        "priceRetailGbp": 33.63,
+        "priceRetailEur": 39.35,
+        "priceRrpExVat": 33.63,
+        "priceRrpIncVat": 40.35
       },
       {
         "packSize": "30g Jar (Gun Mount)",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 11.08,
+        "priceEur": 12.96,
+        "priceRetailGbp": 11.08,
+        "priceRetailEur": 12.96,
+        "priceRrpExVat": 11.08,
+        "priceRrpIncVat": 13.3
       }
     ],
     "hasPackPriceMatrix": true,
@@ -4551,141 +7855,345 @@ export const ECOM_CATALOG = [
         "rawFlakeSize": "ultra-small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 5.99,
-        "priceEur": 7.01
+        "priceGbp": 11.08,
+        "priceEur": 12.96,
+        "stockCode": "FKS025030",
+        "barcode": "5060733580557",
+        "priceRetailGbp": 11.08,
+        "priceRetailEur": 12.96,
+        "priceRrpExVat": 11.08,
+        "priceRrpIncVat": 13.3,
+        "sku": "FKS025030"
       },
       {
         "flakeSize": "Ultra Small .002\"",
         "rawFlakeSize": "ultra-small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 45.99,
-        "priceEur": 53.81
+        "priceGbp": 33.63,
+        "priceEur": 39.35,
+        "stockCode": "FKS0250100",
+        "barcode": "5060733580564",
+        "priceRetailGbp": 33.63,
+        "priceRetailEur": 39.35,
+        "priceRrpExVat": 33.63,
+        "priceRrpIncVat": 40.35,
+        "sku": "FKS0250100"
       },
       {
         "flakeSize": "Ultra Small .002\"",
         "rawFlakeSize": "ultra-small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 399.99,
-        "priceEur": 467.99
+        "priceGbp": 333.33,
+        "priceEur": 390,
+        "stockCode": "FKS02501000",
+        "barcode": "5060733580571",
+        "priceRetailGbp": 333.33,
+        "priceRetailEur": 390,
+        "priceRrpExVat": 333.33,
+        "priceRrpIncVat": 399.99,
+        "sku": "FKS02501000"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 4.49,
-        "priceEur": 5.25
+        "priceGbp": 5.46,
+        "priceEur": 6.39,
+        "stockCode": "FKS0210030",
+        "barcode": "5060733580588",
+        "priceRetailGbp": 5.46,
+        "priceRetailEur": 6.39,
+        "priceRrpExVat": 5.46,
+        "priceRrpIncVat": 6.55,
+        "sku": "FKS0210030"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 16.99,
-        "priceEur": 19.88
+        "priceGbp": 14.88,
+        "priceEur": 17.41,
+        "stockCode": "FKS02100100",
+        "barcode": "5060733580595",
+        "priceRetailGbp": 14.88,
+        "priceRetailEur": 17.41,
+        "priceRrpExVat": 14.88,
+        "priceRrpIncVat": 17.85,
+        "sku": "FKS02100100"
       },
       {
         "flakeSize": "Small .008\"",
         "rawFlakeSize": "small",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 169.99,
-        "priceEur": 198.89
+        "priceGbp": 141.66,
+        "priceEur": 165.74,
+        "stockCode": "FKS021001000",
+        "barcode": "5060733580601",
+        "priceRetailGbp": 141.66,
+        "priceRetailEur": 165.74,
+        "priceRrpExVat": 141.66,
+        "priceRrpIncVat": 169.99,
+        "sku": "FKS021001000"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0220030",
+        "barcode": "5060733580618",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0220030"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS02200100",
+        "barcode": "5060733580625",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS02200100"
       },
       {
         "flakeSize": "Medium .015\"",
         "rawFlakeSize": "medium",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS022001000",
+        "barcode": "5060733580632",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS022001000"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "30g Jar (Gun Mount)",
         "rawPackSize": "30g",
-        "priceGbp": 3.99,
-        "priceEur": 4.67
+        "priceGbp": 4.71,
+        "priceEur": 5.51,
+        "stockCode": "FKS0237530",
+        "barcode": "5060733580649",
+        "priceRetailGbp": 4.71,
+        "priceRetailEur": 5.51,
+        "priceRrpExVat": 4.71,
+        "priceRrpIncVat": 5.65,
+        "sku": "FKS0237530"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "100g Jar (Refill / Trade)",
         "rawPackSize": "100g",
-        "priceGbp": 14.99,
-        "priceEur": 17.54
+        "priceGbp": 12.49,
+        "priceEur": 14.61,
+        "stockCode": "FKS02375100",
+        "barcode": "5060733580656",
+        "priceRetailGbp": 12.49,
+        "priceRetailEur": 14.61,
+        "priceRrpExVat": 12.49,
+        "priceRrpIncVat": 14.99,
+        "sku": "FKS02375100"
       },
       {
         "flakeSize": "Large .025\"",
         "rawFlakeSize": "large",
         "packSize": "1000g (1 Kilo Trade Pack)",
         "rawPackSize": "1000g",
-        "priceGbp": 129.99,
-        "priceEur": 152.09
+        "priceGbp": 108.33,
+        "priceEur": 126.75,
+        "stockCode": "FKS023751000",
+        "barcode": "5060733580663",
+        "priceRetailGbp": 108.33,
+        "priceRetailEur": 126.75,
+        "priceRrpExVat": 108.33,
+        "priceRrpIncVat": 129.99,
+        "sku": "FKS023751000"
       }
     ],
     "hasFullMatrix": true,
-    "imageWebp": "assets/images/flakes/fk-1992.webp"
+    "imageWebp": "assets/images/flakes/fk-1992.webp",
+    "priceRetailGbp": 4.71,
+    "priceRetailEur": 5.51,
+    "priceRrpExVat": 4.71,
+    "images": [
+      "assets/images/flakes/fk-1992.jpg",
+      "assets/images/flakes/flake_king_color_chart.png",
+      "assets/images/flakes/flake_king_size_chart.png"
+    ]
   },
   {
     "id": "fk-1972",
     "brand": "Flake King",
     "category": "Dry Metal Flake Guns",
     "name": "Flake King 1050 Dry Metal Flake Gun",
-    "sku": "5060733583138",
-    "priceGbp": 139.99,
-    "priceEur": 163.79,
+    "sku": "FOM1050",
+    "priceGbp": 108.33,
+    "priceEur": 126.75,
     "inStock": true,
     "isPreOrder": false,
     "badge": "PRO GUN SYSTEM",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10501.png?fit=600%2C600&ssl=1",
-    "description": "Introducing our latest gun, designed to be ready for our new range of corroded metal heavy powder blends.\nMachined from Billet Aluminium and then Anodised for maximum protection against all our metallic blend powders. It is like our 1000 gun with a few minor differences first being – it has not got the flake control valve and as a bonus it comes with the machined and anodised powder pick up tube.\nYou can choose to have the “Barrel & Pot” to be self levelling or fixed – by simply tightening or loosening the screw in-between the barrel and pot lid (as you can see in the pictures above) and the nozzle can rotate 360 around the tip of the barrel.\nThese guns are not just for the products that we manufacture, they have been used for many different applications – from spraying pollen to pollenate pine trees to applying non slip particles to surf boards.\nThis particular gun requires a normal size compressor to run and the minimum specification that we recommend would be a 2 CFM and 3 psi up to 20 psi.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
+    "description": "The Flake King 1050 is designed for heavy-duty dry powder and coarse metallic flake distribution. Machined from aircraft-grade billet aluminium with hard anodising, it features an enlarged internal pick-up tube engineered to spray larger flake grades and heavy powders smoothly at 10–20 PSI.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
-    "hasFullMatrix": true
+    "hasFullMatrix": true,
+    "stockCode": "FOM1050",
+    "barcode": "5060733583138",
+    "priceRetailGbp": 108.33,
+    "priceRetailEur": 126.75,
+    "priceRrpExVat": 108.33,
+    "priceRrpIncVat": 129.99,
+    "images": [
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10501.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10502.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10503.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10504.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10505.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10506.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10507.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM1050A.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM1050B.png?fit=600%2C600&ssl=1"
+    ],
+    "videos": [
+      {
+        "platform": "youtube",
+        "title": "How To Spray Metal Flake Using The Flake King 1000 / 1050 Dry Metal Flake Spray Gun",
+        "creator": "Tony's Refinishing",
+        "url": "https://www.youtube.com/watch?v=YmE-kCQLjvM",
+        "embedId": "YmE-kCQLjvM",
+        "duration": "8:42",
+        "badge": "Master Tutorial"
+      },
+      {
+        "platform": "youtube",
+        "title": "How to metal flake with Flake King Guns.",
+        "creator": "SM Designs Airbrush",
+        "url": "https://www.youtube.com/watch?v=13SQPoGvjk8",
+        "embedId": "13SQPoGvjk8",
+        "duration": "12:15",
+        "badge": "Pro Demonstration"
+      }
+    ],
+    "summary": "Heavy-duty dry applicator gun engineered specifically for coarse metallic flakes, heavy metal blends, and specialty dry powders.",
+    "benefits": [
+      "Engineered for Heavy Flakes & Powders: Features an enlarged internal bore and CNC machined pick-up tube designed to handle heavy particles without restriction.",
+      "Dual-Mode Barrel: 360° rotating nozzle with adjustable self-levelling or rigid barrel locking.",
+      "Industrial Durability: Solid CNC billet aluminium body with hard anodised protective coating.",
+      "Broad Industrial Versatility: Used for automotive flake, anti-slip coatings, and precision powder distribution."
+    ],
+    "howItWorks": [
+      "Step 1 - Set Up: Connect to air supply at 10–20 PSI (minimum 2 CFM recommended).",
+      "Step 2 - Apply Dry Flake: Spray dry heavy flake or powder over wet binder coat.",
+      "Step 3 - Seal: Allow to flash, blow off excess, and seal with 2K clear."
+    ],
+    "inTheBox": [
+      "Flake King 1050 Billet Gun Body",
+      "Heavy Powder Pick-Up Tube Assembly",
+      "Articulated Self-Levelling Barrel & 360° Rotating Tip",
+      "1× 100g Flake Jar & 1/4\" BSP Fitting"
+    ]
   },
   {
     "id": "fk-1970",
     "brand": "Flake King",
     "category": "Dry Metal Flake Guns",
     "name": "Flake King 550 Mini Dry Metal Flake Gun",
-    "sku": "5060733580069",
-    "priceGbp": 119.99,
-    "priceEur": 140.39,
+    "sku": "FOM550",
+    "priceGbp": 99.99,
+    "priceEur": 116.99,
     "inStock": true,
     "isPreOrder": false,
     "badge": "PRO GUN SYSTEM",
     "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5501.png?fit=600%2C600&ssl=1",
-    "description": "This Mini Gun is a smaller version of our Flake King 1000 Gun that runs off an airbrush compressor.\nIt enables you to apply your clear coat with your airbrush and then use the Flake King 500 Mini to apply the flake.\nIt is supplied with a nozzle for easier blending of flake “passes” and is also supplied with a 1/4″ to 1/8″ adaptor to fit to a standard airbrush airline.\nIdeal for smaller projects – from bowling pins, skateboard decks, helmets, to bicycle and motorcycle frames.\nOur flakes are supplied in glass jars that simply screw onto the gun, no hassle, no messing.\nTo learn more about the following products – guns, flake & surface binders please watch the video by clicking this link – Product Video",
+    "description": "The Flake King 550 Mini is a scaled-down version of the 1000 gun engineered specifically to operate from studio airbrush compressors. Ideal for helmets, skateboards, bikes, and small automotive components. Allows you to apply wet clear with your airbrush and instantly apply dry flake with the 550 Mini without changing setups.",
     "sizes": [],
     "packSizes": [],
     "hasOptions": false,
-    "hasFullMatrix": true
+    "hasFullMatrix": true,
+    "stockCode": "FOM550",
+    "barcode": "5060733580069",
+    "priceRetailGbp": 99.99,
+    "priceRetailEur": 116.99,
+    "priceRrpExVat": 99.99,
+    "priceRrpIncVat": 119.99,
+    "images": [
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5501.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5502.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5503.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5504.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5505.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5506.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5507.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5508.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5509.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM550A.png?fit=600%2C600&ssl=1",
+      "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM550B.png?fit=600%2C600&ssl=1"
+    ],
+    "videos": [
+      {
+        "platform": "youtube",
+        "title": "First Try Of The Flake King FOM550 Dry Flake Gun",
+        "creator": "Bodganeering",
+        "url": "https://www.youtube.com/watch?v=RRSWEgBVkmc",
+        "embedId": "RRSWEgBVkmc",
+        "duration": "10:14",
+        "badge": "First Impressions"
+      },
+      {
+        "platform": "youtube",
+        "title": "How to metal flake with Flake King Guns.",
+        "creator": "SM Designs Airbrush",
+        "url": "https://www.youtube.com/watch?v=13SQPoGvjk8",
+        "embedId": "13SQPoGvjk8",
+        "duration": "12:15",
+        "badge": "Pro Tutorial"
+      }
+    ],
+    "summary": "Compact dry metal flake gun engineered to run on low-CFM airbrush compressors. Perfect for custom painters working on helmets, skateboards, bicycle frames, and small motorcycle parts.",
+    "benefits": [
+      "Low Air Consumption: Operates smoothly at 10–18 PSI on standard studio airbrush compressors (1/4\" to 1/8\" BSP adaptor included).",
+      "Ergonomic Pistol Grip: Lightweight CNC aluminium body provides pinpoint maneuverability in tight curves and recesses.",
+      "Consistent Fluidization: Internal Venturi agitator prevents flake pack-down and ensures uniform dry dispersion without spitting.",
+      "Screw-In Jar Mount: Fits all standard 30g and 50g Flake King jars."
+    ],
+    "howItWorks": [
+      "Step 1 - Wet Binder: Apply a wet intercoat clear or binder coat to the target area.",
+      "Step 2 - Spray Dry Flake: Spray dry flake evenly at 10–15 PSI with the FK-550 Mini.",
+      "Step 3 - Final Clear: Blow off excess dry flake and seal with topcoat clear."
+    ],
+    "inTheBox": [
+      "Flake King 550 Mini Gun Body",
+      "Precision Blending Nozzle",
+      "1/4\" to 1/8\" BSP Air Line Adaptor",
+      "1× 30g Flake Jar & Manual"
+    ]
   },
   {
     "id": "va-635",
     "brand": "VsionAir",
-    "category": "Helmet Jigs",
+    "category": "Work-Holding Jigs",
     "name": "VsionAir Ice Hockey Goalie Mask Jig (VAX-JG-GLMSK)",
     "sku": "VAX-JG-GLMSK",
     "priceEur": 129.16,
@@ -4701,7 +8209,20 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "videos": [
+      {
+        "platform": "youtube",
+        "title": "VsionAir FK500 550 Gun Holder VAX 500 HLDR",
+        "creator": "Flake King",
+        "url": "https://www.youtube.com/watch?v=vrcLcQAKwvo",
+        "embedId": "vrcLcQAKwvo",
+        "duration": "2:10",
+        "badge": "Rig Demo"
+      }
+    ],
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-627",
@@ -4722,12 +8243,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-494",
     "brand": "VsionAir",
-    "category": "Canvass Jig",
+    "category": "Work-Holding Jigs",
     "name": "VsionAir tm Canvass Jig 1000mm Spine (VAX-JG-CNVSS-1000)",
     "sku": "VAX-JG-CNVSS-1500-1",
     "priceEur": 140.39,
@@ -4743,12 +8266,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-463",
     "brand": "VsionAir",
-    "category": "VsionAir Knobs",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-6W-KNB-M VsionAir M6 Wing Knob Male",
     "sku": "VAX-6W-KNB-M",
     "priceEur": 3.36,
@@ -4764,12 +8289,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-462",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-10-WSHR VsionAir M10 Washer for Desk Mount",
     "sku": "VAX-10-WSHR",
     "priceEur": 0.28,
@@ -4785,12 +8312,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-460",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-10-CB-100 VsionAir M10 x 100mm Coach Bolt for Desk Top Mount",
     "sku": "VAX-10-CB-100",
     "priceEur": 3.36,
@@ -4806,12 +8335,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-459",
     "brand": "VsionAir",
-    "category": "VsionAir Knobs",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-10STR-KNB-F VsionAir M10 Star Knob for Desk Mount",
     "sku": "VAX-10STR-KNB-F",
     "priceEur": 8.41,
@@ -4827,12 +8358,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-458",
     "brand": "VsionAir",
-    "category": "VsionAir Knobs",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-620-CLMP VsionAir M6 Clamping Handle",
     "sku": "VAX-620-CLMP",
     "priceEur": 11.22,
@@ -4848,12 +8381,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-454",
     "brand": "VsionAir",
-    "category": "VsionAir Knobs",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-6W-KNB-F VsionAir M6 Wing Knob Female",
     "sku": "VAX-6W-KNB-F",
     "priceEur": 5.6,
@@ -4869,12 +8404,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-453",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-6R-WASHR-10 VsionAir M6 Rubber Washer 10 Pack",
     "sku": "VAX-6R-WSHR-10",
     "priceEur": 6.31,
@@ -4890,12 +8427,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-452",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-6S-WASHR-10 VsionAir M6 Washer 10 Pack",
     "sku": "VAX-6s-WSHR",
     "priceEur": 0.83,
@@ -4911,12 +8450,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-451",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-6Nyloc VsionAir M6 Nylon Lock Nut 10 Pack",
     "sku": "VAX-6Nyloc-10",
     "priceEur": 2.23,
@@ -4932,12 +8473,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-450",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-6HN-10 VsionAir M6 Half Nut 10 Pack",
     "sku": "VA-450",
     "priceEur": 0.84,
@@ -4953,12 +8496,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-448",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-6CSH-8-10 VsionAir M6 x 8mm Countersunk Pozi Head Machine Screw 10 Pack",
     "sku": "VA-448",
     "priceEur": 1.39,
@@ -4974,12 +8519,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-447",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-6H-60-10  VsionAir M6 x 60mm Hex Head Machine Screw, 10 Pack",
     "sku": "VAX-6H-60-10",
     "priceEur": 2.53,
@@ -4995,12 +8542,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-446",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-6H-35-10  VsionAir M6 x 35mm Hex Head Machine Screw, 10 Pack",
     "sku": "VAX-6H-35-10",
     "priceEur": 1.39,
@@ -5016,12 +8565,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-445",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-6H-16-10  VsionAir M6 x 16mm Hex Head Machine Screw, 10 Pack",
     "sku": "VAX-6H-16-10",
     "priceEur": 1.39,
@@ -5037,12 +8588,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-444",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-6FH-12-10 VsionAir M6 x 12mm Flange Head Machine Screw Pack of 10",
     "sku": "VAX-6FH-10-10-1",
     "priceEur": 3.37,
@@ -5058,12 +8611,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-443",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-6FH-10-10 VsionAir M6 x 10mm Flange Head Machine Screw Pack of 10",
     "sku": "VAX-6FH-10-10",
     "priceEur": 3.37,
@@ -5079,12 +8634,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-442",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-6FH-8-10 VsionAir M6 x 8mm Flange Head Machine Screw Pack of 10",
     "sku": "VAX-6FH-8-10",
     "priceEur": 3.37,
@@ -5100,12 +8657,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-440",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-4Nyloc VsionAir M4 Nylon Lock Nut",
     "sku": "VAX-4Nyloc-10",
     "priceEur": 2.23,
@@ -5121,12 +8680,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-439",
     "brand": "VsionAir",
-    "category": "VsionAir Fasteners",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-4-FH-8 VsionAir M4 x 8mm Flange Head Machine Screw",
     "sku": "VAX-4FH-8-10",
     "priceEur": 1.39,
@@ -5142,12 +8703,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-438",
     "brand": "VsionAir",
-    "category": "VsionAir Brackets",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-END-STP VsionAir End Stop Bracket",
     "sku": "VAX-END-STP",
     "priceEur": 4.2,
@@ -5163,12 +8726,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-437",
     "brand": "VsionAir",
-    "category": "VsionAir Brackets",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-50-BRKT 50mm x 90 Degree Bracket",
     "sku": "VAX-50-BRKT",
     "priceEur": 7.01,
@@ -5184,12 +8749,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-436",
     "brand": "VsionAir",
-    "category": "VsionAir Brackets",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-25-BRKT 25mm x 90 Degree Bracket",
     "sku": "VAX-25-BRKT",
     "priceEur": 5.6,
@@ -5205,12 +8772,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-435",
     "brand": "VsionAir",
-    "category": "VsionAir Brackets",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-IAB-BRKT VsionAir IABS Bracket",
     "sku": "VAX-IABS-BRKT",
     "priceEur": 8.41,
@@ -5226,12 +8795,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-434",
     "brand": "VsionAir",
-    "category": "VsionAir Brackets",
+    "category": "Fixings, Knobs & Hardware",
     "name": "VAX-VBRKT VsionAir V Bracket",
     "sku": "VAX-VBRKT",
     "priceEur": 6.31,
@@ -5247,12 +8818,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-353",
     "brand": "VsionAir",
-    "category": "Storage, Comfort & Environment",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir Multi Function Holder (VAX-TM-M-SS)",
     "sku": "VAX-TM-M-SS",
     "priceEur": 30.88,
@@ -5268,12 +8841,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-351",
     "brand": "VsionAir",
-    "category": "Airbrush Specific",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir Bottle & Airbrush Mount Holder (VAX-TS-ABP-HLDR)",
     "sku": "VAX-S-ABP-HLDR",
     "priceEur": 28.07,
@@ -5289,12 +8864,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-349",
     "brand": "VsionAir",
-    "category": "Storage, Comfort & Environment",
+    "category": "Tool & Airbrush Holders",
     "name": "VsiobAir 80mm Pot Organiser (VAX-POT1)",
     "sku": "VAX-POT1",
     "priceEur": 14.03,
@@ -5310,12 +8887,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-347",
     "brand": "VsionAir",
-    "category": "Storage, Comfort & Environment",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir Flake King Gravity Spray Gun Holder (VAX-SPRYGN-HLDR)",
     "sku": "VAX-SPRYGN-HLDR-1-1",
     "priceEur": 16.84,
@@ -5331,12 +8910,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-345",
     "brand": "VsionAir",
-    "category": "Storage, Comfort & Environment",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir Flake King 1000 Holder (VAX-1000-HLDR)",
     "sku": "VAX-1000-HLDR-1",
     "priceEur": 16.84,
@@ -5352,12 +8933,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-343",
     "brand": "VsionAir",
-    "category": "Storage, Comfort & Environment",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir Flake King 500 Holder (VAX-500-HLDR)",
     "sku": "VAX-500-HLDR",
     "priceEur": 14.03,
@@ -5373,12 +8956,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-341",
     "brand": "VsionAir",
-    "category": "Storage, Comfort & Environment",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir Hook (VAX-HOOK)",
     "sku": "VAX-HOOK",
     "priceEur": 8.41,
@@ -5394,12 +8979,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-339",
     "brand": "VsionAir",
-    "category": "Storage, Comfort & Environment",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir Paint Bottle Holder (VAX-PNT-HLDR)",
     "sku": "VAX-PNT-HLDR",
     "priceEur": 28.07,
@@ -5415,12 +9002,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-336",
     "brand": "VsionAir",
-    "category": "Airbrush Specific",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir Reference & Spray Out Holder (VAX-REF)",
     "sku": "VAx-REF",
     "priceEur": 37.9,
@@ -5436,12 +9025,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-328",
     "brand": "VsionAir",
-    "category": "Airbrush Specific",
+    "category": "Tool & Airbrush Holders",
     "name": "Vsionair tm Sparmax Regulator & Airline Holder (VAX-REG)",
     "sku": "VAX-REG",
     "priceEur": 11.22,
@@ -5457,12 +9048,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-326",
     "brand": "VsionAir",
-    "category": "Airbrush Specific",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir Pressure Cleaning Pot & Holder (VAX-APCS)",
     "sku": "VA-326",
     "priceEur": 23.86,
@@ -5478,12 +9071,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-324",
     "brand": "VsionAir",
-    "category": "Airbrush Specific",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir Universal Cleaning Pot Holder (VAX-IWUSOP)",
     "sku": "VAX-IWUSOP",
     "priceEur": 28.07,
@@ -5499,12 +9094,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-323",
     "brand": "VsionAir",
-    "category": "Airbrush Specific",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir Airbrush Holder Frame 300mm (VAX-ABHF-300)",
     "sku": "VAX-ABHF-300",
     "priceEur": 9.82,
@@ -5520,12 +9117,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-322",
     "brand": "VsionAir",
-    "category": "Airbrush Specific",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir Airbrush Holder Frame 250mm (VAX-ABHF-250)",
     "sku": "VAX-ABHF-250-1",
     "priceEur": 8.41,
@@ -5541,12 +9140,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-321",
     "brand": "VsionAir",
-    "category": "Airbrush Specific",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir Airbrush Holder Frame 200mm (VAX-ABHF-200)",
     "sku": "VAX-ABHF-200",
     "priceEur": 7.01,
@@ -5562,12 +9163,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-319",
     "brand": "VsionAir",
-    "category": "Airbrush Specific",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir Airbrush Holder Frame 150mm (VAX-ABHF-150)",
     "sku": "VAX-ABHF-150",
     "priceEur": 5.6,
@@ -5583,12 +9186,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-317",
     "brand": "VsionAir",
-    "category": "Airbrush Specific",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir tm Needle Cap Tray (VAX-NCH4)",
     "sku": "VA-317",
     "priceEur": 11.22,
@@ -5604,12 +9209,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-314",
     "brand": "VsionAir",
-    "category": "Airbrush Specific",
+    "category": "Tool & Airbrush Holders",
     "name": "VsionAir tm Airbrush Holder (VAX-ABH)",
     "sku": "VAX-ABH",
     "priceEur": 8.41,
@@ -5625,12 +9232,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-312",
     "brand": "VsionAir",
-    "category": "Skateboard Jig",
+    "category": "Work-Holding Jigs",
     "name": "VsionAir tm Skateboard Jig (VAX-JG-SKBD)",
     "sku": "VAX-JG-SKBD",
     "priceEur": 70.19,
@@ -5646,12 +9255,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-310",
     "brand": "VsionAir",
-    "category": "Thermal Mug Jig",
+    "category": "Work-Holding Jigs",
     "name": "VsionAir Thermal Mug Jig (VAX-JG-TM)",
     "sku": "VAX-JG-TM",
     "priceEur": 70.19,
@@ -5667,12 +9278,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-308",
     "brand": "VsionAir",
-    "category": "Car & Motorcycle Wheel Jig",
+    "category": "Work-Holding Jigs",
     "name": "VsionAir Motorcycle & Car Wheel Jig (VAX-Jg-WHL)",
     "sku": "VAX-Jg-WHL",
     "priceEur": 56.15,
@@ -5688,12 +9301,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-306",
     "brand": "VsionAir",
-    "category": "Helmet Jigs",
+    "category": "Work-Holding Jigs",
     "name": "VsionAir Motorcycle Helmet Jig (VAX-JG-HLMT)",
     "sku": "VAX-JG-HLMT",
     "priceEur": 129.16,
@@ -5709,12 +9324,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-304",
     "brand": "VsionAir",
-    "category": "Motorcycle Part Jigs",
+    "category": "Work-Holding Jigs",
     "name": "VsionAir Motorcycle Tank Rotisserie Jig (VAX-JG-MCTNK)",
     "sku": "VAX-JG-MCTNK",
     "priceEur": 266.75,
@@ -5730,12 +9347,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-302",
     "brand": "VsionAir",
-    "category": "Motorcycle Part Jigs",
+    "category": "Work-Holding Jigs",
     "name": "Vsionair Motorcycle Fender/Mudguard Jig Set (VAX-JG-MCFDR)",
     "sku": "VAX-JG-MCFDR",
     "priceEur": 112.31,
@@ -5751,12 +9370,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-297",
     "brand": "VsionAir",
-    "category": "Guitar Parts Jigs",
+    "category": "Work-Holding Jigs",
     "name": "VsionAir Electric Guitar Jig (VAX-JG-GTR)",
     "sku": "VAX-JG-GTR",
     "priceEur": 196.55,
@@ -5772,12 +9393,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-296",
     "brand": "VsionAir",
-    "category": "Vsion Easel Modules",
+    "category": "Base Stands & Easels",
     "name": "VsionAir TM A3 Airbrush Station Jig (VAX-JG-IABS-A3)",
     "sku": "VAX-JG-IABS-A3",
     "priceEur": 140.39,
@@ -5793,12 +9416,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-294",
     "brand": "VsionAir",
-    "category": "Vsion Easel Modules",
+    "category": "Base Stands & Easels",
     "name": "VsionAir TM A4 Airbrush Station Jig (VAX-JG-IABS-A4)",
     "sku": "VAX-JG-IABS-A4",
     "priceEur": 112.31,
@@ -5814,12 +9439,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-293",
     "brand": "VsionAir",
-    "category": "Canvass Jig",
+    "category": "Work-Holding Jigs",
     "name": "VsionAir tm Canvass Jig 1500mm Spine (VAX-JG-CNVSS-1500)",
     "sku": "VAX-JG-CNVSS-1500",
     "priceEur": 168.47,
@@ -5835,7 +9462,9 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-288",
@@ -5856,7 +9485,9 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-284",
@@ -5877,7 +9508,9 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-282",
@@ -5898,7 +9531,9 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-281",
@@ -5919,7 +9554,9 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-280",
@@ -5940,7 +9577,9 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-279",
@@ -5961,12 +9600,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-278",
     "brand": "VsionAir",
-    "category": "VsionAir Frame",
+    "category": "Tool Bars & Lighting Rigs",
     "name": "VsionFrame tm Tool Bar 750mm (VAX-FRM-750-TB)",
     "sku": "VAX-FRM-750-TB",
     "priceEur": 19.64,
@@ -5982,12 +9623,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-270",
     "brand": "VsionAir",
-    "category": "VsionAir Frame",
+    "category": "Tool Bars & Lighting Rigs",
     "name": "VsionFrame tm Tool Bar 500mm (VAX-FRM-500-TB)",
     "sku": "VAX-FRM-500-TB",
     "priceEur": 14.03,
@@ -6003,12 +9646,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-268",
     "brand": "VsionAir",
-    "category": "Stands",
+    "category": "Base Stands & Easels",
     "name": "VAX-IABS VsionAir Independent Airbrush Station",
     "sku": "VAX-IABS",
     "priceEur": 140.39,
@@ -6024,12 +9669,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-265",
     "brand": "VsionAir",
-    "category": "Accessories",
+    "category": "Fixings, Knobs & Hardware",
     "name": "Angle Lock Adjuster (VAX-ALA)",
     "sku": "VAX-ALA",
     "priceEur": 36.26,
@@ -6045,12 +9692,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-262",
     "brand": "VsionAir",
-    "category": "Accessories",
+    "category": "Base Stands & Easels",
     "name": "Crown Feet for VsionAir Tri-Stand (VAX-CRWN-FT)",
     "sku": "VAX-CRWN-FT",
     "priceEur": 23.86,
@@ -6066,12 +9715,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-260",
     "brand": "VsionAir",
-    "category": "Accessories",
+    "category": "Base Stands & Easels",
     "name": "VsionAir Desk Mount Clamp (VAX-DM2)",
     "sku": "VAX-DM2",
     "priceEur": 42.11,
@@ -6087,12 +9738,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-256",
     "brand": "VsionAir",
-    "category": "Stands",
+    "category": "Base Stands & Easels",
     "name": "VsionAir Desk Mount -(VAX-DM1)",
     "sku": "VAX-DM1",
     "priceEur": 112.31,
@@ -6108,12 +9761,14 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   },
   {
     "id": "va-255",
     "brand": "VsionAir",
-    "category": "Stands",
+    "category": "Base Stands & Easels",
     "name": "VsionAir Tri-Stand (VAX-TRI)",
     "sku": "VAX-TRI",
     "priceEur": 280.79,
@@ -6129,6 +9784,8 @@ export const ECOM_CATALOG = [
     "packSizes": [
       "Single Unit"
     ],
-    "hasOptions": false
+    "hasOptions": false,
+    "hideFromStorefront": true,
+    "repricingHold": true
   }
 ];

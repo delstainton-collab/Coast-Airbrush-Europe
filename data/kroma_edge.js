@@ -21,9 +21,11 @@ export const KROMA_EDGE_TDS = {
       { totalGrams: 14, binder: 5, reducer: 5, hardener: 2, mirrorSeeds: 2, fluidOz: 0.5 },
       { totalGrams: 28, binder: 10, reducer: 10, hardener: 4, mirrorSeeds: 4, fluidOz: 1.0 },
       { totalGrams: 56, binder: 20, reducer: 20, hardener: 8, mirrorSeeds: 8, fluidOz: 2.0 },
-      { totalGrams: 140, binder: 50, reducer: 50, hardener: 20, mirrorSeeds: 20, fluidOz: 5.0, label: "Small Kit (140g)" },
-      { totalGrams: 420, binder: 150, reducer: 150, hardener: 60, mirrorSeeds: 60, fluidOz: 15.0, label: "Medium Kit (420g)" },
-      { totalGrams: 1260, binder: 450, reducer: 450, hardener: 180, mirrorSeeds: 180, fluidOz: 45.0, label: "Large Kit (1260g)" }
+      { totalGrams: 140, binder: 50, reducer: 50, hardener: 20, mirrorSeeds: 20, fluidOz: 5.0, label: "Small Kit (140g / 5 oz)" },
+      { totalGrams: 420, binder: 150, reducer: 150, hardener: 60, mirrorSeeds: 60, fluidOz: 15.0, label: "Medium Kit (420g / 15 oz)" },
+      { totalGrams: 1260, binder: 450, reducer: 450, hardener: 180, mirrorSeeds: 180, fluidOz: 45.0, label: "Large Kit (1260g / 45 oz)" },
+      { totalGrams: 2520, binder: 900, reducer: 900, hardener: 360, mirrorSeeds: 360, fluidOz: 90.0, label: "Extra Large Kit (2520g / 90 oz)" },
+      { totalGrams: 10080, binder: 3600, reducer: 3600, hardener: 1440, mirrorSeeds: 1440, fluidOz: 360.0, label: "Ultra Large Kit (10080g / 360 oz)" }
     ],
     filmThickness: "15 – 30 µm (0.6 – 1.2 mil). Target: 25 ± 5 µm. Max limit: 40 µm (causes cracking/sagging).",
     potLife: "3 Hours after mixing binder and hardener. (Mix immediately before spraying).",
@@ -110,7 +112,6 @@ export const KROMA_EDGE_CATALOG = {
         { role: "thinner", name: "Dedicated Clear Thinner", ratio: 8.5, defaultDensity: 0.84 }
       ],
       description: "Non-destructive dedicated clearcoat for Kroma Edge. Prevents particle lifting. Apply fine mist tack coat, wait 5 min, then apply full wet coat."
-    },
     }
   ]
 };

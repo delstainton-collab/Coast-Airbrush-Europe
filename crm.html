@@ -821,6 +821,10 @@
           <span class="material-symbols-outlined" style="font-size: 18px;">price_change</span>
           Dynamic Pricing
         </button>
+        <button class="crm-nav-tab" data-view="apc">
+          <span class="material-symbols-outlined" style="font-size: 18px;">local_shipping</span>
+          APC Hazchem Shipping
+        </button>
       </nav>
     </div>
 
@@ -829,6 +833,16 @@
         <span class="material-symbols-outlined crm-search-icon">search</span>
         <input type="text" id="globalCrmSearch" class="crm-search-input" placeholder="Search accounts, SKUs, emails...">
       </div>
+
+      <a href="dealers.html" class="crm-nav-tab" style="color: #22c55e; border: 1px solid rgba(34,197,94,0.4); text-decoration: none; font-size: 0.75rem; padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px;" title="View Public Dealer & Distributor Recruitment Portal">
+        <span class="material-symbols-outlined" style="font-size: 16px;">storefront</span>
+        DEALER HUB
+      </a>
+
+      <a href="index.html?tab=admin" class="crm-nav-tab" style="color: #f59e0b; border: 1px solid rgba(245,158,11,0.4); text-decoration: none; font-size: 0.75rem; padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px;" title="Go to Master Admin Command Suite">
+        <span class="material-symbols-outlined" style="font-size: 16px;">admin_panel_settings</span>
+        ADMIN PANEL
+      </a>
 
       <div class="crm-rep-badge">
         <div class="crm-rep-avatar" style="background: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80') center/cover;"></div>
@@ -987,6 +1001,51 @@
           </div>
         </div>
       </div>
+
+      <!-- ======================================================== -->
+      <!-- B2B PARTNER INTAKE & MANUAL COMPLIANCE APPROVAL GATEWAY  -->
+      <!-- ======================================================== -->
+      <div class="crm-card" style="margin-top: 24px; border-top: 3px solid var(--crm-amber); background: #141717;">
+        <div class="crm-card-header" style="flex-wrap: wrap; gap: 12px; align-items: flex-start;">
+          <div>
+            <div class="crm-card-title" style="font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+              <span class="material-symbols-outlined" style="color: var(--crm-amber); font-size: 24px;">verified_user</span>
+              B2B Partner Intake & Manual Compliance Approval Gateway
+            </div>
+            <div style="font-size: 0.78rem; color: #9ca3af; margin-top: 4px; max-width: 800px; line-height: 1.4;">
+              <strong style="color: var(--crm-amber);">Mandatory Manual Approval Protocol:</strong> Commercial applicants must be reviewed by the trade desk (VAT / EORI / workshop credentials) before wholesale pricing is unlocked. Retail B2C clients are strictly blocked from all margin and wholesale data.
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span id="crmTradePendingBadge" class="badge badge-gold" style="font-size: 0.75rem; padding: 4px 10px;">1 Pending Review</span>
+            <button type="button" onclick="window.loadTradeApplications && window.loadTradeApplications()" class="crm-nav-tab" style="padding: 6px 12px; font-size: 0.75rem; border: 1px solid var(--crm-border-light); cursor: pointer; background: rgba(255,255,255,0.03);" title="Refresh Applications Queue">
+              <span class="material-symbols-outlined" style="font-size: 16px;">refresh</span> Refresh Queue
+            </button>
+            <a href="dealers.html" target="_blank" class="crm-nav-tab" style="color: var(--crm-green); border: 1px solid rgba(34,197,94,0.4); text-decoration: none; font-size: 0.75rem; padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px;" title="View Public Recruitment Landing Page">
+              <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span> Dealer Portal
+            </a>
+          </div>
+        </div>
+
+        <!-- Live Trade Applications Table / Queue -->
+        <div id="crmTradeApplicationsContainer" style="margin-top: 16px; overflow-x: auto;">
+          <div style="display: flex; align-items: center; justify-content: center; padding: 30px; color: #888; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
+            <span class="material-symbols-outlined animate-spin" style="margin-right: 8px;">progress_activity</span> Loading trade compliance queue...
+          </div>
+        </div>
+
+        <!-- Active Security & Manual Approval Audit Footer -->
+        <div style="margin-top: 20px; padding-top: 14px; border-top: 1px dashed var(--crm-border); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; font-size: 0.75rem; color: var(--crm-chrome);">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px;">
+            <span><strong style="color: #fff;">Zero-Leak Gate:</strong> <code style="color: var(--crm-red); background: #0c0f0f; padding: 2px 6px; border-radius: 4px; font-size: 0.72rem;">403 Forbidden on _secure.json</code></span>
+            <span><strong style="color: var(--crm-green);">✓ Public Catalog Sanitized:</strong> 126 SKUs verified clean</span>
+            <span><strong style="color: var(--crm-cyan);">🔒 Authentication:</strong> Bearer Token + Role-Filtered Dispatch</span>
+          </div>
+          <button type="button" onclick="window.resetDemoTradeApplicant && window.resetDemoTradeApplicant()" class="crm-nav-tab" style="font-size: 0.72rem; padding: 4px 10px; border: 1px solid var(--crm-border); color: #888; cursor: pointer;" title="Reset Bavaria Kustom Works demo back to pending status for testing">
+            <span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;">restart_alt</span> Reset Demo Applicant
+          </button>
+        </div>
+      </div>
     </section>
 
     <!-- ========================================== -->
@@ -1000,6 +1059,7 @@
           <select id="clientSelector" class="form-control" style="width: 320px; font-weight: 700; color: #fff; background: #0c0f0f; border-color: var(--crm-red);">
             <option value="apex">Apex Custom Paintworks (Dealer Tier 2)</option>
             <option value="nordic">Nordics Paint Logistics B.V. (Distributor Master)</option>
+            <option value="helvetia">🇨🇭 Helvetia Custom Coatings AG (Swiss Dealer)</option>
             <option value="dave">Dave's Kustom Airbrush Studio (Pro End User)</option>
           </select>
         </div>
@@ -1533,6 +1593,189 @@
       </div>
     </section>
 
+    <!-- ============================================================= -->
+    <!-- VIEW 5: APC OVERNIGHT HAZCHEM LOGISTICS & A4 INKJET MANIFESTS -->
+    <!-- ============================================================= -->
+    <section id="view-apc" class="crm-view-panel">
+      <!-- APC Depot Header & Collection Dispatch Bar -->
+      <div class="crm-card" style="margin-bottom: 20px; border-left: 4px solid var(--crm-red);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="material-symbols-outlined" style="font-size: 28px; color: var(--crm-red);">local_shipping</span>
+              <div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 900; color: #fff;">
+                  APC OVERNIGHT UK — HAZCHEM / LQ DISPATCH STATION
+                </div>
+                <div style="font-size: 0.75rem; color: #888;">
+                  Depot #128 • Account: <span style="color: var(--crm-chrome); font-weight: bold;">COAST8842</span> • ADR UN1263 Class 3 Compliant Network
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dispatch Summary KPIs -->
+          <div style="display: flex; gap: 16px; align-items: center;">
+            <div style="background: #090b0b; border: 1px solid var(--crm-border); padding: 8px 14px; border-radius: 6px; text-align: center;">
+              <div style="font-size: 0.68rem; color: #888; text-transform: uppercase;">Parcels Ready</div>
+              <div id="apc-ready-count" style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 800; color: var(--crm-green);">0</div>
+            </div>
+
+            <div style="background: #090b0b; border: 1px solid var(--crm-border); padding: 8px 14px; border-radius: 6px; text-align: center;">
+              <div style="font-size: 0.68rem; color: #888; text-transform: uppercase;">Total Weight</div>
+              <div id="apc-total-weight" style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 800; color: #fff;">0.0 kg</div>
+            </div>
+
+            <div style="background: #090b0b; border: 1px solid var(--crm-border); padding: 8px 14px; border-radius: 6px; text-align: center;">
+              <div style="font-size: 0.68rem; color: #888; text-transform: uppercase;">ADR LQ Solvent Tins</div>
+              <div id="apc-lq-count" style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 800; color: #ff7b72;">0</div>
+            </div>
+
+            <button class="btn-red" style="padding: 10px 18px; font-weight: 800;" onclick="handleApcCloseManifest()">
+              <span class="material-symbols-outlined" style="font-size: 18px;">fact_check</span>
+              Close Manifest & Book Driver Collection (4:00 PM)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="crm-grid-2" style="margin-bottom: 24px;">
+        <!-- Quick Consignment Dispatcher -->
+        <div class="crm-card">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-red);">add_box</span>
+              Instant Pack & APC Label Generator (Inkjet Ready)
+            </span>
+            <span class="badge badge-red">A4 COMBINED PRINT</span>
+          </div>
+
+          <form id="apcQuickForm" onsubmit="handleCreateApcConsignment(event)" style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="form-group" style="margin: 0;">
+                <label class="form-label">Customer / Shop Name</label>
+                <input type="text" id="apcCustName" class="form-control" value="Apex Custom Paintworks" required>
+              </div>
+              <div class="form-group" style="margin: 0;">
+                <label class="form-label">Order Ref / PO #</label>
+                <input type="text" id="apcOrderRef" class="form-control" value="CA-9942" required>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px;">
+              <div class="form-group" style="margin: 0;">
+                <label class="form-label">Delivery Address Line 1</label>
+                <input type="text" id="apcAddress" class="form-control" value="Unit 4, Silverstone Business Park" required>
+              </div>
+              <div class="form-group" style="margin: 0;">
+                <label class="form-label">Postcode (UK)</label>
+                <input type="text" id="apcPostcode" class="form-control" value="NN12 8TN" required>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+              <div class="form-group" style="margin: 0;">
+                <label class="form-label">Service Level</label>
+                <select id="apcServiceCode" class="form-control">
+                  <option value="ND16">ND16 (Next Day by 4PM)</option>
+                  <option value="ND12">ND12 (Priority by 12 Noon)</option>
+                  <option value="ND10">ND10 (Express by 10 AM)</option>
+                  <option value="SAT">SAT (Saturday Delivery)</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin: 0;">
+                <label class="form-label">Gross Weight (kg)</label>
+                <input type="number" step="0.1" id="apcWeight" class="form-control" value="3.5" required>
+              </div>
+              <div class="form-group" style="margin: 0;">
+                <label class="form-label">Chemical Classification</label>
+                <select id="apcHazmatFlag" class="form-control">
+                  <option value="true">⚠️ UN1263 Class 3 (ADR LQ Solvents/2K)</option>
+                  <option value="false">📦 Standard (Guns/Flakes/Hardware)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin: 0;">
+              <label class="form-label">Primary Item Content</label>
+              <input type="text" id="apcItemsDesc" class="form-control" value="Kroma Edge 2K Clearcoat (1.5L) + Slow Reducer (1L)">
+            </div>
+
+            <button type="submit" class="btn-red" style="width: 100%; justify-content: center; padding: 10px; margin-top: 4px;">
+              <span class="material-symbols-outlined" style="font-size: 18px;">print</span>
+              Generate Consignment & Open Printable A4 Inkjet Sheet
+            </button>
+          </form>
+        </div>
+
+        <!-- APC Hazardous Shipping Reference Guide -->
+        <div class="crm-card">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-amber);">security</span>
+              ADR Limited Quantity & Inkjet Printing Protocol
+            </span>
+            <span class="badge badge-gold">COMPLIANCE</span>
+          </div>
+
+          <div style="font-size: 0.82rem; color: #ccc; line-height: 1.5; display: flex; flex-direction: column; gap: 10px;">
+            <div style="background: #111414; padding: 10px; border-radius: 6px; border-left: 3px solid #ff7b72;">
+              <strong style="color: #fff;">1. Standard A4 Inkjet Printing (1 Sheet Per Order):</strong>
+              <div style="color: #888; font-size: 0.75rem; margin-top: 2px;">
+                Top half contains the APC 300 DPI Barcode and the official ADR LQ Diamond. Bottom half contains the VAT Invoice and formulation packing slip. Fold or cut across the middle.
+              </div>
+            </div>
+
+            <div style="background: #111414; padding: 10px; border-radius: 6px; border-left: 3px solid var(--crm-green);">
+              <strong style="color: #fff;">2. Rain & Solvent Protection Tip:</strong>
+              <div style="color: #888; font-size: 0.75rem; margin-top: 2px;">
+                Slide the printed top label into a clear "Documents Enclosed" wallet or apply clear packing tape across the printed barcode to prevent inkjet smudging during transit.
+              </div>
+            </div>
+
+            <div style="background: #111414; padding: 10px; border-radius: 6px; border-left: 3px solid var(--crm-cyan);">
+              <strong style="color: #fff;">3. 4:00 PM Daily Depot Cut-off:</strong>
+              <div style="color: #888; font-size: 0.75rem; margin-top: 2px;">
+                Click "Close Manifest" before 4:00 PM to transmit the electronic EDI pickup booking to APC Depot #128. Print the 1-page Driver Manifest for the collection driver to sign.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending / Live APC Consignments Table -->
+      <div class="crm-card">
+        <div class="crm-card-header">
+          <span class="crm-card-title">
+            <span class="material-symbols-outlined" style="color: var(--crm-chrome);">receipt_long</span>
+            Live APC Consignments & Manifested Dispatches
+          </span>
+          <button class="btn-chrome" style="padding: 4px 10px; font-size: 0.75rem;" onclick="renderApcConsignmentsTable()">
+            <span class="material-symbols-outlined" style="font-size: 14px;">refresh</span> Refresh
+          </button>
+        </div>
+
+        <table class="crm-table">
+          <thead>
+            <tr>
+              <th>Consignment #</th>
+              <th>Order #</th>
+              <th>Recipient</th>
+              <th>Postcode</th>
+              <th>Service</th>
+              <th>Weight</th>
+              <th>Hazchem Status</th>
+              <th>Status</th>
+              <th style="text-align: right;">A4 Inkjet Actions</th>
+            </tr>
+          </thead>
+          <tbody id="apcConsignmentsBody">
+            <!-- Rendered dynamically by js/crm.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
   </main>
 
   <!-- ========================================== -->
@@ -1682,6 +1925,6 @@ Mark Lawson — Coast Airbrush Europe</textarea>
   </div>
 
   <!-- Core CRM Script -->
-  <script src="js/crm.js"></script>
+  <script type="module" src="js/crm.js"></script>
 </body>
 </html>

@@ -1,8 +1,12 @@
 /**
  * Coast Airbrush Europe — Enterprise CRM Engine (js/crm.js)
  * Handles Omnichannel Timeline, Google Meet In-App Launcher,
- * In-App Email Client, and Dynamic Pricing & Custom SKU Overrides.
+ * In-App Email Client, Dynamic Pricing, and APC Hazchem Logistics.
  */
+
+import { APCOvernightEngine } from './apcOvernightEngine.js';
+
+const apcEngine = new APCOvernightEngine();
 
 // Client Database Mock Store
 const CRM_CLIENTS = {
@@ -59,7 +63,28 @@ const CRM_CLIENTS = {
     spendYtd: "£14,850",
     skus: [
       { name: "Kroma Edge Candy Apple (500ml)", code: "KE-CANDY-RD", msrp: 45.0, tierDef: 38.25, customNet: 36.0, baseCost: 14.0 },
-      { name: "Flake King 1000 Dry Flake Gun", code: "FK-GUN-1000", msrp: 189.0, tierDef: 160.65, customNet: 155.0, baseCost: 95.0 }
+      { name: "Flake King 1000 Dry Flake Gun", code: "FOM1000", msrp: 108.33, tierDef: 81.24, customNet: 75.0, baseCost: 48.75 }
+    ]
+  },
+  helvetia: {
+    id: "helvetia",
+    name: "Helvetia Custom Coatings AG",
+    type: "DEALER_T2",
+    tierLabel: "SWISS EXCLUSIVE DEALER",
+    badgeClass: "badge-red",
+    location: "Industriestrasse 14, 8005 Zürich, Switzerland 🇨🇭",
+    contact: "Marc Oberholzer (Managing Director)",
+    email: "marc.o@helvetia-coatings.ch",
+    phone: "+41 44 200 4567",
+    terms: "Net 30 / CHF Invoicing (0% Export VAT)",
+    credit: "CHF 35,000 / CHF 50,000",
+    spendYtd: "CHF 194,500",
+    vatNumber: "CHE-482.910.123 MWST",
+    skus: [
+      { name: "Kroma Edge Mirror Chrome (1260g Large Kit)", code: "KE-CHROME-1260", msrp: 295.0, tierDef: 177.0, customNet: 165.0, baseCost: 95.0 },
+      { name: "Flake King 1000 Dry Flake Gun", code: "FOM1000", msrp: 108.33, tierDef: 65.0, customNet: 59.0, baseCost: 48.75 },
+      { name: "Kroma Edge Dedicated Topcoat Clear (3600 SET)", code: "KE-TOPCOAT-3600", msrp: 420.0, tierDef: 252.0, customNet: 230.0, baseCost: 135.0 },
+      { name: "Medusa Gold Micro Flake (1000g Bulk Tub)", code: "FK-FLAKE-GLD-1KG", msrp: 220.0, tierDef: 132.0, customNet: 118.0, baseCost: 65.0 }
     ]
   }
 };
@@ -69,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initNavigation();
   initClientSelector();
   initGlobalSearch();
+  loadTradeApplications();
 });
 
 // View Navigation Switcher
@@ -100,6 +126,10 @@ function switchCrmView(viewName) {
   const activePanel = document.getElementById(`view-${viewName}`);
   if (activePanel) {
     activePanel.classList.add("active");
+  }
+
+  if (viewName === 'apc') {
+    renderApcConsignmentsTable();
   }
 }
 
@@ -186,6 +216,10 @@ function initGlobalSearch() {
       } else if (q.includes("nordic") || q.includes("distrib")) {
         document.getElementById("clientSelector").value = "nordic";
         loadClientData("nordic");
+        switchCrmView("customer360");
+      } else if (q.includes("helvetia") || q.includes("swiss") || q.includes("switzerland")) {
+        document.getElementById("clientSelector").value = "helvetia";
+        loadClientData("helvetia");
         switchCrmView("customer360");
       } else if (q.includes("dave") || q.includes("artist") || q.includes("end")) {
         document.getElementById("clientSelector").value = "dave";
@@ -587,3 +621,515 @@ function showToast(msg, duration = 3000) {
     toast.classList.remove("show");
   }, duration);
 }
+
+// =========================================================================
+// APC OVERNIGHT HAZCHEM LOGISTICS & A4 INKJET PRINTING ENGINE
+// =========================================================================
+
+function initApcSeedData() {
+  if (apcEngine.consignments.length === 0) {
+    // Seed standard UK trade orders for demo & instant testing
+    apcEngine.createConsignment({
+      orderNumber: "CA-8891",
+      customerName: "Sarah Jensen",
+      company: "Apex Custom Paintworks",
+      addressLine1: "Unit 4, Silverstone Business Park",
+      city: "Towcester",
+      postcode: "NN12 8TN",
+      phone: "+44 7911 123456",
+      email: "sarah.j@apexpaint.co.uk",
+      subtotalGbp: 185.00,
+      totalGbp: 185.00,
+      serviceCode: "ND16",
+      items: [
+        { sku: "KE-CLR-2K-5L", title: "Kroma Edge 2K Diamond Clear (5L Set)", quantity: 1, priceEur: 145.00 },
+        { sku: "KE-RED-SLW-5L", title: "Kroma Edge Slow Speed Reducer (1L)", quantity: 1, priceEur: 35.00 }
+      ]
+    });
+
+    apcEngine.createConsignment({
+      orderNumber: "CA-8892",
+      customerName: "Dave Miller",
+      company: "Dave's Kustom Airbrush Studio",
+      addressLine1: "Unit 8, St Andrews Road",
+      city: "Bristol",
+      postcode: "BS11 9HS",
+      phone: "+44 7700 900123",
+      email: "dave@kustomair.co.uk",
+      subtotalGbp: 98.00,
+      totalGbp: 106.50,
+      serviceCode: "ND16",
+      items: [
+        { sku: "FOM1000", title: "Flake King 1000 Dry Flake Gun", quantity: 1, priceEur: 92.00 },
+        { sku: "FK-FLAKE-GLD", title: "Medusa Gold Micro Flake (100g Jar)", quantity: 2, priceEur: 24.00 }
+      ]
+    });
+  }
+}
+
+function renderApcConsignmentsTable() {
+  const tbody = document.getElementById("apcConsignmentsBody");
+  const readyCountEl = document.getElementById("apc-ready-count");
+  const totalWeightEl = document.getElementById("apc-total-weight");
+  const lqCountEl = document.getElementById("apc-lq-count");
+
+  if (!tbody) return;
+
+  const consignments = apcEngine.consignments;
+  let readyCount = 0;
+  let totalWeight = 0;
+  let lqCount = 0;
+
+  if (consignments.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="9" style="text-align: center; color: #888; padding: 24px;">
+          No APC consignments registered yet. Create a consignment above to test.
+        </td>
+      </tr>
+    `;
+  } else {
+    tbody.innerHTML = consignments.map(c => {
+      const isUnmanifested = !c.manifestId;
+      if (isUnmanifested) {
+        readyCount++;
+        totalWeight += c.weightKg;
+        if (c.hazard.isHazardous) lqCount++;
+      }
+
+      const statusBadge = isUnmanifested 
+        ? `<span class="badge badge-gold">PACKED / READY</span>`
+        : `<span class="badge badge-green">MANIFESTED (${c.manifestId})</span>`;
+
+      const hazBadge = c.hazard.isHazardous
+        ? `<span class="badge badge-red" style="font-size:0.68rem;">⚠️ UN1263 LQ</span>`
+        : `<span class="badge badge-chrome" style="font-size:0.68rem;">📦 STD PARCEL</span>`;
+
+      return `
+        <tr>
+          <td>
+            <div style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #fff;">${c.consignmentNumber}</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: #888;">Bar: ${c.barcodeNumber}</div>
+          </td>
+          <td style="font-family: 'JetBrains Mono', monospace; color: var(--crm-chrome); font-weight: bold;">${c.orderNumber}</td>
+          <td>
+            <div style="font-weight: 600; color: #fff;">${c.customer.name}</div>
+            <div style="font-size: 0.72rem; color: #888;">${c.customer.company || c.customer.city}</div>
+          </td>
+          <td style="font-family: 'JetBrains Mono', monospace; font-weight: bold; color: #fff;">${c.customer.postcode}</td>
+          <td><span class="badge badge-chrome">${c.serviceCode}</span></td>
+          <td style="font-family: 'JetBrains Mono', monospace; color: #fff;">${c.weightKg} kg</td>
+          <td>${hazBadge}</td>
+          <td>${statusBadge}</td>
+          <td style="text-align: right;">
+            <div style="display: flex; gap: 6px; justify-content: flex-end;">
+              <button class="btn-red" style="padding: 4px 10px; font-size: 0.72rem;" onclick="printApcConsignmentA4('${c.id}')">
+                <span class="material-symbols-outlined" style="font-size: 14px;">print</span>
+                🖨️ Print A4 Inkjet
+              </button>
+              <a href="${c.trackingUrl}" target="_blank" class="btn-chrome" style="padding: 4px 8px; font-size: 0.72rem; text-decoration: none;">
+                <span class="material-symbols-outlined" style="font-size: 14px;">radar</span>
+              </a>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  if (readyCountEl) readyCountEl.textContent = readyCount;
+  if (totalWeightEl) totalWeightEl.textContent = `${totalWeight.toFixed(1)} kg`;
+  if (lqCountEl) lqCountEl.textContent = lqCount;
+}
+
+function handleCreateApcConsignment(event) {
+  event.preventDefault();
+  const name = document.getElementById("apcCustName").value;
+  const orderRef = document.getElementById("apcOrderRef").value;
+  const address = document.getElementById("apcAddress").value;
+  const postcode = document.getElementById("apcPostcode").value;
+  const serviceCode = document.getElementById("apcServiceCode").value;
+  const weightKg = parseFloat(document.getElementById("apcWeight").value) || 2.0;
+  const isHazardous = document.getElementById("apcHazmatFlag").value === "true";
+  const itemDesc = document.getElementById("apcItemsDesc").value || "Custom Automotive Paint & Clearcoat";
+
+  const consignment = apcEngine.createConsignment({
+    orderNumber: orderRef,
+    customerName: name,
+    addressLine1: address,
+    postcode: postcode,
+    serviceCode: serviceCode,
+    weightKg: weightKg,
+    subtotalGbp: 120.00,
+    totalGbp: 128.50,
+    items: [
+      {
+        sku: isHazardous ? "KE-2K-CLR" : "FK-TOOL-1000",
+        title: itemDesc,
+        quantity: 1,
+        priceEur: 110.00
+      }
+    ]
+  });
+
+  renderApcConsignmentsTable();
+  showToast(`⚡ Created APC Consignment ${consignment.consignmentNumber}! Opening A4 print sheet...`);
+  printApcConsignmentA4(consignment.id);
+}
+
+function printApcConsignmentA4(consignmentId) {
+  const c = apcEngine.consignments.find(item => item.id === consignmentId);
+  if (!c) {
+    showToast("⚠️ Consignment not found.", 4000);
+    return;
+  }
+
+  const html = apcEngine.generateA4PrintableHTML(c);
+  const printWindow = window.open('', '_blank');
+  if (printWindow) {
+    printWindow.document.open();
+    printWindow.document.write(html);
+    printWindow.document.close();
+  } else {
+    showToast("⚠️ Popup blocked. Please allow popups for Coast Airbrush CRM to print.", 5000);
+  }
+}
+
+function handleApcCloseManifest() {
+  const result = apcEngine.closeDailyManifest();
+  if (!result.success) {
+    showToast(`⚠️ ${result.message}`, 4500);
+    return;
+  }
+
+  renderApcConsignmentsTable();
+  showToast(result.message, 5000);
+
+  // Open Driver Manifest Printable Page
+  const manifestHTML = apcEngine.generateManifestPrintableHTML(result.manifest);
+  const printWindow = window.open('', '_blank');
+  if (printWindow) {
+    printWindow.document.open();
+    printWindow.document.write(manifestHTML);
+    printWindow.document.close();
+  }
+}
+
+// Initialise APC Data on startup
+initApcSeedData();
+
+// =========================================================================
+// B2B TRADE PARTNER COMPLIANCE & MANUAL APPROVAL ENGINE
+// =========================================================================
+let cachedTradeApplications = [];
+
+const FALLBACK_TRADE_APPLICATIONS = [
+  {
+    id: "app_demo_01",
+    submittedAt: "2026-09-02T11:45:00Z",
+    company: "Bavaria Kustom Works",
+    contactName: "Klaus Weber",
+    email: "klaus@bavariakustom.de",
+    phone: "+49 89 1234567",
+    vat: "DE345678901",
+    country: "Germany",
+    sector: "Custom Automotive & Motorcycle Refinishing",
+    tierDesired: "dealer",
+    monthlyVolume: "€2,000 – €5,000",
+    currentBrands: "House of Kolor, Mipa",
+    status: "pending_review"
+  }
+];
+
+async function loadTradeApplications() {
+  const container = document.getElementById("crmTradeApplicationsContainer");
+  const pendingBadge = document.getElementById("crmTradePendingBadge");
+
+  try {
+    const res = await fetch("/api/admin/trade-applications");
+    const data = await res.json();
+    if (data.success && Array.isArray(data.applications)) {
+      cachedTradeApplications = data.applications;
+    } else {
+      cachedTradeApplications = FALLBACK_TRADE_APPLICATIONS;
+    }
+  } catch (err) {
+    console.warn("Unable to fetch live trade applications, using fallback data:", err);
+    if (!cachedTradeApplications.length) {
+      cachedTradeApplications = JSON.parse(JSON.stringify(FALLBACK_TRADE_APPLICATIONS));
+    }
+  }
+
+  const pendingCount = cachedTradeApplications.filter(a => a.status === 'pending_review').length;
+  if (pendingBadge) {
+    pendingBadge.textContent = `${pendingCount} Pending Review`;
+    pendingBadge.className = pendingCount > 0 ? "badge badge-gold" : "badge badge-green";
+  }
+
+  renderTradeApplications(cachedTradeApplications);
+}
+
+function renderTradeApplications(applications) {
+  const container = document.getElementById("crmTradeApplicationsContainer");
+  if (!container) return;
+
+  if (!applications || applications.length === 0) {
+    container.innerHTML = `
+      <div style="padding: 30px; text-align: center; color: #888; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; background: #0c0f0f; border-radius: 6px; border: 1px dashed var(--crm-border);">
+        No partner applications in queue. Prospective dealers and distributors submit applications via <a href="dealers.html" target="_blank" style="color: var(--crm-amber); text-decoration: underline;">dealers.html</a>.
+      </div>
+    `;
+    return;
+  }
+
+  let html = `<div style="display: flex; flex-direction: column; gap: 16px;">`;
+
+  applications.forEach(app => {
+    const isPending = app.status === 'pending_review';
+    const isApproved = app.status === 'approved';
+    const isRejected = app.status === 'rejected';
+
+    const statusBadge = isPending 
+      ? `<span class="badge badge-gold" style="font-size: 0.72rem; padding: 4px 8px; display: inline-flex; align-items: center; gap: 4px;"><span class="material-symbols-outlined" style="font-size: 14px;">hourglass_top</span> AWAITING MANUAL APPROVAL</span>`
+      : isApproved
+      ? `<span class="badge badge-green" style="font-size: 0.72rem; padding: 4px 8px; display: inline-flex; align-items: center; gap: 4px;"><span class="material-symbols-outlined" style="font-size: 14px;">check_circle</span> APPROVED & VERIFIED</span>`
+      : `<span class="badge badge-red" style="font-size: 0.72rem; padding: 4px 8px; display: inline-flex; align-items: center; gap: 4px;"><span class="material-symbols-outlined" style="font-size: 14px;">cancel</span> DENIED / RESTRICTED</span>`;
+
+    const borderColor = isPending ? "var(--crm-amber)" : isApproved ? "var(--crm-green)" : "var(--crm-red)";
+
+    html += `
+      <div style="background: #0f1212; border: 1px solid ${borderColor}; border-left: 4px solid ${borderColor}; border-radius: 8px; padding: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; border-bottom: 1px solid var(--crm-border); padding-bottom: 12px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 800; color: #fff;">${app.company}</span>
+              ${statusBadge}
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #888;">ID: ${app.id}</span>
+            </div>
+            <div style="font-size: 0.8rem; color: #bbb; margin-top: 4px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+              <span><strong>Contact:</strong> ${app.contactName}</span>
+              <span><strong>Email:</strong> <a href="mailto:${app.email}" style="color: var(--crm-cyan); text-decoration: none;">${app.email}</a></span>
+              <span><strong>Phone:</strong> ${app.phone || 'N/A'}</span>
+              <span><strong>Region:</strong> ${app.country || 'Europe'}</span>
+            </div>
+          </div>
+          <div style="text-align: right; font-size: 0.72rem; color: #888; font-family: 'JetBrains Mono', monospace;">
+            Submitted: ${new Date(app.submittedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+          </div>
+        </div>
+
+        <!-- Applicant Trade Credentials Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; font-size: 0.78rem; margin-bottom: 14px;">
+          <div style="background: #141717; padding: 10px; border-radius: 6px; border: 1px solid var(--crm-border);">
+            <div style="color: #888; font-size: 0.7rem; text-transform: uppercase;">Tax / VAT ID (VIES Verification)</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #fff; margin-top: 2px;">
+              ${app.vat || 'None provided'} <span style="color: var(--crm-green); font-size: 0.7rem;">✓ Format Valid</span>
+            </div>
+          </div>
+          <div style="background: #141717; padding: 10px; border-radius: 6px; border: 1px solid var(--crm-border);">
+            <div style="color: #888; font-size: 0.7rem; text-transform: uppercase;">Workshop / Commercial Sector</div>
+            <div style="font-weight: 600; color: #fff; margin-top: 2px;">${app.sector || 'Custom Automotive'}</div>
+          </div>
+          <div style="background: #141717; padding: 10px; border-radius: 6px; border: 1px solid var(--crm-border);">
+            <div style="color: #888; font-size: 0.7rem; text-transform: uppercase;">Desired Wholesale Tier</div>
+            <div style="font-weight: 700; color: ${app.tierDesired === 'distributor' ? 'var(--crm-cyan)' : 'var(--crm-amber)'}; margin-top: 2px;">
+              ${app.tierDesired === 'distributor' ? 'Tier 1: Master Distributor' : 'Tier 2: Authorized Dealer'}
+            </div>
+          </div>
+          <div style="background: #141717; padding: 10px; border-radius: 6px; border: 1px solid var(--crm-border);">
+            <div style="color: #888; font-size: 0.7rem; text-transform: uppercase;">Estimated Monthly Volume</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #fff; margin-top: 2px;">${app.monthlyVolume || 'Not specified'}</div>
+          </div>
+        </div>
+
+        ${app.currentBrands ? `
+          <div style="font-size: 0.75rem; color: #888; margin-bottom: 12px; background: #111414; padding: 8px 12px; border-radius: 4px; border: 1px solid var(--crm-border);">
+            <strong style="color: var(--crm-chrome);">Current Paint Brands Stocked/Used:</strong> ${app.currentBrands}
+          </div>
+        ` : ''}
+
+        <!-- Manual Approval / Status Action Row -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; padding-top: 8px;">
+          ${isPending ? `
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="font-size: 0.75rem; color: #aaa; font-weight: 600;">Manual Approval Action:</span>
+              <button onclick="approveTradePartner('${app.id}', 'dealer')" style="background: linear-gradient(135deg, #16a34a, #15803d); color: #fff; border: 1px solid #22c55e; padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.75rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" title="Grant Tier 2 Authorized Dealer Status with 30% Wholesale Discount">
+                <span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span>
+                Approve as Dealer (Tier 2 - 30% Off)
+              </button>
+              <button onclick="approveTradePartner('${app.id}', 'distributor')" style="background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; border: 1px solid #38bdf8; padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.75rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" title="Grant Tier 1 Master Regional Distributor Status with 55% Wholesale Discount">
+                <span class="material-symbols-outlined" style="font-size: 16px;">verified</span>
+                Approve as Master Distributor (Tier 1 - 55% Off)
+              </button>
+              <button onclick="rejectTradePartner('${app.id}')" style="background: transparent; color: #ef4444; border: 1px solid rgba(239,68,68,0.5); padding: 6px 12px; border-radius: 6px; font-size: 0.72rem; cursor: pointer;" title="Deny wholesale account privileges">
+                Deny Application
+              </button>
+            </div>
+            <div style="font-size: 0.72rem; color: #888; font-style: italic;">
+              ⚠️ Retail B2C clients cannot view trade prices until approved.
+            </div>
+          ` : isApproved ? `
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+              <span style="font-size: 0.78rem; color: var(--crm-green); font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+                <span class="material-symbols-outlined" style="font-size: 16px;">task_alt</span> Active Credentials: ${app.assignedTier === 'distributor' ? 'Tier 1 Master Distributor' : 'Tier 2 Authorized Dealer'}
+              </span>
+              <span style="font-size: 0.72rem; color: #888;">Approved on: ${new Date(app.approvedAt || Date.now()).toLocaleDateString()}</span>
+              <a href="index.html" target="_blank" style="background: #1a1e1e; color: #fff; border: 1px solid var(--crm-border); padding: 4px 10px; border-radius: 4px; text-decoration: none; font-size: 0.72rem; display: inline-flex; align-items: center; gap: 4px;">
+                <span class="material-symbols-outlined" style="font-size: 14px; color: var(--crm-amber);">login</span> Test Storefront Login
+              </a>
+            </div>
+            <button onclick="rejectTradePartner('${app.id}')" style="background: transparent; color: #888; border: 1px solid var(--crm-border); padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; cursor: pointer;">
+              Revoke Wholesale Access
+            </button>
+          ` : `
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-size: 0.78rem; color: var(--crm-red); font-weight: 700;">Account Flagged / Restricted: ${app.rejectionReason || 'Vetting requirements not met'}</span>
+            </div>
+            <button onclick="approveTradePartner('${app.id}', 'dealer')" style="background: transparent; color: var(--crm-amber); border: 1px solid var(--crm-amber); padding: 4px 10px; border-radius: 4px; font-size: 0.72rem; cursor: pointer;">
+              Re-Open & Approve as Dealer
+            </button>
+          `}
+        </div>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+  container.innerHTML = html;
+}
+
+async function approveTradePartner(applicationId, assignedRole) {
+  try {
+    let success = false;
+    let message = "";
+
+    try {
+      const res = await fetch("/api/admin/approve-trade", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          applicationId: applicationId,
+          assignedRole: assignedRole || "dealer"
+        })
+      });
+      const data = await res.json();
+      success = data.success;
+      message = data.message;
+    } catch (networkErr) {
+      console.warn("API offline, updating local session state:", networkErr);
+      const app = cachedTradeApplications.find(a => a.id === applicationId);
+      if (app) {
+        app.status = "approved";
+        app.assignedTier = assignedRole || "dealer";
+        app.approvedAt = new Date().toISOString();
+        success = true;
+        message = `Commercial account for "${app.company}" manually approved as ${assignedRole === 'distributor' ? 'Tier 1 Distributor' : 'Tier 2 Dealer'}.`;
+      }
+    }
+
+    if (success) {
+      showToast(`✅ ${message || "Trade partner manually approved!"}`);
+      await loadTradeApplications();
+    } else {
+      showToast(`⚠️ Could not approve partner: ${message || "Unknown error"}`);
+    }
+  } catch (e) {
+    showToast("⚠️ Error communicating with trade compliance server.");
+  }
+}
+
+async function rejectTradePartner(applicationId) {
+  const reason = prompt("Enter optional reason for rejection / restriction:", "Business VAT registration or premises verification incomplete.") || "Verification incomplete";
+
+  try {
+    let success = false;
+    let message = "";
+
+    try {
+      const res = await fetch("/api/admin/reject-trade", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          applicationId: applicationId,
+          reason: reason
+        })
+      });
+      const data = await res.json();
+      success = data.success;
+      message = data.message;
+    } catch (networkErr) {
+      const app = cachedTradeApplications.find(a => a.id === applicationId);
+      if (app) {
+        app.status = "rejected";
+        app.rejectionReason = reason;
+        app.rejectedAt = new Date().toISOString();
+        success = true;
+        message = `Application for "${app.company}" has been restricted.`;
+      }
+    }
+
+    if (success) {
+      showToast(`⚠️ ${message || "Application restricted."}`);
+      await loadTradeApplications();
+    } else {
+      showToast(`⚠️ Could not reject application.`);
+    }
+  } catch (e) {
+    showToast("⚠️ Error communicating with trade compliance server.");
+  }
+}
+
+async function resetDemoTradeApplicant() {
+  try {
+    let success = false;
+    try {
+      const res = await fetch("/api/admin/reset-demo-trade", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
+      });
+      const data = await res.json();
+      success = data.success;
+    } catch (networkErr) {
+      const app = cachedTradeApplications.find(a => a.id === "app_demo_01" || a.email === "klaus@bavariakustom.de");
+      if (app) {
+        app.status = "pending_review";
+        delete app.assignedTier;
+        delete app.approvedAt;
+        success = true;
+      }
+    }
+
+    showToast("↺ Bavaria Kustom Works demo reset to Pending Approval status.");
+    await loadTradeApplications();
+  } catch (e) {
+    showToast("⚠️ Error resetting demo applicant.");
+  }
+}
+
+// Expose all handlers to global window scope for inline onclick/onsubmit HTML handlers
+window.switchCrmView = switchCrmView;
+window.openEmailModal = openEmailModal;
+window.openCallModal = openCallModal;
+window.closeModal = closeModal;
+window.sendEmail = sendEmail;
+window.saveCallLog = saveCallLog;
+window.launchInstantMeet = launchInstantMeet;
+window.endMeeting = endMeeting;
+window.copyMeetLink = copyMeetLink;
+window.geminiGenerateEmail = geminiGenerateEmail;
+window.geminiTranslateEmail = geminiTranslateEmail;
+window.geminiQuickDraft = geminiQuickDraft;
+window.showToast = showToast;
+window.calculateMargin = calculateMargin;
+window.updateTierVal = updateTierVal;
+window.addNewSkuRow = addNewSkuRow;
+window.syncPricingToShopify = syncPricingToShopify;
+window.handleCreateApcConsignment = handleCreateApcConsignment;
+window.handleApcCloseManifest = handleApcCloseManifest;
+window.printApcConsignmentA4 = printApcConsignmentA4;
+window.renderApcConsignmentsTable = renderApcConsignmentsTable;
+window.loadTradeApplications = loadTradeApplications;
+window.approveTradePartner = approveTradePartner;
+window.rejectTradePartner = rejectTradePartner;
+window.resetDemoTradeApplicant = resetDemoTradeApplicant;
+

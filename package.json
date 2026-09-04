@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Coast Airbrush Europe - Custom Automotive & Airbrush Paint Platform, Mixing Engine & Enterprise Storefront",
   "main": "index.html",
+  "type": "module",
   "scripts": {
     "start": "npx serve ."
   },

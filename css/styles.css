@@ -104,25 +104,32 @@ body {
   filter: drop-shadow(0 0 8px rgba(211, 47, 47, 0.6));
 }
 
-/* Mechanical Brutalism Component Cards */
+/* Modern High-End Industrial Component Cards */
 .industrial-card {
-  border: 2px solid #c6c6c6;
-  background: linear-gradient(180deg, #181a1a 0%, #0c0f0f 100%);
-  box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, #161819 0%, #0d0f10 100%);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.7), 0 2px 6px -1px rgba(0, 0, 0, 0.5);
   position: relative;
-  transition: all 0.2s ease;
+  border-radius: 4px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .industrial-card:hover {
-  border-color: #ffb3ac;
-  box-shadow: 6px 6px 0px 0px rgba(211,47,47,0.4);
+  border-color: rgba(211, 47, 47, 0.7);
+  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.85), 0 0 16px rgba(211, 47, 47, 0.25);
+  transform: translateY(-2px);
 }
 
-.industrial-card::after {
+.product-studio-stage {
+  background: radial-gradient(ellipse at 50% 40%, #26292c 0%, #101213 85%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  position: relative;
+}
+.product-studio-stage::before {
   content: '';
   position: absolute;
-  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 60%);
   pointer-events: none;
-  border: 1px solid rgba(255,255,255,0.05);
 }
 
 /* Metal Spec Plates */
@@ -900,48 +907,59 @@ body {
   inset: 0;
   overflow: hidden;
   z-index: 1;
+  background-color: #080a0a;
 }
 .hero-crossfade-slide {
   position: absolute;
   inset: 0;
   background-size: cover;
-  background-position: center right;
+  background-repeat: no-repeat;
   opacity: 0;
-  transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 8s ease-out;
-  transform: scale(1.03);
+  transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1), transform 12s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: scale(1.06);
   will-change: opacity, transform;
-  filter: blur(1px) brightness(0.65);
+  filter: contrast(1.08) brightness(0.92);
 }
 .hero-crossfade-slide.active {
-  opacity: 0.45;
+  opacity: 0.95;
   transform: scale(1);
 }
 .hero-directional-overlay {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: linear-gradient(90deg, rgba(10, 12, 12, 0.95) 0%, rgba(12, 14, 14, 0.90) 35%, rgba(14, 16, 16, 0.70) 60%, rgba(14, 16, 16, 0.35) 85%, rgba(14, 16, 16, 0.2) 100%);
+  background: linear-gradient(90deg, 
+    rgba(8, 10, 10, 0.98) 0%, 
+    rgba(8, 10, 10, 0.92) 32%, 
+    rgba(10, 12, 12, 0.70) 58%, 
+    rgba(10, 12, 12, 0.25) 82%, 
+    rgba(8, 10, 10, 0.15) 100%
+  );
   pointer-events: none;
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hero-directional-overlay {
-    background: linear-gradient(180deg, rgba(10, 12, 12, 0.98) 0%, rgba(12, 14, 14, 0.90) 45%, rgba(14, 16, 16, 0.85) 100%);
+    background: linear-gradient(180deg, 
+      rgba(8, 10, 10, 0.96) 0%, 
+      rgba(8, 10, 10, 0.88) 45%, 
+      rgba(10, 12, 12, 0.75) 100%
+    );
   }
 }
 .hero-indicator-dot {
   width: 8px;
   height: 8px;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 .hero-indicator-dot.active {
-  width: 24px;
+  width: 28px;
   background: #d32f2f;
   border-color: #ffdad6;
-  box-shadow: 0 0 8px rgba(211, 47, 47, 0.8);
+  box-shadow: 0 0 12px rgba(211, 47, 47, 0.9);
 }
 
 /* Hero Showcase Active Stage */
@@ -996,6 +1014,274 @@ body {
   transform: translate(2px, 2px);
   box-shadow: 0 0 8px rgba(255, 45, 45, 0.4), 1px 1px 0px 0px rgba(0, 0, 0, 1);
 }
+
+/* Copied & Staged Row Glow Animation */
+@keyframes rowHighlightPulse {
+  0% {
+    background-color: rgba(0, 216, 246, 0.35);
+    box-shadow: inset 0 0 12px rgba(0, 216, 246, 0.5);
+  }
+  50% {
+    background-color: rgba(0, 216, 246, 0.15);
+    box-shadow: inset 0 0 4px rgba(0, 216, 246, 0.2);
+  }
+  100% {
+    background-color: rgba(245, 158, 11, 0.15);
+    box-shadow: none;
+  }
+}
+.row-highlight-pulse {
+  animation: rowHighlightPulse 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Custom Industrial Toast Notification */
+.custom-toast-item {
+  pointer-events: auto;
+  transform: translateX(120%);
+  opacity: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+.custom-toast-item.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Dynamic Free Shipping Progress Bar */
+.shipping-progress-bar-fill {
+  background: linear-gradient(90deg, #d32f2f 0%, #f59e0b 50%, #10b981 100%);
+  transition: width 0.4s ease-out;
+}
+.shipping-progress-unlocked {
+  background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+  animation: pulseShipping 2s infinite ease-in-out;
+}
+@keyframes pulseShipping {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.6)); }
+  50% { filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.95)); }
+}
+
+/* Live Social Proof Activity Toast (Bottom-Left) */
+.social-proof-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9998;
+  max-width: 360px;
+  background: rgba(18, 20, 22, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 4px solid #10b981;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.85), 0 0 1px rgba(255,255,255,0.2);
+  border-radius: 6px;
+  padding: 12px 14px;
+  transform: translateY(140%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  pointer-events: auto;
+}
+.social-proof-toast.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Floating AI Master Painter Badge (DAiVE) */
+.daive-floating-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9995;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+.daive-floating-container > * {
+  pointer-events: auto;
+}
+.daive-avatar-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 20px rgba(211, 47, 47, 0.5), 0 8px 16px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  background: #121415;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  position: relative;
+}
+.daive-avatar-circle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 28px rgba(211, 47, 47, 0.8), 0 10px 20px rgba(0, 0, 0, 0.9);
+}
+.daive-speech-bubble {
+  background: rgba(18, 20, 22, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-right: 3px solid #d32f2f;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.daive-speech-bubble:hover {
+  border-color: #ffdad6;
+  background: rgba(28, 30, 32, 0.98);
+}
+
+/* 1-Click Spray Booth Bench Sheet Print Style */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #view-scale, #view-scale * {
+    visibility: visible;
+  }
+  #view-scale {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    display: block !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 20px !important;
+  }
+  .industrial-card, .bg-surface-dim {
+    background: #ffffff !important;
+    border: 2px solid #000000 !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+  }
+  .scale-digits, #scale-current-component, .text-primary {
+    color: #000000 !important;
+  }
+  nav, footer, #ai-chat-widget, button, .mech-btn-secondary, .mech-button-primary {
+    display: none !important;
+  }
+}
+
+/* ========================================================================= */
+/* DAiVE CHAT UI & ADVANCED RESPONSE FORMATTING                              */
+/* ========================================================================= */
+
+.daive-heading {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #38bdf8;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+  padding-bottom: 6px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.daive-paragraph {
+  color: #e2e8f0;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 6px 0;
+}
+
+.daive-step-card {
+  background: rgba(11, 15, 17, 0.85);
+  border-left: 3px solid #38bdf8;
+  border-radius: 0 6px 6px 0;
+  padding: 8px 10px;
+  margin: 8px 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
+}
+.daive-step-card:hover {
+  border-left-color: #ffb3ac;
+  background: rgba(16, 21, 24, 0.95);
+}
+
+.daive-spec-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 5px 8px;
+  margin: 4px 0;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.daive-callout {
+  background: rgba(56, 189, 248, 0.08);
+  border-left: 3px solid #38bdf8;
+  padding: 8px 10px;
+  margin: 8px 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #e2e8f0;
+}
+
+.daive-bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: #e2e8f0;
+}
+
+.daive-sub-bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 3px 0 3px 14px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+#chat-window {
+  width: 440px !important;
+  max-width: 95vw !important;
+}
+
+#floating-dave-messages {
+  max-height: 480px !important;
+  min-height: 280px;
+  scrollbar-width: thin;
+  scrollbar-color: #38bdf8 #0c0f0f;
+}
+
+#floating-dave-messages::-webkit-scrollbar {
+  width: 6px;
+}
+#floating-dave-messages::-webkit-scrollbar-track {
+  background: #0c0f0f;
+}
+#floating-dave-messages::-webkit-scrollbar-thumb {
+  background: #2e3333;
+  border-radius: 3px;
+}
+#floating-dave-messages::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
+
+
 
 
 
