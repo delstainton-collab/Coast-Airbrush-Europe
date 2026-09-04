@@ -902,7 +902,12 @@
           </div>
 
           <!-- Flake King Pro Mastery Bundle Link -->
-          <div class="flex items-center gap-3">
+          <!-- Flake King Action Links -->
+          <div class="flex items-center gap-3 flex-wrap">
+            <button onclick="window.paintApp &amp;&amp; window.paintApp.setBrandFilter &amp;&amp; window.paintApp.setBrandFilter('Flake King'); const el = document.getElementById('storefront-catalog-anchor'); if(el) el.scrollIntoView({behavior: 'smooth'});" class="mech-button-primary !text-xs !py-2.5 !px-4 flex items-center gap-1.5 cursor-pointer shadow-md">
+              <span class="material-symbols-outlined text-[16px]">tune</span>
+              <span>Browse All 58+ Flakes in Catalog &darr;</span>
+            </button>
             <button onclick="window.openBundleCustomizerModal && window.openBundleCustomizerModal('fk-pro-mastery-bundle')" class="mech-btn-secondary !text-xs !py-2.5 !px-4 flex items-center gap-1.5 cursor-pointer">
               <span class="material-symbols-outlined text-[16px] text-amber-400">inventory_2</span>
               <span>Customize Pro Flake Bundle</span>
@@ -910,149 +915,187 @@
           </div>
         </div>
 
+        <!-- Interactive Swatch Instruction Banner -->
+        <div class="flex items-center gap-2.5 p-3 bg-amber-950/40 border border-amber-500/50 rounded text-amber-200 text-xs font-mono">
+          <span class="material-symbols-outlined text-amber-400 text-lg flex-shrink-0">touch_app</span>
+          <span><strong>Interactive Swatches:</strong> Click any flake swatch below to open its full technical specification sheet and choose your exact <strong>particle size</strong> (.002″ to .060″) and <strong>pack volume</strong> (30g, 100g, or 1kg trade jars).</span>
+        </div>
+
         <!-- Curated 8-Swatch Showcase Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
           
           <!-- Swatch 1: Show Krome -->
-          <div class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-colors">
+          <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2610')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2610.jpg" alt="Show Krome Flake" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&ssl=1'">
+                <img src="assets/images/flakes/fk-2610.jpg" alt="Show Krome Flake" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-white font-bold">SILVER</span>
+                <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
-              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate">Show Krome</h5>
-              <span class="text-[10px] font-mono text-neutral-400 block mb-2">0.015 Hex</span>
+              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate group-hover:text-primary transition-colors">Show Krome</h5>
+              <div class="flex items-center justify-between text-[10px] font-mono text-neutral-400 mb-2">
+                <span>0.015 Hex</span>
+                <span class="text-amber-400 font-bold text-[9px] group-hover:underline">Options &rarr;</span>
+              </div>
             </div>
             <div>
-              <span class="text-primary font-headline text-sm font-bold block mb-1.5">£4.71</span>
-              <button onclick="window.paintApp.addProductToCartById('fk-2610')" class="mech-button-primary !w-full !py-1 !text-[10px] !justify-center">
-                + Cart
+              <span class="text-primary font-headline text-sm font-bold block mb-1.5">From £4.71</span>
+              <button onclick="event.stopPropagation(); window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2610')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center cursor-pointer font-bold tracking-wider">
+                Select Size
               </button>
             </div>
           </div>
 
           <!-- Swatch 2: Kromatic Show Krome (Holo) -->
-          <div class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-colors">
+          <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2524')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2524.jpg" alt="Kromatic Show Krome" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&ssl=1'">
+                <img src="assets/images/flakes/fk-2524.jpg" alt="Kromatic Show Krome" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold">HOLO</span>
+                <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
-              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate">Kromatic Krome</h5>
-              <span class="text-[10px] font-mono text-neutral-400 block mb-2">Rainbow Holo</span>
+              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate group-hover:text-primary transition-colors">Kromatic Krome</h5>
+              <div class="flex items-center justify-between text-[10px] font-mono text-neutral-400 mb-2">
+                <span>Rainbow Holo</span>
+                <span class="text-amber-400 font-bold text-[9px] group-hover:underline">Options &rarr;</span>
+              </div>
             </div>
             <div>
-              <span class="text-primary font-headline text-sm font-bold block mb-1.5">£6.21</span>
-              <button onclick="window.paintApp.addProductToCartById('fk-2524')" class="mech-button-primary !w-full !py-1 !text-[10px] !justify-center">
-                + Cart
+              <span class="text-primary font-headline text-sm font-bold block mb-1.5">From £6.21</span>
+              <button onclick="event.stopPropagation(); window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2524')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center cursor-pointer font-bold tracking-wider">
+                Select Size
               </button>
             </div>
           </div>
 
           <!-- Swatch 3: Black Asteroid -->
-          <div class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-colors">
+          <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2341')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2341.jpg" alt="Black Asteroid" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&ssl=1'">
+                <img src="assets/images/flakes/fk-2341.jpg" alt="Black Asteroid" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-neutral-300 font-bold">BLACK HOLO</span>
+                <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
-              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate">Black Asteroid</h5>
-              <span class="text-[10px] font-mono text-neutral-400 block mb-2">Dark Prismatic</span>
+              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate group-hover:text-primary transition-colors">Black Asteroid</h5>
+              <div class="flex items-center justify-between text-[10px] font-mono text-neutral-400 mb-2">
+                <span>Dark Prismatic</span>
+                <span class="text-amber-400 font-bold text-[9px] group-hover:underline">Options &rarr;</span>
+              </div>
             </div>
             <div>
-              <span class="text-primary font-headline text-sm font-bold block mb-1.5">£6.21</span>
-              <button onclick="window.paintApp.addProductToCartById('fk-2341')" class="mech-button-primary !w-full !py-1 !text-[10px] !justify-center">
-                + Cart
+              <span class="text-primary font-headline text-sm font-bold block mb-1.5">From £6.21</span>
+              <button onclick="event.stopPropagation(); window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2341')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center cursor-pointer font-bold tracking-wider">
+                Select Size
               </button>
             </div>
           </div>
 
           <!-- Swatch 4: Elvis Gold -->
-          <div class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-colors">
+          <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2319')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2319.jpg" alt="Elvis Gold" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&ssl=1'">
+                <img src="assets/images/flakes/fk-2319.jpg" alt="Elvis Gold" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-400 font-bold">GOLD</span>
+                <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
-              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate">Elvis Gold</h5>
-              <span class="text-[10px] font-mono text-neutral-400 block mb-2">Deep Pure Gold</span>
+              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate group-hover:text-primary transition-colors">Elvis Gold</h5>
+              <div class="flex items-center justify-between text-[10px] font-mono text-neutral-400 mb-2">
+                <span>Deep Pure Gold</span>
+                <span class="text-amber-400 font-bold text-[9px] group-hover:underline">Options &rarr;</span>
+              </div>
             </div>
             <div>
-              <span class="text-primary font-headline text-sm font-bold block mb-1.5">£6.21</span>
-              <button onclick="window.paintApp.addProductToCartById('fk-2319')" class="mech-button-primary !w-full !py-1 !text-[10px] !justify-center">
-                + Cart
+              <span class="text-primary font-headline text-sm font-bold block mb-1.5">From £6.21</span>
+              <button onclick="event.stopPropagation(); window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2319')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center cursor-pointer font-bold tracking-wider">
+                Select Size
               </button>
             </div>
           </div>
 
           <!-- Swatch 5: Dragon Koi -->
-          <div class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-colors">
+          <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2308')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2308.jpg" alt="Dragon Koi" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&ssl=1'">
+                <img src="assets/images/flakes/fk-2308.jpg" alt="Dragon Koi" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-orange-400 font-bold">COPPER</span>
+                <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
-              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate">Dragon Koi</h5>
-              <span class="text-[10px] font-mono text-neutral-400 block mb-2">Copper Fire</span>
+              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate group-hover:text-primary transition-colors">Dragon Koi</h5>
+              <div class="flex items-center justify-between text-[10px] font-mono text-neutral-400 mb-2">
+                <span>Copper Fire</span>
+                <span class="text-amber-400 font-bold text-[9px] group-hover:underline">Options &rarr;</span>
+              </div>
             </div>
             <div>
-              <span class="text-primary font-headline text-sm font-bold block mb-1.5">£5.41</span>
-              <button onclick="window.paintApp.addProductToCartById('fk-2308')" class="mech-button-primary !w-full !py-1 !text-[10px] !justify-center">
-                + Cart
+              <span class="text-primary font-headline text-sm font-bold block mb-1.5">From £5.41</span>
+              <button onclick="event.stopPropagation(); window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2308')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center cursor-pointer font-bold tracking-wider">
+                Select Size
               </button>
             </div>
           </div>
 
           <!-- Swatch 6: Candy Cobalt Blue -->
-          <div class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-colors">
+          <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2283')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2283.jpg" alt="Cobalt Blue" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&ssl=1'">
+                <img src="assets/images/flakes/fk-2283.jpg" alt="Cobalt Blue" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-sky-400 font-bold">BLUE</span>
+                <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
-              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate">Cobalt Blue</h5>
-              <span class="text-[10px] font-mono text-neutral-400 block mb-2">Deep Candy Royal</span>
+              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate group-hover:text-primary transition-colors">Cobalt Blue</h5>
+              <div class="flex items-center justify-between text-[10px] font-mono text-neutral-400 mb-2">
+                <span>Deep Candy Royal</span>
+                <span class="text-amber-400 font-bold text-[9px] group-hover:underline">Options &rarr;</span>
+              </div>
             </div>
             <div>
-              <span class="text-primary font-headline text-sm font-bold block mb-1.5">£4.71</span>
-              <button onclick="window.paintApp.addProductToCartById('fk-2283')" class="mech-button-primary !w-full !py-1 !text-[10px] !justify-center">
-                + Cart
+              <span class="text-primary font-headline text-sm font-bold block mb-1.5">From £4.71</span>
+              <button onclick="event.stopPropagation(); window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2283')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center cursor-pointer font-bold tracking-wider">
+                Select Size
               </button>
             </div>
           </div>
 
           <!-- Swatch 7: Water Dragon -->
-          <div class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-colors">
+          <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2297')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2297.jpg" alt="Water Dragon" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&ssl=1'">
+                <img src="assets/images/flakes/fk-2297.jpg" alt="Water Dragon" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-teal-400 font-bold">TEAL</span>
+                <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
-              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate">Water Dragon</h5>
-              <span class="text-[10px] font-mono text-neutral-400 block mb-2">Aqua Iridescent</span>
+              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate group-hover:text-primary transition-colors">Water Dragon</h5>
+              <div class="flex items-center justify-between text-[10px] font-mono text-neutral-400 mb-2">
+                <span>Aqua Iridescent</span>
+                <span class="text-amber-400 font-bold text-[9px] group-hover:underline">Options &rarr;</span>
+              </div>
             </div>
             <div>
-              <span class="text-primary font-headline text-sm font-bold block mb-1.5">£6.21</span>
-              <button onclick="window.paintApp.addProductToCartById('fk-2297')" class="mech-button-primary !w-full !py-1 !text-[10px] !justify-center">
-                + Cart
+              <span class="text-primary font-headline text-sm font-bold block mb-1.5">From £6.21</span>
+              <button onclick="event.stopPropagation(); window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2297')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center cursor-pointer font-bold tracking-wider">
+                Select Size
               </button>
             </div>
           </div>
 
           <!-- Swatch 8: Gun Metal -->
-          <div class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-colors">
+          <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2330')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2330.jpg" alt="Gun Metal" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&ssl=1'">
+                <img src="assets/images/flakes/fk-2330.jpg" alt="Gun Metal" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-neutral-400 font-bold">GREY</span>
+                <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
-              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate">Gun Metal</h5>
-              <span class="text-[10px] font-mono text-neutral-400 block mb-2">Anthracite Metallic</span>
+              <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate group-hover:text-primary transition-colors">Gun Metal</h5>
+              <div class="flex items-center justify-between text-[10px] font-mono text-neutral-400 mb-2">
+                <span>Anthracite Metallic</span>
+                <span class="text-amber-400 font-bold text-[9px] group-hover:underline">Options &rarr;</span>
+              </div>
             </div>
             <div>
-              <span class="text-primary font-headline text-sm font-bold block mb-1.5">£4.71</span>
-              <button onclick="window.paintApp.addProductToCartById('fk-2330')" class="mech-button-primary !w-full !py-1 !text-[10px] !justify-center">
-                + Cart
+              <span class="text-primary font-headline text-sm font-bold block mb-1.5">From £4.71</span>
+              <button onclick="event.stopPropagation(); window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2330')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center cursor-pointer font-bold tracking-wider">
+                Select Size
               </button>
             </div>
           </div>

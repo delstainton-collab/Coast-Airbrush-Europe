@@ -2258,7 +2258,7 @@ class PaintSystemApp {
         const variantDesc = [currentSelection.size, currentSelection.pack].filter(Boolean).join(' / ') || 'Standard';
 
         this.shopifyCartManager.addItem({
-          sku: prod.sku,
+          sku: prices.sku || prod.sku,
           title: prod.name,
           priceEur: prices.priceEur,
           quantity: 1,
@@ -2548,6 +2548,14 @@ class PaintSystemApp {
 
       let validSizes = (product.sizes || []).map(s => isFlake ? this.formatFlakeDimension(s) : String(s).trim()).filter(Boolean);
       let validPacks = (product.packSizes || []).map(p => isFlake ? this.formatFlakePackSize(p) : String(p).trim()).filter(Boolean);
+
+      if (isTape && validSizes.length === 0 && (product.tapeWidths || product.tapePriceMatrix)) {
+        validSizes = (product.tapeWidths || (product.tapePriceMatrix ? product.tapePriceMatrix.map(t => t.width) : [])).map(w => String(w).trim());
+      }
+
+      if (validPacks.length === 0 && product.packPriceMatrix && product.packPriceMatrix.length > 0) {
+        validPacks = product.packPriceMatrix.map(m => m.packSize).filter(Boolean);
+      }
 
       if (isFlake && validPacks.length === 0) {
         validPacks = [
@@ -3855,7 +3863,7 @@ class PaintSystemApp {
         card.className = 'industrial-card group overflow-hidden flex flex-col justify-between';
         card.innerHTML = `
           <div>
-            <div class="h-52 relative border-b border-white/10 overflow-hidden product-studio-stage flex items-center justify-center p-4 rounded-t">
+            <div onclick="window.paintApp && window.paintApp.openDetailModal('${prod.id}')" class="h-52 relative border-b border-white/10 overflow-hidden product-studio-stage flex items-center justify-center p-4 rounded-t cursor-pointer" title="Click to view product details &amp; options">
               <img class="w-full h-full object-contain filter contrast-110 drop-shadow-[0_12px_20px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-500" src="${prod.image || fallbackImg}" alt="${prod.name}" onerror="this.onerror=null; this.src='${fallbackImg}'">
               <div class="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
                 <span class="bg-black/80 border border-white/20 text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded tracking-wider backdrop-blur-sm">${(prod.brand || 'COAST').toUpperCase()}</span>
@@ -3877,7 +3885,7 @@ class PaintSystemApp {
                 <span id="card-sku-${prod.id}">SKU: <span id="card-sku-val-${prod.id}" class="text-zinc-300 font-semibold">${prices.sku || prod.sku || 'N/A'}</span></span>
                 ${isPreOrder ? '<span class="text-rose-400 font-bold text-[10px] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-ping"></span> Batch 1 Allocation</span>' : '<span class="text-emerald-400 text-[10px] font-semibold">● UK In Stock</span>'}
               </div>
-              <h4 class="font-headline text-[13px] sm:text-sm uppercase text-white font-bold mb-1 line-clamp-2 min-h-[2.5rem] leading-snug tracking-tight group-hover:text-primary transition-colors">${prod.name}</h4>
+              <h4 onclick="window.paintApp && window.paintApp.openDetailModal('${prod.id}')" class="font-headline text-[13px] sm:text-sm uppercase text-white font-bold mb-1 line-clamp-2 min-h-[2.5rem] leading-snug tracking-tight group-hover:text-primary transition-colors cursor-pointer" title="Click to view product details &amp; options">${prod.name}</h4>
               
               <div class="flex items-center justify-between text-[11px] font-mono my-2 text-neutral-400">
                 <span class="text-emerald-400 font-bold flex items-center gap-1">
@@ -4010,9 +4018,19 @@ class PaintSystemApp {
     const prod = ECOM_CATALOG.find(p => p.id === prodId);
     if (!prod) return;
 
-    const variant = this.selectedProductVariants[prodId] || {};
-    const prices = this.getProductCalculatedPrice(prod, variant.pack, variant.size, variant.width);
-    const variantDesc = [variant.width, variant.size, variant.pack].filter(Boolean).join(' / ') || 'Standard';
+    // If product has multiple options (flake particle sizes, pack sizes, tape widths) and user hasn't explicitly chosen yet, open modal
+    const isFlake = prod.category === 'Dry Metal Flake (Glitter)' || prod.category === 'Metal Flake';
+    const hasMultipleSizes = (prod.sizes && prod.sizes.length > 1) || (prod.tapeWidths && prod.tapeWidths.length > 1);
+    const hasMultiplePacks = (prod.packSizes && prod.packSizes.length > 1) || (prod.packPriceMatrix && prod.packPriceMatrix.length > 1);
+
+    const variant = this.selectedProductVariants[prodId];
+    if ((isFlake || hasMultipleSizes || hasMultiplePacks) && (!variant || (!variant.size && !variant.width && !variant.pack))) {
+      this.openDetailModal(prodId);
+      return;
+    }
+
+    const prices = this.getProductCalculatedPrice(prod, variant ? variant.pack : null, variant ? variant.size : null, variant ? variant.width : null);
+    const variantDesc = [variant && variant.width, variant && variant.size, variant && variant.pack].filter(Boolean).join(' / ') || 'Standard';
 
     // Locate matching variant SKU if present
     const variantSku = prices.sku || prod.sku;
