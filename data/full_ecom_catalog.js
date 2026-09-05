@@ -10,7 +10,7 @@ export const ECOM_CATALOG = [
     "inStock": false,
     "isPreOrder": true,
     "badge": "BATCH 1 PRE-ORDER",
-    "image": "Images/Promo Images/Cleaned Skull Image.jpeg",
+    "image": "assets/images/kroma-skull-mirror.jpg",
     "description": "The world's first self-organizing 2K optical coating that delivers a flawless, non-clouding mirror finish across any industry. Chemically bonds and aligns metallic particles to lock in true mirror reflection over plastics, wood, 3D resin, aluminum, and steel without requiring a gloss black groundcoat. Mix ratio 5:5:2:2 (Binder : Reducer : Hardener : Mirror Seeds).",
     "sizes": [
       "Small Kit (140g / 5 oz)",
@@ -92,10 +92,10 @@ export const ECOM_CATALOG = [
       }
     ],
     "images": [
-      "Images/Promo Images/Cleaned Skull Image.jpeg",
-      "Images/kromaedge/kroma-helmet-mirror.jpg",
-      "Images/kromaedge/kroma-skull-mirror.jpg",
-      "Images/kromaedge/kroma-silver-surfer-wave.jpg"
+      "assets/images/kroma-skull-mirror.jpg",
+      "assets/images/kroma-helmet-mirror.jpg",
+      "assets/images/kroma-skull-mirror.jpg",
+      "assets/images/kroma-silver-surfer-wave.jpg"
     ],
     "videos": [
       {
@@ -159,7 +159,7 @@ export const ECOM_CATALOG = [
     "inStock": false,
     "isPreOrder": true,
     "badge": "BATCH 1 PRE-ORDER",
-    "image": "Images/kromaedge/kroma-silver-surfer-front.jpg",
+    "image": "assets/images/kroma-silver-surfer-front.jpg",
     "description": "Specifically engineered topcoat clear for Kroma Edge Chrome systems with ultra-low turbidity and maximum optical clarity. Formulated to prevent clouding, lifting, or solvent reactivation of the aligned metallic mirror layer. Mix ratio 10:1 (Clear Base : Hardener) + 70-100% Dedicated Thinner.",
     "sizes": [
       "Topcoat Clear 180 SET (1.5 m²)",
@@ -204,9 +204,9 @@ export const ECOM_CATALOG = [
       }
     ],
     "images": [
-      "Images/kromaedge/kroma-silver-surfer-front.jpg",
-      "Images/kromaedge/kroma-silver-surfer-back.jpg",
-      "Images/kromaedge/kroma-silver-surfer-wave.jpg"
+      "assets/images/kroma-silver-surfer-front.jpg",
+      "assets/images/kroma-silver-surfer-back.jpg",
+      "assets/images/kroma-silver-surfer-wave.jpg"
     ],
     "videos": [
       {

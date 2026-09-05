@@ -13,6 +13,26 @@ import { InventoryGuruAI } from './agentD.js';
 import { ForumPreorderEngine } from './forumPreorderEngine.js';
 import { AdminController } from './adminController.js';
 
+// Asset URL resolution helper for Shopify CDN and Local Development
+export function getAssetUrl(path) {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('//') || path.startsWith('data:')) {
+    return path;
+  }
+  const root = typeof window !== 'undefined' && window.SHOPIFY_ASSET_URL_ROOT;
+  if (root) {
+    let filename = path.split('/').pop();
+    if (path.includes('Cleaned Skull Image') || filename.includes('Cleaned Skull Image')) {
+      filename = 'kroma-skull-mirror.jpg';
+    }
+    return root + filename;
+  }
+  return path;
+}
+if (typeof window !== 'undefined') {
+  window.getAssetUrl = getAssetUrl;
+}
+
 class PaintSystemApp {
   constructor() {
     this.adminController = new AdminController(this);
@@ -1205,7 +1225,7 @@ class PaintSystemApp {
         actionButtons = `
           <div class="mt-3 p-3 bg-surface-dim border border-accent-cyan/50 rounded flex items-center justify-between gap-3 flex-wrap">
             <div class="flex items-center gap-3">
-              ${p.image ? `<img src="${p.image}" alt="${p.name}" style="width:52px; height:52px; object-fit:contain; background:#0c0f10; border:1px solid #333; border-radius:4px; padding:2px;">` : ''}
+              ${p.image ? `<img src="${getAssetUrl(p.image)}" alt="${p.name}" style="width:52px; height:52px; object-fit:contain; background:#0c0f10; border:1px solid #333; border-radius:4px; padding:2px;">` : ''}
               <div>
                 <div style="color:#fff; font-weight:bold; font-size:13px;">${p.name}</div>
                 <div style="font-size:11px; color:#aaa; font-family:monospace; margin-top:2px;">SKU: ${p.sku || p.id} | <span style="color:#38bdf8; font-weight:bold;">${priceStr}</span> | ${inStockText}</div>
@@ -1303,7 +1323,7 @@ class PaintSystemApp {
         productCardHtml = `
           <div class="mt-2 p-2 bg-[#0a0c0d] border border-primary-container/70 rounded flex flex-col gap-2">
             <div class="flex items-center gap-2">
-              ${p.image ? `<img src="${p.image}" alt="${p.name}" class="w-11 h-11 object-contain bg-black border border-white/10 rounded p-0.5 flex-shrink-0">` : ''}
+              ${p.image ? `<img src="${getAssetUrl(p.image)}" alt="${p.name}" class="w-11 h-11 object-contain bg-black border border-white/10 rounded p-0.5 flex-shrink-0">` : ''}
               <div class="flex-1 min-w-0">
                 <div class="font-bold text-[11px] text-white truncate" title="${p.name}">${p.name}</div>
                 <div class="text-[10px] text-neutral-300 font-mono mt-0.5"><span class="text-accent-cyan font-bold">${priceStr}</span> • ${inStockBadge}</div>
@@ -2438,6 +2458,29 @@ class PaintSystemApp {
 
     if (!slides || slides.length === 0) return;
 
+    // Dynamically resolve slide background images under Shopify CDN
+    slides.forEach((slide) => {
+      const bg = slide.style.backgroundImage;
+      if (bg) {
+        const m = bg.match(/url\(['"]?([^'")]+)['"]?\)/);
+        if (m && m[1]) {
+          const rawUrl = m[1];
+          if (typeof window !== 'undefined' && window.SHOPIFY_ASSET_URL_ROOT && (rawUrl.includes('assets/images/') || rawUrl.includes('Images/'))) {
+            slide.style.backgroundImage = `url('${getAssetUrl(rawUrl)}')`;
+          }
+        }
+      }
+    });
+
+    // Ensure nav logo image is also resolved under Shopify CDN
+    const navLogoImg = document.querySelector('#nav-logo-btn img');
+    if (navLogoImg && typeof window !== 'undefined' && window.SHOPIFY_ASSET_URL_ROOT) {
+      const src = navLogoImg.getAttribute('src');
+      if (src && (src.includes('assets/images/') || src.includes('Images/'))) {
+        navLogoImg.src = getAssetUrl(src);
+      }
+    }
+
     let currentSlide = 0;
     const totalSlides = slides.length;
 
@@ -2761,7 +2804,7 @@ class PaintSystemApp {
         addCartBtn.textContent = isPreOrder ? '🛒 PRE-ORDER NOW • SECURE BATCH 1 ALLOCATION' : '+ ADD TO PROJECT CART';
       }
 
-      const mainImageSrc = product.image || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80';
+      const mainImageSrc = getAssetUrl(product.image) || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80';
       const imgEl = document.getElementById('detail-img');
       if (imgEl) {
         imgEl.src = mainImageSrc;
@@ -2774,7 +2817,7 @@ class PaintSystemApp {
       const galleryContainer = document.getElementById('detail-gallery-container');
       const galleryThumbs = document.getElementById('detail-gallery-thumbnails');
       const allImages = (product.images && product.images.length > 0)
-        ? product.images
+        ? product.images.map(img => getAssetUrl(img))
         : [mainImageSrc];
 
       if (galleryContainer && galleryThumbs) {
@@ -2803,7 +2846,7 @@ class PaintSystemApp {
             const isFirst = idx === 0;
             return `
               <button type="button" class="detail-gallery-thumb border-2 ${isFirst ? 'border-primary bg-primary/20 shadow-[0_0_8px_rgba(211,47,47,0.5)]' : 'border-secondary/60 bg-surface-container-low hover:border-secondary'} p-1 rounded flex flex-col items-center gap-1 cursor-pointer transition-all min-w-[76px] flex-shrink-0" onclick="window.paintApp.switchDetailImage('${this.escapeHtmlAttr(imgSrc)}', this)">
-                <img src="${imgSrc}" alt="${label}" class="w-14 h-14 object-contain rounded" onerror="this.src='assets/images/coast_airbrush_logo.jpg'">
+                <img src="${imgSrc}" alt="${label}" class="w-14 h-14 object-contain rounded" onerror="this.src='${getAssetUrl('assets/images/coast_airbrush_logo.jpg')}'">
                 <span class="font-label-xs text-[9px] uppercase font-bold ${isFirst ? 'text-primary' : 'text-secondary'} text-center leading-tight truncate max-w-[72px]">${label}</span>
               </button>
             `;
@@ -3075,7 +3118,7 @@ class PaintSystemApp {
   switchDetailImage(imgSrc, btn) {
     const imgEl = document.getElementById('detail-img');
     if (imgEl) {
-      imgEl.src = imgSrc;
+      imgEl.src = getAssetUrl(imgSrc);
     }
     const thumbs = document.querySelectorAll('.detail-gallery-thumb');
     thumbs.forEach(t => {
@@ -3989,7 +4032,7 @@ class PaintSystemApp {
         card.innerHTML = `
           <div>
             <div onclick="window.paintApp && window.paintApp.openDetailModal('${prod.id}')" class="h-52 relative border-b border-white/10 overflow-hidden product-studio-stage flex items-center justify-center p-4 rounded-t cursor-pointer" title="Click to view product details &amp; options">
-              <img id="card-img-${prod.id}" class="w-full h-full object-contain filter contrast-110 drop-shadow-[0_12px_20px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-500" src="${prod.image || fallbackImg}" alt="${prod.name}" onerror="this.onerror=null; this.src='${fallbackImg}'">
+              <img id="card-img-${prod.id}" class="w-full h-full object-contain filter contrast-110 drop-shadow-[0_12px_20px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-500" src="${getAssetUrl(prod.image) || fallbackImg}" alt="${prod.name}" onerror="this.onerror=null; this.src='${fallbackImg}'">
               <div class="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
                 <span class="bg-black/80 border border-white/20 text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded tracking-wider backdrop-blur-sm">${(prod.brand || 'COAST').toUpperCase()}</span>
                 ${prod.images && prod.images.length > 1 ? `<span class="bg-black/80 border border-sky-500/50 text-sky-300 font-mono text-[9px] font-bold px-1.5 py-0.5 rounded tracking-wider backdrop-blur-sm flex items-center gap-0.5 shadow"><span class="material-symbols-outlined text-[11px]">photo_library</span> ${prod.images.length} PHOTOS</span>` : ''}
@@ -4122,11 +4165,11 @@ class PaintSystemApp {
     if (prod.tapePriceMatrix && prod.tapePriceMatrix.length > 0) {
       const targetWidth = currentSelection.size || currentSelection.width;
       const match = prod.tapePriceMatrix.find(t => t.width === targetWidth || this.matchPackToken(targetWidth, t.width));
-      if (match && match.image) variantImage = match.image;
+      if (match && match.image) variantImage = getAssetUrl(match.image);
     } else if (prod.variants && prod.variants.length > 0) {
       const targetSize = currentSelection.size || currentSelection.pack;
       const match = prod.variants.find(v => v.tapeWidth === targetSize || v.rawWidth === targetSize);
-      if (match && match.image) variantImage = match.image;
+      if (match && match.image) variantImage = getAssetUrl(match.image);
     }
     if (variantImage) {
       const cardImg = document.getElementById(`card-img-${prodId}`);
@@ -5640,7 +5683,7 @@ class PaintSystemApp {
         (p.hasOverrides ? 'border-amber-500/80 bg-amber-950/10' : 'border-secondary/70 hover:border-primary') + ' transition-all';
       
       const badge = p.badge || (p.inStock ? 'IN STOCK' : 'OUT OF STOCK');
-      const imgSrc = p.image || 'assets/images/coast_airbrush_logo.jpg';
+      const imgSrc = getAssetUrl(p.image) || getAssetUrl('assets/images/coast_airbrush_logo.jpg');
 
       card.innerHTML = `
         <div>
@@ -5651,7 +5694,7 @@ class PaintSystemApp {
 
           <div class="flex gap-3 my-2">
             <div class="w-16 h-16 bg-surface-container-lowest border border-secondary flex-shrink-0 flex items-center justify-center p-1">
-              <img src="${imgSrc}" alt="${p.name}" class="w-full h-full object-contain" onerror="this.src='assets/images/coast_airbrush_logo.jpg'">
+              <img src="${imgSrc}" alt="${p.name}" class="w-full h-full object-contain" onerror="this.src='${getAssetUrl('assets/images/coast_airbrush_logo.jpg')}'">
             </div>
             <div class="flex-1 min-w-0">
               <h4 class="font-headline text-xs uppercase text-white font-bold line-clamp-2 mb-1">${p.name}</h4>
@@ -5768,7 +5811,7 @@ class PaintSystemApp {
       if (priceEurInput) priceEurInput.value = '99.00';
       if (priceGbpInput) priceGbpInput.value = '85.00';
       if (badgeInput) badgeInput.value = 'NEW RELEASE';
-      if (imageInput) imageInput.value = 'Images/kromaedge/kroma-helmet-mirror.jpg';
+      if (imageInput) imageInput.value = 'assets/images/kroma-helmet-mirror.jpg';
       if (inStockInput) inStockInput.checked = true;
       if (isPreOrderInput) isPreOrderInput.checked = false;
       if (descInput) descInput.value = '';
@@ -7072,7 +7115,7 @@ class PaintSystemApp {
       inStock: baseObj.inStock !== false,
       isPreOrder: Boolean(baseObj.isPreOrder),
       badge: baseObj.badge ? `${baseObj.badge}` : 'COPY',
-      image: baseObj.image || 'Images/kromaedge/kroma-helmet-mirror.jpg',
+      image: baseObj.image || 'assets/images/kroma-helmet-mirror.jpg',
       description: baseObj.description || '',
       sizes: Array.isArray(baseObj.sizes) ? [...baseObj.sizes] : ['500mL', '1 Litre'],
       packSizes: Array.isArray(baseObj.packSizes) ? [...baseObj.packSizes] : ['Standard Kit'],
@@ -7869,7 +7912,7 @@ class PaintSystemApp {
       inStock: true,
       isPreOrder: false,
       badge: 'NEW RELEASE',
-      image: 'Images/kromaedge/kroma-helmet-mirror.jpg',
+      image: 'assets/images/kroma-helmet-mirror.jpg',
       description: 'Custom formulation added via Master Spreadsheet Editor.',
       sizes: ['500mL', '1 Litre'],
       packSizes: ['Standard Kit'],

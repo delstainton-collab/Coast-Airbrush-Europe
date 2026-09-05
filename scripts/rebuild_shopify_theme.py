@@ -134,6 +134,52 @@ def build_bundle():
     bundle_parts.append("  // Auto-start application entry point\n  req(\x27js/app.js\x27);\n})();\n")
     return "".join(bundle_parts)
 
+def transform_html_for_liquid(html):
+    def replace_url(m):
+        full_path = m.group(1)
+        if "Cleaned Skull Image" in full_path:
+            filename = "kroma-skull-mirror.jpg"
+        else:
+            filename = full_path.split("/")[-1]
+        return f"url('{{{{ '{filename}' | asset_url }}}}')"
+
+    def replace_src(m):
+        prefix = m.group(1)
+        full_path = m.group(2)
+        quote = m.group(3)
+        if "Cleaned Skull Image" in full_path:
+            filename = "kroma-skull-mirror.jpg"
+        else:
+            filename = full_path.split("/")[-1]
+        return f"{prefix}{{{{ '{filename}' | asset_url }}}}{quote}"
+
+    out = re.sub(r"url\(['\"]?((?:assets/images/|Images/)[^'\")]+)['\"]?\)", replace_url, html)
+    out = re.sub(r"(src=['\"])((?:assets/images/|Images/)[^'\">]+)(['\"])", replace_src, out)
+    return out
+
+def transform_theme_liquid(content):
+    content = re.sub(r"https://coastairbrush\.eu/assets/images/([a-zA-Z0-9_\-\.]+)", r"https:{{ '\1' | asset_url }}", content)
+    content = re.sub(r"assets/images/([a-zA-Z0-9_\-\.]+)", r"{{ '\1' | asset_url }}", content)
+    root_script = """    <script>
+      window.SHOPIFY_ASSET_URL_ROOT = "{{ 'coast_logo_white.png' | asset_url | split: 'coast_logo_white.png' | first }}";
+    </script>\n"""
+    if "window.SHOPIFY_ASSET_URL_ROOT" not in content:
+        content = content.replace("    <!-- Coast Airbrush Europe Storefront Application Engine -->", root_script + "    <!-- Coast Airbrush Europe Storefront Application Engine -->")
+    return content
+
+def get_local_image_assets():
+    img_dir = os.path.join(ROOT_DIR, "assets", "images")
+    found = {}
+    if os.path.exists(img_dir):
+        for root, dirs, files in os.walk(img_dir):
+            for f in files:
+                if f.startswith("."):
+                    continue
+                ext = os.path.splitext(f)[1].lower()
+                if ext in [".jpg", ".jpeg", ".png", ".webp", ".svg", ".gif"]:
+                    found[f"assets/{f}"] = os.path.join(root, f)
+    return found
+
 def extract_snippets():
     with open(os.path.join(ROOT_DIR, "index.html"), "r", encoding="utf-8") as f:
         html = f.read()
@@ -154,7 +200,7 @@ def extract_snippets():
 
     assert p1 != -1 and p2 != -1 and p3 != -1 and p4 != -1 and p5 != -1 and pend != -1, "Snippet markers missing in index.html"
 
-    return {
+    raw_snippets = {
         "snippets/header-and-departments.liquid": html[p1:p2].rstrip() + "\n",
         "snippets/storefront-catalog.liquid": html[p2:p3].rstrip() + "\n",
         "snippets/tab-views.liquid": html[p3:p4].rstrip() + "\n",
@@ -162,20 +208,25 @@ def extract_snippets():
         "snippets/modals-and-drawers.liquid": html[p5:pend].rstrip() + "\n"
     }
 
+    return {k: transform_html_for_liquid(v) for k, v in raw_snippets.items()}
+
 def main():
     print(f"Bundling Shopify theme from: {ROOT_DIR}")
     snippets = extract_snippets()
     bundle_code = build_bundle()
+    local_images = get_local_image_assets()
     
     with open(os.path.join(ROOT_DIR, "css", "styles.css"), "r", encoding="utf-8") as f:
         styles_css = f.read()
     with open(os.path.join(ROOT_DIR, "data", "full_ecom_catalog.js"), "r", encoding="utf-8") as f:
         catalog_js = f.read()
 
+    written_files = set()
     temp_zip = THEME_ZIP + ".tmp"
     with zipfile.ZipFile(THEME_ZIP, "r") as zin:
         with zipfile.ZipFile(temp_zip, "w", zipfile.ZIP_DEFLATED) as zout:
             for item in zin.infolist():
+                written_files.add(item.filename)
                 if item.filename in snippets:
                     zout.writestr(item, snippets[item.filename])
                 elif item.filename == "assets/coast-storefront-bundle.js":
@@ -184,8 +235,21 @@ def main():
                     zout.writestr(item, styles_css)
                 elif item.filename == "assets/full_ecom_catalog.js":
                     zout.writestr(item, catalog_js)
+                elif item.filename == "layout/theme.liquid":
+                    original_theme = zin.read(item.filename).decode("utf-8")
+                    zout.writestr(item, transform_theme_liquid(original_theme))
+                elif item.filename in local_images:
+                    with open(local_images[item.filename], "rb") as img_f:
+                        zout.writestr(item, img_f.read())
                 else:
                     zout.writestr(item, zin.read(item.filename))
+
+            for zip_path, file_path in local_images.items():
+                if zip_path not in written_files:
+                    with open(file_path, "rb") as img_f:
+                        zout.writestr(zip_path, img_f.read())
+                    written_files.add(zip_path)
+                    print(f"Added new asset to theme zip: {zip_path}")
 
     os.replace(temp_zip, THEME_ZIP)
     print(f"Theme successfully updated: {THEME_ZIP} ({os.path.getsize(THEME_ZIP) / (1024*1024):.2f} MB)")
