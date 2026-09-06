@@ -1,6 +1,21 @@
 // European Regional Localization & Compliance Engine for Coast Airbrush Europe
 
 export const EU_COUNTRIES = {
+  US: {
+    code: 'US',
+    name: 'United States',
+    flag: '🇺🇸',
+    currency: 'USD',
+    symbol: '$',
+    rateToEur: 1.08,
+    rateToUsd: 1.0,
+    vatRate: 0.0,
+    vatPrefix: 'US',
+    carrier: 'FedEx / DHL Express International',
+    leadTime: '3-5 Business Days',
+    popularPayment: 'Credit Card / PayPal / Apple Pay',
+    dutyFree: false
+  },
   DE: {
     code: 'DE',
     name: 'Germany (Deutschland)',
@@ -548,8 +563,13 @@ export class EULocalizationManager {
 
   detectCountry() {
     try {
+      if (typeof window !== 'undefined' && window.Shopify && window.Shopify.country) {
+        const sc = String(window.Shopify.country).toUpperCase();
+        if (EU_COUNTRIES[sc]) return sc;
+      }
       if (typeof Intl !== 'undefined' && Intl.DateTimeFormat) {
         const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase();
+        if (tz.includes('america') || tz.includes('new_york') || tz.includes('los_angeles') || tz.includes('chicago') || tz.includes('denver') || tz.includes('phoenix')) return 'US';
         if (tz.includes('london')) return 'GB';
         if (tz.includes('berlin')) return 'DE';
         if (tz.includes('paris')) return 'FR';
@@ -563,6 +583,7 @@ export class EULocalizationManager {
       }
       if (typeof navigator !== 'undefined' && navigator.language) {
         const lang = navigator.language.toLowerCase();
+        if (lang.includes('en-us')) return 'US';
         if (lang.includes('gb') || lang === 'en') return 'GB';
         if (lang.includes('de')) return 'DE';
         if (lang.includes('fr')) return 'FR';
@@ -607,6 +628,9 @@ export class EULocalizationManager {
     if (showSecondary) {
       if (country.currency === 'GBP') {
         return `${formatted} <span class="text-secondary font-mono text-[11px] font-normal">(€${amountInEur.toFixed(2)})</span>`;
+      } else if (country.currency === 'USD') {
+        const gbp = amountInEur * (EU_COUNTRIES.GB?.rateToEur || 0.85);
+        return `${formatted} <span class="text-secondary font-mono text-[11px] font-normal">(€${amountInEur.toFixed(2)} / £${gbp.toFixed(2)})</span>`;
       } else if (country.currency === 'EUR') {
         const gbp = amountInEur * (EU_COUNTRIES.GB?.rateToEur || 0.85);
         return `${formatted} <span class="text-secondary font-mono text-[11px] font-normal">(£${gbp.toFixed(2)})</span>`;

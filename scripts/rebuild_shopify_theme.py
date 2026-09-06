@@ -30,7 +30,7 @@ def transform_es_to_cjs(code, mod_name):
         m_imp = re.match(r"^import\s+\{([^}]+)\}\s+from\s+[\"']([^\"']+)[\"'];?", stripped)
         if m_imp:
             named = m_imp.group(1)
-            target = m_imp.group(2)
+            target = m_imp.group(2).split("?")[0]
             if target.startswith("./"):
                 dir_part = os.path.dirname(mod_name)
                 target = os.path.normpath(os.path.join(dir_part, target[2:])).replace("\\", "/")
@@ -44,7 +44,7 @@ def transform_es_to_cjs(code, mod_name):
         m_imp_all = re.match(r"^import\s+\*\s+as\s+(\w+)\s+from\s+[\"']([^\"']+)[\"'];?", stripped)
         if m_imp_all:
             named = m_imp_all.group(1)
-            target = m_imp_all.group(2)
+            target = m_imp_all.group(2).split("?")[0]
             if target.startswith("./") or target.startswith("../"):
                 dir_part = os.path.dirname(mod_name)
                 target = os.path.normpath(os.path.join(dir_part, target)).replace("\\", "/")
@@ -55,7 +55,7 @@ def transform_es_to_cjs(code, mod_name):
         m_imp_def = re.match(r"^import\s+(\w+)\s+from\s+[\"']([^\"']+)[\"'];?", stripped)
         if m_imp_def:
             named = m_imp_def.group(1)
-            target = m_imp_def.group(2)
+            target = m_imp_def.group(2).split("?")[0]
             if target.startswith("./") or target.startswith("../"):
                 dir_part = os.path.dirname(mod_name)
                 target = os.path.normpath(os.path.join(dir_part, target)).replace("\\", "/")
@@ -110,10 +110,10 @@ def build_bundle():
         "  const cache = {};\n",
         "  function define(name, fn) { modules[name] = fn; }\n",
         "  function req(name) {\n",
-        "    let clean = name.replace(/^\\.\\//, \x27\x27);\n",
-        "    if (clean.startsWith(\x27../\x27)) clean = clean.substring(3);\n",
+        "    let clean = name.replace(/^\\.\\//, '').split('?')[0];\n",
+        "    if (clean.startsWith('../')) clean = clean.substring(3);\n",
         "    if (cache[clean]) return cache[clean].exports;\n",
-        "    if (!modules[clean]) throw new Error(\x27Module not found: \x27 + clean);\n",
+        "    if (!modules[clean]) throw new Error('Module not found: ' + clean);\n",
         "    const module = { exports: {} };\n",
         "    cache[clean] = module;\n",
         "    modules[clean](module.exports, req, module);\n",

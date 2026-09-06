@@ -1,6 +1,6 @@
 // Coast Airbrush Europe - Master Storefront & Mixing System Controller
-import { KROMA_EDGE_CATALOG } from '../data/kroma_edge.js?v=20260831_clean';
-import { ECOM_CATALOG } from '../data/full_ecom_catalog.js?v=20260904_sales_copy_v4';
+import { KROMA_EDGE_CATALOG } from '../data/kroma_edge.js';
+import { ECOM_CATALOG } from '../data/full_ecom_catalog.js';
 import { FLAKE_KING_TDS, FLAKE_KING_WET_MIX_RATIOS, FLAKE_KING_MIXING_SYSTEMS } from '../data/flake_king_tds.js';
 import { calculateRequiredVolume, calculateMixingRecipe, calculateKromaCoverage, PRESET_PANELS, CONVERSIONS } from './mixingEngine.js';
 import { ShopifyCartManager } from './shopifyCart.js';
@@ -35,6 +35,8 @@ if (typeof window !== 'undefined') {
 
 class PaintSystemApp {
   constructor() {
+    window.paintApp = this;
+    window.app = this;
     this.adminController = new AdminController(this);
     this.currentCatalog = JSON.parse(JSON.stringify(KROMA_EDGE_CATALOG));
     
@@ -376,6 +378,26 @@ class PaintSystemApp {
         btn.click();
       }
     };
+
+    // Initial sync of featured hero showcase cards with active localization & selection
+    try {
+      const kromaSelect = document.getElementById('select-size-kroma-mirror-chrome-system');
+      if (kromaSelect) {
+        this.onProductVariantChange('kroma-mirror-chrome-system', 'size', kromaSelect.value);
+      }
+      const clearEurEl = document.getElementById('price-eur-kroma-dedicated-topcoat-clear');
+      const clearGbpEl = document.getElementById('price-gbp-kroma-dedicated-topcoat-clear');
+      if (clearEurEl || clearGbpEl) {
+        const clearProd = ECOM_CATALOG.find(p => p.id === 'kroma-dedicated-topcoat-clear');
+        if (clearProd) {
+          const cPrices = this.getProductCalculatedPrice(clearProd);
+          if (clearEurEl && cPrices) clearEurEl.textContent = cPrices.formattedPrimary;
+          if (clearGbpEl && cPrices) clearGbpEl.textContent = cPrices.formattedSecondary;
+        }
+      }
+    } catch (err) {
+      console.warn('Error syncing hero showcase cards:', err);
+    }
 
     // Auto-restore verified trade session if token is saved in localStorage
     this.restoreTradeSession();
@@ -3727,6 +3749,7 @@ class PaintSystemApp {
 
   getProductCalculatedPrice(prod, selectedPack, selectedSize, selectedWidth) {
     let priceEur = prod.priceEur || 24.00;
+    let finalGbp = prod.priceGbp !== undefined ? prod.priceGbp : null;
     let matchedSku = prod.sku || '';
     let matchedStockCode = prod.stockCode || '';
     let matchedBarcode = prod.barcode || '';
@@ -3744,6 +3767,7 @@ class PaintSystemApp {
       });
       if (match) {
         if (match.priceEur) priceEur = match.priceEur;
+        if (match.priceGbp) finalGbp = match.priceGbp;
         if (match.sku) matchedSku = match.sku;
         if (match.stockCode) matchedStockCode = match.stockCode;
         if (match.barcode) matchedBarcode = match.barcode;
@@ -3756,6 +3780,7 @@ class PaintSystemApp {
         const match = prod.tapePriceMatrix.find(t => t.width === targetWidth || this.matchPackToken(targetWidth, t.width));
         if (match) {
           if (match.priceEur) priceEur = match.priceEur;
+          if (match.priceGbp) finalGbp = match.priceGbp;
           if (match.sku) matchedSku = match.sku;
           if (match.stockCode) matchedStockCode = match.stockCode;
           if (match.barcode) matchedBarcode = match.barcode;
@@ -3773,6 +3798,7 @@ class PaintSystemApp {
       });
       if (match) {
         if (match.priceEur) priceEur = match.priceEur;
+        if (match.priceGbp) finalGbp = match.priceGbp;
         if (match.sku) matchedSku = match.sku;
         if (match.stockCode) matchedStockCode = match.stockCode;
         if (match.barcode) matchedBarcode = match.barcode;
@@ -3783,6 +3809,7 @@ class PaintSystemApp {
         );
         if (packMatch) {
           if (packMatch.priceEur) priceEur = packMatch.priceEur;
+          if (packMatch.priceGbp) finalGbp = packMatch.priceGbp;
           if (packMatch.sku) matchedSku = packMatch.sku;
           if (packMatch.stockCode) matchedStockCode = packMatch.stockCode;
           if (packMatch.barcode) matchedBarcode = packMatch.barcode;
@@ -3795,6 +3822,7 @@ class PaintSystemApp {
       );
       if (match) {
         if (match.priceEur) priceEur = match.priceEur;
+        if (match.priceGbp) finalGbp = match.priceGbp;
         if (match.sku) matchedSku = match.sku;
         if (match.stockCode) matchedStockCode = match.stockCode;
         if (match.barcode) matchedBarcode = match.barcode;
@@ -3802,7 +3830,6 @@ class PaintSystemApp {
     }
 
     let finalEur = priceEur;
-    let finalGbp = null;
 
     if (this.isB2BMode && this.b2bSession) {
       const lookupKey = matchedSku || matchedStockCode || prod.sku || prod.stockCode;
@@ -3813,6 +3840,7 @@ class PaintSystemApp {
       } else {
         const mult = this.b2bSession.discountMultiplier || (this.b2bSession.role === 'distributor' ? 0.45 : 0.70);
         finalEur = priceEur * mult;
+        if (finalGbp !== null) finalGbp = finalGbp * mult;
       }
     }
 
@@ -3835,10 +3863,19 @@ class PaintSystemApp {
 
     const primaryVatBadge = vatMode === 'inc' ? 'INC VAT' : 'EX VAT';
     const secondaryVatBadge = vatMode === 'inc' ? 'ex. VAT' : 'inc. VAT';
-    const secondaryCurrencyFormatted = country.currency === 'GBP' ? `€${finalEur.toFixed(2)} EUR` : `£${finalGbp.toFixed(2)} GBP`;
+    let secondaryCurrencyFormatted = '';
+    if (country.currency === 'GBP') {
+      secondaryCurrencyFormatted = `€${finalEur.toFixed(2)} EUR`;
+    } else if (country.currency === 'USD') {
+      secondaryCurrencyFormatted = `€${finalEur.toFixed(2)} / £${finalGbp.toFixed(2)}`;
+    } else {
+      secondaryCurrencyFormatted = `£${finalGbp.toFixed(2)} GBP`;
+    }
 
     return {
       priceEur: finalEur,
+      priceGbp: finalGbp,
+      finalGbp,
       priceLocal: finalLocal,
       priceExVat,
       priceIncVat,
@@ -4129,7 +4166,19 @@ class PaintSystemApp {
       vatBadgeEl.className = `text-[10px] font-mono font-bold px-1.5 py-0.5 rounded leading-none ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}`;
     }
     if (gbpEl && prices) {
-      gbpEl.textContent = prices.formattedSecondary;
+      if (prodId === 'kroma-mirror-chrome-system') {
+        const country = this.euLocalization.getCountry();
+        const gbpVal = (prices.finalGbp !== null && prices.finalGbp !== undefined) ? prices.finalGbp : (prices.priceEur * 0.85);
+        if (country.currency === 'GBP') {
+          gbpEl.textContent = `€${prices.priceEur.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} EUR • ${prices.primaryVatBadge}`;
+        } else if (country.currency === 'USD') {
+          gbpEl.textContent = `€${prices.priceEur.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / £${gbpVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Export Ex-VAT)`;
+        } else {
+          gbpEl.textContent = `£${gbpVal.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} + VAT`;
+        }
+      } else {
+        gbpEl.textContent = prices.formattedSecondary;
+      }
     }
     const cardSkuVal = document.getElementById(`card-sku-val-${prodId}`);
     if (cardSkuVal && prices && prices.sku) {
