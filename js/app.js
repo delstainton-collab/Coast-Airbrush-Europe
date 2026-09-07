@@ -31,6 +31,11 @@ export function getAssetUrl(path) {
 }
 if (typeof window !== 'undefined') {
   window.getAssetUrl = getAssetUrl;
+  window.onProductVariantChange = (prodId, key, val) => {
+    if (window.paintApp && typeof window.paintApp.onProductVariantChange === 'function') {
+      window.paintApp.onProductVariantChange(prodId, key, val);
+    }
+  };
 }
 
 class PaintSystemApp {
@@ -303,35 +308,7 @@ class PaintSystemApp {
   }
 
   initUI() {
-    // Navigation Tabs Setup
-    this.setupTabs();
-
-    // Event Listeners for mixing inputs
-    this.addSafeListener('select-mixing-system', 'change', (e) => this.onSystemChange(e.target.value));
-    this.addSafeListener('input-total-volume', 'input', () => this.updateCalculation());
-    this.addSafeListener('select-volume-unit', 'change', () => this.updateCalculation());
-
-    // Mix Calculator Direct SDS & TDS Download Buttons
-    this.addSafeListener('btn-calc-download-tds', 'click', () => {
-      if (this.selectedSystem) this.downloadSystemTDS(this.selectedSystem);
-    });
-    this.addSafeListener('btn-calc-download-sds', 'click', () => {
-      if (this.selectedSystem) this.downloadSystemSDS(this.selectedSystem);
-    });
-
-    // Shop Filters & Search
-    this.setupShopFilters();
-
-    // Cart Drawer & Modals
-    this.setupCartDrawer();
-    this.setupDetailModal();
-    this.setupWelcomeModal();
-    this.setupQuickMixModal();
-    this.setupHeroCrossfade();
-    this.initSocialProofPulse();
-    this.initReferralModal();
-
-    // Global Hero & UI Action Bindings
+    // Global Hero & UI Action Bindings (bound immediately so they are available without delay)
     window.paintApp = this;
     window.app = this;
     this.cartManager = this.shopifyCartManager;
@@ -379,25 +356,82 @@ class PaintSystemApp {
       }
     };
 
-    // Initial sync of featured hero showcase cards with active localization & selection
-    try {
-      const kromaSelect = document.getElementById('select-size-kroma-mirror-chrome-system');
-      if (kromaSelect) {
-        this.onProductVariantChange('kroma-mirror-chrome-system', 'size', kromaSelect.value);
-      }
-      const clearEurEl = document.getElementById('price-eur-kroma-dedicated-topcoat-clear');
-      const clearGbpEl = document.getElementById('price-gbp-kroma-dedicated-topcoat-clear');
-      if (clearEurEl || clearGbpEl) {
-        const clearProd = ECOM_CATALOG.find(p => p.id === 'kroma-dedicated-topcoat-clear');
-        if (clearProd) {
-          const cPrices = this.getProductCalculatedPrice(clearProd);
-          if (clearEurEl && cPrices) clearEurEl.textContent = cPrices.formattedPrimary;
-          if (clearGbpEl && cPrices) clearGbpEl.textContent = cPrices.formattedSecondary;
+    // Navigation Tabs Setup
+    try { this.setupTabs(); } catch (e) { console.warn('setupTabs error:', e); }
+
+    // Event Listeners for mixing inputs
+    this.addSafeListener('select-mixing-system', 'change', (e) => this.onSystemChange(e.target.value));
+    this.addSafeListener('input-total-volume', 'input', () => this.updateCalculation());
+    this.addSafeListener('select-volume-unit', 'change', () => this.updateCalculation());
+
+    // Mix Calculator Direct SDS & TDS Download Buttons
+    this.addSafeListener('btn-calc-download-tds', 'click', () => {
+      if (this.selectedSystem) this.downloadSystemTDS(this.selectedSystem);
+    });
+    this.addSafeListener('btn-calc-download-sds', 'click', () => {
+      if (this.selectedSystem) this.downloadSystemSDS(this.selectedSystem);
+    });
+
+    // Shop Filters & Search
+    try { this.setupShopFilters(); } catch (e) { console.warn('setupShopFilters error:', e); }
+
+    // Cart Drawer & Modals
+    try { this.setupCartDrawer(); } catch (e) { console.warn('setupCartDrawer error:', e); }
+    try { this.setupDetailModal(); } catch (e) { console.warn('setupDetailModal error:', e); }
+    try { this.setupWelcomeModal(); } catch (e) { console.warn('setupWelcomeModal error:', e); }
+    try { this.setupQuickMixModal(); } catch (e) { console.warn('setupQuickMixModal error:', e); }
+    try { this.setupHeroCrossfade(); } catch (e) { console.warn('setupHeroCrossfade error:', e); }
+    try { this.initSocialProofPulse(); } catch (e) { console.warn('initSocialProofPulse error:', e); }
+    try { this.initReferralModal(); } catch (e) { console.warn('initReferralModal error:', e); }
+
+    // Direct and Delegated Variant Change Event Listeners (ensure 100% responsiveness even under strict CSP / theme sandboxing)
+    this.addSafeListener('select-size-kroma-mirror-chrome-system', 'change', (e) => {
+      this.onProductVariantChange('kroma-mirror-chrome-system', 'size', e.target.value);
+    });
+    this.addSafeListener('select-size-kroma-mirror-chrome-system', 'input', (e) => {
+      this.onProductVariantChange('kroma-mirror-chrome-system', 'size', e.target.value);
+    });
+    this.addSafeListener('select-width-fk-2366', 'change', (e) => {
+      this.onProductVariantChange('fk-2366', 'width', e.target.value);
+    });
+    this.addSafeListener('select-width-fk-2366', 'input', (e) => {
+      this.onProductVariantChange('fk-2366', 'width', e.target.value);
+    });
+    this.addSafeListener('select-width-fk-2352', 'change', (e) => {
+      this.onProductVariantChange('fk-2352', 'width', e.target.value);
+    });
+    this.addSafeListener('select-width-fk-2352', 'input', (e) => {
+      this.onProductVariantChange('fk-2352', 'width', e.target.value);
+    });
+
+    // Global Delegated Selector Event Listener
+    document.addEventListener('change', (e) => {
+      const t = e.target;
+      if (!t || t.tagName !== 'SELECT') return;
+      if (t.id) {
+        let m = t.id.match(/^select-size-(.+)$/);
+        if (m) {
+          this.onProductVariantChange(m[1], 'size', t.value);
+          return;
+        }
+        m = t.id.match(/^select-pack-(.+)$/);
+        if (m) {
+          this.onProductVariantChange(m[1], 'pack', t.value);
+          return;
+        }
+        m = t.id.match(/^select-width-(.+)$/);
+        if (m) {
+          this.onProductVariantChange(m[1], 'width', t.value);
+          return;
         }
       }
-    } catch (err) {
-      console.warn('Error syncing hero showcase cards:', err);
-    }
+      if (t.dataset && t.dataset.variantProd) {
+        this.onProductVariantChange(t.dataset.variantProd, t.dataset.variantKey || 'size', t.value);
+      }
+    });
+
+    // Initial sync of featured hero showcase cards with active localization & selection
+    this.syncFeaturedShowcaseCards();
 
     // Auto-restore verified trade session if token is saved in localStorage
     this.restoreTradeSession();
@@ -460,6 +494,7 @@ class PaintSystemApp {
     this.renderColorSwatches();
     this.renderCategoryButtons();
     this.renderStorefrontGrid();
+    this.syncFeaturedShowcaseCards();
     this.updateCalculation();
     this.renderCartSummary(this.shopifyCartManager.getCartSummary());
     this.renderFeaturedBundle();
@@ -531,6 +566,38 @@ class PaintSystemApp {
         const anchor = document.getElementById('storefront-catalog-anchor');
         if (anchor) anchor.scrollIntoView({ behavior: 'smooth' });
       }, 250);
+    }
+  }
+
+  syncFeaturedShowcaseCards() {
+    try {
+      const kromaSelect = document.getElementById('select-size-kroma-mirror-chrome-system');
+      const kromaVal = (this.selectedProductVariants['kroma-mirror-chrome-system'] && this.selectedProductVariants['kroma-mirror-chrome-system'].size) || (kromaSelect ? kromaSelect.value : null);
+      if (kromaVal) {
+        this.onProductVariantChange('kroma-mirror-chrome-system', 'size', kromaVal);
+      }
+      const clearProd = ECOM_CATALOG.find(p => p.id === 'kroma-dedicated-topcoat-clear');
+      if (clearProd) {
+        const cPrices = this.getProductCalculatedPrice(clearProd);
+        const clearEurEls = document.querySelectorAll('[id="price-eur-kroma-dedicated-topcoat-clear"], [data-price-eur="kroma-dedicated-topcoat-clear"]');
+        const clearGbpEls = document.querySelectorAll('[id="price-gbp-kroma-dedicated-topcoat-clear"], [data-price-gbp="kroma-dedicated-topcoat-clear"]');
+        if (cPrices) {
+          clearEurEls.forEach(el => el.textContent = cPrices.formattedPrimary);
+          clearGbpEls.forEach(el => el.textContent = cPrices.formattedSecondary);
+        }
+      }
+      const fk2366Select = document.getElementById('select-width-fk-2366');
+      const fk2366Val = (this.selectedProductVariants['fk-2366'] && this.selectedProductVariants['fk-2366'].width) || (fk2366Select ? fk2366Select.value : null);
+      if (fk2366Val) {
+        this.onProductVariantChange('fk-2366', 'width', fk2366Val);
+      }
+      const fk2352Select = document.getElementById('select-width-fk-2352');
+      const fk2352Val = (this.selectedProductVariants['fk-2352'] && this.selectedProductVariants['fk-2352'].width) || (fk2352Select ? fk2352Select.value : null);
+      if (fk2352Val) {
+        this.onProductVariantChange('fk-2352', 'width', fk2352Val);
+      }
+    } catch (err) {
+      console.warn('Error syncing featured showcase cards:', err);
     }
   }
 
@@ -648,6 +715,7 @@ class PaintSystemApp {
         updateHeaderFromEU();
         applyTranslations();
         this.renderStorefrontGrid();
+        this.syncFeaturedShowcaseCards();
         this.renderCartSummary(this.shopifyCartManager.getCartSummary());
       });
     }
@@ -657,6 +725,7 @@ class PaintSystemApp {
         this.euLocalization.setVatDisplayMode('ex');
         updateHeaderFromEU();
         this.renderStorefrontGrid();
+        this.syncFeaturedShowcaseCards();
         if (this.activeModalProduct) {
           this.openDetailModal(this.activeModalProduct.id);
         }
@@ -668,6 +737,7 @@ class PaintSystemApp {
         this.euLocalization.setVatDisplayMode('inc');
         updateHeaderFromEU();
         this.renderStorefrontGrid();
+        this.syncFeaturedShowcaseCards();
         if (this.activeModalProduct) {
           this.openDetailModal(this.activeModalProduct.id);
         }
@@ -680,6 +750,7 @@ class PaintSystemApp {
         this.euLocalization.setUnitPreference(next);
         updateHeaderFromEU();
         this.renderStorefrontGrid();
+        this.syncFeaturedShowcaseCards();
       });
     }
 
@@ -2734,7 +2805,7 @@ class PaintSystemApp {
           modalControls += `
             <div class="mb-3">
               <label class="font-label-xs text-xs text-secondary uppercase block mb-1 font-bold">${sizeLabel}:</label>
-              <select id="detail-select-size" class="mech-select !py-2 !px-3 text-xs w-full" onchange="window.paintApp.onProductVariantChange('${product.id}', 'size', this.value)">
+              <select id="detail-select-size" data-variant-prod="${product.id}" data-variant-key="size" data-select-size="${product.id}" class="mech-select !py-2 !px-3 text-xs w-full" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('${product.id}', 'size', this.value) : (window.onProductVariantChange ? window.onProductVariantChange('${product.id}', 'size', this.value) : null)">
                 ${validSizes.map(s => {
                   const optPrice = this.getProductCalculatedPrice(product, currentSelection.pack, s);
                   const showPrice = validPacks.length <= 1 && optPrice ? ` (${optPrice.formattedPrimary} ${optPrice.primaryVatBadge})` : '';
@@ -2748,7 +2819,7 @@ class PaintSystemApp {
           modalControls += `
             <div class="mb-3">
               <label class="font-label-xs text-xs text-secondary uppercase block mb-1 font-bold">Pack Size / Volume:</label>
-              <select id="detail-select-pack" class="mech-select !py-2 !px-3 text-xs w-full" onchange="window.paintApp.onProductVariantChange('${product.id}', 'pack', this.value)">
+              <select id="detail-select-pack" data-variant-prod="${product.id}" data-variant-key="pack" data-select-pack="${product.id}" class="mech-select !py-2 !px-3 text-xs w-full" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('${product.id}', 'pack', this.value) : (window.onProductVariantChange ? window.onProductVariantChange('${product.id}', 'pack', this.value) : null)">
                 ${validPacks.map(p => {
                   const optPrice = this.getProductCalculatedPrice(product, p, currentSelection.size);
                   return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} (${optPrice ? optPrice.formattedPrimary + ' ' + optPrice.primaryVatBadge : ''})</option>`;
@@ -4038,7 +4109,7 @@ class PaintSystemApp {
           variantControls += `
             <div class="mb-1.5">
               <label class="font-label-xs text-[10px] text-secondary uppercase block mb-0.5 font-bold">${sizeLabel}:</label>
-              <select id="select-size-${prod.id}" class="mech-select !py-1 !px-2 !text-[11px] leading-tight" onchange="window.paintApp.onProductVariantChange('${prod.id}', 'size', this.value)">
+              <select id="select-size-${prod.id}" data-variant-prod="${prod.id}" data-variant-key="size" data-select-size="${prod.id}" class="mech-select !py-1 !px-2 !text-[11px] leading-tight" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('${prod.id}', 'size', this.value) : (window.onProductVariantChange ? window.onProductVariantChange('${prod.id}', 'size', this.value) : null)">
                 ${validSizes.map(s => {
                   const optPrice = this.getProductCalculatedPrice(prod, currentSelection.pack, s);
                   const showPrice = validPacks.length <= 1 && optPrice ? ` (${optPrice.formattedPrimary} ${optPrice.primaryVatBadge})` : '';
@@ -4053,7 +4124,7 @@ class PaintSystemApp {
           variantControls += `
             <div class="mb-1.5">
               <label class="font-label-xs text-[10px] text-secondary uppercase block mb-0.5 font-bold">Pack Size / Volume:</label>
-              <select id="select-pack-${prod.id}" class="mech-select !py-1 !px-2 !text-[11px] leading-tight" onchange="window.paintApp.onProductVariantChange('${prod.id}', 'pack', this.value)">
+              <select id="select-pack-${prod.id}" data-variant-prod="${prod.id}" data-variant-key="pack" data-select-pack="${prod.id}" class="mech-select !py-1 !px-2 !text-[11px] leading-tight" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('${prod.id}', 'pack', this.value) : (window.onProductVariantChange ? window.onProductVariantChange('${prod.id}', 'pack', this.value) : null)">
                 ${validPacks.map(p => {
                   const optPrice = this.getProductCalculatedPrice(prod, p, currentSelection.size);
                   return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} (${optPrice ? optPrice.formattedPrimary + ' ' + optPrice.primaryVatBadge : ''})</option>`;
@@ -4108,11 +4179,11 @@ class PaintSystemApp {
             <div class="flex items-center justify-between border-t border-white/10 pt-3 mb-3">
               <div>
                 <div class="flex items-baseline gap-1.5 flex-wrap">
-                  <span id="price-eur-${prod.id}" class="font-headline text-2xl text-white font-extrabold block leading-none">${prices.formattedPrimary}</span>
-                  <span id="price-vat-badge-${prod.id}" class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded leading-none ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}">${prices.primaryVatBadge}</span>
+                  <span id="price-eur-${prod.id}" data-price-eur="${prod.id}" data-price-primary="${prod.id}" class="price-eur-${prod.id} font-headline text-2xl text-white font-extrabold block leading-none">${prices.formattedPrimary}</span>
+                  <span id="price-vat-badge-${prod.id}" data-price-vat-badge="${prod.id}" class="price-vat-badge-${prod.id} text-[10px] font-mono font-bold px-1.5 py-0.5 rounded leading-none ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}">${prices.primaryVatBadge}</span>
                 </div>
                 <div class="flex items-center gap-1.5 mt-1 flex-wrap">
-                  <span id="price-gbp-${prod.id}" class="font-mono text-[11px] text-neutral-300 font-medium">${prices.formattedSecondary}</span>
+                  <span id="price-gbp-${prod.id}" data-price-gbp="${prod.id}" data-price-secondary="${prod.id}" class="price-gbp-${prod.id} font-mono text-[11px] text-neutral-300 font-medium">${prices.formattedSecondary}</span>
                   <span class="font-mono text-[10px] text-neutral-500">(${prices.formattedSecondaryCur})</span>
                 </div>
                 ${this.isB2BMode && this.b2bSession ? `<span class="inline-block mt-1 text-[10px] font-mono text-emerald-400 bg-emerald-950/70 border border-emerald-500/50 px-1.5 py-0.5 rounded font-bold">✓ EX-VAT TRADE RATE</span>` : ''}
@@ -4154,38 +4225,68 @@ class PaintSystemApp {
     const currentSelection = this.selectedProductVariants[prodId];
     const prices = this.getProductCalculatedPrice(prod, currentSelection.pack, currentSelection.size, currentSelection.width);
     
-    // Storefront Card Price Elements
-    const eurEl = document.getElementById(`price-eur-${prodId}`);
-    const gbpEl = document.getElementById(`price-gbp-${prodId}`);
-    const vatBadgeEl = document.getElementById(`price-vat-badge-${prodId}`);
-    if (eurEl && prices) {
-      eurEl.textContent = prices.formattedPrimary;
-    }
-    if (vatBadgeEl && prices) {
-      vatBadgeEl.textContent = prices.primaryVatBadge;
-      vatBadgeEl.className = `text-[10px] font-mono font-bold px-1.5 py-0.5 rounded leading-none ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}`;
-    }
-    if (gbpEl && prices) {
-      if (prodId === 'kroma-mirror-chrome-system') {
-        const country = this.euLocalization.getCountry();
-        const gbpVal = (prices.finalGbp !== null && prices.finalGbp !== undefined) ? prices.finalGbp : (prices.priceEur * 0.85);
-        if (country.currency === 'GBP') {
-          gbpEl.textContent = `€${prices.priceEur.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} EUR • ${prices.primaryVatBadge}`;
-        } else if (country.currency === 'USD') {
-          gbpEl.textContent = `€${prices.priceEur.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / £${gbpVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Export Ex-VAT)`;
-        } else {
-          gbpEl.textContent = `£${gbpVal.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} + VAT`;
-        }
+    // 1. Sync ALL select inputs across hero cards, catalog grid, and modal
+    const sizeSelects = document.querySelectorAll(`select[id="select-size-${prodId}"], select[data-select-size="${prodId}"], select[data-variant-prod="${prodId}"][data-variant-key="size"], select#detail-select-size`);
+    sizeSelects.forEach(sel => {
+      if (currentSelection.size && sel.value !== currentSelection.size) {
+        sel.value = currentSelection.size;
+      }
+    });
+
+    const packSelects = document.querySelectorAll(`select[id="select-pack-${prodId}"], select[data-select-pack="${prodId}"], select[data-variant-prod="${prodId}"][data-variant-key="pack"], select#detail-select-pack`);
+    packSelects.forEach(sel => {
+      if (currentSelection.pack && sel.value !== currentSelection.pack) {
+        sel.value = currentSelection.pack;
+      }
+    });
+
+    const widthSelects = document.querySelectorAll(`select[id="select-width-${prodId}"], select[data-select-width="${prodId}"], select[data-variant-prod="${prodId}"][data-variant-key="width"]`);
+    widthSelects.forEach(sel => {
+      if (currentSelection.width && sel.value !== currentSelection.width) {
+        sel.value = currentSelection.width;
+      }
+    });
+
+    // 2. Update ALL primary price elements across the DOM
+    const primaryEls = document.querySelectorAll(`[id="price-eur-${prodId}"], [data-price-eur="${prodId}"], [data-price-primary="${prodId}"], .price-eur-${prodId}`);
+    primaryEls.forEach(el => {
+      el.textContent = prices.formattedPrimary;
+    });
+
+    // 3. Update ALL secondary price elements across the DOM
+    let secondaryText = prices.formattedSecondary;
+    if (prodId === 'kroma-mirror-chrome-system') {
+      const country = this.euLocalization.getCountry();
+      const gbpVal = (prices.finalGbp !== null && prices.finalGbp !== undefined) ? prices.finalGbp : (prices.priceEur * 0.85);
+      if (country.currency === 'GBP') {
+        secondaryText = `€${prices.priceEur.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} EUR • ${prices.primaryVatBadge}`;
+      } else if (country.currency === 'USD') {
+        secondaryText = `€${prices.priceEur.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / £${gbpVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Export Ex-VAT)`;
       } else {
-        gbpEl.textContent = prices.formattedSecondary;
+        secondaryText = `£${gbpVal.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} + VAT`;
       }
     }
-    const cardSkuVal = document.getElementById(`card-sku-val-${prodId}`);
-    if (cardSkuVal && prices && prices.sku) {
-      cardSkuVal.textContent = prices.sku;
+    const secondaryEls = document.querySelectorAll(`[id="price-gbp-${prodId}"], [data-price-gbp="${prodId}"], [data-price-secondary="${prodId}"], .price-gbp-${prodId}`);
+    secondaryEls.forEach(el => {
+      el.textContent = secondaryText;
+    });
+
+    // 4. Update ALL VAT badge elements across the DOM
+    const vatBadgeEls = document.querySelectorAll(`[id="price-vat-badge-${prodId}"], [data-price-vat-badge="${prodId}"], .price-vat-badge-${prodId}`);
+    vatBadgeEls.forEach(el => {
+      el.textContent = prices.primaryVatBadge;
+      el.className = `text-[10px] font-mono font-bold px-1.5 py-0.5 rounded leading-none ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}`;
+    });
+
+    // 5. Update ALL SKU elements across the DOM
+    if (prices.sku) {
+      const skuEls = document.querySelectorAll(`[id="card-sku-val-${prodId}"], [data-sku-val="${prodId}"], .card-sku-val-${prodId}`);
+      skuEls.forEach(el => {
+        el.textContent = prices.sku;
+      });
     }
 
-    // Modal Price Elements (if modal is open for this product)
+    // 6. Modal Price Elements (if modal is open for this product)
     if (this.activeModalProduct && this.activeModalProduct.id === prodId) {
       const modalPriceEl = document.getElementById('detail-price');
       const modalPriceSubEl = document.getElementById('detail-price-sub');
@@ -4209,7 +4310,7 @@ class PaintSystemApp {
       }
     }
 
-    // Dynamic image update if variant has specific image
+    // 7. Dynamic image update if variant has specific image
     let variantImage = null;
     if (prod.tapePriceMatrix && prod.tapePriceMatrix.length > 0) {
       const targetWidth = currentSelection.size || currentSelection.width;
@@ -4221,32 +4322,14 @@ class PaintSystemApp {
       if (match && match.image) variantImage = getAssetUrl(match.image);
     }
     if (variantImage) {
-      const cardImg = document.getElementById(`card-img-${prodId}`);
-      if (cardImg) cardImg.src = variantImage;
+      const cardImages = document.querySelectorAll(`[id="card-img-${prodId}"], [data-card-img="${prodId}"]`);
+      cardImages.forEach(img => {
+        img.src = variantImage;
+      });
       if (this.activeModalProduct && this.activeModalProduct.id === prodId) {
         const modalImg = document.getElementById('detail-img');
         if (modalImg) modalImg.src = variantImage;
       }
-    }
-
-    // Sync Storefront selects if changed from modal or vice versa
-    const storeSizeSelect = document.getElementById(`select-size-${prodId}`);
-    if (storeSizeSelect && storeSizeSelect.value !== currentSelection.size) {
-      storeSizeSelect.value = currentSelection.size;
-    }
-    const storePackSelect = document.getElementById(`select-pack-${prodId}`);
-    if (storePackSelect && storePackSelect.value !== currentSelection.pack) {
-      storePackSelect.value = currentSelection.pack;
-    }
-
-    // Sync Modal selects if changed from card
-    const modalSizeSelect = document.getElementById('detail-select-size');
-    if (modalSizeSelect && this.activeModalProduct && this.activeModalProduct.id === prodId && modalSizeSelect.value !== currentSelection.size) {
-      modalSizeSelect.value = currentSelection.size;
-    }
-    const modalPackSelect = document.getElementById('detail-select-pack');
-    if (modalPackSelect && this.activeModalProduct && this.activeModalProduct.id === prodId && modalPackSelect.value !== currentSelection.pack) {
-      modalPackSelect.value = currentSelection.pack;
     }
 
     // When size changes, re-render pack options with corresponding prices

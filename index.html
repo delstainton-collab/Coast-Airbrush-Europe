@@ -618,7 +618,7 @@
               <!-- Size / Coverage Selector -->
               <div class="mb-4 bg-black/40 p-3 rounded border border-white/10 space-y-1.5">
                 <label class="font-mono text-xs text-neutral-300 uppercase block font-bold">Select Complete Kit Size:</label>
-                <select id="select-size-kroma-mirror-chrome-system" class="mech-select !py-2 !px-3 text-xs w-full font-mono font-bold" onchange="window.paintApp.onProductVariantChange('kroma-mirror-chrome-system', 'size', this.value)">
+                <select id="select-size-kroma-mirror-chrome-system" data-variant-prod="kroma-mirror-chrome-system" data-variant-key="size" data-select-size="kroma-mirror-chrome-system" class="mech-select !py-2 !px-3 text-xs w-full font-mono font-bold" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('kroma-mirror-chrome-system', 'size', this.value) : (window.onProductVariantChange ? window.onProductVariantChange('kroma-mirror-chrome-system', 'size', this.value) : null)">
                   <option value="Small Kit (140g / 5 oz)" selected>Small Kit (140g / 5 oz) • Covers 7–10 sq ft (€306.12 / £260.20)</option>
                   <option value="Medium Kit (420g / 15 oz)">Medium Kit (420g / 15 oz) • Covers 22–30 sq ft (€834.86 / £709.63)</option>
                   <option value="Large Kit (1260g / 45 oz)">Large Kit (1260g / 45 oz) • Covers 68–90 sq ft (€1,878.44 / £1,596.67)</option>
@@ -631,8 +631,8 @@
             <div>
               <div class="flex items-baseline justify-between border-t border-white/10 pt-3 mb-4">
                 <div>
-                  <span id="price-eur-kroma-mirror-chrome-system" class="font-headline text-3xl text-white font-extrabold block">€306.12</span>
-                  <span id="price-gbp-kroma-mirror-chrome-system" class="font-mono text-xs text-neutral-400">£260.20 + VAT</span>
+                  <span id="price-eur-kroma-mirror-chrome-system" data-price-eur="kroma-mirror-chrome-system" data-price-primary="kroma-mirror-chrome-system" class="price-eur-kroma-mirror-chrome-system font-headline text-3xl text-white font-extrabold block">€306.12</span>
+                  <span id="price-gbp-kroma-mirror-chrome-system" data-price-gbp="kroma-mirror-chrome-system" data-price-secondary="kroma-mirror-chrome-system" class="price-gbp-kroma-mirror-chrome-system font-mono text-xs text-neutral-400">£260.20 + VAT</span>
                 </div>
                 <span class="text-[11px] font-mono text-primary font-bold border border-primary/40 px-2.5 py-1 rounded bg-primary/10">
                   BATCH 1 ALLOCATION
@@ -1178,7 +1178,7 @@
               
               <div class="mb-3">
                 <label class="font-mono text-[10px] text-neutral-300 uppercase block mb-1 font-bold">Select Roll Width:</label>
-                <select id="select-width-fk-2366" class="mech-select !py-1.5 !px-2 !text-xs w-full font-mono" onchange="window.paintApp.onProductVariantChange('fk-2366', 'width', this.value)">
+                <select id="select-width-fk-2366" data-variant-prod="fk-2366" data-variant-key="width" data-select-width="fk-2366" class="mech-select !py-1.5 !px-2 !text-xs w-full font-mono" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('fk-2366', 'width', this.value) : (window.onProductVariantChange ? window.onProductVariantChange('fk-2366', 'width', this.value) : null)">
                   <option value="1.5mm" selected>1.5mm x 55m (€3.40 / £2.91)</option>
                   <option value="3mm">3mm x 55m (€3.60 / £3.08)</option>
                   <option value="6mm">6mm x 55m (€4.60 / £3.94)</option>
@@ -1190,8 +1190,8 @@
 
             <div>
               <div class="flex items-baseline justify-between border-t border-white/10 pt-2 mb-2">
-                <span id="price-eur-fk-2366" class="text-primary font-headline text-xl font-bold">€3.40</span>
-                <span id="price-gbp-fk-2366" class="text-secondary font-mono text-xs">£2.91</span>
+                <span id="price-eur-fk-2366" data-price-eur="fk-2366" data-price-primary="fk-2366" class="price-eur-fk-2366 text-primary font-headline text-xl font-bold">€3.40</span>
+                <span id="price-gbp-fk-2366" data-price-gbp="fk-2366" data-price-secondary="fk-2366" class="price-gbp-fk-2366 text-secondary font-mono text-xs">£2.91</span>
               </div>
               <button onclick="window.paintApp.addProductToCartById('fk-2366')" class="mech-button-primary !w-full !py-2 !text-xs !justify-center">
                 + Add Tape to Cart
@@ -1241,7 +1241,7 @@
               
               <div class="mb-3">
                 <label class="font-mono text-[10px] text-neutral-300 uppercase block mb-1 font-bold">Select Roll Width:</label>
-                <select id="select-width-fk-2352" class="mech-select !py-1.5 !px-2 !text-xs w-full font-mono" onchange="window.paintApp.onProductVariantChange('fk-2352', 'width', this.value)">
+                <select id="select-width-fk-2352" data-variant-prod="fk-2352" data-variant-key="width" data-select-width="fk-2352" class="mech-select !py-1.5 !px-2 !text-xs w-full font-mono" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('fk-2352', 'width', this.value) : (window.onProductVariantChange ? window.onProductVariantChange('fk-2352', 'width', this.value) : null)">
                   <option value="1.5mm" selected>1.5mm x 55m (€3.40 / £2.91)</option>
                   <option value="3mm">3mm x 55m (€3.60 / £3.08)</option>
                   <option value="6mm">6mm x 55m (€4.60 / £3.94)</option>
@@ -1253,8 +1253,8 @@
 
             <div>
               <div class="flex items-baseline justify-between border-t border-white/10 pt-2 mb-2">
-                <span id="price-eur-fk-2352" class="text-primary font-headline text-xl font-bold">€3.40</span>
-                <span id="price-gbp-fk-2352" class="text-secondary font-mono text-xs">£2.91</span>
+                <span id="price-eur-fk-2352" data-price-eur="fk-2352" data-price-primary="fk-2352" class="price-eur-fk-2352 text-primary font-headline text-xl font-bold">€3.40</span>
+                <span id="price-gbp-fk-2352" data-price-gbp="fk-2352" data-price-secondary="fk-2352" class="price-gbp-fk-2352 text-secondary font-mono text-xs">£2.91</span>
               </div>
               <button onclick="window.paintApp.addProductToCartById('fk-2352')" class="mech-button-primary !w-full !py-2 !text-xs !justify-center">
                 + Add Tape to Cart

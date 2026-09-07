@@ -5,7 +5,8 @@
   "main": "index.html",
   "type": "module",
   "scripts": {
-    "start": "npx serve ."
+    "start": "PORT=3013 node server.js",
+    "dev": "PORT=3013 node server.js"
   },
   "keywords": [
     "coast-airbrush-europe",
