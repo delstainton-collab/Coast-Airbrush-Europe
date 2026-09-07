@@ -2210,10 +2210,67 @@ class PaintSystemApp {
       });
     }
 
-    // Sort Select
+    // Sort Select (Desktop)
     if (sortSelect) {
       sortSelect.addEventListener('change', (e) => {
         this.activeSort = e.target.value;
+        const mobileSort = document.getElementById('select-mobile-shop-sort');
+        if (mobileSort) mobileSort.value = e.target.value;
+        this.renderStorefrontGrid();
+      });
+    }
+
+    // Mobile Toolbar & Drawer Filters
+    const mobileBrandSelect = document.getElementById('select-mobile-brand-filter');
+    const mobileSortSelect = document.getElementById('select-mobile-shop-sort');
+    const mobileSearchInput = document.getElementById('input-mobile-shop-search');
+    const mobileResetBtn = document.getElementById('btn-mobile-reset-filters');
+    const mobileApplyBtn = document.getElementById('btn-mobile-apply-filters');
+    const mobileCloseBtn = document.getElementById('btn-close-mobile-filters');
+
+    if (mobileBrandSelect) {
+      mobileBrandSelect.addEventListener('change', (e) => {
+        this.setBrandFilter(e.target.value);
+      });
+    }
+
+    if (mobileSortSelect) {
+      mobileSortSelect.addEventListener('change', (e) => {
+        this.activeSort = e.target.value;
+        if (sortSelect) sortSelect.value = e.target.value;
+        this.renderStorefrontGrid();
+      });
+    }
+
+    if (mobileSearchInput) {
+      mobileSearchInput.addEventListener('input', (e) => {
+        if (searchInput) searchInput.value = e.target.value;
+        this.onSearchInput(e.target.value);
+      });
+    }
+
+    if (mobileCloseBtn) {
+      mobileCloseBtn.addEventListener('click', () => {
+        const drawer = document.getElementById('drawer-mobile-filters');
+        if (drawer) drawer.classList.remove('active');
+      });
+    }
+
+    if (mobileResetBtn) {
+      mobileResetBtn.addEventListener('click', () => {
+        if (resetBtn) resetBtn.click();
+        if (mobileBrandSelect) mobileBrandSelect.value = 'all';
+        if (mobileSortSelect) mobileSortSelect.value = 'popular';
+        if (mobileSearchInput) mobileSearchInput.value = '';
+        const drawer = document.getElementById('drawer-mobile-filters');
+        if (drawer) drawer.classList.remove('active');
+      });
+    }
+
+    if (mobileApplyBtn) {
+      mobileApplyBtn.addEventListener('click', () => {
+        const drawer = document.getElementById('drawer-mobile-filters');
+        if (drawer) drawer.classList.remove('active');
         this.renderStorefrontGrid();
       });
     }
@@ -2236,6 +2293,9 @@ class PaintSystemApp {
         this.activeSort = 'popular';
         if (searchInput) searchInput.value = '';
         if (sortSelect) sortSelect.value = 'popular';
+        if (mobileSortSelect) mobileSortSelect.value = 'popular';
+        if (mobileBrandSelect) mobileBrandSelect.value = 'all';
+        if (mobileSearchInput) mobileSearchInput.value = '';
         
         brandPills.forEach(btn => {
           const match = (btn.getAttribute('data-brand-val') || 'all') === 'all';
@@ -4222,29 +4282,51 @@ class PaintSystemApp {
     const prod = ECOM_CATALOG.find(p => p.id === prodId);
     if (!prod) return;
 
+    // For tape products, width and size are synonymous
+    const isTape = Boolean(prod.tapePriceMatrix || prod.tapeWidths || (prod.category && prod.category.includes('Masking')));
+    if (isTape) {
+      if (variantKey === 'width' || variantKey === 'size') {
+        this.selectedProductVariants[prodId].width = val;
+        this.selectedProductVariants[prodId].size = val;
+      }
+    }
+
     const currentSelection = this.selectedProductVariants[prodId];
     const prices = this.getProductCalculatedPrice(prod, currentSelection.pack, currentSelection.size, currentSelection.width);
     
+    // Helper to set select value with token fuzzy matching if exact string doesn't match
+    const setSelectVal = (sel, targetVal) => {
+      if (!sel || !targetVal) return;
+      if (sel.value === targetVal) return;
+      // 1. Direct match attempt
+      sel.value = targetVal;
+      if (sel.value === targetVal) return;
+      // 2. Fuzzy option match attempt
+      for (let i = 0; i < sel.options.length; i++) {
+        const opt = sel.options[i];
+        if (opt.value === targetVal || this.matchPackToken(opt.value, targetVal)) {
+          sel.selectedIndex = i;
+          return;
+        }
+      }
+    };
+
     // 1. Sync ALL select inputs across hero cards, catalog grid, and modal
+    const targetSize = currentSelection.size || (isTape ? currentSelection.width : '');
     const sizeSelects = document.querySelectorAll(`select[id="select-size-${prodId}"], select[data-select-size="${prodId}"], select[data-variant-prod="${prodId}"][data-variant-key="size"], select#detail-select-size`);
     sizeSelects.forEach(sel => {
-      if (currentSelection.size && sel.value !== currentSelection.size) {
-        sel.value = currentSelection.size;
-      }
+      setSelectVal(sel, targetSize);
     });
 
     const packSelects = document.querySelectorAll(`select[id="select-pack-${prodId}"], select[data-select-pack="${prodId}"], select[data-variant-prod="${prodId}"][data-variant-key="pack"], select#detail-select-pack`);
     packSelects.forEach(sel => {
-      if (currentSelection.pack && sel.value !== currentSelection.pack) {
-        sel.value = currentSelection.pack;
-      }
+      setSelectVal(sel, currentSelection.pack);
     });
 
+    const targetWidth = currentSelection.width || (isTape ? currentSelection.size : '');
     const widthSelects = document.querySelectorAll(`select[id="select-width-${prodId}"], select[data-select-width="${prodId}"], select[data-variant-prod="${prodId}"][data-variant-key="width"]`);
     widthSelects.forEach(sel => {
-      if (currentSelection.width && sel.value !== currentSelection.width) {
-        sel.value = currentSelection.width;
-      }
+      setSelectVal(sel, targetWidth);
     });
 
     // 2. Update ALL primary price elements across the DOM
@@ -4341,7 +4423,11 @@ class PaintSystemApp {
         return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} (${optPrice ? optPrice.formattedPrimary + ' ' + optPrice.primaryVatBadge : ''})</option>`;
       }).join('');
 
-      if (storePackSelect) storePackSelect.innerHTML = optionsHtml;
+      const allStorePackSelects = document.querySelectorAll(`select[id="select-pack-${prodId}"], select[data-select-pack="${prodId}"]`);
+      allStorePackSelects.forEach(sel => {
+        sel.innerHTML = optionsHtml;
+      });
+      const modalPackSelect = document.getElementById('detail-select-pack');
       if (modalPackSelect && this.activeModalProduct && this.activeModalProduct.id === prodId) {
         modalPackSelect.innerHTML = optionsHtml;
       }
@@ -5424,10 +5510,10 @@ class PaintSystemApp {
     const b = String(packB).trim().toLowerCase();
     if (a === b) return true;
 
-    // Extract leading/distinct weight/volume token (e.g. 1000g, 100g, 30g, 500ml, 140g, 420g, 1260g, 1l, etc.)
+    // Extract leading/distinct weight/volume/width token (e.g. 1000g, 100g, 30g, 500ml, 140g, 420g, 1260g, 1l, 1mm, 2mm, 3mm, 6mm, etc.)
     const extractToken = (str) => {
-      const m = str.match(/\b(\d+(?:\.\d+)?\s*(?:g|kg|ml|l|litre|litres|oz|qt|pt|set)?)\b/i);
-      return m ? m[1].replace(/\s+/g, '') : '';
+      const m = str.match(/\b(\d+(?:\.\d+)?\s*(?:mm|cm|m|g|kg|ml|l|litre|litres|oz|qt|pt|set)?)\b/i);
+      return m ? m[1].replace(/\s+/g, '').toLowerCase() : '';
     };
 
     const tokenA = extractToken(a);
@@ -5438,6 +5524,8 @@ class PaintSystemApp {
       const normA = tokenA.replace(/litres?/, 'l');
       const normB = tokenB.replace(/litres?/, 'l');
       if (normA === normB) return true;
+      // Handle 1mm vs 1.5mm tolerance for Prime Fine Line tape
+      if ((normA === '1mm' && normB === '1.5mm') || (normA === '1.5mm' && normB === '1mm')) return true;
       return false;
     }
 
