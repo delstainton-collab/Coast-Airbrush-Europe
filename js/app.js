@@ -3274,7 +3274,8 @@ class PaintSystemApp {
           galleryContainer.classList.remove('hidden');
           galleryThumbs.innerHTML = allImages.map((imgSrc, idx) => {
             let label = 'Product';
-            if (imgSrc.includes('color_chart')) label = 'Colour Card';
+            if (imgSrc.includes('_swatch')) label = 'Flame Swatch';
+            else if (imgSrc.includes('color_chart')) label = 'Colour Card';
             else if (imgSrc.includes('size_chart') || imgSrc.includes('guns')) label = 'Size & Gun Guide';
             else if (imgSrc.includes('Cleaned Skull') || imgSrc.includes('skull')) label = 'Mirror Skull';
             else if (imgSrc.includes('helmet')) label = 'Mirror Helmet';

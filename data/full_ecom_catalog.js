@@ -685,6 +685,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2610.jpg",
+      "assets/images/flakes/fk-2610_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -1226,6 +1227,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 6.21,
     "images": [
       "assets/images/flakes/fk-2524.jpg",
+      "assets/images/flakes/fk-2524_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -2285,6 +2287,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 6.21,
     "images": [
       "assets/images/flakes/fk-2341.jpg",
+      "assets/images/flakes/fk-2341_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -2449,6 +2452,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2330.jpg",
+      "assets/images/flakes/fk-2330_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -2616,6 +2620,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 6.21,
     "images": [
       "assets/images/flakes/fk-2319.jpg",
+      "assets/images/flakes/fk-2319_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -2781,6 +2786,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 5.41,
     "images": [
       "assets/images/flakes/fk-2308.jpg",
+      "assets/images/flakes/fk-2308_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -2946,6 +2952,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 6.21,
     "images": [
       "assets/images/flakes/fk-2297.jpg",
+      "assets/images/flakes/fk-2297_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -3157,6 +3164,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2283.jpg",
+      "assets/images/flakes/fk-2283_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -3368,6 +3376,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2269.jpg",
+      "assets/images/flakes/fk-2269_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -3579,6 +3588,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2255.jpg",
+      "assets/images/flakes/fk-2255_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -3744,6 +3754,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 6.21,
     "images": [
       "assets/images/flakes/fk-2244.jpg",
+      "assets/images/flakes/fk-2244_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -3909,6 +3920,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2233.jpg",
+      "assets/images/flakes/fk-2233_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -4074,6 +4086,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 6.21,
     "images": [
       "assets/images/flakes/fk-2222.jpg",
+      "assets/images/flakes/fk-2222_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -4285,6 +4298,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2208.jpg",
+      "assets/images/flakes/fk-2208_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -4496,6 +4510,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2194.jpg",
+      "assets/images/flakes/fk-2194_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -4661,6 +4676,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2183.jpg",
+      "assets/images/flakes/fk-2183_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -4826,6 +4842,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2172.jpg",
+      "assets/images/flakes/fk-2172_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -5037,6 +5054,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2158.jpg",
+      "assets/images/flakes/fk-2158_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -5202,6 +5220,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2147.jpg",
+      "assets/images/flakes/fk-2147_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -5413,6 +5432,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2133.jpg",
+      "assets/images/flakes/fk-2133_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -5578,6 +5598,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 6.21,
     "images": [
       "assets/images/flakes/fk-2122.jpg",
+      "assets/images/flakes/fk-2122_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -5743,6 +5764,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 6.21,
     "images": [
       "assets/images/flakes/fk-2111.jpg",
+      "assets/images/flakes/fk-2111_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -5908,6 +5930,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2104.jpg",
+      "assets/images/flakes/fk-2104_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -6073,6 +6096,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2097.jpg",
+      "assets/images/flakes/fk-2097_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -6238,6 +6262,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 6.21,
     "images": [
       "assets/images/flakes/fk-2090.jpg",
+      "assets/images/flakes/fk-2090_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -6449,6 +6474,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2080.jpg",
+      "assets/images/flakes/fk-2080_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -6660,6 +6686,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2070.jpg",
+      "assets/images/flakes/fk-2070_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -6871,6 +6898,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2060.jpg",
+      "assets/images/flakes/fk-2060_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -7036,6 +7064,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2053.jpg",
+      "assets/images/flakes/fk-2053_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -7247,6 +7276,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.7,
     "images": [
       "assets/images/flakes/fk-2043.jpg",
+      "assets/images/flakes/fk-2043_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -7412,6 +7442,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2036.jpg",
+      "assets/images/flakes/fk-2036_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -7577,6 +7608,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 6.21,
     "images": [
       "assets/images/flakes/fk-2029.jpg",
+      "assets/images/flakes/fk-2029_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -7742,6 +7774,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2022.jpg",
+      "assets/images/flakes/fk-2022_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -7907,6 +7940,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2015.jpg",
+      "assets/images/flakes/fk-2015_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -8118,6 +8152,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-2005.jpg",
+      "assets/images/flakes/fk-2005_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
@@ -8375,6 +8410,7 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 4.71,
     "images": [
       "assets/images/flakes/fk-1992.jpg",
+      "assets/images/flakes/fk-1992_swatch.png",
       "assets/images/flakes/flake_king_color_chart.png",
       "assets/images/flakes/flake_king_size_chart.png"
     ],
