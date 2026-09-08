@@ -1,7 +1,7 @@
 // Coast Airbrush Europe - Master Admin Controller & Add-On Management Suite
 import { KROMA_EDGE_CATALOG } from '../data/kroma_edge.js';
 import { PREORDER_PACKAGES } from './forumPreorderEngine.js';
-import { DEFAULT_HERO_CONFIG } from '../data/hero_config.js';
+import { DEFAULT_HERO_CONFIG } from '../data/hero_config.js?v=20260908b';
 
 export const DEFAULT_TAXONOMY_CONFIG = {
   departments: [
@@ -31,7 +31,7 @@ export const DEFAULT_TAXONOMY_CONFIG = {
       name: "Consumables & Prep",
       icon: "content_cut",
       description: "Fine line masking tapes, surface prep, tack cloths, and cleaners",
-      categories: ["Masking Products", "Wet Products", "Surface Cleaners", "Abrasives"]
+      categories: ["Masking Products", "Basecoats & Binders", "Surface Cleaners", "Abrasives"]
     },
     {
       id: "dept-studio",

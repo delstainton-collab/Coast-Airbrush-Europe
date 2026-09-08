@@ -39,21 +39,28 @@ export const DEFAULT_HERO_CONFIG = {
     },
     {
       id: "jump-4",
-      label: "04 • Fine Line Tapes",
+      label: "04 • Basecoats & Binders",
+      target: "#dept-basecoats-binders",
+      style: "amber",
+      icon: "arrow_downward"
+    },
+    {
+      id: "jump-5",
+      label: "05 • Fine Line Tapes",
       target: "#dept-tapes",
       style: "neutral",
       icon: "arrow_downward"
     },
     {
-      id: "jump-5",
+      id: "jump-6",
       label: "Video Proof",
       target: "#section-booth-proof",
       style: "rose",
       icon: "smart_display"
     },
     {
-      id: "jump-6",
-      label: "05 • VsionAir",
+      id: "jump-7",
+      label: "06 • VsionAir",
       target: "#dept-vsionair",
       style: "neutral",
       badge: "2026 Direct"

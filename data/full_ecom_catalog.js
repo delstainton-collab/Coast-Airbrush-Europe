@@ -757,21 +757,21 @@ export const ECOM_CATALOG = [
     "videos": [
       {
         "platform": "youtube",
-        "title": "Apply Dry Flake with Your Iwata NEO Airbrush using Flake King 500",
-        "creator": "SprayGunner Com",
-        "url": "https://www.youtube.com/watch?v=exKU91XDlek",
-        "embedId": "exKU91XDlek",
-        "duration": "4:18",
-        "badge": "Airbrush Tutorial"
-      },
-      {
-        "platform": "youtube",
         "title": "First Use Of My Flake King 500 Airbrush Adaptor",
         "creator": "Ttxela Adventures!",
         "url": "https://www.youtube.com/watch?v=cTMq71sZ7LE",
         "embedId": "cTMq71sZ7LE",
         "duration": "7:22",
         "badge": "Live Test"
+      },
+      {
+        "platform": "youtube",
+        "title": "FLAKE IT! A LOOK AT HOW TO METAL FLAKE",
+        "creator": "Dred fx Custom Paint",
+        "url": "https://www.youtube.com/watch?v=dRvJcfbwuGw",
+        "embedId": "dRvJcfbwuGw",
+        "duration": "11:05",
+        "badge": "Airbrush Tutorial"
       },
       {
         "platform": "youtube",

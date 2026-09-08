@@ -11,8 +11,8 @@ import { OrderConciergeAI, MILESTONE_STAGES } from './agentB.js';
 import { SocialGrowthAI } from './agentC.js';
 import { InventoryGuruAI } from './agentD.js';
 import { ForumPreorderEngine } from './forumPreorderEngine.js';
-import { AdminController } from './adminController.js';
-import { DEFAULT_HERO_CONFIG } from '../data/hero_config.js';
+import { AdminController } from './adminController.js?v=20260908b';
+import { DEFAULT_HERO_CONFIG } from '../data/hero_config.js?v=20260908b';
 
 // Asset URL resolution helper for Shopify CDN and Local Development
 export function getAssetUrl(path) {
