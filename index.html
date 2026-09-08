@@ -233,6 +233,21 @@
   
   <link rel="stylesheet" href="css/styles.css?v=20260831_inputfix">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+  <script>
+    // Early resilient binding for Admin Console trigger
+    window.openAdminLogin = function() {
+      if (window.paintApp && typeof window.paintApp.openAdminAuthModal === 'function') {
+        window.paintApp.openAdminAuthModal();
+      } else {
+        window._pendingAdminLogin = true;
+        document.addEventListener('DOMContentLoaded', function() {
+          if (window.paintApp && typeof window.paintApp.openAdminAuthModal === 'function') {
+            window.paintApp.openAdminAuthModal();
+          }
+        });
+      }
+    };
+  </script>
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
 
@@ -240,61 +255,66 @@
   <!-- ========================================================================= -->
   <!-- MASTER SITE HEADER (UNIFIED STICKY CONTAINER) -->
   <!-- ========================================================================= -->
-  <header id="master-site-header" class="sticky top-0 z-50 w-full flex flex-col bg-surface shadow-[0_4px_24px_rgba(0,0,0,0.85)]">
+  <header id="master-site-header" class="relative md:sticky top-0 z-50 w-full flex flex-col bg-surface shadow-[0_4px_24px_rgba(0,0,0,0.85)]">
 
     <!-- OFFICIAL STAKEHOLDER REVIEW & PRE-LAUNCH STAGING BAR -->
-    <div id="stakeholder-review-banner" class="bg-gradient-to-r from-amber-950/95 via-red-950/95 to-amber-950/95 border-b border-amber-500/60 py-2 px-margin-mobile md:px-margin-desktop text-xs font-mono text-amber-200 flex flex-wrap items-center justify-between gap-3 shadow-sm">
-      <div class="flex items-center gap-2.5 flex-wrap">
+    <div id="stakeholder-review-banner" class="bg-gradient-to-r from-amber-950/95 via-red-950/95 to-amber-950/95 border-b border-amber-500/60 py-1.5 sm:py-2 px-margin-mobile md:px-margin-desktop text-xs font-mono text-amber-200 flex flex-wrap items-center justify-between gap-2 sm:gap-3 shadow-sm">
+      <div class="flex items-center gap-2 flex-wrap">
         <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-amber-300 font-extrabold text-[10px] tracking-wider uppercase">
           <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse inline-block"></span>
           STAGING PREVIEW
         </span>
         <span class="font-bold text-white tracking-wide text-[11px] sm:text-xs">
-          Coast Airbrush USA Stakeholder Review in Progress
+          Coast Airbrush USA Review Mode
         </span>
         <span class="text-amber-400/60 hidden md:inline">•</span>
         <span class="text-neutral-300 hidden md:inline text-[11px]">
           Live customer orders paused pending Placentia HQ sign-off (BOM &amp; Spec testing enabled)
         </span>
       </div>
-      <div class="flex items-center gap-3 ml-auto text-[11px]">
-        <a href="dealers.html" class="text-amber-300 hover:text-white underline font-bold">Trade Application Portal</a>
-        <button onclick="window.paintApp && window.paintApp.showReviewModeModal && window.paintApp.showReviewModeModal()" class="px-2.5 py-1 bg-black/60 hover:bg-black border border-amber-400/50 text-amber-300 rounded font-bold cursor-pointer transition-colors">
-          Review Status Details
+      <div class="flex items-center gap-2 sm:gap-2.5 ml-auto text-[11px]">
+        <a href="dealers.html" class="text-amber-300 hover:text-white underline font-bold text-[10px] sm:text-xs">Trade Portal</a>
+        <button onclick="window.paintApp && window.paintApp.showReviewModeModal && window.paintApp.showReviewModeModal()" class="px-2 py-0.5 sm:py-1 bg-black/60 hover:bg-black border border-amber-400/50 text-amber-300 rounded font-bold cursor-pointer transition-colors text-[10px] sm:text-xs">
+          Review Status
+        </button>
+        <button onclick="window.openAdminLogin && window.openAdminLogin()" class="px-2.5 py-0.5 sm:py-1 bg-amber-500/20 hover:bg-amber-500/40 border border-amber-400 text-amber-300 hover:text-white rounded font-bold cursor-pointer transition-colors text-[10px] sm:text-xs flex items-center gap-1 shadow-sm" title="Master Admin Console (PIN: COAST2026)">
+          <span class="material-symbols-outlined text-[13px]">admin_panel_settings</span> ADMIN
         </button>
       </div>
     </div>
 
     <!-- UNIFIED UK LOGISTICS & DISPATCH ANNOUNCEMENT BAR -->
-    <div id="top-shipping-banner" class="bg-[#0b0c0d] border-b border-white/10 py-2 px-margin-mobile md:px-margin-desktop text-xs font-mono tracking-wide flex flex-wrap justify-between items-center text-neutral-300 gap-3">
-      <div class="flex items-center gap-3 flex-wrap text-[11px] sm:text-xs">
+    <div id="top-shipping-banner" class="bg-[#0b0c0d] border-b border-white/10 py-1.5 sm:py-2 px-margin-mobile md:px-margin-desktop text-xs font-mono tracking-wide flex flex-wrap justify-between items-center text-neutral-300 gap-2 sm:gap-3">
+      <div class="flex items-center gap-2 sm:gap-3 flex-wrap text-[11px] sm:text-xs">
         <span class="inline-flex items-center gap-1.5 text-white font-bold tracking-wider">
           <span class="text-sm">🇬🇧</span> UK BONDED DISPATCH
         </span>
         <span class="text-secondary/40 hidden sm:inline">•</span>
         <span class="text-emerald-400 flex items-center gap-1">
-          <span class="material-symbols-outlined text-[15px]">bolt</span> 24/48h Tracked UK &amp; EU Delivery (APC / DHL Express)
+          <span class="material-symbols-outlined text-[15px]">bolt</span> 24/48h Tracked UK &amp; EU Delivery
         </span>
         <span class="text-secondary/40 hidden md:inline">•</span>
         <span class="text-neutral-200 hidden md:inline">
           Free Shipping over <strong class="text-amber-300 font-bold">£150 / €175</strong> 🚚
         </span>
         <span class="text-secondary/40 hidden lg:inline">•</span>
-        <span class="hidden lg:inline text-emerald-400 font-medium">100% REACH &amp; VOC Compliant</span>
+        <span class="hidden sm:inline-flex items-center gap-1 text-emerald-400 font-medium">
+          🇪🇺 EU DDP Tracked (Zero Surprise Customs / Broker Fees)
+        </span>
         <span class="text-secondary/40 hidden xl:inline">•</span>
         <!-- Dynamic VAT Advisory Badge for UK & European Customers -->
-        <span id="nav-vat-advisory-badge" class="hidden sm:inline-flex items-center gap-1 font-mono text-[10px] text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/40" title="VAT status details for your destination country">
-          <span class="material-symbols-outlined text-[13px] text-amber-400">info</span>
-          <span id="nav-vat-advisory-text">UK B2C: Prices shown Ex-VAT (20% UK VAT applied at checkout)</span>
+        <span id="nav-vat-advisory-badge" class="hidden sm:inline-flex items-center gap-1 font-mono text-[10px] text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/40" title="VAT status details for your destination country">
+          <span class="material-symbols-outlined text-[13px] text-emerald-400">info</span>
+          <span id="nav-vat-advisory-text">All Retail Prices Shown Inclusive of VAT</span>
         </span>
       </div>
 
       <!-- Country, Language & Currency Quick Switcher -->
-      <div class="flex items-center gap-2 ml-auto">
+      <div class="flex items-center gap-1.5 sm:gap-2 ml-auto">
         <!-- Language Selector -->
-        <div class="flex items-center gap-1 bg-surface-container border border-secondary/60 px-2 py-0.5 rounded text-[11px]">
+        <div class="flex items-center gap-1 bg-surface-container border border-secondary/60 px-1.5 sm:px-2 py-0.5 rounded text-[11px]">
           <span class="material-symbols-outlined text-[13px] text-primary">translate</span>
-          <select id="select-site-language" class="bg-transparent text-on-surface text-[11px] font-bold uppercase outline-none cursor-pointer">
+          <select id="select-site-language" class="bg-transparent text-on-surface text-[10px] sm:text-[11px] font-bold uppercase outline-none cursor-pointer">
             <option value="en" class="bg-surface text-on-surface">🇬🇧 EN</option>
             <option value="de" class="bg-surface text-on-surface">🇩🇪 DE</option>
             <option value="fr" class="bg-surface text-on-surface">🇫🇷 FR</option>
@@ -306,9 +326,9 @@
         </div>
 
         <!-- Country Selector -->
-        <div class="flex items-center gap-1 bg-surface-container border border-secondary/60 px-2 py-0.5 rounded text-[11px]">
+        <div class="flex items-center gap-1 bg-surface-container border border-secondary/60 px-1.5 sm:px-2 py-0.5 rounded text-[11px]">
           <span id="nav-selected-country-flag" class="text-xs">🇬🇧</span>
-          <select id="select-eu-country" class="bg-transparent text-on-surface text-[11px] font-bold uppercase outline-none cursor-pointer">
+          <select id="select-eu-country" class="bg-transparent text-on-surface text-[10px] sm:text-[11px] font-bold uppercase outline-none cursor-pointer">
             <option value="GB" class="bg-surface text-on-surface">GB (£)</option>
             <option value="DE" class="bg-surface text-on-surface">DE (€)</option>
             <option value="FR" class="bg-surface text-on-surface">FR (€)</option>
@@ -323,10 +343,10 @@
         </div>
 
         <!-- VAT Display Mode Switcher (Ex VAT / Inc VAT) -->
-        <div id="nav-vat-toggle-group" class="flex items-center bg-surface-container border border-secondary/60 rounded text-[11px] font-mono overflow-hidden shadow-sm" title="Toggle prices between Exclusive and Inclusive of VAT">
-          <button type="button" id="btn-vat-toggle-ex" class="px-2 py-0.5 font-bold transition-all text-neutral-400 hover:text-white cursor-pointer" title="Display prices excluding VAT">EX VAT</button>
+        <div id="nav-vat-toggle-group" class="flex items-center bg-surface-container border border-secondary/60 rounded text-[10px] sm:text-[11px] font-mono overflow-hidden shadow-sm" title="Toggle prices between Exclusive and Inclusive of VAT">
+          <button type="button" id="btn-vat-toggle-ex" class="px-1.5 sm:px-2 py-0.5 font-bold transition-all text-neutral-400 hover:text-white cursor-pointer" title="Display prices excluding VAT">EX VAT</button>
           <div class="w-[1px] h-3.5 bg-secondary/60"></div>
-          <button type="button" id="btn-vat-toggle-inc" class="px-2 py-0.5 font-bold transition-all text-neutral-400 hover:text-white cursor-pointer" title="Display prices including VAT">INC VAT</button>
+          <button type="button" id="btn-vat-toggle-inc" class="px-1.5 sm:px-2 py-0.5 font-bold transition-all text-neutral-400 hover:text-white cursor-pointer" title="Display prices including VAT">INC VAT</button>
         </div>
 
         <!-- Preferred Unit Toggle (Metric / Imperial) -->
@@ -338,7 +358,7 @@
     </div>
 
     <!-- MAIN NAVIGATION BAR -->
-    <nav class="bg-surface font-label-sm text-label-sm uppercase tracking-widest flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-3.5 border-b-2 border-secondary/50 backdrop-blur">
+    <nav class="bg-surface font-label-sm text-label-sm uppercase tracking-widest flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-2 sm:py-3.5 border-b-2 border-secondary/50 backdrop-blur sticky md:static top-0 z-50">
       <!-- Logo Area: Full Unclipped California Heritage Lockup -->
       <a id="nav-logo-btn" class="flex-shrink-0 flex items-center h-12 w-48 md:w-56 relative cursor-pointer" href="javascript:void(0)" title="Coast Airbrush Europe Home">
         <img alt="COAST AIRBRUSH" class="w-full h-full object-contain object-left transition-transform hover:scale-105" src="assets/images/coast_logo_white.png">
@@ -347,13 +367,16 @@
       <!-- Desktop Navigation Links: Department-Led with Crisp Contrast -->
       <div class="hidden lg:flex items-center space-x-2 xl:space-x-3">
         <a id="tab-storefront" class="nav-link active" href="javascript:void(0)">SHOP</a>
-        <a href="#dept-kroma-edge" class="nav-link">KROMA EDGE</a>
+        <a href="#dept-kroma-edge" class="nav-link">KROMA &amp; CLEARS</a>
         <a href="#dept-guns" class="nav-link">GUNS</a>
         <a href="#dept-flakes" class="nav-link">FLAKES</a>
         <a href="#dept-tapes" class="nav-link">TAPES</a>
         <a id="tab-calculator" class="nav-link" href="javascript:void(0)">MIX LAB</a>
         <a id="tab-academy" class="nav-link" href="javascript:void(0)">ACADEMY</a>
         <a id="nav-about-link" class="nav-link" href="about.html">ABOUT</a>
+        <a id="tab-admin" class="nav-link text-amber-400 hover:text-white flex items-center gap-1 font-bold cursor-pointer" href="javascript:void(0)" title="Operator Admin Console (PIN: COAST2026)">
+          <span class="material-symbols-outlined text-[15px]">admin_panel_settings</span> ADMIN
+        </a>
       </div>
 
       <!-- Trailing Actions: Elevated B2B & Conversion Hierarchy -->
@@ -368,6 +391,11 @@
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span>B2B TRADE &amp; DEALERS</span>
         </a>
+
+        <!-- Admin Console Trigger Button -->
+        <button onclick="window.openAdminLogin && window.openAdminLogin()" class="hidden md:inline-flex items-center gap-1.5 font-mono text-xs font-bold border border-amber-500/70 bg-amber-950/40 text-amber-300 hover:bg-amber-900/60 hover:text-white px-3 py-2 rounded transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-0.5 cursor-pointer" title="Master Admin Console (PIN: COAST2026)">
+          <span class="material-symbols-outlined text-[16px] text-amber-400">admin_panel_settings</span> ADMIN
+        </button>
 
         <!-- Cart Drawer Button -->
         <button id="btn-toggle-cart-drawer" class="mech-button-primary !py-2 !px-4 text-xs flex items-center gap-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] bg-primary-container text-white font-bold border border-red-400 hover:brightness-110 active:translate-y-0.5 transition-all">
@@ -401,7 +429,7 @@
   <!-- Mobile Secondary Navigation Bar -->
   <div class="lg:hidden bg-surface-container-low border-b-2 border-secondary flex overflow-x-auto py-2 px-4 gap-2 text-xs">
     <button onclick="document.getElementById('tab-storefront').click()" class="nav-link !text-xs !py-1 !px-2.5 active">Shop</button>
-    <a href="#dept-kroma-edge" class="nav-link !text-xs !py-1 !px-2.5 text-neutral-300">Chrome</a>
+    <a href="#dept-kroma-edge" class="nav-link !text-xs !py-1 !px-2.5 text-neutral-300">Chrome &amp; Clears</a>
     <a href="#dept-guns" class="nav-link !text-xs !py-1 !px-2.5 text-primary font-bold">Guns</a>
     <a href="#dept-flakes" class="nav-link !text-xs !py-1 !px-2.5 text-neutral-300">Flakes</a>
     <a href="#dept-tapes" class="nav-link !text-xs !py-1 !px-2.5 text-neutral-300">Tapes</a>
@@ -409,6 +437,7 @@
     <button onclick="document.getElementById('tab-calculator').click()" class="nav-link !text-xs !py-1 !px-2.5">Mix Lab</button>
     <a href="about.html" class="nav-link !text-xs !py-1 !px-2.5">About</a>
     <a href="dealers.html" class="nav-link !text-xs !py-1 !px-2.5 text-neutral-300">Dealers</a>
+    <button id="tab-admin-mobile" onclick="window.openAdminLogin &amp;&amp; window.openAdminLogin()" class="nav-link !text-xs !py-1 !px-2.5 text-amber-400 font-bold flex items-center gap-1 cursor-pointer whitespace-nowrap" title="Master Admin Console (PIN: COAST2026)"><span class="material-symbols-outlined text-[14px]">admin_panel_settings</span> Admin</button>
   </div>
 
   <!-- ========================================================================= -->
@@ -441,23 +470,23 @@
           
           <div class="lg:col-span-9 space-y-5 max-w-3xl">
             <!-- Authority Pill -->
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/85 border border-primary/60 backdrop-blur-md font-mono text-[11px] text-white font-bold uppercase tracking-wider shadow-[0_0_18px_rgba(211,47,47,0.35)]">
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span class="text-neutral-200">✦ OFFICIAL EUROPEAN MASTER HUB</span>
+            <div id="hero-authority-pill" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/85 border border-primary/60 backdrop-blur-md font-mono text-[11px] text-white font-bold uppercase tracking-wider shadow-[0_0_18px_rgba(211,47,47,0.35)]">
+              <span id="hero-pill-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span id="hero-pill-status" class="text-neutral-200">✦ OFFICIAL EUROPEAN MASTER HUB</span>
               <span class="text-neutral-500">•</span>
-              <span class="text-amber-300">PLACENTIA, CA AUTHORIZED</span>
+              <span id="hero-pill-location" class="text-amber-300">PLACENTIA, CA AUTHORIZED</span>
             </div>
 
             <!-- Approved Master Headline & Statement -->
             <div class="space-y-3">
-              <h1 class="font-headline text-3xl sm:text-5xl lg:text-6xl uppercase text-white tracking-tight leading-[1.06] drop-shadow-[0_4px_30px_rgba(0,0,0,1)] font-black">
-                THE EUROPEAN MASTER HUB FOR <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-primary-container">KROMA EDGE CHROME, FLAKE KING &amp; VSIONAIR</span>
+              <h1 id="hero-headline" class="font-headline text-3xl sm:text-5xl lg:text-6xl uppercase text-white tracking-tight leading-[1.06] drop-shadow-[0_4px_30px_rgba(0,0,0,1)] font-black">
+                <span id="hero-headline-prefix">THE EUROPEAN MASTER HUB FOR</span> <br>
+                <span id="hero-headline-accent" class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-primary-container">KROMA EDGE CHROME, FLAKE KING &amp; VSIONAIR</span>
               </h1>
-              <p class="font-headline text-base sm:text-xl text-neutral-200 font-medium tracking-wide drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
+              <p id="hero-subheadline" class="font-headline text-base sm:text-xl text-neutral-200 font-medium tracking-wide drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
                 Engineered for automotive refinishers, custom shops &amp; airbrush artists across Europe.
               </p>
-              <p class="font-body text-sm sm:text-base text-neutral-300 font-normal leading-relaxed max-w-2xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+              <p id="hero-description" class="font-body text-sm sm:text-base text-neutral-300 font-normal leading-relaxed max-w-2xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
                 Direct European bonded dispatch from our UK logistics center. Zero US import customs, next-day tracked APC &amp; DHL Express, full EU REACH &amp; VOC regulatory compliance, and factory-authorized technical support.
               </p>
             </div>
@@ -465,9 +494,9 @@
             <!-- Quick Department Jump Bar -->
             <div class="pt-2">
               <span class="text-xs font-mono text-neutral-400 uppercase tracking-wider block mb-2 font-semibold">Jump to Department:</span>
-              <div class="flex flex-wrap items-center gap-2">
+              <div id="hero-jump-buttons-container" class="flex flex-wrap items-center gap-2">
                 <a href="#dept-kroma-edge" class="mech-btn-candy !py-2.5 !px-4 text-xs tracking-wider flex items-center gap-1.5 rounded shadow-[0_0_14px_rgba(211,47,47,0.45)]">
-                  <span>01 • Kroma Edge Chrome</span>
+                  <span>01 • Kroma Chrome &amp; Clears</span>
                   <span class="material-symbols-outlined text-sm">arrow_downward</span>
                 </a>
                 <a href="#dept-guns" class="bg-surface-container border border-amber-500/70 hover:border-amber-400 text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-amber-500/10">
@@ -495,18 +524,18 @@
             </div>
 
             <!-- B2B Dealer & Distributor Quick Onboarding Hook -->
-            <div class="flex items-center gap-2 pt-1 font-mono text-xs text-neutral-300">
-              <span class="text-amber-400 font-bold">💼 TRADE &amp; WHOLESALE:</span>
-              <span>Bodyshops, Retailers &amp; Importers —</span>
-              <a href="dealers.html" class="text-emerald-400 hover:text-emerald-300 font-bold underline flex items-center gap-1 transition-colors">
-                Apply for Trade Pricing &amp; Net Ex-VAT Billing <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            <div id="hero-trade-banner" class="flex items-center gap-2 pt-1 font-mono text-xs text-neutral-300">
+              <span id="hero-trade-badge" class="text-amber-400 font-bold">💼 TRADE &amp; WHOLESALE:</span>
+              <span id="hero-trade-text">Bodyshops, Retailers &amp; Importers —</span>
+              <a id="hero-trade-link" href="dealers.html" class="text-emerald-400 hover:text-emerald-300 font-bold underline flex items-center gap-1 transition-colors">
+                <span id="hero-trade-link-text">Apply for Trade Pricing &amp; Net Ex-VAT Billing</span> <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
               </a>
             </div>
 
             <!-- Trust Line -->
-            <div class="flex items-center gap-2 font-mono text-[11px] text-neutral-400 pt-1">
+            <div id="hero-trust-bar" class="flex items-center gap-2 font-mono text-[11px] text-neutral-400 pt-1">
               <span class="material-symbols-outlined text-[15px] text-emerald-400">verified_user</span>
-              <span>Dispatched from UK Hub • Tracked APC Overnight &amp; DHL Express • 100% REACH &amp; VOC Certified • Zero US Customs</span>
+              <span id="hero-trust-line">Dispatched from UK Hub • Tracked APC Overnight &amp; DHL Express • 100% REACH &amp; VOC Certified • Zero US Customs</span>
             </div>
 
           </div>
@@ -570,10 +599,10 @@
               <span>✦ DEPARTMENT 01 • THE LEADING INNOVATION</span>
             </div>
             <h2 class="font-headline text-3xl sm:text-4xl uppercase text-white tracking-tight">
-              KROMA EDGE™ <span class="text-primary">SPRAYABLE MIRROR CHROME</span>
+              KROMA EDGE™ <span class="text-primary">MIRROR CHROME &amp; OPTICAL CLEARCOAT KITS</span>
             </h2>
             <p class="font-body text-sm sm:text-base text-neutral-300 max-w-3xl mt-1">
-              The world's first self-organizing 2K optical mirror coating. Achieve true 99.4% specular reflection with standard HVLP spray equipment—no chemical dipping tanks, no yellowing, and zero gray clouding under standard 2K clearcoats.
+              The world's first self-organizing 2K optical mirror coating and dedicated optical clearcoat systems. Achieve true 99.4% specular reflection with complete 4-part chrome kits and matching 3-part non-clouding topcoat clear sets.
             </p>
           </div>
 
@@ -598,17 +627,17 @@
                 <span class="text-emerald-400 font-mono text-xs font-bold">99.4% SPECULAR REFLECTION</span>
               </div>
 
-              <div class="h-64 rounded-md overflow-hidden bg-black/40 border border-white/10 flex items-center justify-center p-3 relative mb-4">
+              <div onclick="window.paintApp && window.paintApp.openDetailModal('kroma-mirror-chrome-system')" class="h-64 rounded-md overflow-hidden bg-black/40 border border-white/10 flex items-center justify-center p-3 relative mb-4 cursor-pointer" title="Click to view kit specs &amp; application videos">
                 <img id="card-img-kroma-mirror-chrome-system" src="assets/images/kroma-skull-mirror.jpg" alt="Kroma Edge Mirror Chrome Kit" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500 rounded" onerror="this.src='https://coastairbrush.eu/assets/images/kroma-skull-mirror.jpg'">
                 <div class="absolute bottom-2.5 right-2.5 z-10">
-                  <button type="button" onclick="window.paintApp.openDetailModal('kroma-mirror-chrome-system', 'video')" class="bg-black/85 border border-primary/60 text-white hover:bg-primary text-xs font-mono font-bold px-3 py-1.5 rounded flex items-center gap-1.5 shadow transition-all cursor-pointer">
+                  <button type="button" onclick="event.stopPropagation(); window.paintApp.openDetailModal('kroma-mirror-chrome-system', 'video')" class="bg-black/85 border border-primary/60 text-white hover:bg-primary text-xs font-mono font-bold px-3 py-1.5 rounded flex items-center gap-1.5 shadow transition-all cursor-pointer">
                     <span class="material-symbols-outlined text-[15px] text-primary">play_circle</span>
                     <span>Watch Mirror Video Demo</span>
                   </button>
                 </div>
               </div>
 
-              <h3 class="font-headline text-xl sm:text-2xl uppercase text-white font-bold leading-tight mb-2 group-hover:text-primary transition-colors">
+              <h3 onclick="window.paintApp && window.paintApp.openDetailModal('kroma-mirror-chrome-system')" class="font-headline text-xl sm:text-2xl uppercase text-white font-bold leading-tight mb-2 group-hover:text-primary transition-colors cursor-pointer" title="Click to view kit specs &amp; application videos">
                 Kroma Edge Self-Organizing Mirror Chrome System
               </h3>
               <p class="text-xs text-neutral-300 font-body mb-4 leading-relaxed">
@@ -625,6 +654,21 @@
                   <option value="Extra Large Kit (2520g / 90 oz)">Extra Large Kit (2520g / 90 oz) • Covers 135–180 sq ft (€3,381.18 / £2,874.00)</option>
                   <option value="Ultra Large Kit (10080g / 360 oz)">Ultra Large Kit (10kg / 360 oz) • Factory Production Run (€11,914.16 / £10,127.04)</option>
                 </select>
+
+                <!-- Project Sizing Estimator & Beginner Confidence -->
+                <div class="mt-2.5 p-2.5 rounded bg-surface-container border border-white/10 text-[11px] font-mono text-neutral-300 space-y-1">
+                  <div class="flex items-center gap-1.5 text-emerald-400 font-bold">
+                    <span class="material-symbols-outlined text-[14px]">speed</span>
+                    <span>REAL-WORLD COVERAGE ESTIMATOR:</span>
+                  </div>
+                  <p class="text-neutral-300">
+                    <strong>Small Kit (140g)</strong> coats <strong>2 full motorcycle tanks</strong> or <strong>4 racing helmets</strong> (7–10 sq ft).
+                  </p>
+                  <div class="flex items-center gap-2 pt-1 text-[10px] text-amber-300">
+                    <span class="material-symbols-outlined text-[12px]">verified</span>
+                    <span>1 Continuous wet coat • No black basecoat or flame treatment required</span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -655,32 +699,69 @@
           <!-- Card 2: Kroma Edge Dedicated Topcoat Clear (3-col) -->
           <div class="lg:col-span-3 industrial-card p-5 flex flex-col justify-between border border-white/15 bg-surface-container rounded-lg group hover:border-primary/60 transition-colors">
             <div>
-              <div class="h-48 rounded overflow-hidden bg-black/40 border border-white/10 flex items-center justify-center p-2 mb-3 relative">
-                <img id="card-img-kroma-dedicated-topcoat-clear" src="assets/images/kroma-helmet-mirror.jpg" alt="Dedicated Topcoat Clear" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500 rounded" onerror="this.src='https://coastairbrush.eu/assets/images/kroma-helmet-mirror.jpg'">
-                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 border border-white/20 text-white font-mono text-[9px] font-bold">2K OPTICAL TOPCOAT</span>
+              <div class="flex items-center justify-between gap-1 mb-2">
+                <span class="px-2 py-0.5 rounded bg-black/80 border border-white/20 text-white font-mono text-[9px] font-bold">2K OPTICAL TOPCOAT</span>
+                <span class="text-[10px] font-mono text-emerald-400 font-bold">3 COMPLETE KITS</span>
               </div>
-              <h4 class="font-headline text-base uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary transition-colors">
+
+              <div onclick="window.paintApp && window.paintApp.openDetailModal('kroma-dedicated-topcoat-clear')" class="h-44 rounded overflow-hidden bg-black/40 border border-white/10 flex items-center justify-center p-2 mb-3 relative cursor-pointer" title="Click to view kit contents and technical specifications">
+                <img id="card-img-kroma-dedicated-topcoat-clear" src="assets/images/kroma-helmet-mirror.jpg" alt="Dedicated Topcoat Clear" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500 rounded" onerror="this.src='https://coastairbrush.eu/assets/images/kroma-helmet-mirror.jpg'">
+                <div class="absolute bottom-2 right-2 z-10">
+                  <button type="button" onclick="event.stopPropagation(); window.paintApp.openDetailModal('kroma-dedicated-topcoat-clear', 'video')" class="bg-black/85 border border-primary/60 text-white hover:bg-primary text-[10px] font-mono font-bold px-2 py-1 rounded flex items-center gap-1 shadow transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-[13px] text-primary">play_circle</span>
+                    <span>Video</span>
+                  </button>
+                </div>
+              </div>
+
+              <h4 onclick="window.paintApp && window.paintApp.openDetailModal('kroma-dedicated-topcoat-clear')" class="font-headline text-base uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary transition-colors cursor-pointer" title="Click to view kit specs &amp; application videos">
                 Kroma Edge Dedicated Topcoat Clear System
               </h4>
-              <p class="text-[11px] text-neutral-300 font-body mb-3 line-clamp-3">
-                High-solids 2K clear formulated specifically to lock in optical mirror reflectivity. Prevents the particle realignment fog and yellowing caused by generic clears.
+              <p class="text-[11px] text-neutral-300 font-body mb-2.5 line-clamp-2 leading-tight">
+                Specifically formulated 3-part 2K optical clear. Locks in mirror reflection with zero clouding or particle lifting.
               </p>
-              <div class="bg-black/40 p-2 rounded border border-white/10 text-xs font-mono text-neutral-300 mb-3">
-                <span>Mix Ratio: 2:1 with Hardener</span>
+              
+              <div class="bg-black/40 p-2 rounded border border-white/10 text-[10px] font-mono text-neutral-300 mb-3 flex items-center justify-between">
+                <span><strong class="text-amber-300">Mix:</strong> 10:1 Base to Hardener + 70–100% Thinner</span>
+              </div>
+
+              <!-- Clear Kit Size Selector (3 Sets) -->
+              <div class="mb-3 bg-black/40 p-2.5 rounded border border-white/10 space-y-1">
+                <div class="flex items-center justify-between">
+                  <label class="font-mono text-[10px] text-neutral-300 uppercase block font-bold">Select Complete Clear Kit:</label>
+                  <span class="text-[9px] font-mono text-emerald-400 font-bold">3-PART SET</span>
+                </div>
+                <select id="select-size-kroma-dedicated-topcoat-clear" data-variant-prod="kroma-dedicated-topcoat-clear" data-variant-key="size" data-select-size="kroma-dedicated-topcoat-clear" class="mech-select !py-1.5 !px-2 text-xs w-full font-mono font-bold" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('kroma-dedicated-topcoat-clear', 'size', this.value) : (window.onProductVariantChange ? window.onProductVariantChange('kroma-dedicated-topcoat-clear', 'size', this.value) : null)">
+                  <option value="Topcoat Clear 180 SET (1.5 m²)" selected>Topcoat Clear 180 SET • 378g yield (~1.5 m² / 16 sq ft)</option>
+                  <option value="Topcoat Clear 900 SET (6.0 m²)">Topcoat Clear 900 SET • 1,890g yield (~6.0 m² / 65 sq ft)</option>
+                  <option value="Topcoat Clear 3600 SET (24.0 m²)">Topcoat Clear 3600 SET • 7,560g yield (~24 m² / 258 sq ft)</option>
+                </select>
+                <div class="text-[9px] font-mono text-neutral-400 pt-0.5">
+                  <span>Includes: Clear Base + Hardener + Dedicated Thinner</span>
+                </div>
               </div>
             </div>
 
             <div>
               <div class="flex items-baseline justify-between border-t border-white/10 pt-3 mb-3">
                 <div>
-                  <span id="price-eur-kroma-dedicated-topcoat-clear" class="font-headline text-2xl text-white font-bold block">€72.65</span>
-                  <span id="price-gbp-kroma-dedicated-topcoat-clear" class="font-mono text-xs text-neutral-400">£62.09</span>
+                  <span id="price-eur-kroma-dedicated-topcoat-clear" data-price-eur="kroma-dedicated-topcoat-clear" data-price-primary="kroma-dedicated-topcoat-clear" class="price-eur-kroma-dedicated-topcoat-clear font-headline text-2xl text-white font-extrabold block">€73.05</span>
+                  <span id="price-gbp-kroma-dedicated-topcoat-clear" data-price-gbp="kroma-dedicated-topcoat-clear" data-price-secondary="kroma-dedicated-topcoat-clear" class="price-gbp-kroma-dedicated-topcoat-clear font-mono text-xs text-neutral-400">£62.09 + VAT</span>
                 </div>
-                <span class="text-[10px] font-mono text-emerald-400">IN STOCK UK</span>
+                <span class="text-[10px] font-mono text-primary font-bold border border-primary/40 px-2 py-0.5 rounded bg-primary/10">
+                  BATCH 1 ALLOCATION
+                </span>
               </div>
-              <button onclick="window.paintApp.addProductToCartById('kroma-dedicated-topcoat-clear')" class="mech-button-primary !w-full !py-2.5 !text-xs !justify-center">
-                + Add Clearcoat to Cart
-              </button>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <button onclick="window.paintApp.addProductToCartById('kroma-dedicated-topcoat-clear')" class="mech-button-primary !w-full !py-2 !text-xs !justify-center flex items-center gap-1 cursor-pointer font-bold">
+                  <span class="material-symbols-outlined text-[14px]">shopping_bag</span>
+                  <span>Add Kit</span>
+                </button>
+                <button onclick="window.paintApp.openDetailModal('kroma-dedicated-topcoat-clear')" class="mech-btn-secondary !w-full !py-2 !text-xs flex items-center justify-center gap-1 cursor-pointer">
+                  <span class="material-symbols-outlined text-[14px] text-primary">info</span>
+                  <span>Kit Specs</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -758,8 +839,34 @@
           </div>
         </div>
 
-        <!-- Guns Grid: Master Pro Set (Double Width) + 3 Signature Models -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <!-- Department 02 Subcategory Filter & View Bar -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-surface-container border border-secondary rounded">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider font-bold mr-1">HARDWARE SUBCATEGORIES:</span>
+            <button onclick="window.paintApp && window.paintApp.setDeptGunsSubcat('featured')" data-dept-guns-subcat="featured" class="dept-guns-subcat-btn active px-3 py-1.5 border border-primary bg-primary/20 text-white font-bold transition-colors cursor-pointer rounded text-[11px] shadow-sm">
+              FEATURED GUNS (4)
+            </button>
+            <button onclick="window.paintApp && window.paintApp.setDeptGunsSubcat('all')" data-dept-guns-subcat="all" class="dept-guns-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
+              ALL HARDWARE (10)
+            </button>
+            <button onclick="window.paintApp && window.paintApp.setDeptGunsSubcat('guns')" data-dept-guns-subcat="guns" class="dept-guns-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
+              GUNS &amp; SPRAY TOOLS (6)
+            </button>
+            <button onclick="window.paintApp && window.paintApp.setDeptGunsSubcat('accessories')" data-dept-guns-subcat="accessories" class="dept-guns-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
+              NOZZLES &amp; JARS (4)
+            </button>
+          </div>
+
+          <div class="flex items-center gap-3 justify-between sm:justify-end">
+            <span id="dept-guns-count-badge" class="font-mono text-xs text-amber-300 font-bold bg-amber-950/60 border border-amber-500/40 px-2.5 py-1 rounded">
+              Showing 4 Featured Guns
+            </span>
+          </div>
+        </div>
+
+        <div id="dept-guns-featured-view">
+          <!-- Guns Grid: Master Pro Set (Double Width) + 3 Signature Models -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           
           <!-- Crown Jewel: Flake King Pro Series Kit (6-col) -->
           <div class="lg:col-span-6 industrial-card p-6 flex flex-col justify-between border-2 border-primary/60 bg-gradient-to-br from-[#1c1416] via-surface-container to-surface-container-high rounded-lg group shadow-xl">
@@ -771,17 +878,17 @@
                 <span class="text-amber-400 font-mono text-xs font-bold">ALL-IN-ONE MODULAR SYSTEM</span>
               </div>
 
-              <div class="h-64 rounded-md overflow-hidden bg-black/50 border border-white/10 flex items-center justify-center p-3 relative mb-4">
+              <div onclick="window.paintApp && window.paintApp.openDetailModal('fk-2629')" class="h-64 rounded-md overflow-hidden bg-black/50 border border-white/10 flex items-center justify-center p-3 relative mb-4 cursor-pointer" title="Click to view kit specs &amp; technical details">
                 <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ProSeriesKit2.jpg?fit=600%2C600&ssl=1" alt="Flake King Pro Series Kit" class="h-full object-contain group-hover:scale-105 transition-transform duration-500">
                 <div class="absolute bottom-2.5 right-2.5 z-10">
-                  <button type="button" onclick="window.paintApp.openDetailModal('fk-2629', 'video')" class="bg-black/85 border border-primary/60 text-white hover:bg-primary text-xs font-mono font-bold px-3 py-1.5 rounded flex items-center gap-1.5 shadow transition-all cursor-pointer">
+                  <button type="button" onclick="event.stopPropagation(); window.paintApp.openDetailModal('fk-2629', 'video')" class="bg-black/85 border border-primary/60 text-white hover:bg-primary text-xs font-mono font-bold px-3 py-1.5 rounded flex items-center gap-1.5 shadow transition-all cursor-pointer">
                     <span class="material-symbols-outlined text-[15px] text-primary">play_circle</span>
                     <span>Watch Dred fx Full Review</span>
                   </button>
                 </div>
               </div>
 
-              <h3 class="font-headline text-xl sm:text-2xl uppercase text-white font-bold leading-tight mb-2 group-hover:text-primary transition-colors">
+              <h3 onclick="window.paintApp && window.paintApp.openDetailModal('fk-2629')" class="font-headline text-xl sm:text-2xl uppercase text-white font-bold leading-tight mb-2 group-hover:text-primary transition-colors cursor-pointer" title="Click to view kit specs &amp; technical details">
                 Flake King Pro Series Kit (Flight Case Master Set)
               </h3>
               <p class="text-xs text-neutral-300 font-body mb-4 leading-relaxed">
@@ -819,10 +926,16 @@
                 </span>
               </div>
 
-              <button onclick="window.paintApp.addProductToCartById('fk-2629')" class="mech-btn-candy !w-full !py-3.5 !text-xs tracking-wider flex items-center justify-center gap-2 cursor-pointer rounded shadow-lg">
-                <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
-                <span class="font-extrabold">ADD PRO MASTER KIT TO CART • £208.33</span>
-              </button>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <button onclick="window.paintApp.addProductToCartById('fk-2629')" class="mech-btn-candy !w-full !py-3.5 !text-xs tracking-wider flex items-center justify-center gap-2 cursor-pointer rounded shadow-lg">
+                  <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+                  <span class="font-extrabold">ADD MASTER KIT • £208.33</span>
+                </button>
+                <button onclick="window.paintApp.openDetailModal('fk-2629')" class="mech-btn-secondary !w-full !py-3.5 !text-xs tracking-wider flex items-center justify-center gap-1.5 cursor-pointer rounded shadow-lg">
+                  <span class="material-symbols-outlined text-[18px] text-primary">info</span>
+                  <span class="font-bold">VIEW KIT SPECS</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -832,11 +945,11 @@
             <!-- Gun 1: FK 1000 Pro Gun -->
             <div class="industrial-card p-4 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
               <div>
-                <div class="h-36 bg-black/40 rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative">
+                <div onclick="window.paintApp && window.paintApp.openDetailModal('fk-2602')" class="h-36 bg-black/40 rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" title="Click to view product details &amp; options">
                   <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10001.png?fit=600%2C600&ssl=1" alt="Flake King 1000 Pro Gun" class="h-full object-contain group-hover:scale-105 transition-transform duration-300">
                   <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/80 text-[9px] font-mono text-emerald-400 font-bold">FULL AUTOMOTIVE</span>
                 </div>
-                <h4 class="font-headline text-sm uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary">
+                <h4 onclick="window.paintApp && window.paintApp.openDetailModal('fk-2602')" class="font-headline text-sm uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" title="Click to view product details &amp; options">
                   Flake King 1000 Pro Gun
                 </h4>
                 <p class="text-[11px] text-neutral-400 font-body mb-2 line-clamp-3">
@@ -849,20 +962,25 @@
                   <span id="price-eur-fk-2602" class="text-primary font-headline text-lg font-bold">€126.75</span>
                   <span id="price-gbp-fk-2602" class="text-secondary font-mono text-[11px]">£108.33</span>
                 </div>
-                <button onclick="window.paintApp.addProductToCartById('fk-2602')" class="mech-button-primary !w-full !py-2 !text-[11px] !justify-center">
-                  + Add to Cart
-                </button>
+                <div class="grid grid-cols-2 gap-1.5">
+                  <button onclick="window.paintApp.addProductToCartById('fk-2602')" class="mech-button-primary !w-full !py-2 !text-[11px] !justify-center font-bold">
+                    + Add to Cart
+                  </button>
+                  <button onclick="window.paintApp.openDetailModal('fk-2602')" class="mech-btn-secondary !w-full !py-2 !text-[11px] !justify-center font-bold cursor-pointer">
+                    Specs
+                  </button>
+                </div>
               </div>
             </div>
 
             <!-- Gun 2: FK 550 Mini Gun -->
             <div class="industrial-card p-4 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
               <div>
-                <div class="h-36 bg-black/40 rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative">
+                <div onclick="window.paintApp && window.paintApp.openDetailModal('fk-1970')" class="h-36 bg-black/40 rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" title="Click to view product details &amp; options">
                   <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5501.png?fit=600%2C600&ssl=1" alt="Flake King 550 Mini Gun" class="h-full object-contain group-hover:scale-105 transition-transform duration-300">
                   <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/80 text-[9px] font-mono text-emerald-400 font-bold">AIRBRUSH SCALE</span>
                 </div>
-                <h4 class="font-headline text-sm uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary">
+                <h4 onclick="window.paintApp && window.paintApp.openDetailModal('fk-1970')" class="font-headline text-sm uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" title="Click to view product details &amp; options">
                   Flake King 550 Mini Gun
                 </h4>
                 <p class="text-[11px] text-neutral-400 font-body mb-2 line-clamp-3">
@@ -875,20 +993,25 @@
                   <span id="price-eur-fk-1970" class="text-primary font-headline text-lg font-bold">€116.99</span>
                   <span id="price-gbp-fk-1970" class="text-secondary font-mono text-[11px]">£99.99</span>
                 </div>
-                <button onclick="window.paintApp.addProductToCartById('fk-1970')" class="mech-button-primary !w-full !py-2 !text-[11px] !justify-center">
-                  + Add to Cart
-                </button>
+                <div class="grid grid-cols-2 gap-1.5">
+                  <button onclick="window.paintApp.addProductToCartById('fk-1970')" class="mech-button-primary !w-full !py-2 !text-[11px] !justify-center font-bold">
+                    + Add to Cart
+                  </button>
+                  <button onclick="window.paintApp.openDetailModal('fk-1970')" class="mech-btn-secondary !w-full !py-2 !text-[11px] !justify-center font-bold cursor-pointer">
+                    Specs
+                  </button>
+                </div>
               </div>
             </div>
 
             <!-- Gun 3: FK 500 Airbrush Attachment -->
             <div class="industrial-card p-4 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
               <div>
-                <div class="h-36 bg-black/40 rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative">
-                  <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&ssl=1" alt="Flake King 500 Attachment" class="h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                <div onclick="window.paintApp && window.paintApp.openDetailModal('fk-2603')" class="h-36 bg-black/40 rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" title="Click to view product details &amp; options">
+                  <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM5001.png?fit=600%2C600&ssl=1" alt="Flake King 500 Attachment" class="h-full object-contain group-hover:scale-105 transition-transform duration-300">
                   <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/80 text-[9px] font-mono text-emerald-400 font-bold">ORIGINAL ATTACHMENT</span>
                 </div>
-                <h4 class="font-headline text-sm uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary">
+                <h4 onclick="window.paintApp && window.paintApp.openDetailModal('fk-2603')" class="font-headline text-sm uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" title="Click to view product details &amp; options">
                   Flake King 500 Airbrush Tool
                 </h4>
                 <p class="text-[11px] text-neutral-400 font-body mb-2 line-clamp-3">
@@ -901,15 +1024,159 @@
                   <span id="price-eur-fk-2603" class="text-primary font-headline text-lg font-bold">€97.50</span>
                   <span id="price-gbp-fk-2603" class="text-secondary font-mono text-[11px]">£83.33</span>
                 </div>
-                <button onclick="window.paintApp.addProductToCartById('fk-2603')" class="mech-button-primary !w-full !py-2 !text-[11px] !justify-center">
-                  + Add to Cart
-                </button>
+                <div class="grid grid-cols-2 gap-1.5">
+                  <button onclick="window.paintApp.addProductToCartById('fk-2603')" class="mech-button-primary !w-full !py-2 !text-[11px] !justify-center font-bold">
+                    + Add to Cart
+                  </button>
+                  <button onclick="window.paintApp.openDetailModal('fk-2603')" class="mech-btn-secondary !w-full !py-2 !text-[11px] !justify-center font-bold cursor-pointer">
+                    Specs
+                  </button>
+                </div>
               </div>
             </div>
 
           </div>
 
         </div>
+
+        <!-- ===================================================================== -->
+        <!-- SUB-CATEGORY: FLAKE GUN ACCESSORIES & REPLACEMENT JARS -->
+        <!-- ===================================================================== -->
+        <div class="border-t-2 border-secondary/40 pt-8 mt-8 space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-surface-container border border-secondary/60 text-secondary font-mono text-[10px] font-bold mb-1.5 uppercase">
+                <span class="material-symbols-outlined text-[14px] text-amber-400">build</span>
+                <span>✦ HARDWARE ACCESSORIES • OFFICIAL OEM REPLACEMENTS</span>
+              </div>
+              <h3 class="font-headline text-2xl sm:text-3xl uppercase text-white tracking-tight">
+                FLAKE GUN <span class="text-primary">ACCESSORIES &amp; JARS</span>
+              </h3>
+              <p class="font-body text-xs sm:text-sm text-neutral-300 max-w-2xl mt-1">
+                Airtight direct-mount jars, machined lids, and fan nozzles. Keep multiple flake colors pre-loaded for rapid quick-change spray cycles.
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="window.setCategoryAndScroll('Flake King Gun Accessories')" class="mech-btn-secondary !text-xs !py-2 !px-3.5 flex items-center gap-1.5 cursor-pointer">
+                <span class="material-symbols-outlined text-[15px]">filter_list</span>
+                <span>Filter Accessories in Catalog &darr;</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Accessories Grid: 4 Genuine Accessories -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <!-- Accessory 1: FOM 500/550 30g Jar & Lid -->
+            <div class="industrial-card p-4 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
+              <div>
+                <div class="h-32 bg-black/40 rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" onclick="window.paintApp.openDetailModal('fk-2598')">
+                  <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&ssl=1" alt="FOM 500/550 Spare 30g Jar &amp; Lid" class="h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                  <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold">FK 500 / 550 FIT</span>
+                </div>
+                <h4 class="font-headline text-sm uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" onclick="window.paintApp.openDetailModal('fk-2598')">
+                  FOM 500/550 Spare 30g Jar &amp; Lid
+                </h4>
+                <p class="text-[11px] text-neutral-400 font-body mb-2 line-clamp-2">
+                  Replacement threaded 30g jar to fit Flake King 500 Airbrush &amp; 550 Mini Gun.
+                </p>
+              </div>
+
+              <div>
+                <div class="flex items-baseline justify-between border-t border-white/10 pt-2 mb-2">
+                  <span id="price-eur-fk-2598" class="text-primary font-headline text-base font-bold">€1.29</span>
+                  <span id="price-gbp-fk-2598" class="text-secondary font-mono text-[11px]">£1.10</span>
+                </div>
+                <button onclick="window.paintApp.addProductToCartById('fk-2598')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center">
+                  + Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <!-- Accessory 2: FOM 1000/1050 50g Jar & Lid -->
+            <div class="industrial-card p-4 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
+              <div>
+                <div class="h-32 bg-black/40 rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" onclick="window.paintApp.openDetailModal('fk-2600')">
+                  <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM1000-50gJarLid.jpg?fit=600%2C600&ssl=1" alt="FOM 1000/1050 50g Jar &amp; Lid" class="h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                  <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold">FK 1000 / 1050 FIT</span>
+                </div>
+                <h4 class="font-headline text-sm uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" onclick="window.paintApp.openDetailModal('fk-2600')">
+                  FOM 1000/1050 50g Jar &amp; Lid
+                </h4>
+                <p class="text-[11px] text-neutral-400 font-body mb-2 line-clamp-2">
+                  Compact 50g jar &amp; lid for rapid color swaps on FK 1000 &amp; 1050 guns.
+                </p>
+              </div>
+
+              <div>
+                <div class="flex items-baseline justify-between border-t border-white/10 pt-2 mb-2">
+                  <span id="price-eur-fk-2600" class="text-primary font-headline text-base font-bold">€1.45</span>
+                  <span id="price-gbp-fk-2600" class="text-secondary font-mono text-[11px]">£1.24</span>
+                </div>
+                <button onclick="window.paintApp.addProductToCartById('fk-2600')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center">
+                  + Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <!-- Accessory 3: FOM 1000/1050 100g Jar & Lid -->
+            <div class="industrial-card p-4 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
+              <div>
+                <div class="h-32 bg-black/40 rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" onclick="window.paintApp.openDetailModal('fk-2423')">
+                  <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM1000JarLid-scaled.jpg?fit=600%2C600&ssl=1" alt="FOM 1000/1050 100g Jar and Standard Lid" class="h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                  <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold">FULL PRODUCTION</span>
+                </div>
+                <h4 class="font-headline text-sm uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" onclick="window.paintApp.openDetailModal('fk-2423')">
+                  FOM 1000/1050 100g Jar &amp; Lid
+                </h4>
+                <p class="text-[11px] text-neutral-400 font-body mb-2 line-clamp-2">
+                  Standard production 100g capacity jar for full automotive panels and heavy flakes.
+                </p>
+              </div>
+
+              <div>
+                <div class="flex items-baseline justify-between border-t border-white/10 pt-2 mb-2">
+                  <span id="price-eur-fk-2423" class="text-primary font-headline text-base font-bold">€1.93</span>
+                  <span id="price-gbp-fk-2423" class="text-secondary font-mono text-[11px]">£1.65</span>
+                </div>
+                <button onclick="window.paintApp.addProductToCartById('fk-2423')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center">
+                  + Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <!-- Accessory 4: Flake King 1000 Fan Nozzles -->
+            <div class="industrial-card p-4 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
+              <div>
+                <div class="h-32 bg-black/40 rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" onclick="window.paintApp.openDetailModal('fk-2426')">
+                  <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FanNozzles.jpg?fit=600%2C600&ssl=1" alt="Flake King 1000 Fan Nozzles" class="h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                  <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-emerald-400 font-bold">PRECISION TIPS</span>
+                </div>
+                <h4 class="font-headline text-sm uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" onclick="window.paintApp.openDetailModal('fk-2426')">
+                  Flake King 1000 Fan Nozzles
+                </h4>
+                <p class="text-[11px] text-neutral-400 font-body mb-2 line-clamp-2">
+                  Small, Medium &amp; Large fan spray control nozzles for optimal flake dispersal.
+                </p>
+              </div>
+
+              <div>
+                <div class="flex items-baseline justify-between border-t border-white/10 pt-2 mb-2">
+                  <span id="price-eur-fk-2426" class="text-primary font-headline text-base font-bold">€6.49</span>
+                  <span id="price-gbp-fk-2426" class="text-secondary font-mono text-[11px]">£5.55</span>
+                </div>
+                <button onclick="window.paintApp.addProductToCartById('fk-2426')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center">
+                  + Add to Cart
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        </div>
+
+        <!-- Department 02 Dynamic Hardware Grid (Rendered via js/app.js) -->
+        <div id="dept-guns-dynamic-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" style="display: none;"></div>
 
       </div>
     </section>
@@ -934,16 +1201,15 @@
             </p>
           </div>
 
-          <!-- Flake King Pro Mastery Bundle Link -->
           <!-- Flake King Action Links -->
           <div class="flex items-center gap-3 flex-wrap">
-            <button onclick="window.paintApp &amp;&amp; window.paintApp.setBrandFilter &amp;&amp; window.paintApp.setBrandFilter('Flake King'); const el = document.getElementById('storefront-catalog-anchor'); if(el) el.scrollIntoView({behavior: 'smooth'});" class="mech-button-primary !text-xs !py-2.5 !px-4 flex items-center gap-1.5 cursor-pointer shadow-md">
-              <span class="material-symbols-outlined text-[16px]">tune</span>
-              <span>Browse All 58+ Flakes in Catalog &darr;</span>
+            <button id="btn-dept-flake-toggle-all" onclick="window.paintApp && window.paintApp.toggleDeptFlakeViewMode()" class="mech-button-primary !text-xs !py-2.5 !px-4 flex items-center gap-1.5 cursor-pointer shadow-md">
+              <span class="material-symbols-outlined text-[16px]">grid_view</span>
+              <span id="label-dept-flake-toggle-view">View All 36 Flakes in Department</span>
             </button>
-            <button onclick="window.openBundleCustomizerModal && window.openBundleCustomizerModal('fk-pro-mastery-bundle')" class="mech-btn-secondary !text-xs !py-2.5 !px-4 flex items-center gap-1.5 cursor-pointer">
+            <button onclick="window.openBundleCustomizerModal && window.openBundleCustomizerModal('fk-pro-mastery-bundle')" class="mech-btn-secondary !text-xs !py-2.5 !px-4 flex items-center gap-1.5 cursor-pointer shadow-md border-amber-500/60 hover:border-amber-400">
               <span class="material-symbols-outlined text-[16px] text-amber-400">inventory_2</span>
-              <span>Customize Pro Flake Bundle</span>
+              <span>Build Pro Flake Kit <strong class="text-amber-400 font-mono">(From £109.95)</strong></span>
             </button>
           </div>
         </div>
@@ -954,8 +1220,39 @@
           <span><strong>Interactive Swatches:</strong> Click any flake swatch below to open its full technical specification sheet and choose your exact <strong>particle size</strong> (.002″ to .060″) and <strong>pack volume</strong> (30g, 100g, or 1kg trade jars).</span>
         </div>
 
+        <!-- Department 03 Subcategory Filter & View Bar -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-surface-container border border-secondary rounded">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider font-bold mr-1">FLAKE SUBCATEGORIES:</span>
+            <button onclick="window.paintApp && window.paintApp.setDeptFlakeSubcat('all')" data-dept-flake-subcat="all" class="dept-flake-subcat-btn active px-3 py-1.5 border border-primary bg-primary/20 text-white font-bold transition-colors cursor-pointer rounded text-[11px] shadow-sm">
+              ALL FLAKES (36)
+            </button>
+            <button onclick="window.paintApp && window.paintApp.setDeptFlakeSubcat('single')" data-dept-flake-subcat="single" class="dept-flake-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
+              SINGLE COLOUR (20)
+            </button>
+            <button onclick="window.paintApp && window.paintApp.setDeptFlakeSubcat('kromatic')" data-dept-flake-subcat="kromatic" class="dept-flake-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
+              KROMATIC (9)
+            </button>
+            <button onclick="window.paintApp && window.paintApp.setDeptFlakeSubcat('iridescent')" data-dept-flake-subcat="iridescent" class="dept-flake-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
+              IRIDESCENT (2)
+            </button>
+            <button onclick="window.paintApp && window.paintApp.setDeptFlakeSubcat('mixed')" data-dept-flake-subcat="mixed" class="dept-flake-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
+              MIXED (5)
+            </button>
+          </div>
+
+          <div class="flex items-center gap-3 justify-between sm:justify-end">
+            <span id="dept-flakes-count-badge" class="font-mono text-xs text-amber-300 font-bold bg-amber-950/60 border border-amber-500/40 px-2.5 py-1 rounded">
+              Showing 8 Curated Swatches (of 36 Flakes)
+            </span>
+            <button id="btn-dept-flake-view-switch" onclick="window.paintApp && window.paintApp.toggleDeptFlakeViewMode()" class="text-xs font-mono font-bold text-neutral-300 hover:text-white bg-black/60 border border-white/20 hover:border-primary px-3 py-1 rounded transition-colors cursor-pointer flex items-center gap-1">
+              Show All 36 Flakes &darr;
+            </button>
+          </div>
+        </div>
+
         <!-- Curated 8-Swatch Showcase Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
+        <div id="dept-flakes-grid" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
           
           <!-- Swatch 1: Show Krome -->
           <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2610')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
@@ -1135,6 +1432,14 @@
 
         </div>
 
+        <!-- Curated View Expander Footer -->
+        <div id="dept-flakes-curated-footer" class="text-center pt-2">
+          <button onclick="window.paintApp && window.paintApp.toggleDeptFlakeViewMode()" class="mech-btn-secondary !py-3 !px-8 text-xs font-mono font-bold uppercase tracking-widest text-amber-300 border-amber-500/50 hover:border-amber-400 hover:bg-amber-950/30 transition-all shadow-md inline-flex items-center gap-2 cursor-pointer">
+            <span class="material-symbols-outlined text-base">expand_circle_down</span>
+            <span>+ EXPAND ALL 36 FLAKES IN THIS DEPARTMENT (SINGLE COLOUR, KROMATIC, IRIDESCENT &amp; MIXED)</span>
+          </button>
+        </div>
+
       </div>
     </section>
 
@@ -1159,17 +1464,45 @@
           </div>
         </div>
 
-        <!-- 4-Card Tape Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Department 04 Subcategory Filter & View Bar -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-surface-container border border-secondary rounded">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider font-bold mr-1">TAPES &amp; PREP SUBCATEGORIES:</span>
+            <button onclick="window.paintApp && window.paintApp.setDeptTapesSubcat('featured')" data-dept-tapes-subcat="featured" class="dept-tapes-subcat-btn active px-3 py-1.5 border border-primary bg-primary/20 text-white font-bold transition-colors cursor-pointer rounded text-[11px] shadow-sm">
+              FEATURED (4)
+            </button>
+            <button onclick="window.paintApp && window.paintApp.setDeptTapesSubcat('all')" data-dept-tapes-subcat="all" class="dept-tapes-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
+              ALL TAPES &amp; PREP (9)
+            </button>
+            <button onclick="window.paintApp && window.paintApp.setDeptTapesSubcat('tapes')" data-dept-tapes-subcat="tapes" class="dept-tapes-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
+              FINE LINE TAPES (4)
+            </button>
+            <button onclick="window.paintApp && window.paintApp.setDeptTapesSubcat('sets')" data-dept-tapes-subcat="sets" class="dept-tapes-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
+              MIXED ROLL SETS (2)
+            </button>
+            <button onclick="window.paintApp && window.paintApp.setDeptTapesSubcat('prep')" data-dept-tapes-subcat="prep" class="dept-tapes-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
+              SURFACE PREP &amp; BINDERS (3)
+            </button>
+          </div>
+
+          <div class="flex items-center gap-3 justify-between sm:justify-end">
+            <span id="dept-tapes-count-badge" class="font-mono text-xs text-rose-300 font-bold bg-rose-950/60 border border-rose-500/40 px-2.5 py-1 rounded">
+              Showing 4 Featured Tapes
+            </span>
+          </div>
+        </div>
+
+        <!-- 4-Card Tape Grid (Featured View) -->
+        <div id="dept-tapes-featured-view" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           
           <!-- Card 1: Prime Orange Fine Line Tape -->
           <div class="industrial-card p-5 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
             <div>
-              <div class="h-44 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative">
+              <div onclick="window.paintApp && window.paintApp.openDetailModal('fk-2366')" class="h-44 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" title="Click to view tape specs &amp; width options">
                 <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1" alt="Prime Orange Fine Line" class="h-full object-contain group-hover:scale-105 transition-transform duration-300">
                 <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-orange-950/80 border border-orange-500/60 text-orange-300 font-mono text-[9px] font-bold">HEAT RESISTANT 132°C</span>
               </div>
-              <h4 class="font-headline text-base uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary">
+              <h4 onclick="window.paintApp && window.paintApp.openDetailModal('fk-2366')" class="font-headline text-base uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" title="Click to view tape specs &amp; width options">
                 Prime Orange Fine Line Tape
               </h4>
               <p class="text-xs text-neutral-400 font-body mb-3">
@@ -1192,20 +1525,25 @@
                 <span id="price-eur-fk-2366" data-price-eur="fk-2366" data-price-primary="fk-2366" class="price-eur-fk-2366 text-primary font-headline text-xl font-bold">€3.40</span>
                 <span id="price-gbp-fk-2366" data-price-gbp="fk-2366" data-price-secondary="fk-2366" class="price-gbp-fk-2366 text-secondary font-mono text-xs">£2.91</span>
               </div>
-              <button onclick="window.paintApp.addProductToCartById('fk-2366')" class="mech-button-primary !w-full !py-2 !text-xs !justify-center">
-                + Add Tape to Cart
-              </button>
+              <div class="grid grid-cols-2 gap-1.5">
+                <button onclick="window.paintApp.addProductToCartById('fk-2366')" class="mech-button-primary !w-full !py-2 !text-[11px] !justify-center font-bold">
+                  + Add to Cart
+                </button>
+                <button onclick="window.paintApp.openDetailModal('fk-2366')" class="mech-btn-secondary !w-full !py-2 !text-[11px] !justify-center font-bold cursor-pointer">
+                  Specs
+                </button>
+              </div>
             </div>
           </div>
 
           <!-- Card 2: Orange Mixed 5-Roll Workshop Set -->
           <div class="industrial-card p-5 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
             <div>
-              <div class="h-44 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative">
+              <div onclick="window.paintApp && window.paintApp.openDetailModal('fk-2375')" class="h-44 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" title="Click to view tape specs &amp; set details">
                 <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1" alt="Orange Mixed Set" class="h-full object-contain group-hover:scale-105 transition-transform duration-300">
                 <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-primary text-white font-mono text-[9px] font-bold">5-ROLL COMPLETE SET</span>
               </div>
-              <h4 class="font-headline text-base uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary">
+              <h4 onclick="window.paintApp && window.paintApp.openDetailModal('fk-2375')" class="font-headline text-base uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" title="Click to view tape specs &amp; set details">
                 Prime Orange Mixed Workshop Set
               </h4>
               <p class="text-xs text-neutral-400 font-body mb-3">
@@ -1218,20 +1556,25 @@
                 <span id="price-eur-fk-2375" class="text-primary font-headline text-xl font-bold">€18.52</span>
                 <span id="price-gbp-fk-2375" class="text-secondary font-mono text-xs">£15.83</span>
               </div>
-              <button onclick="window.paintApp.addProductToCartById('fk-2375')" class="mech-button-primary !w-full !py-2 !text-xs !justify-center">
-                + Add 5-Roll Set
-              </button>
+              <div class="grid grid-cols-2 gap-1.5">
+                <button onclick="window.paintApp.addProductToCartById('fk-2375')" class="mech-button-primary !w-full !py-2 !text-[11px] !justify-center font-bold">
+                  + Add 5-Roll Set
+                </button>
+                <button onclick="window.paintApp.openDetailModal('fk-2375')" class="mech-btn-secondary !w-full !py-2 !text-[11px] !justify-center font-bold cursor-pointer">
+                  Specs
+                </button>
+              </div>
             </div>
           </div>
 
           <!-- Card 3: Prime Green Precision Line Tape -->
           <div class="industrial-card p-5 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
             <div>
-              <div class="h-44 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative">
+              <div onclick="window.paintApp && window.paintApp.openDetailModal('fk-2352')" class="h-44 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" title="Click to view tape specs &amp; width options">
                 <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1" alt="Prime Green Fine Line" class="h-full object-contain group-hover:scale-105 transition-transform duration-300" style="filter: hue-rotate(90deg);">
                 <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 font-mono text-[9px] font-bold">RAZOR EDGE SEPARATION</span>
               </div>
-              <h4 class="font-headline text-base uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary">
+              <h4 onclick="window.paintApp && window.paintApp.openDetailModal('fk-2352')" class="font-headline text-base uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" title="Click to view tape specs &amp; width options">
                 Prime Green Precision Line Tape
               </h4>
               <p class="text-xs text-neutral-400 font-body mb-3">
@@ -1254,20 +1597,25 @@
                 <span id="price-eur-fk-2352" data-price-eur="fk-2352" data-price-primary="fk-2352" class="price-eur-fk-2352 text-primary font-headline text-xl font-bold">€3.40</span>
                 <span id="price-gbp-fk-2352" data-price-gbp="fk-2352" data-price-secondary="fk-2352" class="price-gbp-fk-2352 text-secondary font-mono text-xs">£2.91</span>
               </div>
-              <button onclick="window.paintApp.addProductToCartById('fk-2352')" class="mech-button-primary !w-full !py-2 !text-xs !justify-center">
-                + Add Tape to Cart
-              </button>
+              <div class="grid grid-cols-2 gap-1.5">
+                <button onclick="window.paintApp.addProductToCartById('fk-2352')" class="mech-button-primary !w-full !py-2 !text-[11px] !justify-center font-bold">
+                  + Add to Cart
+                </button>
+                <button onclick="window.paintApp.openDetailModal('fk-2352')" class="mech-btn-secondary !w-full !py-2 !text-[11px] !justify-center font-bold cursor-pointer">
+                  Specs
+                </button>
+              </div>
             </div>
           </div>
 
           <!-- Card 4: Green Mixed 5-Roll Set -->
           <div class="industrial-card p-5 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
             <div>
-              <div class="h-44 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative">
+              <div onclick="window.paintApp && window.paintApp.openDetailModal('fk-2361')" class="h-44 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" title="Click to view tape specs &amp; set details">
                 <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1" alt="Green Mixed Set" class="h-full object-contain group-hover:scale-105 transition-transform duration-300" style="filter: hue-rotate(90deg);">
                 <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-emerald-600 text-white font-mono text-[9px] font-bold">5-ROLL COMPLETE SET</span>
               </div>
-              <h4 class="font-headline text-base uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary">
+              <h4 onclick="window.paintApp && window.paintApp.openDetailModal('fk-2361')" class="font-headline text-base uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" title="Click to view tape specs &amp; set details">
                 Prime Green Mixed Workshop Set
               </h4>
               <p class="text-xs text-neutral-400 font-body mb-3">
@@ -1280,13 +1628,21 @@
                 <span id="price-eur-fk-2361" class="text-primary font-headline text-xl font-bold">€18.52</span>
                 <span id="price-gbp-fk-2361" class="text-secondary font-mono text-xs">£15.83</span>
               </div>
-              <button onclick="window.paintApp.addProductToCartById('fk-2361')" class="mech-button-primary !w-full !py-2 !text-xs !justify-center">
-                + Add 5-Roll Set
-              </button>
+              <div class="grid grid-cols-2 gap-1.5">
+                <button onclick="window.paintApp.addProductToCartById('fk-2361')" class="mech-button-primary !w-full !py-2 !text-[11px] !justify-center font-bold">
+                  + Add 5-Roll Set
+                </button>
+                <button onclick="window.paintApp.openDetailModal('fk-2361')" class="mech-btn-secondary !w-full !py-2 !text-[11px] !justify-center font-bold cursor-pointer">
+                  Specs
+                </button>
+              </div>
             </div>
           </div>
 
         </div>
+
+        <!-- Department 04 Dynamic Grid (Rendered via js/app.js) -->
+        <div id="dept-tapes-dynamic-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" style="display: none;"></div>
 
       </div>
     </section>
@@ -1570,34 +1926,39 @@
           <span class="font-mono text-xs text-neutral-400 uppercase tracking-wider block mb-3 font-semibold">The 5 Official VsionAir Categories:</span>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             
-            <div class="p-4 bg-surface-container border border-white/10 rounded">
-              <span class="text-primary font-mono text-xs font-bold block mb-1">01 • JIGS</span>
-              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1">Work-Holding Jigs</h5>
-              <p class="text-[11px] text-neutral-400">Helmets, Goalie Masks, Tanks, Fenders, Skateboards, Guitars &amp; Wheels.</p>
+            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Work-Holding Jigs')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-primary hover:bg-surface-container-high transition-all group shadow-sm">
+              <span class="text-primary font-mono text-xs font-bold block mb-1 group-hover:text-primary-light">01 • JIGS</span>
+              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-primary transition-colors">Work-Holding Jigs</h5>
+              <p class="text-[11px] text-neutral-400 mb-2">Helmets, Goalie Masks, Tanks, Fenders, Skateboards, Guitars &amp; Wheels.</p>
+              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">View Products &rarr;</span>
             </div>
 
-            <div class="p-4 bg-surface-container border border-white/10 rounded">
-              <span class="text-primary font-mono text-xs font-bold block mb-1">02 • STANDS</span>
-              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1">Base Stands &amp; Easels</h5>
-              <p class="text-[11px] text-neutral-400">Desk Mount Stands, Heavy Tri-Stands, and Modular Studio Easels.</p>
+            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Base Stands &amp; Easels')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-primary hover:bg-surface-container-high transition-all group shadow-sm">
+              <span class="text-primary font-mono text-xs font-bold block mb-1 group-hover:text-primary-light">02 • STANDS</span>
+              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-primary transition-colors">Base Stands &amp; Easels</h5>
+              <p class="text-[11px] text-neutral-400 mb-2">Desk Mount Stands, Heavy Tri-Stands, and Modular Studio Easels.</p>
+              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">View Products &rarr;</span>
             </div>
 
-            <div class="p-4 bg-surface-container border border-white/10 rounded">
-              <span class="text-primary font-mono text-xs font-bold block mb-1">03 • RIGS</span>
-              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1">Frames &amp; Lighting Rigs</h5>
-              <p class="text-[11px] text-neutral-400">Vertical Tool Bars, Camera Mounts, and Overhead Lighting Gantry Rigs.</p>
+            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Tool Bars &amp; Lighting Rigs')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-primary hover:bg-surface-container-high transition-all group shadow-sm">
+              <span class="text-primary font-mono text-xs font-bold block mb-1 group-hover:text-primary-light">03 • RIGS</span>
+              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-primary transition-colors">Frames &amp; Lighting Rigs</h5>
+              <p class="text-[11px] text-neutral-400 mb-2">Vertical Tool Bars, Camera Mounts, and Overhead Lighting Gantry Rigs.</p>
+              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">View Products &rarr;</span>
             </div>
 
-            <div class="p-4 bg-surface-container border border-white/10 rounded">
-              <span class="text-primary font-mono text-xs font-bold block mb-1">04 • HOLDERS</span>
-              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1">Tool &amp; Airbrush Holders</h5>
-              <p class="text-[11px] text-neutral-400">Airbrush Cradles, Cleaning Pots, Needle Trays &amp; Bench Organizers.</p>
+            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Tool &amp; Airbrush Holders')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-primary hover:bg-surface-container-high transition-all group shadow-sm">
+              <span class="text-primary font-mono text-xs font-bold block mb-1 group-hover:text-primary-light">04 • HOLDERS</span>
+              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-primary transition-colors">Tool &amp; Airbrush Holders</h5>
+              <p class="text-[11px] text-neutral-400 mb-2">Airbrush Cradles, Cleaning Pots, Needle Trays &amp; Bench Organizers.</p>
+              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">View Products &rarr;</span>
             </div>
 
-            <div class="p-4 bg-surface-container border border-white/10 rounded">
-              <span class="text-primary font-mono text-xs font-bold block mb-1">05 • HARDWARE</span>
-              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1">Fixings, Knobs &amp; Bolts</h5>
-              <p class="text-[11px] text-neutral-400">Billet Wing Knobs, M6/M10 Coach Bolts, Washers &amp; IABS Brackets.</p>
+            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Fixings, Knobs &amp; Hardware')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-primary hover:bg-surface-container-high transition-all group shadow-sm">
+              <span class="text-primary font-mono text-xs font-bold block mb-1 group-hover:text-primary-light">05 • HARDWARE</span>
+              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-primary transition-colors">Fixings, Knobs &amp; Bolts</h5>
+              <p class="text-[11px] text-neutral-400 mb-2">Billet Wing Knobs, M6/M10 Coach Bolts, Washers &amp; IABS Brackets.</p>
+              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">View Products &rarr;</span>
             </div>
 
           </div>
@@ -1632,12 +1993,15 @@
             <input id="input-shop-search" type="text" placeholder="Search by SKU, product name, flake micron, color..." class="mech-input !pl-9 !py-2.5 !text-xs font-mono w-full">
           </div>
 
-          <!-- Brand Quick Filter Pills (Active In-Stock Brands) -->
+          <!-- Brand & Category Quick Filter Pills -->
           <div id="brand-filter-pills" class="flex items-center gap-1.5 flex-wrap font-mono text-xs">
-            <span class="text-secondary font-bold uppercase text-[11px] mr-1 hidden sm:inline">Brand:</span>
+            <span class="text-secondary font-bold uppercase text-[11px] mr-1 hidden sm:inline">Filter:</span>
             <button data-brand-val="all" class="brand-pill active px-3 py-1.5 border border-secondary bg-black/60 text-white font-bold hover:border-primary transition-colors cursor-pointer">ALL</button>
             <button data-brand-val="Kroma Edge" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">KROMA EDGE</button>
+            <button data-cat-val="Dedicated Clearcoats" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">CLEARCOAT KITS (3 SIZES)</button>
             <button data-brand-val="Flake King" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">FLAKE KING</button>
+            <button data-cat-val="Dry Metal Flake Guns" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">FLAKE GUNS</button>
+            <button data-cat-val="Flake King Gun Accessories" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">GUN ACCESSORIES</button>
           </div>
 
           <!-- Sorter Dropdown & Reset -->
@@ -1657,6 +2021,9 @@
           </div>
 
         </div>
+
+        <!-- Contextual Subcategory Bar (Dynamic: Flake Guns / Jigs / Flakes) -->
+        <div id="contextual-subcat-bar" class="hidden items-center gap-1.5 flex-wrap font-mono text-xs pt-2.5 border-t border-secondary/30"></div>
       </div>
 
       <!-- Results Count & Active Filter Tags -->
@@ -1680,6 +2047,19 @@
   <!-- ========================================================================= -->
   <div id="view-calculator" class="tab-view flex-grow flex flex-col py-8 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full" style="display: none;">
     
+    <!-- Return to Storefront Quick-Link -->
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-3 bg-surface-container-high/90 border border-secondary p-3 rounded shadow-sm">
+      <button onclick="document.getElementById('tab-storefront').click(); window.scrollTo({top: 0, behavior: 'smooth'});" class="mech-button-primary !py-2 !px-4 text-xs font-bold flex items-center gap-2 cursor-pointer shadow-md hover:brightness-110 transition-all">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        <span>RETURN TO PRODUCT STOREFRONT</span>
+      </button>
+      <div class="font-mono text-xs text-neutral-300 flex items-center gap-2">
+        <span class="text-emerald-400">✓ In-Booth Formulation Tool</span>
+        <span class="text-secondary/60 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Your active cart &amp; product selections remain saved</span>
+      </div>
+    </div>
+
     <!-- Header -->
     <div class="border-b-2 border-secondary pb-4 mb-8 flex flex-col sm:flex-row justify-between sm:items-end gap-4">
       <div>
@@ -2133,6 +2513,20 @@
   <!-- TAB VIEW: ACADEMY & VIDEO SHOWCASE (Customer Education & Social Proof) -->
   <!-- ========================================================================= -->
   <div id="view-academy" class="tab-view flex-grow flex flex-col py-8 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full" style="display: none;">
+    
+    <!-- Return to Storefront Quick-Link -->
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-3 bg-surface-container-high/90 border border-secondary p-3 rounded shadow-sm">
+      <button onclick="document.getElementById('tab-storefront').click(); window.scrollTo({top: 0, behavior: 'smooth'});" class="mech-button-primary !py-2 !px-4 text-xs font-bold flex items-center gap-2 cursor-pointer shadow-md hover:brightness-110 transition-all">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        <span>RETURN TO PRODUCT STOREFRONT</span>
+      </button>
+      <div class="font-mono text-xs text-neutral-300 flex items-center gap-2">
+        <span class="text-rose-400">🎥 Masterclass Video Tutorials</span>
+        <span class="text-secondary/40 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Real Booth Demos &amp; Application Guides</span>
+      </div>
+    </div>
+
     <div class="border-b-2 border-secondary pb-4 mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
       <div>
         <div class="flex items-center gap-2 mb-1">
@@ -2260,7 +2654,7 @@
         <div class="industrial-card p-4 flex flex-col justify-between h-full group hover:border-primary transition-all">
           <div>
             <div onclick="window.paintApp && window.paintApp.openDetailModal('kroma-mirror-chrome-system', 'video')" class="w-full h-48 bg-surface-dim border border-secondary relative overflow-hidden mb-4 cursor-pointer">
-              <img src="https://lh3.googleusercontent.com/aida/AEtjO1Vhrrnuz3jyhR4A0VX8t7zfqmk0kYdRywsYSqJWXeW8Oco_wrh0AZMEPer9BfEyRuPQ94qoCa3JT_UuxD3aP5BBBwduH7LkKrN06tLjmOT1NRwztFGa8s0DXLr8PUMQPRGBsaqrGbgL3iJxKqi_goQBP-DNY8em3IbknCAhqczGmb0Lfr1P_5cwsl_ds1OcfCK1QnQ57Vfe5ZYh9feqsvgIkBSNRYEgSktNsB_HaTEu3y83TgcqNevPUarJ" alt="Kroma Edge 2K Chrome Video" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <img src="assets/images/kroma-helmet-mirror.jpg" alt="Kroma Edge 2K Chrome Video" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='assets/images/kroma-skull-mirror.jpg';">
               <div class="absolute top-2 left-2 bg-surface/90 text-emerald-400 text-[10px] font-mono font-bold px-2 py-0.5 border border-emerald-500/60 flex items-center gap-1">
                 <span class="material-symbols-outlined text-[12px]">play_circle</span> MANUFACTURER DEMO
               </div>
@@ -2624,8 +3018,14 @@
         <button id="subtab-admin-spreadsheet" class="admin-subtab font-mono text-xs uppercase px-4 py-2 border-2 border-secondary bg-surface text-secondary hover:text-white flex items-center gap-2">
           <span class="material-symbols-outlined text-[16px]">table_chart</span> Spreadsheet Matrix Editor
         </button>
+        <button id="subtab-admin-taxonomy" class="admin-subtab font-mono text-xs uppercase px-4 py-2 border-2 border-secondary bg-surface text-secondary hover:text-white flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px]">category</span> Taxonomy &amp; Categories
+        </button>
         <button id="subtab-admin-formulas" class="admin-subtab active font-mono text-xs uppercase px-4 py-2 border-2 border-primary bg-primary/20 text-white font-bold flex items-center gap-2">
           <span class="material-symbols-outlined text-[16px]">science</span> Formulas &amp; Mixing Lab
+        </button>
+        <button id="subtab-admin-hero" class="admin-subtab font-mono text-xs uppercase px-4 py-2 border-2 border-secondary bg-surface text-secondary hover:text-white flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px]">view_carousel</span> Hero &amp; Landing Designer
         </button>
         <button id="subtab-admin-products" class="admin-subtab font-mono text-xs uppercase px-4 py-2 border-2 border-secondary bg-surface text-secondary hover:text-white flex items-center gap-2">
           <span class="material-symbols-outlined text-[16px]">inventory_2</span> Product Catalog (Cards)
@@ -2686,6 +3086,203 @@
 
       <div id="admin-preorders-container" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Dynamically rendered pre-order tiers -->
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SUB-PANEL: HERO & LANDING SHOWCASE DESIGNER -->
+    <!-- ========================================================================= -->
+    <div id="admin-panel-hero" class="admin-panel flex flex-col gap-6" style="display: none;">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h3 class="font-headline text-xl uppercase text-primary">Hero &amp; Landing Showcase Designer</h3>
+          <p class="font-mono text-xs text-secondary">
+            Configure headline copy, authority credentials, department jump buttons, and background slideshow imagery with instant live storefront synchronization.
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <button id="btn-admin-reset-hero" type="button" class="font-mono text-xs border border-secondary bg-surface-container px-3 py-2 text-secondary hover:text-white flex items-center gap-1.5 transition-all cursor-pointer">
+            <span class="material-symbols-outlined text-[15px]">history</span> Reset to Defaults
+          </button>
+          <button id="btn-admin-save-hero" type="button" class="mech-button-primary !py-2 !px-4 text-xs font-mono font-bold flex items-center gap-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] cursor-pointer">
+            <span class="material-symbols-outlined text-[16px]">save</span> SAVE &amp; PUBLISH HERO
+          </button>
+        </div>
+      </div>
+
+      <!-- Hero Configuration Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Left 2 Cols: Form Fields & Slides/Buttons Studio -->
+        <div class="lg:col-span-2 flex flex-col gap-6">
+          
+          <!-- Card 1: Core Headlines & Copy -->
+          <div class="industrial-card p-5 bg-surface-container border border-secondary/40 rounded space-y-4">
+            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+              <h4 class="font-headline text-sm uppercase text-white font-bold tracking-wider flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[18px]">format_size</span>
+                1. Master Headlines &amp; Positioning Copy
+              </h4>
+              <button id="btn-admin-hero-ai-copy" type="button" class="font-mono text-[11px] border border-primary/60 bg-primary/20 text-primary hover:bg-primary/30 px-2.5 py-1 rounded transition-all flex items-center gap-1.5 cursor-pointer shadow-sm">
+                <span class="material-symbols-outlined text-[15px]">auto_awesome</span> 🤖 AI Copy Assistant
+              </button>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block">Headline Prefix Text</label>
+                  <button type="button" onclick="window.quickPolishHeroField('prefix')" class="text-[10px] font-mono text-primary/80 hover:text-primary flex items-center gap-0.5 cursor-pointer" title="AI Polish Prefix">
+                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> Polish
+                  </button>
+                </div>
+                <input type="text" id="admin-hero-headline-prefix" class="mech-input w-full !text-xs font-headline tracking-wide uppercase" placeholder="THE EUROPEAN MASTER HUB FOR">
+              </div>
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <label class="font-label-xs text-[10px] uppercase text-primary font-bold block">Accent Gradient Words</label>
+                  <button type="button" onclick="window.quickPolishHeroField('accent')" class="text-[10px] font-mono text-primary/80 hover:text-primary flex items-center gap-0.5 cursor-pointer" title="AI Polish Accent">
+                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> Polish
+                  </button>
+                </div>
+                <input type="text" id="admin-hero-headline-accent" class="mech-input w-full !text-xs font-headline tracking-wide uppercase text-primary" placeholder="KROMA EDGE CHROME, FLAKE KING &amp; VSIONAIR">
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-1">
+                <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block">Target Audience Subheadline</label>
+                <button type="button" onclick="window.quickPolishHeroField('subheadline')" class="text-[10px] font-mono text-primary/80 hover:text-primary flex items-center gap-0.5 cursor-pointer" title="AI Polish Subheadline">
+                  <span class="material-symbols-outlined text-[12px]">auto_awesome</span> Polish
+                </button>
+              </div>
+              <input type="text" id="admin-hero-subheadline" class="mech-input w-full !text-xs font-headline" placeholder="Engineered for automotive refinishers, custom shops &amp; airbrush artists across Europe.">
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-1">
+                <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block">Value Proposition &amp; Dispatch Details</label>
+                <button type="button" onclick="window.quickPolishHeroField('description')" class="text-[10px] font-mono text-primary/80 hover:text-primary flex items-center gap-0.5 cursor-pointer" title="AI Polish Value Prop">
+                  <span class="material-symbols-outlined text-[12px]">auto_awesome</span> Polish
+                </button>
+              </div>
+              <textarea id="admin-hero-description" rows="3" class="mech-input w-full !text-xs font-body leading-relaxed" placeholder="Direct European bonded dispatch from our UK logistics center..."></textarea>
+            </div>
+          </div>
+
+          <!-- Card 2: Authority Pill, Trust Bar & Wholesale Banner -->
+          <div class="industrial-card p-5 bg-surface-container border border-secondary/40 rounded space-y-4">
+            <h4 class="font-headline text-sm uppercase text-white font-bold tracking-wider border-b border-white/10 pb-2 flex items-center gap-2">
+              <span class="material-symbols-outlined text-emerald-400 text-[18px]">verified</span>
+              2. Authority Credentials, Trust Bar &amp; B2B Wholesale
+            </h4>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block mb-1">Authority Pill Status Text</label>
+                <input type="text" id="admin-hero-pill-status" class="mech-input w-full !text-xs font-mono" placeholder="✦ OFFICIAL EUROPEAN MASTER HUB">
+              </div>
+              <div>
+                <label class="font-label-xs text-[10px] uppercase text-amber-300 font-bold block mb-1">Authority Authorized Location</label>
+                <input type="text" id="admin-hero-pill-location" class="mech-input w-full !text-xs font-mono text-amber-300" placeholder="PLACENTIA, CA AUTHORIZED">
+              </div>
+            </div>
+
+            <div>
+              <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block mb-1">Logistics &amp; Compliance Trust Statement</label>
+              <input type="text" id="admin-hero-trust-line" class="mech-input w-full !text-xs font-mono" placeholder="Dispatched from UK Hub • Tracked APC Overnight &amp; DHL Express...">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-white/5">
+              <div>
+                <label class="font-label-xs text-[10px] uppercase text-amber-400 font-bold block mb-1">B2B Trade Badge</label>
+                <input type="text" id="admin-hero-trade-badge" class="mech-input w-full !text-xs font-mono" placeholder="💼 TRADE &amp; WHOLESALE:">
+              </div>
+              <div>
+                <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block mb-1">B2B Trade Callout Text</label>
+                <input type="text" id="admin-hero-trade-text" class="mech-input w-full !text-xs font-mono" placeholder="Bodyshops, Retailers &amp; Importers —">
+              </div>
+              <div>
+                <label class="font-label-xs text-[10px] uppercase text-emerald-400 font-bold block mb-1">B2B Trade Link CTA</label>
+                <input type="text" id="admin-hero-trade-link-text" class="mech-input w-full !text-xs font-mono" placeholder="Apply for Trade Pricing &amp; Net Ex-VAT Billing">
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Background Slideshow Studio -->
+          <div class="industrial-card p-5 bg-surface-container border border-secondary/40 rounded space-y-4">
+            <input type="file" id="input-hero-image-upload" accept="image/*" class="hidden">
+            <div class="flex flex-wrap justify-between items-center border-b border-white/10 pb-2 gap-2">
+              <h4 class="font-headline text-sm uppercase text-white font-bold tracking-wider flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[18px]">photo_library</span>
+                3. Ambient Finish Slideshow Studio
+              </h4>
+              <div class="flex items-center gap-2">
+                <button id="btn-admin-upload-hero-slide" type="button" class="font-mono text-[11px] border border-primary/60 bg-primary/20 text-white hover:bg-primary/30 px-2.5 py-1 rounded transition-all flex items-center gap-1 cursor-pointer">
+                  <span class="material-symbols-outlined text-[14px]">upload_file</span> Upload New Slide
+                </button>
+                <button id="btn-admin-add-hero-slide" type="button" class="font-mono text-[11px] border border-emerald-500/60 bg-emerald-950/30 text-emerald-300 hover:bg-emerald-900/50 px-2.5 py-1 rounded transition-all flex items-center gap-1 cursor-pointer">
+                  <span class="material-symbols-outlined text-[14px]">add_photo_alternate</span> Add Slide
+                </button>
+              </div>
+            </div>
+            <p class="font-mono text-[11px] text-secondary">
+              Optical finish slides rotate every 6s with high-contrast directional masking. Upload custom imagery, run AI specular finishing, and adjust alignment.
+            </p>
+
+            <div id="admin-hero-slides-container" class="space-y-3">
+              <!-- Dynamically rendered slide cards -->
+            </div>
+          </div>
+
+          <!-- Card 4: Quick Department Jump Buttons -->
+          <div class="industrial-card p-5 bg-surface-container border border-secondary/40 rounded space-y-4">
+            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+              <h4 class="font-headline text-sm uppercase text-white font-bold tracking-wider flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[18px]">touch_app</span>
+                4. Quick Department Jump Buttons
+              </h4>
+              <button id="btn-admin-add-hero-jump" type="button" class="font-mono text-[11px] border border-emerald-500/60 bg-emerald-950/30 text-emerald-300 hover:bg-emerald-900/50 px-2.5 py-1 rounded transition-all flex items-center gap-1 cursor-pointer">
+                <span class="material-symbols-outlined text-[14px]">add</span> Add Button
+              </button>
+            </div>
+
+            <div id="admin-hero-jumps-container" class="space-y-2.5">
+              <!-- Dynamically rendered button cards -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right 1 Col: Live Interactive Preview Card -->
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <h4 class="font-headline text-xs uppercase text-secondary font-bold tracking-wider">
+              Live Showcase Preview
+            </h4>
+            <span class="font-mono text-[10px] text-emerald-400 bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-500/40">● Interactive</span>
+          </div>
+
+          <div class="sticky top-6 flex flex-col gap-4">
+            <div id="admin-hero-live-preview" class="p-5 rounded border border-secondary/50 bg-[#0c0e0e] shadow-2xl relative overflow-hidden space-y-4">
+              <!-- Dynamically updated live preview content -->
+            </div>
+
+            <div class="industrial-card p-4 bg-surface-container border border-secondary/30 rounded space-y-2">
+              <div class="text-xs font-headline uppercase text-white font-bold flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-primary">visibility</span>
+                Quick Storefront Navigation
+              </div>
+              <p class="text-[11px] font-mono text-secondary">
+                Preview your active changes directly on the storefront header.
+              </p>
+              <button type="button" onclick="document.getElementById('btn-admin-modal-close')?.click(); window.scrollTo({top: 0, behavior: 'smooth'});" class="w-full font-mono text-xs border border-primary/60 bg-primary/20 text-white hover:bg-primary/30 py-2 rounded transition-all flex items-center justify-center gap-1.5">
+                <span class="material-symbols-outlined text-[15px]">arrow_outward</span> Jump to Top of Storefront
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -3220,6 +3817,68 @@
     </div>
 
     <!-- ========================================================================= -->
+    <!-- SUB-PANEL: TAXONOMY (DEPARTMENTS & CATEGORIES) MANAGER -->
+    <!-- ========================================================================= -->
+    <div id="admin-panel-taxonomy" class="admin-panel flex flex-col gap-6" style="display: none;">
+      <!-- Top Title & Global Controls -->
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <h3 class="font-headline text-xl uppercase text-primary">Department &amp; Category Taxonomy Manager</h3>
+            <span class="bg-indigo-500/20 text-indigo-400 border border-indigo-500/40 text-[10px] font-mono px-2 py-0.5 uppercase font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[12px]">account_tree</span> Taxonomy Architecture
+            </span>
+          </div>
+          <p class="font-mono text-xs text-secondary mt-1">
+            Configure primary store departments, nested categories, visual icons, and descriptions. Changes automatically sync to bulk spreadsheet tools and catalog navigation.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 flex-wrap">
+          <button id="btn-admin-add-department" class="mech-button-primary !py-2 !px-4 text-xs font-mono font-bold flex items-center gap-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <span class="material-symbols-outlined text-[16px]">add_circle</span> CREATE NEW DEPARTMENT
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Bar -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="industrial-card p-4 border border-secondary/40 flex items-center gap-3">
+          <div class="w-10 h-10 rounded bg-primary/20 text-primary border border-primary/40 flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl">category</span>
+          </div>
+          <div>
+            <div id="metric-total-departments" class="font-headline text-2xl font-bold text-white">5</div>
+            <div class="text-[11px] font-mono text-secondary uppercase">Active Departments</div>
+          </div>
+        </div>
+        <div class="industrial-card p-4 border border-secondary/40 flex items-center gap-3">
+          <div class="w-10 h-10 rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/40 flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl">label</span>
+          </div>
+          <div>
+            <div id="metric-total-categories" class="font-headline text-2xl font-bold text-white">22</div>
+            <div class="text-[11px] font-mono text-secondary uppercase">Nested Categories</div>
+          </div>
+        </div>
+        <div class="industrial-card p-4 border border-secondary/40 flex items-center gap-3">
+          <div class="w-10 h-10 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl">inventory</span>
+          </div>
+          <div>
+            <div id="metric-total-assigned-products" class="font-headline text-2xl font-bold text-white">0</div>
+            <div class="text-[11px] font-mono text-secondary uppercase">Catalog Products Tagged</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Department Cards Container -->
+      <div id="admin-departments-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Dynamically rendered via renderAdminTaxonomy() -->
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
     <!-- SUB-PANEL: PRODUCT SPREADSHEET & BULK PRICE MATRIX EDITOR -->
     <!-- ========================================================================= -->
     <div id="admin-panel-spreadsheet" class="admin-panel flex flex-col gap-6">
@@ -3367,19 +4026,19 @@
           <!-- Tool 3: Bulk Department, Brand & Category Setter -->
           <div class="p-3 bg-surface rounded border border-secondary/50 flex flex-col justify-between gap-2">
             <div>
-              <div class="text-indigo-400 font-bold uppercase text-[11px] mb-1 flex items-center gap-1">
-                <span class="material-symbols-outlined text-[14px]">category</span> Department &amp; Category
+              <div class="text-indigo-400 font-bold uppercase text-[11px] mb-1 flex items-center justify-between">
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">category</span> Department &amp; Category</span>
+                <button type="button" id="btn-batch-goto-taxonomy" class="text-[10px] text-primary hover:underline flex items-center gap-0.5 cursor-pointer" title="Manage Departments & Categories">
+                  <span>Manage</span> &rarr;
+                </button>
               </div>
-              <p class="text-[10px] text-secondary mb-2">Assign high-level Department and Category in bulk.</p>
+              <p class="text-[10px] text-secondary mb-2">Assign high-level Department, Category, and Brand in bulk.</p>
               <div class="space-y-1.5 mb-2">
                 <select id="batch-department-select" class="mech-select w-full text-[11px] font-mono">
                   <option value="">-- Choose Department --</option>
-                  <option value="Automotive & Custom Paint">Automotive &amp; Custom Paint</option>
-                  <option value="Special Effects & Flakes">Special Effects &amp; Flakes</option>
-                  <option value="Equipment & Hardware">Equipment &amp; Hardware</option>
-                  <option value="Consumables & Prep">Consumables &amp; Prep</option>
-                  <option value="Studio & Merchandise">Studio &amp; Merchandise</option>
+                  <!-- Dynamically populated from taxonomy -->
                 </select>
+                <input type="text" id="batch-category-input" list="datalist-categories" placeholder="-- Category (e.g. Mirror Chrome Systems) --" class="mech-input w-full text-[11px] font-mono">
                 <select id="batch-brand-select" class="mech-select w-full text-[11px] font-mono">
                   <option value="">-- Choose Brand --</option>
                   <option value="Kroma Edge">Kroma Edge</option>
@@ -3391,7 +4050,7 @@
               </div>
             </div>
             <button id="btn-batch-apply-taxonomy" class="font-mono text-xs border border-indigo-500/60 bg-indigo-950/30 text-indigo-300 font-bold py-1.5 px-3 hover:bg-indigo-900/40 transition-all flex items-center justify-center gap-1">
-              Apply Dept &amp; Brand
+              Apply Taxonomy
             </button>
           </div>
 
@@ -3668,6 +4327,7 @@
             <option value="Groundcoats & Primers">Groundcoats &amp; Primers</option>
             <option value="Dry Metal Flake (Glitter)">Dry Metal Flake</option>
             <option value="Dry Metal Flake Guns">Dry Flake Guns</option>
+            <option value="Flake King Gun Accessories">Flake King Gun Accessories</option>
           </select>
         </div>
         <div class="md:col-span-2 text-right">
@@ -4204,41 +4864,47 @@
   <!-- MODAL: CUSTOMIZE BUNDLE SELECTION (FLAKES & ACCESSORIES) -->
   <!-- ========================================================================= -->
   <div id="modal-bundle-customizer" class="modal-overlay">
-    <div class="modal-box !max-w-[620px]">
+    <div class="modal-box !max-w-[640px]">
       <div class="bg-surface-container-high p-4 border-b-2 border-secondary flex justify-between items-center">
         <div class="flex items-center gap-2">
           <span class="material-symbols-outlined text-primary text-xl">tune</span>
           <div>
-            <h3 class="font-headline text-base uppercase text-white font-bold tracking-wider">Customize Your Bundle Items</h3>
-            <p class="font-mono text-[10px] text-secondary">Tailor your dry flake gun kit with your favorite flake colour and tape width.</p>
+            <h3 class="font-headline text-base uppercase text-white font-bold tracking-wider">Build Your Custom Pro Flake Kit</h3>
+            <p class="font-mono text-[10px] text-secondary">Select your flake finish, tape width, and optional base/accent duo.</p>
           </div>
         </div>
-        <button onclick="window.closeBundleCustomizerModal &amp;&amp; window.closeBundleCustomizerModal()" class="text-secondary hover:text-primary transition-colors cursor-pointer">
+        <button onclick="window.closeBundleCustomizerModal && window.closeBundleCustomizerModal()" class="text-secondary hover:text-primary transition-colors cursor-pointer">
           <span class="material-symbols-outlined text-2xl">close</span>
         </button>
       </div>
 
       <div class="p-6 bg-surface-container-lowest flex flex-col gap-5">
-        <div class="p-3 bg-surface border border-secondary/30 rounded text-xs font-mono text-neutral-300">
-          <span class="text-primary font-bold">Bundle Perk:</span> Select any 1 of our 58+ precision dry metal flake colors at the locked bundle rate with same-day APC Overnight dispatch.
+        <div class="p-3 bg-surface border border-secondary/30 rounded text-xs font-mono text-neutral-300 flex items-start gap-2.5">
+          <span class="material-symbols-outlined text-amber-400 text-base flex-shrink-0 mt-0.5">verified</span>
+          <div>
+            <span class="text-primary font-bold">Transparent Kit Pricing:</span> Base kit starts at <strong class="text-white">£109.95 / €129.95</strong> with Standard Flake &amp; Tape included. Specialty Ultra-Small &amp; Kromatic Holographic finishes include raw-material upgrade fees. APC Overnight dispatch.
+          </div>
         </div>
 
         <div id="bundle-customizer-slots" class="space-y-4">
-          <!-- Dynamically populated slot selectors -->
+          <!-- Dynamically populated slot selectors & 2nd flake upsell -->
         </div>
 
         <div class="border-t border-white/10 pt-4 flex flex-col sm:flex-row justify-between items-center gap-4">
           <div>
-            <div class="font-mono text-[11px] text-secondary">Locked Bundle Price:</div>
-            <div class="flex items-baseline gap-1.5">
-              <span id="customizer-bundle-price" class="font-headline text-2xl text-primary font-bold">€139.95</span>
-              <span id="customizer-bundle-gbp" class="font-mono text-xs text-neutral-300">/ £119.50</span>
-              <span id="customizer-bundle-savings" class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/40 px-1.5 py-0.5 rounded font-bold">SAVE €25</span>
+            <div class="flex items-center gap-2 mb-0.5">
+              <span class="font-mono text-[11px] text-secondary">Configured Kit Price:</span>
+              <span class="font-mono text-[10px] text-neutral-400">RRP: <span id="customizer-bundle-retail" class="line-through text-neutral-400">€140.89</span></span>
+            </div>
+            <div class="flex items-baseline gap-2 flex-wrap">
+              <span id="customizer-bundle-price" class="font-headline text-2xl text-primary font-bold">€129.95</span>
+              <span id="customizer-bundle-gbp" class="font-mono text-xs text-neutral-300">/ £109.95</span>
+              <span id="customizer-bundle-savings" class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/40 px-2 py-0.5 rounded font-bold">SAVE €10.94</span>
             </div>
           </div>
-          <button id="btn-add-custom-bundle-to-cart" onclick="window.submitCustomizedBundleToCart &amp;&amp; window.submitCustomizedBundleToCart()" class="mech-btn-candy !py-3 !px-6 text-xs font-extrabold flex items-center justify-center gap-2 cursor-pointer rounded shadow-lg">
+          <button id="btn-add-custom-bundle-to-cart" onclick="window.submitCustomizedBundleToCart && window.submitCustomizedBundleToCart()" class="mech-btn-candy !py-3 !px-6 text-xs font-extrabold flex items-center justify-center gap-2 cursor-pointer rounded shadow-lg">
             <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
-            <span>ADD CUSTOM BUNDLE TO CART</span>
+            <span id="btn-custom-bundle-label">ADD CUSTOM KIT TO CART</span>
           </button>
         </div>
       </div>
@@ -4248,14 +4914,14 @@
   <!-- ========================================================================= -->
   <!-- ADMIN AUTHENTICATION PIN MODAL -->
   <!-- ========================================================================= -->
-  <div id="modal-admin-auth" class="modal-overlay">
+  <div id="modal-admin-auth" class="modal-overlay" style="z-index: 10005;">
     <div class="modal-box !max-w-[420px]">
       <div class="bg-surface-container-high p-4 border-b-2 border-secondary flex justify-between items-center">
         <div class="flex items-center gap-2">
           <span class="material-symbols-outlined text-amber-400 text-[20px]">shield</span>
           <span class="font-headline text-sm uppercase text-white font-bold tracking-wider">Admin Security Verification</span>
         </div>
-        <button id="btn-admin-auth-close" class="text-secondary hover:text-primary transition-colors cursor-pointer">
+        <button id="btn-admin-auth-close" class="text-secondary hover:text-primary transition-colors cursor-pointer" title="Close Verification Dialog">
           <span class="material-symbols-outlined text-xl">close</span>
         </button>
       </div>
@@ -4268,18 +4934,94 @@
         <h4 class="font-headline text-base uppercase text-white mb-1">Enter Master Access PIN</h4>
         <p class="font-mono text-[11px] text-secondary text-center mb-4">Authorized Coast Airbrush staff and operators only.</p>
 
-        <div class="w-full mb-4">
-          <input type="password" id="input-admin-pin" placeholder="Enter PIN..." class="mech-input w-full text-center text-lg font-mono tracking-widest font-bold !py-2 focus:border-amber-400">
-          <div id="admin-pin-error" class="text-rose-400 font-mono text-[11px] mt-1 text-center hidden"></div>
+        <div class="w-full mb-3">
+          <div class="relative w-full">
+            <input type="password" id="input-admin-pin" placeholder="Enter PIN..." class="mech-input w-full text-center text-lg font-mono tracking-widest font-bold !py-2 !pr-10 focus:border-amber-400" autocomplete="current-password">
+            <button type="button" id="btn-admin-auth-toggle-visibility" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary hover:text-amber-400 p-1 cursor-pointer transition-colors" title="Toggle PIN Visibility">
+              <span id="icon-admin-pin-visibility" class="material-symbols-outlined text-[18px]">visibility</span>
+            </button>
+          </div>
+          <div id="admin-pin-error" class="text-rose-400 font-mono text-[11px] mt-1.5 text-center hidden font-bold"></div>
+
+          <div class="flex items-center justify-between w-full mt-2 px-1 text-[11px] font-mono text-neutral-400">
+            <span>Default PIN: <strong class="text-amber-300">COAST2026</strong></span>
+            <button type="button" id="btn-admin-auth-fill-default" class="text-amber-400 hover:text-white underline cursor-pointer">Quick Fill PIN</button>
+          </div>
         </div>
 
-        <button id="btn-admin-auth-submit" class="mech-button-primary !w-full !py-2.5 text-xs font-mono font-bold tracking-wider flex items-center justify-center gap-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+        <button id="btn-admin-auth-submit" class="mech-button-primary !w-full !py-2.5 text-xs font-mono font-bold tracking-wider flex items-center justify-center gap-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] cursor-pointer mt-1">
           <span class="material-symbols-outlined text-[16px]">key</span>
           <span>UNLOCK CONSOLE</span>
         </button>
+
+        <p class="text-[10px] font-mono text-neutral-500 mt-3 text-center">
+          Tip: Press <kbd class="px-1 py-0.5 bg-neutral-800 border border-neutral-700 text-neutral-300 rounded text-[9px]">Ctrl+Shift+A</kbd> anytime
+        </p>
       </div>
     </div>
   </div>
+
+  <!-- ========================================================================= -->
+  <!-- ADMIN DEPARTMENT & CATEGORY EDIT MODAL -->
+  <!-- ========================================================================= -->
+  <div id="modal-admin-department-edit" class="modal-overlay">
+    <div class="modal-box !max-w-[600px]">
+      <div class="bg-surface-container-high p-4 border-b-2 border-secondary flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[20px]">category</span>
+          <span id="modal-department-edit-title" class="font-headline text-sm uppercase text-white font-bold tracking-wider">Create / Edit Department</span>
+        </div>
+        <button id="btn-admin-department-edit-close" class="text-secondary hover:text-primary transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <div class="p-6 bg-surface max-h-[75vh] overflow-y-auto space-y-4 font-mono text-xs">
+        <input type="hidden" id="form-department-id">
+        <div>
+          <label class="block text-secondary uppercase font-bold mb-1">Department Name:</label>
+          <input type="text" id="form-department-name" class="mech-input w-full" placeholder="e.g. Airbrushing &amp; Custom Art">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-secondary uppercase font-bold mb-1">Material Icon Name:</label>
+            <div class="flex items-center gap-2">
+              <input type="text" id="form-department-icon" class="mech-input flex-1" placeholder="e.g. brush, palette, handyman" value="category">
+              <div id="form-department-icon-preview" class="w-9 h-9 rounded bg-surface-container border border-secondary flex items-center justify-center text-primary">
+                <span id="form-department-icon-preview-glyph" class="material-symbols-outlined text-xl">category</span>
+              </div>
+            </div>
+            <span class="text-[10px] text-secondary mt-0.5 block">Google Material Symbols icon name</span>
+          </div>
+          <div>
+            <label class="block text-secondary uppercase font-bold mb-1">Slug / Identifier:</label>
+            <input type="text" id="form-department-slug" class="mech-input w-full bg-surface-container text-secondary" placeholder="Auto-generated" readonly>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-secondary uppercase font-bold mb-1">Description:</label>
+          <textarea id="form-department-description" rows="2" class="mech-input w-full" placeholder="Brief summary of products in this department..."></textarea>
+        </div>
+
+        <div>
+          <label class="block text-secondary uppercase font-bold mb-1">Initial Categories (Comma-separated):</label>
+          <input type="text" id="form-department-categories" class="mech-input w-full" placeholder="e.g. Airbrushes, Compressors, Parts &amp; Needles">
+          <span class="text-[10px] text-secondary mt-0.5 block">You can also manage individual category tags directly on the department card.</span>
+        </div>
+
+        <div class="pt-4 border-t border-secondary/40 flex justify-end gap-3">
+          <button type="button" id="btn-admin-cancel-department" class="border border-secondary px-4 py-2 text-secondary hover:text-white">Cancel</button>
+          <button type="button" id="btn-admin-save-department-submit" class="mech-button-primary !py-2 !px-5">Save Department</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Taxonomy Datalists for Autocomplete -->
+  <datalist id="datalist-departments"></datalist>
+  <datalist id="datalist-categories"></datalist>
 
   <!-- ========================================================================= -->
   <!-- ADMIN FORMULA EDIT / ADD MODAL -->
@@ -4398,7 +5140,7 @@
           </div>
           <div>
             <label class="block text-secondary uppercase font-bold mb-1">Department:</label>
-            <input type="text" id="form-product-department" class="mech-input w-full" placeholder="e.g. Automotive & Custom Paint">
+            <input type="text" id="form-product-department" list="datalist-departments" class="mech-input w-full" placeholder="e.g. Automotive & Custom Paint">
           </div>
         </div>
 
@@ -4409,7 +5151,7 @@
           </div>
           <div>
             <label class="block text-secondary uppercase font-bold mb-1">Category:</label>
-            <input type="text" id="form-product-category" class="mech-input w-full" placeholder="e.g. Mirror Chrome Systems">
+            <input type="text" id="form-product-category" list="datalist-categories" class="mech-input w-full" placeholder="e.g. Mirror Chrome Systems">
           </div>
           <div>
             <label class="block text-secondary uppercase font-bold mb-1">Price (&euro; EUR):</label>
@@ -4545,6 +5287,237 @@
       </div>
     </div>
   </div>
+
+  <!-- ========================================================================= -->
+  <!-- HERO AI AUTOMOTIVE COPYWRITER MODAL -->
+  <!-- ========================================================================= -->
+  <div id="modal-admin-hero-ai-copy" class="modal-overlay">
+    <div class="modal-box !max-w-[840px]">
+      <div class="bg-surface-container-high p-4 border-b-2 border-primary flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[22px]">auto_awesome</span>
+          <div>
+            <h3 class="font-headline text-sm uppercase text-white font-bold tracking-wider">AI Automotive Copywriter Studio</h3>
+            <span class="font-mono text-[10px] text-primary/80">Tailored Automotive Personas • Instant European Compliance &amp; Hook Generation</span>
+          </div>
+        </div>
+        <button id="btn-admin-hero-ai-copy-close" type="button" class="text-secondary hover:text-primary transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <div class="p-6 bg-surface max-h-[78vh] overflow-y-auto space-y-6 font-mono text-xs">
+        <!-- Persona & Direction Generator Controls -->
+        <div class="industrial-card p-4 bg-surface-container border border-secondary/40 rounded space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block mb-1">Target Persona &amp; Tone</label>
+              <select id="select-hero-ai-tone" class="mech-select w-full !text-xs font-mono">
+                <option value="kustom_kulture">⚡ Kustom Kulture &amp; Airbrush Mastery (Aggressive / Artisan)</option>
+                <option value="master_refinisher" selected>💎 Master Bodyshop &amp; OEM Refinishing (High Gloss / Specular)</option>
+                <option value="trade_logistics">📦 B2B Trade &amp; European Distribution (UK Hub / 0% VAT / Fast Ship)</option>
+                <option value="vip_launch">👑 VIP Product Launch &amp; Chrome Edge (Prestige / Pre-Order Allocations)</option>
+              </select>
+            </div>
+            <div>
+              <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block mb-1">Special Directives / Keyword Focus (Optional)</label>
+              <input type="text" id="input-hero-ai-custom-prompt" class="mech-input w-full !text-xs font-mono" placeholder="e.g. Highlight Flake King guns and mirror finish">
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center pt-2">
+            <span class="text-[11px] text-neutral-400">Generates complete paired headlines, value propositions, authority pills, and B2B callouts.</span>
+            <button type="button" id="btn-hero-ai-generate-proposals" class="mech-button-primary !py-2 !px-4 text-xs font-mono font-bold flex items-center gap-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] cursor-pointer">
+              <span class="material-symbols-outlined text-[16px]">refresh</span> GENERATE COPY SUITES
+            </button>
+          </div>
+        </div>
+
+        <!-- Proposals List -->
+        <div class="space-y-4">
+          <h4 class="font-headline text-xs uppercase text-secondary font-bold tracking-wider flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px] text-primary">format_quote</span>
+            Generated Copy Proposals
+          </h4>
+
+          <div id="hero-ai-proposals-container" class="space-y-4">
+            <!-- Dynamically rendered proposal cards -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- HERO AI SPECULAR FINISH & OPTICAL ENHANCER MODAL -->
+  <!-- ========================================================================= -->
+  <div id="modal-admin-hero-ai-enhancer" class="modal-overlay">
+    <div class="modal-box !max-w-[1020px]">
+      <div class="bg-surface-container-high p-4 border-b-2 border-primary flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[22px]">tune</span>
+          <div>
+            <h3 class="font-headline text-sm uppercase text-white font-bold tracking-wider">AI Specular Finish &amp; Optical Enhancer</h3>
+            <span class="font-mono text-[10px] text-emerald-400">Canvas Neural Finish Engine • Chrome Reflection &amp; Flake Pop Calibration</span>
+          </div>
+        </div>
+        <button id="btn-admin-hero-ai-enhancer-close" type="button" class="text-secondary hover:text-primary transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <div class="p-6 bg-surface max-h-[82vh] overflow-y-auto space-y-6 font-mono text-xs">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <!-- Left 7 Cols: Interactive Canvas Preview Stage -->
+          <div class="lg:col-span-7 flex flex-col gap-3">
+            <div class="flex justify-between items-center text-[11px]">
+              <span class="text-secondary uppercase font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-[15px] text-primary">visibility</span>
+                Live Finish Stage
+              </span>
+              <div class="flex items-center gap-1 bg-surface-dim p-1 rounded border border-white/10">
+                <button type="button" id="btn-enhance-view-split" class="px-2 py-0.5 rounded text-[10px] font-mono bg-primary text-white font-bold">Side-by-Side</button>
+                <button type="button" id="btn-enhance-view-enhanced" class="px-2 py-0.5 rounded text-[10px] font-mono text-secondary hover:text-white">Enhanced Only</button>
+                <button type="button" id="btn-enhance-view-original" class="px-2 py-0.5 rounded text-[10px] font-mono text-secondary hover:text-white">Original Only</button>
+              </div>
+            </div>
+
+            <!-- Visual Stage Container -->
+            <div id="enhance-stage-container" class="w-full h-80 sm:h-96 bg-black border-2 border-white/15 rounded relative overflow-hidden flex items-center justify-center shadow-inner">
+              <div id="enhance-view-split-wrapper" class="w-full h-full flex">
+                <!-- Original Half -->
+                <div id="enhance-half-original" class="w-1/2 h-full border-r border-primary/50 relative overflow-hidden flex items-center justify-center bg-black/90">
+                  <canvas id="canvas-hero-original-preview" class="max-w-full max-h-full object-contain"></canvas>
+                  <span class="absolute top-2 left-2 bg-black/80 px-1.5 py-0.5 rounded text-[9px] font-mono text-neutral-400 border border-white/10">ORIGINAL</span>
+                </div>
+                <!-- Enhanced Half -->
+                <div id="enhance-half-enhanced" class="w-1/2 h-full relative overflow-hidden flex items-center justify-center bg-black/90">
+                  <canvas id="canvas-hero-enhance-preview" class="max-w-full max-h-full object-contain"></canvas>
+                  <span class="absolute top-2 right-2 bg-primary/90 text-white px-1.5 py-0.5 rounded text-[9px] font-mono font-bold border border-primary/40 shadow-sm">AI ENHANCED</span>
+                </div>
+              </div>
+              <div id="enhance-loading-overlay" class="absolute inset-0 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center gap-2 hidden">
+                <span class="material-symbols-outlined text-primary text-3xl animate-spin">refresh</span>
+                <span class="font-mono text-xs text-white">Rendering Optical Finish...</span>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center text-[10px] text-neutral-400 pt-1">
+              <span id="enhance-resolution-badge">Dimensions: 1920 × 1080 • Canvas RGBA</span>
+              <span class="text-emerald-400 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Hardware Accelerated
+              </span>
+            </div>
+          </div>
+
+          <!-- Right 5 Cols: Presets & Optical Tuning Sliders -->
+          <div class="lg:col-span-5 flex flex-col gap-4">
+            
+            <!-- Finish Profile Presets -->
+            <div class="industrial-card p-4 bg-surface-container border border-secondary/40 rounded space-y-2.5">
+              <label class="font-label-xs text-[10px] uppercase text-primary font-bold block flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">bolt</span>
+                Neural Finish Presets
+              </label>
+              <div class="grid grid-cols-1 gap-1.5">
+                <button type="button" onclick="window.applyAiFinishPreset('chrome_specular')" class="p-2 rounded bg-surface-dim hover:bg-surface-container-high border border-secondary/30 hover:border-primary text-left transition-all flex items-center justify-between cursor-pointer group">
+                  <span class="font-bold text-white group-hover:text-primary">🪞 Chrome Specular Ultra-Boost</span>
+                  <span class="text-[9px] text-neutral-400">Zero Haze Peak</span>
+                </button>
+                <button type="button" onclick="window.applyAiFinishPreset('kroma_prism')" class="p-2 rounded bg-surface-dim hover:bg-surface-container-high border border-secondary/30 hover:border-primary text-left transition-all flex items-center justify-between cursor-pointer group">
+                  <span class="font-bold text-white group-hover:text-primary">🌈 Holographic Kroma Prism</span>
+                  <span class="text-[9px] text-neutral-400">Prism Dispersion</span>
+                </button>
+                <button type="button" onclick="window.applyAiFinishPreset('candy_flake')" class="p-2 rounded bg-surface-dim hover:bg-surface-container-high border border-secondary/30 hover:border-primary text-left transition-all flex items-center justify-between cursor-pointer group">
+                  <span class="font-bold text-white group-hover:text-primary">🔥 Deep Candy &amp; Flake Pop</span>
+                  <span class="text-[9px] text-neutral-400">Vibrant Sparkle</span>
+                </button>
+                <button type="button" onclick="window.applyAiFinishPreset('wet_clearcoat')" class="p-2 rounded bg-surface-dim hover:bg-surface-container-high border border-secondary/30 hover:border-primary text-left transition-all flex items-center justify-between cursor-pointer group">
+                  <span class="font-bold text-white group-hover:text-primary">💎 2K Wet Clearcoat Glass</span>
+                  <span class="text-[9px] text-neutral-400">Liquid Gloss</span>
+                </button>
+                <button type="button" onclick="window.applyAiFinishPreset('garage_contrast')" class="p-2 rounded bg-surface-dim hover:bg-surface-container-high border border-secondary/30 hover:border-primary text-left transition-all flex items-center justify-between cursor-pointer group">
+                  <span class="font-bold text-white group-hover:text-primary">🏁 Brutal Garage Contrast</span>
+                  <span class="text-[9px] text-neutral-400">Metallic Punch</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Neural Tuning Sliders -->
+            <div class="industrial-card p-4 bg-surface-container border border-secondary/40 rounded space-y-3">
+              <div class="flex justify-between items-center">
+                <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block">Optical Parameter Sliders</label>
+                <button type="button" onclick="window.applyAiFinishPreset('reset')" class="text-[10px] font-mono text-neutral-400 hover:text-white cursor-pointer">Reset</button>
+              </div>
+
+              <!-- Slider 1: Specular Peak Gain -->
+              <div class="space-y-1">
+                <div class="flex justify-between text-[10px]">
+                  <span class="text-white">Specular Peak Gain</span>
+                  <span id="label-val-specular" class="text-primary font-bold">40%</span>
+                </div>
+                <input type="range" id="slider-finish-specular" min="0" max="100" value="40" class="w-full accent-primary h-1.5 bg-neutral-700 rounded-lg appearance-none cursor-pointer">
+              </div>
+
+              <!-- Slider 2: Chrome Platelet Contrast -->
+              <div class="space-y-1">
+                <div class="flex justify-between text-[10px]">
+                  <span class="text-white">Chrome Micro-Contrast</span>
+                  <span id="label-val-contrast" class="text-primary font-bold">30%</span>
+                </div>
+                <input type="range" id="slider-finish-contrast" min="0" max="100" value="30" class="w-full accent-primary h-1.5 bg-neutral-700 rounded-lg appearance-none cursor-pointer">
+              </div>
+
+              <!-- Slider 3: Flake & Candy Chroma -->
+              <div class="space-y-1">
+                <div class="flex justify-between text-[10px]">
+                  <span class="text-white">Flake &amp; Candy Chroma</span>
+                  <span id="label-val-chroma" class="text-primary font-bold">35%</span>
+                </div>
+                <input type="range" id="slider-finish-chroma" min="0" max="100" value="35" class="w-full accent-primary h-1.5 bg-neutral-700 rounded-lg appearance-none cursor-pointer">
+              </div>
+
+              <!-- Slider 4: Edge Sharpness -->
+              <div class="space-y-1">
+                <div class="flex justify-between text-[10px]">
+                  <span class="text-white">Optical Edge Sharpness</span>
+                  <span id="label-val-sharpness" class="text-primary font-bold">25%</span>
+                </div>
+                <input type="range" id="slider-finish-sharpness" min="0" max="100" value="25" class="w-full accent-primary h-1.5 bg-neutral-700 rounded-lg appearance-none cursor-pointer">
+              </div>
+
+              <!-- Slider 5: Wet Clearcoat Bloom -->
+              <div class="space-y-1">
+                <div class="flex justify-between text-[10px]">
+                  <span class="text-white">Wet Clearcoat Bloom</span>
+                  <span id="label-val-bloom" class="text-primary font-bold">20%</span>
+                </div>
+                <input type="range" id="slider-finish-bloom" min="0" max="100" value="20" class="w-full accent-primary h-1.5 bg-neutral-700 rounded-lg appearance-none cursor-pointer">
+              </div>
+            </div>
+
+            <!-- Footer Action Buttons -->
+            <div class="pt-2 flex gap-2">
+              <button type="button" id="btn-hero-enhance-cancel" class="flex-1 font-mono text-xs border border-secondary px-3 py-2 text-secondary hover:text-white rounded transition-colors text-center cursor-pointer">
+                Cancel
+              </button>
+              <button type="button" id="btn-hero-enhance-save" class="flex-2 mech-button-primary !py-2 !px-4 text-xs font-mono font-bold flex items-center justify-center gap-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] cursor-pointer">
+                <span class="material-symbols-outlined text-[16px]">check_circle</span> APPLY TO SLIDE
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden Working Canvas for Processing -->
+  <canvas id="canvas-hero-processing" class="hidden"></canvas>
+  <canvas id="canvas-hero-original" class="hidden"></canvas>
 
   <!-- ========================================================================= -->
   <!-- PRODUCT DETAIL MODAL (STITCH AUTHENTIC + REVIEWS + SDS/TDS COMPLIANCE) -->
@@ -5042,7 +6015,8 @@
           <select id="select-mobile-category-filter" class="hidden">
             <option value="all">All Product Categories (136 Products)</option>
             <option value="Dry Metal Flake (Glitter)">Dry Metal Flakes &amp; Glitters</option>
-            <option value="Dry Metal Flake Guns">Flake Guns &amp; Applicators</option>
+            <option value="Dry Metal Flake Guns">Flake Guns &amp; Kits</option>
+            <option value="Flake King Gun Accessories">Flake Gun Accessories &amp; Jars</option>
             <option value="Solvent Paints">Solvent Paints &amp; Chrome Systems</option>
             <option value="Airbrushes &amp; Spray Guns">Airbrushes &amp; Spray Guns</option>
             <option value="Helmet Jigs">Helmet &amp; Mask Jigs</option>
@@ -5108,7 +6082,7 @@
           <span class="material-symbols-outlined text-primary text-2xl">shopping_bag</span>
           <div>
             <h3 class="font-headline text-xl text-primary uppercase">PROJECT CART &amp; BOM</h3>
-            <span id="cart-drawer-hub-badge" class="font-mono text-[10px] text-emerald-400 font-bold block">🇬🇧 Dispatched from UK • Direct Japan / USA Container Options</span>
+            <span id="cart-drawer-hub-badge" class="font-mono text-[10px] text-emerald-400 font-bold block">🇬🇧 UK Dispatch • 🇪🇺 Delivered Duty Paid (Zero Courier Surcharges)</span>
           </div>
         </div>
         <button id="btn-close-cart-drawer" class="text-secondary hover:text-primary transition-colors cursor-pointer">
@@ -5130,7 +6104,7 @@
         </div>
       </div>
 
-      <div id="cart-drawer-items" class="p-6 flex-grow overflow-y-auto flex flex-col gap-4">
+      <div id="cart-drawer-items" class="p-4 sm:p-5 flex-1 min-h-[160px] overflow-y-auto custom-scrollbar flex flex-col gap-3">
         <!-- Cart Items -->
       </div>
 
@@ -5330,7 +6304,7 @@
       <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="#">Shipping Info</a>
       <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="#">Authorized Dealers</a>
       <a class="text-secondary/50 hover:text-amber-400 transition-colors flex items-center gap-1 font-mono text-[10px] lowercase" href="crm.html"><span class="material-symbols-outlined text-[13px]">lock</span> staff crm &amp; dispatch</a>
-      <button onclick="window.openAdminLogin &amp;&amp; window.openAdminLogin()" class="text-secondary/70 hover:text-amber-400 transition-colors flex items-center gap-1 font-mono text-[11px] uppercase cursor-pointer" title="Coast Airbrush Europe Operator Admin Access"><span class="material-symbols-outlined text-[14px]">admin_panel_settings</span> admin access</button>
+      <button onclick="window.openAdminLogin &amp;&amp; window.openAdminLogin()" class="text-secondary/70 hover:text-amber-400 transition-colors flex items-center gap-1 font-mono text-[11px] uppercase cursor-pointer" title="Coast Airbrush Europe Operator Admin Access (PIN: COAST2026)"><span class="material-symbols-outlined text-[14px]">admin_panel_settings</span> admin access</button>
     </div>
     <div class="font-bold">© 2026 COAST AIRBRUSH. KUSTOM KULTURE REFINED.</div>
   </footer>
@@ -5898,8 +6872,8 @@
   <!-- ========================================================================= -->
   <!-- STAKEHOLDER REVIEW & PRE-LAUNCH STAGING MODAL -->
   <!-- ========================================================================= -->
-  <div id="modal-review-mode" class="fixed inset-0 bg-black/85 backdrop-blur-md z-[9999] hidden flex items-center justify-center p-4">
-    <div class="industrial-card max-w-xl w-full p-6 bg-[#161819] border-2 border-amber-500/70 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] text-neutral-200">
+  <div id="modal-review-mode" class="fixed inset-0 bg-black/85 backdrop-blur-md z-[9999] hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="review-modal-box max-w-xl w-full p-6 bg-[#161819] border-2 border-amber-500/70 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] text-neutral-200 max-h-[92vh] overflow-y-auto custom-scrollbar my-auto">
       <div class="flex items-start justify-between gap-4 border-b border-white/10 pb-4 mb-4">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded bg-amber-500/20 border border-amber-500 flex items-center justify-center text-amber-400">

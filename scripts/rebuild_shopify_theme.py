@@ -5,6 +5,7 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 THEME_ZIP = os.path.join(ROOT_DIR, "coast-airbrush-eu-shopify-theme.zip")
 
 MODULE_FILES = [
+    "data/hero_config.js",
     "data/kroma_edge.js",
     "data/full_ecom_catalog.js",
     "data/flake_king_tds.js",

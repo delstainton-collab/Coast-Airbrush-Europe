@@ -631,10 +631,11 @@
         <img src="assets/images/coast_logo_white.png" alt="Coast Airbrush Europe" class="h-6 w-auto">
         <span>© 2026 Coast Airbrush Europe. All Rights Reserved.</span>
       </div>
-      <div class="flex gap-4">
+      <div class="flex gap-4 items-center">
         <a href="index.html" class="hover:text-primary transition-colors">Storefront</a>
         <a href="about.html" class="hover:text-primary transition-colors">About</a>
         <a href="crm.html" class="hover:text-primary transition-colors text-amber-400">CRM Command</a>
+        <a href="index.html?tab=admin" class="hover:text-amber-400 transition-colors text-amber-300 font-bold">Admin Console</a>
       </div>
     </div>
   </footer>
@@ -663,11 +664,11 @@
             ⚡ 1-Click Demo Accounts:
           </span>
           <div class="grid grid-cols-2 gap-2">
-            <button type="button" onclick="prefillLogin(sarah.j@apexpaint.co.uk, ApexCustom2026!)" class="text-left bg-surface/90 hover:bg-surface-container border border-secondary/40 p-2 rounded cursor-pointer">
+            <button type="button" onclick="prefillLogin('sarah.j@apexpaint.co.uk', 'ApexCustom2026!')" class="text-left bg-surface/90 hover:bg-surface-container border border-secondary/40 p-2 rounded cursor-pointer">
               <div class="font-bold text-white text-[11px]">Apex Custom</div>
               <div class="font-mono text-[9px] text-neutral-400">Tier 2 Dealer</div>
             </button>
-            <button type="button" onclick="prefillLogin(distributor@mipa-nordic.eu, Distributor2026!)" class="text-left bg-surface/90 hover:bg-surface-container border border-secondary/40 p-2 rounded cursor-pointer">
+            <button type="button" onclick="prefillLogin('distributor@mipa-nordic.eu', 'Distributor2026!')" class="text-left bg-surface/90 hover:bg-surface-container border border-secondary/40 p-2 rounded cursor-pointer">
               <div class="font-bold text-white text-[11px]">Mipa Nordic</div>
               <div class="font-mono text-[9px] text-neutral-400">Tier 1 Distributor</div>
             </button>

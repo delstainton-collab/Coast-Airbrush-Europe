@@ -26,3 +26,15 @@ yarn-error.log*
 .temp
 .tmp
 *.dmg
+
+# Environment & Secrets
+.env
+*.env
+data/*_secure.json
+
+# Large Video Files (>100MB exceeds GitHub push limit)
+*.mp4
+*.webm
+*.mov
+!assets/videos/CAMPAIGN_GUIDE.md
+

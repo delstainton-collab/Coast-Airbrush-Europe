@@ -7,7 +7,7 @@
 (function(window) {
   'use strict';
 
-  const STORAGE_KEY = 'coast_store_bundles_v1';
+  const STORAGE_KEY = 'coast_store_bundles_v2';
 
   const DEFAULT_BUNDLES = [
     {
@@ -16,12 +16,12 @@
       badge: '🔥 COMPLETE IN-STOCK BUNDLE',
       tagline: 'Physical UK Inventory • Dispatched APC Overnight',
       description: 'Everything needed to shoot dry metal flake with zero clear coat contamination. Saves 50% material waste with professional micro-edge tape lines.',
-      priceGbp: 119.50,
-      priceEur: 139.95,
-      retailValueGbp: 142.43,
-      retailValueEur: 165.90,
-      savingsGbp: 22.93,
-      savingsEur: 25.95,
+      priceGbp: 109.95,
+      priceEur: 129.95,
+      retailValueGbp: 120.43,
+      retailValueEur: 140.89,
+      savingsGbp: 10.48,
+      savingsEur: 10.94,
       image: 'https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/ProSeriesKit2.jpg?fit=600%2C600&ssl=1',
       items: [
         {
@@ -31,20 +31,20 @@
           name: 'Flake King 550 Mini Dry Metal Flake Gun',
           variant: 'Standard Airbrush Fitting',
           qty: 1,
-          priceGbp: 99.99,
-          priceEur: 116.99,
+          priceGbp: 95.99,
+          priceEur: 112.95,
           category: 'Dry Metal Flake Guns',
           allowCustomerSwap: false
         },
         {
           id: 'slot-2',
-          productId: 'fk-2603',
+          productId: 'fk-2524',
           sku: 'FK-FLAKE-HOLO-SILVER',
           name: '0.015 Kromatic Silver Holo (Gun-Mount Jar)',
           variant: '30g Jar (Direct Gun Mount)',
           qty: 1,
-          priceGbp: 14.49,
-          priceEur: 16.95,
+          priceGbp: 9.01,
+          priceEur: 10.95,
           category: 'Dry Metal Flake (Glitter)',
           allowCustomerSwap: true
         },
@@ -55,8 +55,8 @@
           name: 'Orange Fine Line Masking Tape',
           variant: '3mm Precision Width x 55m',
           qty: 1,
-          priceGbp: 5.95,
-          priceEur: 6.95,
+          priceGbp: 4.95,
+          priceEur: 6.05,
           category: 'Masking Products',
           allowCustomerSwap: true
         }

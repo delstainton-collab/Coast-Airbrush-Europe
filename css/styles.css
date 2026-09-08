@@ -119,6 +119,36 @@ body {
   transform: translateY(-2px);
 }
 
+/* Official Review Modal Box - GPU-safe, no hover transform jitter or backdrop-filter drop */
+.review-modal-box {
+  position: relative;
+  border-radius: 4px;
+  isolation: isolate;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.review-modal-box:hover {
+  transform: none !important;
+}
+
+/* Cart Drawer Item - Stable layout without transform jitter or red alert border */
+.cart-drawer-item {
+  background: #181a1b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  position: relative;
+  isolation: isolate;
+  transform: translate3d(0, 0, 0);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.cart-drawer-item:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: #202325;
+  transform: none !important;
+}
+
 .product-studio-stage {
   background: radial-gradient(ellipse at 50% 40%, #26292c 0%, #101213 85%) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;

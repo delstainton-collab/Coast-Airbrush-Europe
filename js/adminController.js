@@ -1,6 +1,47 @@
 // Coast Airbrush Europe - Master Admin Controller & Add-On Management Suite
 import { KROMA_EDGE_CATALOG } from '../data/kroma_edge.js';
 import { PREORDER_PACKAGES } from './forumPreorderEngine.js';
+import { DEFAULT_HERO_CONFIG } from '../data/hero_config.js';
+
+export const DEFAULT_TAXONOMY_CONFIG = {
+  departments: [
+    {
+      id: "dept-auto-paint",
+      name: "Automotive & Custom Paint",
+      icon: "format_paint",
+      description: "Solvent paints, mirror chrome, basecoats, reducers and clears",
+      categories: ["Mirror Chrome Systems", "Solvent Paints", "Dedicated Clearcoats", "Basecoats", "Reducers & Thinners"]
+    },
+    {
+      id: "dept-special-effects",
+      name: "Special Effects & Flakes",
+      icon: "auto_awesome",
+      description: "Dry metal flakes, holographic flakes, pearls, and kromatic pigments",
+      categories: ["Dry Metal Flake (Glitter)", "Kromatic Flakes", "Iridescent Flakes", "Special Effects"]
+    },
+    {
+      id: "dept-equipment",
+      name: "Equipment & Hardware",
+      icon: "precision_manufacturing",
+      description: "Flake King guns, airbrushes, jigs, stands, and spray equipment",
+      categories: ["Dry Metal Flake Guns", "Flake King Gun Accessories", "Workstations & Jigs", "Helmet Jigs", "Motorcycle Part Jigs", "Stands"]
+    },
+    {
+      id: "dept-consumables",
+      name: "Consumables & Prep",
+      icon: "content_cut",
+      description: "Fine line masking tapes, surface prep, tack cloths, and cleaners",
+      categories: ["Masking Products", "Wet Products", "Surface Cleaners", "Abrasives"]
+    },
+    {
+      id: "dept-studio",
+      name: "Studio & Merchandise",
+      icon: "palette",
+      description: "Apparel, swag, studio tools, and instructional materials",
+      categories: ["Apparel & Merch", "Studio Accessories", "Reference Guides"]
+    }
+  ]
+};
 
 const STORAGE_KEY = 'coast_admin_config_v1';
 const DEFAULT_PIN = 'COAST2026';
@@ -9,6 +50,11 @@ export class AdminController {
   constructor(appRef) {
     this.app = appRef;
     this.isAuthenticated = false;
+    try {
+      if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('coast_admin_authenticated') === 'true') {
+        this.isAuthenticated = true;
+      }
+    } catch (e) {}
     this.activeSubTab = 'formulas';
     this.config = this.loadConfig();
   }
@@ -18,8 +64,20 @@ export class AdminController {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
+        if (!parsed.auth || typeof parsed.auth !== 'object') {
+          parsed.auth = { pin: DEFAULT_PIN, lastLogin: null };
+        }
+        if (!parsed.auth.pin || typeof parsed.auth.pin !== 'string' || !parsed.auth.pin.trim()) {
+          parsed.auth.pin = DEFAULT_PIN;
+        }
         if (!parsed.deletedProductIds) {
           parsed.deletedProductIds = [];
+        }
+        if (!parsed.hero) {
+          parsed.hero = JSON.parse(JSON.stringify(DEFAULT_HERO_CONFIG));
+        }
+        if (!parsed.taxonomy || !parsed.taxonomy.departments || !Array.isArray(parsed.taxonomy.departments)) {
+          parsed.taxonomy = JSON.parse(JSON.stringify(DEFAULT_TAXONOMY_CONFIG));
         }
         return parsed;
       } catch (e) {
@@ -34,6 +92,7 @@ export class AdminController {
       },
       productOverrides: {},
       deletedProductIds: [],
+      taxonomy: JSON.parse(JSON.stringify(DEFAULT_TAXONOMY_CONFIG)),
       customProductFields: [
         { key: "specificGravity", label: "Specific Gravity (g/mL)", type: "number", default: 1.0 },
         { key: "recommendedNozzle", label: "Recommended Nozzle (mm)", type: "text", default: "0.3mm - 0.5mm" },
@@ -43,6 +102,7 @@ export class AdminController {
       ],
       formulas: JSON.parse(JSON.stringify(KROMA_EDGE_CATALOG.mixingSystems)),
       preorders: JSON.parse(JSON.stringify(PREORDER_PACKAGES)),
+      hero: JSON.parse(JSON.stringify(DEFAULT_HERO_CONFIG)),
       printer: {
         model: 'Standard Inkjet Printer (A4 Combined Shipping Sheet)',
         dpi: 300,
@@ -189,14 +249,28 @@ export class AdminController {
 
   saveConfig() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(this.config));
-    if (this.app) {
+    if (this.app && typeof this.app.onAdminConfigUpdated === 'function') {
       this.app.onAdminConfigUpdated(this.config);
     }
   }
 
   login(enteredPin) {
-    if (enteredPin === this.config.auth.pin) {
+    const cleanPin = (enteredPin || '').trim().toUpperCase();
+    const currentPin = ((this.config && this.config.auth && this.config.auth.pin) || DEFAULT_PIN).trim().toUpperCase();
+    const defaultPinUpper = DEFAULT_PIN.toUpperCase();
+
+    // Valid if matches configured PIN or master override PIN COAST2026
+    if (cleanPin && (cleanPin === currentPin || cleanPin === defaultPinUpper)) {
       this.isAuthenticated = true;
+      try {
+        if (typeof sessionStorage !== 'undefined') {
+          sessionStorage.setItem('coast_admin_authenticated', 'true');
+        }
+      } catch (e) {}
+
+      if (!this.config.auth) {
+        this.config.auth = { pin: DEFAULT_PIN, lastLogin: null };
+      }
       this.config.auth.lastLogin = new Date().toISOString();
       this.saveConfig();
       return { success: true };
@@ -206,18 +280,31 @@ export class AdminController {
 
   logout() {
     this.isAuthenticated = false;
+    try {
+      if (typeof sessionStorage !== 'undefined') {
+        sessionStorage.removeItem('coast_admin_authenticated');
+      }
+    } catch (e) {}
   }
 
   changePin(currentPin, newPin) {
-    if (currentPin !== this.config.auth.pin) {
+    const cleanCur = (currentPin || '').trim().toUpperCase();
+    const configuredCur = ((this.config && this.config.auth && this.config.auth.pin) || DEFAULT_PIN).trim().toUpperCase();
+    const defaultPinUpper = DEFAULT_PIN.toUpperCase();
+
+    if (cleanCur !== configuredCur && cleanCur !== defaultPinUpper) {
       return { success: false, message: "Current PIN is incorrect." };
     }
-    if (!newPin || newPin.length < 4) {
+    const cleanNew = (newPin || '').trim();
+    if (!cleanNew || cleanNew.length < 4) {
       return { success: false, message: "New PIN must be at least 4 characters." };
     }
-    this.config.auth.pin = newPin;
+    if (!this.config.auth) {
+      this.config.auth = { pin: DEFAULT_PIN, lastLogin: null };
+    }
+    this.config.auth.pin = cleanNew;
     this.saveConfig();
-    return { success: true, message: "Master PIN updated successfully!" };
+    return { success: true, message: `Master PIN updated successfully to "${cleanNew}"!` };
   }
 
   // Formula CRUD
@@ -250,6 +337,100 @@ export class AdminController {
   deletePreorderTier(tierId) {
     this.config.preorders = this.config.preorders.filter(p => p.id !== tierId);
     this.saveConfig();
+  }
+
+  // =========================================================================
+  // TAXONOMY (DEPARTMENTS & CATEGORIES) CRUD
+  // =========================================================================
+  getTaxonomy() {
+    if (!this.config.taxonomy || !Array.isArray(this.config.taxonomy.departments)) {
+      this.config.taxonomy = JSON.parse(JSON.stringify(DEFAULT_TAXONOMY_CONFIG));
+      this.saveConfig();
+    }
+    return this.config.taxonomy;
+  }
+
+  getDepartments() {
+    return this.getTaxonomy().departments;
+  }
+
+  getDepartment(deptId) {
+    return this.getDepartments().find(d => d.id === deptId || d.name.toLowerCase() === (deptId || '').toLowerCase());
+  }
+
+  saveDepartment(deptData) {
+    const tax = this.getTaxonomy();
+    if (!deptData.id) {
+      deptData.id = 'dept-' + deptData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    }
+    const idx = tax.departments.findIndex(d => d.id === deptData.id || d.name.toLowerCase() === deptData.name.toLowerCase());
+    if (idx >= 0) {
+      tax.departments[idx] = {
+        ...tax.departments[idx],
+        ...deptData,
+        categories: Array.isArray(deptData.categories) ? deptData.categories : (tax.departments[idx].categories || [])
+      };
+    } else {
+      tax.departments.push({
+        id: deptData.id,
+        name: deptData.name.trim(),
+        icon: deptData.icon || 'category',
+        description: deptData.description || '',
+        categories: Array.isArray(deptData.categories) ? deptData.categories : []
+      });
+    }
+    this.saveConfig();
+    return deptData;
+  }
+
+  deleteDepartment(deptId) {
+    const tax = this.getTaxonomy();
+    tax.departments = tax.departments.filter(d => d.id !== deptId && d.name !== deptId);
+    this.saveConfig();
+  }
+
+  addCategoryToDepartment(deptId, categoryName) {
+    const trimmed = (categoryName || '').trim();
+    if (!trimmed) return false;
+    const dept = this.getDepartment(deptId);
+    if (!dept) return false;
+    if (!dept.categories) dept.categories = [];
+    if (!dept.categories.some(c => c.toLowerCase() === trimmed.toLowerCase())) {
+      dept.categories.push(trimmed);
+      this.saveConfig();
+      return true;
+    }
+    return false;
+  }
+
+  removeCategoryFromDepartment(deptId, categoryName) {
+    const dept = this.getDepartment(deptId);
+    if (!dept || !dept.categories) return false;
+    dept.categories = dept.categories.filter(c => c.toLowerCase() !== categoryName.toLowerCase());
+    this.saveConfig();
+    return true;
+  }
+
+  getAllCategories() {
+    const depts = this.getDepartments();
+    const set = new Set();
+    depts.forEach(d => {
+      (d.categories || []).forEach(c => set.add(c));
+    });
+    return Array.from(set).sort();
+  }
+
+  // Hero & Landing Section Configurator
+  saveHeroConfig(heroData) {
+    this.config.hero = JSON.parse(JSON.stringify(heroData));
+    this.saveConfig();
+    return this.config.hero;
+  }
+
+  resetHeroConfig() {
+    this.config.hero = JSON.parse(JSON.stringify(DEFAULT_HERO_CONFIG));
+    this.saveConfig();
+    return this.config.hero;
   }
 
   // Product Fields & Catalog Overrides
@@ -464,6 +645,221 @@ export class AdminController {
       callToAction: `Order ${name} today at coastairbrush.eu or tap the cart link below!`,
       hashtags: [`#${brand.replace(/\s+/g, '')}`, "#CustomPaint", "#AirbrushArt", "#LowriderPaint", "#KromaEdge", "#KustomKulture"]
     };
+  }
+
+  // =========================================================================
+  // AI HERO & LANDING COPYWRITING SUITE
+  // =========================================================================
+  generateHeroAiCopy({ tone = 'kustom_kulture', focus = 'all', customPrompt = '' } = {}) {
+    const suites = {
+      kustom_kulture: [
+        {
+          id: 'kk-1',
+          name: 'Raw Garage Thunder',
+          headlinePrefix: 'THE OFFICIAL EUROPEAN HUB FOR',
+          headlineAccent: 'PURE KUSTOM KULTURE, CHROME & DRY FLAKE',
+          subheadline: 'Zero compromises. High-velocity Flake King guns and mirror liquid finishes shipped across Europe.',
+          description: 'Direct factory-authorized European distribution from our UK logistics center. High-pressure flake atomization, self-organizing liquid mirror chrome, next-day tracked APC Overnight & DHL Express, and genuine garage support before and after every order.',
+          pillStatus: '✦ OFFICIAL EUROPEAN MASTER HUB',
+          pillLocation: 'PLACENTIA, CA AUTHORIZED',
+          trustLine: 'UK Bonded Dispatch • Tracked APC Overnight & DHL Express • 100% REACH & VOC Certified • Zero US Customs',
+          tradeBadge: '💼 TRADE & WHOLESALE:',
+          tradeText: 'Custom Bodyshops & Builders —',
+          tradeLinkText: 'Unlock Trade Accounts & Reverse-Charge VAT'
+        },
+        {
+          id: 'kk-2',
+          name: 'Chopper & Lowrider Mastery',
+          headlinePrefix: 'UNLEASH AMERICAN KUSTOM HERITAGE ACROSS',
+          headlineAccent: 'EUROPEAN CHOPPERS, LOWRIDERS & SHOW CARS',
+          subheadline: 'Engineered for extreme metallic flake density, razor-sharp tape graphics, and liquid mirror reflection.',
+          description: 'No more waiting on ocean freight or paying exorbitant US import duties. Get California custom paint technology delivered to your booth tomorrow with tracked express fulfillment, REACH-certified solvent chemistry, and zero gray haze.',
+          pillStatus: '🔥 FACTORY AUTHORIZED EUROPE',
+          pillLocation: 'UK & NETHERLANDS LOGISTICS',
+          trustLine: 'Direct Factory Distribution • Same-Day Dispatch • Certified ADR Limited Quantity • Zero US Import Tariffs',
+          tradeBadge: '⚡ SHOP DISCOUNTS:',
+          tradeText: 'Professional Spray Painters —',
+          tradeLinkText: 'Apply for Bodyshop Volume Pricing'
+        }
+      ],
+      master_refinisher: [
+        {
+          id: 'mr-1',
+          name: 'Precision Refinisher Standards',
+          headlinePrefix: 'THE EUROPEAN MASTER HUB FOR',
+          headlineAccent: 'KROMA EDGE CHROME, FLAKE KING & VSIONAIR',
+          subheadline: 'Engineered for automotive refinishers, custom shops & airbrush artists across Europe.',
+          description: 'Direct European bonded dispatch from our UK logistics center. Zero US import customs, next-day tracked APC & DHL Express, full EU REACH & VOC regulatory compliance, and factory-authorized technical support.',
+          pillStatus: '✦ OFFICIAL EUROPEAN MASTER HUB',
+          pillLocation: 'PLACENTIA, CA AUTHORIZED',
+          trustLine: 'Dispatched from UK Hub • Tracked APC Overnight & DHL Express • 100% REACH & VOC Certified • Zero US Customs',
+          tradeBadge: '💼 TRADE & WHOLESALE:',
+          tradeText: 'Bodyshops, Retailers & Importers —',
+          tradeLinkText: 'Apply for Trade Pricing & Net Ex-VAT Billing'
+        },
+        {
+          id: 'mr-2',
+          name: 'Specular Optical Clarity',
+          headlinePrefix: 'ADVANCED METALLIC SELF-ORGANIZATION FOR',
+          headlineAccent: '99.4% SPECULAR CHROME & SHOW FINISHES',
+          subheadline: 'Calibrated for standard 2K clearcoats with zero clouding, zero gray haze, and OEM durability.',
+          description: 'Kroma Edge liquid chrome features self-aligning metallic platelets that lock under standard clearcoats without dulling. Paired with Flake King dry application systems for 70% clearcoat savings and flawless edge-to-edge leveling.',
+          pillStatus: '💎 SPECULAR FINISH VERIFIED',
+          pillLocation: 'TECHNICAL LAB VALIDATED',
+          trustLine: '100% Optical Reflection Guarantee • Standard 2K Clear Compatible • Fast European Delivery • VOC Compliant',
+          tradeBadge: '🔬 COMMERCIAL LABS:',
+          tradeText: 'Industrial & Bodyshop Restock —',
+          tradeLinkText: 'Request Technical Data Sheets & Wholesale Pricing'
+        }
+      ],
+      trade_logistics: [
+        {
+          id: 'tl-1',
+          name: 'Pan-European Bonded Logistics',
+          headlinePrefix: 'EUROPEAN COMMERCIAL HEADQUARTERS FOR',
+          headlineAccent: 'BONDED HAZMAT PAINT, CLEARCOATS & FLAKE GUNS',
+          subheadline: 'Streamlined logistics with 0% EU Intra-Community Reverse Charge and UK Postponed VAT Accounting.',
+          description: 'Save days of transit and thousands in customs brokerage. We stock full inventory in UK and Rotterdam bonded warehouses with ADR Limited Quantity hazardous freight certification, next-day tracked APC Overnight, and automated business invoicing.',
+          pillStatus: '🇪🇺 PAN-EUROPEAN BONDED HUB',
+          pillLocation: 'UK & ROTTERDAM WAREHOUSES',
+          trustLine: 'APC Overnight & DHL Express • ADR Class 3 Certified • Postponed VAT Accounting • Zero Import Hassles',
+          tradeBadge: '📦 B2B TRADE DESK:',
+          tradeText: 'Garages, Distributors & Jobbers —',
+          tradeLinkText: 'Activate Instant 0% VAT Invoicing'
+        },
+        {
+          id: 'tl-2',
+          name: 'Next-Day Express Refill',
+          headlinePrefix: 'DIRECT EUROPEAN WAREHOUSE FULFILLMENT',
+          headlineAccent: 'NEXT-DAY SOLVENT SUPPLIES FOR PRO REFINISH SHOPS',
+          subheadline: 'Reliable weekly replenishment of Kroma Edge Speed Clear, reducers, and dry flake guns across DE, FR, NL & UK.',
+          description: 'Keep your paint booths producing without supply chain delays. Direct factory distributor pricing on certified Kroma Edge systems, Flake King 550 & 1000 guns, and precision fine line masking tapes with immediate EU OSS compliance.',
+          pillStatus: '⚡ 24H BONDED DISPATCH',
+          pillLocation: 'DEPOT 128 LOGISTICS CENTER',
+          trustLine: 'Same-Day Hazardous Packaging • 24/48h European Delivery • Full REACH SDS Compliance • Dedicated Account Rep',
+          tradeBadge: '💼 COMMERCIAL FLEET:',
+          tradeText: 'Production Paint Facilities —',
+          tradeLinkText: 'Open a Standing Restock Account'
+        }
+      ],
+      vip_launch: [
+        {
+          id: 'vl-1',
+          name: 'VIP European Rollout',
+          headlinePrefix: 'EXCLUSIVE EUROPEAN VIP ACCESS & PRE-ORDER FOR',
+          headlineAccent: 'KROMA EDGE SPRAYABLE CHROME & FLAKE KING 2026',
+          subheadline: 'Priority ocean container allocations, zero US import tariffs, and exclusive master artist perks.',
+          description: 'The first shipment of Kroma Edge and Flake King equipment is clearing bonded port customs. Lock in your pre-order tier today for guaranteed batch 1 dispatch, complimentary backer add-on flakes, and VIP studio lifetime pricing.',
+          pillStatus: '⭐ VIP PRE-ORDER PORTAL',
+          pillLocation: 'BATCH 1 ALLOCATION OPEN',
+          trustLine: 'Guaranteed Container Allocation • Free Combined Shipping Perks • 15% Backer Reward Code • Zero Customs',
+          tradeBadge: '👑 ARTIST ACCESS:',
+          tradeText: 'Custom Painters & Studios —',
+          tradeLinkText: 'Secure Batch 1 Allocation Before Container Sells Out'
+        }
+      ]
+    };
+
+    return suites[tone] || suites.kustom_kulture;
+  }
+
+  polishHeroField(field, currentValue, tone = 'kustom_kulture') {
+    const clean = (currentValue || '').trim();
+    const polishLibrary = {
+      prefix: {
+        kustom_kulture: [
+          'THE OFFICIAL EUROPEAN HUB FOR',
+          'RAW AMERICAN KUSTOM HERITAGE FOR',
+          'EUROPE\'S ULTIMATE GARAGE HEADQUARTERS FOR'
+        ],
+        master_refinisher: [
+          'THE EUROPEAN MASTER HUB FOR',
+          'PRECISION AUTOMOTIVE REFINISHING FOR',
+          'ADVANCED OPTICAL COATINGS & FINISHES FOR'
+        ],
+        trade_logistics: [
+          'EUROPEAN COMMERCIAL HEADQUARTERS FOR',
+          'DIRECT BONDED FACTORY LOGISTICS FOR',
+          'PAN-EUROPEAN WHOLESALE DISTRIBUTION FOR'
+        ],
+        vip_launch: [
+          'EXCLUSIVE EUROPEAN VIP ACCESS & PRE-ORDER FOR',
+          'OFFICIAL 2026 CONTINENTAL LAUNCH OF',
+          'PRIORITY REFINISHER ALLOCATION FOR'
+        ]
+      },
+      accent: {
+        kustom_kulture: [
+          'KROMA EDGE CHROME, FLAKE KING & VSIONAIR',
+          'UNCOMPROMISING LIQUID CHROME & DRY FLAKE GUNS',
+          'HIGH-OCTANE CHROME REFLECTIONS & METAL FLAKES'
+        ],
+        master_refinisher: [
+          'KROMA EDGE CHROME, FLAKE KING & VSIONAIR',
+          '99.4% SPECULAR MIRROR REFLECTIONS & 2K CLEARS',
+          'SELF-ORGANIZING LIQUID CHROME & PRECISION JIGS'
+        ],
+        trade_logistics: [
+          'BONDED HAZMAT PAINT, CLEARCOATS & FLAKE GUNS',
+          'ZERO-DUTY EUROPEAN PAINT REPLENISHMENT',
+          'ADR LIMITED QUANTITY LIQUID CHROME & REDUCERS'
+        ],
+        vip_launch: [
+          'KROMA EDGE SPRAYABLE CHROME & FLAKE KING 2026',
+          'BATCH 1 LIQUID MIRROR CHROME & FLAKE GUNS',
+          'EXCLUSIVE EUROPEAN VIP ALLOCATION TIERS'
+        ]
+      },
+      subheadline: {
+        kustom_kulture: [
+          'Engineered for automotive refinishers, custom shops & airbrush artists across Europe.',
+          'Zero compromises. High-velocity Flake King guns and mirror liquid finishes shipped across Europe.',
+          'Extreme flake density, razor-sharp tape graphics, and liquid mirror reflection for show-winning builds.'
+        ],
+        master_refinisher: [
+          'Engineered for automotive refinishers, custom shops & airbrush artists across Europe.',
+          'Calibrated for standard 2K clearcoats with zero clouding, zero gray haze, and OEM durability.',
+          'Advanced metallic self-organization yielding 99.4% specular reflection without gray clouding.'
+        ],
+        trade_logistics: [
+          'Streamlined logistics with 0% EU Intra-Community Reverse Charge and UK Postponed VAT Accounting.',
+          'Next-day solvent paint, clears, and equipment replenishment directly from our UK & Rotterdam hubs.',
+          'Automated commercial tax invoicing, REACH compliance, and ADR Class 3 certified dispatch.'
+        ],
+        vip_launch: [
+          'Priority ocean container allocations, zero US import tariffs, and exclusive master artist perks.',
+          'Lock in guaranteed Batch 1 dispatch and early-bird trade pricing before container capacity is reached.',
+          'Direct European launch access with factory warranties and zero overseas import delays.'
+        ]
+      },
+      description: {
+        kustom_kulture: [
+          'Direct European bonded dispatch from our UK logistics center. Zero US import customs, next-day tracked APC & DHL Express, full EU REACH & VOC regulatory compliance, and factory-authorized technical support.',
+          'No more waiting on ocean freight or paying exorbitant US import duties. Get California custom paint technology delivered to your booth tomorrow with tracked express fulfillment and zero gray haze.',
+          'High-pressure dry flake guns, self-organizing liquid chrome, and precision fine line masking tapes stocked and ready to ship from our European warehouse directly to your shop.'
+        ],
+        master_refinisher: [
+          'Direct European bonded dispatch from our UK logistics center. Zero US import customs, next-day tracked APC & DHL Express, full EU REACH & VOC regulatory compliance, and factory-authorized technical support.',
+          'Kroma Edge liquid chrome features self-aligning metallic platelets that lock under standard clearcoats without dulling. Paired with Flake King dry application systems for 70% clearcoat savings and flawless edge-to-edge leveling.',
+          'Formulated specifically for professional spray environments. Certified REACH & VOC compliant chemistry engineered to withstand thermal cycles and UV exposure under 2K polyurethane clears.'
+        ],
+        trade_logistics: [
+          'Direct European bonded dispatch from our UK logistics center. Zero US import customs, next-day tracked APC & DHL Express, full EU REACH & VOC regulatory compliance, and factory-authorized technical support.',
+          'Save days of transit and thousands in customs brokerage. We stock full inventory in UK and Rotterdam bonded warehouses with ADR Limited Quantity hazardous freight certification and automated business invoicing.',
+          'Reliable weekly shop replenishment. Orders placed before 14:00 ship same-day under ADR Limited Quantity protocols with live tracking and automated VAT-exempt commercial invoices.'
+        ],
+        vip_launch: [
+          'The first shipment of Kroma Edge and Flake King equipment is clearing bonded port customs. Lock in your pre-order tier today for guaranteed batch 1 dispatch, complimentary backer add-on flakes, and VIP studio lifetime pricing.',
+          'Direct European launch rollout. Early-bird reservation secures your production allocation with zero US import customs and tracked delivery straight to your spray booth.',
+          'Priority VIP access for European custom artists. Full warranty protection, direct technical phone support from master painters, and exclusive access to limited-run pigments.'
+        ]
+      }
+    };
+
+    const target = polishLibrary[field]?.[tone] || polishLibrary[field]?.kustom_kulture || [];
+    if (target.length === 0) return clean;
+    const filtered = target.filter(opt => opt.toLowerCase() !== clean.toLowerCase());
+    return filtered.length > 0 ? filtered[Math.floor(Math.random() * filtered.length)] : target[0];
   }
 
   // Generate Citizen TSPL Raw Print Command

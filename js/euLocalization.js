@@ -505,8 +505,8 @@ export class EULocalizationManager {
     if (storedVatMode === 'inc' || storedVatMode === 'ex') {
       this.vatDisplayMode = storedVatMode;
     } else {
-      // Default: UK to 'ex' with advisory; EU countries to 'inc'
-      this.vatDisplayMode = this.selectedCountryCode === 'GB' ? 'ex' : 'inc';
+      // Default: 'inc' for transparent retail pricing across UK & EU; trade accounts toggle/authenticate for 'ex'
+      this.vatDisplayMode = 'inc';
     }
 
     this.listeners = [];
@@ -516,7 +516,7 @@ export class EULocalizationManager {
   }
 
   getVatDisplayMode() {
-    return this.vatDisplayMode || 'ex';
+    return this.vatDisplayMode || 'inc';
   }
 
   setVatDisplayMode(mode) {
@@ -605,10 +605,10 @@ export class EULocalizationManager {
     if (EU_COUNTRIES[code]) {
       this.selectedCountryCode = code;
       safeStorage.setItem('coast_eu_country', code);
-      // Adapt default if user hasn't explicitly chosen a manual preference
+      // Default remains 'inc' for retail transparency unless manually changed
       const manualMode = safeStorage.getItem('coast_vat_display_mode_manual');
       if (!manualMode) {
-        this.vatDisplayMode = code === 'GB' ? 'ex' : 'inc';
+        this.vatDisplayMode = 'inc';
       }
       this.notify();
     }

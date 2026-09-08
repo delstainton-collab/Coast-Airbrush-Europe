@@ -21,7 +21,10 @@ const MIME_TYPES = {
   ".pdf": "application/pdf",
   ".woff": "font/woff",
   ".woff2": "font/woff2",
-  ".ttf": "font/ttf"
+  ".ttf": "font/ttf",
+  ".mp4": "video/mp4",
+  ".webm": "video/webm",
+  ".mov": "video/quicktime"
 };
 
 // In-memory active trade sessions
@@ -281,6 +284,103 @@ const server = http.createServer(async (req, res) => {
     return sendJson(res, 200, { success: true, message: "Logged out successfully" });
   }
 
+  // ==========================================
+  // API ROUTE 6: SOCIAL DM & COMMENT AUTOMATION WEBHOOK
+  // ==========================================
+  if (req.method === "POST" && safePath === "/api/social/dm") {
+    try {
+      const { message, platform, senderId } = await parseJsonBody(req);
+      const text = (message || "").toLowerCase();
+
+      let matched = {
+        keyword: "CHROME",
+        sku: "KE-CHROME-1L",
+        name: "Kroma Edge Mirror Spray Chrome 2K System (1 Litre)",
+        priceUSD: 145.00,
+        priceEUR: 135.00,
+        priceGBP: 115.00,
+        dispatchHub: "Netherlands 3PL & UK Hub (24h Dispatch)",
+        videoUrl: "/assets/videos/kroma-edge-mirror-chrome.mp4"
+      };
+
+      if (text.includes("gun") || text.includes("flake") || text.includes("dry") || text.includes("1000")) {
+        matched = {
+          keyword: "GUN",
+          sku: "FK-1000-GUN",
+          name: "Flake King 1000 Professional Dry Flake Gun",
+          priceUSD: 219.00,
+          priceEUR: 205.00,
+          priceGBP: 175.00,
+          dispatchHub: "UK & Netherlands Hub (In Stock)",
+          videoUrl: "/assets/videos/flake-king-dry-gun-demo.mp4"
+        };
+      } else if (text.includes("tape") || text.includes("peel") || text.includes("masking") || text.includes("line")) {
+        matched = {
+          keyword: "TAPE",
+          sku: "FK-TAPE-SET",
+          name: "Flake King Prime Green & Orange Fine Line Mixed Pack",
+          priceUSD: 28.50,
+          priceEUR: 26.50,
+          priceGBP: 22.50,
+          dispatchHub: "UK & Netherlands Hub (In Stock)",
+          videoUrl: "/assets/videos/fine-line-tape-peel.mp4"
+        };
+      } else if (text.includes("mix") || text.includes("candy") || text.includes("ratio") || text.includes("reducer")) {
+        matched = {
+          keyword: "MIX",
+          sku: "HOK-KK01-QT",
+          name: "House of Kolor Kandy Apple Red + RU311 Reducer Pack",
+          priceUSD: 85.00,
+          priceEUR: 79.00,
+          priceGBP: 68.00,
+          dispatchHub: "ADR LQ Hazmat Ground Freight Certified",
+          videoUrl: "/assets/videos/hok-candy-mixing-tips.mp4"
+        };
+      } else if (text.includes("iwata") || text.includes("needle") || text.includes("bubble") || text.includes("packing")) {
+        matched = {
+          keyword: "IWATA",
+          sku: "IW-ECL-HPCS",
+          name: "Anest Iwata Eclipse HP-CS + OEM PTFE Packing Kit",
+          priceUSD: 179.00,
+          priceEUR: 169.00,
+          priceGBP: 145.00,
+          dispatchHub: "Official European Iwata Distributor",
+          videoUrl: "/assets/videos/iwata-bubbling-needle-packing.mp4"
+        };
+      } else if (text.includes("tds") || text.includes("sheet") || text.includes("guide") || text.includes("data")) {
+        return sendJson(res, 200, {
+          success: true,
+          type: "download",
+          replyMessage: "Here is your direct access to the official Flake King & Kroma Edge Technical Data Sheet (TDS) and Mixing Guide: https://coastairbrush.eu/assets/docs/KROMA_EDGE_MIRROR_SYSTEM_TDS.pdf",
+          downloadUrl: "/assets/docs/KROMA_EDGE_MIRROR_SYSTEM_TDS.pdf"
+        });
+      }
+
+      const permalink = `https://coastairbrush.eu/cart/add?id=${matched.sku}&quantity=1&ref=agent_c_social`;
+
+      return sendJson(res, 200, {
+        success: true,
+        keyword: matched.keyword,
+        productName: matched.name,
+        featuredSku: matched.sku,
+        directCheckoutLink: permalink,
+        pricing: {
+          usd: matched.priceUSD,
+          eur: matched.priceEUR,
+          gbp: matched.priceGBP
+        },
+        dispatch: matched.dispatchHub,
+        videoUrl: matched.videoUrl,
+        replyMessage: `Hey there! 🎨 That finish was created using the **${matched.name}**.\n\n` +
+                      `📦 **European Stock**: In stock at our Netherlands & UK hubs for immediate dispatch across 27 EU states & UK (0% US import duty).\n` +
+                      `💳 **1-Click Checkout**: [Tap here to buy directly](${permalink})\n\n` +
+                      `Need nozzle sizing or compressor PSI setup? Reply here anytime!`
+      });
+    } catch (e) {
+      return sendJson(res, 400, { success: false, error: "Invalid webhook payload" });
+    }
+  }
+
 
   // ==========================================
   // API ROUTE: ADMIN - GET TRADE APPLICATIONS
@@ -467,6 +567,36 @@ const server = http.createServer(async (req, res) => {
 
     const ext = path.extname(filePath).toLowerCase();
     const contentType = MIME_TYPES[ext] || "application/octet-stream";
+
+    if (ext === ".mp4" || ext === ".webm" || ext === ".mov") {
+      const range = req.headers.range;
+      const fileSize = stats.size;
+      if (range) {
+        const parts = range.replace(/bytes=/, "").split("-");
+        const start = parseInt(parts[0], 10);
+        const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+        const chunksize = (end - start) + 1;
+        const file = fs.createReadStream(filePath, { start, end });
+        res.writeHead(206, {
+          "Content-Range": `bytes ${start}-${end}/${fileSize}`,
+          "Accept-Ranges": "bytes",
+          "Content-Length": chunksize,
+          "Content-Type": contentType,
+          "Access-Control-Allow-Origin": "*"
+        });
+        file.pipe(res);
+        return;
+      } else {
+        res.writeHead(200, {
+          "Content-Length": fileSize,
+          "Content-Type": contentType,
+          "Accept-Ranges": "bytes",
+          "Access-Control-Allow-Origin": "*"
+        });
+        fs.createReadStream(filePath).pipe(res);
+        return;
+      }
+    }
 
     res.writeHead(200, {
       "Content-Type": contentType,

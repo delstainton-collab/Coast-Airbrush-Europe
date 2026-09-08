@@ -12,6 +12,7 @@ import { SocialGrowthAI } from './agentC.js';
 import { InventoryGuruAI } from './agentD.js';
 import { ForumPreorderEngine } from './forumPreorderEngine.js';
 import { AdminController } from './adminController.js';
+import { DEFAULT_HERO_CONFIG } from '../data/hero_config.js';
 
 // Asset URL resolution helper for Shopify CDN and Local Development
 export function getAssetUrl(path) {
@@ -70,6 +71,9 @@ class PaintSystemApp {
     this.activeBrandFilter = 'all';
     this.activeCategoryFilter = 'all';
     this.activeFlakeSubcat = 'all';
+    this.deptFlakeState = { subcat: 'all', viewMode: 'curated' };
+    this.deptGunsState = { subcat: 'featured', viewMode: 'featured' };
+    this.deptTapesState = { subcat: 'featured', viewMode: 'featured' };
     this.searchQuery = '';
     this.isB2BMode = false;
     this.b2bSession = null;
@@ -332,6 +336,8 @@ class PaintSystemApp {
     window.switchCopyTab = (tab) => this.switchCopyTab(tab);
     window.openScaleMode = () => this.openScaleMode();
     window.openAdminLogin = () => this.openAdminAuthModal();
+    window.fillDefaultAdminPin = () => this.fillDefaultAdminPin();
+    window.toggleAdminPinVisibility = () => this.toggleAdminPinVisibility();
     window.openTradePortalModal = () => this.openTradePortalModal();
     window.closeTradePortalModal = () => this.closeTradePortalModal();
     window.switchTradeTab = (tab) => this.switchTradeTab(tab);
@@ -343,10 +349,33 @@ class PaintSystemApp {
     window.openBundleCustomizerModal = (bundleId) => this.openBundleCustomizerModal(bundleId);
     window.closeBundleCustomizerModal = () => this.closeBundleCustomizerModal();
     window.submitCustomizedBundleToCart = () => this.submitCustomizedBundleToCart();
+    window.recalculateCustomizerPrice = () => this.recalculateCustomizerPrice();
     window.saveBundleFromAdmin = () => this.saveBundleFromAdmin();
     window.resetBundleFromAdmin = () => this.resetBundleFromAdmin();
     window.addAdminBundleSlot = () => this.addAdminBundleSlot();
     window.removeAdminBundleSlot = (slotId) => this.removeAdminBundleSlot(slotId);
+    window.saveHeroFromAdmin = () => this.saveHeroFromAdmin();
+    window.resetHeroFromAdmin = () => this.resetHeroFromAdmin();
+    window.addAdminHeroSlide = () => this.addAdminHeroSlide();
+    window.removeAdminHeroSlide = (idx) => this.removeAdminHeroSlide(idx);
+    window.moveAdminHeroSlide = (idx, dir) => this.moveAdminHeroSlide(idx, dir);
+    window.addAdminHeroJump = () => this.addAdminHeroJump();
+    window.removeAdminHeroJump = (idx) => this.removeAdminHeroJump(idx);
+    window.triggerHeroSlideUpload = (idx) => this.triggerHeroSlideUpload(idx);
+    window.openHeroAiEnhancer = (idx) => this.openHeroAiEnhancer(idx);
+    window.closeHeroAiEnhancer = () => this.closeHeroAiEnhancer();
+    window.applyAiFinishPreset = (preset) => this.applyAiFinishPreset(preset);
+    window.saveEnhancedSlideImage = () => this.saveEnhancedSlideImage();
+    window.openHeroAiCopyModal = () => this.openHeroAiCopyModal();
+    window.closeHeroAiCopyModal = () => this.closeHeroAiCopyModal();
+    window.generateHeroCopyOptions = () => this.generateHeroCopyOptions();
+    window.applyHeroCopyOption = (tone, idx) => this.applyHeroCopyOption(tone, idx);
+    window.quickPolishHeroField = (field) => this.quickPolishHeroField(field);
+    window.setDeptFlakeSubcat = (subcat, viewAll) => this.setDeptFlakeSubcat(subcat, viewAll);
+    window.toggleDeptFlakeViewMode = () => this.toggleDeptFlakeViewMode();
+    window.setDeptGunsSubcat = (subcat, viewAll) => this.setDeptGunsSubcat(subcat, viewAll);
+    window.setDeptTapesSubcat = (subcat, viewAll) => this.setDeptTapesSubcat(subcat, viewAll);
+    window.filterAndScrollToVsionCategory = (cat) => this.filterAndScrollToVsionCategory(cat);
     window.sendPromptToDave = (text) => {
       const input = document.getElementById('input-floating-dave');
       const btn = document.getElementById('btn-floating-dave-send');
@@ -380,6 +409,7 @@ class PaintSystemApp {
     try { this.setupDetailModal(); } catch (e) { console.warn('setupDetailModal error:', e); }
     try { this.setupWelcomeModal(); } catch (e) { console.warn('setupWelcomeModal error:', e); }
     try { this.setupQuickMixModal(); } catch (e) { console.warn('setupQuickMixModal error:', e); }
+    try { this.renderStorefrontHero(); } catch (e) { console.warn('renderStorefrontHero error:', e); }
     try { this.setupHeroCrossfade(); } catch (e) { console.warn('setupHeroCrossfade error:', e); }
     try { this.initSocialProofPulse(); } catch (e) { console.warn('initSocialProofPulse error:', e); }
     try { this.initReferralModal(); } catch (e) { console.warn('initReferralModal error:', e); }
@@ -390,6 +420,12 @@ class PaintSystemApp {
     });
     this.addSafeListener('select-size-kroma-mirror-chrome-system', 'input', (e) => {
       this.onProductVariantChange('kroma-mirror-chrome-system', 'size', e.target.value);
+    });
+    this.addSafeListener('select-size-kroma-dedicated-topcoat-clear', 'change', (e) => {
+      this.onProductVariantChange('kroma-dedicated-topcoat-clear', 'size', e.target.value);
+    });
+    this.addSafeListener('select-size-kroma-dedicated-topcoat-clear', 'input', (e) => {
+      this.onProductVariantChange('kroma-dedicated-topcoat-clear', 'size', e.target.value);
     });
     this.addSafeListener('select-width-fk-2366', 'change', (e) => {
       this.onProductVariantChange('fk-2366', 'width', e.target.value);
@@ -507,6 +543,11 @@ class PaintSystemApp {
 
     // URL Query & Hash Deep Linking (e.g. ?search=Kroma or ?tab=preorders)
     this.handleUrlParameters();
+
+    if (window._pendingAdminLogin) {
+      window._pendingAdminLogin = false;
+      setTimeout(() => this.openAdminAuthModal(), 100);
+    }
   }
 
   handleUrlParameters() {
@@ -514,8 +555,13 @@ class PaintSystemApp {
     const hash = window.location.hash;
     const tabParam = params.get('tab');
 
-    if (params.get('admin') === 'true' || params.get('admin') === '1' || tabParam === 'admin') {
-      setTimeout(() => this.openAdminAuthModal(), 400);
+    if (params.get('admin') === 'true' || params.get('admin') === '1' || tabParam === 'admin' || hash === '#admin') {
+      if (this.adminController && this.adminController.isAuthenticated) {
+        this.switchTab('tab-admin', 'view-admin');
+      } else {
+        this.openAdminAuthModal();
+      }
+      return;
     }
 
     if (tabParam) {
@@ -576,14 +622,20 @@ class PaintSystemApp {
       if (kromaVal) {
         this.onProductVariantChange('kroma-mirror-chrome-system', 'size', kromaVal);
       }
-      const clearProd = ECOM_CATALOG.find(p => p.id === 'kroma-dedicated-topcoat-clear');
-      if (clearProd) {
-        const cPrices = this.getProductCalculatedPrice(clearProd);
-        const clearEurEls = document.querySelectorAll('[id="price-eur-kroma-dedicated-topcoat-clear"], [data-price-eur="kroma-dedicated-topcoat-clear"]');
-        const clearGbpEls = document.querySelectorAll('[id="price-gbp-kroma-dedicated-topcoat-clear"], [data-price-gbp="kroma-dedicated-topcoat-clear"]');
-        if (cPrices) {
-          clearEurEls.forEach(el => el.textContent = cPrices.formattedPrimary);
-          clearGbpEls.forEach(el => el.textContent = cPrices.formattedSecondary);
+      const clearSelect = document.getElementById('select-size-kroma-dedicated-topcoat-clear');
+      const clearVal = (this.selectedProductVariants['kroma-dedicated-topcoat-clear'] && this.selectedProductVariants['kroma-dedicated-topcoat-clear'].size) || (clearSelect ? clearSelect.value : null);
+      if (clearVal) {
+        this.onProductVariantChange('kroma-dedicated-topcoat-clear', 'size', clearVal);
+      } else {
+        const clearProd = ECOM_CATALOG.find(p => p.id === 'kroma-dedicated-topcoat-clear');
+        if (clearProd) {
+          const cPrices = this.getProductCalculatedPrice(clearProd);
+          const clearEurEls = document.querySelectorAll('[id="price-eur-kroma-dedicated-topcoat-clear"], [data-price-eur="kroma-dedicated-topcoat-clear"]');
+          const clearGbpEls = document.querySelectorAll('[id="price-gbp-kroma-dedicated-topcoat-clear"], [data-price-gbp="kroma-dedicated-topcoat-clear"]');
+          if (cPrices) {
+            clearEurEls.forEach(el => el.textContent = cPrices.formattedPrimary);
+            clearGbpEls.forEach(el => el.textContent = cPrices.formattedSecondary);
+          }
         }
       }
       const fk2366Select = document.getElementById('select-width-fk-2366');
@@ -596,6 +648,10 @@ class PaintSystemApp {
       if (fk2352Val) {
         this.onProductVariantChange('fk-2352', 'width', fk2352Val);
       }
+
+      this.renderDeptFlakesGrid();
+      this.renderDeptGunsGrid();
+      this.renderDeptTapesGrid();
     } catch (err) {
       console.warn('Error syncing featured showcase cards:', err);
     }
@@ -820,6 +876,17 @@ class PaintSystemApp {
       }
     });
 
+    const mobileAdminBtn = document.getElementById('tab-admin-mobile');
+    if (mobileAdminBtn) {
+      mobileAdminBtn.addEventListener('click', () => {
+        if (!this.adminController.isAuthenticated) {
+          this.openAdminAuthModal();
+          return;
+        }
+        this.switchTab('tab-admin', 'view-admin');
+      });
+    }
+
     // Floating AI Trigger Button
     this.addSafeListener('btn-floating-agent-a', 'click', () => {
       this.switchTab('tab-agent-a', 'view-agent-a');
@@ -840,6 +907,15 @@ class PaintSystemApp {
         }
       }
     });
+
+    const mobileAdminBtn = document.getElementById('tab-admin-mobile');
+    if (mobileAdminBtn) {
+      if (activeTabId === 'tab-admin' || activeViewId === 'view-admin') {
+        mobileAdminBtn.classList.add('active', 'border-amber-400', 'bg-amber-500/20');
+      } else {
+        mobileAdminBtn.classList.remove('active', 'border-amber-400', 'bg-amber-500/20');
+      }
+    }
 
     viewIds.forEach(id => {
       const el = document.getElementById(id);
@@ -1097,8 +1173,8 @@ class PaintSystemApp {
       card.className = 'industrial-card p-5 flex flex-col md:flex-row gap-5';
       card.innerHTML = `
         <div class="w-full md:w-44 h-36 bg-surface-dim border border-secondary overflow-hidden flex-shrink-0 relative">
-          <img src="${camp.videoUrl}" alt="Campaign Preview" class="w-full h-full object-cover">
-          <div class="absolute top-2 left-2 bg-surface text-rose-400 text-[10px] font-mono font-bold px-1.5 py-0.5 border border-rose-500">
+          <video src="${camp.localVideo || ''}" poster="${camp.videoUrl}" class="w-full h-full object-cover" controls preload="metadata" playsinline></video>
+          <div class="absolute top-2 left-2 bg-surface/90 text-rose-400 text-[10px] font-mono font-bold px-1.5 py-0.5 border border-rose-500 pointer-events-none">
             ${camp.platform}
           </div>
         </div>
@@ -1935,18 +2011,28 @@ class PaintSystemApp {
     if (catId === 'Dry Metal Flake (Glitter)' || catId === 'Metal Flake') {
       return product.category === 'Dry Metal Flake (Glitter)' || product.category === 'Metal Flake';
     }
-    if (catId === 'Dry Metal Flake Guns') return product.category === 'Dry Metal Flake Guns' || product.category === 'Flake King Gun Accessories';
+    if (catId === 'Dry Metal Flake Guns') return product.category === 'Dry Metal Flake Guns';
     if (catId === 'Flake King Gun Accessories') return product.category === 'Flake King Gun Accessories';
+    if (catId === 'flake-guns-all') return product.category === 'Dry Metal Flake Guns' || product.category === 'Flake King Gun Accessories';
     if (catId === 'Masking Products') return product.category === 'Masking Products';
     if (catId === 'Wet Products') return product.category === 'Wet Products';
 
     if (catId === 'kromaedge-all') return product.brand === 'Kroma Edge';
     if (catId === 'Solvent Paints') return product.brand === 'Kroma Edge' || product.category === 'Solvent Paints';
+    if (catId === 'Dedicated Clearcoats' || catId === 'Clearcoats' || catId === 'clearcoat') {
+      return product.category === 'Dedicated Clearcoats' || (product.name && product.name.includes('Topcoat Clear'));
+    }
 
     if (Array.isArray(product.category)) {
-      return product.category.some(c => c.toLowerCase().includes(catId.toLowerCase()));
+      if (product.category.some(c => c.toLowerCase().includes(catId.toLowerCase()))) return true;
+    } else if ((product.category || '').toLowerCase().includes(catId.toLowerCase())) {
+      return true;
     }
-    return (product.category || '').toLowerCase().includes(catId.toLowerCase());
+
+    const prodDept = (product.department || this.getDefaultDepartmentForProduct(product) || '').toLowerCase();
+    if (prodDept === catId.toLowerCase()) return true;
+
+    return false;
   }
 
   renderCategoryButtons() {
@@ -1959,6 +2045,7 @@ class PaintSystemApp {
       { id: "Solvent Paints", label: "Sprayable Chrome", icon: "format_paint", brand: "Kroma Edge" },
       { id: "Dry Metal Flake (Glitter)", label: "Metal Flakes", icon: "auto_awesome", brand: "Flake King" },
       { id: "Dry Metal Flake Guns", label: "Flake Guns & Kits", icon: "precision_manufacturing", brand: "Flake King" },
+      { id: "Flake King Gun Accessories", label: "Gun Accessories", icon: "build", brand: "Flake King" },
       { id: "vsionair-all", label: "Workstations & Jigs", icon: "handyman", brand: "VsionAir" },
       { id: "Masking Products", label: "Fine Line Tapes", icon: "content_cut", brand: "Flake King" },
       { id: "Wet Products", label: "Binders & Prep", icon: "sanitizer", brand: "Flake King" }
@@ -1979,11 +2066,17 @@ class PaintSystemApp {
     ];
 
     const FLAKE_SUBCATS = [
-      { id: "all", label: "All Flake Finishes" },
+      { id: "all", label: "All Flakes" },
       { id: "single", label: "Single Colour" },
-      { id: "blend", label: "Custom Blends" },
-      { id: "holographic", label: "Holographic" },
-      { id: "iridescent", label: "Iridescent" }
+      { id: "kromatic", label: "Kromatic" },
+      { id: "iridescent", label: "Iridescent" },
+      { id: "mixed", label: "Mixed" }
+    ];
+
+    const GUN_SUBCATS = [
+      { id: "Dry Metal Flake Guns", label: "Flake Guns & Kits" },
+      { id: "Flake King Gun Accessories", label: "Gun Accessories & Jars" },
+      { id: "flake-guns-all", label: "All Gun Hardware" }
     ];
 
     const getCount = (catId) => {
@@ -1995,7 +2088,7 @@ class PaintSystemApp {
       return items.filter(p => this.matchCategory(p, catId)).length;
     };
 
-    // 1. Render 7 Primary Department Pills
+    // 1. Render Primary & Custom Department Pills
     if (pillBar) {
       let html = '';
       
@@ -2007,9 +2100,12 @@ class PaintSystemApp {
         const count = getCount(dept.id);
         if (count === 0 && dept.id !== 'all') return;
 
-        // Check if primary is active (or if a VsionAir subcat is active while this is vsionair-all)
+        // Check if primary is active (or if child subcategory is active)
         const isVsionAirChild = VSIONAIR_SUBCATS.some(s => s.id === this.activeCategoryFilter);
-        const isActive = (this.activeCategoryFilter === dept.id) || (dept.id === 'vsionair-all' && isVsionAirChild);
+        const isGunChild = GUN_SUBCATS.some(s => s.id === this.activeCategoryFilter);
+        const isActive = (this.activeCategoryFilter === dept.id) || 
+                         (dept.id === 'vsionair-all' && isVsionAirChild) ||
+                         (dept.id === 'Dry Metal Flake Guns' && this.activeCategoryFilter === 'flake-guns-all');
 
         html += `
           <button type="button" data-cat-pill="${dept.id}" class="top-category-pill ${isActive ? 'active' : ''}">
@@ -2019,6 +2115,26 @@ class PaintSystemApp {
           </button>
         `;
       });
+
+      // Render custom taxonomy departments if they contain products or are selected
+      if (this.adminController && typeof this.adminController.getDepartments === 'function') {
+        const customTaxDepts = (this.adminController.getDepartments() || []).filter(d => {
+          return !PRIMARY_DEPARTMENTS.some(p => p.label.toLowerCase() === d.name.toLowerCase() || p.id.toLowerCase() === d.name.toLowerCase());
+        });
+
+        customTaxDepts.forEach(dept => {
+          const count = getCount(dept.name);
+          if (count === 0 && dept.name !== this.activeCategoryFilter) return;
+          const isActive = (this.activeCategoryFilter === dept.name);
+          html += `
+            <button type="button" data-cat-pill="${this.escapeHtml(dept.name)}" class="top-category-pill ${isActive ? 'active' : ''}">
+              <span class="material-symbols-outlined text-[15px]">${this.escapeHtml(dept.icon || 'category')}</span>
+              <span>${this.escapeHtml(dept.name)}</span>
+              <span class="pill-count">${count}</span>
+            </button>
+          `;
+        });
+      }
 
       pillBar.innerHTML = html;
 
@@ -2035,8 +2151,32 @@ class PaintSystemApp {
     if (subcatBar) {
       const isVsionAir = this.activeCategoryFilter === 'vsionair-all' || VSIONAIR_SUBCATS.some(s => s.id === this.activeCategoryFilter);
       const isFlake = this.activeCategoryFilter === 'Dry Metal Flake (Glitter)' || this.activeCategoryFilter === 'Metal Flake';
+      const isGunHardware = this.activeCategoryFilter === 'Dry Metal Flake Guns' || 
+                            this.activeCategoryFilter === 'Flake King Gun Accessories' || 
+                            this.activeCategoryFilter === 'flake-guns-all';
 
-      if (isVsionAir) {
+      if (isGunHardware) {
+        subcatBar.classList.remove('hidden');
+        subcatBar.classList.add('flex');
+        let subHtml = '<span class="text-amber-400 font-bold uppercase text-[11px] mr-1 flex items-center gap-1"><span class="material-symbols-outlined text-sm">precision_manufacturing</span> Flake Hardware:</span>';
+        GUN_SUBCATS.forEach(sub => {
+          const subCount = getCount(sub.id);
+          if (subCount === 0 && sub.id !== 'flake-guns-all') return;
+          const isSubActive = this.activeCategoryFilter === sub.id;
+          subHtml += `
+            <button type="button" data-gun-sub="${sub.id}" class="subcat-pill ${isSubActive ? 'active' : ''}">
+              ${sub.label} (${subCount})
+            </button>
+          `;
+        });
+        subcatBar.innerHTML = subHtml;
+        subcatBar.querySelectorAll('button[data-gun-sub]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const subId = btn.getAttribute('data-gun-sub');
+            this.setCategoryFilter(subId);
+          });
+        });
+      } else if (isVsionAir) {
         subcatBar.classList.remove('hidden');
         subcatBar.classList.add('flex');
         let subHtml = '<span class="text-sky-400 font-bold uppercase text-[11px] mr-1 flex items-center gap-1"><span class="material-symbols-outlined text-sm">handyman</span> Jigs:</span>';
@@ -2087,7 +2227,8 @@ class PaintSystemApp {
     if (activeBadge) {
       const activePrimary = PRIMARY_DEPARTMENTS.find(d => d.id === this.activeCategoryFilter);
       const activeVsion = VSIONAIR_SUBCATS.find(s => s.id === this.activeCategoryFilter);
-      const label = activePrimary ? activePrimary.label : (activeVsion ? `VsionAir > ${activeVsion.label}` : this.activeCategoryFilter);
+      const activeGun = GUN_SUBCATS.find(s => s.id === this.activeCategoryFilter);
+      const label = activePrimary ? activePrimary.label : (activeVsion ? `VsionAir > ${activeVsion.label}` : (activeGun ? `Flake King > ${activeGun.label}` : this.activeCategoryFilter));
       activeBadge.textContent = label.toUpperCase();
     }
 
@@ -2112,6 +2253,8 @@ class PaintSystemApp {
         'Solvent Paints': 'Sprayable Chrome',
         'Dry Metal Flake (Glitter)': 'Metal Flakes',
         'Dry Metal Flake Guns': 'Flake Guns & Kits',
+        'Flake King Gun Accessories': 'Gun Accessories & Jars',
+        'flake-guns-all': 'All Flake Hardware',
         'vsionair-all': 'Workstations & Jigs',
         'Masking Products': 'Fine Line Tapes',
         'Wet Products': 'Binders & Prep'
@@ -2146,6 +2289,13 @@ class PaintSystemApp {
 
   setCategoryFilter(catId) {
     this.activeCategoryFilter = catId;
+    const brandPills = document.querySelectorAll('#brand-filter-pills .brand-pill');
+    brandPills.forEach(btn => {
+      const match = (btn.getAttribute('data-cat-val') === catId) || 
+                    (catId === 'flake-guns-all' && btn.getAttribute('data-cat-val') === 'Dry Metal Flake Guns') ||
+                    (catId === 'all' && btn.getAttribute('data-brand-val') === 'all');
+      btn.className = match ? 'brand-pill active px-3 py-1.5 border border-primary bg-primary-container text-white font-bold transition-colors cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' : 'brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer';
+    });
     this.renderCategoryButtons();
     this.renderStorefrontGrid();
   }
@@ -2154,7 +2304,7 @@ class PaintSystemApp {
     this.activeBrandFilter = brand;
     const brandPills = document.querySelectorAll('#brand-filter-pills .brand-pill');
     brandPills.forEach(btn => {
-      const match = (btn.getAttribute('data-brand-val') || 'all') === brand;
+      const match = !btn.getAttribute('data-cat-val') && ((btn.getAttribute('data-brand-val') || 'all') === brand);
       btn.className = match ? 'brand-pill active px-3 py-1.5 border border-primary bg-primary-container text-white font-bold transition-colors cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' : 'brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer';
     });
     this.renderCategoryButtons();
@@ -2195,10 +2345,17 @@ class PaintSystemApp {
     const resetBtn = document.getElementById('btn-reset-filters');
     const brandPills = document.querySelectorAll('#brand-filter-pills .brand-pill');
 
-    // Brand Pills
+    // Brand & Category Pills
     brandPills.forEach(btn => {
       btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-cat-val');
+        if (cat) {
+          this.activeBrandFilter = 'all';
+          this.setCategoryFilter(cat);
+          return;
+        }
         const brand = btn.getAttribute('data-brand-val') || 'all';
+        this.activeCategoryFilter = 'all';
         this.setBrandFilter(brand);
       });
     });
@@ -2222,6 +2379,7 @@ class PaintSystemApp {
 
     // Mobile Toolbar & Drawer Filters
     const mobileBrandSelect = document.getElementById('select-mobile-brand-filter');
+    const mobileCatSelect = document.getElementById('select-mobile-category-filter');
     const mobileSortSelect = document.getElementById('select-mobile-shop-sort');
     const mobileSearchInput = document.getElementById('input-mobile-shop-search');
     const mobileResetBtn = document.getElementById('btn-mobile-reset-filters');
@@ -2231,6 +2389,12 @@ class PaintSystemApp {
     if (mobileBrandSelect) {
       mobileBrandSelect.addEventListener('change', (e) => {
         this.setBrandFilter(e.target.value);
+      });
+    }
+
+    if (mobileCatSelect) {
+      mobileCatSelect.addEventListener('change', (e) => {
+        this.setCategoryFilter(e.target.value);
       });
     }
 
@@ -2260,6 +2424,7 @@ class PaintSystemApp {
       mobileResetBtn.addEventListener('click', () => {
         if (resetBtn) resetBtn.click();
         if (mobileBrandSelect) mobileBrandSelect.value = 'all';
+        if (mobileCatSelect) mobileCatSelect.value = 'all';
         if (mobileSortSelect) mobileSortSelect.value = 'popular';
         if (mobileSearchInput) mobileSearchInput.value = '';
         const drawer = document.getElementById('drawer-mobile-filters');
@@ -2298,7 +2463,7 @@ class PaintSystemApp {
         if (mobileSearchInput) mobileSearchInput.value = '';
         
         brandPills.forEach(btn => {
-          const match = (btn.getAttribute('data-brand-val') || 'all') === 'all';
+          const match = !btn.getAttribute('data-cat-val') && ((btn.getAttribute('data-brand-val') || 'all') === 'all');
           btn.className = match ? 'brand-pill active px-3 py-1.5 border border-primary bg-primary-container text-white font-bold transition-colors cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' : 'brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer';
         });
 
@@ -2598,6 +2763,11 @@ class PaintSystemApp {
   }
 
   setupHeroCrossfade() {
+    if (window._heroCrossfadeInterval) {
+      clearInterval(window._heroCrossfadeInterval);
+      window._heroCrossfadeInterval = null;
+    }
+
     const container = document.getElementById('hero-crossfade-container');
     if (!container) return;
 
@@ -2681,7 +2851,7 @@ class PaintSystemApp {
 
     // Gentle cinematic auto slideshow every 6s with pause on hover
     const heroSection = container.closest('section');
-    setInterval(() => {
+    window._heroCrossfadeInterval = setInterval(() => {
       if (!heroSection || !heroSection.matches(':hover')) {
         window.setHeroSlide(currentSlide + 1);
       }
@@ -2885,6 +3055,24 @@ class PaintSystemApp {
                   return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} (${optPrice ? optPrice.formattedPrimary + ' ' + optPrice.primaryVatBadge : ''})</option>`;
                 }).join('')}
               </select>
+            </div>
+          `;
+        }
+        if (product.id === 'kroma-mirror-chrome-system') {
+          modalControls += `
+            <div class="mt-2.5 p-3 rounded bg-surface-container border border-white/10 text-[11px] font-mono text-neutral-300 space-y-1.5 shadow-sm">
+              <div class="flex items-center gap-1.5 text-emerald-400 font-bold">
+                <span class="material-symbols-outlined text-[15px]">speed</span>
+                <span>REAL-WORLD PROJECT COVERAGE ESTIMATOR:</span>
+              </div>
+              <p class="text-neutral-300 leading-relaxed">
+                • <strong>Small Kit (140g)</strong>: Covers 7–10 sq ft (easily 2 full motorcycle tanks or 4 racing helmets)<br>
+                • <strong>Medium Kit (420g)</strong>: Covers 22–30 sq ft (full bike tank + fenders + tins)
+              </p>
+              <div class="flex items-center gap-1.5 pt-1 text-[10px] text-amber-300 font-semibold border-t border-white/10">
+                <span class="material-symbols-outlined text-[13px]">verified</span>
+                <span>Zero black basecoat or flame needed • Free 1-on-1 booth calibration with DAiVE</span>
+              </div>
             </div>
           `;
         }
@@ -4046,13 +4234,14 @@ class PaintSystemApp {
 
     if (this.activeFlakeSubcat && this.activeFlakeSubcat !== 'all') {
       filtered = filtered.filter(p => {
-        const subCat = this.getFlakeSubcategory(p);
+        const subCat = (this.getFlakeSubcategory(p) || '').toLowerCase();
         if (!subCat) return false;
-        if (this.activeFlakeSubcat === 'single') return subCat.includes('Single');
-        if (this.activeFlakeSubcat === 'blend') return subCat.includes('Mixed') || subCat.includes('Blend');
-        if (this.activeFlakeSubcat === 'holographic') return subCat.includes('Holographic') || subCat.includes('Kromatic');
-        if (this.activeFlakeSubcat === 'iridescent') return subCat.includes('Iridescent');
-        return true;
+        const target = this.activeFlakeSubcat.toLowerCase();
+        if (target === 'single') return subCat.includes('single');
+        if (target === 'mixed' || target === 'blend') return subCat.includes('mixed') || subCat.includes('blend');
+        if (target === 'kromatic' || target === 'holographic') return subCat.includes('kromatic') || subCat.includes('holographic');
+        if (target === 'iridescent') return subCat.includes('iridescent');
+        return subCat === target;
       });
     }
 
@@ -4078,6 +4267,16 @@ class PaintSystemApp {
       });
     } else if (this.activeSort === 'name') {
       filtered.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+    } else {
+      // Default / Popular sort: prioritize actual spray guns over accessories when viewing all gun hardware
+      if (this.activeCategoryFilter === 'flake-guns-all' || (this.activeBrandFilter === 'Flake King' && this.activeCategoryFilter === 'all')) {
+        filtered.sort((a, b) => {
+          const aIsGun = a.category === 'Dry Metal Flake Guns' ? 1 : 0;
+          const bIsGun = b.category === 'Dry Metal Flake Guns' ? 1 : 0;
+          if (aIsGun !== bIsGun) return bIsGun - aIsGun;
+          return 0;
+        });
+      }
     }
 
     const countBadge = document.getElementById('shop-results-count');
@@ -4337,7 +4536,7 @@ class PaintSystemApp {
 
     // 3. Update ALL secondary price elements across the DOM
     let secondaryText = prices.formattedSecondary;
-    if (prodId === 'kroma-mirror-chrome-system') {
+    if (prodId === 'kroma-mirror-chrome-system' || prodId === 'kroma-dedicated-topcoat-clear') {
       const country = this.euLocalization.getCountry();
       const gbpVal = (prices.finalGbp !== null && prices.finalGbp !== undefined) ? prices.finalGbp : (prices.priceEur * 0.85);
       if (country.currency === 'GBP') {
@@ -4610,95 +4809,362 @@ class PaintSystemApp {
     this.addConfiguredBundleToCart('fk-pro-mastery-bundle');
   }
 
+  getFlakeTierInfo(product) {
+    if (!product) {
+      return { tier: 1, name: 'Standard Classic', deltaGbp: 0, deltaEur: 0, badge: 'Standard [Included]' };
+    }
+    const nameLower = (product.name || '').toLowerCase();
+    const skuLower = (product.sku || product.id || '').toLowerCase();
+
+    // Tier 3: Holographic / Kromatic / Specialty Rainbow
+    const isTier3 = nameLower.includes('kromatic') || 
+                    nameLower.includes('holo') || 
+                    nameLower.includes('prismatic') ||
+                    skuLower.includes('kromatic') ||
+                    skuLower.includes('holo');
+    if (isTier3) {
+      return { 
+        tier: 3, 
+        name: 'Kromatic Holographic', 
+        deltaGbp: 12.00, 
+        deltaEur: 14.00, 
+        badge: 'HOLO TIER (+£12 / +€14)'
+      };
+    }
+
+    // Tier 2: Ultra-Small / Micro .002" Hex
+    const isTier2 = nameLower.includes('.002') || 
+                    nameLower.includes('ultra small') || 
+                    nameLower.includes('ultra-small') || 
+                    nameLower.includes('micro') ||
+                    skuLower.includes('002');
+    if (isTier2) {
+      return { 
+        tier: 2, 
+        name: 'Ultra-Small .002"', 
+        deltaGbp: 5.00, 
+        deltaEur: 6.00, 
+        badge: 'ULTRA-SMALL (+£5 / +€6)'
+      };
+    }
+
+    // Tier 1: Standard Classics (Show Krome .015, Elvis Gold, Gun Metal, etc.)
+    return { 
+      tier: 1, 
+      name: 'Standard Metallic', 
+      deltaGbp: 0, 
+      deltaEur: 0, 
+      badge: 'STANDARD [INCLUDED]'
+    };
+  }
+
   openBundleCustomizerModal(bundleId = 'fk-pro-mastery-bundle') {
     const bundle = this.getActiveBundle(bundleId);
     if (!bundle) return;
 
     this.currentCustomizingBundleId = bundle.id;
     const modal = document.getElementById('modal-bundle-customizer');
-    const priceEurEl = document.getElementById('customizer-bundle-price');
-    const priceGbpEl = document.getElementById('customizer-bundle-gbp');
-    const savingsEl = document.getElementById('customizer-bundle-savings');
     const container = document.getElementById('bundle-customizer-slots');
 
-    if (priceEurEl) priceEurEl.textContent = `€${Number(bundle.priceEur || 0).toFixed(2)}`;
-    if (priceGbpEl) priceGbpEl.textContent = `/ £${Number(bundle.priceGbp || 0).toFixed(2)}`;
-    const savingsEur = Math.max(0, Math.round((bundle.retailValueEur || 0) - (bundle.priceEur || 0)));
-    if (savingsEl) savingsEl.textContent = `SAVE €${savingsEur}`;
+    this.customizerAllFlakes = ECOM_CATALOG.filter(p => 
+      (p.category && p.category.includes('Glitter')) ||
+      Boolean(p.flakeType) ||
+      (p.name && p.name.includes('Metal Flake') && !p.name.includes('Gun') && !p.name.includes('Kit') && !p.name.includes('Attachment') && !p.name.includes('Jar & Lid') && !p.name.includes('Adaptor'))
+    );
+
+    const tier1Flakes = this.customizerAllFlakes.filter(f => this.getFlakeTierInfo(f).tier === 1);
+    const tier3Flakes = this.customizerAllFlakes.filter(f => this.getFlakeTierInfo(f).tier === 3);
+
+    const renderFlakeOptions = (defaultSelectedSku) => `
+      <optgroup label="✨ TIER 1: STANDARD METALLIC CLASSICS [INCLUDED]">
+        ${tier1Flakes.map(f => {
+          const val = f.sku || f.id;
+          const isSel = defaultSelectedSku ? (val === defaultSelectedSku) : (f.name.includes('Show Krome') && !f.name.includes('Kromatic'));
+          return `<option value="${val}" ${isSel ? 'selected' : ''}>${f.name.replace('Metal Flake', '').replace('Flake King', '').trim()} — [Included]</option>`;
+        }).join('')}
+      </optgroup>
+      <optgroup label="🌈 TIER 3: KROMATIC HOLOGRAPHIC SERIES (+£12.00 / +€14.00)">
+        ${tier3Flakes.map(f => {
+          const val = f.sku || f.id;
+          const isSel = defaultSelectedSku ? (val === defaultSelectedSku) : false;
+          return `<option value="${val}" ${isSel ? 'selected' : ''}>${f.name.replace('Metal Flake', '').replace('Flake King', '').trim()} — [+£12 / +€14]</option>`;
+        }).join('')}
+      </optgroup>
+    `;
+
+    const renderSizeOptions = (defaultSize = '0.015') => `
+      <option value="0.015" ${defaultSize === '0.015' ? 'selected' : ''}>Medium .015" (Optimal Gun Flow) — [Included]</option>
+      <option value="0.008" ${defaultSize === '0.008' ? 'selected' : ''}>Small .008" (Fine Grain) — [Included]</option>
+      <option value="0.002" ${defaultSize === '0.002' ? 'selected' : ''}>Ultra-Small .002" (Micro Dust Finish) — [+£5.00 / +€6.00 Upgrade]</option>
+      <option value="0.025" ${defaultSize === '0.025' ? 'selected' : ''}>Large .025" (Heavy Sparkle) — [Included]</option>
+    `;
 
     if (container) {
-      container.innerHTML = '';
-      
-      const allFlakes = ECOM_CATALOG.filter(p => 
-        (p.category && p.category.includes('Glitter')) ||
-        Boolean(p.flakeType) ||
-        (p.name && p.name.includes('Metal Flake') && !p.name.includes('Gun') && !p.name.includes('Kit') && !p.name.includes('Attachment') && !p.name.includes('Jar & Lid') && !p.name.includes('Adaptor'))
-      );
-
-      (bundle.items || []).forEach((item, idx) => {
-        const isFlake = (item.category && item.category.toLowerCase().includes('flake')) || (item.name && item.name.toLowerCase().includes('flake'));
-        const isTape = (item.category && item.category.toLowerCase().includes('masking')) || (item.name && item.name.toLowerCase().includes('tape'));
-
-        const slotCard = document.createElement('div');
-        slotCard.className = 'p-3 bg-surface border border-secondary/40 rounded flex flex-col sm:flex-row sm:items-center justify-between gap-3';
-
-        if (item.allowCustomerSwap && isFlake) {
-          slotCard.innerHTML = `
-            <div class="flex-1">
-              <div class="flex items-center gap-1.5 mb-1">
-                <span class="text-[10px] font-mono font-bold uppercase text-amber-400 bg-amber-950/60 px-1.5 py-0.5 rounded border border-amber-500/40">CUSTOMIZE FLAKE COLOUR</span>
-                <span class="font-headline text-xs uppercase text-white font-bold">Slot ${idx + 1}: Metal Flake Jar</span>
+      container.innerHTML = `
+        <!-- Slot 1: Gun (Core Hardware) -->
+        <div class="p-3 bg-surface border border-secondary/40 rounded flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-emerald-400 text-xl flex-shrink-0">verified</span>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-headline text-xs uppercase text-white font-bold block">Flake King 550 Mini Dry Metal Flake Gun</span>
+                <span class="font-mono text-[9px] text-amber-400 bg-amber-950/60 px-1.5 py-0.5 rounded border border-amber-500/40 font-bold">RRP £99.99 / €116.99</span>
               </div>
-              <p class="text-[11px] text-secondary font-mono">Choose any of our 58+ precision dry metal flake shades:</p>
+              <span class="font-mono text-[11px] text-secondary">Standard 1/4" Airbrush Fitting • Direct-Mount Jar Thread • 100% Contamination-Free</span>
             </div>
-            <div class="sm:w-64">
-              <select id="customizer-slot-${idx}" class="mech-select !py-1.5 !px-2 !text-xs w-full">
-                ${allFlakes.map(f => `
-                  <option value="${f.sku || f.id}" ${f.id === item.productId || (f.name && f.name.includes('Silver Holo')) ? 'selected' : ''}>
-                    ${f.name.replace('Metal Flake', '').replace('Flake King', '').trim()} (30g Jar)
-                  </option>
-                `).join('')}
+          </div>
+          <span class="font-mono text-[10px] text-neutral-400 uppercase bg-surface-container px-2 py-1 rounded border border-secondary/40 whitespace-nowrap">
+            LOCKED BUNDLE CORE
+          </span>
+        </div>
+
+        <!-- Slot 2: Primary Flake Selection -->
+        <div class="p-3 bg-surface border border-secondary/40 rounded space-y-2.5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-secondary/20 pb-1.5">
+            <div class="flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-primary/20 text-primary font-mono text-[11px] flex items-center justify-center font-bold">1</span>
+              <span class="font-headline text-xs uppercase text-white font-bold">Primary Flake Finish (30g Gun-Mount Jar)</span>
+            </div>
+            <span class="text-[10px] font-mono text-emerald-400">Standard classics included • Holo &amp; Ultra upgrades available</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
+            <div class="sm:col-span-7">
+              <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block mb-1">Select Flake Color Shade:</label>
+              <select id="customizer-slot-flake-1" class="mech-select !py-1.5 !px-2 !text-xs w-full">
+                ${renderFlakeOptions()}
               </select>
             </div>
-          `;
-        } else if (item.allowCustomerSwap && isTape) {
-          slotCard.innerHTML = `
-            <div class="flex-1">
-              <div class="flex items-center gap-1.5 mb-1">
-                <span class="text-[10px] font-mono font-bold uppercase text-amber-400 bg-amber-950/60 px-1.5 py-0.5 rounded border border-amber-500/40">CUSTOMIZE TAPE WIDTH</span>
-                <span class="font-headline text-xs uppercase text-white font-bold">Slot ${idx + 1}: Precision Fine Line Tape</span>
-              </div>
-              <p class="text-[11px] text-secondary font-mono">Select width for sharp micro-edge separation:</p>
-            </div>
-            <div class="sm:w-48">
-              <select id="customizer-slot-${idx}" class="mech-select !py-1.5 !px-2 !text-xs w-full">
-                <option value="1.5mm">1.5mm Micro-Pinstripe</option>
-                <option value="3mm" selected>3mm Precision Curve</option>
-                <option value="6mm">6mm Standard Edge</option>
-                <option value="9mm">9mm Wide Separation</option>
-                <option value="12mm">12mm Masking Line</option>
+            <div class="sm:col-span-5">
+              <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block mb-1">Particle Size:</label>
+              <select id="customizer-slot-flake-1-size" class="mech-select !py-1.5 !px-2 !text-xs w-full">
+                ${renderSizeOptions('0.015')}
               </select>
             </div>
-          `;
-        } else {
-          slotCard.innerHTML = `
-            <div class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-emerald-400 text-xl">verified</span>
-              <div>
-                <span class="font-headline text-xs uppercase text-white font-bold block">${item.name}</span>
-                <span class="font-mono text-[11px] text-secondary">${item.qty || 1}x ${item.variant || 'Standard'}</span>
+          </div>
+        </div>
+
+        <!-- Upsell Card: Add 2nd Flake Color Duo -->
+        <div class="p-3.5 bg-gradient-to-r from-amber-950/40 via-surface to-amber-950/40 border-2 border-amber-500/60 rounded-md shadow-sm space-y-3">
+          <label class="flex items-start gap-2.5 cursor-pointer select-none">
+            <input type="checkbox" id="customizer-upsell-flake2-toggle" class="mt-1 w-4 h-4 rounded text-amber-500 focus:ring-amber-400 cursor-pointer">
+            <div class="flex-1">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="font-headline text-xs uppercase text-amber-300 font-bold tracking-wide flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm text-amber-400">add_circle</span> Add 2nd Flake Jar (Base + Accent Duo)
+                </span>
+                <span class="text-[9px] font-mono text-emerald-400 bg-emerald-950/90 border border-emerald-500/50 px-1.5 py-0.5 rounded font-bold">SAVE 25%</span>
+                <span class="text-[10px] font-mono text-amber-200">From only <strong class="text-white">+£12.00 / +€14.00</strong></span>
+              </div>
+              <p class="text-[11px] text-neutral-300 font-body mt-0.5 leading-snug">
+                Pro custom jobs almost always blend 2 complementary colors (e.g. Silver base with Gold, Blue or Holo highlights). Add a second 30g jar now at 25% off with zero additional postage.
+              </p>
+            </div>
+          </label>
+
+          <div id="customizer-upsell-flake2-body" class="hidden pt-2.5 border-t border-amber-500/30 space-y-2.5 bg-black/20 p-2.5 rounded">
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
+              <div class="sm:col-span-7">
+                <label class="font-label-xs text-[10px] uppercase text-amber-300 font-bold block mb-1">Select 2nd Accent Flake:</label>
+                <select id="customizer-slot-flake-2" class="mech-select !py-1.5 !px-2 !text-xs w-full">
+                  ${renderFlakeOptions('kromatic-elvis-gold-metal-flake')}
+                </select>
+              </div>
+              <div class="sm:col-span-5">
+                <label class="font-label-xs text-[10px] uppercase text-amber-300 font-bold block mb-1">2nd Flake Particle Size:</label>
+                <select id="customizer-slot-flake-2-size" class="mech-select !py-1.5 !px-2 !text-xs w-full">
+                  ${renderSizeOptions('0.015')}
+                </select>
               </div>
             </div>
-            <span class="font-mono text-[10px] text-neutral-400 uppercase bg-surface-container px-2 py-1 rounded border border-secondary/40">
-              LOCKED BUNDLE CORE
-            </span>
-          `;
-        }
-        container.appendChild(slotCard);
+          </div>
+        </div>
+
+        <!-- Slot 3: Masking Tape -->
+        <div class="p-3 bg-surface border border-secondary/40 rounded space-y-2">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-secondary/20 pb-1.5">
+            <div class="flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-primary/20 text-primary font-mono text-[11px] flex items-center justify-center font-bold">2</span>
+              <span class="font-headline text-xs uppercase text-white font-bold">Orange Fine Line Masking Tape (55m Roll)</span>
+            </div>
+            <span class="text-[10px] font-mono text-neutral-400">Micro-edge curve separation • Zero bleed</span>
+          </div>
+
+          <div>
+            <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block mb-1">Select Precision Width:</label>
+            <select id="customizer-slot-tape" class="mech-select !py-1.5 !px-2 !text-xs w-full">
+              <option value="3mm" selected>3mm (Precision Curve &amp; Flow Lines) — [Included]</option>
+              <option value="6mm">6mm (Standard Edge &amp; Bodylines) — [Included]</option>
+              <option value="1.5mm">1.5mm (Micro-Pinstripe &amp; Tight Fillets) — [+£1.00 / +€1.20]</option>
+              <option value="9mm">9mm (Wide Separation) — [+£1.50 / +€1.80]</option>
+              <option value="12mm">12mm (Heavy Base Masking) — [+£2.00 / +€2.40]</option>
+            </select>
+          </div>
+        </div>
+      `;
+
+      // Wire up change listeners
+      const elementsToWatch = [
+        'customizer-slot-flake-1',
+        'customizer-slot-flake-1-size',
+        'customizer-slot-tape',
+        'customizer-slot-flake-2',
+        'customizer-slot-flake-2-size'
+      ];
+
+      elementsToWatch.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('change', () => this.recalculateCustomizerPrice());
       });
+
+      const upsellToggle = document.getElementById('customizer-upsell-flake2-toggle');
+      if (upsellToggle) {
+        upsellToggle.addEventListener('change', () => {
+          const body = document.getElementById('customizer-upsell-flake2-body');
+          if (body) {
+            if (upsellToggle.checked) {
+              body.classList.remove('hidden');
+            } else {
+              body.classList.add('hidden');
+            }
+          }
+          this.recalculateCustomizerPrice();
+        });
+      }
     }
 
+    this.recalculateCustomizerPrice();
     if (modal) modal.classList.add('active');
+  }
+
+  recalculateCustomizerPrice() {
+    const baseEur = 129.95;
+    const baseGbp = 109.95;
+    const gunRrpEur = 116.99;
+    const gunRrpGbp = 99.99;
+
+    // Flake 1
+    const flake1Select = document.getElementById('customizer-slot-flake-1');
+    const flake1SizeSelect = document.getElementById('customizer-slot-flake-1-size');
+    const flake1Id = flake1Select?.value || '';
+    const flake1Prod = (this.customizerAllFlakes || []).find(p => (p.sku || p.id) === flake1Id) || {};
+    const flake1Tier = this.getFlakeTierInfo(flake1Prod);
+
+    let flake1UpgradeEur = flake1Tier.deltaEur;
+    let flake1UpgradeGbp = flake1Tier.deltaGbp;
+    let flake1RrpEur = flake1Tier.tier === 3 ? 23.94 : 16.95;
+    let flake1RrpGbp = flake1Tier.tier === 3 ? 20.46 : 14.49;
+
+    const flake1Size = flake1SizeSelect?.value || '0.015';
+    if (flake1Size === '0.002') {
+      flake1UpgradeEur += 6.00;
+      flake1UpgradeGbp += 5.00;
+      flake1RrpEur = Math.max(flake1RrpEur, 19.95);
+      flake1RrpGbp = Math.max(flake1RrpGbp, 17.49);
+    }
+
+    // Tape
+    const tapeSelect = document.getElementById('customizer-slot-tape');
+    const tapeVal = tapeSelect?.value || '3mm';
+    let tapeUpgradeEur = 0;
+    let tapeUpgradeGbp = 0;
+    let tapeRrpEur = 6.95;
+    let tapeRrpGbp = 5.95;
+
+    if (tapeVal === '1.5mm') {
+      tapeUpgradeEur = 1.20;
+      tapeUpgradeGbp = 1.00;
+      tapeRrpEur = 7.95;
+      tapeRrpGbp = 6.95;
+    } else if (tapeVal === '9mm') {
+      tapeUpgradeEur = 1.80;
+      tapeUpgradeGbp = 1.50;
+      tapeRrpEur = 8.65;
+      tapeRrpGbp = 7.45;
+    } else if (tapeVal === '12mm') {
+      tapeUpgradeEur = 2.40;
+      tapeUpgradeGbp = 2.00;
+      tapeRrpEur = 9.25;
+      tapeRrpGbp = 7.95;
+    }
+
+    // Optional 2nd Flake Upsell
+    const upsellToggle = document.getElementById('customizer-upsell-flake2-toggle');
+    const hasUpsell = upsellToggle?.checked || false;
+    let upsellEur = 0;
+    let upsellGbp = 0;
+    let upsellRrpEur = 0;
+    let upsellRrpGbp = 0;
+
+    if (hasUpsell) {
+      const flake2Select = document.getElementById('customizer-slot-flake-2');
+      const flake2SizeSelect = document.getElementById('customizer-slot-flake-2-size');
+      const flake2Id = flake2Select?.value || '';
+      const flake2Prod = (this.customizerAllFlakes || []).find(p => (p.sku || p.id) === flake2Id) || {};
+      const flake2Tier = this.getFlakeTierInfo(flake2Prod);
+
+      upsellEur = 14.00;
+      upsellGbp = 12.00;
+      upsellRrpEur = flake2Tier.tier === 3 ? 23.94 : (flake2Prod.priceEur || 16.95);
+      upsellRrpGbp = flake2Tier.tier === 3 ? 20.46 : (flake2Prod.priceGbp || 14.49);
+
+      if (flake2Tier.tier === 3) {
+        upsellEur += 8.00;
+        upsellGbp += 8.00;
+      }
+
+      const flake2Size = flake2SizeSelect?.value || '0.015';
+      if (flake2Size === '0.002') {
+        upsellEur += 5.00;
+        upsellGbp += 4.00;
+        upsellRrpEur = Math.max(upsellRrpEur, 19.95);
+        upsellRrpGbp = Math.max(upsellRrpGbp, 17.49);
+      }
+    }
+
+    // Totals
+    const totalBundleEur = baseEur + flake1UpgradeEur + tapeUpgradeEur + upsellEur;
+    const totalBundleGbp = baseGbp + flake1UpgradeGbp + tapeUpgradeGbp + upsellGbp;
+
+    const totalRrpEur = gunRrpEur + flake1RrpEur + tapeRrpEur + upsellRrpEur;
+    const totalRrpGbp = gunRrpGbp + flake1RrpGbp + tapeRrpGbp + upsellRrpGbp;
+
+    const savingsEur = Math.max(0, totalRrpEur - totalBundleEur);
+    const savingsGbp = Math.max(0, totalRrpGbp - totalBundleGbp);
+    const savingsPct = totalRrpEur > 0 ? Math.round((savingsEur / totalRrpEur) * 100) : 10;
+
+    // Cache calculated values for submission
+    this.customizerCalculatedValues = {
+      totalBundleEur,
+      totalBundleGbp,
+      flake1UpgradeEur,
+      flake1UpgradeGbp,
+      tapeUpgradeEur,
+      tapeUpgradeGbp,
+      upsellEur,
+      upsellGbp,
+      hasUpsell,
+      flake1Prod,
+      flake1Size,
+      tapeVal
+    };
+
+    // Update DOM
+    const priceEurEl = document.getElementById('customizer-bundle-price');
+    const priceGbpEl = document.getElementById('customizer-bundle-gbp');
+    const retailEl = document.getElementById('customizer-bundle-retail');
+    const savingsEl = document.getElementById('customizer-bundle-savings');
+    const btnLabelEl = document.getElementById('btn-custom-bundle-label');
+
+    if (priceEurEl) priceEurEl.textContent = `€${totalBundleEur.toFixed(2)}`;
+    if (priceGbpEl) priceGbpEl.textContent = `/ £${totalBundleGbp.toFixed(2)}`;
+    if (retailEl) retailEl.textContent = `€${totalRrpEur.toFixed(2)} / £${totalRrpGbp.toFixed(2)}`;
+    if (savingsEl) {
+      savingsEl.textContent = `SAVE €${savingsEur.toFixed(2)} / £${savingsGbp.toFixed(2)} (${savingsPct}% OFF)`;
+    }
+    if (btnLabelEl) {
+      btnLabelEl.textContent = hasUpsell ? `ADD PRO DUO KIT TO CART (€${totalBundleEur.toFixed(2)})` : `ADD CUSTOM KIT TO CART (€${totalBundleEur.toFixed(2)})`;
+    }
   }
 
   closeBundleCustomizerModal() {
@@ -4707,40 +5173,67 @@ class PaintSystemApp {
   }
 
   submitCustomizedBundleToCart() {
-    const bundle = this.getActiveBundle(this.currentCustomizingBundleId || 'fk-pro-mastery-bundle');
-    if (!bundle) return;
+    const calc = this.customizerCalculatedValues;
+    if (!calc) return;
 
-    (bundle.items || []).forEach((item, idx) => {
-      const select = document.getElementById(`customizer-slot-${idx}`);
-      let title = item.name;
-      let variant = item.variant || 'Standard Pack';
-      let sku = item.sku;
+    // 1. Core Hardware: Flake King 550 Mini Gun
+    this.shopifyCartManager.addItem({
+      sku: 'FOM550',
+      title: 'Flake King 550 Mini Dry Metal Flake Gun',
+      priceEur: 112.95,
+      quantity: 1,
+      variantDetails: 'Standard 1/4" Airbrush Fitting • Pro Kit Core'
+    });
 
-      if (select) {
-        const optText = select.options[select.selectedIndex]?.text || '';
-        if (optText.includes('(30g Jar)')) {
-          title = `Flake King ${optText}`;
-          sku = select.value;
-          variant = '30g Gun-Mount Jar';
-        } else if (optText.includes('Pinstripe') || optText.includes('Curve') || optText.includes('Edge') || select.value.includes('mm')) {
-          title = `Orange Fine Line Tape (${select.value})`;
-          sku = `FK-TAPE-${select.value}`;
-          variant = `${select.value} Precision Width`;
-        }
-      }
+    // 2. Primary Flake Jar
+    const flake1Select = document.getElementById('customizer-slot-flake-1');
+    const flake1Id = flake1Select?.value || 'fk-2610';
+    const flake1Prod = (this.customizerAllFlakes || []).find(p => (p.sku || p.id) === flake1Id) || {};
+    const flake1Size = calc.flake1Size || '0.015';
+    const flake1Tier = this.getFlakeTierInfo(flake1Prod);
+    const flake1PriceEur = Number((10.95 + (calc.flake1UpgradeEur || 0)).toFixed(2));
+
+    this.shopifyCartManager.addItem({
+      sku: flake1Prod.sku || flake1Id,
+      title: `Flake King ${flake1Prod.name || 'Show Krome Metal Flake'} (${flake1Size}")`,
+      priceEur: flake1PriceEur,
+      quantity: 1,
+      variantDetails: `30g Gun-Mount Jar • ${flake1Tier.badge} • Custom Pro Kit`
+    });
+
+    // 3. Precision Masking Tape
+    const tapeVal = calc.tapeVal || '3mm';
+    const tapePriceEur = Number((6.05 + (calc.tapeUpgradeEur || 0)).toFixed(2));
+
+    this.shopifyCartManager.addItem({
+      sku: `FK-TAPE-${tapeVal.toUpperCase()}`,
+      title: `Orange Fine Line Masking Tape (${tapeVal})`,
+      priceEur: tapePriceEur,
+      quantity: 1,
+      variantDetails: `${tapeVal} Precision Width x 55m • Custom Pro Kit`
+    });
+
+    // 4. Optional 2nd Flake Jar (if selected)
+    if (calc.hasUpsell) {
+      const flake2Select = document.getElementById('customizer-slot-flake-2');
+      const flake2SizeSelect = document.getElementById('customizer-slot-flake-2-size');
+      const flake2Id = flake2Select?.value || 'fk-2319';
+      const flake2Prod = (this.customizerAllFlakes || []).find(p => (p.sku || p.id) === flake2Id) || {};
+      const flake2Size = flake2SizeSelect?.value || '0.015';
+      const flake2PriceEur = Number((calc.upsellEur || 14.00).toFixed(2));
 
       this.shopifyCartManager.addItem({
-        sku: sku || 'FK-CUSTOM-BUNDLE-ITEM',
-        title: title,
-        priceEur: Number(item.priceEur) || ((bundle.priceEur || 100) / bundle.items.length),
-        quantity: item.qty || 1,
-        variantDetails: `${variant} • UK Warehouse`
+        sku: flake2Prod.sku || flake2Id,
+        title: `Flake King ${flake2Prod.name || 'Elvis Gold Metal Flake'} (${flake2Size}")`,
+        priceEur: flake2PriceEur,
+        quantity: 1,
+        variantDetails: `30g Gun-Mount Jar • Pro Duo Add-on Flake`
       });
-    });
+    }
 
     this.closeBundleCustomizerModal();
     this.openCartDrawer();
-    this.showToast("🎨 Customized bundle loaded to cart!", "success");
+    this.showToast(calc.hasUpsell ? "🔥 Flake King Pro Duo Kit added to cart!" : "🎨 Custom Pro Flake Kit loaded to cart!", "success");
   }
 
   // =========================================================================
@@ -5051,6 +5544,979 @@ class PaintSystemApp {
     `;
   }
 
+  // =========================================================================
+  // HERO & LANDING SHOWCASE DESIGNER (ADMIN & STOREFRONT SYNC)
+  // =========================================================================
+
+  getActiveHeroConfig() {
+    if (this.adminController && this.adminController.config && this.adminController.config.hero) {
+      return this.adminController.config.hero;
+    }
+    return JSON.parse(JSON.stringify(DEFAULT_HERO_CONFIG));
+  }
+
+  renderStorefrontHero() {
+    const config = this.getActiveHeroConfig();
+
+    // 1. Authority Pill
+    const pillStatus = document.getElementById('hero-pill-status');
+    const pillLocation = document.getElementById('hero-pill-location');
+    if (pillStatus && config.authorityPill?.statusText) {
+      pillStatus.textContent = config.authorityPill.statusText;
+    }
+    if (pillLocation && config.authorityPill?.locationText) {
+      pillLocation.textContent = config.authorityPill.locationText;
+    }
+
+    // 2. Headlines & Copy
+    const headlinePrefix = document.getElementById('hero-headline-prefix');
+    const headlineAccent = document.getElementById('hero-headline-accent');
+    const subheadline = document.getElementById('hero-subheadline');
+    const description = document.getElementById('hero-description');
+
+    if (headlinePrefix && config.headline?.prefixText) {
+      headlinePrefix.textContent = config.headline.prefixText;
+    }
+    if (headlineAccent && config.headline?.accentText) {
+      headlineAccent.textContent = config.headline.accentText;
+    }
+    if (subheadline && config.subheadline) {
+      subheadline.textContent = config.subheadline;
+    }
+    if (description && config.description) {
+      description.textContent = config.description;
+    }
+
+    // 3. Quick Department Jump Buttons
+    const jumpContainer = document.getElementById('hero-jump-buttons-container');
+    if (jumpContainer && Array.isArray(config.quickJumpButtons) && config.quickJumpButtons.length > 0) {
+      jumpContainer.innerHTML = config.quickJumpButtons.map(btn => {
+        let classes = 'bg-surface-container border border-white/20 hover:border-white text-neutral-200 hover:text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-white/5';
+        if (btn.style === 'candy') {
+          classes = 'mech-btn-candy !py-2.5 !px-4 text-xs tracking-wider flex items-center gap-1.5 rounded shadow-[0_0_14px_rgba(211,47,47,0.45)]';
+        } else if (btn.style === 'amber') {
+          classes = 'bg-surface-container border border-amber-500/70 hover:border-amber-400 text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-amber-500/10';
+        } else if (btn.style === 'rose') {
+          classes = 'bg-surface-container border border-rose-500/60 hover:border-rose-400 text-rose-300 hover:text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-rose-500/10';
+        }
+
+        const iconHtml = btn.icon ? `<span class="material-symbols-outlined text-sm ${btn.style === 'rose' ? 'text-rose-400' : ''}">${this.escapeHtml(btn.icon)}</span>` : '';
+        const badgeHtml = btn.badge ? `<span class="text-[9px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">${this.escapeHtml(btn.badge)}</span>` : '';
+
+        return `<a href="${this.escapeHtmlAttr(btn.target || '#')}" class="${classes}">
+          <span>${this.escapeHtml(btn.label || '')}</span>
+          ${iconHtml}
+          ${badgeHtml}
+        </a>`;
+      }).join('');
+    }
+
+    // 4. B2B Trade Banner
+    const tradeBadge = document.getElementById('hero-trade-badge');
+    const tradeText = document.getElementById('hero-trade-text');
+    const tradeLinkText = document.getElementById('hero-trade-link-text');
+    const tradeLink = document.getElementById('hero-trade-link');
+
+    if (tradeBadge && config.tradeCallout?.badge) tradeBadge.textContent = config.tradeCallout.badge;
+    if (tradeText && config.tradeCallout?.text) tradeText.textContent = config.tradeCallout.text;
+    if (tradeLinkText && config.tradeCallout?.linkText) tradeLinkText.textContent = config.tradeCallout.linkText;
+    if (tradeLink && config.tradeCallout?.linkUrl) tradeLink.href = config.tradeCallout.linkUrl;
+
+    // 5. Trust Line
+    const trustLine = document.getElementById('hero-trust-line');
+    if (trustLine && config.trustLine) {
+      trustLine.textContent = config.trustLine;
+    }
+
+    // 6. Slides
+    const slidesContainer = document.getElementById('hero-crossfade-container');
+    if (slidesContainer && Array.isArray(config.slides) && config.slides.length > 0) {
+      slidesContainer.innerHTML = config.slides.map((s, idx) => {
+        const activeClass = idx === 0 ? ' active' : '';
+        const imgUrl = getAssetUrl(s.image);
+        return `<div class="hero-crossfade-slide${activeClass}" style="background-image: url('${imgUrl}'); background-position: ${s.position || 'center right 15%'};" data-caption="${this.escapeHtmlAttr(s.caption || '')}" data-badge="${this.escapeHtmlAttr(s.badge || '')}"></div>`;
+      }).join('');
+    }
+
+    // 7. Synchronize Dots
+    const dotsContainer = document.getElementById('hero-slide-dots');
+    if (dotsContainer && Array.isArray(config.slides)) {
+      dotsContainer.innerHTML = config.slides.map((_, idx) => {
+        const activeClass = idx === 0 ? ' active' : '';
+        return `<button class="hero-indicator-dot${activeClass} w-2 h-2 rounded-full bg-white/30 transition-all cursor-pointer hover:bg-white/70" onclick="window.setHeroSlide(${idx})" title="Slide ${idx + 1}"></button>`;
+      }).join('');
+    }
+  }
+
+  renderAdminHero() {
+    const config = this.getActiveHeroConfig();
+
+    const pPrefix = document.getElementById('admin-hero-headline-prefix');
+    const pAccent = document.getElementById('admin-hero-headline-accent');
+    const pSubhead = document.getElementById('admin-hero-subheadline');
+    const pDesc = document.getElementById('admin-hero-description');
+    const pPillStat = document.getElementById('admin-hero-pill-status');
+    const pPillLoc = document.getElementById('admin-hero-pill-location');
+    const pTrust = document.getElementById('admin-hero-trust-line');
+    const pTradeBadge = document.getElementById('admin-hero-trade-badge');
+    const pTradeText = document.getElementById('admin-hero-trade-text');
+    const pTradeLink = document.getElementById('admin-hero-trade-link-text');
+
+    if (pPrefix) pPrefix.value = config.headline?.prefixText || '';
+    if (pAccent) pAccent.value = config.headline?.accentText || '';
+    if (pSubhead) pSubhead.value = config.subheadline || '';
+    if (pDesc) pDesc.value = config.description || '';
+    if (pPillStat) pPillStat.value = config.authorityPill?.statusText || '';
+    if (pPillLoc) pPillLoc.value = config.authorityPill?.locationText || '';
+    if (pTrust) pTrust.value = config.trustLine || '';
+    if (pTradeBadge) pTradeBadge.value = config.tradeCallout?.badge || '';
+    if (pTradeText) pTradeText.value = config.tradeCallout?.text || '';
+    if (pTradeLink) pTradeLink.value = config.tradeCallout?.linkText || '';
+
+    [pPrefix, pAccent, pSubhead, pDesc, pPillStat, pPillLoc, pTrust, pTradeBadge, pTradeText, pTradeLink].forEach(input => {
+      if (input && !input.dataset.bound) {
+        input.dataset.bound = 'true';
+        input.addEventListener('input', () => this.renderAdminHeroLivePreview());
+      }
+    });
+
+    this.renderAdminHeroSlides(config);
+    this.renderAdminHeroJumps(config);
+    this.renderAdminHeroLivePreview();
+  }
+
+  renderAdminHeroSlides(config) {
+    const container = document.getElementById('admin-hero-slides-container');
+    if (!container) return;
+
+    const slides = config.slides || [];
+    container.innerHTML = '';
+
+    slides.forEach((slide, idx) => {
+      const card = document.createElement('div');
+      card.className = 'p-3.5 bg-surface-dim border border-secondary/30 rounded space-y-3';
+      card.dataset.slideIndex = idx;
+
+      const imgUrl = getAssetUrl(slide.image);
+      const isFirst = idx === 0;
+      const isLast = idx === slides.length - 1;
+
+      card.innerHTML = `
+        <div class="flex justify-between items-center border-b border-white/10 pb-2">
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary font-mono text-xs flex items-center justify-center font-bold">
+              ${idx + 1}
+            </span>
+            <span class="font-headline text-xs uppercase text-white font-bold">Slide #${idx + 1}: ${this.escapeHtml(slide.badge || 'Finish Specimen')}</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <button type="button" onclick="window.moveAdminHeroSlide(${idx}, -1)" class="p-1 text-secondary hover:text-white ${isFirst ? 'opacity-30 cursor-not-allowed pointer-events-none' : 'cursor-pointer'}" title="Move Up">
+              <span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+            </button>
+            <button type="button" onclick="window.moveAdminHeroSlide(${idx}, 1)" class="p-1 text-secondary hover:text-white ${isLast ? 'opacity-30 cursor-not-allowed pointer-events-none' : 'cursor-pointer'}" title="Move Down">
+              <span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+            </button>
+            <button type="button" onclick="window.removeAdminHeroSlide(${idx})" class="p-1 text-rose-400 hover:text-rose-300 ml-1 cursor-pointer" title="Remove Slide">
+              <span class="material-symbols-outlined text-[16px]">delete</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+          <div class="sm:col-span-3 flex flex-col gap-1.5">
+            <div class="w-full h-20 rounded bg-black border border-white/10 overflow-hidden relative group">
+              <img src="${imgUrl}" alt="${this.escapeHtmlAttr(slide.badge || '')}" class="w-full h-full object-cover" onerror="this.src='assets/images/kroma-skull-mirror.jpg'">
+              <span class="absolute bottom-1 right-1 text-[9px] font-mono bg-black/80 px-1 rounded text-neutral-300">Preview</span>
+            </div>
+            <div class="grid grid-cols-2 gap-1">
+              <button type="button" onclick="window.triggerHeroSlideUpload(${idx})" class="w-full py-1 px-1 rounded bg-surface-dim hover:bg-surface-container-high border border-secondary/40 text-[9px] font-mono text-white flex items-center justify-center gap-0.5 cursor-pointer" title="Upload custom photo">
+                <span class="material-symbols-outlined text-[13px] text-primary">upload</span> Upload
+              </button>
+              <button type="button" onclick="window.openHeroAiEnhancer(${idx})" class="w-full py-1 px-1 rounded bg-primary/20 hover:bg-primary/30 border border-primary/50 text-[9px] font-mono text-primary font-bold flex items-center justify-center gap-0.5 cursor-pointer shadow-sm" title="AI specular enhancement">
+                <span class="material-symbols-outlined text-[13px]">auto_awesome</span> AI Finish
+              </button>
+            </div>
+          </div>
+          <div class="sm:col-span-9 space-y-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <div>
+                <label class="font-label-xs text-[9px] uppercase text-secondary font-bold block mb-0.5">Asset Path / URL</label>
+                <input type="text" class="admin-slide-image mech-input w-full !text-xs font-mono !py-1" value="${this.escapeHtmlAttr(slide.image || '')}">
+              </div>
+              <div>
+                <label class="font-label-xs text-[9px] uppercase text-primary font-bold block mb-0.5">Finish Badge Text</label>
+                <input type="text" class="admin-slide-badge mech-input w-full !text-xs font-mono !py-1" value="${this.escapeHtmlAttr(slide.badge || '')}">
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <div class="sm:col-span-2">
+                <label class="font-label-xs text-[9px] uppercase text-secondary font-bold block mb-0.5">Slide Caption Text</label>
+                <input type="text" class="admin-slide-caption mech-input w-full !text-xs font-mono !py-1" value="${this.escapeHtmlAttr(slide.caption || '')}">
+              </div>
+              <div>
+                <label class="font-label-xs text-[9px] uppercase text-secondary font-bold block mb-0.5">Focal Alignment</label>
+                <input type="text" class="admin-slide-position mech-input w-full !text-xs font-mono !py-1" value="${this.escapeHtmlAttr(slide.position || 'center right 15%')}">
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      card.querySelectorAll('input').forEach(inp => {
+        inp.addEventListener('input', () => this.renderAdminHeroLivePreview());
+      });
+
+      container.appendChild(card);
+    });
+  }
+
+  renderAdminHeroJumps(config) {
+    const container = document.getElementById('admin-hero-jumps-container');
+    if (!container) return;
+
+    const jumps = config.quickJumpButtons || [];
+    container.innerHTML = '';
+
+    jumps.forEach((btn, idx) => {
+      const row = document.createElement('div');
+      row.className = 'p-3 bg-surface-dim border border-secondary/30 rounded flex flex-wrap sm:flex-nowrap items-center gap-2.5';
+      row.dataset.jumpIndex = idx;
+
+      row.innerHTML = `
+        <span class="w-5 h-5 rounded-full bg-white/10 text-neutral-300 font-mono text-xs flex items-center justify-center font-bold flex-shrink-0">
+          ${idx + 1}
+        </span>
+        <div class="flex-grow grid grid-cols-1 sm:grid-cols-4 gap-2 w-full">
+          <div class="sm:col-span-2">
+            <input type="text" class="admin-jump-label mech-input w-full !text-xs font-mono !py-1" value="${this.escapeHtmlAttr(btn.label || '')}" placeholder="Button Label">
+          </div>
+          <div>
+            <input type="text" class="admin-jump-target mech-input w-full !text-xs font-mono !py-1" value="${this.escapeHtmlAttr(btn.target || '')}" placeholder="Anchor / Link">
+          </div>
+          <div>
+            <select class="admin-jump-style mech-select w-full !text-xs !py-1">
+              <option value="candy" ${btn.style === 'candy' ? 'selected' : ''}>Candy Red</option>
+              <option value="amber" ${btn.style === 'amber' ? 'selected' : ''}>Flake Amber</option>
+              <option value="rose" ${btn.style === 'rose' ? 'selected' : ''}>Rose Video</option>
+              <option value="neutral" ${(!btn.style || btn.style === 'neutral') ? 'selected' : ''}>Neutral Dark</option>
+            </select>
+          </div>
+        </div>
+        <button type="button" onclick="window.removeAdminHeroJump(${idx})" class="text-rose-400 hover:text-rose-300 p-1 flex-shrink-0 cursor-pointer" title="Remove Button">
+          <span class="material-symbols-outlined text-[16px]">delete</span>
+        </button>
+      `;
+
+      row.querySelectorAll('input, select').forEach(inp => {
+        inp.addEventListener('input', () => this.renderAdminHeroLivePreview());
+        inp.addEventListener('change', () => this.renderAdminHeroLivePreview());
+      });
+
+      container.appendChild(row);
+    });
+  }
+
+  collectHeroDataFromInputs() {
+    const config = this.getActiveHeroConfig();
+    const prefix = document.getElementById('admin-hero-headline-prefix')?.value || config.headline.prefixText;
+    const accent = document.getElementById('admin-hero-headline-accent')?.value || config.headline.accentText;
+    const subheadline = document.getElementById('admin-hero-subheadline')?.value || config.subheadline;
+    const description = document.getElementById('admin-hero-description')?.value || config.description;
+    const statusText = document.getElementById('admin-hero-pill-status')?.value || config.authorityPill.statusText;
+    const locationText = document.getElementById('admin-hero-pill-location')?.value || config.authorityPill.locationText;
+    const trustLine = document.getElementById('admin-hero-trust-line')?.value || config.trustLine;
+    const tradeBadge = document.getElementById('admin-hero-trade-badge')?.value || config.tradeCallout.badge;
+    const tradeText = document.getElementById('admin-hero-trade-text')?.value || config.tradeCallout.text;
+    const tradeLinkText = document.getElementById('admin-hero-trade-link-text')?.value || config.tradeCallout.linkText;
+
+    const slideCards = document.querySelectorAll('#admin-hero-slides-container [data-slide-index]');
+    const slides = [];
+    slideCards.forEach((card, i) => {
+      slides.push({
+        id: `slide-${i + 1}`,
+        image: card.querySelector('.admin-slide-image')?.value || 'assets/images/kroma-skull-mirror.jpg',
+        badge: card.querySelector('.admin-slide-badge')?.value || 'Finish Specimen',
+        caption: card.querySelector('.admin-slide-caption')?.value || '',
+        position: card.querySelector('.admin-slide-position')?.value || 'center right 15%'
+      });
+    });
+
+    const jumpCards = document.querySelectorAll('#admin-hero-jumps-container [data-jump-index]');
+    const quickJumpButtons = [];
+    jumpCards.forEach((card, i) => {
+      quickJumpButtons.push({
+        id: `jump-${i + 1}`,
+        label: card.querySelector('.admin-jump-label')?.value || 'Department',
+        target: card.querySelector('.admin-jump-target')?.value || '#storefront-catalog-anchor',
+        style: card.querySelector('.admin-jump-style')?.value || 'neutral',
+        icon: 'arrow_downward'
+      });
+    });
+
+    return {
+      authorityPill: { statusText, locationText },
+      headline: { prefixText: prefix, accentText: accent },
+      subheadline,
+      description,
+      trustLine,
+      tradeCallout: {
+        badge: tradeBadge,
+        text: tradeText,
+        linkText: tradeLinkText,
+        linkUrl: 'dealers.html'
+      },
+      quickJumpButtons: quickJumpButtons.length > 0 ? quickJumpButtons : config.quickJumpButtons,
+      slides: slides.length > 0 ? slides : config.slides
+    };
+  }
+
+  addAdminHeroSlide() {
+    const data = this.collectHeroDataFromInputs();
+    data.slides.push({
+      id: `slide-${Date.now()}`,
+      image: 'assets/images/kroma-skull-mirror.jpg',
+      badge: 'Specular Mirror 2K',
+      caption: `0${data.slides.length + 1}/0${data.slides.length + 1} • Custom Finish Specimen`,
+      position: 'center right 15%'
+    });
+    this.adminController.config.hero = data;
+    this.renderAdminHeroSlides(data);
+    this.renderAdminHeroLivePreview();
+  }
+
+  removeAdminHeroSlide(idx) {
+    const data = this.collectHeroDataFromInputs();
+    if (data.slides.length <= 1) {
+      this.showToast("At least one slide is required in the showcase.", "warning");
+      return;
+    }
+    data.slides.splice(idx, 1);
+    this.adminController.config.hero = data;
+    this.renderAdminHeroSlides(data);
+    this.renderAdminHeroLivePreview();
+  }
+
+  moveAdminHeroSlide(idx, direction) {
+    const data = this.collectHeroDataFromInputs();
+    const targetIdx = idx + direction;
+    if (targetIdx < 0 || targetIdx >= data.slides.length) return;
+    const temp = data.slides[idx];
+    data.slides[idx] = data.slides[targetIdx];
+    data.slides[targetIdx] = temp;
+    this.adminController.config.hero = data;
+    this.renderAdminHeroSlides(data);
+    this.renderAdminHeroLivePreview();
+  }
+
+  addAdminHeroJump() {
+    const data = this.collectHeroDataFromInputs();
+    data.quickJumpButtons.push({
+      id: `jump-${Date.now()}`,
+      label: 'New Department',
+      target: '#storefront-catalog-anchor',
+      style: 'neutral',
+      icon: 'arrow_downward'
+    });
+    this.adminController.config.hero = data;
+    this.renderAdminHeroJumps(data);
+    this.renderAdminHeroLivePreview();
+  }
+
+  removeAdminHeroJump(idx) {
+    const data = this.collectHeroDataFromInputs();
+    data.quickJumpButtons.splice(idx, 1);
+    this.adminController.config.hero = data;
+    this.renderAdminHeroJumps(data);
+    this.renderAdminHeroLivePreview();
+  }
+
+  renderAdminHeroLivePreview() {
+    const preview = document.getElementById('admin-hero-live-preview');
+    if (!preview) return;
+
+    const prefix = document.getElementById('admin-hero-headline-prefix')?.value || 'THE EUROPEAN MASTER HUB FOR';
+    const accent = document.getElementById('admin-hero-headline-accent')?.value || 'KROMA EDGE CHROME & FLAKE KING';
+    const subhead = document.getElementById('admin-hero-subheadline')?.value || 'Engineered for automotive refinishers across Europe.';
+    const desc = document.getElementById('admin-hero-description')?.value || 'Direct European bonded dispatch from our UK logistics center.';
+    const pillStat = document.getElementById('admin-hero-pill-status')?.value || '✦ OFFICIAL EUROPEAN MASTER HUB';
+    const pillLoc = document.getElementById('admin-hero-pill-location')?.value || 'PLACENTIA, CA AUTHORIZED';
+    const trust = document.getElementById('admin-hero-trust-line')?.value || 'Dispatched from UK Hub • Tracked APC Overnight';
+
+    const firstSlideImg = document.querySelector('#admin-hero-slides-container .admin-slide-image')?.value || 'assets/images/kroma-skull-mirror.jpg';
+    const firstSlideBadge = document.querySelector('#admin-hero-slides-container .admin-slide-badge')?.value || 'Zero Gray Clouding';
+    const totalSlides = document.querySelectorAll('#admin-hero-slides-container [data-slide-index]').length || 1;
+
+    const jumpLabels = [];
+    document.querySelectorAll('#admin-hero-jumps-container [data-jump-index]').forEach(c => {
+      const lbl = c.querySelector('.admin-jump-label')?.value;
+      if (lbl) jumpLabels.push(lbl);
+    });
+
+    preview.innerHTML = `
+      <div class="relative rounded overflow-hidden border border-white/10 p-4 min-h-[220px] flex flex-col justify-between" style="background: linear-gradient(135deg, rgba(12,14,14,0.92) 30%, rgba(12,14,14,0.6) 100%), url('${getAssetUrl(firstSlideImg)}') center right / cover no-repeat;">
+        <div class="space-y-3 relative z-10">
+          <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-black/85 border border-primary/50 text-[9px] font-mono text-white">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="truncate font-bold">${this.escapeHtml(pillStat)}</span>
+            <span class="text-neutral-500">•</span>
+            <span class="text-amber-300 truncate">${this.escapeHtml(pillLoc)}</span>
+          </div>
+
+          <div>
+            <div class="font-headline text-xs font-black uppercase text-white tracking-tight leading-snug">
+              ${this.escapeHtml(prefix)} <br>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-primary-container">${this.escapeHtml(accent)}</span>
+            </div>
+            <div class="text-[10px] text-neutral-300 font-headline font-medium mt-1 line-clamp-1">
+              ${this.escapeHtml(subhead)}
+            </div>
+            <div class="text-[9px] text-neutral-400 font-body mt-0.5 line-clamp-2">
+              ${this.escapeHtml(desc)}
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-1 pt-1">
+            ${jumpLabels.slice(0, 4).map((l, i) => `
+              <span class="text-[8px] font-mono uppercase px-1.5 py-0.5 rounded border ${i === 0 ? 'bg-primary/20 border-primary text-primary font-bold' : 'bg-black/60 border-white/20 text-neutral-300'}">${this.escapeHtml(l)}</span>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="border-t border-white/10 pt-2 mt-3 flex items-center justify-between text-[8px] font-mono text-neutral-400 relative z-10">
+          <span class="truncate max-w-[180px]">${this.escapeHtml(trust)}</span>
+          <span class="text-primary font-bold flex-shrink-0">Finish: ${this.escapeHtml(firstSlideBadge)} (1/${totalSlides})</span>
+        </div>
+      </div>
+    `;
+  }
+
+  saveHeroFromAdmin() {
+    const heroData = this.collectHeroDataFromInputs();
+    this.adminController.saveHeroConfig(heroData);
+    this.renderStorefrontHero();
+    this.setupHeroCrossfade();
+    this.renderAdminHeroLivePreview();
+    this.showToast("⚡ Hero & Landing Showcase Published Successfully!", "success");
+  }
+
+  resetHeroFromAdmin() {
+    if (confirm("Reset Hero & Landing Showcase back to factory defaults?")) {
+      const restored = this.adminController.resetHeroConfig();
+      this.renderAdminHero();
+      this.renderStorefrontHero();
+      this.setupHeroCrossfade();
+      this.showToast("↺ Hero Showcase restored to factory defaults.", "info");
+    }
+  }
+
+  // =========================================================================
+  // HERO IMAGE UPLOAD & CANVAS SCALING ENGINE
+  // =========================================================================
+  triggerHeroSlideUpload(slideIndex) {
+    this._targetUploadSlideIndex = (slideIndex !== undefined && slideIndex !== null) ? Number(slideIndex) : null;
+    const fileInput = document.getElementById('input-hero-image-upload');
+    if (fileInput) fileInput.click();
+  }
+
+  handleHeroImageUpload(file, slideIndex) {
+    if (!file || !file.type.startsWith('image/')) {
+      this.showToast("Please select a valid image file (PNG, JPG, WebP).", "warning");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        // Downscale image to max dimension 1920 to prevent excessive localStorage usage
+        const maxDim = 1920;
+        let w = img.width;
+        let h = img.height;
+        if (w > maxDim || h > maxDim) {
+          if (w > h) {
+            h = Math.round((h * maxDim) / w);
+            w = maxDim;
+          } else {
+            w = Math.round((w * maxDim) / h);
+            h = maxDim;
+          }
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, w, h);
+
+        const optimizedDataUrl = canvas.toDataURL('image/jpeg', 0.88);
+        const data = this.collectHeroDataFromInputs();
+
+        if (slideIndex !== null && slideIndex !== undefined && data.slides[slideIndex]) {
+          data.slides[slideIndex].image = optimizedDataUrl;
+          this.adminController.config.hero = data;
+          this.renderAdminHeroSlides(data);
+          this.renderAdminHeroLivePreview();
+          this.showToast(`Slide #${slideIndex + 1} image uploaded & optimized!`, "success");
+        } else {
+          // New slide created from upload
+          const newIdx = data.slides.length + 1;
+          data.slides.push({
+            id: `slide-${Date.now()}`,
+            image: optimizedDataUrl,
+            badge: 'Custom Optical Specimen',
+            caption: `0${newIdx}/0${newIdx} • Custom Uploaded Finish`,
+            position: 'center right 15%'
+          });
+          this.adminController.config.hero = data;
+          this.renderAdminHeroSlides(data);
+          this.renderAdminHeroLivePreview();
+          this.showToast("New optical finish slide uploaded successfully!", "success");
+        }
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // =========================================================================
+  // HERO AI COPYWRITER STUDIO
+  // =========================================================================
+  openHeroAiCopyModal() {
+    const modal = document.getElementById('modal-admin-hero-ai-copy');
+    if (modal) {
+      modal.classList.add('active');
+      modal.classList.add('flex');
+      this.generateHeroCopyOptions();
+    }
+  }
+
+  closeHeroAiCopyModal() {
+    const modal = document.getElementById('modal-admin-hero-ai-copy');
+    if (modal) {
+      modal.classList.remove('active');
+      modal.classList.remove('flex');
+    }
+  }
+
+  generateHeroCopyOptions() {
+    const selectTone = document.getElementById('select-hero-ai-tone');
+    const inputPrompt = document.getElementById('input-hero-ai-custom-prompt');
+    const tone = selectTone ? selectTone.value : 'master_refinisher';
+    const customPrompt = inputPrompt ? inputPrompt.value.trim() : '';
+
+    const proposals = this.adminController.generateHeroAiCopy({ tone, customPrompt });
+    const container = document.getElementById('hero-ai-proposals-container');
+    if (!container) return;
+
+    if (!proposals || proposals.length === 0) {
+      container.innerHTML = `<div class="p-4 bg-surface-dim border border-white/10 text-secondary text-center">No proposals generated for this tone.</div>`;
+      return;
+    }
+
+    container.innerHTML = proposals.map((p, idx) => `
+      <div class="p-4 bg-surface-dim border border-secondary/30 hover:border-primary/50 rounded space-y-3 transition-all">
+        <div class="flex justify-between items-start border-b border-white/10 pb-2">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-headline text-sm font-bold uppercase text-white">${this.escapeHtml(p.name)}</span>
+              <span class="font-mono text-[9px] px-1.5 py-0.5 rounded bg-primary/20 text-primary border border-primary/40 font-bold">${this.escapeHtml(p.pillStatus)}</span>
+            </div>
+            <span class="text-[10px] text-amber-300 font-mono">${this.escapeHtml(p.pillLocation)}</span>
+          </div>
+          <button type="button" onclick="window.applyHeroCopyOption('${tone}', ${idx})" class="mech-button-primary !py-1 !px-3 text-[11px] font-mono font-bold flex items-center gap-1 shadow-sm cursor-pointer">
+            <span class="material-symbols-outlined text-[14px]">done_all</span> Apply Proposal
+          </button>
+        </div>
+
+        <div class="space-y-1.5 font-headline">
+          <div class="text-[11px] text-neutral-400 tracking-wide uppercase">
+            ${this.escapeHtml(p.headlinePrefix)} <span class="text-primary font-bold">${this.escapeHtml(p.headlineAccent)}</span>
+          </div>
+          <div class="text-xs text-white font-medium">
+            ${this.escapeHtml(p.subheadline)}
+          </div>
+        </div>
+
+        <p class="font-body text-[11px] text-neutral-300 leading-relaxed bg-black/30 p-2.5 rounded border border-white/5">
+          ${this.escapeHtml(p.description)}
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[10px] font-mono text-neutral-400 pt-1 border-t border-white/5">
+          <div><span class="text-secondary font-bold">Trust Bar:</span> ${this.escapeHtml(p.trustLine)}</div>
+          <div><span class="text-amber-400 font-bold">${this.escapeHtml(p.tradeBadge)}</span> ${this.escapeHtml(p.tradeText)} <span class="text-emerald-400 font-bold underline">${this.escapeHtml(p.tradeLinkText)}</span></div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  applyHeroCopyOption(tone, idx) {
+    const proposals = this.adminController.generateHeroAiCopy({ tone });
+    const p = proposals && proposals[idx];
+    if (!p) return;
+
+    const pPrefix = document.getElementById('admin-hero-headline-prefix');
+    const pAccent = document.getElementById('admin-hero-headline-accent');
+    const pSubhead = document.getElementById('admin-hero-subheadline');
+    const pDesc = document.getElementById('admin-hero-description');
+    const pPillStat = document.getElementById('admin-hero-pill-status');
+    const pPillLoc = document.getElementById('admin-hero-pill-location');
+    const pTrust = document.getElementById('admin-hero-trust-line');
+    const pTradeBadge = document.getElementById('admin-hero-trade-badge');
+    const pTradeText = document.getElementById('admin-hero-trade-text');
+    const pTradeLink = document.getElementById('admin-hero-trade-link-text');
+
+    if (pPrefix) pPrefix.value = p.headlinePrefix;
+    if (pAccent) pAccent.value = p.headlineAccent;
+    if (pSubhead) pSubhead.value = p.subheadline;
+    if (pDesc) pDesc.value = p.description;
+    if (pPillStat) pPillStat.value = p.pillStatus;
+    if (pPillLoc) pPillLoc.value = p.pillLocation;
+    if (pTrust) pTrust.value = p.trustLine;
+    if (pTradeBadge) pTradeBadge.value = p.tradeBadge;
+    if (pTradeText) pTradeText.value = p.tradeText;
+    if (pTradeLink) pTradeLink.value = p.tradeLinkText;
+
+    const updated = this.collectHeroDataFromInputs();
+    this.adminController.config.hero = updated;
+    this.renderAdminHeroLivePreview();
+    this.closeHeroAiCopyModal();
+    this.showToast(`✨ AI Copy Proposal "${p.name}" applied!`, "success");
+  }
+
+  quickPolishHeroField(field) {
+    const selectTone = document.getElementById('select-hero-ai-tone');
+    const tone = selectTone ? selectTone.value : 'master_refinisher';
+
+    let inputEl = null;
+    let fieldName = '';
+    if (field === 'prefix') {
+      inputEl = document.getElementById('admin-hero-headline-prefix');
+      fieldName = 'Headline Prefix';
+    } else if (field === 'accent') {
+      inputEl = document.getElementById('admin-hero-headline-accent');
+      fieldName = 'Accent Words';
+    } else if (field === 'subheadline') {
+      inputEl = document.getElementById('admin-hero-subheadline');
+      fieldName = 'Subheadline';
+    } else if (field === 'description') {
+      inputEl = document.getElementById('admin-hero-description');
+      fieldName = 'Value Proposition';
+    }
+
+    if (!inputEl) return;
+    const current = inputEl.value;
+    const polished = this.adminController.polishHeroField(field, current, tone);
+    inputEl.value = polished;
+
+    this.renderAdminHeroLivePreview();
+    this.showToast(`✨ Polished ${fieldName} with AI!`, "info");
+  }
+
+  // =========================================================================
+  // HERO AI SPECULAR FINISH & OPTICAL CANVAS ENHANCER
+  // =========================================================================
+  openHeroAiEnhancer(slideIndex) {
+    const config = this.getActiveHeroConfig();
+    const slide = config.slides && config.slides[slideIndex];
+    if (!slide) return;
+
+    this._enhancingSlideIndex = Number(slideIndex);
+    this._enhancerViewMode = 'split';
+    this._activePreset = 'chrome_specular';
+
+    const modal = document.getElementById('modal-admin-hero-ai-enhancer');
+    if (!modal) return;
+
+    modal.classList.add('active');
+    modal.classList.add('flex');
+
+    this.setEnhancerViewMode('split');
+    this.applyAiFinishPreset('chrome_specular');
+
+    const rawSrc = getAssetUrl(slide.image);
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      this._originalImg = img;
+      const resBadge = document.getElementById('enhance-resolution-badge');
+      if (resBadge) {
+        resBadge.textContent = `Dimensions: ${img.naturalWidth} × ${img.naturalHeight} • Canvas RGBA`;
+      }
+      this.processEnhancedCanvas();
+    };
+    img.onerror = () => {
+      // Fallback
+      img.src = 'assets/images/kroma-skull-mirror.jpg';
+    };
+    img.src = rawSrc;
+  }
+
+  closeHeroAiEnhancer() {
+    const modal = document.getElementById('modal-admin-hero-ai-enhancer');
+    if (modal) {
+      modal.classList.remove('active');
+      modal.classList.remove('flex');
+    }
+  }
+
+  setEnhancerViewMode(mode) {
+    this._enhancerViewMode = mode;
+    const halfOriginal = document.getElementById('enhance-half-original');
+    const halfEnhanced = document.getElementById('enhance-half-enhanced');
+
+    const btnSplit = document.getElementById('btn-enhance-view-split');
+    const btnEnh = document.getElementById('btn-enhance-view-enhanced');
+    const btnOrig = document.getElementById('btn-enhance-view-original');
+
+    [btnSplit, btnEnh, btnOrig].forEach(b => {
+      if (b) {
+        b.classList.remove('bg-primary', 'text-white', 'font-bold');
+        b.classList.add('text-secondary');
+      }
+    });
+
+    if (mode === 'split') {
+      if (btnSplit) {
+        btnSplit.classList.add('bg-primary', 'text-white', 'font-bold');
+        btnSplit.classList.remove('text-secondary');
+      }
+      if (halfOriginal) halfOriginal.style.display = 'flex';
+      if (halfEnhanced) halfEnhanced.style.display = 'flex';
+      if (halfOriginal) halfOriginal.style.width = '50%';
+      if (halfEnhanced) halfEnhanced.style.width = '50%';
+    } else if (mode === 'enhanced') {
+      if (btnEnh) {
+        btnEnh.classList.add('bg-primary', 'text-white', 'font-bold');
+        btnEnh.classList.remove('text-secondary');
+      }
+      if (halfOriginal) halfOriginal.style.display = 'none';
+      if (halfEnhanced) halfEnhanced.style.display = 'flex';
+      if (halfEnhanced) halfEnhanced.style.width = '100%';
+    } else if (mode === 'original') {
+      if (btnOrig) {
+        btnOrig.classList.add('bg-primary', 'text-white', 'font-bold');
+        btnOrig.classList.remove('text-secondary');
+      }
+      if (halfOriginal) halfOriginal.style.display = 'flex';
+      if (halfEnhanced) halfEnhanced.style.display = 'none';
+      if (halfOriginal) halfOriginal.style.width = '100%';
+    }
+
+    this.processEnhancedCanvas();
+  }
+
+  applyAiFinishPreset(preset) {
+    this._activePreset = preset;
+    const presets = {
+      chrome_specular: { specular: 65, contrast: 55, chroma: 25, sharpness: 45, bloom: 20 },
+      kroma_prism: { specular: 55, contrast: 40, chroma: 75, sharpness: 35, bloom: 45 },
+      candy_flake: { specular: 50, contrast: 45, chroma: 90, sharpness: 50, bloom: 25 },
+      wet_clearcoat: { specular: 45, contrast: 50, chroma: 40, sharpness: 30, bloom: 65 },
+      garage_contrast: { specular: 60, contrast: 80, chroma: 15, sharpness: 60, bloom: 10 },
+      reset: { specular: 40, contrast: 30, chroma: 35, sharpness: 25, bloom: 20 }
+    };
+
+    const cfg = presets[preset] || presets.chrome_specular;
+    const setSlider = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.value = val;
+    };
+
+    setSlider('slider-finish-specular', cfg.specular);
+    setSlider('slider-finish-contrast', cfg.contrast);
+    setSlider('slider-finish-chroma', cfg.chroma);
+    setSlider('slider-finish-sharpness', cfg.sharpness);
+    setSlider('slider-finish-bloom', cfg.bloom);
+
+    this.updateEnhancerSliderLabels();
+    this.processEnhancedCanvas();
+  }
+
+  updateEnhancerSliderLabels() {
+    const update = (sliderId, labelId) => {
+      const s = document.getElementById(sliderId);
+      const l = document.getElementById(labelId);
+      if (s && l) l.textContent = `${s.value}%`;
+    };
+    update('slider-finish-specular', 'label-val-specular');
+    update('slider-finish-contrast', 'label-val-contrast');
+    update('slider-finish-chroma', 'label-val-chroma');
+    update('slider-finish-sharpness', 'label-val-sharpness');
+    update('slider-finish-bloom', 'label-val-bloom');
+  }
+
+  processEnhancedCanvas() {
+    if (!this._originalImg) return;
+
+    const canvasOrig = document.getElementById('canvas-hero-original-preview');
+    const canvasEnh = document.getElementById('canvas-hero-enhance-preview');
+    if (!canvasOrig || !canvasEnh) return;
+
+    const getVal = (id, def) => {
+      const el = document.getElementById(id);
+      return el ? Number(el.value) : def;
+    };
+
+    const specular = getVal('slider-finish-specular', 40);
+    const contrast = getVal('slider-finish-contrast', 30);
+    const chroma = getVal('slider-finish-chroma', 35);
+    const bloom = getVal('slider-finish-bloom', 20);
+
+    // Target display dimensions
+    const maxW = 800;
+    const naturalW = this._originalImg.naturalWidth || 800;
+    const naturalH = this._originalImg.naturalHeight || 600;
+    const w = Math.min(maxW, naturalW);
+    const h = Math.round(w * (naturalH / naturalW));
+
+    // Render Original Canvas
+    canvasOrig.width = w;
+    canvasOrig.height = h;
+    const ctxOrig = canvasOrig.getContext('2d');
+    ctxOrig.clearRect(0, 0, w, h);
+    ctxOrig.drawImage(this._originalImg, 0, 0, w, h);
+
+    // Render Enhanced Canvas
+    canvasEnh.width = w;
+    canvasEnh.height = h;
+    const ctxEnh = canvasEnh.getContext('2d');
+    ctxEnh.clearRect(0, 0, w, h);
+
+    // Base pass: Contrast, Specular Gain, Chroma
+    const contrastFactor = 1.0 + (contrast / 100) * 0.75;
+    const brightnessFactor = 1.0 + (specular / 100) * 0.35;
+    const saturateFactor = 1.0 + (chroma / 100) * 1.1;
+
+    ctxEnh.filter = `contrast(${contrastFactor}) brightness(${brightnessFactor}) saturate(${saturateFactor})`;
+    ctxEnh.drawImage(this._originalImg, 0, 0, w, h);
+
+    // Clearcoat Bloom Pass (Screen highlight diffusion)
+    if (bloom > 0) {
+      ctxEnh.save();
+      ctxEnh.globalCompositeOperation = 'screen';
+      const blurRadius = Math.max(2, Math.round(bloom * 0.12));
+      ctxEnh.filter = `brightness(1.4) contrast(1.8) blur(${blurRadius}px)`;
+      ctxEnh.globalAlpha = (bloom / 100) * 0.45;
+      ctxEnh.drawImage(this._originalImg, 0, 0, w, h);
+      ctxEnh.restore();
+    }
+
+    // Prismatic Kroma / Holographic dispersion overlay
+    if (this._activePreset === 'kroma_prism') {
+      ctxEnh.save();
+      ctxEnh.globalCompositeOperation = 'color-dodge';
+      ctxEnh.globalAlpha = 0.22;
+      const grad = ctxEnh.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, 'rgba(255, 0, 128, 0.5)');
+      grad.addColorStop(0.33, 'rgba(0, 255, 255, 0.5)');
+      grad.addColorStop(0.66, 'rgba(255, 255, 0, 0.5)');
+      grad.addColorStop(1, 'rgba(0, 255, 128, 0.5)');
+      ctxEnh.fillStyle = grad;
+      ctxEnh.fillRect(0, 0, w, h);
+      ctxEnh.restore();
+    }
+
+    // Flake sparkle boost
+    if (this._activePreset === 'candy_flake') {
+      ctxEnh.save();
+      ctxEnh.globalCompositeOperation = 'lighter';
+      ctxEnh.filter = `contrast(2.5) brightness(1.2)`;
+      ctxEnh.globalAlpha = 0.18;
+      ctxEnh.drawImage(this._originalImg, 0, 0, w, h);
+      ctxEnh.restore();
+    }
+
+    ctxEnh.filter = 'none';
+  }
+
+  saveEnhancedSlideImage() {
+    if (this._enhancingSlideIndex === null || this._enhancingSlideIndex === undefined || !this._originalImg) {
+      this.closeHeroAiEnhancer();
+      return;
+    }
+
+    // Render full-res enhanced canvas
+    const maxDim = 1920;
+    let w = this._originalImg.naturalWidth || 1920;
+    let h = this._originalImg.naturalHeight || 1080;
+    if (w > maxDim || h > maxDim) {
+      if (w > h) {
+        h = Math.round((h * maxDim) / w);
+        w = maxDim;
+      } else {
+        w = Math.round((w * maxDim) / h);
+        h = maxDim;
+      }
+    }
+
+    const procCanvas = document.createElement('canvas');
+    procCanvas.width = w;
+    procCanvas.height = h;
+    const ctx = procCanvas.getContext('2d');
+
+    const getVal = (id, def) => {
+      const el = document.getElementById(id);
+      return el ? Number(el.value) : def;
+    };
+
+    const specular = getVal('slider-finish-specular', 40);
+    const contrast = getVal('slider-finish-contrast', 30);
+    const chroma = getVal('slider-finish-chroma', 35);
+    const bloom = getVal('slider-finish-bloom', 20);
+
+    const contrastFactor = 1.0 + (contrast / 100) * 0.75;
+    const brightnessFactor = 1.0 + (specular / 100) * 0.35;
+    const saturateFactor = 1.0 + (chroma / 100) * 1.1;
+
+    ctx.filter = `contrast(${contrastFactor}) brightness(${brightnessFactor}) saturate(${saturateFactor})`;
+    ctx.drawImage(this._originalImg, 0, 0, w, h);
+
+    if (bloom > 0) {
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      const blurRadius = Math.max(3, Math.round(bloom * 0.18));
+      ctx.filter = `brightness(1.4) contrast(1.8) blur(${blurRadius}px)`;
+      ctx.globalAlpha = (bloom / 100) * 0.45;
+      ctx.drawImage(this._originalImg, 0, 0, w, h);
+      ctx.restore();
+    }
+
+    if (this._activePreset === 'kroma_prism') {
+      ctx.save();
+      ctx.globalCompositeOperation = 'color-dodge';
+      ctx.globalAlpha = 0.22;
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, 'rgba(255, 0, 128, 0.5)');
+      grad.addColorStop(0.33, 'rgba(0, 255, 255, 0.5)');
+      grad.addColorStop(0.66, 'rgba(255, 255, 0, 0.5)');
+      grad.addColorStop(1, 'rgba(0, 255, 128, 0.5)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+      ctx.restore();
+    }
+
+    if (this._activePreset === 'candy_flake') {
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.filter = `contrast(2.5) brightness(1.2)`;
+      ctx.globalAlpha = 0.18;
+      ctx.drawImage(this._originalImg, 0, 0, w, h);
+      ctx.restore();
+    }
+
+    const enhancedDataUrl = procCanvas.toDataURL('image/jpeg', 0.90);
+    const data = this.collectHeroDataFromInputs();
+
+    if (data.slides && data.slides[this._enhancingSlideIndex]) {
+      data.slides[this._enhancingSlideIndex].image = enhancedDataUrl;
+      this.adminController.config.hero = data;
+      this.renderAdminHeroSlides(data);
+      this.renderAdminHeroLivePreview();
+      this.closeHeroAiEnhancer();
+      this.showToast(`✨ AI Specular Finish saved to Slide #${this._enhancingSlideIndex + 1}!`, "success");
+    }
+  }
+
   configureKromaEdgeInMixLab() {
     const system = this.currentCatalog.mixingSystems.find(s => s.id === 'kroma_edge_mirror_chrome') || this.currentCatalog.mixingSystems[0];
     if (system) {
@@ -5324,7 +6790,7 @@ class PaintSystemApp {
             : `${country.symbol}${itemSubtotalLocal.toFixed(2)}`;
 
           const row = document.createElement('div');
-          row.className = 'industrial-card p-3 flex justify-between items-center';
+          row.className = 'cart-drawer-item p-3 flex justify-between items-center';
           row.innerHTML = `
             <div>
               <h5 class="font-headline text-sm uppercase text-on-surface">${item.title}</h5>
@@ -5442,7 +6908,7 @@ class PaintSystemApp {
       const summary = this.shopifyCartManager.getCartSummary();
       if (summary.items.length > 0) {
         const itemsHtml = summary.items.map(i => `
-          <div class="flex justify-between py-1 border-b border-white/5">
+          <div class="flex justify-between items-center py-1.5 px-2 border-b border-white/5 hover:bg-white/5 rounded-sm transition-colors">
             <span class="text-neutral-200">${i.quantity}x ${this.escapeHtmlAttr(i.title)} <span class="text-[10px] text-neutral-400">(${this.escapeHtmlAttr(i.variantDetails || 'Std')})</span></span>
             <span class="font-bold text-amber-300">€${(i.priceEur * i.quantity).toFixed(2)}</span>
           </div>
@@ -5450,9 +6916,9 @@ class PaintSystemApp {
         summaryBox.innerHTML = `
           <div class="font-bold text-white mb-2 flex justify-between border-b border-white/10 pb-1 text-xs">
             <span>Staging Cart Review (${summary.itemCount} items)</span>
-            <span class="text-emerald-400">Subtotal: €${summary.subtotal.toFixed(2)}</span>
+            <span class="text-emerald-400 font-bold">Subtotal: €${summary.subtotal.toFixed(2)}</span>
           </div>
-          <div class="max-h-36 overflow-y-auto space-y-0.5 pr-1">${itemsHtml}</div>
+          <div class="max-h-48 overflow-y-auto custom-scrollbar space-y-0.5 pr-1">${itemsHtml}</div>
         `;
       } else {
         summaryBox.innerHTML = `<span class="text-neutral-400">Cart is empty. Add items from the shop or mixing lab to inspect calculations.</span>`;
@@ -5473,10 +6939,12 @@ class PaintSystemApp {
     const closeBtn = document.getElementById('btn-close-cart-drawer');
     const openBtn = document.getElementById('btn-open-cart-drawer');
     const headerCartBtn = document.getElementById('btn-header-cart');
+    const toggleCartBtn = document.getElementById('btn-toggle-cart-drawer');
 
     if (closeBtn) closeBtn.addEventListener('click', () => this.closeCartDrawer());
     if (openBtn) openBtn.addEventListener('click', () => this.openCartDrawer());
     if (headerCartBtn) headerCartBtn.addEventListener('click', () => this.openCartDrawer());
+    if (toggleCartBtn) toggleCartBtn.addEventListener('click', () => this.openCartDrawer());
     if (drawer) {
       drawer.addEventListener('click', (e) => {
         if (e.target === drawer) this.closeCartDrawer();
@@ -5582,10 +7050,384 @@ class PaintSystemApp {
     if (prod.flakeType) return prod.flakeType;
     const name = (prod.name || '').toLowerCase();
     const desc = (prod.description || '').toLowerCase();
-    if (name.includes('kromatic') || desc.includes('kromatic') || name.includes('holographic')) return 'Holographic';
-    if (name.includes('dragon') || desc.includes('iridescent')) return 'Iridescent';
-    if (name.includes('blend') || name.includes('mixed')) return 'Mixed Blend';
+    if (name.includes('kromatic') || desc.includes('kromatic') || name.includes('holographic')) return 'Kromatic';
+    if (name.includes('dragon') || desc.includes('iridescent') || name.includes('iridescent')) return 'Iridescent';
+    if (name.includes('blend') || name.includes('mixed') || name.includes('peacock') || name.includes('sky purple') || name.includes('fire purple') || name.includes('fizzy green') || name.includes('nevada sands')) return 'Mixed';
     return 'Single Colour';
+  }
+
+  // =========================================================================
+  // DEPARTMENT PRODUCT VIEW & SUBCATEGORY CONTROLLERS
+  // =========================================================================
+
+  getFlakeBadgeInfo(p) {
+    const n = (p.name || '').toLowerCase();
+    if (n.includes('show krome') && n.includes('kromatic')) return { badge: 'HOLO', color: 'text-amber-300', sub: 'Rainbow Holo' };
+    if (n.includes('show krome')) return { badge: 'SILVER', color: 'text-white', sub: '0.015 Hex' };
+    if (n.includes('asteroid')) return { badge: 'BLACK HOLO', color: 'text-neutral-300', sub: 'Dark Prismatic' };
+    if (n.includes('gun metal')) return { badge: 'GREY', color: 'text-neutral-400', sub: 'Anthracite Metallic' };
+    if (n.includes('elvis gold') && n.includes('kromatic')) return { badge: 'GOLD HOLO', color: 'text-amber-400', sub: 'Prismatic Gold' };
+    if (n.includes('elvis gold')) return { badge: 'GOLD', color: 'text-amber-400', sub: 'Deep Pure Gold' };
+    if (n.includes('dragon koi')) return { badge: 'COPPER', color: 'text-orange-400', sub: 'Copper Fire' };
+    if (n.includes('water dragon')) return { badge: 'TEAL', color: 'text-teal-400', sub: 'Aqua Iridescent' };
+    if (n.includes('cobalt blue')) return { badge: 'BLUE', color: 'text-sky-400', sub: 'Deep Candy Royal' };
+    if (n.includes('turquoise')) return { badge: 'TEAL', color: 'text-cyan-400', sub: 'Candy Turquoise' };
+    if (n.includes('azura blue')) return { badge: 'AZURA', color: 'text-blue-400', sub: 'Vivid Azura' };
+    if (n.includes('kromatic blue')) return { badge: 'BLUE HOLO', color: 'text-sky-300', sub: 'Holo Candy Blue' };
+    if (n.includes('light blue')) return { badge: 'SKY BLUE', color: 'text-sky-300', sub: 'Candy Light Blue' };
+    if (n.includes('poison green') && n.includes('kromatic')) return { badge: 'GREEN HOLO', color: 'text-emerald-300', sub: 'Electric Prismatic' };
+    if (n.includes('emerald green')) return { badge: 'EMERALD', color: 'text-emerald-400', sub: 'Candy Emerald' };
+    if (n.includes('poison green')) return { badge: 'POISON', color: 'text-lime-400', sub: 'Candy Poison' };
+    if (n.includes('lime green')) return { badge: 'LIME', color: 'text-lime-300', sub: 'Candy Lime' };
+    if (n.includes('peacock')) return { badge: 'MIXED', color: 'text-teal-300', sub: 'Multi-Chroma' };
+    if (n.includes('purple heart')) return { badge: 'PURPLE', color: 'text-purple-400', sub: 'Candy Purple' };
+    if (n.includes('sky purple')) return { badge: 'MIXED', color: 'text-purple-300', sub: 'Dual Blend' };
+    if (n.includes('fewsha')) return { badge: 'FUCHSIA', color: 'text-pink-400', sub: 'Candy Fewsha' };
+    if (n.includes('lavender')) return { badge: 'LAVENDER', color: 'text-purple-200', sub: 'Holo Lavender' };
+    if (n.includes('bubble gum')) return { badge: 'BUBBLEGUM', color: 'text-pink-300', sub: 'Holo Pink' };
+    if (n.includes('pink')) return { badge: 'PINK', color: 'text-rose-400', sub: 'Candy Pink' };
+    if (n.includes('fire purple')) return { badge: 'MIXED', color: 'text-violet-400', sub: 'Fiery Purple' };
+    if (n.includes('volcano red')) return { badge: 'RED HOLO', color: 'text-red-400', sub: 'Volcanic Prismatic' };
+    if (n.includes('bright red')) return { badge: 'BRIGHT RED', color: 'text-red-500', sub: 'Candy Bright Red' };
+    if (n.includes('apple red')) return { badge: 'APPLE RED', color: 'text-rose-500', sub: 'Candy Apple' };
+    if (n.includes('tangy orange')) return { badge: 'ORANGE', color: 'text-orange-500', sub: 'Candy Orange' };
+    if (n.includes('fizzy green')) return { badge: 'MIXED', color: 'text-emerald-300', sub: 'Fizzy Multi' };
+    if (n.includes('extreme yellow')) return { badge: 'YELLOW', color: 'text-yellow-400', sub: 'Candy Yellow' };
+    if (n.includes('nevada sands')) return { badge: 'MIXED', color: 'text-amber-200', sub: 'Desert Tone' };
+    if (n.includes('copper head') && n.includes('kromatic')) return { badge: 'COPPER HOLO', color: 'text-amber-500', sub: 'Holo Copper' };
+    if (n.includes('copper head')) return { badge: 'COPPER', color: 'text-orange-400', sub: 'Candy Copper' };
+    if (n.includes('righteous gold')) return { badge: 'GOLD', color: 'text-amber-300', sub: 'Righteous Gold' };
+    if (n.includes('sovereign gold')) return { badge: 'GOLD', color: 'text-amber-400', sub: 'Sovereign Gold' };
+    return { badge: (p.flakeType || 'FLAKE').toUpperCase(), color: 'text-white', sub: 'Precision Hex' };
+  }
+
+  setDeptFlakeSubcat(subcat, viewAll = false) {
+    if (!this.deptFlakeState) {
+      this.deptFlakeState = { subcat: 'all', viewMode: 'curated' };
+    }
+    this.deptFlakeState.subcat = subcat;
+    if (viewAll || subcat !== 'all') {
+      this.deptFlakeState.viewMode = 'all';
+    }
+
+    const buttons = document.querySelectorAll('.dept-flake-subcat-btn');
+    buttons.forEach(btn => {
+      const btnCat = btn.getAttribute('data-dept-flake-subcat');
+      if (btnCat === subcat) {
+        btn.className = 'dept-flake-subcat-btn active px-3 py-1.5 border border-primary bg-primary/20 text-white font-bold transition-colors cursor-pointer rounded text-[11px] shadow-sm';
+      } else {
+        btn.className = 'dept-flake-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]';
+      }
+    });
+
+    this.renderDeptFlakesGrid();
+  }
+
+  toggleDeptFlakeViewMode() {
+    if (!this.deptFlakeState) {
+      this.deptFlakeState = { subcat: 'all', viewMode: 'curated' };
+    }
+    if (this.deptFlakeState.viewMode === 'curated') {
+      this.deptFlakeState.viewMode = 'all';
+    } else {
+      this.deptFlakeState.viewMode = 'curated';
+      this.deptFlakeState.subcat = 'all';
+      const buttons = document.querySelectorAll('.dept-flake-subcat-btn');
+      buttons.forEach(btn => {
+        const btnCat = btn.getAttribute('data-dept-flake-subcat');
+        if (btnCat === 'all') {
+          btn.className = 'dept-flake-subcat-btn active px-3 py-1.5 border border-primary bg-primary/20 text-white font-bold transition-colors cursor-pointer rounded text-[11px] shadow-sm';
+        } else {
+          btn.className = 'dept-flake-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]';
+        }
+      });
+    }
+    this.renderDeptFlakesGrid();
+  }
+
+  renderDeptFlakesGrid() {
+    const grid = document.getElementById('dept-flakes-grid');
+    if (!grid) return;
+
+    if (!this.deptFlakeState) {
+      this.deptFlakeState = { subcat: 'all', viewMode: 'curated' };
+    }
+
+    const countBadge = document.getElementById('dept-flakes-count-badge');
+    const toggleBtnLabel = document.getElementById('label-dept-flake-toggle-view');
+    const viewSwitchBtn = document.getElementById('btn-dept-flake-view-switch');
+    const curatedFooter = document.getElementById('dept-flakes-curated-footer');
+
+    const allFlakes = ECOM_CATALOG.filter(p => p.category === 'Dry Metal Flake (Glitter)' && !p.hideFromStorefront);
+    const CURATED_IDS = ['fk-2610', 'fk-2524', 'fk-2341', 'fk-2319', 'fk-2308', 'fk-2283', 'fk-2297', 'fk-2330'];
+
+    let itemsToDisplay = [];
+    const isCuratedView = (this.deptFlakeState.subcat === 'all' && this.deptFlakeState.viewMode === 'curated');
+
+    if (isCuratedView) {
+      itemsToDisplay = CURATED_IDS.map(id => allFlakes.find(p => p.id === id)).filter(Boolean);
+      if (countBadge) countBadge.textContent = `Showing 8 Curated Swatches (of ${allFlakes.length} Flakes)`;
+      if (toggleBtnLabel) toggleBtnLabel.textContent = `View All ${allFlakes.length} Flakes in Department`;
+      if (viewSwitchBtn) viewSwitchBtn.innerHTML = `Show All ${allFlakes.length} Flakes &darr;`;
+      if (curatedFooter) curatedFooter.style.display = 'block';
+    } else {
+      if (this.deptFlakeState.subcat === 'all') {
+        itemsToDisplay = allFlakes;
+        if (countBadge) countBadge.textContent = `Showing All ${allFlakes.length} Flakes (Full Department)`;
+      } else {
+        const targetSub = this.deptFlakeState.subcat.toLowerCase();
+        itemsToDisplay = allFlakes.filter(p => {
+          const sub = (this.getFlakeSubcategory(p) || '').toLowerCase();
+          if (targetSub === 'single') return sub.includes('single');
+          if (targetSub === 'kromatic') return sub.includes('kromatic');
+          if (targetSub === 'iridescent') return sub.includes('iridescent');
+          if (targetSub === 'mixed') return sub.includes('mixed');
+          return sub === targetSub;
+        });
+        const labelMap = { single: 'Single Colour', kromatic: 'Kromatic', iridescent: 'Iridescent', mixed: 'Mixed' };
+        const label = labelMap[targetSub] || targetSub;
+        if (countBadge) countBadge.textContent = `Showing ${itemsToDisplay.length} ${label} Flakes`;
+      }
+      if (toggleBtnLabel) toggleBtnLabel.textContent = `Show Curated 8 Swatches`;
+      if (viewSwitchBtn) viewSwitchBtn.innerHTML = `Show Curated 8 Swatches &uarr;`;
+      if (curatedFooter) curatedFooter.style.display = 'none';
+    }
+
+    grid.innerHTML = itemsToDisplay.map(prod => {
+      const badgeInfo = this.getFlakeBadgeInfo(prod);
+      const priceInfo = this.calculateDisplayPrice(prod);
+      const title = prod.name.replace(' Metal Flake', '').replace(' Flake', '');
+      const sizesText = (prod.sizes && prod.sizes.length > 0) 
+        ? prod.sizes.map(s => s.replace('Medium ', '').replace('Large ', '')).join(' / ') 
+        : '0.008″ & .015″';
+      const imgSrc = prod.image || `assets/images/flakes/${prod.id}.jpg`;
+
+      return `
+        <div onclick="window.paintApp && window.paintApp.openDetailModal('${prod.id}')" 
+             class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" 
+             title="Click to view details and select particle &amp; pack size">
+          <div>
+            <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
+              <img src="${imgSrc}" alt="${prod.name}" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
+              <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono ${badgeInfo.color} font-bold tracking-wider">${badgeInfo.badge}</span>
+              <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
+            </div>
+            <h5 class="font-headline text-xs uppercase text-white font-bold leading-tight mb-1 truncate group-hover:text-primary transition-colors" title="${prod.name}">${title}</h5>
+            <div class="flex items-center justify-between text-[10px] font-mono text-neutral-400 mb-2">
+              <span class="truncate pr-1">${badgeInfo.sub || sizesText}</span>
+              <span class="text-amber-400 font-bold text-[9px] group-hover:underline flex-shrink-0">Options &rarr;</span>
+            </div>
+          </div>
+          <div>
+            <span class="text-primary font-headline text-sm font-bold block mb-1.5">From ${priceInfo.formattedPrimary}</span>
+            <button onclick="event.stopPropagation(); window.paintApp && window.paintApp.openDetailModal('${prod.id}')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center cursor-pointer font-bold tracking-wider">
+              Select Size
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  setDeptGunsSubcat(subcat, viewAll = false) {
+    if (!this.deptGunsState) {
+      this.deptGunsState = { subcat: 'featured', viewMode: 'featured' };
+    }
+    this.deptGunsState.subcat = subcat;
+    this.deptGunsState.viewMode = (subcat === 'featured') ? 'featured' : 'all';
+
+    const buttons = document.querySelectorAll('.dept-guns-subcat-btn');
+    buttons.forEach(btn => {
+      const btnCat = btn.getAttribute('data-dept-guns-subcat');
+      if (btnCat === subcat) {
+        btn.className = 'dept-guns-subcat-btn active px-3 py-1.5 border border-primary bg-primary/20 text-white font-bold transition-colors cursor-pointer rounded text-[11px] shadow-sm';
+      } else {
+        btn.className = 'dept-guns-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]';
+      }
+    });
+
+    this.renderDeptGunsGrid();
+  }
+
+  renderDeptGunsGrid() {
+    const featuredView = document.getElementById('dept-guns-featured-view');
+    const dynamicGrid = document.getElementById('dept-guns-dynamic-grid');
+    const countBadge = document.getElementById('dept-guns-count-badge');
+    if (!featuredView || !dynamicGrid) return;
+
+    if (!this.deptGunsState) {
+      this.deptGunsState = { subcat: 'featured', viewMode: 'featured' };
+    }
+
+    if (this.deptGunsState.subcat === 'featured') {
+      featuredView.style.display = 'grid';
+      dynamicGrid.style.display = 'none';
+      if (countBadge) countBadge.textContent = 'Showing 4 Featured Guns';
+      return;
+    }
+
+    featuredView.style.display = 'none';
+    dynamicGrid.style.display = 'grid';
+
+    const allHardware = ECOM_CATALOG.filter(p => 
+      (p.category === 'Dry Metal Flake Guns' || p.category === 'Flake King Gun Accessories') && !p.hideFromStorefront
+    );
+
+    let items = allHardware;
+    if (this.deptGunsState.subcat === 'guns') {
+      items = allHardware.filter(p => p.category === 'Dry Metal Flake Guns');
+    } else if (this.deptGunsState.subcat === 'accessories') {
+      items = allHardware.filter(p => p.category === 'Flake King Gun Accessories');
+    }
+
+    if (countBadge) {
+      const labelMap = { all: 'All Hardware Tools & Jars', guns: 'Guns & Spray Tools', accessories: 'Nozzles & Spare Jars' };
+      countBadge.textContent = `Showing ${items.length} ${labelMap[this.deptGunsState.subcat] || 'Products'}`;
+    }
+
+    dynamicGrid.innerHTML = items.map(prod => {
+      const priceInfo = this.calculateDisplayPrice(prod);
+      const isGun = prod.category === 'Dry Metal Flake Guns';
+      const badgeText = isGun ? 'HARD RED ANODIZED' : 'GENUINE OEM PART';
+      const badgeColor = isGun ? 'bg-red-950/80 border-red-500/60 text-red-300' : 'bg-amber-950/80 border-amber-500/60 text-amber-300';
+      const imgSrc = prod.image || 'https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10001.png?fit=600%2C600&ssl=1';
+
+      return `
+        <div class="industrial-card p-4 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
+          <div>
+            <div class="h-36 bg-black/40 rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" onclick="window.paintApp.openDetailModal('${prod.id}')">
+              <img src="${imgSrc}" alt="${prod.name}" class="h-full object-contain group-hover:scale-105 transition-transform duration-300">
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded border text-[8px] font-mono font-bold ${badgeColor}">${badgeText}</span>
+            </div>
+            <h4 class="font-headline text-sm uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" onclick="window.paintApp.openDetailModal('${prod.id}')">
+              ${prod.name}
+            </h4>
+            <p class="text-[11px] text-neutral-400 font-body mb-2 line-clamp-2">
+              ${prod.description ? prod.description.split('\n')[0] : 'Precision Flake King hardware tool.'}
+            </p>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between border-t border-white/10 pt-2 mb-2">
+              <span class="text-primary font-headline text-base font-bold">${priceInfo.formattedPrimary}</span>
+              <span class="text-secondary font-mono text-[10px]">${priceInfo.formattedSecondary}</span>
+            </div>
+            <div class="grid grid-cols-2 gap-1.5">
+              <button onclick="window.paintApp.addProductToCartById('${prod.id}')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center font-bold">
+                + Add
+              </button>
+              <button onclick="window.paintApp.openDetailModal('${prod.id}')" class="mech-btn-secondary !w-full !py-1.5 !text-[10px] !justify-center">
+                Specs
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  setDeptTapesSubcat(subcat, viewAll = false) {
+    if (!this.deptTapesState) {
+      this.deptTapesState = { subcat: 'featured', viewMode: 'featured' };
+    }
+    this.deptTapesState.subcat = subcat;
+    this.deptTapesState.viewMode = (subcat === 'featured') ? 'featured' : 'all';
+
+    const buttons = document.querySelectorAll('.dept-tapes-subcat-btn');
+    buttons.forEach(btn => {
+      const btnCat = btn.getAttribute('data-dept-tapes-subcat');
+      if (btnCat === subcat) {
+        btn.className = 'dept-tapes-subcat-btn active px-3 py-1.5 border border-primary bg-primary/20 text-white font-bold transition-colors cursor-pointer rounded text-[11px] shadow-sm';
+      } else {
+        btn.className = 'dept-tapes-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]';
+      }
+    });
+
+    this.renderDeptTapesGrid();
+  }
+
+  renderDeptTapesGrid() {
+    const featuredView = document.getElementById('dept-tapes-featured-view');
+    const dynamicGrid = document.getElementById('dept-tapes-dynamic-grid');
+    const countBadge = document.getElementById('dept-tapes-count-badge');
+    if (!featuredView || !dynamicGrid) return;
+
+    if (!this.deptTapesState) {
+      this.deptTapesState = { subcat: 'featured', viewMode: 'featured' };
+    }
+
+    if (this.deptTapesState.subcat === 'featured') {
+      featuredView.style.display = 'grid';
+      dynamicGrid.style.display = 'none';
+      if (countBadge) countBadge.textContent = 'Showing 4 Featured Tapes';
+      return;
+    }
+
+    featuredView.style.display = 'none';
+    dynamicGrid.style.display = 'grid';
+
+    const allTapesAndPrep = ECOM_CATALOG.filter(p => 
+      (p.category === 'Masking Products' || p.category === 'Wet Products') && !p.hideFromStorefront
+    );
+
+    let items = allTapesAndPrep;
+    if (this.deptTapesState.subcat === 'tapes') {
+      items = allTapesAndPrep.filter(p => p.category === 'Masking Products' && !p.name.includes('Mixed'));
+    } else if (this.deptTapesState.subcat === 'sets') {
+      items = allTapesAndPrep.filter(p => p.name.includes('Mixed Set') || p.name.includes('Workshop Set'));
+    } else if (this.deptTapesState.subcat === 'prep') {
+      items = allTapesAndPrep.filter(p => p.category === 'Wet Products');
+    }
+
+    if (countBadge) {
+      const labelMap = { all: 'All Tapes & Surface Prep', tapes: 'Fine Line Single Rolls', sets: 'Mixed Width Sets', prep: 'Surface Binders & Thinners' };
+      countBadge.textContent = `Showing ${items.length} ${labelMap[this.deptTapesState.subcat] || 'Items'}`;
+    }
+
+    dynamicGrid.innerHTML = items.map(prod => {
+      const priceInfo = this.calculateDisplayPrice(prod);
+      const isWet = prod.category === 'Wet Products';
+      const badgeText = isWet ? 'SURFACE PREP' : (prod.name.includes('Set') ? '5-ROLL SET' : 'HEAT 132°C');
+      const badgeColor = isWet ? 'bg-amber-950/80 border-amber-500/60 text-amber-300' : 'bg-orange-950/80 border-orange-500/60 text-orange-300';
+      const imgSrc = prod.image || 'https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1';
+
+      return `
+        <div class="industrial-card p-4 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
+          <div>
+            <div class="h-36 bg-black/40 rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" onclick="window.paintApp.openDetailModal('${prod.id}')">
+              <img src="${imgSrc}" alt="${prod.name}" class="h-full object-contain group-hover:scale-105 transition-transform duration-300">
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded border text-[8px] font-mono font-bold ${badgeColor}">${badgeText}</span>
+            </div>
+            <h4 class="font-headline text-sm uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" onclick="window.paintApp.openDetailModal('${prod.id}')">
+              ${prod.name}
+            </h4>
+            <p class="text-[11px] text-neutral-400 font-body mb-2 line-clamp-2">
+              ${prod.description ? prod.description.split('\n')[0] : 'Automotive workshop masking and prep solution.'}
+            </p>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between border-t border-white/10 pt-2 mb-2">
+              <span class="text-primary font-headline text-base font-bold">${priceInfo.formattedPrimary}</span>
+              <span class="text-secondary font-mono text-[10px]">${priceInfo.formattedSecondary}</span>
+            </div>
+            <div class="grid grid-cols-2 gap-1.5">
+              <button onclick="window.paintApp.addProductToCartById('${prod.id}')" class="mech-button-primary !w-full !py-1.5 !text-[10px] !justify-center font-bold">
+                + Add
+              </button>
+              <button onclick="window.paintApp.openDetailModal('${prod.id}')" class="mech-btn-secondary !w-full !py-1.5 !text-[10px] !justify-center">
+                Options
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  filterAndScrollToVsionCategory(cat) {
+    this.setBrandFilter('VsionAir');
+    this.setCategoryFilter(cat);
+    const anchor = document.getElementById('storefront-catalog-anchor');
+    if (anchor) anchor.scrollIntoView({ behavior: 'smooth' });
   }
 
   exportCSV() {
@@ -5603,6 +7445,17 @@ class PaintSystemApp {
     // PIN Modal Triggers & Submissions
     this.addSafeListener('btn-admin-auth-close', 'click', () => this.closeAdminAuthModal());
     this.addSafeListener('btn-admin-auth-submit', 'click', () => this.handleAdminPinSubmit());
+    this.addSafeListener('btn-admin-auth-fill-default', 'click', () => this.fillDefaultAdminPin());
+    this.addSafeListener('btn-admin-auth-toggle-visibility', 'click', () => this.toggleAdminPinVisibility());
+
+    const authModal = document.getElementById('modal-admin-auth');
+    if (authModal) {
+      authModal.addEventListener('click', (e) => {
+        if (e.target === authModal) {
+          this.closeAdminAuthModal();
+        }
+      });
+    }
     
     const pinInput = document.getElementById('input-admin-pin');
     if (pinInput) {
@@ -5610,6 +7463,14 @@ class PaintSystemApp {
         if (e.key === 'Enter') this.handleAdminPinSubmit();
       });
     }
+
+    // Global shortcut: Ctrl+Shift+A or Cmd+Shift+A opens Admin
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        this.openAdminAuthModal();
+      }
+    });
 
     // Change PIN & Logout
     this.addSafeListener('btn-admin-change-pin', 'click', () => {
@@ -5655,7 +7516,9 @@ class PaintSystemApp {
     // Admin Sub-Tab Switching
     const subtabs = [
       { btnId: 'subtab-admin-spreadsheet', panelId: 'admin-panel-spreadsheet' },
+      { btnId: 'subtab-admin-taxonomy', panelId: 'admin-panel-taxonomy' },
       { btnId: 'subtab-admin-formulas', panelId: 'admin-panel-formulas' },
+      { btnId: 'subtab-admin-hero', panelId: 'admin-panel-hero' },
       { btnId: 'subtab-admin-products', panelId: 'admin-panel-products' },
       { btnId: 'subtab-admin-preorders', panelId: 'admin-panel-preorders' },
       { btnId: 'subtab-admin-bundles', panelId: 'admin-panel-bundles' },
@@ -5686,8 +7549,83 @@ class PaintSystemApp {
               if (s.panelId === 'admin-panel-bundles' && st.btnId === 'subtab-admin-bundles') {
                 this.renderAdminBundles();
               }
+              if (s.panelId === 'admin-panel-hero' && st.btnId === 'subtab-admin-hero') {
+                this.renderAdminHero();
+              }
+              if (s.panelId === 'admin-panel-taxonomy' && st.btnId === 'subtab-admin-taxonomy') {
+                this.renderAdminTaxonomy();
+              }
             }
           });
+        });
+      }
+    });
+
+    // Taxonomy Manager bindings
+    this.addSafeListener('btn-admin-add-department', 'click', () => this.openAdminDepartmentModal());
+    this.addSafeListener('btn-admin-department-edit-close', 'click', () => this.closeAdminDepartmentModal());
+    this.addSafeListener('btn-admin-cancel-department', 'click', () => this.closeAdminDepartmentModal());
+    this.addSafeListener('btn-admin-save-department-submit', 'click', () => this.saveAdminDepartmentFromModal());
+    this.addSafeListener('btn-batch-goto-taxonomy', 'click', () => {
+      const btn = document.getElementById('subtab-admin-taxonomy');
+      if (btn) btn.click();
+    });
+
+    const deptNameInput = document.getElementById('form-department-name');
+    if (deptNameInput) {
+      deptNameInput.addEventListener('input', (e) => {
+        const idField = document.getElementById('form-department-id');
+        if (!idField || !idField.value) {
+          const slugField = document.getElementById('form-department-slug');
+          if (slugField) {
+            slugField.value = 'dept-' + e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+          }
+        }
+      });
+    }
+
+    const deptIconInput = document.getElementById('form-department-icon');
+    if (deptIconInput) {
+      deptIconInput.addEventListener('input', (e) => {
+        const glyph = document.getElementById('form-department-icon-preview-glyph');
+        if (glyph) glyph.textContent = e.target.value.trim() || 'category';
+      });
+    }
+
+    // Hero & Landing Designer bindings
+    this.addSafeListener('btn-admin-save-hero', 'click', () => this.saveHeroFromAdmin());
+    this.addSafeListener('btn-admin-reset-hero', 'click', () => this.resetHeroFromAdmin());
+    this.addSafeListener('btn-admin-add-hero-slide', 'click', () => this.addAdminHeroSlide());
+    this.addSafeListener('btn-admin-upload-hero-slide', 'click', () => this.triggerHeroSlideUpload(null));
+    this.addSafeListener('btn-admin-add-hero-jump', 'click', () => this.addAdminHeroJump());
+    this.addSafeListener('btn-admin-hero-ai-copy', 'click', () => this.openHeroAiCopyModal());
+    this.addSafeListener('btn-admin-hero-ai-copy-close', 'click', () => this.closeHeroAiCopyModal());
+    this.addSafeListener('btn-hero-ai-generate-proposals', 'click', () => this.generateHeroCopyOptions());
+    this.addSafeListener('btn-admin-hero-ai-enhancer-close', 'click', () => this.closeHeroAiEnhancer());
+    this.addSafeListener('btn-hero-enhance-cancel', 'click', () => this.closeHeroAiEnhancer());
+    this.addSafeListener('btn-hero-enhance-save', 'click', () => this.saveEnhancedSlideImage());
+    this.addSafeListener('btn-enhance-view-split', 'click', () => this.setEnhancerViewMode('split'));
+    this.addSafeListener('btn-enhance-view-enhanced', 'click', () => this.setEnhancerViewMode('enhanced'));
+    this.addSafeListener('btn-enhance-view-original', 'click', () => this.setEnhancerViewMode('original'));
+
+    const heroFileInput = document.getElementById('input-hero-image-upload');
+    if (heroFileInput && !heroFileInput.dataset.bound) {
+      heroFileInput.dataset.bound = 'true';
+      heroFileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files[0]) {
+          this.handleHeroImageUpload(e.target.files[0], this._targetUploadSlideIndex);
+          e.target.value = '';
+        }
+      });
+    }
+
+    ['slider-finish-specular', 'slider-finish-contrast', 'slider-finish-chroma', 'slider-finish-sharpness', 'slider-finish-bloom'].forEach(id => {
+      const slider = document.getElementById(id);
+      if (slider && !slider.dataset.bound) {
+        slider.dataset.bound = 'true';
+        slider.addEventListener('input', () => {
+          this.updateEnhancerSliderLabels();
+          this.processEnhancedCanvas();
         });
       }
     });
@@ -5769,6 +7707,10 @@ class PaintSystemApp {
   }
 
   openAdminAuthModal() {
+    if (this.adminController && this.adminController.isAuthenticated) {
+      this.switchTab('tab-admin', 'view-admin');
+      return;
+    }
     const modal = document.getElementById('modal-admin-auth');
     const err = document.getElementById('admin-pin-error');
     const pin = document.getElementById('input-admin-pin');
@@ -5777,12 +7719,41 @@ class PaintSystemApp {
       pin.value = '';
       setTimeout(() => pin.focus(), 150);
     }
-    if (modal) modal.classList.add('active');
+    if (modal) {
+      modal.classList.add('active');
+      modal.classList.add('flex');
+    }
   }
 
   closeAdminAuthModal() {
     const modal = document.getElementById('modal-admin-auth');
-    if (modal) modal.classList.remove('active');
+    if (modal) {
+      modal.classList.remove('active');
+      modal.classList.remove('flex');
+    }
+  }
+
+  fillDefaultAdminPin() {
+    const pin = document.getElementById('input-admin-pin');
+    const err = document.getElementById('admin-pin-error');
+    if (err) err.classList.add('hidden');
+    if (pin) {
+      pin.value = 'COAST2026';
+      pin.focus();
+    }
+  }
+
+  toggleAdminPinVisibility() {
+    const pin = document.getElementById('input-admin-pin');
+    const icon = document.getElementById('icon-admin-pin-visibility');
+    if (!pin) return;
+    if (pin.type === 'password') {
+      pin.type = 'text';
+      if (icon) icon.textContent = 'visibility_off';
+    } else {
+      pin.type = 'password';
+      if (icon) icon.textContent = 'visibility';
+    }
   }
 
   handleAdminPinSubmit() {
@@ -5794,6 +7765,7 @@ class PaintSystemApp {
     if (res.success) {
       this.closeAdminAuthModal();
       this.switchTab('tab-admin', 'view-admin');
+      this.showToast("🔓 Master Admin Console Unlocked", "success");
     } else {
       if (err) {
         err.innerText = res.message;
@@ -5804,7 +7776,9 @@ class PaintSystemApp {
 
   renderAdminAll() {
     this.renderAdminSpreadsheet();
+    this.renderAdminTaxonomy();
     this.renderAdminFormulas();
+    this.renderAdminHero();
     this.renderAdminProducts();
     this.renderAdminPreorders();
     this.renderAdminBundles();
@@ -5813,6 +7787,304 @@ class PaintSystemApp {
     this.renderAdminAI();
     this.renderAdminEmailHub();
     this.renderFxStatus();
+  }
+
+  // =========================================================================
+  // ADMIN TAXONOMY (DEPARTMENTS & CATEGORIES) CONTROLLER
+  // =========================================================================
+  renderAdminTaxonomy() {
+    const grid = document.getElementById('admin-departments-grid');
+    if (!grid) return;
+
+    const departments = this.adminController.getDepartments();
+    const effectiveProducts = this.getEffectiveProducts();
+
+    // Metrics
+    const totalDeptsEl = document.getElementById('metric-total-departments');
+    const totalCatsEl = document.getElementById('metric-total-categories');
+    const totalProductsEl = document.getElementById('metric-total-assigned-products');
+
+    const totalCats = departments.reduce((acc, d) => acc + (d.categories || []).length, 0);
+    const assignedProductsCount = effectiveProducts.filter(p => {
+      const dept = p.department || this.getDefaultDepartmentForProduct(p);
+      return Boolean(dept);
+    }).length;
+
+    if (totalDeptsEl) totalDeptsEl.textContent = departments.length;
+    if (totalCatsEl) totalCatsEl.textContent = totalCats;
+    if (totalProductsEl) totalProductsEl.textContent = assignedProductsCount;
+
+    // Render department cards
+    grid.innerHTML = '';
+    departments.forEach(dept => {
+      const deptProducts = effectiveProducts.filter(p => {
+        const prodDept = p.department || this.getDefaultDepartmentForProduct(p);
+        return (prodDept || '').toLowerCase() === dept.name.toLowerCase();
+      });
+
+      const card = document.createElement('div');
+      card.className = 'industrial-card p-5 border-2 border-secondary/50 flex flex-col justify-between gap-4 bg-surface-container hover:border-primary/60 transition-all shadow-md';
+      card.id = `dept-card-${dept.id}`;
+
+      const categories = dept.categories || [];
+      const catsHtml = categories.length > 0
+        ? categories.map(cat => {
+            const catCount = deptProducts.filter(p => (p.category || '').toLowerCase() === cat.toLowerCase()).length;
+            return `
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/60 border border-secondary/60 text-[11px] font-mono text-zinc-200">
+                <span>${this.escapeHtml(cat)}</span>
+                <span class="text-[9px] px-1.5 py-0.2 bg-primary/20 text-primary rounded font-bold" title="${catCount} products in this category">${catCount}</span>
+                <button type="button" onclick="window.paintApp.removeTaxonomyCategory('${this.escapeHtml(dept.id)}', '${this.escapeHtml(cat)}')" class="text-zinc-500 hover:text-rose-400 font-bold ml-0.5 cursor-pointer" title="Remove category tag">&times;</button>
+              </span>
+            `;
+          }).join('')
+        : `<div class="text-[11px] text-zinc-500 italic py-1">No categories assigned yet. Add one below.</div>`;
+
+      card.innerHTML = `
+        <div class="space-y-3">
+          <!-- Card Header -->
+          <div class="flex items-start justify-between gap-3 border-b border-secondary/40 pb-3">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded bg-primary/20 text-primary border border-primary/50 flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-xl">${this.escapeHtml(dept.icon || 'category')}</span>
+              </div>
+              <div>
+                <h4 class="font-headline text-base uppercase text-white font-bold tracking-wide">${this.escapeHtml(dept.name)}</h4>
+                <div class="text-[10px] font-mono text-zinc-400">ID: <span class="text-zinc-300 font-bold">${this.escapeHtml(dept.id)}</span></div>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/40 text-[10px] font-mono font-bold whitespace-nowrap">
+              ${deptProducts.length} Product${deptProducts.length === 1 ? '' : 's'}
+            </span>
+          </div>
+
+          <!-- Description -->
+          <p class="text-xs text-zinc-300 font-sans leading-relaxed min-h-[36px]">
+            ${this.escapeHtml(dept.description || 'No description provided.')}
+          </p>
+
+          <!-- Category Tags Area -->
+          <div>
+            <div class="text-[10px] font-mono uppercase text-secondary font-bold mb-1.5 flex items-center justify-between">
+              <span>Categories (${categories.length}):</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              ${catsHtml}
+            </div>
+
+            <!-- Inline Add Category Input -->
+            <div class="flex items-center gap-1.5 pt-1">
+              <input type="text" id="input-add-cat-${dept.id}" placeholder="+ Add category tag..." class="mech-input !py-1 !px-2 text-[11px] font-mono flex-1">
+              <button type="button" onclick="window.paintApp.addTaxonomyCategory('${this.escapeHtml(dept.id)}')" class="px-2.5 py-1 bg-surface border border-secondary hover:border-primary text-zinc-200 hover:text-white text-[11px] font-mono font-bold rounded cursor-pointer transition-colors">
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Footer Actions -->
+        <div class="pt-3 border-t border-secondary/40 flex items-center justify-between gap-2">
+          <button type="button" onclick="window.paintApp.filterSpreadsheetByDept('${this.escapeHtml(dept.name)}')" class="text-[11px] font-mono text-primary hover:underline flex items-center gap-1 cursor-pointer" title="View products in Spreadsheet Matrix">
+            <span class="material-symbols-outlined text-[13px]">table_rows</span> View Products
+          </button>
+          <div class="flex items-center gap-1.5">
+            <button type="button" onclick="window.paintApp.openAdminDepartmentModal('${this.escapeHtml(dept.id)}')" class="px-2.5 py-1 bg-surface border border-secondary hover:border-primary text-zinc-200 hover:text-white text-xs font-mono font-bold rounded cursor-pointer transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-[13px]">edit</span> Edit
+            </button>
+            <button type="button" onclick="window.paintApp.deleteAdminDepartment('${this.escapeHtml(dept.id)}')" class="px-2.5 py-1 bg-rose-950/40 border border-rose-500/60 hover:bg-rose-900/60 text-rose-300 text-xs font-mono font-bold rounded cursor-pointer transition-colors flex items-center gap-1" title="Delete department">
+              <span class="material-symbols-outlined text-[13px]">delete</span>
+            </button>
+          </div>
+        </div>
+      `;
+
+      grid.appendChild(card);
+
+      const catInput = card.querySelector(`#input-add-cat-${dept.id}`);
+      if (catInput) {
+        catInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            this.addTaxonomyCategory(dept.id);
+          }
+        });
+      }
+    });
+
+    const allDeptNames = departments.map(d => d.name);
+    this.syncTaxonomyDropdowns(allDeptNames);
+  }
+
+  syncTaxonomyDropdowns(departments) {
+    const batchDept = document.getElementById('batch-department-select');
+    if (batchDept) {
+      const currentVal = batchDept.value;
+      let opts = '<option value="">-- Choose Department --</option>';
+      departments.forEach(d => {
+        opts += `<option value="${this.escapeHtml(d)}" ${d === currentVal ? 'selected' : ''}>${this.escapeHtml(d)}</option>`;
+      });
+      batchDept.innerHTML = opts;
+    }
+
+    const filterDept = document.getElementById('admin-ss-filter-department');
+    if (filterDept) {
+      const currentVal = (this.spreadsheetState && this.spreadsheetState.departmentFilter) ? this.spreadsheetState.departmentFilter : 'all';
+      let opts = '<option value="all">All Departments</option>';
+      departments.forEach(d => {
+        opts += `<option value="${this.escapeHtml(d)}" ${d === currentVal ? 'selected' : ''}>${this.escapeHtml(d)}</option>`;
+      });
+      filterDept.innerHTML = opts;
+    }
+
+    // Sync datalists for autocomplete suggestions
+    const dlDepts = document.getElementById('datalist-departments');
+    if (dlDepts) {
+      dlDepts.innerHTML = departments.map(d => `<option value="${this.escapeHtml(d)}">`).join('');
+    }
+
+    const dlCats = document.getElementById('datalist-categories');
+    if (dlCats) {
+      const allCats = Array.from(new Set([
+        ...this.adminController.getAllCategories(),
+        ...this.getEffectiveProducts().map(p => p.category).filter(Boolean)
+      ])).sort();
+      dlCats.innerHTML = allCats.map(c => `<option value="${this.escapeHtml(c)}">`).join('');
+    }
+  }
+
+  openAdminDepartmentModal(deptId = null) {
+    const modal = document.getElementById('modal-admin-department-edit');
+    const title = document.getElementById('modal-department-edit-title');
+    const idInput = document.getElementById('form-department-id');
+    const nameInput = document.getElementById('form-department-name');
+    const iconInput = document.getElementById('form-department-icon');
+    const iconGlyph = document.getElementById('form-department-icon-preview-glyph');
+    const slugInput = document.getElementById('form-department-slug');
+    const descInput = document.getElementById('form-department-description');
+    const catsInput = document.getElementById('form-department-categories');
+
+    if (!modal) return;
+
+    if (deptId) {
+      const dept = this.adminController.getDepartment(deptId);
+      if (dept) {
+        if (title) title.textContent = `Edit Department: ${dept.name}`;
+        if (idInput) idInput.value = dept.id;
+        if (nameInput) nameInput.value = dept.name;
+        if (iconInput) iconInput.value = dept.icon || 'category';
+        if (iconGlyph) iconGlyph.textContent = dept.icon || 'category';
+        if (slugInput) slugInput.value = dept.id;
+        if (descInput) descInput.value = dept.description || '';
+        if (catsInput) catsInput.value = (dept.categories || []).join(', ');
+      }
+    } else {
+      if (title) title.textContent = 'Create New Department';
+      if (idInput) idInput.value = '';
+      if (nameInput) nameInput.value = '';
+      if (iconInput) iconInput.value = 'category';
+      if (iconGlyph) iconGlyph.textContent = 'category';
+      if (slugInput) slugInput.value = '';
+      if (descInput) descInput.value = '';
+      if (catsInput) catsInput.value = '';
+    }
+
+    modal.classList.add('active');
+  }
+
+  closeAdminDepartmentModal() {
+    const modal = document.getElementById('modal-admin-department-edit');
+    if (modal) modal.classList.remove('active');
+  }
+
+  saveAdminDepartmentFromModal() {
+    const idInput = document.getElementById('form-department-id');
+    const nameInput = document.getElementById('form-department-name');
+    const iconInput = document.getElementById('form-department-icon');
+    const descInput = document.getElementById('form-department-description');
+    const catsInput = document.getElementById('form-department-categories');
+
+    if (!nameInput || !nameInput.value.trim()) {
+      this.showToast('Please provide a Department Name.', 'warning');
+      return;
+    }
+
+    const name = nameInput.value.trim();
+    const icon = (iconInput ? iconInput.value.trim() : '') || 'category';
+    const description = descInput ? descInput.value.trim() : '';
+    const rawCats = catsInput ? catsInput.value : '';
+    const categories = rawCats
+      .split(/[\n,]+/)
+      .map(c => c.trim())
+      .filter(Boolean);
+
+    const deptId = idInput && idInput.value.trim() ? idInput.value.trim() : null;
+
+    this.adminController.saveDepartment({
+      id: deptId,
+      name,
+      icon,
+      description,
+      categories
+    });
+
+    this.closeAdminDepartmentModal();
+    this.renderAdminTaxonomy();
+    this.renderAdminSpreadsheet();
+    this.renderCategoryButtons();
+    this.showToast(`Department "${name}" saved successfully!`, 'success');
+  }
+
+  deleteAdminDepartment(deptId) {
+    const dept = this.adminController.getDepartment(deptId);
+    if (!dept) return;
+
+    if (!confirm(`Are you sure you want to delete the department "${dept.name}"? Products currently assigned to it will retain their text label until reassigned.`)) {
+      return;
+    }
+
+    this.adminController.deleteDepartment(deptId);
+    this.renderAdminTaxonomy();
+    this.renderAdminSpreadsheet();
+    this.renderCategoryButtons();
+    this.showToast(`Department "${dept.name}" removed.`, 'info');
+  }
+
+  addTaxonomyCategory(deptId) {
+    const input = document.getElementById(`input-add-cat-${deptId}`);
+    if (!input || !input.value.trim()) return;
+
+    const catName = input.value.trim();
+    const success = this.adminController.addCategoryToDepartment(deptId, catName);
+    if (success) {
+      input.value = '';
+      this.renderAdminTaxonomy();
+      this.renderCategoryButtons();
+      this.showToast(`Category "${catName}" added.`, 'success');
+    } else {
+      this.showToast(`Category "${catName}" already exists in this department.`, 'warning');
+    }
+  }
+
+  removeTaxonomyCategory(deptId, catName) {
+    if (!confirm(`Remove category "${catName}" from this department?`)) return;
+    const success = this.adminController.removeCategoryFromDepartment(deptId, catName);
+    if (success) {
+      this.renderAdminTaxonomy();
+      this.renderCategoryButtons();
+      this.showToast(`Category "${catName}" removed.`, 'info');
+    }
+  }
+
+  filterSpreadsheetByDept(deptName) {
+    const btn = document.getElementById('subtab-admin-spreadsheet');
+    if (btn) btn.click();
+    const filterEl = document.getElementById('admin-ss-filter-department');
+    if (filterEl) {
+      filterEl.value = deptName;
+      this.spreadsheetState.departmentFilter = deptName;
+      this.spreadsheetState.currentPage = 1;
+      this.renderAdminSpreadsheet();
+    }
   }
 
   // =========================================================================
@@ -6394,12 +8666,13 @@ class PaintSystemApp {
 
     this.addSafeListener('btn-batch-apply-taxonomy', 'click', () => {
       const dept = document.getElementById('batch-department-select')?.value;
+      const category = (document.getElementById('batch-category-input')?.value || '').trim();
       const brand = document.getElementById('batch-brand-select')?.value;
-      if (!dept && !brand) {
-        this.showToast("Please choose at least a Department or Brand to apply.", "warning");
+      if (!dept && !category && !brand) {
+        this.showToast("Please choose at least a Department, Category, or Brand to apply.", "warning");
         return;
       }
-      this.applyBatchTaxonomy(dept, brand);
+      this.applyBatchTaxonomy(dept, category, brand);
     });
 
     this.addSafeListener('btn-batch-stock-in', 'click', () => this.applyBatchStock(true));
@@ -6752,6 +9025,13 @@ class PaintSystemApp {
       selectAllCb.checked = allSelected;
     }
 
+    const taxonomyDepts = (this.adminController.getDepartments() || []).map(d => d.name);
+    const customDepts = Array.from(new Set(
+      this.getEffectiveProducts().map(p => p.department).filter(Boolean)
+    ));
+    const departments = Array.from(new Set([...taxonomyDepts, ...customDepts]));
+    this.syncTaxonomyDropdowns(departments);
+
     tbody.innerHTML = '';
 
     if (displayList.length === 0) {
@@ -6764,14 +9044,6 @@ class PaintSystemApp {
       `;
       return;
     }
-
-    const departments = [
-      "Automotive & Custom Paint",
-      "Special Effects & Flakes",
-      "Equipment & Hardware",
-      "Consumables & Prep",
-      "Studio & Merchandise"
-    ];
 
     const brands = [
       "Kroma Edge",
@@ -7168,7 +9440,7 @@ class PaintSystemApp {
     return Math.round(price * 100) / 100;
   }
 
-  applyBatchTaxonomy(dept, brand) {
+  applyBatchTaxonomy(dept, category, brand) {
     const targetProducts = this.spreadsheetState.selectedIds.size > 0 
       ? this.getEffectiveProducts().filter(p => this.spreadsheetState.selectedIds.has(p.id))
       : this.getFilteredSortedSpreadsheetProducts();
@@ -7176,12 +9448,13 @@ class PaintSystemApp {
     targetProducts.forEach(p => {
       const st = this.spreadsheetState.stagedEdits.get(p.id) || {};
       if (dept) st.department = dept;
+      if (category) st.category = category;
       if (brand) st.brand = brand;
       this.spreadsheetState.stagedEdits.set(p.id, st);
     });
 
     this.renderAdminSpreadsheet();
-    this.showToast(`Updated Department/Brand for ${targetProducts.length} product(s).`, 'info');
+    this.showToast(`Updated Taxonomy for ${targetProducts.length} product(s).`, 'info');
   }
 
   applyBatchStock(inStock) {
@@ -9241,6 +11514,10 @@ ${result.description}
         }
       });
       this.renderStorefrontGrid();
+    }
+    if (config.hero) {
+      this.renderStorefrontHero();
+      this.setupHeroCrossfade();
     }
   }
 
