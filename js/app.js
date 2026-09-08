@@ -4066,6 +4066,10 @@ class PaintSystemApp {
     });
   }
 
+  calculateDisplayPrice(prod, selectedPack, selectedSize, selectedWidth) {
+    return this.getProductCalculatedPrice(prod, selectedPack, selectedSize, selectedWidth);
+  }
+
   getProductCalculatedPrice(prod, selectedPack, selectedSize, selectedWidth) {
     let priceEur = prod.priceEur || 24.00;
     let finalGbp = prod.priceGbp !== undefined ? prod.priceGbp : null;
@@ -7106,9 +7110,8 @@ class PaintSystemApp {
       this.deptFlakeState = { subcat: 'all', viewMode: 'curated' };
     }
     this.deptFlakeState.subcat = subcat;
-    if (viewAll || subcat !== 'all') {
-      this.deptFlakeState.viewMode = 'all';
-    }
+    // When clicking any subcategory filter (including 'all'), switch to full view for that category
+    this.deptFlakeState.viewMode = 'all';
 
     const buttons = document.querySelectorAll('.dept-flake-subcat-btn');
     buttons.forEach(btn => {
@@ -7129,19 +7132,20 @@ class PaintSystemApp {
     }
     if (this.deptFlakeState.viewMode === 'curated') {
       this.deptFlakeState.viewMode = 'all';
+      this.deptFlakeState.subcat = 'all';
     } else {
       this.deptFlakeState.viewMode = 'curated';
       this.deptFlakeState.subcat = 'all';
-      const buttons = document.querySelectorAll('.dept-flake-subcat-btn');
-      buttons.forEach(btn => {
-        const btnCat = btn.getAttribute('data-dept-flake-subcat');
-        if (btnCat === 'all') {
-          btn.className = 'dept-flake-subcat-btn active px-3 py-1.5 border border-primary bg-primary/20 text-white font-bold transition-colors cursor-pointer rounded text-[11px] shadow-sm';
-        } else {
-          btn.className = 'dept-flake-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]';
-        }
-      });
     }
+    const buttons = document.querySelectorAll('.dept-flake-subcat-btn');
+    buttons.forEach(btn => {
+      const btnCat = btn.getAttribute('data-dept-flake-subcat');
+      if (btnCat === 'all') {
+        btn.className = 'dept-flake-subcat-btn active px-3 py-1.5 border border-primary bg-primary/20 text-white font-bold transition-colors cursor-pointer rounded text-[11px] shadow-sm';
+      } else {
+        btn.className = 'dept-flake-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]';
+      }
+    });
     this.renderDeptFlakesGrid();
   }
 
@@ -7165,12 +7169,14 @@ class PaintSystemApp {
     const isCuratedView = (this.deptFlakeState.subcat === 'all' && this.deptFlakeState.viewMode === 'curated');
 
     if (isCuratedView) {
+      grid.className = 'grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4';
       itemsToDisplay = CURATED_IDS.map(id => allFlakes.find(p => p.id === id)).filter(Boolean);
       if (countBadge) countBadge.textContent = `Showing 8 Curated Swatches (of ${allFlakes.length} Flakes)`;
       if (toggleBtnLabel) toggleBtnLabel.textContent = `View All ${allFlakes.length} Flakes in Department`;
       if (viewSwitchBtn) viewSwitchBtn.innerHTML = `Show All ${allFlakes.length} Flakes &darr;`;
       if (curatedFooter) curatedFooter.style.display = 'block';
     } else {
+      grid.className = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4';
       if (this.deptFlakeState.subcat === 'all') {
         itemsToDisplay = allFlakes;
         if (countBadge) countBadge.textContent = `Showing All ${allFlakes.length} Flakes (Full Department)`;
