@@ -7520,9 +7520,16 @@ class PaintSystemApp {
 
     dynamicGrid.innerHTML = items.map(prod => {
       const priceInfo = this.calculateDisplayPrice(prod);
-      const badgeText = prod.name.includes('Set') ? '5-ROLL SET' : 'HEAT 132°C';
-      const badgeColor = 'bg-orange-950/80 border-orange-500/60 text-orange-300';
-      const imgSrc = prod.image || 'https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1';
+      const isGreen = prod.name.toLowerCase().includes('green');
+      const isOrange = prod.name.toLowerCase().includes('orange');
+      const isSet = prod.name.includes('Set') || prod.name.includes('Mixed');
+      const badgeText = isSet ? '5-ROLL SET' : (isGreen ? 'RAZOR EDGE' : (isOrange ? 'HEAT 132°C' : 'MASKING'));
+      const badgeColor = isGreen 
+        ? 'bg-emerald-950/80 border-emerald-500/60 text-emerald-300' 
+        : (isOrange 
+            ? 'bg-orange-950/80 border-orange-500/60 text-orange-300' 
+            : 'bg-neutral-900 border-neutral-600 text-neutral-300');
+      const imgSrc = prod.image || 'assets/images/flake-king-orange-mixed-set.webp';
 
       return `
         <div class="industrial-card p-4 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
