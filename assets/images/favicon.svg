@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Liquid Candy Red Gradient with High Optical Saturation -->
+    <linearGradient id="coastRedTile" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff2e3a"/>
+      <stop offset="45%" stop-color="#e5232a"/>
+      <stop offset="100%" stop-color="#9a0008"/>
+    </linearGradient>
+
+    <!-- Chrome/White drop shadow for 3D depth -->
+    <filter id="cShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Edge-to-Edge Coast Red Squircle Tile (Maximum Canvas Presence) -->
+  <rect x="12" y="12" width="488" height="488" rx="124" fill="url(#coastRedTile)"/>
+
+  <!-- Subtle Top-Left Automotive Glass Sheen -->
+  <path d="M 24 130 C 24 70 70 24 130 24 L 380 24 C 270 45 150 110 80 240 C 50 195 24 155 24 130 Z" fill="#ffffff" opacity="0.12"/>
+
+  <!-- THE AUTHENTIC COAST HOT-ROD SLANTED SPEED "C" -->
+  <g filter="url(#cShadow)">
+    <path d="M 465 105 C 410 75 320 62 245 80 C 155 102 78 165 42 255 C 8 340 32 425 98 465 C 168 505 275 490 365 448 C 428 418 468 372 485 335 L 380 298 C 362 322 330 350 278 360 C 215 372 165 352 138 312 C 108 265 118 205 168 162 C 220 120 305 115 365 138 C 392 148 415 165 432 188 L 495 138 C 485 125 476 114 465 105 Z" 
+          fill="#ffffff"/>
+  </g>
+</svg>

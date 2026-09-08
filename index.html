@@ -232,7 +232,9 @@
   </script>
   
   <link rel="stylesheet" href="css/styles.css?v=20260831_inputfix">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
   <script>
     // Early resilient binding for Admin Console trigger
     window.openAdminLogin = function() {
@@ -1452,11 +1454,181 @@
           </button>
         </div>
 
+        <!-- ========================================================================= -->
+        <!-- FLAKE KING™ BASECOATS & BINDERS (COMPANION LIQUID SYSTEM) -->
+        <!-- ========================================================================= -->
+        <div id="dept-basecoats-binders" class="mt-14 pt-10 border-t-2 border-secondary/60 space-y-6">
+          <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
+            <div>
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-amber-950/60 border border-amber-500/50 text-amber-300 font-mono text-[11px] font-bold mb-2">
+                <span>✦ ESSENTIAL LIQUID SYSTEM • WATER-BASED BINDERS &amp; BASES</span>
+              </div>
+              <h3 class="font-headline text-2xl sm:text-3xl uppercase text-white tracking-tight">
+                FLAKE KING™ <span class="text-primary">BASECOATS &amp; BINDERS</span>
+              </h3>
+              <p class="font-body text-xs sm:text-sm text-neutral-300 max-w-3xl mt-1">
+                Engineered specifically to accompany Flake King polyester flakes. Water-based, inert, eco-friendly, zero reaction with primers, and designed for maximum light absorption and crystal-clear flake adhesion.
+              </p>
+            </div>
+            <div class="flex items-center gap-2 flex-shrink-0">
+              <span class="font-mono text-xs text-amber-300 font-bold bg-amber-950/80 border border-amber-500/40 px-2.5 py-1 rounded">
+                3 ESSENTIAL CHEMICALS
+              </span>
+            </div>
+          </div>
+
+          <!-- 3-Product Grid for Basecoats & Binders -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Card 1: FK100 Prime Black Base -->
+            <div class="industrial-card p-5 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
+              <div>
+                <div onclick="window.paintApp && window.paintApp.openDetailModal('fk-2415')" class="h-48 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" title="Click to view product specs &amp; options">
+                  <img src="assets/images/fk100-prime-black-base.jpg" alt="FK100 Prime Black Base" class="h-full object-contain group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FK100FamilyWeb_1.jpg?fit=600%2C600&amp;ssl=1'">
+                  <span class="absolute top-2 left-2 px-2 py-0.5 rounded border text-[9px] font-mono font-bold bg-amber-950/80 border-amber-500/60 text-amber-300">BASECOAT</span>
+                </div>
+                <h4 onclick="window.paintApp && window.paintApp.openDetailModal('fk-2415')" class="font-headline text-base uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" title="Click to view product specs &amp; options">
+                  FK100 Prime Black Base
+                </h4>
+                <p class="text-xs text-neutral-400 font-body mb-3">
+                  Water-based deep black foundation engineered for maximum light absorption to intensify flake pop and depth.
+                </p>
+                
+                <!-- Bottle Size Selector -->
+                <div class="mb-3 bg-black/70 p-2.5 rounded border-2 border-amber-500/50 space-y-1 shadow-md">
+                  <div class="flex items-center justify-between">
+                    <label class="font-mono text-[10px] text-amber-300 uppercase block font-bold flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[13px] text-amber-400">tune</span>
+                      <span>SELECT BOTTLE SIZE &amp; PRICING:</span>
+                    </label>
+                    <span class="text-[9px] font-mono text-orange-400 font-bold bg-orange-950/80 border border-orange-500/40 px-1.5 py-0.5 rounded">3 SIZES</span>
+                  </div>
+                  <select id="select-size-fk-2415" data-variant-prod="fk-2415" data-variant-key="size" data-select-size="fk-2415" class="mech-select !py-1.5 !px-2 !text-xs w-full font-mono font-bold" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('fk-2415', 'size', this.value) : null">
+                    <option value="100ml" selected>100ml — €12.03 / £10.28</option>
+                    <option value="500ml">500ml — €53.66 / £45.86</option>
+                    <option value="1000ml (1 Litre)">1000ml (1 Litre) — €122.52 / £104.72</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-baseline justify-between border-t border-white/10 pt-2 mb-2">
+                  <span id="price-eur-fk-2415" data-price-eur="fk-2415" data-price-primary="fk-2415" class="price-eur-fk-2415 text-primary font-headline text-xl font-bold">€12.03</span>
+                  <span id="price-gbp-fk-2415" data-price-gbp="fk-2415" data-price-secondary="fk-2415" class="price-gbp-fk-2415 text-secondary font-mono text-xs">£10.28 ex. VAT</span>
+                </div>
+                <div class="grid grid-cols-2 gap-1.5">
+                  <button onclick="window.paintApp.addProductToCartById('fk-2415')" class="mech-button-primary !w-full !py-2 !text-[11px] !justify-center font-bold">
+                    + Add to Cart
+                  </button>
+                  <button onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2415')" class="mech-btn-secondary !w-full !py-2 !text-[11px] !justify-center font-bold">
+                    Specs
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: FK50 Surface Binder -->
+            <div class="industrial-card p-5 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
+              <div>
+                <div onclick="window.paintApp && window.paintApp.openDetailModal('fk-2401')" class="h-48 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" title="Click to view product specs &amp; options">
+                  <img src="assets/images/fk50-surface-binder.jpg" alt="FK50 Surface Binder" class="h-full object-contain group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FK50Familyweb.jpg?fit=600%2C600&amp;ssl=1'">
+                  <span class="absolute top-2 left-2 px-2 py-0.5 rounded border text-[9px] font-mono font-bold bg-amber-950/80 border-amber-500/60 text-amber-300">SURFACE BINDER</span>
+                </div>
+                <h4 onclick="window.paintApp && window.paintApp.openDetailModal('fk-2401')" class="font-headline text-base uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" title="Click to view product specs &amp; options">
+                  FK50 Surface Binder
+                </h4>
+                <p class="text-xs text-neutral-400 font-body mb-3">
+                  Water-based adhesion resin developed to stay open longer without sagging. Primary carrier for wet-spraying or sealing dry metal flakes.
+                </p>
+                
+                <!-- Bottle Size Selector -->
+                <div class="mb-3 bg-black/70 p-2.5 rounded border-2 border-amber-500/50 space-y-1 shadow-md">
+                  <div class="flex items-center justify-between">
+                    <label class="font-mono text-[10px] text-amber-300 uppercase block font-bold flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[13px] text-amber-400">tune</span>
+                      <span>SELECT BOTTLE SIZE &amp; PRICING:</span>
+                    </label>
+                    <span class="text-[9px] font-mono text-orange-400 font-bold bg-orange-950/80 border border-orange-500/40 px-1.5 py-0.5 rounded">4 SIZES</span>
+                  </div>
+                  <select id="select-size-fk-2401" data-variant-prod="fk-2401" data-variant-key="size" data-select-size="fk-2401" class="mech-select !py-1.5 !px-2 !text-xs w-full font-mono font-bold" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('fk-2401', 'size', this.value) : null">
+                    <option value="50ml" selected>50ml — €5.84 / £4.99</option>
+                    <option value="100ml">100ml — €10.82 / £9.25</option>
+                    <option value="500ml">500ml — €47.22 / £40.36</option>
+                    <option value="1000ml (1 Litre)">1000ml (1 Litre) — €93.27 / £79.72</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-baseline justify-between border-t border-white/10 pt-2 mb-2">
+                  <span id="price-eur-fk-2401" data-price-eur="fk-2401" data-price-primary="fk-2401" class="price-eur-fk-2401 text-primary font-headline text-xl font-bold">€5.84</span>
+                  <span id="price-gbp-fk-2401" data-price-gbp="fk-2401" data-price-secondary="fk-2401" class="price-gbp-fk-2401 text-secondary font-mono text-xs">£4.99 ex. VAT</span>
+                </div>
+                <div class="grid grid-cols-2 gap-1.5">
+                  <button onclick="window.paintApp.addProductToCartById('fk-2401')" class="mech-button-primary !w-full !py-2 !text-[11px] !justify-center font-bold">
+                    + Add to Cart
+                  </button>
+                  <button onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2401')" class="mech-btn-secondary !w-full !py-2 !text-[11px] !justify-center font-bold">
+                    Specs
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: FK55 Thinner -->
+            <div class="industrial-card p-5 flex flex-col justify-between bg-surface-container border border-white/15 rounded-lg group hover:border-primary/60 transition-colors">
+              <div>
+                <div onclick="window.paintApp && window.paintApp.openDetailModal('fk-2409')" class="h-48 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-2 mb-3 relative cursor-pointer" title="Click to view product specs &amp; options">
+                  <img src="assets/images/fk55-thinner.jpg" alt="FK55 Thinner" class="h-full object-contain group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FK55FamilyWeb.jpg?fit=600%2C600&amp;ssl=1'">
+                  <span class="absolute top-2 left-2 px-2 py-0.5 rounded border text-[9px] font-mono font-bold bg-amber-950/80 border-amber-500/60 text-amber-300">THINNER / REDUCER</span>
+                </div>
+                <h4 onclick="window.paintApp && window.paintApp.openDetailModal('fk-2409')" class="font-headline text-base uppercase text-white font-bold leading-tight mb-1 group-hover:text-primary cursor-pointer" title="Click to view product specs &amp; options">
+                  FK55 Thinner
+                </h4>
+                <p class="text-xs text-neutral-400 font-body mb-3">
+                  Dedicated thinner for FK50 Surface Binder and FK100 Prime Base. Add up to 10% volume for optimal atomization.
+                </p>
+                
+                <!-- Bottle Size Selector -->
+                <div class="mb-3 bg-black/70 p-2.5 rounded border-2 border-amber-500/50 space-y-1 shadow-md">
+                  <div class="flex items-center justify-between">
+                    <label class="font-mono text-[10px] text-amber-300 uppercase block font-bold flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[13px] text-amber-400">tune</span>
+                      <span>SELECT BOTTLE SIZE &amp; PRICING:</span>
+                    </label>
+                    <span class="text-[9px] font-mono text-orange-400 font-bold bg-orange-950/80 border border-orange-500/40 px-1.5 py-0.5 rounded">2 SIZES</span>
+                  </div>
+                  <select id="select-size-fk-2409" data-variant-prod="fk-2409" data-variant-key="size" data-select-size="fk-2409" class="mech-select !py-1.5 !px-2 !text-xs w-full font-mono font-bold" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('fk-2409', 'size', this.value) : null">
+                    <option value="50ml" selected>50ml — €6.55 / £5.60</option>
+                    <option value="100ml">100ml — €12.92 / £11.04</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-baseline justify-between border-t border-white/10 pt-2 mb-2">
+                  <span id="price-eur-fk-2409" data-price-eur="fk-2409" data-price-primary="fk-2409" class="price-eur-fk-2409 text-primary font-headline text-xl font-bold">€6.55</span>
+                  <span id="price-gbp-fk-2409" data-price-gbp="fk-2409" data-price-secondary="fk-2409" class="price-gbp-fk-2409 text-secondary font-mono text-xs">£5.60 ex. VAT</span>
+                </div>
+                <div class="grid grid-cols-2 gap-1.5">
+                  <button onclick="window.paintApp.addProductToCartById('fk-2409')" class="mech-button-primary !w-full !py-2 !text-[11px] !justify-center font-bold">
+                    + Add to Cart
+                  </button>
+                  <button onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2409')" class="mech-btn-secondary !w-full !py-2 !text-[11px] !justify-center font-bold">
+                    Specs
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- ========================================================================= -->
-    <!-- DEPARTMENT 4: FINE LINE MASKING TAPES & WORKSHOP PREP -->
+    <!-- DEPARTMENT 4: FINE LINE MASKING TAPES -->
     <!-- ========================================================================= -->
     <section id="dept-tapes" class="py-16 bg-surface-container-low border-b-2 border-secondary px-margin-mobile md:px-margin-desktop">
       <div class="max-w-[1440px] mx-auto space-y-8">
@@ -1468,7 +1640,7 @@
               <span>✦ DEPARTMENT 04 • WORKSHOP ESSENTIALS</span>
             </div>
             <h2 class="font-headline text-3xl sm:text-4xl uppercase text-white tracking-tight">
-              PRECISION FINE LINE TAPES &amp; <span class="text-primary">SURFACE PREP</span>
+              PRECISION FINE LINE <span class="text-primary">&amp; MASKING TAPES</span>
             </h2>
             <p class="font-body text-sm sm:text-base text-neutral-300 max-w-3xl mt-1">
               Heat-resistant up to 132°C. Specially designed for sharp micro-edge definition around curves, rivets, body lines, and multi-color graphics without bleed-through or adhesive residue.
@@ -1479,21 +1651,18 @@
         <!-- Department 04 Subcategory Filter & View Bar -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-surface-container border border-secondary rounded">
           <div class="flex items-center gap-2 flex-wrap">
-            <span class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider font-bold mr-1">TAPES &amp; PREP SUBCATEGORIES:</span>
+            <span class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider font-bold mr-1">MASKING TAPE CATEGORIES:</span>
             <button onclick="window.paintApp && window.paintApp.setDeptTapesSubcat('featured')" data-dept-tapes-subcat="featured" class="dept-tapes-subcat-btn active px-3 py-1.5 border border-primary bg-primary/20 text-white font-bold transition-colors cursor-pointer rounded text-[11px] shadow-sm">
               FEATURED (4)
             </button>
             <button onclick="window.paintApp && window.paintApp.setDeptTapesSubcat('all')" data-dept-tapes-subcat="all" class="dept-tapes-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
-              ALL TAPES &amp; PREP (9)
+              ALL TAPES (6)
             </button>
             <button onclick="window.paintApp && window.paintApp.setDeptTapesSubcat('tapes')" data-dept-tapes-subcat="tapes" class="dept-tapes-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
               FINE LINE TAPES (4)
             </button>
             <button onclick="window.paintApp && window.paintApp.setDeptTapesSubcat('sets')" data-dept-tapes-subcat="sets" class="dept-tapes-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
               MIXED ROLL SETS (2)
-            </button>
-            <button onclick="window.paintApp && window.paintApp.setDeptTapesSubcat('prep')" data-dept-tapes-subcat="prep" class="dept-tapes-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]">
-              SURFACE PREP &amp; BINDERS (3)
             </button>
           </div>
 

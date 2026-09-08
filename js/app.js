@@ -2123,7 +2123,7 @@ class PaintSystemApp {
     if (catId === 'Flake King Gun Accessories') return product.category === 'Flake King Gun Accessories';
     if (catId === 'flake-guns-all') return product.category === 'Dry Metal Flake Guns' || product.category === 'Flake King Gun Accessories';
     if (catId === 'Masking Products') return product.category === 'Masking Products';
-    if (catId === 'Wet Products') return product.category === 'Wet Products';
+    if (catId === 'Wet Products' || catId === 'Basecoats & Binders') return product.category === 'Basecoats & Binders' || product.category === 'Wet Products';
 
     if (catId === 'kromaedge-all') return product.brand === 'Kroma Edge';
     if (catId === 'Solvent Paints') return product.brand === 'Kroma Edge' || product.category === 'Solvent Paints';
@@ -2152,11 +2152,11 @@ class PaintSystemApp {
       { id: "all", label: "All Products", icon: "apps", brand: "all" },
       { id: "Solvent Paints", label: "Sprayable Chrome", icon: "format_paint", brand: "Kroma Edge" },
       { id: "Dry Metal Flake (Glitter)", label: "Metal Flakes", icon: "auto_awesome", brand: "Flake King" },
+      { id: "Basecoats & Binders", label: "Basecoats & Binders", icon: "science", brand: "Flake King" },
       { id: "Dry Metal Flake Guns", label: "Flake Guns & Kits", icon: "precision_manufacturing", brand: "Flake King" },
       { id: "Flake King Gun Accessories", label: "Gun Accessories", icon: "build", brand: "Flake King" },
       { id: "vsionair-all", label: "Workstations & Jigs", icon: "handyman", brand: "VsionAir" },
-      { id: "Masking Products", label: "Fine Line Tapes", icon: "content_cut", brand: "Flake King" },
-      { id: "Wet Products", label: "Binders & Prep", icon: "sanitizer", brand: "Flake King" }
+      { id: "Masking Products", label: "Fine Line Tapes", icon: "content_cut", brand: "Flake King" }
     ];
 
     const VSIONAIR_SUBCATS = [
@@ -2365,7 +2365,8 @@ class PaintSystemApp {
         'flake-guns-all': 'All Flake Hardware',
         'vsionair-all': 'Workstations & Jigs',
         'Masking Products': 'Fine Line Tapes',
-        'Wet Products': 'Binders & Prep'
+        'Basecoats & Binders': 'Basecoats & Binders',
+        'Wet Products': 'Basecoats & Binders'
       };
       const catLabel = CATEGORY_NAMES[this.activeCategoryFilter] || this.activeCategoryFilter;
       html += `
@@ -7501,29 +7502,26 @@ class PaintSystemApp {
     featuredView.style.display = 'none';
     dynamicGrid.style.display = 'grid';
 
-    const allTapesAndPrep = ECOM_CATALOG.filter(p => 
-      (p.category === 'Masking Products' || p.category === 'Wet Products') && !p.hideFromStorefront
+    const allTapes = ECOM_CATALOG.filter(p => 
+      p.category === 'Masking Products' && !p.hideFromStorefront
     );
 
-    let items = allTapesAndPrep;
+    let items = allTapes;
     if (this.deptTapesState.subcat === 'tapes') {
-      items = allTapesAndPrep.filter(p => p.category === 'Masking Products' && !p.name.includes('Mixed'));
+      items = allTapes.filter(p => p.category === 'Masking Products' && !p.name.includes('Mixed'));
     } else if (this.deptTapesState.subcat === 'sets') {
-      items = allTapesAndPrep.filter(p => p.name.includes('Mixed Set') || p.name.includes('Workshop Set'));
-    } else if (this.deptTapesState.subcat === 'prep') {
-      items = allTapesAndPrep.filter(p => p.category === 'Wet Products');
+      items = allTapes.filter(p => p.name.includes('Mixed Set') || p.name.includes('Workshop Set'));
     }
 
     if (countBadge) {
-      const labelMap = { all: 'All Tapes & Surface Prep', tapes: 'Fine Line Single Rolls', sets: 'Mixed Width Sets', prep: 'Surface Binders & Thinners' };
-      countBadge.textContent = `Showing ${items.length} ${labelMap[this.deptTapesState.subcat] || 'Items'}`;
+      const labelMap = { all: 'All Masking Tapes', tapes: 'Fine Line Single Rolls', sets: 'Mixed Width Sets' };
+      countBadge.textContent = `Showing ${items.length} ${labelMap[this.deptTapesState.subcat] || 'Tapes'}`;
     }
 
     dynamicGrid.innerHTML = items.map(prod => {
       const priceInfo = this.calculateDisplayPrice(prod);
-      const isWet = prod.category === 'Wet Products';
-      const badgeText = isWet ? 'SURFACE PREP' : (prod.name.includes('Set') ? '5-ROLL SET' : 'HEAT 132°C');
-      const badgeColor = isWet ? 'bg-amber-950/80 border-amber-500/60 text-amber-300' : 'bg-orange-950/80 border-orange-500/60 text-orange-300';
+      const badgeText = prod.name.includes('Set') ? '5-ROLL SET' : 'HEAT 132°C';
+      const badgeColor = 'bg-orange-950/80 border-orange-500/60 text-orange-300';
       const imgSrc = prod.image || 'https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/WebOrangeProSet_1.jpg?fit=600%2C600&ssl=1';
 
       return `

@@ -1335,15 +1335,15 @@ export const ECOM_CATALOG = [
   {
     "id": "fk-2415",
     "brand": "Flake King",
-    "category": "Wet Products",
+    "category": "Basecoats & Binders",
     "name": "FK100 Prime Black Base",
     "sku": "fk100-prime-black-base",
     "priceGbp": 10.28,
     "priceEur": 12.03,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "PRO WET BINDER",
-    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FK100FamilyWeb_1.jpg?fit=600%2C600&ssl=1",
+    "badge": "BASECOATS & BINDERS",
+    "image": "assets/images/fk100-prime-black-base.jpg",
     "description": "Available in 100ml, 500ml & 1 Litre Bottles\nWhen we considered the perfect colour for our Metal Flake, we had to look no further than FK100 our prime black base that offers incredible adhesion to the wide ranging array of primers on the market today.\nAgain, as it’s water based, it’s better for the environment, inert and will not react with previously applied products it also easier to ship (worldwide)\nPrime Black Base will adhere to properly prepared surfaces such as existing finishes, primer, plastic, vinyl, fibreglass, wood and most substrates.\nPrime black base is be the perfect companion for our FK50 Surface binder to adhere to.",
     "sizes": [
       "100ml",
@@ -1408,20 +1408,24 @@ export const ECOM_CATALOG = [
       }
     ],
     "hsCode": "3208.90.19",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "imageWebp": "assets/images/fk100-prime-black-base.webp",
+    "images": [
+      "assets/images/fk100-prime-black-base.jpg"
+    ]
   },
   {
     "id": "fk-2409",
     "brand": "Flake King",
-    "category": "Wet Products",
+    "category": "Basecoats & Binders",
     "name": "FK55 Thinner",
     "sku": "fk55-thinner",
     "priceGbp": 5.6,
     "priceEur": 6.55,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "PRO WET BINDER",
-    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FK55FamilyWeb.jpg?fit=600%2C600&ssl=1",
+    "badge": "BASECOATS & BINDERS",
+    "image": "assets/images/fk55-thinner.jpg",
     "description": "Available in 50ml & 100ml\nThis is our go to thinner for both our FK50 Surface Binder and our FK100 Prime Base. It can be added to a maximum of 10% volume.\nIt will also be our standard thinners for all new wet products moving forward.",
     "sizes": [
       "50ml",
@@ -1470,20 +1474,24 @@ export const ECOM_CATALOG = [
       }
     ],
     "hsCode": "3814.00.90",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "imageWebp": "assets/images/fk55-thinner.webp",
+    "images": [
+      "assets/images/fk55-thinner.jpg"
+    ]
   },
   {
     "id": "fk-2401",
     "brand": "Flake King",
-    "category": "Wet Products",
+    "category": "Basecoats & Binders",
     "name": "FK50 Surface Binder",
     "sku": "fk50-surface-binder",
     "priceGbp": 4.99,
     "priceEur": 5.84,
     "inStock": true,
     "isPreOrder": false,
-    "badge": "PRO WET BINDER",
-    "image": "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FK50Familyweb.jpg?fit=600%2C600&ssl=1",
+    "badge": "BASECOATS & BINDERS",
+    "image": "assets/images/fk50-surface-binder.jpg",
     "description": "Available in 100ml, 500ml & 1 Litre Bottles\nFK50 Surface binder is a water based adhesion product, that can applied by brush, dabbed on with a sponge or sprayed on with Spray gun or Airbrush (when thinned with FK55 Thinners).\nDeveloped to stay open longer than a typical solvent or existing water based product with reduced potential of sagging when applied in a medium to wet coat. Its primary use is for the application of our Dry Metal Flakes (Industrial/Commercial Glitters) and our dry blended metal powders.\nWhy is it better than, for example a solvent binder or 2k clear?\nWell as it’s water based, it’s better for the environment, inert will not react with previously applied products, easier to ship (worldwide) and there are no sensible limitations on how many coats that can be applied (within reason).\nIt also produces a nice clean edge, for masking removal, allowing you to now be able to produce coloured flake designs rather than traditional methods of silver base and coloured “candy” dyes on top. Coloured flake will last longer in direct sunlight than candy dye based products.\nAn additional bonus the FK50 Surface binder when applied over a complete flaked area, reduces the amount of clear coat required.\nFK50 will adhere to properly prepared surfaces such as existing finishes, primer, plastic, vinyl, fibreglass, wood and most substrates.",
     "sizes": [
       "50ml",
@@ -1564,7 +1572,11 @@ export const ECOM_CATALOG = [
       }
     ],
     "hsCode": "3208.90.19",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "imageWebp": "assets/images/fk50-surface-binder.webp",
+    "images": [
+      "assets/images/fk50-surface-binder.jpg"
+    ]
   },
   {
     "id": "fk-2392",
