@@ -649,11 +649,117 @@ class PaintSystemApp {
         this.onProductVariantChange('fk-2352', 'width', fk2352Val);
       }
 
+      this.updateDropdownOptionPrices();
+
       this.renderDeptFlakesGrid();
       this.renderDeptGunsGrid();
       this.renderDeptTapesGrid();
     } catch (err) {
       console.warn('Error syncing featured showcase cards:', err);
+    }
+  }
+
+  updateDropdownOptionPrices(targetProdId = null) {
+    try {
+      // 1. Kroma Mirror Chrome System
+      if (!targetProdId || targetProdId === 'kroma-mirror-chrome-system') {
+        const chromeSelect = document.getElementById('select-size-kroma-mirror-chrome-system');
+        const chromeProd = ECOM_CATALOG.find(p => p.id === 'kroma-mirror-chrome-system');
+        if (chromeSelect && chromeProd) {
+          const coverageMap = {
+            'Small Kit (140g / 5 oz)': 'Small Kit (140g / 5 oz) • 7–10 sq ft',
+            'Medium Kit (420g / 15 oz)': 'Medium Kit (420g / 15 oz) • 22–30 sq ft',
+            'Large Kit (1260g / 45 oz)': 'Large Kit (1260g / 45 oz) • 68–90 sq ft',
+            'Extra Large Kit (2520g / 90 oz)': 'Extra Large Kit (2520g / 90 oz) • 135–180 sq ft',
+            'Ultra Large Kit (10080g / 360 oz)': 'Ultra Large Kit (10kg / 360 oz) • Factory Run'
+          };
+          Array.from(chromeSelect.options).forEach(opt => {
+            const rawVal = opt.value;
+            const base = coverageMap[rawVal] || rawVal.split(' — ')[0];
+            const p = this.getProductCalculatedPrice(chromeProd, null, rawVal);
+            if (p) {
+              const sec = p.formattedSecondaryCur ? ` / ${p.formattedSecondaryCur}` : '';
+              opt.textContent = `${base} — ${p.formattedPrimary} ${p.primaryVatBadge}${sec}`;
+            }
+          });
+        }
+      }
+
+      // 2. Kroma Dedicated Topcoat Clear
+      if (!targetProdId || targetProdId === 'kroma-dedicated-topcoat-clear') {
+        const clearSelect = document.getElementById('select-size-kroma-dedicated-topcoat-clear');
+        const clearProd = ECOM_CATALOG.find(p => p.id === 'kroma-dedicated-topcoat-clear');
+        if (clearSelect && clearProd) {
+          const clearMap = {
+            'Topcoat Clear 180 SET (1.5 m²)': 'Topcoat Clear 180 SET • 378g (~1.5 m²)',
+            'Topcoat Clear 900 SET (6.0 m²)': 'Topcoat Clear 900 SET • 1,890g (~6.0 m²)',
+            'Topcoat Clear 3600 SET (24.0 m²)': 'Topcoat Clear 3600 SET • 7,560g (~24 m²)'
+          };
+          Array.from(clearSelect.options).forEach(opt => {
+            const rawVal = opt.value;
+            const base = clearMap[rawVal] || rawVal.split(' — ')[0];
+            const p = this.getProductCalculatedPrice(clearProd, null, rawVal);
+            if (p) {
+              const sec = p.formattedSecondaryCur ? ` / ${p.formattedSecondaryCur}` : '';
+              opt.textContent = `${base} — ${p.formattedPrimary} ${p.primaryVatBadge}${sec}`;
+            }
+          });
+        }
+      }
+
+      // 3. Fine Line Tapes (fk-2366 & fk-2352)
+      ['fk-2366', 'fk-2352'].forEach(tapeId => {
+        if (!targetProdId || targetProdId === tapeId) {
+          const tapeSelect = document.getElementById(`select-width-${tapeId}`);
+          const tapeProd = ECOM_CATALOG.find(p => p.id === tapeId);
+          if (tapeSelect && tapeProd) {
+            Array.from(tapeSelect.options).forEach(opt => {
+              const rawVal = opt.value;
+              const base = rawVal.split(' — ')[0].trim();
+              const p = this.getProductCalculatedPrice(tapeProd, null, null, rawVal);
+              if (p) {
+                const sec = p.formattedSecondaryCur ? ` / ${p.formattedSecondaryCur}` : '';
+                opt.textContent = `${base} — ${p.formattedPrimary} ${p.primaryVatBadge}${sec}`;
+              }
+            });
+          }
+        }
+      });
+
+      // 4. Any other select elements with data-variant-prod (shop grid, modal)
+      const selector = targetProdId 
+        ? `select[data-variant-prod="${targetProdId}"]`
+        : 'select[data-variant-prod]';
+      const selects = document.querySelectorAll(selector);
+      selects.forEach(sel => {
+        const prodId = sel.dataset.variantProd;
+        if (['kroma-mirror-chrome-system', 'kroma-dedicated-topcoat-clear', 'fk-2366', 'fk-2352'].includes(prodId) && sel.id.startsWith('select-')) {
+          return;
+        }
+        const prod = ECOM_CATALOG.find(p => p.id === prodId);
+        if (!prod) return;
+        const cur = this.selectedProductVariants[prodId] || {};
+        const key = sel.dataset.variantKey || 'size';
+
+        Array.from(sel.options).forEach(opt => {
+          const rawVal = opt.value;
+          let baseLabel = opt.textContent.split(' — ')[0].split(' (')[0].trim();
+          if (!baseLabel) baseLabel = rawVal;
+          let p = null;
+          if (key === 'size') {
+            p = this.getProductCalculatedPrice(prod, cur.pack, rawVal, cur.width);
+          } else if (key === 'pack') {
+            p = this.getProductCalculatedPrice(prod, rawVal, cur.size, cur.width);
+          } else if (key === 'width') {
+            p = this.getProductCalculatedPrice(prod, cur.pack, cur.size, rawVal);
+          }
+          if (p) {
+            opt.textContent = `${baseLabel} — ${p.formattedPrimary} (${p.primaryVatBadge})`;
+          }
+        });
+      });
+    } catch (err) {
+      console.warn('Error updating dropdown option prices:', err);
     }
   }
 
@@ -839,6 +945,8 @@ class PaintSystemApp {
 
     this.euLocalization.onUpdate(() => {
       updateHeaderFromEU();
+      this.syncFeaturedShowcaseCards();
+      this.updateDropdownOptionPrices();
       this.renderStorefrontGrid();
       this.renderCartSummary(this.shopifyCartManager.getCartSummary());
     });
@@ -3038,7 +3146,7 @@ class PaintSystemApp {
               <select id="detail-select-size" data-variant-prod="${product.id}" data-variant-key="size" data-select-size="${product.id}" class="mech-select !py-2 !px-3 text-xs w-full" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('${product.id}', 'size', this.value) : (window.onProductVariantChange ? window.onProductVariantChange('${product.id}', 'size', this.value) : null)">
                 ${validSizes.map(s => {
                   const optPrice = this.getProductCalculatedPrice(product, currentSelection.pack, s);
-                  const showPrice = validPacks.length <= 1 && optPrice ? ` (${optPrice.formattedPrimary} ${optPrice.primaryVatBadge})` : '';
+                  const showPrice = optPrice ? ` — ${optPrice.formattedPrimary} (${optPrice.primaryVatBadge})` : '';
                   return `<option value="${this.escapeHtmlAttr(s)}" ${s === currentSelection.size ? 'selected' : ''}>${s}${showPrice}</option>`;
                 }).join('')}
               </select>
@@ -3052,7 +3160,7 @@ class PaintSystemApp {
               <select id="detail-select-pack" data-variant-prod="${product.id}" data-variant-key="pack" data-select-pack="${product.id}" class="mech-select !py-2 !px-3 text-xs w-full" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('${product.id}', 'pack', this.value) : (window.onProductVariantChange ? window.onProductVariantChange('${product.id}', 'pack', this.value) : null)">
                 ${validPacks.map(p => {
                   const optPrice = this.getProductCalculatedPrice(product, p, currentSelection.size);
-                  return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} (${optPrice ? optPrice.formattedPrimary + ' ' + optPrice.primaryVatBadge : ''})</option>`;
+                  return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} — ${optPrice ? optPrice.formattedPrimary + ' (' + optPrice.primaryVatBadge + ')' : ''}</option>`;
                 }).join('')}
               </select>
             </div>
@@ -4375,7 +4483,7 @@ class PaintSystemApp {
               <select id="select-size-${prod.id}" data-variant-prod="${prod.id}" data-variant-key="size" data-select-size="${prod.id}" class="mech-select !py-1 !px-2 !text-[11px] leading-tight" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('${prod.id}', 'size', this.value) : (window.onProductVariantChange ? window.onProductVariantChange('${prod.id}', 'size', this.value) : null)">
                 ${validSizes.map(s => {
                   const optPrice = this.getProductCalculatedPrice(prod, currentSelection.pack, s);
-                  const showPrice = validPacks.length <= 1 && optPrice ? ` (${optPrice.formattedPrimary} ${optPrice.primaryVatBadge})` : '';
+                  const showPrice = optPrice ? ` — ${optPrice.formattedPrimary} (${optPrice.primaryVatBadge})` : '';
                   return `<option value="${this.escapeHtmlAttr(s)}" ${s === currentSelection.size ? 'selected' : ''}>${s}${showPrice}</option>`;
                 }).join('')}
               </select>
@@ -4390,7 +4498,7 @@ class PaintSystemApp {
               <select id="select-pack-${prod.id}" data-variant-prod="${prod.id}" data-variant-key="pack" data-select-pack="${prod.id}" class="mech-select !py-1 !px-2 !text-[11px] leading-tight" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('${prod.id}', 'pack', this.value) : (window.onProductVariantChange ? window.onProductVariantChange('${prod.id}', 'pack', this.value) : null)">
                 ${validPacks.map(p => {
                   const optPrice = this.getProductCalculatedPrice(prod, p, currentSelection.size);
-                  return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} (${optPrice ? optPrice.formattedPrimary + ' ' + optPrice.primaryVatBadge : ''})</option>`;
+                  return `<option value="${this.escapeHtmlAttr(p)}" ${p === currentSelection.pack ? 'selected' : ''}>${p} — ${optPrice ? optPrice.formattedPrimary + ' (' + optPrice.primaryVatBadge + ')' : ''}</option>`;
                 }).join('')}
               </select>
             </div>
@@ -4644,6 +4752,27 @@ class PaintSystemApp {
         if (ratioEl && flakeSpec) ratioEl.textContent = `${flakeSpec.ratioText} (or Dry via FK Gun)`;
       }
     }
+
+    // When pack changes, re-render size options with corresponding prices
+    if (variantKey === 'pack' && prod.sizes && prod.sizes.length > 0) {
+      const isFlake = prod.category === 'Dry Metal Flake (Glitter)' || prod.category === 'Metal Flake';
+      const validSizes = prod.sizes.map(s => isFlake ? this.formatFlakeDimension(s) : s).filter(Boolean);
+      const optionsHtml = validSizes.map(s => {
+        const optPrice = this.getProductCalculatedPrice(prod, currentSelection.pack, s, currentSelection.width);
+        return `<option value="${this.escapeHtmlAttr(s)}" ${s === currentSelection.size ? 'selected' : ''}>${s} — ${optPrice ? optPrice.formattedPrimary + ' (' + optPrice.primaryVatBadge + ')' : ''}</option>`;
+      }).join('');
+
+      const allStoreSizeSelects = document.querySelectorAll(`select[id="select-size-${prodId}"], select[data-select-size="${prodId}"]`);
+      allStoreSizeSelects.forEach(sel => {
+        sel.innerHTML = optionsHtml;
+      });
+      const modalSizeSelect = document.getElementById('detail-select-size');
+      if (modalSizeSelect && this.activeModalProduct && this.activeModalProduct.id === prodId) {
+        modalSizeSelect.innerHTML = optionsHtml;
+      }
+    }
+
+    this.updateDropdownOptionPrices(prodId);
   }
 
   addProductToCartById(prodId) {
