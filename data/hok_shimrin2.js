@@ -9,27 +9,67 @@ export const HOK_SHIMRIN2_CATALOG = {
     {
       id: "s2_solid",
       name: "Shimrin 2 Solid Basecoat System (S2-25 / S2-26)",
+      badge: "2:1 Basecoat",
+      category: "Basecoat",
       ratioText: "2 Parts Basecoat : 1 Part Reducer (2:1)",
       parts: [
         { role: "base", name: "S2 Solid Basecoat", ratio: 2, defaultDensity: 0.96 },
         { role: "reducer", name: "RU Series Reducer", ratio: 1, defaultDensity: 0.82 }
       ],
-      description: "Standard high-opacity solid basecoat formula for foundational colors."
+      description: "Standard high-opacity solid basecoat formula for foundational colors.",
+      coverageProfile: {
+        type: "basecoat",
+        benchmarkUnit: "sqft_per_gal",
+        coverageRateSqFtPerGal: 400,
+        recommendedCoats: 2,
+        minCoats: 2,
+        maxCoats: 4,
+        targetDftMicrons: "25-35 µm",
+        potLifeHours: 8,
+        wasteBuffer: 1.15,
+        packagingType: "liquid_containers",
+        tiers: [
+          { name: "4 oz Mini Can", maxSqFt: 10, ml: 118, priceEUR: 29.00, sku: "HOK-S2-4OZ", desc: "For spot touch-ups, airbrush artwork & helmet graphics" },
+          { name: "Pint Can (473 mL)", maxSqFt: 45, ml: 473, priceEUR: 69.00, sku: "HOK-S2-PT", desc: "For motorcycle tank, fenders & smaller project parts" },
+          { name: "Quart Can (946 mL)", maxSqFt: 95, ml: 946, priceEUR: 129.00, sku: "HOK-S2-QT", desc: "For complete motorcycle sets, car hoods & doors" },
+          { name: "Gallon Can (3.78 L)", maxSqFt: 380, ml: 3785, priceEUR: 449.00, sku: "HOK-S2-GAL", desc: "For complete vehicle resprays and large projects" }
+        ]
+      }
     },
     {
       id: "s2_fx_karrier",
       name: "Shimrin 2 FX Karrier Base + Effect Pac (3:1:2)",
+      badge: "Pearl / Effect",
+      category: "Basecoat",
       ratioText: "3 Parts Karrier Base : 1 Part Effect Pac : 2 Parts Reducer (3:1:2)",
       parts: [
         { role: "karrier", name: "S2 Karrier Base (S2-00 to S2-18)", ratio: 3, defaultDensity: 0.92 },
         { role: "effect", name: "S2-FX Effect Pac / Pearl / Flake", ratio: 1, defaultDensity: 1.05 },
         { role: "reducer", name: "RU Series Reducer", ratio: 2, defaultDensity: 0.82 }
       ],
-      description: "Custom pearl, metallic, and shift effect system."
+      description: "Custom pearl, metallic, and shift effect system.",
+      coverageProfile: {
+        type: "basecoat",
+        benchmarkUnit: "sqft_per_gal",
+        coverageRateSqFtPerGal: 380,
+        recommendedCoats: 2,
+        minCoats: 2,
+        maxCoats: 3,
+        targetDftMicrons: "25-35 µm",
+        potLifeHours: 8,
+        wasteBuffer: 1.15,
+        packagingType: "liquid_containers",
+        tiers: [
+          { name: "Pint Can (473 mL)", maxSqFt: 40, ml: 473, priceEUR: 79.00, sku: "HOK-FX-PT", desc: "For motorcycle parts & custom effects" },
+          { name: "Quart Can (946 mL)", maxSqFt: 85, ml: 946, priceEUR: 149.00, sku: "HOK-FX-QT", desc: "For complete motorcycle sets and graphics" }
+        ]
+      }
     },
     {
       id: "s2_kandy_base",
       name: "Shimrin 2 Kandy Basecoat (KBC)",
+      badge: "Multi-Coat Candy",
+      category: "Candy Paint",
       ratioText: "8 Parts S2-00 Trans Nebulae : 1 Part KK Kandy Koncentrate : 0.5 Part S2-FX Pearl + 50% Reducer",
       parts: [
         { role: "trans_base", name: "S2-00 Trans Nebulae", ratio: 8, defaultDensity: 0.90 },
@@ -37,38 +77,109 @@ export const HOK_SHIMRIN2_CATALOG = {
         { role: "effect", name: "S2-FX Kosmic Pearl (Optional)", ratio: 0.5, defaultDensity: 1.05 },
         { role: "reducer", name: "RU Series Reducer", ratio: 4.75, defaultDensity: 0.82 }
       ],
-      description: "Deep, rich translucent candy finish with optional pearl shimmer."
+      description: "Deep, rich translucent candy finish with optional pearl shimmer.",
+      coverageProfile: {
+        type: "candy",
+        benchmarkUnit: "sqft_per_gal",
+        coverageRateSqFtPerGal: 350,
+        recommendedCoats: 4,
+        minCoats: 3,
+        maxCoats: 6,
+        coatNote: "Translucent build coats (3 coats = Subtle tint; 4-5 coats = Rich vivid candy; 6 coats = Deep intense tone)",
+        targetDftMicrons: "40-60 µm",
+        potLifeHours: 6,
+        wasteBuffer: 1.15,
+        packagingType: "liquid_containers",
+        tiers: [
+          { name: "Pint Can (473 mL)", maxSqFt: 25, ml: 473, priceEUR: 89.00, sku: "HOK-KBC-PT", desc: "Covers 25 sq ft at 4 coats (Helmets & small tanks)" },
+          { name: "Quart Can (946 mL)", maxSqFt: 55, ml: 946, priceEUR: 169.00, sku: "HOK-KBC-QT", desc: "Covers 55 sq ft at 4 coats (Complete custom motorcycle)" },
+          { name: "Gallon Can (3.78 L)", maxSqFt: 220, ml: 3785, priceEUR: 589.00, sku: "HOK-KBC-GAL", desc: "Covers 220 sq ft at 4 coats (Full vehicle custom candy job)" }
+        ]
+      }
     },
     {
       id: "s2_graphic_kolor",
       name: "Shimrin 2 Graphic Kolor (S2-SG)",
+      badge: "Graphic / Airbrush",
+      category: "Artwork Color",
       ratioText: "2 Parts S2-SG Graphic Kolor : 1 Part RU Reducer (2:1)",
       parts: [
         { role: "base", name: "S2-SG Graphic Kolor", ratio: 2, defaultDensity: 0.94 },
         { role: "reducer", name: "RU Series Reducer", ratio: 1, defaultDensity: 0.82 }
       ],
-      description: "High-pigment graphic colors for artwork, striping, and airbrushing."
+      description: "High-pigment graphic colors for artwork, striping, and airbrushing.",
+      coverageProfile: {
+        type: "basecoat",
+        benchmarkUnit: "sqft_per_gal",
+        coverageRateSqFtPerGal: 420,
+        recommendedCoats: 2,
+        minCoats: 1,
+        maxCoats: 3,
+        targetDftMicrons: "20-30 µm",
+        potLifeHours: 8,
+        wasteBuffer: 1.15,
+        packagingType: "liquid_containers",
+        tiers: [
+          { name: "4 oz Bottle", maxSqFt: 12, ml: 118, priceEUR: 32.00, sku: "HOK-SG-4OZ", desc: "Airbrush artwork and graphics" },
+          { name: "Pint Can (473 mL)", maxSqFt: 50, ml: 473, priceEUR: 75.00, sku: "HOK-SG-PT", desc: "Pinstriping and panel layout" }
+        ]
+      }
     },
     {
       id: "s2_intercoat",
       name: "S2-SG100 / SG102 Intercoat Clear",
+      badge: "Intercoat Barrier",
+      category: "Barrier Clear",
       ratioText: "2 Parts Intercoat : 1 Part RU Reducer (2:1)",
       parts: [
         { role: "base", name: "S2-SG100 Intercoat Clear", ratio: 2, defaultDensity: 0.91 },
         { role: "reducer", name: "RU Series Reducer", ratio: 1, defaultDensity: 0.82 }
       ],
-      description: "Protective clear layer applied over basecoat to lock in artwork and tape lines."
+      description: "Protective clear layer applied over basecoat to lock in artwork and tape lines.",
+      coverageProfile: {
+        type: "intercoat",
+        benchmarkUnit: "sqft_per_gal",
+        coverageRateSqFtPerGal: 450,
+        recommendedCoats: 1,
+        minCoats: 1,
+        maxCoats: 2,
+        targetDftMicrons: "15-20 µm",
+        potLifeHours: 12,
+        wasteBuffer: 1.10,
+        packagingType: "liquid_containers",
+        tiers: [
+          { name: "Quart Can (946 mL)", maxSqFt: 100, ml: 946, priceEUR: 119.00, sku: "HOK-SG100-QT", desc: "Lock in artwork, airbrushing and graphics" }
+        ]
+      }
     },
     {
       id: "s2_show_klear",
       name: "USC01 Kosmic Urethane Show Klear",
+      badge: "2K Show Clear",
+      category: "Topcoat Clear",
       ratioText: "2 Parts USC01 : 1 Part KU150 Katalyst : 10% RU Reducer (2:1:0.3)",
       parts: [
         { role: "base", name: "USC01 Kosmic Urethane Show Klear", ratio: 2, defaultDensity: 0.98 },
         { role: "katalyst", name: "KU150 / KU152 Katalyst", ratio: 1, defaultDensity: 1.02 },
         { role: "reducer", name: "RU Series Reducer (10%)", ratio: 0.3, defaultDensity: 0.82 }
       ],
-      description: "Ultra high-gloss show clearcoat topcoat."
+      description: "Ultra high-gloss show clearcoat topcoat.",
+      coverageProfile: {
+        type: "clearcoat",
+        benchmarkUnit: "sqft_per_gal",
+        coverageRateSqFtPerGal: 400,
+        recommendedCoats: 2,
+        minCoats: 2,
+        maxCoats: 3,
+        targetDftMicrons: "50-65 µm",
+        potLifeHours: 3,
+        wasteBuffer: 1.15,
+        packagingType: "liquid_containers",
+        tiers: [
+          { name: "Quart Kit (USC01 + KU150)", maxSqFt: 90, ml: 946, priceEUR: 179.00, sku: "HOK-USC01-QT", desc: "Show-quality gloss for motorcycle or front clip" },
+          { name: "Gallon Kit (USC01 + KU150)", maxSqFt: 360, ml: 3785, priceEUR: 595.00, sku: "HOK-USC01-GAL", desc: "Complete vehicle cut & buff show finish" }
+        ]
+      }
     }
   ],
 

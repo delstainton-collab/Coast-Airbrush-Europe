@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "PORT=3013 node server.js",
-    "dev": "PORT=3013 node server.js"
+    "dev": "PORT=3013 node server.js",
+    "build:theme": "python3 scripts/rebuild_shopify_theme.py"
   },
   "keywords": [
     "coast-airbrush-europe",

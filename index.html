@@ -231,7 +231,7 @@
     }
   </script>
   
-  <link rel="stylesheet" href="css/styles.css?v=20260831_inputfix">
+  <link rel="stylesheet" href="css/styles.css?v=20260909_modal_fix">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
@@ -450,146 +450,204 @@
   <div id="view-storefront" class="tab-view flex-grow flex flex-col">
     
     <!-- ========================================================================= -->
-    <!-- HERO SECTION: THE OFFICIAL EUROPEAN HUB & PORTFOLIO ANNOUNCEMENT -->
+    <!-- COMPACT TRUST & B2B WHOLESALE UTILITY BAR -->
     <!-- ========================================================================= -->
-    <section class="relative w-full py-16 lg:py-24 bg-surface-container-lowest border-b-2 border-secondary/60 overflow-hidden min-h-[600px] lg:min-h-[680px] flex items-center">
-      
-      <!-- Ambient Slideshow: Real Optical Finishes -->
-      <div id="hero-crossfade-container" class="hero-crossfade-container">
-        <div class="hero-crossfade-slide active" style="background-image: url('assets/images/kroma-skull-mirror.jpg'); background-position: center right 18%;" data-caption="01/06 • 100% Mirror Anatomic Chrome Skull (Zero Gray Haze)" data-badge="Zero Gray Clouding"></div>
-        <div class="hero-crossfade-slide" style="background-image: url('assets/images/kroma-silver-surfer-wave.jpg'); background-position: center right 10%;" data-caption="02/06 • Full-Scale Silver Surfer on Ocean Wave (Pier Sunset)" data-badge="Full Figure Liquid Chrome"></div>
-        <div class="hero-crossfade-slide" style="background-image: url('assets/images/kroma-helmet-mirror.jpg'); background-position: center right 15%;" data-caption="03/06 • 99.4% Specular Mirror Racing Helmet (Standard 2K Clearcoat)" data-badge="Standard 2K Clearcoat Applied"></div>
-        <div class="hero-crossfade-slide" style="background-image: url('assets/images/kroma-silver-surfer-front.jpg'); background-position: center right 15%;" data-caption="04/06 • Liquid Metal Silver Surfer Front Profile (HVLP Applied)" data-badge="HVLP 1.3mm Tip Applied"></div>
-        <div class="hero-crossfade-slide" style="background-image: url('assets/images/kroma-silver-surfer-back.jpg'); background-position: center right 15%;" data-caption="05/06 • Back Anatomy &amp; Platelet Alignment Reflection" data-badge="Self-Aligning Platelets"></div>
-        <div class="hero-crossfade-slide" style="background-image: url('assets/images/flake_buggy_hero.jpg'); background-position: center right 10%;" data-caption="06/06 • Custom Flake Sand Rail &amp; Chassis (Coast Signature)" data-badge="Coast Signature Flake Finish"></div>
-      </div>
-
-      <!-- Directional Mask for High-Contrast Text Legibility -->
-      <div class="hero-directional-overlay"></div>
-      <div class="absolute inset-0 metal-sheen opacity-10 pointer-events-none z-10"></div>
-      <div class="absolute bottom-0 w-full h-1 bg-gradient-to-r from-primary-container via-primary to-transparent z-20"></div>
-
-      <div class="relative z-20 h-full flex flex-col justify-center px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          <div class="lg:col-span-9 space-y-5 max-w-3xl">
-            <!-- Authority Pill -->
-            <div id="hero-authority-pill" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/85 border border-primary/60 backdrop-blur-md font-mono text-[11px] text-white font-bold uppercase tracking-wider shadow-[0_0_18px_rgba(211,47,47,0.35)]">
-              <span id="hero-pill-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span id="hero-pill-status" class="text-neutral-200">✦ OFFICIAL EUROPEAN MASTER HUB</span>
-              <span class="text-neutral-500">•</span>
-              <span id="hero-pill-location" class="text-amber-300">PLACENTIA, CA AUTHORIZED</span>
-            </div>
-
-            <!-- Approved Master Headline & Statement -->
-            <div class="space-y-3">
-              <h1 id="hero-headline" class="font-headline text-3xl sm:text-5xl lg:text-6xl uppercase text-white tracking-tight leading-[1.06] drop-shadow-[0_4px_30px_rgba(0,0,0,1)] font-black">
-                <span id="hero-headline-prefix">THE EUROPEAN MASTER HUB FOR</span> <br>
-                <span id="hero-headline-accent" class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-primary-container">KROMA EDGE CHROME, FLAKE KING &amp; VSIONAIR</span>
-              </h1>
-              <p id="hero-subheadline" class="font-headline text-base sm:text-xl text-neutral-200 font-medium tracking-wide drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
-                Engineered for automotive refinishers, custom shops &amp; airbrush artists across Europe.
-              </p>
-              <p id="hero-description" class="font-body text-sm sm:text-base text-neutral-300 font-normal leading-relaxed max-w-2xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                Direct European bonded dispatch from our UK logistics center. Zero US import customs, next-day tracked APC &amp; DHL Express, full EU REACH &amp; VOC regulatory compliance, and factory-authorized technical support.
-              </p>
-            </div>
-
-            <!-- Quick Department Jump Bar -->
-            <div class="pt-2">
-              <span class="text-xs font-mono text-neutral-400 uppercase tracking-wider block mb-2 font-semibold">Jump to Department:</span>
-              <div id="hero-jump-buttons-container" class="flex flex-wrap items-center gap-2">
-                <a href="#dept-kroma-edge" class="mech-btn-candy !py-2.5 !px-4 text-xs tracking-wider flex items-center gap-1.5 rounded shadow-[0_0_14px_rgba(211,47,47,0.45)]">
-                  <span>01 • Kroma Chrome &amp; Clears</span>
-                  <span class="material-symbols-outlined text-sm">arrow_downward</span>
-                </a>
-                <a href="#dept-guns" class="bg-surface-container border border-amber-500/70 hover:border-amber-400 text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-amber-500/10">
-                  <span class="text-amber-400 font-bold">02 • Flake King Guns</span>
-                  <span class="material-symbols-outlined text-sm">arrow_downward</span>
-                </a>
-                <a href="#dept-flakes" class="bg-surface-container border border-white/20 hover:border-white text-neutral-200 hover:text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-white/5">
-                  <span>03 • Metal Flakes</span>
-                  <span class="material-symbols-outlined text-sm">arrow_downward</span>
-                </a>
-                <a href="#dept-basecoats-binders" class="bg-surface-container border border-amber-500/70 hover:border-amber-400 text-amber-300 hover:text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-amber-500/10">
-                  <span class="material-symbols-outlined text-sm text-amber-400">science</span>
-                  <span class="text-amber-300 font-bold">04 • Basecoats &amp; Binders</span>
-                  <span class="material-symbols-outlined text-sm">arrow_downward</span>
-                </a>
-                <a href="#dept-tapes" class="bg-surface-container border border-white/20 hover:border-white text-neutral-200 hover:text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-white/5">
-                  <span>05 • Fine Line Tapes</span>
-                  <span class="material-symbols-outlined text-sm">arrow_downward</span>
-                </a>
-                <a href="#section-booth-proof" class="bg-surface-container border border-rose-500/60 hover:border-rose-400 text-rose-300 hover:text-white font-mono text-xs uppercase px-3.5 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-rose-500/10">
-                  <span class="material-symbols-outlined text-sm text-rose-400">smart_display</span>
-                  <span class="text-rose-300 font-bold">Video Proof</span>
-                  <span class="material-symbols-outlined text-sm">arrow_downward</span>
-                </a>
-                <a href="#dept-vsionair" class="bg-surface-container border border-white/20 hover:border-white text-neutral-300 hover:text-white font-mono text-xs uppercase px-3 py-2.5 rounded transition-all flex items-center gap-1.5 hover:bg-white/5">
-                  <span class="text-neutral-300">06 • VsionAir</span>
-                  <span class="text-[9px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">2026 Direct</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- B2B Dealer & Distributor Quick Onboarding Hook -->
-            <div id="hero-trade-banner" class="flex items-center gap-2 pt-1 font-mono text-xs text-neutral-300">
-              <span id="hero-trade-badge" class="text-amber-400 font-bold">💼 TRADE &amp; WHOLESALE:</span>
-              <span id="hero-trade-text">Bodyshops, Retailers &amp; Importers —</span>
-              <a id="hero-trade-link" href="dealers.html" class="text-emerald-400 hover:text-emerald-300 font-bold underline flex items-center gap-1 transition-colors">
-                <span id="hero-trade-link-text">Apply for Trade Pricing &amp; Net Ex-VAT Billing</span> <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-              </a>
-            </div>
-
-            <!-- Trust Line -->
-            <div id="hero-trust-bar" class="flex items-center gap-2 font-mono text-[11px] text-neutral-400 pt-1">
-              <span class="material-symbols-outlined text-[15px] text-emerald-400">verified_user</span>
-              <span id="hero-trust-line">Dispatched from UK Hub • Tracked APC Overnight &amp; DHL Express • 100% REACH &amp; VOC Certified • Zero US Customs</span>
-            </div>
-
-          </div>
-
-          <!-- Specimen Watermark Badge (Desktop) -->
-          <div class="hidden lg:flex lg:col-span-3 justify-end items-center pointer-events-none">
-            <div class="p-4 rounded-xl bg-black/80 border border-white/15 backdrop-blur-md text-right space-y-1.5 shadow-2xl">
-              <div class="flex items-center justify-end gap-1.5 text-[10px] font-mono uppercase tracking-widest text-primary font-bold">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span>LIVE FINISH SPECIMEN</span>
-              </div>
-              <span class="text-xs font-mono font-extrabold text-white block" id="hero-artifact-badge">Zero Gray Clouding</span>
-              <div class="text-[10px] font-mono text-neutral-300 space-y-0.5">
-                <span class="block">Reflectivity: <strong class="text-emerald-400 font-bold">99.4% Specular Index</strong></span>
-                <span class="block text-neutral-400">Topcoat: Standard 2K Urethane Clear</span>
-                <span class="block text-neutral-400">Regulation: 100% EU REACH &amp; VOC</span>
-              </div>
-            </div>
-          </div>
-
+    <div id="storefront-trust-bar" class="w-full bg-black/70 border-b border-white/15 px-margin-mobile md:px-margin-desktop py-2.5 backdrop-blur-md">
+      <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-2.5 font-mono text-xs">
+        <div class="flex items-center gap-2 flex-wrap justify-center md:justify-start text-neutral-300">
+          <span class="inline-flex items-center gap-1 text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-500/40 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            UK Logistics Hub
+          </span>
+          <span id="hero-trust-line" class="text-[11px] text-neutral-300">
+            Tracked APC Overnight &amp; DHL Express • 100% REACH &amp; VOC Certified • Zero US Import Customs
+          </span>
         </div>
 
-        <!-- Carousel Bar -->
-        <div class="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div class="flex items-center gap-3 bg-black/80 border border-white/20 px-4 py-2 rounded-full backdrop-blur-md shadow-2xl">
-            <button onclick="window.prevHeroSlide && window.prevHeroSlide()" class="w-6 h-6 rounded-full bg-white/10 hover:bg-primary text-white flex items-center justify-center transition-all cursor-pointer" aria-label="Previous Slide">
-              <span class="material-symbols-outlined text-sm">chevron_left</span>
-            </button>
-            <div id="hero-slide-caption" class="font-mono text-xs text-white/95 flex items-center gap-2 select-none">
-              <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
-              <span id="hero-caption-text">01/06 • 100% Mirror Anatomic Chrome Skull (Zero Gray Haze)</span>
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <span id="hero-trade-badge" class="text-amber-400 font-bold text-[11px]">💼 TRADE &amp; WHOLESALE:</span>
+          <span id="hero-trade-text" class="hidden lg:inline text-neutral-400 text-[11px]">Bodyshops &amp; Importers —</span>
+          <a id="hero-trade-link" href="dealers.html" class="text-emerald-400 hover:text-emerald-300 font-bold underline flex items-center gap-1 transition-colors text-[11px]">
+            <span id="hero-trade-link-text">Apply for Net Ex-VAT Billing</span>
+            <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- PRODUCT CATEGORIES SHOWCASE: INSTANT VISUAL CATALOG NAVIGATION -->
+    <!-- ========================================================================= -->
+    <section id="section-categories" class="py-8 sm:py-10 bg-surface-container-lowest border-b-2 border-secondary px-margin-mobile md:px-margin-desktop">
+      <div class="max-w-[1440px] mx-auto space-y-6">
+        
+        <!-- Category Section Header -->
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-white/10 pb-4">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-red-950/60 border border-primary/40 text-primary font-mono text-[10px] font-bold uppercase tracking-wider mb-1.5">
+              <span>✦ EXPLORE CATALOG BY DIVISION</span>
             </div>
-            <button onclick="window.nextHeroSlide && window.nextHeroSlide()" class="w-6 h-6 rounded-full bg-white/10 hover:bg-primary text-white flex items-center justify-center transition-all cursor-pointer" aria-label="Next Slide">
-              <span class="material-symbols-outlined text-sm">chevron_right</span>
-            </button>
+            <h2 class="font-headline text-2xl sm:text-3xl uppercase text-white font-black tracking-tight">
+              Product Categories
+            </h2>
+            <p class="font-body text-xs sm:text-sm text-neutral-400 mt-0.5 max-w-2xl">
+              Select a specialized division below for direct access to systems, hardware, technical mixing sheets, and bonded UK inventory.
+            </p>
           </div>
 
-          <div id="hero-slide-dots" class="flex items-center gap-2 bg-black/70 px-3.5 py-2 rounded-full border border-white/15 backdrop-blur-md">
-            <button onclick="window.setHeroSlide && window.setHeroSlide(0)" class="hero-indicator-dot active" title="01 • Chrome Skull"></button>
-            <button onclick="window.setHeroSlide && window.setHeroSlide(1)" class="hero-indicator-dot" title="02 • Wave Surfer"></button>
-            <button onclick="window.setHeroSlide && window.setHeroSlide(2)" class="hero-indicator-dot" title="03 • Racing Helmet"></button>
-            <button onclick="window.setHeroSlide && window.setHeroSlide(3)" class="hero-indicator-dot" title="04 • Surfer Profile"></button>
-            <button onclick="window.setHeroSlide && window.setHeroSlide(4)" class="hero-indicator-dot" title="05 • Surfer Back"></button>
-            <button onclick="window.setHeroSlide && window.setHeroSlide(5)" class="hero-indicator-dot" title="06 • Flake Buggy"></button>
+          <div class="hidden sm:flex items-center gap-2 font-mono text-xs text-neutral-400">
+            <span class="material-symbols-outlined text-sm text-emerald-400">inventory_2</span>
+            <span>6 Core Formulations &amp; Hardware Divisions</span>
           </div>
+        </div>
+
+        <!-- 6-Card Category Grid: Image Box with Text Underneath -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4 lg:gap-5">
+          
+          <!-- Category 1: Kroma Edge Mirror Chrome -->
+          <a href="#dept-kroma-edge" class="group flex flex-col industrial-card rounded-lg border border-white/15 bg-surface-container p-3 hover:border-primary hover:shadow-[0_0_20px_rgba(211,47,47,0.35)] transition-all duration-300 cursor-pointer">
+            <div class="relative w-full aspect-square bg-black/60 rounded-md overflow-hidden border border-white/10 mb-3 flex items-center justify-center p-2">
+              <img src="assets/images/kroma-skull-studio-dark.jpg" alt="Kroma Edge 2K Mirror Chrome" class="w-full h-full object-cover rounded group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-emerald-400 font-bold border border-emerald-500/40 backdrop-blur-sm">
+                99.4% Mirror
+              </span>
+            </div>
+            <div class="flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="font-headline text-xs sm:text-sm uppercase text-white font-bold tracking-tight group-hover:text-primary transition-colors">
+                  Kroma Edge™ Chrome
+                </h3>
+                <p class="font-body text-[11px] text-neutral-400 mt-1 leading-snug line-clamp-2">
+                  Self-organizing 2K spray mirror chrome kits &amp; optical clears.
+                </p>
+              </div>
+              <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors">
+                <span class="text-primary font-semibold">View Chrome</span>
+                <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Category 2: Flake King Dry Guns -->
+          <a href="#dept-guns" class="group flex flex-col industrial-card rounded-lg border border-white/15 bg-surface-container p-3 hover:border-amber-400 hover:shadow-[0_0_20px_rgba(245,158,11,0.35)] transition-all duration-300 cursor-pointer">
+            <div class="relative w-full aspect-square bg-black/60 rounded-md overflow-hidden border border-white/10 mb-3 flex items-center justify-center p-2">
+              <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10001.png?fit=600%2C600&amp;ssl=1" alt="Flake King Dry Metal Flake Spray Guns" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-amber-300 font-bold border border-amber-500/40 backdrop-blur-sm">
+                Billet CNC
+              </span>
+            </div>
+            <div class="flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="font-headline text-xs sm:text-sm uppercase text-white font-bold tracking-tight group-hover:text-amber-400 transition-colors">
+                  Flake King™ Guns
+                </h3>
+                <p class="font-body text-[11px] text-neutral-400 mt-1 leading-snug line-clamp-2">
+                  Patented dry metal flake guns, conversion kits &amp; accessories.
+                </p>
+              </div>
+              <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors">
+                <span class="text-amber-400 font-semibold">View Hardware</span>
+                <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Category 3: Precision Metal Flakes -->
+          <a href="#dept-flakes" class="group flex flex-col industrial-card rounded-lg border border-white/15 bg-surface-container p-3 hover:border-white hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] transition-all duration-300 cursor-pointer">
+            <div class="relative w-full aspect-square bg-black/60 rounded-md overflow-hidden border border-white/10 mb-3 flex items-center justify-center p-2">
+              <img src="assets/images/flake-buggy-studio.jpg" alt="Flake King Precision Metal Flakes" class="w-full h-full object-cover rounded group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-emerald-400 font-bold border border-emerald-500/40 backdrop-blur-sm">
+                58+ Colors
+              </span>
+            </div>
+            <div class="flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="font-headline text-xs sm:text-sm uppercase text-white font-bold tracking-tight group-hover:text-white transition-colors">
+                  Metal Flakes
+                </h3>
+                <p class="font-body text-[11px] text-neutral-400 mt-1 leading-snug line-clamp-2">
+                  Automotive-grade polyester, holographic &amp; kromatic flake.
+                </p>
+              </div>
+              <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors">
+                <span class="text-neutral-200 font-semibold">View Flakes</span>
+                <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Category 4: Basecoats & Binders -->
+          <a href="#dept-basecoats-binders" class="group flex flex-col industrial-card rounded-lg border border-white/15 bg-surface-container p-3 hover:border-amber-400 hover:shadow-[0_0_20px_rgba(245,158,11,0.35)] transition-all duration-300 cursor-pointer">
+            <div class="relative w-full aspect-square bg-black/60 rounded-md overflow-hidden border border-white/10 mb-3 flex items-center justify-center p-2">
+              <img src="assets/images/fk100-prime-black-base.jpg" alt="Flake King Basecoats and Binders" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-amber-300 font-bold border border-amber-500/40 backdrop-blur-sm">
+                Solvent Prep
+              </span>
+            </div>
+            <div class="flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="font-headline text-xs sm:text-sm uppercase text-white font-bold tracking-tight group-hover:text-amber-400 transition-colors">
+                  Basecoats &amp; Binders
+                </h3>
+                <p class="font-body text-[11px] text-neutral-400 mt-1 leading-snug line-clamp-2">
+                  FK100 prime black, FK50 surface binder &amp; FK55 thinners.
+                </p>
+              </div>
+              <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors">
+                <span class="text-amber-400 font-semibold">View Formulations</span>
+                <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Category 5: Fine Line Masking Tapes -->
+          <a href="#dept-tapes" class="group flex flex-col industrial-card rounded-lg border border-white/15 bg-surface-container p-3 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(52,211,153,0.35)] transition-all duration-300 cursor-pointer">
+            <div class="relative w-full aspect-square bg-black/60 rounded-md overflow-hidden border border-white/10 mb-3 flex items-center justify-center p-2">
+              <img src="assets/images/flake-king-orange-mixed-set.jpg" alt="Flake King Fine Line Masking Tapes" class="w-full h-full object-cover rounded group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-emerald-400 font-bold border border-emerald-500/40 backdrop-blur-sm">
+                Zero Residue
+              </span>
+            </div>
+            <div class="flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="font-headline text-xs sm:text-sm uppercase text-white font-bold tracking-tight group-hover:text-emerald-400 transition-colors">
+                  Fine Line Tapes
+                </h3>
+                <p class="font-body text-[11px] text-neutral-400 mt-1 leading-snug line-clamp-2">
+                  Precision thermal contouring tapes &amp; multi-width striping packs.
+                </p>
+              </div>
+              <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors">
+                <span class="text-emerald-400 font-semibold">View Tapes</span>
+                <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Category 6: VsionAir Modular Rigging -->
+          <a href="#dept-vsionair" class="group flex flex-col industrial-card rounded-lg border border-white/15 bg-surface-container p-3 hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(34,211,238,0.35)] transition-all duration-300 cursor-pointer">
+            <div class="relative w-full aspect-square bg-black/60 rounded-md overflow-hidden border border-white/10 mb-3 flex items-center justify-center p-2">
+              <img src="https://vsionair.com/wp-content/uploads/2021/05/1000mm_x_1200mm_Vertical_Tool_Bars__Lighting_Camera_Rig_Reworked.png" alt="VsionAir Modular Workstations and Jigs" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-cyan-400 font-bold border border-cyan-500/40 backdrop-blur-sm">
+                360° Rigging
+              </span>
+            </div>
+            <div class="flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="font-headline text-xs sm:text-sm uppercase text-white font-bold tracking-tight group-hover:text-cyan-400 transition-colors">
+                  VsionAir™ Rigs
+                </h3>
+                <p class="font-body text-[11px] text-neutral-400 mt-1 leading-snug line-clamp-2">
+                  Hands-free work-holding jigs, easels &amp; studio tool rigs.
+                </p>
+              </div>
+              <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors">
+                <span class="text-cyan-400 font-semibold">View Rigging</span>
+                <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+
         </div>
 
       </div>
@@ -637,7 +695,7 @@
               </div>
 
               <div onclick="window.paintApp && window.paintApp.openDetailModal('kroma-mirror-chrome-system')" class="h-64 rounded-md overflow-hidden bg-black/40 border border-white/10 flex items-center justify-center p-3 relative mb-4 cursor-pointer" title="Click to view kit specs &amp; application videos">
-                <img id="card-img-kroma-mirror-chrome-system" src="assets/images/kroma-skull-mirror.jpg" alt="Kroma Edge Mirror Chrome Kit" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500 rounded" onerror="this.src='https://coastairbrush.eu/assets/images/kroma-skull-mirror.jpg'">
+                <img id="card-img-kroma-mirror-chrome-system" src="assets/images/kroma-detail-skull.jpg" alt="Kroma Edge Mirror Chrome Kit" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500 rounded" onerror="this.src='https://coastairbrush.eu/assets/images/kroma-detail-skull.jpg'">
                 <div class="absolute bottom-2.5 right-2.5 z-10">
                   <button type="button" onclick="event.stopPropagation(); window.paintApp.openDetailModal('kroma-mirror-chrome-system', 'video')" class="bg-black/85 border border-primary/60 text-white hover:bg-primary text-xs font-mono font-bold px-3 py-1.5 rounded flex items-center gap-1.5 shadow transition-all cursor-pointer">
                     <span class="material-symbols-outlined text-[15px] text-primary">play_circle</span>
@@ -720,7 +778,7 @@
               </div>
 
               <div onclick="window.paintApp && window.paintApp.openDetailModal('kroma-dedicated-topcoat-clear')" class="h-44 rounded overflow-hidden bg-black/40 border border-white/10 flex items-center justify-center p-2 mb-3 relative cursor-pointer" title="Click to view kit contents and technical specifications">
-                <img id="card-img-kroma-dedicated-topcoat-clear" src="assets/images/kroma-helmet-mirror.jpg" alt="Dedicated Topcoat Clear" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500 rounded" onerror="this.src='https://coastairbrush.eu/assets/images/kroma-helmet-mirror.jpg'">
+                <img id="card-img-kroma-dedicated-topcoat-clear" src="assets/images/kroma-detail-helmet.jpg" alt="Dedicated Topcoat Clear" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500 rounded" onerror="this.src='https://coastairbrush.eu/assets/images/kroma-detail-helmet.jpg'">
                 <div class="absolute bottom-2 right-2 z-10">
                   <button type="button" onclick="event.stopPropagation(); window.paintApp.openDetailModal('kroma-dedicated-topcoat-clear', 'video')" class="bg-black/85 border border-primary/60 text-white hover:bg-primary text-[10px] font-mono font-bold px-2 py-1 rounded flex items-center gap-1 shadow transition-all cursor-pointer">
                     <span class="material-symbols-outlined text-[13px] text-primary">play_circle</span>
@@ -1279,7 +1337,7 @@
           <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2610')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2610.jpg" alt="Show Krome Flake" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
+                <img src="assets/images/flakes/fk-2610.jpg" alt="Show Krome Flake" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='assets/images/flakes/flake_king_color_chart.png'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-white font-bold">SILVER</span>
                 <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
@@ -1301,7 +1359,7 @@
           <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2524')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2524.jpg" alt="Kromatic Show Krome" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
+                <img src="assets/images/flakes/fk-2524.jpg" alt="Kromatic Show Krome" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='assets/images/flakes/flake_king_color_chart.png'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold">HOLO</span>
                 <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
@@ -1323,7 +1381,7 @@
           <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2341')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2341.jpg" alt="Black Asteroid" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
+                <img src="assets/images/flakes/fk-2341.jpg" alt="Black Asteroid" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='assets/images/flakes/flake_king_color_chart.png'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-neutral-300 font-bold">BLACK HOLO</span>
                 <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
@@ -1345,7 +1403,7 @@
           <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2319')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2319.jpg" alt="Elvis Gold" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
+                <img src="assets/images/flakes/fk-2319.jpg" alt="Elvis Gold" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='assets/images/flakes/flake_king_color_chart.png'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-400 font-bold">GOLD</span>
                 <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
@@ -1367,7 +1425,7 @@
           <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2308')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2308.jpg" alt="Dragon Koi" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
+                <img src="assets/images/flakes/fk-2308.jpg" alt="Dragon Koi" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='assets/images/flakes/flake_king_color_chart.png'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-orange-400 font-bold">COPPER</span>
                 <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
@@ -1389,7 +1447,7 @@
           <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2283')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2283.jpg" alt="Cobalt Blue" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
+                <img src="assets/images/flakes/fk-2283.jpg" alt="Cobalt Blue" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='assets/images/flakes/flake_king_color_chart.png'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-sky-400 font-bold">BLUE</span>
                 <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
@@ -1411,7 +1469,7 @@
           <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2297')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2297.jpg" alt="Water Dragon" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
+                <img src="assets/images/flakes/fk-2297.jpg" alt="Water Dragon" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='assets/images/flakes/flake_king_color_chart.png'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-teal-400 font-bold">TEAL</span>
                 <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
@@ -1433,7 +1491,7 @@
           <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('fk-2330')" class="industrial-card p-3 flex flex-col justify-between bg-surface-container rounded group hover:border-primary/60 transition-all cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5" title="Click to view details and select particle &amp; pack size">
             <div>
               <div class="h-28 bg-surface-dim rounded overflow-hidden flex items-center justify-center p-1.5 mb-2 relative">
-                <img src="assets/images/flakes/fk-2330.jpg" alt="Gun Metal" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/07/FOM500_550JarLid-scaled.jpg?fit=600%2C600&amp;ssl=1'">
+                <img src="assets/images/flakes/fk-2330.jpg" alt="Gun Metal" class="h-full w-full object-cover rounded group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='assets/images/flakes/flake_king_color_chart.png'">
                 <span class="absolute top-1 left-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-neutral-400 font-bold">GREY</span>
                 <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono text-amber-300 font-bold border border-amber-500/40 opacity-90 group-hover:opacity-100 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">tune</span> Sizes</span>
               </div>
@@ -1891,14 +1949,14 @@
           <div class="industrial-card p-5 flex flex-col justify-between bg-surface-container-low border border-white/15 rounded-lg group hover:border-primary/60 transition-all shadow-lg">
             <div>
               <div onclick="window.paintApp &amp;&amp; window.paintApp.openDetailModal('kroma-mirror-chrome-system', 'video')" class="h-48 bg-black/60 rounded overflow-hidden relative mb-3 cursor-pointer group-hover:scale-[1.02] transition-transform">
-                <img src="assets/images/kroma-helmet-mirror.jpg" alt="Kroma Edge 2K Clearcoat Test" class="h-full w-full object-cover">
+                <img src="assets/images/kroma-detail-helmet.jpg" alt="Kroma Edge 2K Clearcoat Test" class="h-full w-full object-cover">
                 <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
                   <div class="w-12 h-12 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-[0_0_15px_rgba(225,29,72,0.8)] group-hover:scale-110 transition-transform">
                     <span class="material-symbols-outlined text-2xl">play_arrow</span>
                   </div>
                 </div>
                 <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 border border-emerald-500/50 text-emerald-400 font-mono text-[9px] font-bold">2K CLEARCOAT PROOF</span>
-                <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/90 text-white font-mono text-[9px]">Hype Universal • 7:15</span>
+                <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/90 text-white font-mono text-[9px]">SHOW UP Japan • 6:15</span>
               </div>
 
               <div class="flex items-center gap-1.5 text-amber-400 text-xs mb-1">
@@ -1911,7 +1969,7 @@
               </h4>
 
               <p class="text-xs text-neutral-300 font-body mb-4 italic leading-relaxed">
-                "95% of liquid chromes turn into cloudy grey primer under 2K clear. Watch Kroma Edge lock in 99.4% reflection after full solvent flash and clearcoat bake."
+                "95% of liquid chromes turn into cloudy grey primer under 2K clear. Watch the official SHOW UP manufacturer test spraying 2K clearcoat over Kroma Edge with zero dulling or clouding."
               </p>
             </div>
 
@@ -2261,7 +2319,7 @@
     
     <!-- Return to Storefront Quick-Link -->
     <div class="mb-6 flex flex-wrap items-center justify-between gap-3 bg-surface-container-high/90 border border-secondary p-3 rounded shadow-sm">
-      <button onclick="document.getElementById('tab-storefront').click(); window.scrollTo({top: 0, behavior: 'smooth'});" class="mech-button-primary !py-2 !px-4 text-xs font-bold flex items-center gap-2 cursor-pointer shadow-md hover:brightness-110 transition-all">
+      <button onclick="window.paintApp ? window.paintApp.switchTab('tab-storefront', 'view-storefront') : document.getElementById('tab-storefront').click();" class="mech-button-primary !py-2 !px-4 text-xs font-bold flex items-center gap-2 cursor-pointer shadow-md hover:brightness-110 transition-all">
         <span class="material-symbols-outlined text-[18px]">arrow_back</span>
         <span>RETURN TO PRODUCT STOREFRONT</span>
       </button>
@@ -2290,19 +2348,28 @@
     </div>
 
     <!-- Streamlined Linear Mixing Suite -->
+    <!-- Streamlined Linear Mixing Suite (4-Step Painter's Flow) -->
     <div class="space-y-6">
       
-      <!-- Top Control Bar: Step 1 System Selection & Step 2 Volume Setting -->
-      <div class="industrial-card p-6 border-2 border-secondary bg-surface-container-low">
+      <!-- ========================================================================= -->
+      <!-- STEP 1: SELECT COATING / PAINT SYSTEM -->
+      <!-- ========================================================================= -->
+      <div id="step-1-system-card" class="industrial-card p-6 border-2 border-secondary bg-surface-container-low">
         
         <!-- Section Header -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b-2 border-secondary gap-3">
-          <div class="flex items-center gap-3">
-            <span class="metal-spec-plate-red">MIX MATRIX</span>
-            <h3 class="font-headline text-lg sm:text-xl text-white uppercase">1. Select Formula &amp; Batch Volume</h3>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="metal-spec-plate-red">STEP 1 OF 4</span>
+              <span class="metal-spec-plate text-[10px]">PAINT FORMULATION ENGINE</span>
+            </div>
+            <h3 class="font-headline text-lg sm:text-xl text-white uppercase">Select Coating / Paint System</h3>
+            <p class="font-mono text-xs text-neutral-400 mt-0.5">
+              Select your paint chemistry first. Each coating dictates exact coverage rates, coat count rules, pot life, and digital scale tare ratios.
+            </p>
           </div>
           <!-- SDS & TDS Quick Download Actions in Header -->
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2 self-start sm:self-auto">
             <button id="btn-calc-download-tds" class="bg-surface border border-secondary/80 hover:border-primary hover:text-primary text-secondary px-3 py-1.5 text-xs font-mono uppercase transition-all flex items-center gap-1.5 cursor-pointer rounded-sm" title="Download Technical Data Sheet">
               <span class="material-symbols-outlined text-[15px] text-sky-400">description</span>
               <span>TDS SPEC</span>
@@ -2314,42 +2381,13 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          <!-- Formula Selection (7 cols) -->
-          <div class="lg:col-span-7 space-y-2">
-            <label class="font-label-xs text-xs text-secondary uppercase block font-bold">Choose Formula System:</label>
-            <div id="mixing-systems-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <!-- Injected dynamically by JS -->
-            </div>
-            <select id="select-mixing-system" class="sr-only"></select>
+        <!-- Formula Grid -->
+        <div class="space-y-3">
+          <label class="font-label-xs text-xs text-secondary uppercase block font-bold">Active Storefront Coating Systems:</label>
+          <div id="mixing-systems-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+            <!-- Injected dynamically by JS -->
           </div>
-
-          <!-- Batch Volume & Quick Presets (5 cols) -->
-          <div class="lg:col-span-5 bg-surface-dim p-4 border border-secondary/60 rounded space-y-3">
-            <div>
-              <label for="input-total-volume" class="font-label-xs text-xs text-secondary uppercase block mb-1 font-bold">Target Batch Volume to Mix:</label>
-              <div class="flex gap-2">
-                <input type="number" id="input-total-volume" class="mech-input font-mono font-bold text-base" value="140" min="10" max="50000" step="10">
-                <select id="select-volume-unit" class="mech-select w-28 font-mono text-xs">
-                  <option value="ml">mL</option>
-                  <option value="floz">Fl Oz</option>
-                  <option value="pt">Pints</option>
-                  <option value="qt">Quarts</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Quick Presets -->
-            <div>
-              <span class="font-mono text-[10px] text-secondary uppercase block mb-1.5 font-bold">Quick Presets:</span>
-              <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 font-mono text-[10px]">
-                <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(56, 'ml')" class="p-1.5 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-center transition-colors cursor-pointer">56 mL (2 oz)</button>
-                <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(140, 'ml')" class="p-1.5 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-center transition-colors cursor-pointer">140 mL (5 oz)</button>
-                <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(420, 'ml')" class="p-1.5 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-center transition-colors cursor-pointer">420 mL (15 oz)</button>
-                <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(1000, 'ml')" class="p-1.5 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-center transition-colors cursor-pointer">1000 mL (1L)</button>
-              </div>
-            </div>
-          </div>
+          <select id="select-mixing-system" class="sr-only"></select>
         </div>
 
         <!-- Dynamic Live Spec & Surface Coverage Banner -->
@@ -2359,63 +2397,501 @@
 
       </div>
 
-      <!-- Main Scale Target Pouring Table -->
-      <div class="industrial-card p-6 border-2 border-secondary bg-surface-container">
-        
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 border-b-2 border-secondary pb-3 gap-3">
+      <!-- ========================================================================= -->
+      <!-- STEP 2: PROJECT DIMENSIONS & BATCH VOLUME ESTIMATOR -->
+      <!-- ========================================================================= -->
+      <div id="project-estimator-card" class="industrial-card p-6 border-2 border-secondary bg-surface-container-low relative overflow-hidden">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b-2 border-secondary gap-3">
           <div>
             <div class="flex items-center gap-2 mb-1">
-              <span class="metal-spec-plate">STEP 3</span>
-              <h3 class="font-headline text-lg sm:text-xl text-primary uppercase">Digital Scale Pouring Targets</h3>
+              <span class="metal-spec-plate-red">STEP 2 OF 4</span>
+              <span class="metal-spec-plate text-[10px]">TDS-BENCHMARKED AREA &amp; VOLUME</span>
             </div>
-            <span class="font-mono text-xs text-secondary">Tare your scale to 0.0g and pour each component to the cumulative target weight.</span>
+            <h3 class="font-headline text-lg sm:text-xl text-white uppercase">Project Dimensions &amp; Batch Volume</h3>
+            <p class="font-mono text-xs text-neutral-400 mt-0.5">
+              Input physical measurements or select an automotive preset. Volume and scale recipes auto-calculate and live-sync below in real time.
+            </p>
           </div>
-          <div class="flex items-center gap-2">
-            <span id="formula-ratio-badge" class="metal-spec-plate-red font-bold">5:5:2:2 by Weight</span>
+          
+          <!-- Unit Switcher -->
+          <div class="flex items-center gap-2 self-start sm:self-auto bg-surface-dim p-1.5 border border-secondary/60 rounded">
+            <span class="font-mono text-[10px] text-secondary uppercase font-bold px-1">Units:</span>
+            <div class="flex gap-1" id="estimator-unit-toggle">
+              <button type="button" id="btn-unit-imperial" class="px-2.5 py-1 text-xs font-mono font-bold bg-primary text-white rounded transition-colors cursor-pointer shadow-sm">Imperial (In/Ft)</button>
+              <button type="button" id="btn-unit-metric" class="px-2.5 py-1 text-xs font-mono font-bold bg-surface hover:bg-surface-variant text-secondary hover:text-white rounded transition-colors cursor-pointer">Metric (Cm/M)</button>
+            </div>
           </div>
         </div>
 
-        <!-- Recipe Table -->
-        <div class="overflow-x-auto border border-secondary/80 rounded bg-surface-container-lowest">
-          <table class="mech-table !m-0">
-            <thead>
-              <tr class="bg-surface-container-high border-b-2 border-secondary">
-                <th class="!py-3">Step</th>
-                <th class="!py-3">Component</th>
-                <th class="!py-3">SKU</th>
-                <th class="!py-3">Mix %</th>
-                <th class="!py-3">Volume</th>
-                <th class="!py-3">Indiv. Weight</th>
-                <th class="!py-3 text-primary font-bold">Cumulative Scale Target</th>
-              </tr>
-            </thead>
-            <tbody id="recipe-table-body">
-              <!-- Recipe rows dynamically rendered by JS -->
-            </tbody>
-          </table>
+        <!-- Calculation Mode Selector Tabs -->
+        <div class="flex flex-wrap gap-2 mb-5 pb-3 border-b border-secondary/40">
+          <button type="button" id="btn-calc-mode-box" class="px-3 py-1.5 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-primary/20 border-primary text-primary flex items-center gap-1.5 shadow-sm">
+            <span class="material-symbols-outlined text-[16px]">view_in_ar</span>
+            <span>3D Object / Box (L × W × H)</span>
+          </button>
+          <button type="button" id="btn-calc-mode-panel" class="px-3 py-1.5 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-surface border-secondary/60 text-secondary hover:text-white hover:border-secondary flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">crop_landscape</span>
+            <span>2D Flat Panel (L × W)</span>
+          </button>
+          <button type="button" id="btn-calc-mode-direct" class="px-3 py-1.5 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-surface border-secondary/60 text-secondary hover:text-white hover:border-secondary flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">colorize</span>
+            <span>Target Volume to Area</span>
+          </button>
         </div>
 
-        <!-- Footer Actions & Quick Scale Mode -->
-        <div class="flex flex-wrap justify-between items-center gap-4 mt-6 pt-4 border-t border-secondary/60">
-          <div class="font-mono text-xs text-secondary flex items-center gap-2">
-            <span class="text-emerald-400 font-bold">✓ Specific Gravity Calibrated</span>
-            <span>(Solvent: 0.85 • Resin: 0.98 • Seeds: 1.10)</span>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <!-- Dimensions Input Area (7 cols) -->
+          <div class="lg:col-span-7 space-y-4">
+            
+            <!-- Mode 1: 3D Box Inputs -->
+            <div id="estimator-box-inputs" class="space-y-3">
+              <label class="font-label-xs text-xs text-secondary uppercase block font-bold">Object Dimensions:</label>
+              <div class="grid grid-cols-3 gap-3">
+                <div class="relative">
+                  <label class="font-mono text-[10px] text-neutral-400 block mb-1">Length</label>
+                  <input type="number" id="est-length" class="mech-input font-mono text-sm font-bold w-full" placeholder="12" value="12" min="0.1" step="0.5">
+                  <span id="est-unit-label-l" class="absolute right-2.5 top-7 font-mono text-xs text-secondary">in</span>
+                </div>
+                <div class="relative">
+                  <label class="font-mono text-[10px] text-neutral-400 block mb-1">Width</label>
+                  <input type="number" id="est-width" class="mech-input font-mono text-sm font-bold w-full" placeholder="12" value="12" min="0.1" step="0.5">
+                  <span id="est-unit-label-w" class="absolute right-2.5 top-7 font-mono text-xs text-secondary">in</span>
+                </div>
+                <div class="relative">
+                  <label class="font-mono text-[10px] text-neutral-400 block mb-1">Height</label>
+                  <input type="number" id="est-height" class="mech-input font-mono text-sm font-bold w-full" placeholder="12" value="12" min="0.1" step="0.5">
+                  <span id="est-unit-label-h" class="absolute right-2.5 top-7 font-mono text-xs text-secondary">in</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 pt-1">
+                <input type="checkbox" id="check-open-bottom" class="rounded border-secondary bg-surface text-primary focus:ring-0">
+                <label for="check-open-bottom" class="font-mono text-xs text-neutral-300 cursor-pointer">Open bottom / 5 sides only (e.g. car hood, cabinet, helmet shell)</label>
+              </div>
+            </div>
+
+            <!-- Mode 2: 2D Panel Inputs (Hidden by default) -->
+            <div id="estimator-panel-inputs" class="space-y-3 hidden">
+              <label class="font-label-xs text-xs text-secondary uppercase block font-bold">Flat Panel Dimensions:</label>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="relative">
+                  <label class="font-mono text-[10px] text-neutral-400 block mb-1">Panel Length</label>
+                  <input type="number" id="est-panel-length" class="mech-input font-mono text-sm font-bold w-full" placeholder="24" value="24" min="0.1" step="0.5">
+                  <span id="est-panel-unit-label-l" class="absolute right-2.5 top-7 font-mono text-xs text-secondary">in</span>
+                </div>
+                <div class="relative">
+                  <label class="font-mono text-[10px] text-neutral-400 block mb-1">Panel Width</label>
+                  <input type="number" id="est-panel-width" class="mech-input font-mono text-sm font-bold w-full" placeholder="24" value="24" min="0.1" step="0.5">
+                  <span id="est-panel-unit-label-w" class="absolute right-2.5 top-7 font-mono text-xs text-secondary">in</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mode 3: Direct Target Volume Input (Hidden by default) -->
+            <div id="estimator-direct-inputs" class="space-y-3 hidden">
+              <label class="font-label-xs text-xs text-secondary uppercase block font-bold">Target Paint Volume:</label>
+              <div class="flex gap-2">
+                <input type="number" id="est-direct-volume" class="mech-input font-mono text-sm font-bold flex-1" placeholder="140" value="140" min="5" step="5">
+                <select id="est-direct-unit" class="mech-select w-32 font-mono text-xs">
+                  <option value="ml">mL</option>
+                  <option value="g">Grams (g)</option>
+                  <option value="floz">Fluid Oz</option>
+                </select>
+              </div>
+              <p class="font-mono text-[11px] text-secondary">Enter the volume or weight you have, and we'll calculate how much surface area it covers.</p>
+            </div>
+
+            <!-- Quick Automotive Presets -->
+            <div class="pt-2">
+              <span class="font-mono text-[10px] text-secondary uppercase block mb-1.5 font-bold">Automotive &amp; Custom Presets:</span>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 font-mono text-[11px]">
+                <button type="button" data-preset="helmet" class="btn-preset-chip p-2 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-left transition-colors cursor-pointer flex justify-between items-center">
+                  <span>Helmet</span><span class="text-primary font-bold">2.5 ft²</span>
+                </button>
+                <button type="button" data-preset="mc_tank" class="btn-preset-chip p-2 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-left transition-colors cursor-pointer flex justify-between items-center">
+                  <span>Tank</span><span class="text-primary font-bold">6.0 ft²</span>
+                </button>
+                <button type="button" data-preset="mc_full" class="btn-preset-chip p-2 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-left transition-colors cursor-pointer flex justify-between items-center">
+                  <span>Full Bike</span><span class="text-primary font-bold">15.0 ft²</span>
+                </button>
+                <button type="button" data-preset="hood" class="btn-preset-chip p-2 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-left transition-colors cursor-pointer flex justify-between items-center">
+                  <span>Car Bonnet</span><span class="text-primary font-bold">22.0 ft²</span>
+                </button>
+                <button type="button" data-preset="guitar" class="btn-preset-chip p-2 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-left transition-colors cursor-pointer flex justify-between items-center">
+                  <span>Guitar</span><span class="text-primary font-bold">3.5 ft²</span>
+                </button>
+                <button type="button" data-preset="full_car" class="btn-preset-chip p-2 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-left transition-colors cursor-pointer flex justify-between items-center">
+                  <span>Full Respray</span><span class="text-primary font-bold">140 ft²</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Dynamic Adaptive Coat Selector (Adapts to Paint Type) -->
+            <div id="coat-selector-container" class="pt-3 border-t border-secondary/40">
+              <div class="flex items-center justify-between gap-3">
+                <div>
+                  <span id="label-coat-mode" class="font-mono text-xs font-bold text-white block uppercase">Application Coats</span>
+                  <span id="note-coat-mode" class="font-mono text-[10px] text-neutral-400 block">Strictly 1 continuous wet coat for Kroma Edge Self-Organization.</span>
+                </div>
+                <div id="controls-coat-slider" class="flex items-center gap-3">
+                  <span id="badge-coat-status" class="metal-spec-plate-red !py-1 !px-2.5 font-bold">1 WET COAT ONLY</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Live Estimator Outputs & Batch Volume Setting (5 cols) -->
+          <div class="lg:col-span-5 bg-surface-dim p-5 border-2 border-secondary/80 rounded space-y-4">
+            
+            <div class="border-b border-secondary/60 pb-3">
+              <span class="font-mono text-[10px] text-secondary uppercase font-bold block">Total Surface Area:</span>
+              <div class="flex items-baseline gap-2 mt-0.5">
+                <span id="est-area-display" class="font-headline text-3xl text-emerald-400 font-bold">6.0 sq ft</span>
+                <span id="est-area-sqm-display" class="font-mono text-xs text-neutral-300">(0.56 m²)</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div class="bg-surface p-3 border border-secondary/50 rounded">
+                <span class="font-mono text-[10px] text-secondary uppercase font-bold block">Required Paint:</span>
+                <span id="est-volume-display" class="font-headline text-xl text-primary font-bold block mt-0.5">88.7 mL</span>
+                <span id="est-floz-display" class="font-mono text-[10px] text-neutral-400">3.0 fl oz (w/ 10% buffer)</span>
+              </div>
+              <div class="bg-surface p-3 border border-secondary/50 rounded">
+                <span class="font-mono text-[10px] text-secondary uppercase font-bold block">Bench Pot Life:</span>
+                <span id="est-potlife-display" class="font-headline text-xl text-amber-400 font-bold block mt-0.5">3 Hours</span>
+                <span class="font-mono text-[10px] text-neutral-400">Spray immediately after mix</span>
+              </div>
+            </div>
+
+            <!-- Target Batch Volume Input & Quick Presets -->
+            <div class="bg-surface p-3.5 border border-secondary/60 rounded space-y-2.5">
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <label for="input-total-volume" class="font-label-xs text-xs text-secondary uppercase font-bold">Batch Volume to Mix:</label>
+                  <span class="font-mono text-[10px] text-emerald-400 font-bold flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[13px]">autorenew</span> Live Synced
+                  </span>
+                </div>
+                <div class="flex gap-2">
+                  <input type="number" id="input-total-volume" class="mech-input font-mono font-bold text-base flex-1" value="140" min="10" max="50000" step="10">
+                  <select id="select-volume-unit" class="mech-select w-28 font-mono text-xs">
+                    <option value="ml">mL</option>
+                    <option value="floz">Fl Oz</option>
+                    <option value="pt">Pints</option>
+                    <option value="qt">Quarts</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Quick Volume Presets -->
+              <div>
+                <span class="font-mono text-[10px] text-neutral-400 uppercase block mb-1">Quick Volume Overrides:</span>
+                <div class="grid grid-cols-4 gap-1 font-mono text-[10px]">
+                  <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(56, 'ml')" class="p-1 bg-surface-dim hover:bg-surface-container border border-secondary/60 text-secondary hover:text-white rounded text-center transition-colors cursor-pointer">56 mL</button>
+                  <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(140, 'ml')" class="p-1 bg-surface-dim hover:bg-surface-container border border-secondary/60 text-secondary hover:text-white rounded text-center transition-colors cursor-pointer">140 mL</button>
+                  <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(420, 'ml')" class="p-1 bg-surface-dim hover:bg-surface-container border border-secondary/60 text-secondary hover:text-white rounded text-center transition-colors cursor-pointer">420 mL</button>
+                  <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(1000, 'ml')" class="p-1 bg-surface-dim hover:bg-surface-container border border-secondary/60 text-secondary hover:text-white rounded text-center transition-colors cursor-pointer">1000 mL</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Auto-Sync & Jump Button -->
+            <button type="button" id="btn-sync-estimator-to-mix" class="mech-button-primary !w-full !py-2.5 !text-xs !justify-center flex items-center gap-2 cursor-pointer shadow-md">
+              <span class="material-symbols-outlined text-[16px]">done_all</span>
+              <span>LIVE AUTO-SYNCED &bull; JUMP TO RECIPE TABLE &darr;</span>
+            </button>
+
+            <!-- Hidden compatibility elements for estimator banners -->
+            <div id="est-recommended-banner" class="hidden">
+              <span id="est-recommended-price"></span>
+              <span id="est-recommended-name"></span>
+              <span id="est-recommended-desc"></span>
+              <span id="est-companion-indicator"><span id="est-companion-text"></span></span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- STEP 3: LIVE MIX RECIPE & DIGITAL SCALE POURING TARGETS -->
+      <!-- ========================================================================= -->
+      <div id="step-3-recipe-card" class="industrial-card p-6 border-2 border-secondary bg-surface-container space-y-6">
+        
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b-2 border-secondary gap-3">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="metal-spec-plate-red">STEP 3 OF 4</span>
+              <span class="metal-spec-plate text-[10px]">DIGITAL TARE BENCHMARK</span>
+            </div>
+            <h3 class="font-headline text-lg sm:text-xl text-primary uppercase">Live Mix Recipe &amp; Scale Pouring Targets</h3>
+            <span class="font-mono text-xs text-secondary">Tare your scale to 0.0g and pour each component in order to the cumulative target weight.</span>
           </div>
           <div class="flex items-center gap-2.5 flex-wrap">
-            <button id="btn-export-csv-bom" class="mech-btn-secondary !text-xs !py-2 !px-3">
-              CSV Mixing Sheet
-            </button>
-            <button id="btn-export-json-recipe" class="mech-btn-secondary !text-xs !py-2 !px-3">
-              JSON Recipe
-            </button>
-            <button id="btn-send-to-scale" onclick="window.paintApp &amp;&amp; window.paintApp.openScaleMode ? window.paintApp.openScaleMode() : null" class="mech-btn-secondary !text-xs !py-2 !px-4 flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-[15px]">scale</span>
-              <span>Open Digital Scale Mode</span>
-            </button>
-            <button onclick="window.setCategoryAndScroll('Solvent Paints')" class="mech-button-primary !text-xs !py-2 !px-4">
-              🛒 Pre-Order Paint Kits
+            <span id="formula-ratio-badge" class="metal-spec-plate-red font-bold">5:5:2:2 by Weight</span>
+            <button id="btn-send-to-scale" onclick="window.paintApp && window.paintApp.openScaleMode ? window.paintApp.openScaleMode() : null" class="mech-button-primary !text-xs !py-2 !px-3.5 flex items-center gap-1.5 shadow-md cursor-pointer">
+              <span class="material-symbols-outlined text-[16px]">scale</span>
+              <span>DIGITAL SCALE MODE</span>
             </button>
           </div>
+        </div>
+
+        <!-- Recipe Tab Selector for Kroma Edge System -->
+        <div id="recipe-view-tabs" class="flex flex-wrap gap-2 pb-1 border-b border-secondary/40">
+          <button type="button" id="btn-recipe-tab-base" class="px-3.5 py-1.5 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-primary/20 border-primary text-primary flex items-center gap-1.5 shadow-sm">
+            <span class="material-symbols-outlined text-[16px]">science</span>
+            <span id="recipe-tab-base-title">1. Primary Coating Mix Recipe</span>
+          </button>
+          <button type="button" id="btn-recipe-tab-clear" class="px-3.5 py-1.5 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-surface border-purple-500/60 text-purple-300 hover:text-white hover:border-purple-400 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">shield</span>
+            <span>2. Dedicated Topcoat Clear Co-Calculator (10:1)</span>
+          </button>
+        </div>
+
+        <!-- Tab Panel 1: Primary Recipe Table -->
+        <div id="recipe-table-container" class="space-y-4">
+          <div class="overflow-x-auto border border-secondary/80 rounded bg-surface-container-lowest">
+            <table class="mech-table !m-0">
+              <thead>
+                <tr class="bg-surface-container-high border-b-2 border-secondary">
+                  <th class="!py-3">Step</th>
+                  <th class="!py-3">Component</th>
+                  <th class="!py-3">SKU</th>
+                  <th class="!py-3">Mix %</th>
+                  <th class="!py-3">Volume</th>
+                  <th class="!py-3">Indiv. Weight</th>
+                  <th class="!py-3 text-primary font-bold">Cumulative Scale Target</th>
+                </tr>
+              </thead>
+              <tbody id="recipe-table-body">
+                <!-- Recipe rows dynamically rendered by JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Recipe Footer Actions -->
+          <div class="flex flex-wrap justify-between items-center gap-4 pt-3 border-t border-secondary/60">
+            <div class="font-mono text-xs text-secondary flex items-center gap-2">
+              <span class="text-emerald-400 font-bold">✓ Specific Gravity Calibrated</span>
+              <span>(Solvent: 0.85 • Resin: 0.98 • Seeds: 1.10)</span>
+            </div>
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <button id="btn-export-csv-bom" class="mech-btn-secondary !text-xs !py-2 !px-3">
+                CSV Mixing Sheet
+              </button>
+              <button id="btn-export-json-recipe" class="mech-btn-secondary !text-xs !py-2 !px-3">
+                JSON Recipe
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Panel 2: Dedicated Topcoat Clear Co-Calculator (Kroma Edge) -->
+        <div id="kroma-topcoat-panel" class="p-5 border-2 border-purple-500/60 bg-surface-container-low rounded relative overflow-hidden transition-all duration-300 hidden">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-purple-500/40 gap-3">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="metal-spec-plate !border-purple-400 !text-purple-300">STAGE 2 COMPANION</span>
+                <span class="metal-spec-plate text-[10px]">10 : 1 RATIO + 70-100% THINNER</span>
+              </div>
+              <h4 class="font-headline text-base sm:text-lg text-white uppercase">Kroma Edge Dedicated Topcoat Clear Co-Calculator</h4>
+              <p class="font-mono text-xs text-neutral-300 mt-0.5 max-w-3xl">
+                Engineered with ultra-low turbidity to maximize chrome reflectivity without reactivating or clouding the mirror layer.
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="tc-reduction-badge" class="px-2.5 py-1 text-xs font-mono font-bold bg-purple-900/60 border border-purple-400 text-purple-200 rounded">
+                Reduction: <span id="tc-reduction-display">100%</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <!-- Thinner Slider & Environmental Adjustment (5 cols) -->
+            <div class="lg:col-span-5 bg-surface-dim p-4 border border-purple-500/40 rounded space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <label for="tc-reduction-slider" class="font-mono text-xs font-bold text-purple-300 uppercase">Thinner Reduction Level:</label>
+                  <span id="tc-reduction-val-label" class="font-mono text-xs font-bold text-white">100% (High Flow)</span>
+                </div>
+                <input type="range" id="tc-reduction-slider" min="70" max="100" value="100" step="5" class="w-full accent-purple-500 cursor-pointer h-2 bg-surface rounded">
+                <div class="flex justify-between text-[10px] font-mono text-neutral-400 mt-1">
+                  <span>70% (High Film Build)</span>
+                  <span>85% (Balanced)</span>
+                  <span>100% (Glass Flow)</span>
+                </div>
+              </div>
+
+              <div class="p-3 bg-purple-950/40 border border-purple-500/30 rounded text-xs font-mono space-y-1.5 text-neutral-300">
+                <div class="flex items-center gap-1.5 text-purple-300 font-bold">
+                  <span class="material-symbols-outlined text-[15px]">tune</span>
+                  <span>BOOTH VISCOSITY NOTE:</span>
+                </div>
+                <p class="text-[11px] leading-relaxed text-neutral-300">
+                  Lower reduction (70–80%) provides higher film build for vertical panels to eliminate run risk. Higher reduction (90–100%) produces maximum flow-out and mirror clarity on flat panels and tanks.
+                </p>
+              </div>
+
+              <div class="flex justify-between items-center text-xs font-mono pt-1">
+                <span class="text-neutral-400">Total Clear Batch:</span>
+                <span id="tc-total-batch-display" class="font-bold text-white text-sm">~140.0 g</span>
+              </div>
+            </div>
+
+            <!-- Dedicated Clear Pouring Targets Table (7 cols) -->
+            <div class="lg:col-span-7 overflow-x-auto border border-purple-500/40 rounded bg-surface-container-lowest">
+              <table class="mech-table !m-0">
+                <thead>
+                  <tr class="bg-purple-950/50 border-b border-purple-500/40">
+                    <th class="!py-2.5 text-xs text-purple-200">Step</th>
+                    <th class="!py-2.5 text-xs text-purple-200">Component</th>
+                    <th class="!py-2.5 text-xs text-purple-200">Ratio</th>
+                    <th class="!py-2.5 text-xs text-purple-200">Weight</th>
+                    <th class="!py-2.5 text-xs text-purple-300 font-bold">Cumulative Target</th>
+                  </tr>
+                </thead>
+                <tbody id="tc-recipe-table-body">
+                  <!-- Injected dynamically by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Integrated Recommended Commercial Paint Kit Bundle -->
+        <div id="bundle-recommender-panel" class="pt-5 border-t-2 border-secondary/60">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-secondary/60 gap-3">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="metal-spec-plate !border-emerald-500 !text-emerald-400 font-bold">1-CLICK STORE BUNDLE</span>
+                <span class="metal-spec-plate text-[10px]">REAL-WORLD JOB ALLOCATED</span>
+              </div>
+              <h4 class="font-headline text-base sm:text-lg text-white uppercase">Recommended Commercial Paint Kit Bundle</h4>
+              <p class="font-mono text-xs text-neutral-300 mt-0.5">
+                Based on your estimated project area, here is the exact manufacturer kit tier configured for zero booth shortages.
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-3 py-1 bg-emerald-950/80 border border-emerald-500 text-emerald-400 font-mono text-xs font-bold rounded flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                <span>NO US IMPORT TARIFFS</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <!-- Primary Product Card -->
+            <div id="bundle-card-primary" class="bg-surface p-4 border border-secondary/80 rounded relative flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-start mb-2">
+                  <span class="font-mono text-[10px] text-primary font-bold uppercase block">PRIMARY COATING:</span>
+                  <span id="bundle-primary-sku" class="font-mono text-[10px] text-neutral-400">KE-MIRROR-140G</span>
+                </div>
+                <h4 id="bundle-primary-title" class="font-headline text-base font-bold text-white leading-snug">
+                  KromaEdge Mirror System Small Kit (140g)
+                </h4>
+                <p id="bundle-primary-desc" class="font-mono text-xs text-neutral-400 mt-1">
+                  Complete 4-component system: 50g Binder, 50g Reducer, 20g Hardener, 20g Mirror Seeds.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-secondary/40 flex justify-between items-center">
+                <span class="font-mono text-xs text-secondary">Price:</span>
+                <span id="bundle-primary-price" class="font-headline text-lg font-bold text-white">€149.00</span>
+              </div>
+            </div>
+
+            <!-- Companion / Clearcoat Card -->
+            <div id="bundle-card-companion" class="bg-surface p-4 border border-purple-500/60 rounded relative flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-start mb-2">
+                  <span class="font-mono text-[10px] text-purple-400 font-bold uppercase block">DEDICATED TOPCOAT:</span>
+                  <span id="bundle-companion-sku" class="font-mono text-[10px] text-neutral-400">KE-CLEAR-180</span>
+                </div>
+                <h4 id="bundle-companion-title" class="font-headline text-base font-bold text-white leading-snug">
+                  Topcoat Clear 180 SET (378g)
+                </h4>
+                <p id="bundle-companion-desc" class="font-mono text-xs text-neutral-400 mt-1">
+                  Includes 180g Clear Base, 18g Hardener, and 180g Dedicated Thinner.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-secondary/40 flex justify-between items-center">
+                <span class="font-mono text-xs text-secondary">Price:</span>
+                <span id="bundle-companion-price" class="font-headline text-lg font-bold text-white">€89.00</span>
+              </div>
+            </div>
+
+            <!-- Total & 1-Click Cart Checkout Action -->
+            <div class="bg-surface-dim p-4 border-2 border-emerald-500/70 rounded flex flex-col justify-between shadow-lg">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-mono text-[10px] text-emerald-400 font-bold uppercase flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[15px]">verified</span>
+                    <span>COMPLETE JOB BUNDLE:</span>
+                  </span>
+                  <span class="metal-spec-plate text-[10px] !text-emerald-300">READY TO SPRAY</span>
+                </div>
+                <div class="flex items-baseline justify-between mt-1">
+                  <span class="font-mono text-xs text-neutral-300">Total Bundle:</span>
+                  <span id="bundle-total-price" class="font-headline text-2xl font-bold text-emerald-400">€238.00</span>
+                </div>
+                <p class="font-mono text-[11px] text-neutral-400 mt-2">
+                  Official Technical Support, digital TDS specifications, and digital scale assistant included.
+                </p>
+              </div>
+
+              <div class="mt-4 space-y-2">
+                <button type="button" id="btn-add-bundle-cart" class="mech-button-primary !w-full !py-3 !text-xs !justify-center flex items-center gap-2 cursor-pointer shadow-md font-bold tracking-wider hover:brightness-110">
+                  <span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                  <span>ADD COMPLETE BUNDLE TO CART</span>
+                </button>
+                <button type="button" id="btn-scale-from-bundle" onclick="window.paintApp && window.paintApp.openScaleMode ? window.paintApp.openScaleMode() : null" class="mech-btn-secondary !w-full !py-2 !text-xs !justify-center flex items-center gap-1.5 cursor-pointer">
+                  <span class="material-symbols-outlined text-[15px]">scale</span>
+                  <span>Open in Digital Scale Mode</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- STEP 4: SPRAY BOOTH MASTER APPLICATION GUIDE & TDS PROTOCOL -->
+      <!-- ========================================================================= -->
+      <div id="application-guide-panel" class="industrial-card p-6 border-2 border-secondary bg-surface-container-low">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-secondary gap-3">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="metal-spec-plate-red">STEP 4 OF 4</span>
+              <span class="metal-spec-plate text-[10px]">8-STAGE OFFICIAL WORKFLOW</span>
+            </div>
+            <h3 class="font-headline text-lg sm:text-xl text-white uppercase">Master Spray Booth Application Guide</h3>
+            <p class="font-mono text-xs text-neutral-400 mt-0.5">
+              Step-by-step technical execution protocol to ensure a flawless optical mirror finish with zero clouding or solvent entrapment.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="btn-guide-download-tds" class="bg-surface border border-secondary hover:border-primary hover:text-primary text-secondary px-3 py-1.5 text-xs font-mono uppercase transition-all flex items-center gap-1.5 cursor-pointer rounded-sm">
+              <span class="material-symbols-outlined text-[15px] text-sky-400">description</span>
+              <span>DOWNLOAD TDS</span>
+            </button>
+            <button id="btn-guide-download-sds" class="bg-surface border border-secondary hover:border-primary hover:text-primary text-secondary px-3 py-1.5 text-xs font-mono uppercase transition-all flex items-center gap-1.5 cursor-pointer rounded-sm">
+              <span class="material-symbols-outlined text-[15px] text-red-400">picture_as_pdf</span>
+              <span>DOWNLOAD REACH SDS</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 8-Stage Timeline Grid -->
+        <div id="application-guide-timeline" class="space-y-4">
+          <!-- Dynamically populated via JS based on the selected formula system -->
         </div>
 
       </div>
@@ -2728,7 +3204,7 @@
     
     <!-- Return to Storefront Quick-Link -->
     <div class="mb-6 flex flex-wrap items-center justify-between gap-3 bg-surface-container-high/90 border border-secondary p-3 rounded shadow-sm">
-      <button onclick="document.getElementById('tab-storefront').click(); window.scrollTo({top: 0, behavior: 'smooth'});" class="mech-button-primary !py-2 !px-4 text-xs font-bold flex items-center gap-2 cursor-pointer shadow-md hover:brightness-110 transition-all">
+      <button onclick="window.paintApp ? window.paintApp.switchTab('tab-storefront', 'view-storefront') : document.getElementById('tab-storefront').click();" class="mech-button-primary !py-2 !px-4 text-xs font-bold flex items-center gap-2 cursor-pointer shadow-md hover:brightness-110 transition-all">
         <span class="material-symbols-outlined text-[18px]">arrow_back</span>
         <span>RETURN TO PRODUCT STOREFRONT</span>
       </button>
@@ -2866,7 +3342,7 @@
         <div class="industrial-card p-4 flex flex-col justify-between h-full group hover:border-primary transition-all">
           <div>
             <div onclick="window.paintApp && window.paintApp.openDetailModal('kroma-mirror-chrome-system', 'video')" class="w-full h-48 bg-surface-dim border border-secondary relative overflow-hidden mb-4 cursor-pointer">
-              <img src="assets/images/kroma-helmet-mirror.jpg" alt="Kroma Edge 2K Chrome Video" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='assets/images/kroma-skull-mirror.jpg';">
+              <img src="assets/images/kroma-detail-helmet.jpg" alt="Kroma Edge 2K Chrome Video" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='assets/images/kroma-detail-skull.jpg';">
               <div class="absolute top-2 left-2 bg-surface/90 text-emerald-400 text-[10px] font-mono font-bold px-2 py-0.5 border border-emerald-500/60 flex items-center gap-1">
                 <span class="material-symbols-outlined text-[12px]">play_circle</span> MANUFACTURER DEMO
               </div>
@@ -3260,6 +3736,9 @@
         <button id="subtab-admin-email" class="admin-subtab font-mono text-xs uppercase px-4 py-2 border-2 border-secondary bg-surface text-secondary hover:text-white flex items-center gap-2">
           <span class="material-symbols-outlined text-[16px]">mark_email_read</span> Customer Email &amp; AI Hub
         </button>
+        <a href="crm.html" class="admin-subtab font-mono text-xs uppercase px-4 py-2 border-2 border-emerald-500/70 bg-emerald-950/40 text-emerald-300 hover:text-white hover:bg-emerald-900/60 flex items-center gap-2 transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]" title="Open Staff CRM &amp; Dispatch Portal">
+          <span class="material-symbols-outlined text-[16px]">groups</span> Staff CRM &amp; Dispatch
+        </a>
       </div>
     </div>
 
@@ -6511,11 +6990,10 @@
       <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="about.html">About Us</a>
       <button onclick="window.openWelcomeModal && window.openWelcomeModal(true)" class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300 cursor-pointer uppercase font-label-xs">Launch Announcement</button>
       <button onclick="window.openReferralModal && window.openReferralModal()" class="text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-1 font-mono text-[11px] uppercase cursor-pointer" title="Refer a Fellow Painter"><span class="material-symbols-outlined text-[14px]">card_giftcard</span> Painter Crew: Give £15, Get £15</button>
-      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="#">Support</a>
-      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="#">Privacy Policy</a>
-      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="#">Shipping Info</a>
-      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="#">Authorized Dealers</a>
-      <a class="text-secondary/50 hover:text-amber-400 transition-colors flex items-center gap-1 font-mono text-[10px] lowercase" href="crm.html"><span class="material-symbols-outlined text-[13px]">lock</span> staff crm &amp; dispatch</a>
+      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="support.html">Support</a>
+      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="privacy.html">Privacy Policy</a>
+      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="shipping.html">Shipping Info</a>
+      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="dealers.html">Authorized Dealers</a>
       <button onclick="window.openAdminLogin &amp;&amp; window.openAdminLogin()" class="text-secondary/70 hover:text-amber-400 transition-colors flex items-center gap-1 font-mono text-[11px] uppercase cursor-pointer" title="Coast Airbrush Europe Operator Admin Access (PIN: COAST2026)"><span class="material-symbols-outlined text-[14px]">admin_panel_settings</span> admin access</button>
     </div>
     <div class="font-bold">© 2026 COAST AIRBRUSH. KUSTOM KULTURE REFINED.</div>
@@ -7155,6 +7633,6 @@
 
   <!-- Application Master Scripts -->
   <script src="data/bundles_config.js"></script>
-  <script type="module" src="js/app.js?v=20260908c"></script>
+  <script type="module" src="js/app.js?v=20260909_calc_engine"></script>
 </body>
 </html>

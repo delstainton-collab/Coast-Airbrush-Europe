@@ -10,7 +10,7 @@ export const ECOM_CATALOG = [
     "inStock": false,
     "isPreOrder": true,
     "badge": "BATCH 1 PRE-ORDER",
-    "image": "assets/images/kroma-skull-mirror.jpg",
+    "image": "assets/images/kroma-detail-skull.jpg",
     "description": "The world's first self-organizing 2K optical coating that delivers a flawless, non-clouding mirror finish across any industry. Chemically bonds and aligns metallic particles to lock in true mirror reflection over plastics, wood, 3D resin, aluminum, and steel without requiring a gloss black groundcoat. Mix ratio 5:5:2:2 (Binder : Reducer : Hardener : Mirror Seeds).",
     "sizes": [
       "Small Kit (140g / 5 oz)",
@@ -28,7 +28,7 @@ export const ECOM_CATALOG = [
       {
         "packSize": "Small Kit (140g / 5 oz)",
         "stockCode": "KE-MIRROR-140G",
-        "coverage": "7–10 sq ft (0.5 m²)",
+        "coverage": "7–10 sq ft (0.8 m²)",
         "priceGbp": 260.2,
         "priceEur": 306.12,
         "priceRetailGbp": 260.2,
@@ -41,7 +41,7 @@ export const ECOM_CATALOG = [
       {
         "packSize": "Medium Kit (420g / 15 oz)",
         "stockCode": "KE-MIRROR-420G",
-        "coverage": "22–30 sq ft (1.5 m²)",
+        "coverage": "22–30 sq ft (2.4 m²)",
         "priceGbp": 709.63,
         "priceEur": 834.86,
         "priceRetailGbp": 709.63,
@@ -54,7 +54,7 @@ export const ECOM_CATALOG = [
       {
         "packSize": "Large Kit (1260g / 45 oz)",
         "stockCode": "KE-MIRROR-1260G",
-        "coverage": "68–90 sq ft (4.0 m²)",
+        "coverage": "68–90 sq ft (7.2 m²)",
         "priceGbp": 1596.67,
         "priceEur": 1878.44,
         "priceRetailGbp": 1596.67,
@@ -67,7 +67,7 @@ export const ECOM_CATALOG = [
       {
         "packSize": "Extra Large Kit (2520g / 90 oz)",
         "stockCode": "KE-MIRROR-2520G",
-        "coverage": "135–180 sq ft (8.0 m²)",
+        "coverage": "135–180 sq ft (14.5 m²)",
         "priceGbp": 2874,
         "priceEur": 3381.18,
         "priceRetailGbp": 2874,
@@ -92,38 +92,57 @@ export const ECOM_CATALOG = [
       }
     ],
     "images": [
-      "assets/images/kroma-skull-mirror.jpg",
-      "assets/images/kroma-helmet-mirror.jpg",
-      "assets/images/kroma-skull-mirror.jpg",
-      "assets/images/kroma-silver-surfer-wave.jpg"
+      "assets/images/kroma-detail-skull.jpg",
+      "assets/images/kroma-detail-helmet.jpg",
+      "assets/images/kroma-detail-wave.jpg",
+      "assets/images/kroma-detail-surfer-front.jpg",
+      "assets/images/kroma-detail-surfer-back.jpg"
     ],
     "videos": [
       {
         "platform": "youtube",
-        "title": "Perfect Chrome in Minutes: Spray Chrome Mirror Finish with 2K Clear (DIY Method)",
-        "creator": "Hype Universal",
-        "url": "https://www.youtube.com/watch?v=ag3aDYxdKQ0",
-        "embedId": "ag3aDYxdKQ0",
-        "duration": "7:15",
-        "badge": "Chrome Tutorial"
+        "title": "【SHOW UP】KROMA EDGE: Must-See Clear Coating! Stays Clear After Clear",
+        "creator": "Signal Inc. SHOW UP Division",
+        "url": "https://www.youtube.com/watch?v=baMOh06gG7s",
+        "embedId": "baMOh06gG7s",
+        "duration": "6:15",
+        "badge": "2K Clearcoat Test"
       },
       {
         "platform": "youtube",
-        "title": "Silver Chrome Spray with Topcoat Demonstration",
-        "creator": "Eureka Auto",
-        "url": "https://www.youtube.com/watch?v=4NAz3k5N6rk",
-        "embedId": "4NAz3k5N6rk",
-        "duration": "5:40",
-        "badge": "Application Guide"
+        "title": "【SHOW UP】2K Metallic Coating: KROMA EDGE Mirror Application Demo",
+        "creator": "Signal Inc. SHOW UP Division",
+        "url": "https://www.youtube.com/watch?v=lkixzU6BR00",
+        "embedId": "lkixzU6BR00",
+        "duration": "8:45",
+        "badge": "Official Application"
       },
       {
         "platform": "youtube",
-        "title": "Armored Komodo ChromaFlair Pigment - Review & Tutorial",
-        "creator": "Custom Paint Lab",
-        "url": "https://www.youtube.com/watch?v=a5ssSjMgnRE",
-        "embedId": "a5ssSjMgnRE",
-        "duration": "8:50",
-        "badge": "Pigment Review"
+        "title": "【SHOW UP】KROMA EDGE on Car Hood: The Era of Base Colors Is Over!",
+        "creator": "Signal Inc. SHOW UP Division",
+        "url": "https://www.youtube.com/watch?v=mwYWZ0d1_eA",
+        "embedId": "mwYWZ0d1_eA",
+        "duration": "8:24",
+        "badge": "Automotive Panel Demo"
+      },
+      {
+        "platform": "youtube",
+        "title": "【SHOW UP】Essential Tech Guide: What to Do If You Make a Mistake",
+        "creator": "Signal Inc. SHOW UP Division",
+        "url": "https://www.youtube.com/watch?v=MfwEU79a1U8",
+        "embedId": "MfwEU79a1U8",
+        "duration": "5:42",
+        "badge": "Masterclass Tech Guide"
+      },
+      {
+        "platform": "youtube",
+        "title": "【SHOW UP】KROMA EDGE Reducer Slow: Large Surfaces & Automotive Parts Guide",
+        "creator": "Signal Inc. SHOW UP Division",
+        "url": "https://www.youtube.com/watch?v=FFebL6S3gSU",
+        "embedId": "FFebL6S3gSU",
+        "duration": "7:08",
+        "badge": "Reducer Selection"
       }
     ],
     "summary": "The world's first self-organizing 2K optical mirror coating. Delivers a flawless, true chrome reflection over plastics, wood, 3D resin, aluminium, and steel without requiring a black basecoat or flame treatment.",
@@ -134,9 +153,9 @@ export const ECOM_CATALOG = [
       "UV Stable & Non-Oxidizing: Resistant to yellowing and peeling when paired with Kroma Dedicated Clear."
     ],
     "howItWorks": [
-      "Step 1 - Smooth Base: Ensure substrate is completely smooth and cured (gloss finish).",
-      "Step 2 - Apply Kroma Chrome: Spray 1 continuous, wet, uniform coat of mixed Kroma Chrome at 20–25 PSI. Watch the mirror self-organize as carrier flashes.",
-      "Step 3 - Lock With Dedicated Clear: After 30 minutes flash, apply Kroma Edge Dedicated Topcoat Clear to seal without dulling."
+      "Step 1 - Substrate Prep: Ensure substrate is cured primer, basecoat, or clear sanded smooth with #600–#1000 grit. Degrease with silicone remover or IPA.",
+      "Step 2 - Apply Kroma Chrome: Spray 1 continuous wet coat at minimum 68°F (20°C). Metallic particles self-organize into a flawless mirror as solvent evaporates.",
+      "Step 3 - Lock With Dedicated Clear: After full cure (minimum 36h air dry or 140–160°F force cure for 1–2h + 24h RT), apply Kroma Edge Dedicated Topcoat Clear (fine mist tack coat, 5m flash, then full wet coat)."
     ],
     "inTheBox": [
       "Kroma Mirror Chrome Base",
@@ -159,7 +178,7 @@ export const ECOM_CATALOG = [
     "inStock": false,
     "isPreOrder": true,
     "badge": "BATCH 1 PRE-ORDER",
-    "image": "assets/images/kroma-silver-surfer-front.jpg",
+    "image": "assets/images/kroma-detail-helmet.jpg",
     "description": "Specifically engineered topcoat clear for Kroma Edge Chrome systems with ultra-low turbidity and maximum optical clarity. Formulated to prevent clouding, lifting, or solvent reactivation of the aligned metallic mirror layer. Mix ratio 10:1 (Clear Base : Hardener) + 70-100% Dedicated Thinner.",
     "sizes": [
       "Topcoat Clear 180 SET (1.5 m²)",
@@ -213,28 +232,47 @@ export const ECOM_CATALOG = [
       }
     ],
     "images": [
-      "assets/images/kroma-silver-surfer-front.jpg",
-      "assets/images/kroma-silver-surfer-back.jpg",
-      "assets/images/kroma-silver-surfer-wave.jpg"
+      "assets/images/kroma-detail-helmet.jpg",
+      "assets/images/kroma-detail-surfer-front.jpg",
+      "assets/images/kroma-detail-surfer-back.jpg",
+      "assets/images/kroma-detail-wave.jpg"
     ],
     "videos": [
       {
         "platform": "youtube",
-        "title": "Silver Chrome Spray with Topcoat Demonstration",
-        "creator": "Eureka Auto",
-        "url": "https://www.youtube.com/watch?v=4NAz3k5N6rk",
-        "embedId": "4NAz3k5N6rk",
-        "duration": "5:40",
-        "badge": "Topcoat Guide"
+        "title": "【SHOW UP】KROMA EDGE: Must-See Clear Coating! Stays Clear After Clear",
+        "creator": "Signal Inc. SHOW UP Division",
+        "url": "https://www.youtube.com/watch?v=baMOh06gG7s",
+        "embedId": "baMOh06gG7s",
+        "duration": "6:15",
+        "badge": "Topcoat Clear Proof"
       },
       {
         "platform": "youtube",
-        "title": "Perfect Chrome in Minutes: Spray Chrome Mirror Finish with 2K Clear (DIY Method)",
-        "creator": "Hype Universal",
-        "url": "https://www.youtube.com/watch?v=ag3aDYxdKQ0",
-        "embedId": "ag3aDYxdKQ0",
-        "duration": "7:15",
-        "badge": "Chrome Tutorial"
+        "title": "【SHOW UP】2K Metallic Coating: KROMA EDGE Mirror Application Demo",
+        "creator": "Signal Inc. SHOW UP Division",
+        "url": "https://www.youtube.com/watch?v=lkixzU6BR00",
+        "embedId": "lkixzU6BR00",
+        "duration": "8:45",
+        "badge": "System Application"
+      },
+      {
+        "platform": "youtube",
+        "title": "【SHOW UP】KROMA EDGE Reducer Slow: Large Surfaces & Flow-Out Guide",
+        "creator": "Signal Inc. SHOW UP Division",
+        "url": "https://www.youtube.com/watch?v=FFebL6S3gSU",
+        "embedId": "FFebL6S3gSU",
+        "duration": "7:08",
+        "badge": "Thinner & Flow-Out"
+      },
+      {
+        "platform": "youtube",
+        "title": "【SHOW UP】Essential Tech Guide: What to Do If You Make a Mistake",
+        "creator": "Signal Inc. SHOW UP Division",
+        "url": "https://www.youtube.com/watch?v=MfwEU79a1U8",
+        "embedId": "MfwEU79a1U8",
+        "duration": "5:42",
+        "badge": "Masterclass Tech Guide"
       }
     ],
     "summary": "Ultra-low turbidity 2K topcoat clear specifically formulated for Kroma Edge Mirror Chrome. Seals and protects mirror finishes with zero clouding, lifting, or solvent reactivation.",
@@ -244,9 +282,9 @@ export const ECOM_CATALOG = [
       "Versatile Mix Ratio: 10:1 (Base : Hardener) + 70–100% Dedicated Thinner for glass-like flow out."
     ],
     "howItWorks": [
-      "Step 1 - Flash Off Chrome: Allow Kroma Chrome coat to dry for minimum 30 minutes at 20°C (68°F).",
-      "Step 2 - Tack Coat: Apply one very light dusting / tack coat of Dedicated Clear at 18–22 PSI. Allow 5 minutes flash.",
-      "Step 3 - Wet Gloss Coat: Apply one full wet coat to achieve maximum gloss depth and UV protection."
+      "Step 1 - Full Cure Required: Allow Kroma Edge Mirror coat to fully cure for minimum 36 hours at room temp (or force dry at 140–160°F for 1–2h + 24h RT). Clearing too soon will soften the resin and cloud the mirror.",
+      "Step 2 - Tack Coat: Apply fine mist tack coat evenly over entire surface so chrome is only slightly wetted (check for zero fisheyes). Allow 5 minutes flash.",
+      "Step 3 - Full Wet Coat: Apply full wet coat with good flow to bury tack particles and achieve deep gloss. Finish may look slightly hazy when wet, but full mirror brilliance recovers as it dries."
     ],
     "inTheBox": [
       "Kroma Dedicated Topcoat Clear Base",

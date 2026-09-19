@@ -76,45 +76,45 @@ export const DEFAULT_HERO_CONFIG = {
   slides: [
     {
       id: "slide-1",
-      image: "assets/images/kroma-skull-mirror.jpg",
+      image: "assets/images/kroma-skull-studio-dark.jpg",
       caption: "01/06 • 100% Mirror Anatomic Chrome Skull (Zero Gray Haze)",
       badge: "Zero Gray Clouding",
-      position: "center right 18%"
+      position: "center right"
     },
     {
       id: "slide-2",
-      image: "assets/images/kroma-silver-surfer-wave.jpg",
+      image: "assets/images/kroma-surfer-wave-studio.jpg",
       caption: "02/06 • Full-Scale Silver Surfer on Ocean Wave (Pier Sunset)",
       badge: "Full Figure Liquid Chrome",
-      position: "center right 10%"
+      position: "center right"
     },
     {
       id: "slide-3",
-      image: "assets/images/kroma-helmet-mirror.jpg",
+      image: "assets/images/kroma-helmet-studio.jpg",
       caption: "03/06 • 99.4% Specular Mirror Racing Helmet (Standard 2K Clearcoat)",
       badge: "Standard 2K Clearcoat Applied",
-      position: "center right 15%"
+      position: "center right"
     },
     {
       id: "slide-4",
-      image: "assets/images/kroma-silver-surfer-front.jpg",
+      image: "assets/images/kroma-surfer-front-studio.jpg",
       caption: "04/06 • Liquid Metal Silver Surfer Front Profile (HVLP Applied)",
       badge: "HVLP 1.3mm Tip Applied",
-      position: "center right 15%"
+      position: "center right"
     },
     {
       id: "slide-5",
-      image: "assets/images/kroma-silver-surfer-back.jpg",
+      image: "assets/images/kroma-surfer-back-studio.jpg",
       caption: "05/06 • Back Anatomy & Platelet Alignment Reflection",
       badge: "Self-Aligning Platelets",
-      position: "center right 15%"
+      position: "center right"
     },
     {
       id: "slide-6",
-      image: "assets/images/flake_buggy_hero.jpg",
+      image: "assets/images/flake-buggy-studio.jpg",
       caption: "06/06 • Custom Flake Sand Rail & Chassis (Coast Signature)",
       badge: "Coast Signature Flake Finish",
-      position: "center right 10%"
+      position: "center right"
     }
   ]
 };

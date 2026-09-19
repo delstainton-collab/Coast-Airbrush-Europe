@@ -23,79 +23,369 @@ export const PRESET_PANELS = [
 ];
 
 /**
- * Calculates exact KromaEdge sprayable chrome and clearcoat volume requirements.
- * Benchmark: 1 fl oz of mixed KromaEdge Chrome covers 2 square feet (0.5 fl oz per sq ft).
+ * Calculates 3D rectangular box surface area (6 sides: 2(wl + hl + hw))
+ * or 5 sides (open bottom) if openBottom is true.
  */
-export function calculateKromaCoverage({ sqft = 0, sqm = 0 }) {
-  let effectiveSqFt = sqft;
+export function calculateBoxSurfaceArea(length, width, height, unit = 'in', openBottom = false) {
+  const l = parseFloat(length) || 0;
+  const w = parseFloat(width) || 0;
+  const h = parseFloat(height) || 0;
+  if (l <= 0 || w <= 0) return { sqin: 0, sqft: 0, sqcm: 0, sqm: 0 };
+
+  let areaSqIn = 0;
+  if (unit === 'in') {
+    areaSqIn = openBottom 
+      ? (l * w) + 2 * (h * l) + 2 * (h * w) 
+      : 2 * ((w * l) + (h * l) + (h * w));
+  } else if (unit === 'ft') {
+    const areaSqFt = openBottom 
+      ? (l * w) + 2 * (h * l) + 2 * (h * w) 
+      : 2 * ((w * l) + (h * l) + (h * w));
+    return {
+      sqft: Math.round(areaSqFt * 100) / 100,
+      sqm: Math.round(areaSqFt * CONVERSIONS.SQFT_TO_SQM * 100) / 100,
+      sqin: Math.round(areaSqFt * 144),
+      sqcm: Math.round(areaSqFt * 929.03)
+    };
+  } else if (unit === 'cm') {
+    const areaSqCm = openBottom 
+      ? (l * w) + 2 * (h * l) + 2 * (h * w) 
+      : 2 * ((w * l) + (h * l) + (h * w));
+    const areaSqM = areaSqCm / 10000;
+    const areaSqFt = areaSqM * CONVERSIONS.SQM_TO_SQFT;
+    return {
+      sqcm: Math.round(areaSqCm),
+      sqm: Math.round(areaSqM * 100) / 100,
+      sqft: Math.round(areaSqFt * 100) / 100,
+      sqin: Math.round(areaSqFt * 144)
+    };
+  } else if (unit === 'm') {
+    const areaSqM = openBottom 
+      ? (l * w) + 2 * (h * l) + 2 * (h * w) 
+      : 2 * ((w * l) + (h * l) + (h * w));
+    const areaSqFt = areaSqM * CONVERSIONS.SQM_TO_SQFT;
+    return {
+      sqm: Math.round(areaSqM * 100) / 100,
+      sqft: Math.round(areaSqFt * 100) / 100,
+      sqcm: Math.round(areaSqM * 10000),
+      sqin: Math.round(areaSqFt * 144)
+    };
+  }
+
+  const sqft = areaSqIn / 144;
+  const sqm = sqft * CONVERSIONS.SQFT_TO_SQM;
+  return {
+    sqin: Math.round(areaSqIn * 10) / 10,
+    sqft: Math.round(sqft * 100) / 100,
+    sqcm: Math.round(areaSqIn * 6.4516),
+    sqm: Math.round(sqm * 100) / 100
+  };
+}
+
+/**
+ * Calculates 2D flat panel surface area (L x W * sides)
+ */
+export function calculatePanelSurfaceArea(length, width, unit = 'in', sides = 1) {
+  const l = parseFloat(length) || 0;
+  const w = parseFloat(width) || 0;
+  const s = Math.max(1, parseFloat(sides) || 1);
+  if (l <= 0 || w <= 0) return { sqin: 0, sqft: 0, sqcm: 0, sqm: 0 };
+
+  if (unit === 'in') {
+    const areaSqIn = l * w * s;
+    const sqft = areaSqIn / 144;
+    return {
+      sqin: Math.round(areaSqIn * 10) / 10,
+      sqft: Math.round(sqft * 100) / 100,
+      sqcm: Math.round(areaSqIn * 6.4516),
+      sqm: Math.round(sqft * CONVERSIONS.SQFT_TO_SQM * 100) / 100
+    };
+  } else if (unit === 'ft') {
+    const sqft = l * w * s;
+    return {
+      sqft: Math.round(sqft * 100) / 100,
+      sqm: Math.round(sqft * CONVERSIONS.SQFT_TO_SQM * 100) / 100,
+      sqin: Math.round(sqft * 144),
+      sqcm: Math.round(sqft * 929.03)
+    };
+  } else if (unit === 'cm') {
+    const sqcm = l * w * s;
+    const sqm = sqcm / 10000;
+    const sqft = sqm * CONVERSIONS.SQM_TO_SQFT;
+    return {
+      sqcm: Math.round(sqcm),
+      sqm: Math.round(sqm * 100) / 100,
+      sqft: Math.round(sqft * 100) / 100,
+      sqin: Math.round(sqft * 144)
+    };
+  } else if (unit === 'm') {
+    const sqm = l * w * s;
+    const sqft = sqm * CONVERSIONS.SQM_TO_SQFT;
+    return {
+      sqm: Math.round(sqm * 100) / 100,
+      sqft: Math.round(sqft * 100) / 100,
+      sqcm: Math.round(sqm * 10000),
+      sqin: Math.round(sqft * 144)
+    };
+  }
+}
+
+/**
+ * Universal Formula-Driven Paint Coverage & Volume Calculation Engine.
+ * Supports:
+ *  - Kroma Edge nano-coatings: 1 oz covers 2 sq ft (0.5 oz / sq ft) in 1 continuous wet coat.
+ *  - High-Build Primers: 150-200 sq ft/gal in 2-3 coats.
+ *  - Epoxy Sealers: 300-350 sq ft/gal in 1 coat.
+ *  - Basecoats: 380-420 sq ft/gal in 2-3 coats.
+ *  - Candies: 320-360 sq ft/gal in 4-6 coats.
+ *  - Clears: 380-450 sq ft/gal in 2 coats.
+ */
+export function calculateUniversalCoverage({
+  system,
+  productOverride = null,
+  sqft = 0,
+  sqm = 0,
+  userCoats = null,
+  transferEfficiency = null
+}) {
+  let effectiveSqFt = parseFloat(sqft) || 0;
   if (sqm && sqm > 0) {
-    effectiveSqFt = sqm * CONVERSIONS.SQM_TO_SQFT;
+    effectiveSqFt = parseFloat(sqm) * CONVERSIONS.SQM_TO_SQFT;
   }
   if (!effectiveSqFt || effectiveSqFt <= 0) effectiveSqFt = 2.0;
 
-  // 1 fl oz mixed covers 2 sq ft (0.5 fl oz / ~14.78 mL per sq ft)
-  const chromeFlOz = Math.round((effectiveSqFt / 2.0) * 10) / 10;
-  const chromeMl = Math.round(chromeFlOz * CONVERSIONS.FLOZ_TO_ML);
+  // Resolve active profile with cascading inheritance: productOverride -> system -> default
+  const profile = productOverride?.coverageProfile || system?.coverageProfile || {
+    type: "basecoat",
+    benchmarkUnit: "sqft_per_gal",
+    coverageRateSqFtPerGal: 380,
+    recommendedCoats: 2,
+    minCoats: 1,
+    maxCoats: 4,
+    wasteBuffer: 1.15,
+    defaultTransferEfficiency: 0.65,
+    potLifeHours: 4,
+    packagingType: "liquid_containers"
+  };
 
-  // Dedicated clearcoat volume needed
-  const clearMl = Math.round(chromeMl * 1.25);
+  const coats = userCoats || profile.recommendedCoats || 1;
+  const eff = transferEfficiency || profile.defaultTransferEfficiency || 0.65;
+  const buffer = profile.wasteBuffer || 1.10;
 
-  // Recommended kit sizes based on 1oz = 2 sq ft:
-  // 140g (5oz) covers up to 10 sq ft
-  // 420g (15oz) covers up to 30 sq ft
-  // 1260g (45oz) covers up to 90 sq ft
-  // 2520g (90oz) covers up to 180 sq ft
-  // 10080g (360oz) covers up to 700 sq ft
-  let recommendedKit = "KromaEdge 140g / 5oz Kit (covers up to 10 sq ft)";
-  let recommendedClear = "Topcoat Clear 180 SET (378g)";
-  let kitSku = "KE-MIRROR-140G";
-  
-  if (chromeFlOz > 90 || effectiveSqFt > 180) {
-    recommendedKit = "KromaEdge 10080g / 360oz Ultra Large Kit (covers up to 700 sq ft)";
-    recommendedClear = "Topcoat Clear 3600 SET (x3)";
-    kitSku = "KE-MIRROR-10080G";
-  } else if (chromeFlOz > 45 || effectiveSqFt > 90) {
-    recommendedKit = "KromaEdge 2520g / 90oz Extra Large Kit (covers up to 180 sq ft)";
-    recommendedClear = "Topcoat Clear 3600 SET (7,560g)";
-    kitSku = "KE-MIRROR-2520G";
-  } else if (chromeFlOz > 15 || effectiveSqFt > 30) {
-    recommendedKit = "KromaEdge 1260g / 45oz Large Kit (covers up to 90 sq ft)";
-    recommendedClear = "Topcoat Clear 3600 SET / 900 SET";
-    kitSku = "KE-MIRROR-1260G";
-  } else if (chromeFlOz > 5 || effectiveSqFt > 10) {
-    recommendedKit = "KromaEdge 420g / 15oz Medium Kit (covers up to 30 sq ft)";
-    recommendedClear = "Topcoat Clear 900 SET (1,890g)";
-    kitSku = "KE-MIRROR-420G";
+  let totalFlOz = 0;
+  let totalMl = 0;
+
+  if (profile.benchmarkUnit === "sqft_per_oz") {
+    // Direct benchmark: e.g. Kroma Edge Chrome = 2.0 sq ft per fluid ounce
+    const benchmark = profile.benchmarkRate || 2.0;
+    totalFlOz = (effectiveSqFt / benchmark) * coats * buffer;
+    totalMl = totalFlOz * CONVERSIONS.FLOZ_TO_ML;
+  } else {
+    // Gallon rate benchmark: e.g. 400 sq ft/gal
+    const rate = profile.coverageRateSqFtPerGal || 380;
+    const effectiveSqFtPerGal = rate * eff;
+    const gallonsNeeded = (effectiveSqFt * coats * buffer) / effectiveSqFtPerGal;
+    totalMl = gallonsNeeded * CONVERSIONS.GAL_TO_ML;
+    totalFlOz = totalMl * CONVERSIONS.ML_TO_FLOZ;
+  }
+
+  // Minimum practical batch: hard to mix less than 14g / 15 mL accurately
+  if (totalMl < 15) totalMl = 15;
+  if (totalFlOz < 0.5) totalFlOz = 0.5;
+
+  const roundedMl = Math.round(totalMl * 10) / 10;
+  const roundedFlOz = Math.round(totalFlOz * 10) / 10;
+  const roundedGrams = Math.round(roundedMl * (system?.defaultDensity || 0.95) * 10) / 10;
+
+  // Allocate Package / Kit Tiers
+  let recommendedTier = null;
+  const tiers = profile.tiers || [];
+  if (tiers.length > 0) {
+    if (profile.packagingType === "kits_by_weight") {
+      // Find smallest kit that accommodates either maxSqFt or maxGrams
+      for (const tier of tiers) {
+        if (effectiveSqFt <= tier.maxSqFt || roundedGrams <= tier.maxGrams) {
+          recommendedTier = tier;
+          break;
+        }
+      }
+      if (!recommendedTier && tiers.length > 0) {
+        const topTier = tiers[tiers.length - 1];
+        const count = Math.ceil(effectiveSqFt / topTier.maxSqFt);
+        recommendedTier = {
+          name: `${count}x ${topTier.name}`,
+          sku: topTier.sku,
+          priceEUR: topTier.priceEUR * count,
+          desc: `Multi-kit allocation for ${effectiveSqFt.toFixed(1)} sq ft`
+        };
+      }
+    } else {
+      // Liquid container packaging (Pints, Quarts, Gallons)
+      for (const tier of tiers) {
+        if (effectiveSqFt <= tier.maxSqFt || roundedMl <= tier.ml) {
+          recommendedTier = tier;
+          break;
+        }
+      }
+      if (!recommendedTier && tiers.length > 0) {
+        const topTier = tiers[tiers.length - 1];
+        const count = Math.ceil(effectiveSqFt / topTier.maxSqFt);
+        recommendedTier = {
+          name: `${count}x ${topTier.name}`,
+          sku: topTier.sku,
+          priceEUR: (topTier.priceEUR || 100) * count,
+          desc: `Bulk project volume for ${effectiveSqFt.toFixed(1)} sq ft`
+        };
+      }
+    }
+  }
+
+  // Companion Product Logic (e.g. Kroma Dedicated Topcoat Clear)
+  let companion = null;
+  if (profile.requiresCompanion && profile.companionSystemId === "kroma_edge_dedicated_clear") {
+    companion = calculateTopcoatClearCoverage(effectiveSqFt);
   }
 
   return {
     sqft: Math.round(effectiveSqFt * 10) / 10,
     sqm: Math.round(effectiveSqFt * CONVERSIONS.SQFT_TO_SQM * 100) / 100,
-    chromeFlOz: chromeFlOz,
-    chromeMl: chromeMl,
-    clearMl: clearMl,
-    recommendedKit: recommendedKit,
-    recommendedClear: recommendedClear,
-    kitSku: kitSku
+    coats: coats,
+    totalMl: roundedMl,
+    totalFlOz: roundedFlOz,
+    totalGrams: roundedGrams,
+    profile: profile,
+    recommendedTier: recommendedTier,
+    companion: companion
   };
 }
 
 /**
- * Calculates total required liquid volume based on surface area and coats.
+ * Calculates Dedicated Topcoat Clear requirements for Kroma Edge.
+ * Ratio: 10 Parts Base : 1 Part Hardener : 70-100% Thinner
  */
-export function calculateRequiredVolume({ sqft, coats = 2, transferEfficiency = 0.65, coverageRateSqFtPerGal = 400 }) {
-  if (!sqft || sqft <= 0) return { ml: 250, floz: 8.45, quarts: 0.26 };
+export function calculateTopcoatClearCoverage(sqft, reductionPercent = 100) {
+  const effectiveSqFt = parseFloat(sqft) || 2.0;
+  // Clear coverage benchmark: ~378g (180 SET) covers ~16 sq ft
+  // 1 oz covers ~2 sq ft, plus 10% buffer
+  const gramsPerSqFt = (378 / 16); // ~23.6g per sq ft mixed
+  const totalGrams = Math.round(effectiveSqFt * gramsPerSqFt * 1.10);
 
-  const sqftPerGalEffective = coverageRateSqFtPerGal * transferEfficiency;
-  const gallonsNeeded = (sqft * coats) / sqftPerGalEffective;
-  const mlNeeded = gallonsNeeded * CONVERSIONS.GAL_TO_ML;
-  const flozNeeded = mlNeeded * CONVERSIONS.ML_TO_FLOZ;
-  const quartsNeeded = mlNeeded / CONVERSIONS.QT_TO_ML;
+  const reduction = Math.min(Math.max(parseFloat(reductionPercent) || 100, 70), 100);
+  // Parts: 10 (base) + 1 (hardener) + (reduction/10) (thinner)
+  const thinnerParts = reduction / 10;
+  const totalParts = 10 + 1 + thinnerParts;
+
+  const baseGrams = Math.round((totalGrams * (10 / totalParts)) * 10) / 10;
+  const hardenerGrams = Math.round((totalGrams * (1 / totalParts)) * 10) / 10;
+  const thinnerGrams = Math.round((totalGrams * (thinnerParts / totalParts)) * 10) / 10;
+
+  let recommendedSet = "Topcoat Clear 180 SET (378g)";
+  let clearSku = "KE-CLEAR-180";
+  let clearPriceEUR = 89.00;
+
+  if (effectiveSqFt > 65) {
+    const sets = Math.ceil(effectiveSqFt / 260);
+    recommendedSet = sets > 1 ? `${sets}x Topcoat Clear 3600 SET` : "Topcoat Clear 3600 SET (7,560g)";
+    clearSku = "KE-CLEAR-3600";
+    clearPriceEUR = 695.00 * sets;
+  } else if (effectiveSqFt > 16) {
+    recommendedSet = "Topcoat Clear 900 SET (1,890g)";
+    clearSku = "KE-CLEAR-900";
+    clearPriceEUR = 249.00;
+  }
 
   return {
-    ml: Math.round(mlNeeded * 10) / 10,
-    floz: Math.round(flozNeeded * 10) / 10,
-    quarts: Math.round(quartsNeeded * 100) / 100
+    sqft: Math.round(effectiveSqFt * 10) / 10,
+    totalGrams: totalGrams,
+    reductionPercent: reduction,
+    baseGrams: baseGrams,
+    hardenerGrams: hardenerGrams,
+    thinnerGrams: thinnerGrams,
+    // Cumulative tare targets for digital scale pouring
+    scaleTargets: {
+      step1Base: baseGrams,
+      step2Hardener: Math.round((baseGrams + hardenerGrams) * 10) / 10,
+      step3Thinner: Math.round((baseGrams + hardenerGrams + thinnerGrams) * 10) / 10
+    },
+    recommendedSet: recommendedSet,
+    clearSku: clearSku,
+    clearPriceEUR: clearPriceEUR
+  };
+}
+
+/**
+ * Backwards Area Calculator: Given target volume in g, mL, or oz,
+ * calculates the approximate surface area it will cover.
+ */
+export function calculateAreaFromVolume(amount, unit = 'ml', system = null) {
+  const vol = parseFloat(amount) || 0;
+  if (vol <= 0) return { sqft: 0, sqm: 0 };
+
+  let ml = vol;
+  if (unit === 'g') ml = vol / (system?.defaultDensity || 0.95);
+  else if (unit === 'oz' || unit === 'floz') ml = vol * CONVERSIONS.FLOZ_TO_ML;
+
+  const profile = system?.coverageProfile;
+  let sqft = 0;
+
+  if (profile?.benchmarkUnit === "sqft_per_oz") {
+    const floz = ml * CONVERSIONS.ML_TO_FLOZ;
+    const rate = profile.benchmarkRate || 2.0;
+    const buffer = profile.wasteBuffer || 1.10;
+    sqft = (floz / buffer) * rate;
+  } else {
+    const rate = profile?.coverageRateSqFtPerGal || 380;
+    const buffer = profile?.wasteBuffer || 1.15;
+    const eff = profile?.defaultTransferEfficiency || 0.65;
+    const gallons = ml / CONVERSIONS.GAL_TO_ML;
+    sqft = (gallons * rate * eff) / buffer;
+  }
+
+  return {
+    sqft: Math.round(sqft * 10) / 10,
+    sqm: Math.round(sqft * CONVERSIONS.SQFT_TO_SQM * 100) / 100
+  };
+}
+
+/**
+ * Calculates required liquid volume (mL) from surface area, theoretical coverage rate, and coat count.
+ */
+export function calculateRequiredVolume(areaSqFt, coverageRateSqFtPerGal = 400, coats = 2) {
+  const sqft = parseFloat(areaSqFt) || 0;
+  if (sqft <= 0) return 0;
+  const c = parseInt(coats, 10) || 1;
+  const rate = parseFloat(coverageRateSqFtPerGal) || 400;
+  const gallons = (sqft * c) / rate;
+  return Math.round(gallons * CONVERSIONS.GAL_TO_ML);
+}
+
+// Backward compatibility alias for existing code references
+export function calculateKromaCoverage({ sqft = 0, sqm = 0 }) {
+  const res = calculateUniversalCoverage({
+    system: {
+      coverageProfile: {
+        type: "nano_chrome",
+        benchmarkUnit: "sqft_per_oz",
+        benchmarkRate: 2.0,
+        recommendedCoats: 1,
+        wasteBuffer: 1.10,
+        requiresCompanion: true,
+        companionSystemId: "kroma_edge_dedicated_clear"
+      }
+    },
+    sqft,
+    sqm
+  });
+
+  return {
+    sqft: res.sqft,
+    sqm: res.sqm,
+    chromeFlOz: res.totalFlOz,
+    chromeMl: res.totalMl,
+    clearMl: res.companion ? Math.round(res.companion.totalGrams) : Math.round(res.totalMl * 1.25),
+    recommendedKit: res.recommendedTier ? res.recommendedTier.name : "KromaEdge 140g Kit",
+    recommendedClear: res.companion ? res.companion.recommendedSet : "Topcoat Clear 180 SET",
+    kitSku: res.recommendedTier ? res.recommendedTier.sku : "KE-MIRROR-140G"
   };
 }
 

@@ -550,6 +550,11 @@ const server = http.createServer(async (req, res) => {
   // STATIC FILE SERVING
   // ==========================================
   let reqFile = safePath === "/" || safePath === "\\" ? "/index.html" : safePath;
+  if (safePath === "/pages/about" || safePath === "/about") reqFile = "/about.html";
+  else if (safePath === "/pages/support" || safePath === "/support") reqFile = "/support.html";
+  else if (safePath === "/pages/shipping" || safePath === "/shipping") reqFile = "/shipping.html";
+  else if (safePath === "/pages/privacy" || safePath === "/pages/privacy-policy" || safePath === "/privacy") reqFile = "/privacy.html";
+  else if (safePath === "/pages/dealers" || safePath === "/dealers") reqFile = "/dealers.html";
   const filePath = path.join(__dirname, reqFile);
 
   if (!filePath.startsWith(__dirname)) {

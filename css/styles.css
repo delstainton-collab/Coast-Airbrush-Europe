@@ -482,22 +482,34 @@ body {
   border-left: 4px solid #22c55e;
 }
 
-/* Modal Drawer Overlay */
+/* Modal Drawer Overlay - GPU-Isolated & Decoupled Backdrop */
 .drawer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
-  z-index: 1000;
+  z-index: 10000;
   display: flex;
   justify-content: flex-end;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease;
+  isolation: isolate;
 }
 .drawer-overlay.active {
   opacity: 1;
   pointer-events: auto;
+}
+.drawer-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  z-index: 0;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .drawer-panel {
   background: #121414;
@@ -511,6 +523,11 @@ body {
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow-y: auto;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .drawer-overlay.active .drawer-panel {
   transform: translateX(0);
@@ -528,6 +545,11 @@ body {
   transform: translateX(-100%);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow-y: auto;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .drawer-overlay.active .drawer-panel-left {
   transform: translateX(0);
@@ -537,13 +559,11 @@ body {
   background: radial-gradient(circle at center, #26292b 0%, #121414 80%);
 }
 
-/* Modal Box (Center) */
+/* Modal Box (Center) - GPU-Isolated & Decoupled Backdrop to Prevent Hover Flickering */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
-  z-index: 1000;
+  z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -551,10 +571,27 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease;
+  isolation: isolate;
 }
 .modal-overlay.active {
   opacity: 1;
   pointer-events: auto;
+}
+/* Backdrop blur is on a separate pseudo-element plane behind .modal-box:
+   Mouse movements, child hover transitions, and repaints inside .modal-box
+   will NEVER invalidate, drop, or re-render the GPU backdrop filter! */
+.modal-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  z-index: 0;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .modal-box {
   background: #121414;
@@ -567,6 +604,34 @@ body {
   flex-direction: column;
   overflow-y: auto;
   position: relative;
+  z-index: 1;
+  isolation: isolate;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+.modal-box:hover {
+  transform: translate3d(0, 0, 0) !important;
+}
+
+/* Body lock & floating toast suppression during active modal sessions */
+body:has(.modal-overlay.active),
+body.modal-open {
+  overflow: hidden !important;
+}
+
+body:has(.modal-overlay.active) .social-proof-toast,
+body.modal-open .social-proof-toast {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+body:has(.modal-overlay.active) .daive-floating-container,
+body.modal-open .daive-floating-container {
+  opacity: 0.2 !important;
+  pointer-events: none !important;
 }
 
 /* Scale Assistant Real-time Display */
@@ -1001,33 +1066,53 @@ body {
   background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1), transform 12s cubic-bezier(0.25, 1, 0.5, 1);
-  transform: scale(1.06);
+  transform: scale(1.04);
   will-change: opacity, transform;
-  filter: contrast(1.08) brightness(0.92);
+  filter: contrast(1.05) brightness(1.02);
 }
 .hero-crossfade-slide.active {
-  opacity: 0.95;
+  opacity: 1;
   transform: scale(1);
 }
+/* Specular Studio Rim Glow behind floating specimen */
+.hero-specimen-glow {
+  position: absolute;
+  top: 15%;
+  right: 12%;
+  width: 550px;
+  height: 550px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(211, 47, 47, 0.20) 0%, rgba(255, 183, 77, 0.08) 42%, transparent 70%);
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: 1;
+  animation: heroPulseGlow 8s ease-in-out infinite alternate;
+}
+@keyframes heroPulseGlow {
+  0% { opacity: 0.65; transform: scale(0.96); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+/* Directional Mask guaranteeing 100% text legibility and contrast on left */
 .hero-directional-overlay {
   position: absolute;
   inset: 0;
   z-index: 2;
   background: linear-gradient(90deg, 
-    rgba(8, 10, 10, 0.98) 0%, 
-    rgba(8, 10, 10, 0.92) 32%, 
-    rgba(10, 12, 12, 0.70) 58%, 
-    rgba(10, 12, 12, 0.25) 82%, 
-    rgba(8, 10, 10, 0.15) 100%
+    #080a0a 0%, 
+    #080a0a 48%, 
+    rgba(8, 10, 10, 0.92) 56%, 
+    rgba(8, 10, 10, 0.40) 65%, 
+    rgba(8, 10, 10, 0.05) 76%, 
+    transparent 88%
   );
   pointer-events: none;
 }
 @media (max-width: 1024px) {
   .hero-directional-overlay {
     background: linear-gradient(180deg, 
-      rgba(8, 10, 10, 0.96) 0%, 
-      rgba(8, 10, 10, 0.88) 45%, 
-      rgba(10, 12, 12, 0.75) 100%
+      rgba(8, 10, 10, 0.98) 0%, 
+      rgba(8, 10, 10, 0.95) 55%, 
+      rgba(8, 10, 10, 0.88) 100%
     );
   }
 }
@@ -1364,6 +1449,18 @@ body {
 }
 #floating-dave-messages::-webkit-scrollbar-thumb:hover {
   background: #38bdf8;
+}
+
+/* Sticky Header Department & Section Anchoring */
+#dept-kroma-edge,
+#dept-guns,
+#dept-flakes,
+#dept-basecoats-binders,
+#dept-tapes,
+#dept-vsionair,
+#section-booth-proof,
+#quick-guide-flake {
+  scroll-margin-top: 5.5rem;
 }
 
 

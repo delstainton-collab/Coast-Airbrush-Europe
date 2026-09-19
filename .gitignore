@@ -38,3 +38,7 @@ data/*_secure.json
 *.mov
 !assets/videos/CAMPAIGN_GUIDE.md
 
+# Generated Shopify Companion Media Archive
+coast-shopify-media-files/
+coast-shopify-media-files.zip
+

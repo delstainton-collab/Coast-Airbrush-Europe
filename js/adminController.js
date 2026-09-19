@@ -1,7 +1,9 @@
 // Coast Airbrush Europe - Master Admin Controller & Add-On Management Suite
 import { KROMA_EDGE_CATALOG } from '../data/kroma_edge.js';
+import { HOK_SHIMRIN2_CATALOG } from '../data/hok_shimrin2.js';
+import { ACE_OF_SHADES_CATALOG } from '../data/ace_of_shades.js';
 import { PREORDER_PACKAGES } from './forumPreorderEngine.js';
-import { DEFAULT_HERO_CONFIG } from '../data/hero_config.js?v=20260908b';
+import { DEFAULT_HERO_CONFIG } from '../data/hero_config.js?v=20260908d';
 
 export const DEFAULT_TAXONOMY_CONFIG = {
   departments: [
@@ -75,9 +77,57 @@ export class AdminController {
         }
         if (!parsed.hero) {
           parsed.hero = JSON.parse(JSON.stringify(DEFAULT_HERO_CONFIG));
+        } else if (parsed.hero) {
+          if (!Array.isArray(parsed.hero.slides) || parsed.hero.slides.length < 6) {
+            parsed.hero.slides = JSON.parse(JSON.stringify(DEFAULT_HERO_CONFIG.slides));
+          } else {
+            const slideImageMap = {
+              'assets/images/kroma-skull-mirror.jpg': 'assets/images/kroma-skull-studio-dark.jpg',
+              'assets/images/kroma-silver-surfer-wave.jpg': 'assets/images/kroma-surfer-wave-studio.jpg',
+              'assets/images/kroma-silver-surfer-wave-stage.jpg': 'assets/images/kroma-surfer-wave-studio.jpg',
+              'assets/images/kroma-helmet-mirror.jpg': 'assets/images/kroma-helmet-studio.jpg',
+              'assets/images/kroma-helmet-studio-dark.jpg': 'assets/images/kroma-helmet-studio.jpg',
+              'assets/images/kroma-silver-surfer-front.jpg': 'assets/images/kroma-surfer-front-studio.jpg',
+              'assets/images/kroma-surfer-front-stage.jpg': 'assets/images/kroma-surfer-front-studio.jpg',
+              'assets/images/kroma-silver-surfer-back.jpg': 'assets/images/kroma-surfer-back-studio.jpg',
+              'assets/images/kroma-surfer-back-stage.jpg': 'assets/images/kroma-surfer-back-studio.jpg',
+              'assets/images/flake_buggy_hero.jpg': 'assets/images/flake-buggy-studio.jpg',
+              'assets/images/flake-buggy-stage.jpg': 'assets/images/flake-buggy-studio.jpg'
+            };
+            parsed.hero.slides.forEach(s => {
+              if (slideImageMap[s.image]) {
+                s.image = slideImageMap[s.image];
+              }
+              s.position = 'center right';
+            });
+          }
         }
         if (!parsed.taxonomy || !parsed.taxonomy.departments || !Array.isArray(parsed.taxonomy.departments)) {
           parsed.taxonomy = JSON.parse(JSON.stringify(DEFAULT_TAXONOMY_CONFIG));
+        }
+        if (parsed.formulas && Array.isArray(parsed.formulas)) {
+          // Filter out future brands not currently retailed by Coast Airbrush Europe
+          parsed.formulas = parsed.formulas.filter(f => !f.id.startsWith('s2_') && !f.id.startsWith('aos_'));
+          const allFormulas = KROMA_EDGE_CATALOG.mixingSystems || [];
+          parsed.formulas.forEach(f => {
+            const canonical = allFormulas.find(c => c.id === f.id);
+            if (canonical) {
+              if (!f.coverageProfile && canonical.coverageProfile) {
+                f.coverageProfile = JSON.parse(JSON.stringify(canonical.coverageProfile));
+              }
+              if (!f.applicationGuide && canonical.applicationGuide) {
+                f.applicationGuide = JSON.parse(JSON.stringify(canonical.applicationGuide));
+              }
+              if (!f.parts && canonical.parts) {
+                f.parts = JSON.parse(JSON.stringify(canonical.parts));
+              }
+            }
+          });
+          allFormulas.forEach(canon => {
+            if (!parsed.formulas.some(f => f.id === canon.id)) {
+              parsed.formulas.push(JSON.parse(JSON.stringify(canon)));
+            }
+          });
         }
         return parsed;
       } catch (e) {
@@ -255,12 +305,21 @@ export class AdminController {
   }
 
   login(enteredPin) {
-    const cleanPin = (enteredPin || '').trim().toUpperCase();
+    const rawPin = (enteredPin || '').trim().toUpperCase();
+    const cleanPin = rawPin.replace(/[!#\$%&\*\.\?]+$/, '');
     const currentPin = ((this.config && this.config.auth && this.config.auth.pin) || DEFAULT_PIN).trim().toUpperCase();
     const defaultPinUpper = DEFAULT_PIN.toUpperCase();
 
-    // Valid if matches configured PIN or master override PIN COAST2026
-    if (cleanPin && (cleanPin === currentPin || cleanPin === defaultPinUpper)) {
+    // Valid if matches configured PIN, master override PIN COAST2026, or COAST2026!
+    if (rawPin && (
+      rawPin === currentPin ||
+      rawPin === defaultPinUpper ||
+      cleanPin === defaultPinUpper ||
+      cleanPin === currentPin.replace(/[!#\$%&\*\.\?]+$/, '') ||
+      rawPin === 'COAST2026' ||
+      rawPin === 'COAST2026!' ||
+      cleanPin === 'COAST2026'
+    )) {
       this.isAuthenticated = true;
       try {
         if (typeof sessionStorage !== 'undefined') {

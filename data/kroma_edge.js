@@ -98,7 +98,91 @@ export const KROMA_EDGE_CATALOG = {
         { role: "hardener", name: "Kroma Edge Hardener", ratio: 2, defaultDensity: 1.02 },
         { role: "seeds", name: "Mirror Seeds Formula (Metallic Filler)", ratio: 2, defaultDensity: 1.10 }
       ],
-      description: "Self-Organization Mirror Chrome. Requires ONE continuous wet coat at >68°F. (Gloss black is NOT required; sand groundcoat with #600-#1000)."
+      description: "Self-Organization Mirror Chrome. Requires ONE continuous wet coat at >68°F. (Gloss black is NOT required; sand groundcoat with #600-#1000).",
+      coverageProfile: {
+        type: "nano_chrome",
+        benchmarkUnit: "sqft_per_oz",
+        benchmarkRate: 2.0, // 1 fl oz covers 2.0 sq ft
+        coverageRateSqFtPerGal: 256,
+        recommendedCoats: 1,
+        lockCoats: true,
+        coatNote: "Strictly 1 continuous wet coat (Max 3 coats permitted only after complete flash)",
+        targetDftMicrons: "15-30 µm",
+        potLifeHours: 3,
+        wasteBuffer: 1.10, // 10% in-cup / booth waste
+        requiresCompanion: true,
+        companionSystemId: "kroma_edge_dedicated_clear",
+        packagingType: "kits_by_weight",
+        tiers: [
+          { name: "Small Kit (140g / 5 oz)", maxSqFt: 10, maxGrams: 140, priceEUR: 149.00, sku: "KE-MIRROR-140G", desc: "Covers up to 10 sq ft (1-2 Racing Helmets, Motorcycle Tank, Guitar Body)" },
+          { name: "Medium Kit (420g / 15 oz)", maxSqFt: 30, maxGrams: 440, priceEUR: 389.00, sku: "KE-MIRROR-420G", desc: "Covers up to 30 sq ft (Complete Motorcycle Tank + Fenders + Side Covers)" },
+          { name: "Large Kit (1,260g / 45 oz)", maxSqFt: 90, maxGrams: 1360, priceEUR: 995.00, sku: "KE-MIRROR-1260G", desc: "Covers up to 90 sq ft (Complete Bike, Automotive Hood/Bonnet, Sculptures)" },
+          { name: "X-Large Kit (2,520g / 90 oz)", maxSqFt: 180, maxGrams: 2700, priceEUR: 1850.00, sku: "KE-MIRROR-2520G", desc: "Covers up to 180 sq ft (Multiple Automotive Panels, Complete Chopper)" },
+          { name: "Ultra XL Kit (10,080g / 360 oz)", maxSqFt: 700, maxGrams: 10080, priceEUR: 6490.00, sku: "KE-MIRROR-10080G", desc: "Covers up to 700 sq ft (Full Vehicle Respray, Commercial / Studio Volumes)" }
+        ]
+      },
+      applicationGuide: [
+        {
+          step: 1,
+          title: "Surface Preparation",
+          badge: "CRITICAL FOUNDATION",
+          summary: "Ensure the surface is completely smooth, clean, and free of dust or oils. A flawless base is critical for self-organization.",
+          points: [
+            "Apply over fully cured primer/sealer, base coat, or clear coat then sand with #600–#1000 grit.",
+            "★ A Gloss Black Groundcoat is NOT Required! (Works over smooth cured colored or neutral bases).",
+            "DO NOT apply over absorbent substrates or insufficiently cured coats (causes shrinkage).",
+            "Degrease strictly with silicone remover or isopropyl alcohol (IPA) only. Use low-lint wipes.",
+            "Always strain paint using ultra-fine ~5 µm strainer or Yoshino paper."
+          ],
+          alert: null
+        },
+        {
+          step: 2,
+          title: "Exact Mixing Protocol",
+          badge: "ORDER MATTERS",
+          summary: "Strictly follow the exact mixing order to ensure the mirror seeds activate correctly.",
+          points: [
+            "Step 1: Combine Binder (5 parts) and Reducer (5 parts) 1:1 first.",
+            "Step 2: Add Hardener (2 parts) to the reduced binder and stir thoroughly.",
+            "Step 3: Shake Mirror Seed container vigorously, then add Mirror Seed (2 parts) last.",
+            "Mix thoroughly but gently. Do not whip air bubbles into the liquid."
+          ],
+          alert: {
+            type: "warning",
+            title: "3-HOUR POT LIFE WARNING",
+            text: "Once hardener is added, the mixture must be sprayed within 3 hours before it begins curing in your gun. Do not mix more than you can spray in one session."
+          }
+        },
+        {
+          step: 3,
+          title: "Spray Technique & Application",
+          badge: "1 COAT ONLY",
+          summary: "Self-organizing nanoparticles rise to the surface while the resin layer settles underneath.",
+          points: [
+            "MUST: Apply ONE continuous wet coat. The coating film MUST remain wet until spraying is completed.",
+            "DO NOT: Apply mist coats or tack coats (causes pinholes, dry spray, or permanent loss of reflectivity).",
+            "Film Thickness: 15–30 µm (0.6 - 1.2 mil). Exceeding 40 µm WILL cause solvent cracking or sagging.",
+            "Environmental: Minimum application temperature is 68°F (20°C). Below 68°F slows solvent release.",
+            "Gun Setup: Mini/HVLP 0.8–1.3mm @ 1.2–1.5 Bar | Airbrush 0.3–0.5mm @ 25–45 PSI."
+          ],
+          alert: null
+        },
+        {
+          step: 4,
+          title: "Curing & Mirror Stabilization",
+          badge: "SOLVENT RELEASE",
+          summary: "Allow the 2K system to cure fully before attempting to clearcoat.",
+          points: [
+            "Air Cure: Minimum of 36 hours at room temperature (>68°F / 20°C). Try not to exceed 48 hours before clear; after 48 hours apply adhesion promoter.",
+            "Force Cure: Wait 5 minutes after mirror has formed. Force dry at 140°F–160°F (60°C–70°C) for 1–2 hours, followed by 24h at room temperature."
+          ],
+          alert: {
+            type: "danger",
+            title: "CLOUDINESS WARNING",
+            text: "Applying Topcoat before Kroma Edge is 100% fully cured WILL cause solvent penetration into the resin layer, resulting in irreversible hazing and cloudiness."
+          }
+        }
+      ]
     },
     {
       id: "kroma_edge_dedicated_clear",
@@ -111,7 +195,78 @@ export const KROMA_EDGE_CATALOG = {
         { role: "hardener", name: "Dedicated Clear Hardener", ratio: 1, defaultDensity: 1.02 },
         { role: "thinner", name: "Dedicated Clear Thinner", ratio: 8.5, defaultDensity: 0.84 }
       ],
-      description: "Non-destructive dedicated clearcoat for Kroma Edge. Prevents particle lifting. Apply fine mist tack coat, wait 5 min, then apply full wet coat."
+      description: "Non-destructive dedicated clearcoat for Kroma Edge. Prevents particle lifting. Apply fine mist tack coat, wait 5 min, then apply full wet coat.",
+      coverageProfile: {
+        type: "dedicated_clear",
+        benchmarkUnit: "sqft_per_gal",
+        coverageRateSqFtPerGal: 380,
+        recommendedCoats: 2,
+        lockCoats: false,
+        coatNote: "Step 1 Fine Mist Tack Coat + Step 2 Full Wet Flow Coat",
+        targetDftMicrons: "15 ± 2 µm",
+        potLifeHours: 4,
+        wasteBuffer: 1.10,
+        requiresCompanion: false,
+        packagingType: "kits_by_weight",
+        tiers: [
+          { name: "Topcoat Clear 180 SET (378g)", maxSqFt: 16, maxGrams: 378, priceEUR: 89.00, sku: "KE-CLEAR-180", desc: "Covers ~16 sq ft (1.5 m²). Exact companion for Small 140g Chrome Kit." },
+          { name: "Topcoat Clear 900 SET (1,890g)", maxSqFt: 65, maxGrams: 1890, priceEUR: 249.00, sku: "KE-CLEAR-900", desc: "Covers ~65 sq ft (6.0 m²). Companion for Medium & Large Chrome Kits." },
+          { name: "Topcoat Clear 3600 SET (7,560g)", maxSqFt: 260, maxGrams: 7560, priceEUR: 695.00, sku: "KE-CLEAR-3600", desc: "Covers ~260 sq ft (24.0 m²). Companion for XL & Multi-panel projects." }
+        ]
+      },
+      applicationGuide: [
+        {
+          step: 5,
+          title: "Topcoat Clear Mixing & Reduction",
+          badge: "10:1 RATIO",
+          summary: "Use ONLY Kroma Edge Dedicated Topcoat Clear. Non-dedicated clears may reactivate the chrome resin.",
+          points: [
+            "Mix Ratio: 10 parts Base : 1 part Hardener : 70%–100% Dedicated Thinner.",
+            "Reduction Slider: Use 70% thinner for higher film build; 100% thinner for maximum flow and glass leveling.",
+            "Pot Life: 4 hours usable bench time after mixing.",
+            "Shelf Life: Use within 3 months after opening container."
+          ],
+          alert: null
+        },
+        {
+          step: 6,
+          title: "Tack Coat (Dust Coat) First Pass",
+          badge: "FINE MIST ONLY",
+          summary: "The tack coat locks down the microscopic metallic particles without dissolving the mirror layer.",
+          points: [
+            "Apply as a fine, dry mist evenly over the entire chrome surface.",
+            "Apply very thinly so the chrome surface is only slightly wetted.",
+            "Inspect immediately for zero defects or fisheyes.",
+            "Note: Overly coarse droplets will imprint on the final surface texture."
+          ],
+          alert: null
+        },
+        {
+          step: 7,
+          title: "Full Flow Coat Second Pass",
+          badge: "FULL GLOSS BURIAL",
+          summary: "Bury the tack coat particles and achieve deep optical clarity.",
+          points: [
+            "Allow an interval of approximately 5 minutes after the tack coat.",
+            "Apply enough material with uniform flow to bring out deep gloss and bury tack particles.",
+            "Warning: This clear flows exceptionally well—watch edges carefully to prevent runs.",
+            "If slight orange-peel develops, allow to flash dry to the touch and apply one light leveling coat."
+          ],
+          alert: null
+        },
+        {
+          step: 8,
+          title: "Final Drying & Brightness Recovery",
+          badge: "MIRROR RECOVERY",
+          summary: "Brightness will recover as the dedicated clear flashes off and hardens.",
+          points: [
+            "Do not panic if chrome looks slightly muted when clear is wet; optical brilliance recovers during curing.",
+            "Air Dry: 20°C (68°F) for 24 hours or more before handling.",
+            "Force Dry: 60°C (140°F) for 1 hour or more. Polishable after 1h bake + 30 min cooling."
+          ],
+          alert: null
+        }
+      ]
     }
   ]
 };
