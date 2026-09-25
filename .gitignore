@@ -42,3 +42,8 @@ data/*_secure.json
 coast-shopify-media-files/
 coast-shopify-media-files.zip
 
+.vercel
+node_modules/
+data/launch_subscribers.*
+facebook-assets/
+preview_compromises.html

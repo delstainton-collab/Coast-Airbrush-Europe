@@ -301,20 +301,6 @@
         }
       ]
     },
-    "fk-2542": {
-      "entries": [
-        {
-          "sku": "FOM1000",
-          "dealerPriceGbp": 81.24,
-          "dealerPriceEur": 95.05,
-          "distributorPriceGbp": 48.75,
-          "distributorPriceEur": 57.04,
-          "discountPercent": 55,
-          "retailPriceGbp": 108.33,
-          "retailPriceEur": 126.75
-        }
-      ]
-    },
     "fk-2524": {
       "entries": [
         {

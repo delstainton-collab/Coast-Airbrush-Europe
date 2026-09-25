@@ -828,6 +828,10 @@
           <span class="material-symbols-outlined" style="font-size: 18px;">local_shipping</span>
           APC Hazchem Shipping
         </button>
+        <button class="crm-nav-tab" data-view="launch-vips" style="border-left: 2px solid var(--crm-red); color: #ff8585;">
+          <span class="material-symbols-outlined" style="font-size: 18px; color: var(--crm-red);">mark_email_read</span>
+          Launch VIP Leads
+        </button>
       </nav>
     </div>
 
@@ -1774,6 +1778,121 @@
           </thead>
           <tbody id="apcConsignmentsBody">
             <!-- Rendered dynamically by js/crm.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW: PRE-LAUNCH VIP LEADS & SUBSCRIBERS -->
+    <!-- ========================================== -->
+    <section id="view-launch-vips" class="crm-view-panel">
+      <!-- KPI Top Summary -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+        <div class="crm-card" style="border-top: 3px solid var(--crm-red);">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-red);">verified</span>
+              Total VIP Subscribers
+            </span>
+            <span class="badge badge-red" id="vipLiveBadge">LIVE VAULT</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 2.2rem; font-weight: 800; color: #fff;" id="vipCountTotal">0</div>
+            <div class="badge badge-green">Ready for Launch</div>
+          </div>
+          <div style="margin-top: 10px; font-size: 0.78rem; color: #888;">
+            Registered for 24h Early Access
+          </div>
+        </div>
+
+        <div class="crm-card" style="border-top: 3px solid var(--crm-cyan);">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-cyan);">directions_car</span>
+              Custom Auto & Moto
+            </span>
+            <span class="badge badge-chrome">Primary Focus</span>
+          </div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 2.2rem; font-weight: 800; color: #fff;" id="vipCountAuto">0</div>
+          <div style="margin-top: 10px; font-size: 0.78rem; color: #888;">
+            Kroma Edge & Flake King Buyers
+          </div>
+        </div>
+
+        <div class="crm-card" style="border-top: 3px solid var(--crm-amber);">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-amber);">brush</span>
+              Airbrush & Fine Artists
+            </span>
+            <span class="badge badge-gold">Studio Refinishers</span>
+          </div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 2.2rem; font-weight: 800; color: #fff;" id="vipCountAir">0</div>
+          <div style="margin-top: 10px; font-size: 0.78rem; color: #888;">
+            Precision Equipment & Reducers
+          </div>
+        </div>
+
+        <div class="crm-card" style="border-top: 3px solid var(--crm-green);">
+          <div class="crm-card-header">
+            <span class="crm-card-title">
+              <span class="material-symbols-outlined" style="color: var(--crm-green);">storefront</span>
+              Trade & Bodyshops
+            </span>
+            <span class="badge badge-green">B2B Qualified</span>
+          </div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 2.2rem; font-weight: 800; color: #fff;" id="vipCountTrade">0</div>
+          <div style="margin-top: 10px; font-size: 0.78rem; color: #888;">
+            Commercial Volume Pre-Orders
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Toolbar -->
+      <div class="crm-card" style="margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h3 style="font-family: 'Anybody', sans-serif; font-size: 1.1rem; text-transform: uppercase; color: #fff; margin: 0 0 4px 0;">
+              European Launch VIP Roster
+            </h3>
+            <p style="font-size: 0.8rem; color: var(--crm-chrome); margin: 0;">
+              Captured from pre-launch parking page. Directly formatted for Shopify Customer import and Day-1 email drops.
+            </p>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <button type="button" class="btn-chrome" onclick="window.fetchAndRenderLaunchVips()" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; font-size: 0.8rem; cursor: pointer;">
+              <span class="material-symbols-outlined" style="font-size: 16px;">refresh</span>
+              Refresh List
+            </button>
+            <a href="data/launch_subscribers.csv" download="coast_airbrush_vip_subscribers_shopify.csv" class="btn-red" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; font-size: 0.8rem;">
+              <span class="material-symbols-outlined" style="font-size: 16px;">download</span>
+              Download Shopify-Ready CSV
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subscribers Table -->
+      <div class="crm-card">
+        <table class="crm-table">
+          <thead>
+            <tr>
+              <th>Subscriber Name</th>
+              <th>Email Address</th>
+              <th>Primary Focus</th>
+              <th>Status</th>
+              <th>Shopify Tags</th>
+              <th>Registered At</th>
+            </tr>
+          </thead>
+          <tbody id="vipSubscribersTableBody">
+            <tr>
+              <td colspan="6" style="text-align: center; color: #888; padding: 30px;">
+                No subscribers recorded yet. Once visitors enter their details on the parking page, they will appear here in real time.
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

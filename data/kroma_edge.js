@@ -114,11 +114,11 @@ export const KROMA_EDGE_CATALOG = {
         companionSystemId: "kroma_edge_dedicated_clear",
         packagingType: "kits_by_weight",
         tiers: [
-          { name: "Small Kit (140g / 5 oz)", maxSqFt: 10, maxGrams: 140, priceEUR: 149.00, sku: "KE-MIRROR-140G", desc: "Covers up to 10 sq ft (1-2 Racing Helmets, Motorcycle Tank, Guitar Body)" },
-          { name: "Medium Kit (420g / 15 oz)", maxSqFt: 30, maxGrams: 440, priceEUR: 389.00, sku: "KE-MIRROR-420G", desc: "Covers up to 30 sq ft (Complete Motorcycle Tank + Fenders + Side Covers)" },
-          { name: "Large Kit (1,260g / 45 oz)", maxSqFt: 90, maxGrams: 1360, priceEUR: 995.00, sku: "KE-MIRROR-1260G", desc: "Covers up to 90 sq ft (Complete Bike, Automotive Hood/Bonnet, Sculptures)" },
-          { name: "X-Large Kit (2,520g / 90 oz)", maxSqFt: 180, maxGrams: 2700, priceEUR: 1850.00, sku: "KE-MIRROR-2520G", desc: "Covers up to 180 sq ft (Multiple Automotive Panels, Complete Chopper)" },
-          { name: "Ultra XL Kit (10,080g / 360 oz)", maxSqFt: 700, maxGrams: 10080, priceEUR: 6490.00, sku: "KE-MIRROR-10080G", desc: "Covers up to 700 sq ft (Full Vehicle Respray, Commercial / Studio Volumes)" }
+          { name: "Small Kit (140g / 5 oz)", maxSqFt: 10, maxGrams: 140, priceGBP: 235.00, priceEUR: 276.47, sku: "KE-MIRROR-140G", desc: "Covers up to 10 sq ft (1-2 Racing Helmets, Motorcycle Tank, Guitar Body)" },
+          { name: "Medium Kit (420g / 15 oz)", maxSqFt: 30, maxGrams: 440, priceGBP: 640.00, priceEUR: 752.94, sku: "KE-MIRROR-420G", desc: "Covers up to 30 sq ft (Complete Motorcycle Tank + Fenders + Side Covers)" },
+          { name: "Large Kit (1,260g / 45 oz)", maxSqFt: 90, maxGrams: 1360, priceGBP: 1450.00, priceEUR: 1705.88, sku: "KE-MIRROR-1260G", desc: "Covers up to 90 sq ft (Complete Bike, Automotive Hood/Bonnet, Sculptures)" },
+          { name: "X-Large Kit (2,520g / 90 oz)", maxSqFt: 180, maxGrams: 2700, priceGBP: 2550.00, priceEUR: 3000.00, sku: "KE-MIRROR-2520G", desc: "Covers up to 180 sq ft (Multiple Automotive Panels, Complete Chopper)" },
+          { name: "Ultra XL Kit (10,080g / 360 oz)", maxSqFt: 700, maxGrams: 10080, priceGBP: 9250.00, priceEUR: 10882.35, sku: "KE-MIRROR-10080G", desc: "Covers up to 700 sq ft (Full Vehicle Respray, Commercial / Studio Volumes)" }
         ]
       },
       applicationGuide: [
@@ -209,9 +209,9 @@ export const KROMA_EDGE_CATALOG = {
         requiresCompanion: false,
         packagingType: "kits_by_weight",
         tiers: [
-          { name: "Topcoat Clear 180 SET (378g)", maxSqFt: 16, maxGrams: 378, priceEUR: 89.00, sku: "KE-CLEAR-180", desc: "Covers ~16 sq ft (1.5 m²). Exact companion for Small 140g Chrome Kit." },
-          { name: "Topcoat Clear 900 SET (1,890g)", maxSqFt: 65, maxGrams: 1890, priceEUR: 249.00, sku: "KE-CLEAR-900", desc: "Covers ~65 sq ft (6.0 m²). Companion for Medium & Large Chrome Kits." },
-          { name: "Topcoat Clear 3600 SET (7,560g)", maxSqFt: 260, maxGrams: 7560, priceEUR: 695.00, sku: "KE-CLEAR-3600", desc: "Covers ~260 sq ft (24.0 m²). Companion for XL & Multi-panel projects." }
+          { name: "Topcoat Clear 180 SET (378g)", maxSqFt: 16, maxGrams: 378, priceGBP: 65.00, priceEUR: 76.47, sku: "KE-CLEAR-180", desc: "Covers ~16 sq ft (1.5 m²). Exact companion for Small 140g Chrome Kit." },
+          { name: "Topcoat Clear 900 SET (1,890g)", maxSqFt: 65, maxGrams: 1890, priceGBP: 285.00, priceEUR: 335.29, sku: "KE-CLEAR-900", desc: "Covers ~65 sq ft (6.0 m²). Companion for Medium & Large Chrome Kits." },
+          { name: "Topcoat Clear 3600 SET (7,560g)", maxSqFt: 260, maxGrams: 7560, priceGBP: 1050.00, priceEUR: 1235.29, sku: "KE-CLEAR-3600", desc: "Covers ~260 sq ft (24.0 m²). Companion for XL & Multi-panel projects." }
         ]
       },
       applicationGuide: [

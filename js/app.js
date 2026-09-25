@@ -30,7 +30,7 @@ export function getAssetUrl(path) {
   const assetRoot = typeof window !== 'undefined' && window.SHOPIFY_ASSET_URL_ROOT;
   const fileRoot = typeof window !== 'undefined' && window.SHOPIFY_FILE_URL_ROOT;
 
-  // Core theme branding and icons live in the Shopify theme assets directory
+  // Core theme branding, icons, and hero cockpit imagery live in the Shopify theme assets directory
   const themeAssets = [
     'coast_logo_white.png',
     'coast_logo_black.png',
@@ -43,7 +43,15 @@ export function getAssetUrl(path) {
     'icon-512.png',
     'coast-storefront-bundle.js',
     'styles.css',
-    'full_ecom_catalog.js'
+    'full_ecom_catalog.js',
+    'kroma-skull-studio-dark.jpg',
+    'kroma-detail-skull.jpg',
+    'flake-buggy-studio.jpg',
+    'flake_buggy_hero.jpg',
+    'fk100-prime-black-base.jpg',
+    'flake-king-orange-mixed-set.jpg',
+    'kroma-helmet-mirror.jpg',
+    'kroma-detail-helmet.jpg'
   ];
 
   if (themeAssets.includes(filename)) {
@@ -149,11 +157,10 @@ class PaintSystemApp {
       }
     });
 
-    // Stakeholder Review Mode (prevents live orders before official sign-off)
-    // Can be overridden via URL parameter ?live=true or ?review=false
+    // Storefront Operational Mode: Live production storefront by default.
+    // Review/staging mode can be explicitly previewed via URL parameter ?review=true or ?staging=true
     const urlParams = new URLSearchParams(window.location.search);
-    const liveOverride = urlParams.get('live') === 'true' || urlParams.get('review') === 'false';
-    this.reviewMode = !liveOverride;
+    this.reviewMode = urlParams.get('review') === 'true' || urlParams.get('staging') === 'true';
 
     this.initUI();
 
@@ -685,6 +692,22 @@ class PaintSystemApp {
       this.renderDeptFlakesGrid();
       this.renderDeptGunsGrid();
       this.renderDeptTapesGrid();
+
+      // Dynamic currency update for Hero Split Cockpit cards & Master Kit CTA
+      const activeCountry = this.euLocalization.getCountry();
+      const isEur = activeCountry.currency === 'EUR';
+      const kromaCockpitEl = document.getElementById('cockpit-price-kroma');
+      const gunsCockpitEl = document.getElementById('cockpit-price-guns');
+      if (kromaCockpitEl) {
+        kromaCockpitEl.textContent = isEur ? 'Kits from €76.47' : 'Kits from £65.00';
+      }
+      if (gunsCockpitEl) {
+        gunsCockpitEl.textContent = isEur ? 'Guns from €97.50' : 'Guns from £83.33';
+      }
+      const masterKitBtnText = document.getElementById('btn-master-kit-text');
+      if (masterKitBtnText) {
+        masterKitBtnText.textContent = isEur ? 'ADD MASTER KIT • €243.75' : 'ADD MASTER KIT • £208.33';
+      }
     } catch (err) {
       console.warn('Error syncing featured showcase cards:', err);
     }
@@ -2210,16 +2233,19 @@ class PaintSystemApp {
   matchCategory(product, catId) {
     if (!catId || catId === 'all') return true;
     if (catId === 'vsionair-all') return product.brand === 'VsionAir';
-    if (catId === 'vsionair-jigs') {
-      return product.brand === 'VsionAir' && ['Helmet Jigs', 'Motorcycle Part Jigs', 'Canvass Jig', 'Vsion Easel Modules', 'Car & Motorcycle Wheel Jig', 'Skateboard Jig', 'Thermal Mug Jig', 'Guitar Parts Jigs'].includes(product.category);
+    if (catId === 'Work-Holding Jigs' || catId === 'vsionair-jigs') {
+      return product.brand === 'VsionAir' && (product.category === 'Work-Holding Jigs' || ['Helmet Jigs', 'Motorcycle Part Jigs', 'Canvass Jig', 'Vsion Easel Modules', 'Car & Motorcycle Wheel Jig', 'Skateboard Jig', 'Thermal Mug Jig', 'Guitar Parts Jigs'].includes(product.category));
     }
+    if (catId === 'Base Stands & Easels') return product.brand === 'VsionAir' && (product.category === 'Base Stands & Easels' || product.category === 'Stands' || product.category === 'Accessories');
+    if (catId === 'Tool Bars & Lighting Rigs') return product.brand === 'VsionAir' && (product.category === 'Tool Bars & Lighting Rigs' || product.category === 'VsionAir Frame');
+    if (catId === 'Tool & Airbrush Holders') return product.brand === 'VsionAir' && (product.category === 'Tool & Airbrush Holders' || product.category === 'Airbrush Specific' || product.category === 'Storage, Comfort & Environment');
+    if (catId === 'Fixings, Knobs & Hardware') return product.brand === 'VsionAir' && (product.category === 'Fixings, Knobs & Hardware' || product.category === 'VsionAir Knobs' || product.category === 'VsionAir Brackets' || product.category === 'VsionAir Fasteners');
     if (catId === 'Helmet Jigs') return product.brand === 'VsionAir' && product.category === 'Helmet Jigs';
     if (catId === 'Motorcycle Part Jigs') return product.brand === 'VsionAir' && product.category === 'Motorcycle Part Jigs';
     if (catId === 'Canvass Jig') return product.brand === 'VsionAir' && (product.category === 'Canvass Jig' || product.category === 'Vsion Easel Modules');
     if (catId === 'Car & Motorcycle Wheel Jig') return product.brand === 'VsionAir' && product.category === 'Car & Motorcycle Wheel Jig';
     if (catId === 'Specialty Jigs') return product.brand === 'VsionAir' && ['Skateboard Jig', 'Thermal Mug Jig', 'Guitar Parts Jigs'].includes(product.category);
     if (catId === 'Stands') return product.brand === 'VsionAir' && (product.category === 'Stands' || product.category === 'Accessories');
-    if (catId === 'Tool Bars & Lighting Rigs') return product.brand === 'VsionAir' && (product.category === 'Tool Bars & Lighting Rigs' || product.category === 'VsionAir Frame');
     if (catId === 'Airbrush Specific') return product.brand === 'VsionAir' && product.category === 'Airbrush Specific';
     if (catId === 'Storage, Comfort & Environment') return product.brand === 'VsionAir' && product.category === 'Storage, Comfort & Environment';
     if (catId === 'VsionAir Knobs') return product.brand === 'VsionAir' && product.category === 'VsionAir Knobs';
@@ -2266,22 +2292,17 @@ class PaintSystemApp {
       { id: "Basecoats & Binders", label: "Basecoats & Binders", icon: "science", brand: "Flake King" },
       { id: "Dry Metal Flake Guns", label: "Flake Guns & Kits", icon: "precision_manufacturing", brand: "Flake King" },
       { id: "Flake King Gun Accessories", label: "Gun Accessories", icon: "build", brand: "Flake King" },
-      { id: "vsionair-all", label: "Workstations & Jigs", icon: "handyman", brand: "VsionAir" },
+      { id: "vsionair-all", label: "Workstations & Jigs (Coming Soon)", icon: "handyman", brand: "VsionAir" },
       { id: "Masking Products", label: "Fine Line Tapes", icon: "content_cut", brand: "Flake King" }
     ];
 
     const VSIONAIR_SUBCATS = [
       { id: "vsionair-all", label: "All Workstations & Jigs" },
-      { id: "Helmet Jigs", label: "Helmet & Mask Jigs" },
-      { id: "Motorcycle Part Jigs", label: "Tank & Fender Jigs" },
-      { id: "Car & Motorcycle Wheel Jig", label: "Wheel & Rim Jigs" },
-      { id: "Canvass Jig", label: "Canvass & Easels" },
-      { id: "Specialty Jigs", label: "Skateboard & Guitar" },
-      { id: "Stands", label: "Stands & Mounts" },
-      { id: "Tool Bars & Lighting Rigs", label: "Lighting Rigs" },
-      { id: "Airbrush Specific", label: "Airbrush Holders" },
-      { id: "VsionAir Knobs", label: "Knobs & Brackets" },
-      { id: "Storage, Comfort & Environment", label: "Storage & Ergonomics" }
+      { id: "Work-Holding Jigs", label: "Work-Holding Jigs (10)" },
+      { id: "Base Stands & Easels", label: "Base Stands & Easels (7)" },
+      { id: "Tool Bars & Lighting Rigs", label: "Lighting Rigs & Tool Bars (9)" },
+      { id: "Tool & Airbrush Holders", label: "Airbrush & Tool Holders (18)" },
+      { id: "Fixings, Knobs & Hardware", label: "Fixings, Knobs & Hardware (25)" }
     ];
 
     const FLAKE_SUBCATS = [
@@ -2876,6 +2897,12 @@ class PaintSystemApp {
     this.addSafeListener('btn-detail-add-cart', () => {
       if (this.activeModalProduct) {
         const prod = this.activeModalProduct;
+        if (prod.isComingSoon || prod.brand === 'VsionAir') {
+          const subject = encodeURIComponent(`VsionAir Allocation Inquiry: ${prod.name} (${prod.sku || ''})`);
+          const body = encodeURIComponent(`Hello Coast Airbrush Europe,\n\nPlease register my interest / provide quotation for:\nProduct: ${prod.name}\nSKU: ${prod.sku || 'N/A'}\n\nName:\nCompany (if applicable):\nCountry:\nQuantity required:\n\nThank you.`);
+          window.location.href = `mailto:info@coastairbrush.eu?subject=${subject}&body=${body}`;
+          return;
+        }
         const currentSelection = this.selectedProductVariants[prod.id] || {};
         const prices = this.getProductCalculatedPrice(prod, currentSelection.pack, currentSelection.size);
         const variantDesc = [currentSelection.size, currentSelection.pack].filter(Boolean).join(' / ') || 'Standard';
@@ -3230,21 +3257,37 @@ class PaintSystemApp {
         skuEl.textContent = `SKU: ${prices.sku || product.sku || 'N/A'}${prices.barcode ? ` | EAN: ${prices.barcode}` : ''}`;
       }
 
+      const isComingSoonProd = Boolean(product.isComingSoon || product.brand === 'VsionAir' || (product.badge && product.badge.includes('COMING SOON')));
       const priceEl = document.getElementById('detail-price');
-      if (priceEl && prices) {
-        priceEl.innerHTML = `
-          <span>${prices.formattedPrimary}</span>
-          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded align-middle ml-2 ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}">${prices.primaryVatBadge}</span>
-        `;
+      if (priceEl) {
+        if (isComingSoonProd) {
+          priceEl.innerHTML = `
+            <div class="flex items-baseline gap-2 flex-wrap">
+              <span class="font-headline text-2xl sm:text-3xl text-amber-400 font-extrabold tracking-wide">PRICE ON APPLICATION (POA)</span>
+              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-500/40">2026 ALLOCATION</span>
+            </div>
+          `;
+        } else if (prices) {
+          priceEl.innerHTML = `
+            <span>${prices.formattedPrimary}</span>
+            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded align-middle ml-2 ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}">${prices.primaryVatBadge}</span>
+          `;
+        }
       }
       const priceSubEl = document.getElementById('detail-price-sub');
-      if (priceSubEl && prices) {
-        const country = this.euLocalization.getCountry();
-        priceSubEl.innerHTML = `
-          <span class="text-white font-bold">${prices.formattedSecondary}</span>
-          <span class="text-slate-400 ml-1.5">• ${prices.formattedSecondaryCur}</span>
-          ${prices.isUK ? `<span class="text-amber-400 ml-1.5 hidden sm:inline">(20% UK HMRC VAT)</span>` : `<span class="text-emerald-400 ml-1.5 hidden sm:inline">(${prices.vatRatePercent}% ${country.code} Tax)</span>`}
-        `;
+      if (priceSubEl) {
+        if (isComingSoonProd) {
+          priceSubEl.innerHTML = `
+            <span class="text-neutral-400 text-xs font-mono">Automated checkout paused • Direct engineering allocation &amp; manual quotations available</span>
+          `;
+        } else if (prices) {
+          const country = this.euLocalization.getCountry();
+          priceSubEl.innerHTML = `
+            <span class="text-white font-bold">${prices.formattedSecondary}</span>
+            <span class="text-slate-400 ml-1.5">• ${prices.formattedSecondaryCur}</span>
+            ${prices.isUK ? `<span class="text-amber-400 ml-1.5 hidden sm:inline">(20% UK HMRC VAT)</span>` : `<span class="text-emerald-400 ml-1.5 hidden sm:inline">(${prices.vatRatePercent}% ${country.code} Tax)</span>`}
+          `;
+        }
       }
 
       // Render variant controls inside modal
@@ -3352,17 +3395,38 @@ class PaintSystemApp {
         if (vocEl) vocEl.textContent = '<420 g/L (EU 2004/42/EC Stage II Compliant)';
       }
 
-      const isPreOrder = Boolean(product.isPreOrder || (product.badge && product.badge.includes('EARLY BIRD')) || (product.id && product.id.startsWith('preorder_')));
+      const isComingSoon = Boolean(product.isComingSoon || product.brand === 'VsionAir' || (product.badge && product.badge.includes('COMING SOON')));
+      const isPreOrder = !isComingSoon && Boolean(product.isPreOrder || (product.badge && product.badge.includes('EARLY BIRD')) || (product.id && product.id.startsWith('preorder_')));
       const stockBadge = document.getElementById('detail-stock-badge');
       if (stockBadge) {
-        stockBadge.textContent = isPreOrder ? '⏳ PRE-ORDER (BATCH 1 PRIORITY ALLOCATION)' : '⚡ IN STOCK (UK DISPATCH)';
-        stockBadge.className = isPreOrder 
-          ? 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/80 border border-amber-500/50 text-amber-300 font-mono text-[11px] font-bold tracking-wide backdrop-blur-md shadow-md' 
-          : 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/80 border border-emerald-500/60 text-emerald-300 font-mono text-[11px] font-bold tracking-wide backdrop-blur-md shadow-md';
+        if (isComingSoon) {
+          stockBadge.textContent = '⏳ COMING SOON • 2026 DIRECT ALLOCATION';
+          stockBadge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/80 border border-amber-500/60 text-amber-300 font-mono text-[11px] font-bold tracking-wide backdrop-blur-md shadow-md';
+        } else {
+          stockBadge.textContent = isPreOrder ? '⏳ PRE-ORDER (BATCH 1 PRIORITY ALLOCATION)' : '⚡ IN STOCK (UK DISPATCH)';
+          stockBadge.className = isPreOrder 
+            ? 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/80 border border-amber-500/50 text-amber-300 font-mono text-[11px] font-bold tracking-wide backdrop-blur-md shadow-md' 
+            : 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/80 border border-emerald-500/60 text-emerald-300 font-mono text-[11px] font-bold tracking-wide backdrop-blur-md shadow-md';
+        }
       }
       const addCartBtn = document.getElementById('btn-detail-add-cart');
       if (addCartBtn) {
-        addCartBtn.textContent = isPreOrder ? '🛒 PRE-ORDER NOW • SECURE BATCH 1 ALLOCATION' : '+ ADD TO PROJECT CART';
+        if (isComingSoon) {
+          addCartBtn.textContent = '✉ REQUEST ALLOCATION QUOTE / REGISTER INTEREST';
+          addCartBtn.className = 'mech-button-primary !w-full !justify-center !text-sm !py-3.5 font-bold tracking-wider opacity-90 hover:opacity-100 !bg-amber-600 hover:!bg-amber-500 !text-black border border-amber-400 cursor-pointer shadow-[0_0_12px_rgba(245,158,11,0.4)]';
+        } else {
+          addCartBtn.textContent = isPreOrder ? '🛒 PRE-ORDER NOW • SECURE BATCH 1 ALLOCATION' : '+ ADD TO PROJECT CART';
+          addCartBtn.className = 'mech-button-primary !w-full !justify-center !text-sm !py-3.5 font-bold tracking-wider';
+        }
+      }
+
+      const mixCalcBtn = document.getElementById('btn-detail-open-mix-calc');
+      if (mixCalcBtn) {
+        if (product.brand === 'VsionAir' || isComingSoon) {
+          mixCalcBtn.classList.add('hidden');
+        } else {
+          mixCalcBtn.classList.remove('hidden');
+        }
       }
 
       const mainImageSrc = getAssetUrl(product.image) || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80';
@@ -4528,7 +4592,8 @@ class PaintSystemApp {
       const brandText = this.activeBrandFilter === 'all' ? 'All Brands' : this.activeBrandFilter;
       const catText = this.activeCategoryFilter === 'all' ? 'All Categories' : this.activeCategoryFilter;
       const totalActive = ECOM_CATALOG.filter(p => !p.hideFromStorefront).length;
-      countBadge.textContent = `Showing ${filtered.length} of ${totalActive} In-Stock Products (${brandText} > ${catText})`;
+      const brandSuffix = (this.activeBrandFilter === 'VsionAir' || this.activeCategoryFilter === 'vsionair-all') ? 'Coming Soon Products' : 'Products';
+      countBadge.textContent = `Showing ${filtered.length} of ${totalActive} ${brandSuffix} (${brandText} > ${catText})`;
     }
 
     const mobileCountBadge = document.getElementById('mobile-shop-results-count');
@@ -4594,13 +4659,16 @@ class PaintSystemApp {
         const prices = this.getProductCalculatedPrice(prod, currentSelection.pack, currentSelection.size, currentSelection.width);
         const reviewData = this.getProductReviewData(prod) || { rating: '4.9', count: 24, quote: '', author: '' };
 
-        const isPreOrder = Boolean(prod.isPreOrder || (prod.badge && (prod.badge.includes('EARLY BIRD') || prod.badge.includes('PRE-ORDER') || prod.badge.includes('BATCH 1'))) || prod.id.startsWith('preorder_'));
+        const isComingSoon = Boolean(prod.isComingSoon || prod.brand === 'VsionAir' || (prod.badge && prod.badge.includes('COMING SOON')));
+        const isPreOrder = !isComingSoon && Boolean(prod.isPreOrder || (prod.badge && (prod.badge.includes('EARLY BIRD') || prod.badge.includes('PRE-ORDER') || prod.badge.includes('BATCH 1'))) || prod.id.startsWith('preorder_'));
         const subCategoryLabel = isFlake ? this.getFlakeSubcategory(prod) : null;
         let badgeText = prod.badge || 'IN STOCK';
         if (this.isB2BMode && this.b2bSession) {
           badgeText = this.b2bSession.role === 'distributor' 
             ? '📦 DISTRIBUTOR WHOLESALE' 
             : '🏢 DEALER WHOLESALE';
+        } else if (isComingSoon) {
+          badgeText = '⏳ COMING SOON';
         } else if (isPreOrder) {
           badgeText = `⏳ ${prod.badge || 'PRE-ORDER'}`;
         } else if (isFlake && subCategoryLabel) {
@@ -4655,20 +4723,20 @@ class PaintSystemApp {
                     <span>DEMO (${prod.videos.length})</span>
                   </button>
                 ` : ''}
-                <span class="${isPreOrder ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-[0_0_12px_rgba(225,29,72,0.6)]' : 'bg-emerald-950/80 border border-emerald-500/50 text-emerald-300'} font-mono text-[10px] font-bold px-2.5 py-0.5 rounded backdrop-blur-sm">${badgeText}</span>
+                <span class="${isComingSoon ? 'bg-amber-950/90 border border-amber-500/70 text-amber-300 shadow-[0_0_10px_rgba(245,158,11,0.4)]' : (isPreOrder ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-[0_0_12px_rgba(225,29,72,0.6)]' : 'bg-emerald-950/80 border border-emerald-500/50 text-emerald-300')} font-mono text-[10px] font-bold px-2.5 py-0.5 rounded backdrop-blur-sm">${badgeText}</span>
               </div>
             </div>
 
             <div class="p-4 bg-[#141618]">
               <div class="flex items-center justify-between text-[11px] font-mono text-neutral-400 mb-1">
                 <span id="card-sku-${prod.id}">SKU: <span id="card-sku-val-${prod.id}" class="text-zinc-300 font-semibold">${prices.sku || prod.sku || 'N/A'}</span></span>
-                ${isPreOrder ? '<span class="text-rose-400 font-bold text-[10px] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-ping"></span> Batch 1 Allocation</span>' : '<span class="text-emerald-400 text-[10px] font-semibold">● UK In Stock</span>'}
+                ${isComingSoon ? '<span class="text-amber-400 font-bold text-[10px] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> ⏳ Coming Soon</span>' : (isPreOrder ? '<span class="text-rose-400 font-bold text-[10px] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-ping"></span> Batch 1 Allocation</span>' : '<span class="text-emerald-400 text-[10px] font-semibold">● UK In Stock</span>')}
               </div>
               <h4 onclick="window.paintApp && window.paintApp.openDetailModal('${prod.id}')" class="font-headline text-[13px] sm:text-sm uppercase text-white font-bold mb-1 line-clamp-2 min-h-[2.5rem] leading-snug tracking-tight group-hover:text-primary transition-colors cursor-pointer" title="Click to view product details &amp; options">${prod.name}</h4>
               
               <div class="flex items-center justify-between text-[11px] font-mono my-2 text-neutral-400">
-                <span class="text-emerald-400 font-bold flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> ${isPreOrder ? 'Batch 1 Pre-Order' : 'UK Dispatch'}
+                <span class="${isComingSoon ? 'text-amber-400' : 'text-emerald-400'} font-bold flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full ${isComingSoon ? 'bg-amber-400' : 'bg-emerald-400'}"></span> ${isComingSoon ? '2026 Direct Allocation' : (isPreOrder ? 'Batch 1 Pre-Order' : 'UK Dispatch')}
                 </span>
                 <span class="text-[10px] text-neutral-400 uppercase font-mono tracking-wider">${prod.category || 'PRO GRADE'}</span>
               </div>
@@ -4681,15 +4749,24 @@ class PaintSystemApp {
           <div class="p-4 pt-0 bg-[#141618]">
             <div class="flex items-center justify-between border-t border-white/10 pt-3 mb-3">
               <div>
-                <div class="flex items-baseline gap-1.5 flex-wrap">
-                  <span id="price-eur-${prod.id}" data-price-eur="${prod.id}" data-price-primary="${prod.id}" class="price-eur-${prod.id} font-headline text-2xl text-white font-extrabold block leading-none">${prices.formattedPrimary}</span>
-                  <span id="price-vat-badge-${prod.id}" data-price-vat-badge="${prod.id}" class="price-vat-badge-${prod.id} text-[10px] font-mono font-bold px-1.5 py-0.5 rounded leading-none ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}">${prices.primaryVatBadge}</span>
-                </div>
-                <div class="flex items-center gap-1.5 mt-1 flex-wrap">
-                  <span id="price-gbp-${prod.id}" data-price-gbp="${prod.id}" data-price-secondary="${prod.id}" class="price-gbp-${prod.id} font-mono text-[11px] text-neutral-300 font-medium">${prices.formattedSecondary}</span>
-                  <span class="font-mono text-[10px] text-neutral-500">(${prices.formattedSecondaryCur})</span>
-                </div>
-                ${this.isB2BMode && this.b2bSession ? `<span class="inline-block mt-1 text-[10px] font-mono text-emerald-400 bg-emerald-950/70 border border-emerald-500/50 px-1.5 py-0.5 rounded font-bold">✓ EX-VAT TRADE RATE</span>` : ''}
+                ${isComingSoon ? `
+                  <div class="flex items-baseline gap-1.5 flex-wrap">
+                    <span class="font-headline text-lg sm:text-xl text-amber-400 font-extrabold block leading-none tracking-wide">PRICE ON APPLICATION</span>
+                  </div>
+                  <div class="flex items-center gap-1.5 mt-1 flex-wrap">
+                    <span class="font-mono text-[10px] text-neutral-400">2026 Production Allocation</span>
+                  </div>
+                ` : `
+                  <div class="flex items-baseline gap-1.5 flex-wrap">
+                    <span id="price-eur-${prod.id}" data-price-eur="${prod.id}" data-price-primary="${prod.id}" class="price-eur-${prod.id} font-headline text-2xl text-white font-extrabold block leading-none">${prices.formattedPrimary}</span>
+                    <span id="price-vat-badge-${prod.id}" data-price-vat-badge="${prod.id}" class="price-vat-badge-${prod.id} text-[10px] font-mono font-bold px-1.5 py-0.5 rounded leading-none ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}">${prices.primaryVatBadge}</span>
+                  </div>
+                  <div class="flex items-center gap-1.5 mt-1 flex-wrap">
+                    <span id="price-gbp-${prod.id}" data-price-gbp="${prod.id}" data-price-secondary="${prod.id}" class="price-gbp-${prod.id} font-mono text-[11px] text-neutral-300 font-medium">${prices.formattedSecondary}</span>
+                    <span class="font-mono text-[10px] text-neutral-500">(${prices.formattedSecondaryCur})</span>
+                  </div>
+                  ${this.isB2BMode && this.b2bSession ? `<span class="inline-block mt-1 text-[10px] font-mono text-emerald-400 bg-emerald-950/70 border border-emerald-500/50 px-1.5 py-0.5 rounded font-bold">✓ EX-VAT TRADE RATE</span>` : ''}
+                `}
               </div>
               <button onclick="window.paintApp.openDetailModal('${prod.id}')" class="text-neutral-300 hover:text-white font-mono text-xs uppercase flex items-center gap-0.5 font-bold cursor-pointer transition-colors">
                 Details <span class="material-symbols-outlined text-sm text-primary">chevron_right</span>
@@ -4697,9 +4774,15 @@ class PaintSystemApp {
             </div>
 
             <div class="grid grid-cols-1 gap-2">
-              <button onclick="window.paintApp.addProductToCartById('${prod.id}')" class="mech-button-primary !w-full !justify-center !text-xs !py-2.5 font-bold tracking-wider shadow-[0_4px_12px_rgba(211,47,47,0.3)]">
-                ${isPreOrder ? '🛒 Pre-Order Now' : '+ Add to Cart'}
-              </button>
+              ${isComingSoon ? `
+                <button onclick="window.paintApp.openDetailModal('${prod.id}')" class="mech-btn-secondary !w-full !justify-center !text-xs !py-2.5 font-bold tracking-wider border-amber-500/60 text-amber-300 hover:text-white hover:bg-amber-950/80 cursor-pointer">
+                  ⏳ VIEW SPECS • REQUEST QUOTE
+                </button>
+              ` : `
+                <button onclick="window.paintApp.addProductToCartById('${prod.id}')" class="mech-button-primary !w-full !justify-center !text-xs !py-2.5 font-bold tracking-wider shadow-[0_4px_12px_rgba(211,47,47,0.3)]">
+                  ${isPreOrder ? '🛒 Pre-Order Now' : '+ Add to Cart'}
+                </button>
+              `}
               ${prod.brand === 'Kroma Edge' || (prod.category || '').includes('Solvent') || (prod.category || '').includes('Paint') ? `
                 <button onclick="window.openQuickMixModal('${prod.id.includes('clear') ? 'kroma_edge_dedicated_clear' : 'kroma_edge_mirror_chrome'}')" class="mech-btn-secondary !w-full !justify-center !text-[11px] !py-1.5 flex items-center gap-1">
                   <span class="material-symbols-outlined text-[14px]">calculate</span>
@@ -4771,6 +4854,11 @@ class PaintSystemApp {
     widthSelects.forEach(sel => {
       setSelectVal(sel, targetWidth);
     });
+
+    // If coming soon or VsionAir, do not inject prices into DOM
+    if (prod && (prod.isComingSoon || prod.brand === 'VsionAir')) {
+      return;
+    }
 
     // 2. Update ALL primary price elements across the DOM
     const primaryEls = document.querySelectorAll(`[id="price-eur-${prodId}"], [data-price-eur="${prodId}"], [data-price-primary="${prodId}"], .price-eur-${prodId}`);
@@ -4910,6 +4998,12 @@ class PaintSystemApp {
   addProductToCartById(prodId) {
     const prod = ECOM_CATALOG.find(p => p.id === prodId);
     if (!prod) return;
+
+    if (prod.isComingSoon || prod.brand === 'VsionAir') {
+      this.showToast('⚠️ VsionAir™ hardware is reserved as Coming Soon. Register interest or request a quote in the specifications view.', 'warning', 4500);
+      this.openDetailModal(prodId);
+      return;
+    }
 
     // If product has multiple options (flake particle sizes, pack sizes, tape widths) and user hasn't explicitly chosen yet, open modal
     const isFlake = prod.category === 'Dry Metal Flake (Glitter)' || prod.category === 'Metal Flake';
@@ -7716,7 +7810,7 @@ class PaintSystemApp {
       const potentialUpsells = [
         { id: 'fk-tape-orange', title: 'Orange Fineline Tape (3mm)', priceEur: 6.95, priceGbp: 5.95 },
         { id: 'fk-2603', title: '0.015 Kromatic Holo Flake (30g)', priceEur: 16.95, priceGbp: 14.49 },
-        { id: 'kroma-topcoat-clr-180', title: 'Kroma Dedicated Clear (180 Set)', priceEur: 73.05, priceGbp: 62.44 },
+        { id: 'kroma-topcoat-clr-180', title: 'Kroma Dedicated Clear (180 Set)', priceEur: 76.47, priceGbp: 65.00 },
         { id: 'fk-1970', title: 'Flake King 550 Mini Gun', priceEur: 116.99, priceGbp: 99.99 }
       ];
       const eligibleUpsells = potentialUpsells.filter(u => !cartSkus.some(s => s.toLowerCase().includes(u.id))).slice(0, 2);
@@ -7770,7 +7864,7 @@ class PaintSystemApp {
         `).join('');
         summaryBox.innerHTML = `
           <div class="font-bold text-white mb-2 flex justify-between border-b border-white/10 pb-1 text-xs">
-            <span>Staging Cart Review (${summary.itemCount} items)</span>
+            <span>Cart Review &amp; Formulation Audit (${summary.itemCount} items)</span>
             <span class="text-emerald-400 font-bold">Subtotal: €${summary.subtotal.toFixed(2)}</span>
           </div>
           <div class="max-h-48 overflow-y-auto custom-scrollbar space-y-0.5 pr-1">${itemsHtml}</div>

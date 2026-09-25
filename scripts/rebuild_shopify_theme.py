@@ -150,7 +150,15 @@ THEME_CORE_ASSET_FILENAMES = {
     "favicon.ico",
     "apple-touch-icon.png",
     "icon-192.png",
-    "icon-512.png"
+    "icon-512.png",
+    "kroma-skull-studio-dark.jpg",
+    "kroma-detail-skull.jpg",
+    "flake-buggy-studio.jpg",
+    "flake_buggy_hero.jpg",
+    "fk100-prime-black-base.jpg",
+    "flake-king-orange-mixed-set.jpg",
+    "kroma-helmet-mirror.jpg",
+    "kroma-detail-helmet.jpg"
 }
 
 def transform_html_for_liquid(html):
@@ -290,7 +298,186 @@ def extract_content_page(filename):
     combined = f"{style_content}\n{body_content}\n"
     return transform_html_for_liquid(combined)
 
+SETTINGS_SCHEMA_JSON = """[
+  {
+    "name": "theme_info",
+    "theme_name": "Coast Airbrush Europe",
+    "theme_author": "Coast Airbrush Europe",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "https://coastairbrush.eu/",
+    "theme_support_url": "https://coastairbrush.eu/pages/support"
+  },
+  {
+    "name": "Theme settings",
+    "settings": []
+  }
+]
+"""
+
+PASSWORD_LAYOUT_LIQUID = """<!doctype html>
+<html class="dark" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ shop.name }} - VIP Priority Launch Access</title>
+    {{ content_for_header }}
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ 'styles.css' | asset_url }}">
+    <style>
+      .static-bg-overlay {
+        background: linear-gradient(180deg, rgba(14, 16, 16, 0.88) 0%, rgba(10, 12, 12, 0.82) 40%, rgba(8, 10, 10, 0.94) 100%),
+                    url('{{ 'flake_buggy_hero.jpg' | asset_url }}') no-repeat center center fixed;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body class="static-bg-overlay bg-[#0e1010] text-white min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white relative">
+    {{ content_for_layout }}
+  </body>
+</html>
+"""
+
+PASSWORD_TEMPLATE_LIQUID = """<div class="w-full flex-grow flex flex-col justify-center items-center py-10 px-4 sm:px-6 relative z-10">
+  <div class="max-w-xl w-full p-6 sm:p-10 bg-[#121414]/92 backdrop-blur-xl border-2 border-neutral-400/75 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded text-center space-y-6 my-auto">
+    
+    <!-- Brand Logo -->
+    <div class="flex justify-center">
+      <img src="{{ 'coast_logo_white.png' | asset_url }}" alt="Coast Airbrush Europe" class="h-11 sm:h-13 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+    </div>
+    
+    <!-- Live Launch Status Badge -->
+    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded bg-black/60 border border-red-500/60 text-red-400 font-mono text-[11px] font-bold uppercase tracking-widest shadow-sm">
+      <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+      Official European Hub • Opening Soon
+    </div>
+
+    <!-- Hero Title & Value Proposition -->
+    <div class="space-y-2.5">
+      <h1 class="font-headline text-2xl sm:text-3xl uppercase text-white font-bold tracking-tight">
+        VIP Priority Early Access
+      </h1>
+      <p class="text-xs sm:text-sm text-neutral-300 font-body leading-relaxed max-w-lg mx-auto">
+        Coast Airbrush Europe brings legendary American custom paint systems direct to UK & European painters. Doors unlock soon. Register below for <strong class="text-white font-semibold">24-hour priority allocation</strong> on the initial batch of Kroma Edge mirror chrome &amp; Flake King systems before public release.
+      </p>
+    </div>
+
+    <!-- Trust & Fulfillment Badges -->
+    <div class="grid grid-cols-3 gap-2 py-1 font-mono text-[10px] sm:text-[11px]">
+      <div class="p-2 rounded bg-black/50 border border-neutral-700/80 text-neutral-200 flex flex-col items-center justify-center">
+        <span class="text-base sm:text-lg mb-0.5">🇬🇧 🇳🇱</span>
+        <span class="font-bold">UK &amp; EU Dispatch</span>
+      </div>
+      <div class="p-2 rounded bg-black/50 border border-neutral-700/80 text-neutral-200 flex flex-col items-center justify-center">
+        <span class="text-base sm:text-lg mb-0.5">🛡️</span>
+        <span class="font-bold">REACH Compliant</span>
+      </div>
+      <div class="p-2 rounded bg-black/50 border border-neutral-700/80 text-neutral-200 flex flex-col items-center justify-center">
+        <span class="text-base sm:text-lg mb-0.5">⚡</span>
+        <span class="font-bold">Zero US Customs</span>
+      </div>
+    </div>
+
+    <!-- Primary Form: Customer Lead Capture to Shopify Customers -->
+    {% form 'customer', class: 'space-y-4 text-left pt-2' %}
+      {{ form.errors | default_errors }}
+      
+      {% if form.posted_successfully? %}
+        <div class="p-6 bg-black/80 border-2 border-emerald-500 rounded text-center space-y-3">
+          <div class="w-12 h-12 rounded-full bg-emerald-950 border border-emerald-500 text-emerald-400 flex items-center justify-center mx-auto">
+            <span class="material-symbols-outlined text-2xl">verified</span>
+          </div>
+          <h3 class="font-headline text-lg uppercase text-white font-bold tracking-wide">
+            You're on the VIP Allocation List!
+          </h3>
+          <p class="font-mono text-xs text-neutral-300">
+            We have reserved your early access alert. You will receive a direct access link 24 hours before doors open to the general public.
+          </p>
+          <div class="pt-2">
+            <span class="font-mono text-[11px] text-emerald-400 font-bold bg-emerald-950/60 px-3 py-1 rounded border border-emerald-500/40">
+              Priority Status: Activated
+            </span>
+          </div>
+        </div>
+      {% else %}
+        <input type="hidden" name="contact[tags]" value="prospect, pre-launch-vip, european-launch">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="VIPFirstName" class="block font-mono text-[11px] uppercase tracking-wider text-neutral-300 mb-1">First Name</label>
+            <input type="text" name="contact[first_name]" id="VIPFirstName" class="w-full bg-[#0c0e0e] border border-neutral-600 px-3.5 py-2.5 text-xs font-mono text-white rounded focus:border-red-500 focus:outline-none placeholder:text-neutral-600" placeholder="e.g. Marcus" required>
+          </div>
+          <div>
+            <label for="VIPLastName" class="block font-mono text-[11px] uppercase tracking-wider text-neutral-300 mb-1">Last Name</label>
+            <input type="text" name="contact[last_name]" id="VIPLastName" class="w-full bg-[#0c0e0e] border border-neutral-600 px-3.5 py-2.5 text-xs font-mono text-white rounded focus:border-red-500 focus:outline-none placeholder:text-neutral-600" placeholder="e.g. Vance" required>
+          </div>
+        </div>
+
+        <div>
+          <label for="VIPEmail" class="block font-mono text-[11px] uppercase tracking-wider text-neutral-300 mb-1">Email Address</label>
+          <input type="email" name="contact[email]" id="VIPEmail" class="w-full bg-[#0c0e0e] border border-neutral-600 px-3.5 py-2.5 text-xs font-mono text-white rounded focus:border-red-500 focus:outline-none placeholder:text-neutral-600" placeholder="painter@customshop.com" required>
+        </div>
+
+        <div>
+          <label for="VIPRole" class="block font-mono text-[11px] uppercase tracking-wider text-neutral-300 mb-1">Painter / Trade Focus (Optional)</label>
+          <select name="contact[note]" id="VIPRole" class="w-full bg-[#0c0e0e] border border-neutral-600 px-3.5 py-2.5 text-xs font-mono text-white rounded focus:border-red-500 focus:outline-none">
+            <option value="Custom Automotive &amp; Motorcycle Painting">Custom Automotive &amp; Motorcycle Painting</option>
+            <option value="Airbrush &amp; Fine Art Refinishing">Airbrush &amp; Fine Art Refinishing</option>
+            <option value="Commercial Body Shop / Trade Dealer">Commercial Body Shop / Trade Dealer</option>
+            <option value="Model / Scale &amp; Hobbyist">Model / Scale &amp; Hobbyist</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full bg-[#d32f2f] hover:bg-[#b71c1c] text-white font-mono font-bold text-xs uppercase py-3.5 px-6 rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer flex items-center justify-center gap-2 tracking-wider">
+          <span class="material-symbols-outlined text-[16px]">notifications_active</span>
+          <span>Secure My VIP Priority Allocation &rarr;</span>
+        </button>
+
+        <div class="flex items-center justify-center gap-1.5 text-[11px] font-mono text-neutral-400 pt-1 text-center">
+          <span class="material-symbols-outlined text-[13px] text-red-400">shield</span>
+          <span>Zero spam. Direct launch alert &amp; first batch access link only.</span>
+        </div>
+      {% endif %}
+    {% endform %}
+
+    <!-- Staff & Trade Partner Gate (Collapsible) -->
+    <div class="pt-6 border-t border-white/10 space-y-3">
+      <button type="button" onclick="const sec = document.getElementById('staff-password-section'); sec.classList.toggle('hidden');" class="font-mono text-xs text-neutral-400 hover:text-white flex items-center justify-center gap-1.5 mx-auto transition-colors cursor-pointer">
+        <span class="material-symbols-outlined text-[14px]">lock</span>
+        <span>Staff &amp; Trade Partner Access</span>
+      </button>
+
+      <div id="staff-password-section" class="hidden p-4 bg-black/60 border border-neutral-700 rounded space-y-3 text-left">
+        <p class="font-mono text-[11px] text-neutral-300">
+          Authorized staff &amp; trade dealers: enter your storefront password below to unlock the catalog preview.
+        </p>
+        {% form 'storefront_password', class: 'space-y-3' %}
+          {{ form.errors | default_errors }}
+          <div class="flex flex-col sm:flex-row gap-2">
+            <input type="password" name="password" id="Password" class="flex-grow bg-[#0c0e0e] border border-neutral-600 px-3.5 py-2 text-xs font-mono text-white rounded focus:border-red-500 focus:outline-none" placeholder="Enter Store Password" required>
+            <button type="submit" class="bg-neutral-800 hover:bg-neutral-700 text-white font-mono text-xs uppercase px-4 py-2 rounded border border-neutral-600 cursor-pointer whitespace-nowrap">
+              Unlock &rarr;
+            </button>
+          </div>
+        {% endform %}
+      </div>
+
+      <div class="pt-2 text-[11px] font-mono text-neutral-500 text-center">
+        <a href="/admin" class="hover:text-neutral-300 transition-colors">Store Owner Login (/admin)</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="w-full py-4 text-center font-mono text-[11px] text-neutral-500 relative z-20">
+  &copy; 2026 Coast Airbrush Europe. Precision Engineering. Personal Support. No Compromises.
+</footer>
+"""
+
 PAGE_TEMPLATES = {
+    "templates/password.liquid": PASSWORD_TEMPLATE_LIQUID,
     "templates/page.about.liquid": "{% render 'page-about' %}\n",
     "templates/page.support.liquid": "{% render 'page-support' %}\n",
     "templates/page.shipping.liquid": "{% render 'page-shipping' %}\n",
@@ -468,7 +655,11 @@ def main():
                     continue
 
                 written_files.add(fname)
-                if fname in snippets:
+                if fname == "config/settings_schema.json":
+                    zout.writestr(item, SETTINGS_SCHEMA_JSON)
+                elif fname == "layout/password.liquid":
+                    zout.writestr(item, PASSWORD_LAYOUT_LIQUID)
+                elif fname in snippets:
                     zout.writestr(item, snippets[fname])
                 elif fname in PAGE_TEMPLATES:
                     zout.writestr(item, PAGE_TEMPLATES[fname])
@@ -508,6 +699,12 @@ def main():
                         zout.writestr(zip_path, img_f.read())
                     written_files.add(zip_path)
                     print(f"Added core theme asset: {zip_path}")
+
+            # Ensure sections directory is represented
+            if "sections/.gitkeep" not in written_files:
+                zout.writestr("sections/.gitkeep", "")
+                written_files.add("sections/.gitkeep")
+                print("Added sections/.gitkeep to theme zip")
 
     os.replace(temp_zip, THEME_ZIP)
     theme_sz = os.path.getsize(THEME_ZIP)

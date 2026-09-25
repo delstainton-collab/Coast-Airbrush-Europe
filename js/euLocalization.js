@@ -563,37 +563,75 @@ export class EULocalizationManager {
 
   detectCountry() {
     try {
+      // European Union / Eurozone Member States
+      const EU_CODES = new Set([
+        'DE', 'FR', 'NL', 'IT', 'ES', 'BE', 'AT', 'IE', 'PT', 'FI', 
+        'GR', 'LU', 'CY', 'MT', 'SI', 'SK', 'EE', 'LV', 'LT', 'HR',
+        'PL', 'SE', 'DK', 'CZ', 'HU', 'RO', 'BG'
+      ]);
+
+      // 1. Check Shopify GeoIP country if present
       if (typeof window !== 'undefined' && window.Shopify && window.Shopify.country) {
         const sc = String(window.Shopify.country).toUpperCase();
-        if (EU_COUNTRIES[sc]) return sc;
+        if (EU_CODES.has(sc)) {
+          // Detected an EU Country -> Change to Euro (specific country or DE)
+          return EU_COUNTRIES[sc] ? sc : 'DE';
+        }
+        // If not an EU Country, remain in GBP
+        return 'GB';
       }
+
+      // 2. Check Timezone (Intl API)
       if (typeof Intl !== 'undefined' && Intl.DateTimeFormat) {
         const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase();
-        if (tz.includes('america') || tz.includes('new_york') || tz.includes('los_angeles') || tz.includes('chicago') || tz.includes('denver') || tz.includes('phoenix')) return 'US';
-        if (tz.includes('london')) return 'GB';
-        if (tz.includes('berlin')) return 'DE';
+        
+        // UK / British Isles -> Remain in GBP
+        if (tz.includes('london') || tz.includes('belfast') || tz.includes('jersey') || tz.includes('guernsey') || tz.includes('isle_of_man')) {
+          return 'GB';
+        }
+
+        // European Union / Eurozone timezones -> Change to Euro
+        if (tz.includes('berlin') || tz.includes('busingen')) return 'DE';
         if (tz.includes('paris')) return 'FR';
         if (tz.includes('amsterdam')) return 'NL';
-        if (tz.includes('madrid')) return 'ES';
+        if (tz.includes('madrid') || tz.includes('ceuta') || tz.includes('canary')) return 'ES';
         if (tz.includes('rome')) return 'IT';
-        if (tz.includes('warsaw')) return 'PL';
         if (tz.includes('brussels')) return 'BE';
-        if (tz.includes('zurich')) return 'CH';
-        if (tz.includes('stockholm')) return 'SE';
+        if (tz.includes('vienna')) return 'DE';
+        if (tz.includes('dublin')) return 'DE';
+        if (tz.includes('lisbon') || tz.includes('madeira') || tz.includes('azores')) return 'ES';
+        if (tz.includes('athens') || tz.includes('helsinki') || tz.includes('tallinn') || tz.includes('riga') || tz.includes('vilnius') || tz.includes('nicosia') || tz.includes('bratislava') || tz.includes('ljubljana') || tz.includes('luxembourg') || tz.includes('malta')) {
+          return 'DE';
+        }
+        if (tz.includes('warsaw') || tz.includes('stockholm') || tz.includes('copenhagen') || tz.includes('prague') || tz.includes('budapest') || tz.includes('bucharest') || tz.includes('sofia') || tz.includes('zagreb')) {
+          return 'DE';
+        }
+        if (tz.includes('europe/') && !tz.includes('london') && !tz.includes('belfast')) {
+          return 'DE';
+        }
+
+        // Non-EU timezones (America, Asia, Australia, Africa, etc.) -> Remain in GBP
+        if (tz.includes('america') || tz.includes('asia') || tz.includes('australia') || tz.includes('pacific') || tz.includes('africa')) {
+          return 'GB';
+        }
       }
+
+      // 3. Check browser language (fallback if timezone is neutral)
       if (typeof navigator !== 'undefined' && navigator.language) {
         const lang = navigator.language.toLowerCase();
-        if (lang.includes('en-us')) return 'US';
-        if (lang.includes('gb') || lang === 'en') return 'GB';
+        // European languages -> change to Euro
         if (lang.includes('de')) return 'DE';
         if (lang.includes('fr')) return 'FR';
         if (lang.includes('nl')) return 'NL';
         if (lang.includes('es')) return 'ES';
         if (lang.includes('it')) return 'IT';
-        if (lang.includes('pl')) return 'PL';
-        if (lang.includes('se') || lang.includes('sv')) return 'SE';
+        // Non-EU / English / Others -> remain in GBP
       }
-    } catch {}
+    } catch (e) {
+      console.warn('Error in country detection:', e);
+    }
+
+    // Default currency is GBP (United Kingdom) if not an EU country
     return 'GB';
   }
 

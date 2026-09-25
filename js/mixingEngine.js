@@ -281,17 +281,17 @@ export function calculateTopcoatClearCoverage(sqft, reductionPercent = 100) {
 
   let recommendedSet = "Topcoat Clear 180 SET (378g)";
   let clearSku = "KE-CLEAR-180";
-  let clearPriceEUR = 89.00;
+  let clearPriceEUR = 76.47;
 
   if (effectiveSqFt > 65) {
     const sets = Math.ceil(effectiveSqFt / 260);
     recommendedSet = sets > 1 ? `${sets}x Topcoat Clear 3600 SET` : "Topcoat Clear 3600 SET (7,560g)";
     clearSku = "KE-CLEAR-3600";
-    clearPriceEUR = 695.00 * sets;
+    clearPriceEUR = 1235.29 * sets;
   } else if (effectiveSqFt > 16) {
     recommendedSet = "Topcoat Clear 900 SET (1,890g)";
     clearSku = "KE-CLEAR-900";
-    clearPriceEUR = 249.00;
+    clearPriceEUR = 335.29;
   }
 
   return {

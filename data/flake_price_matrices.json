@@ -483,21 +483,6 @@
       "sku": "FOM500JL"
     }
   ],
-  "fk-2542": [
-    {
-      "packSize": "Standard Unit",
-      "stockCode": "FOM1000",
-      "barcode": "5060733580014",
-      "priceGbp": 108.33,
-      "priceEur": 126.75,
-      "priceRetailGbp": 108.33,
-      "priceDealerGbp": 81.24,
-      "priceDistributorGbp": 48.75,
-      "priceRrpExVat": 108.33,
-      "priceRrpIncVat": 129.99,
-      "sku": "FOM1000"
-    }
-  ],
   "fk-2524": {
     "packPriceMatrix": [
       {

@@ -3,8 +3,16 @@
 import { recommendContainerPack } from './mixingEngine.js';
 
 export class ShopifyCartManager {
-  constructor(shopifyDomain = "coastairbrush.eu") {
-    this.shopifyDomain = shopifyDomain;
+  constructor(shopifyDomain) {
+    if (!shopifyDomain) {
+      if (typeof window !== 'undefined' && window.location && window.location.hostname && !window.location.hostname.includes('file:')) {
+        this.shopifyDomain = window.location.host;
+      } else {
+        this.shopifyDomain = "coastairbrush.eu";
+      }
+    } else {
+      this.shopifyDomain = shopifyDomain;
+    }
     this.cartItems = JSON.parse(localStorage.getItem('coast_cart_items') || '[]');
     this.listeners = [];
   }

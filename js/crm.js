@@ -131,6 +131,9 @@ function switchCrmView(viewName) {
   if (viewName === 'apc') {
     renderApcConsignmentsTable();
   }
+  if (viewName === 'launch-vips') {
+    fetchAndRenderLaunchVips();
+  }
 }
 
 // Client Switching
@@ -1132,4 +1135,71 @@ window.loadTradeApplications = loadTradeApplications;
 window.approveTradePartner = approveTradePartner;
 window.rejectTradePartner = rejectTradePartner;
 window.resetDemoTradeApplicant = resetDemoTradeApplicant;
+
+function escapeCrmText(str) {
+  if (!str) return '';
+  return String(str).replace(/[&<>"']/g, m => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  })[m]);
+}
+
+async function fetchAndRenderLaunchVips() {
+  try {
+    const res = await fetch('/api/leads/subscribers');
+    const data = await res.json();
+    const subs = data.subscribers || [];
+
+    const totalEl = document.getElementById('vipCountTotal');
+    const autoEl = document.getElementById('vipCountAuto');
+    const airEl = document.getElementById('vipCountAir');
+    const tradeEl = document.getElementById('vipCountTrade');
+    const tbody = document.getElementById('vipSubscribersTableBody');
+
+    if (totalEl) totalEl.textContent = subs.length;
+
+    let autoCount = 0;
+    let airCount = 0;
+    let tradeCount = 0;
+
+    subs.forEach(s => {
+      const f = (s.focus || '').toLowerCase();
+      if (f.includes('auto') || f.includes('moto')) autoCount++;
+      else if (f.includes('airbrush') || f.includes('fine')) airCount++;
+      else if (f.includes('trade') || f.includes('body')) tradeCount++;
+      else autoCount++;
+    });
+
+    if (autoEl) autoEl.textContent = autoCount;
+    if (airEl) airEl.textContent = airCount;
+    if (tradeEl) tradeEl.textContent = tradeCount;
+
+    if (tbody) {
+      if (subs.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #888; padding: 30px;">No subscribers recorded yet. Once visitors enter their details on the parking page, they will appear here in real time.</td></tr>`;
+      } else {
+        tbody.innerHTML = subs.map(s => {
+          const dateStr = s.submittedAt ? new Date(s.submittedAt).toLocaleString() : 'Just now';
+          const name = `${s.firstName || ''} ${s.lastName || ''}`.trim() || 'Custom Painter';
+          return `
+            <tr>
+              <td style="font-weight: 700; color: #fff;">${escapeCrmText(name)}</td>
+              <td style="font-family: 'JetBrains Mono', monospace; color: var(--crm-cyan);">${escapeCrmText(s.email)}</td>
+              <td><span class="badge badge-chrome">${escapeCrmText(s.focus || 'Custom Automotive')}</span></td>
+              <td><span class="badge badge-green">Confirmed VIP</span></td>
+              <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #aaa;">pre-launch-vip, european-launch</td>
+              <td style="font-size: 0.75rem; color: #888;">${dateStr}</td>
+            </tr>
+          `;
+        }).join('');
+      }
+    }
+  } catch (err) {
+    console.warn('Failed to load VIP subscribers:', err);
+  }
+}
+window.fetchAndRenderLaunchVips = fetchAndRenderLaunchVips;
 

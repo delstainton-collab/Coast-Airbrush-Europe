@@ -2,7 +2,7 @@
   "name": "coast-airbrush-europe",
   "version": "1.0.0",
   "description": "Coast Airbrush Europe - Custom Automotive & Airbrush Paint Platform, Mixing Engine & Enterprise Storefront",
-  "main": "index.html",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "start": "PORT=3013 node server.js",
@@ -18,5 +18,8 @@
     "custom-paint"
   ],
   "author": "Coast Airbrush Europe",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "nodemailer": "^10.0.10"
+  }
 }

@@ -3,6 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <script>
+    // PRE-LAUNCH HOLDING GATE: Redirect all public traffic to landing.html
+    // To preview the storefront in admin/testing mode, visit with ?preview=true
+    (function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('preview') === 'true' || sessionStorage.getItem('coast_store_preview') === 'true') {
+          sessionStorage.setItem('coast_store_preview', 'true');
+          return;
+        }
+      } catch (e) {}
+      window.location.replace('landing.html');
+    })();
+  </script>
   <title>Coast Airbrush Europe | Custom Automotive Paint, Kroma Edge &amp; Airbrush Mixing Engine</title>
   <meta name="description" content="The official European hub for Coast Airbrush, Kroma Edge, and Flake King. Interactive custom paint mixing ratio engine, technical data sheets, and fast UK &amp; EU dispatch with zero US import duties.">
   <meta name="keywords" content="Coast Airbrush Europe, Kroma Edge, Flake King, custom automotive paint, airbrush paint mixing calculator, candy concentrate, House of Kolor Europe, low VOC custom paint, automotive refinishing EU">
@@ -259,31 +273,7 @@
   <!-- ========================================================================= -->
   <header id="master-site-header" class="relative md:sticky top-0 z-50 w-full flex flex-col bg-surface shadow-[0_4px_24px_rgba(0,0,0,0.85)]">
 
-    <!-- OFFICIAL STAKEHOLDER REVIEW & PRE-LAUNCH STAGING BAR -->
-    <div id="stakeholder-review-banner" class="bg-gradient-to-r from-amber-950/95 via-red-950/95 to-amber-950/95 border-b border-amber-500/60 py-1.5 sm:py-2 px-margin-mobile md:px-margin-desktop text-xs font-mono text-amber-200 flex flex-wrap items-center justify-between gap-2 sm:gap-3 shadow-sm">
-      <div class="flex items-center gap-2 flex-wrap">
-        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-amber-300 font-extrabold text-[10px] tracking-wider uppercase">
-          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse inline-block"></span>
-          STAGING PREVIEW
-        </span>
-        <span class="font-bold text-white tracking-wide text-[11px] sm:text-xs">
-          Coast Airbrush USA Review Mode
-        </span>
-        <span class="text-amber-400/60 hidden md:inline">•</span>
-        <span class="text-neutral-300 hidden md:inline text-[11px]">
-          Live customer orders paused pending Placentia HQ sign-off (BOM &amp; Spec testing enabled)
-        </span>
-      </div>
-      <div class="flex items-center gap-2 sm:gap-2.5 ml-auto text-[11px]">
-        <a href="dealers.html" class="text-amber-300 hover:text-white underline font-bold text-[10px] sm:text-xs">Trade Portal</a>
-        <button onclick="window.paintApp && window.paintApp.showReviewModeModal && window.paintApp.showReviewModeModal()" class="px-2 py-0.5 sm:py-1 bg-black/60 hover:bg-black border border-amber-400/50 text-amber-300 rounded font-bold cursor-pointer transition-colors text-[10px] sm:text-xs">
-          Review Status
-        </button>
-        <button onclick="window.openAdminLogin && window.openAdminLogin()" class="px-2.5 py-0.5 sm:py-1 bg-amber-500/20 hover:bg-amber-500/40 border border-amber-400 text-amber-300 hover:text-white rounded font-bold cursor-pointer transition-colors text-[10px] sm:text-xs flex items-center gap-1 shadow-sm" title="Master Admin Console (PIN: COAST2026)">
-          <span class="material-symbols-outlined text-[13px]">admin_panel_settings</span> ADMIN
-        </button>
-      </div>
-    </div>
+
 
     <!-- UNIFIED UK LOGISTICS & DISPATCH ANNOUNCEMENT BAR -->
     <div id="top-shipping-banner" class="bg-[#0b0c0d] border-b border-white/10 py-1.5 sm:py-2 px-margin-mobile md:px-margin-desktop text-xs font-mono tracking-wide flex flex-wrap justify-between items-center text-neutral-300 gap-2 sm:gap-3">
@@ -374,12 +364,11 @@
         <a href="#dept-flakes" class="nav-link">FLAKES</a>
         <a href="#dept-basecoats-binders" class="nav-link">BASECOATS &amp; BINDERS</a>
         <a href="#dept-tapes" class="nav-link">TAPES</a>
-        <a id="tab-calculator" class="nav-link" href="javascript:void(0)">MIX LAB</a>
+        <a id="tab-calculator" class="nav-link text-amber-400 hover:text-white flex items-center gap-1 font-bold" href="javascript:void(0)">
+          <span class="material-symbols-outlined text-[15px]">calculate</span> MIX LAB
+        </a>
         <a id="tab-academy" class="nav-link" href="javascript:void(0)">ACADEMY</a>
         <a id="nav-about-link" class="nav-link" href="about.html">ABOUT</a>
-        <a id="tab-admin" class="nav-link text-amber-400 hover:text-white flex items-center gap-1 font-bold cursor-pointer" href="javascript:void(0)" title="Operator Admin Console (PIN: COAST2026)">
-          <span class="material-symbols-outlined text-[15px]">admin_panel_settings</span> ADMIN
-        </a>
       </div>
 
       <!-- Trailing Actions: Elevated B2B & Conversion Hierarchy -->
@@ -395,10 +384,7 @@
           <span>B2B TRADE &amp; DEALERS</span>
         </a>
 
-        <!-- Admin Console Trigger Button -->
-        <button onclick="window.openAdminLogin && window.openAdminLogin()" class="hidden md:inline-flex items-center gap-1.5 font-mono text-xs font-bold border border-amber-500/70 bg-amber-950/40 text-amber-300 hover:bg-amber-900/60 hover:text-white px-3 py-2 rounded transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-0.5 cursor-pointer" title="Master Admin Console (PIN: COAST2026)">
-          <span class="material-symbols-outlined text-[16px] text-amber-400">admin_panel_settings</span> ADMIN
-        </button>
+
 
         <!-- Cart Drawer Button -->
         <button id="btn-toggle-cart-drawer" class="mech-button-primary !py-2 !px-4 text-xs flex items-center gap-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] bg-primary-container text-white font-bold border border-red-400 hover:brightness-110 active:translate-y-0.5 transition-all">
@@ -441,7 +427,6 @@
     <button onclick="document.getElementById('tab-calculator').click()" class="nav-link !text-xs !py-1 !px-2.5">Mix Lab</button>
     <a href="about.html" class="nav-link !text-xs !py-1 !px-2.5">About</a>
     <a href="dealers.html" class="nav-link !text-xs !py-1 !px-2.5 text-neutral-300">Dealers</a>
-    <button id="tab-admin-mobile" onclick="window.openAdminLogin &amp;&amp; window.openAdminLogin()" class="nav-link !text-xs !py-1 !px-2.5 text-amber-400 font-bold flex items-center gap-1 cursor-pointer whitespace-nowrap" title="Master Admin Console (PIN: COAST2026)"><span class="material-symbols-outlined text-[14px]">admin_panel_settings</span> Admin</button>
   </div>
 
   <!-- ========================================================================= -->
@@ -476,177 +461,174 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- PRODUCT CATEGORIES SHOWCASE: INSTANT VISUAL CATALOG NAVIGATION -->
+    <!-- STOREFRONT COCKPIT: DUAL-WING SPLIT SHOWCASE & PRODUCT DIVISION GRID -->
     <!-- ========================================================================= -->
-    <section id="section-categories" class="py-8 sm:py-10 bg-surface-container-lowest border-b-2 border-secondary px-margin-mobile md:px-margin-desktop">
-      <div class="max-w-[1440px] mx-auto space-y-6">
+    <section id="section-categories" class="py-6 sm:py-8 bg-surface-container-lowest border-b-2 border-secondary px-margin-mobile md:px-margin-desktop">
+      <div class="max-w-[1440px] mx-auto">
         
-        <!-- Category Section Header -->
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-white/10 pb-4">
-          <div>
-            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-red-950/60 border border-primary/40 text-primary font-mono text-[10px] font-bold uppercase tracking-wider mb-1.5">
-              <span>✦ EXPLORE CATALOG BY DIVISION</span>
-            </div>
-            <h2 class="font-headline text-2xl sm:text-3xl uppercase text-white font-black tracking-tight">
-              Product Categories
-            </h2>
-            <p class="font-body text-xs sm:text-sm text-neutral-400 mt-0.5 max-w-2xl">
-              Select a specialized division below for direct access to systems, hardware, technical mixing sheets, and bonded UK inventory.
-            </p>
-          </div>
-
-          <div class="hidden sm:flex items-center gap-2 font-mono text-xs text-neutral-400">
-            <span class="material-symbols-outlined text-sm text-emerald-400">inventory_2</span>
-            <span>6 Core Formulations &amp; Hardware Divisions</span>
-          </div>
-        </div>
-
-        <!-- 6-Card Category Grid: Image Box with Text Underneath -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4 lg:gap-5">
+        <!-- The 2-Column Split Cockpit Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
           
-          <!-- Category 1: Kroma Edge Mirror Chrome -->
-          <a href="#dept-kroma-edge" class="group flex flex-col industrial-card rounded-lg border border-white/15 bg-surface-container p-3 hover:border-primary hover:shadow-[0_0_20px_rgba(211,47,47,0.35)] transition-all duration-300 cursor-pointer">
-            <div class="relative w-full aspect-square bg-black/60 rounded-md overflow-hidden border border-white/10 mb-3 flex items-center justify-center p-2">
-              <img src="assets/images/kroma-skull-studio-dark.jpg" alt="Kroma Edge 2K Mirror Chrome" class="w-full h-full object-cover rounded group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-emerald-400 font-bold border border-emerald-500/40 backdrop-blur-sm">
-                99.4% Mirror
-              </span>
-            </div>
-            <div class="flex-grow flex flex-col justify-between">
-              <div>
-                <h3 class="font-headline text-xs sm:text-sm uppercase text-white font-bold tracking-tight group-hover:text-primary transition-colors">
-                  Kroma Edge™ Chrome
-                </h3>
-                <p class="font-body text-[11px] text-neutral-400 mt-1 leading-snug line-clamp-2">
-                  Self-organizing 2K spray mirror chrome kits &amp; optical clears.
-                </p>
-              </div>
-              <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors">
-                <span class="text-primary font-semibold">View Chrome</span>
-                <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </div>
-            </div>
-          </a>
+          <!-- LEFT COLUMN (5 of 12 cols): The Visual Adrenaline & Authority Hook -->
+          <div class="lg:col-span-5 industrial-card rounded-xl border-2 border-red-600/50 bg-gradient-to-b from-[#1c1214] via-surface-container to-surface-container-low p-5 sm:p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden group">
+            <!-- Ambient Red Glow -->
+            <div class="absolute -top-24 -left-24 w-64 h-64 bg-red-600/15 rounded-full blur-3xl pointer-events-none"></div>
 
-          <!-- Category 2: Flake King Dry Guns -->
-          <a href="#dept-guns" class="group flex flex-col industrial-card rounded-lg border border-white/15 bg-surface-container p-3 hover:border-amber-400 hover:shadow-[0_0_20px_rgba(245,158,11,0.35)] transition-all duration-300 cursor-pointer">
-            <div class="relative w-full aspect-square bg-black/60 rounded-md overflow-hidden border border-white/10 mb-3 flex items-center justify-center p-2">
-              <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10001.png?fit=600%2C600&amp;ssl=1" alt="Flake King Dry Metal Flake Spray Guns" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-amber-300 font-bold border border-amber-500/40 backdrop-blur-sm">
-                Billet CNC
-              </span>
-            </div>
-            <div class="flex-grow flex flex-col justify-between">
-              <div>
-                <h3 class="font-headline text-xs sm:text-sm uppercase text-white font-bold tracking-tight group-hover:text-amber-400 transition-colors">
-                  Flake King™ Guns
-                </h3>
-                <p class="font-body text-[11px] text-neutral-400 mt-1 leading-snug line-clamp-2">
-                  Patented dry metal flake guns, conversion kits &amp; accessories.
-                </p>
+            <div>
+              <!-- Authority Pill -->
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/80 border border-red-500/50 text-red-400 font-mono text-[10px] font-bold uppercase tracking-wider">
+                  <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                  OFFICIAL EUROPEAN MASTER HUB
+                </span>
+                <span class="font-mono text-[10px] text-amber-300 font-bold bg-amber-950/60 border border-amber-500/40 px-2 py-0.5 rounded">
+                  PLACENTIA, CA
+                </span>
               </div>
-              <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors">
-                <span class="text-amber-400 font-semibold">View Hardware</span>
-                <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </div>
-            </div>
-          </a>
 
-          <!-- Category 3: Precision Metal Flakes -->
-          <a href="#dept-flakes" class="group flex flex-col industrial-card rounded-lg border border-white/15 bg-surface-container p-3 hover:border-white hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] transition-all duration-300 cursor-pointer">
-            <div class="relative w-full aspect-square bg-black/60 rounded-md overflow-hidden border border-white/10 mb-3 flex items-center justify-center p-2">
-              <img src="assets/images/flake-buggy-studio.jpg" alt="Flake King Precision Metal Flakes" class="w-full h-full object-cover rounded group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-emerald-400 font-bold border border-emerald-500/40 backdrop-blur-sm">
-                58+ Colors
-              </span>
-            </div>
-            <div class="flex-grow flex flex-col justify-between">
-              <div>
-                <h3 class="font-headline text-xs sm:text-sm uppercase text-white font-bold tracking-tight group-hover:text-white transition-colors">
-                  Metal Flakes
-                </h3>
-                <p class="font-body text-[11px] text-neutral-400 mt-1 leading-snug line-clamp-2">
-                  Automotive-grade polyester, holographic &amp; kromatic flake.
-                </p>
-              </div>
-              <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors">
-                <span class="text-neutral-200 font-semibold">View Flakes</span>
-                <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </div>
-            </div>
-          </a>
+              <h2 class="font-headline text-2xl sm:text-3xl font-black uppercase text-white leading-tight tracking-tight mb-2">
+                ADVANCED CUSTOM FINISHES <span class="text-primary">&amp; HARDWARE</span>
+              </h2>
 
-          <!-- Category 4: Basecoats & Binders -->
-          <a href="#dept-basecoats-binders" class="group flex flex-col industrial-card rounded-lg border border-white/15 bg-surface-container p-3 hover:border-amber-400 hover:shadow-[0_0_20px_rgba(245,158,11,0.35)] transition-all duration-300 cursor-pointer">
-            <div class="relative w-full aspect-square bg-black/60 rounded-md overflow-hidden border border-white/10 mb-3 flex items-center justify-center p-2">
-              <img src="assets/images/fk100-prime-black-base.jpg" alt="Flake King Basecoats and Binders" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-amber-300 font-bold border border-amber-500/40 backdrop-blur-sm">
-                Solvent Prep
-              </span>
-            </div>
-            <div class="flex-grow flex flex-col justify-between">
-              <div>
-                <h3 class="font-headline text-xs sm:text-sm uppercase text-white font-bold tracking-tight group-hover:text-amber-400 transition-colors">
-                  Basecoats &amp; Binders
-                </h3>
-                <p class="font-body text-[11px] text-neutral-400 mt-1 leading-snug line-clamp-2">
-                  FK100 prime black, FK50 surface binder &amp; FK55 thinners.
-                </p>
-              </div>
-              <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors">
-                <span class="text-amber-400 font-semibold">View Formulations</span>
-                <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </div>
-            </div>
-          </a>
+              <p class="font-body text-xs sm:text-sm text-neutral-300 leading-relaxed mb-4">
+                Direct European bonded dispatch for <strong>Kroma Edge™ 2K Mirror Chrome</strong>, <strong>Flake King™ Dry Guns</strong>, and precision automotive flake. Zero US customs duties.
+              </p>
 
-          <!-- Category 5: Fine Line Masking Tapes -->
-          <a href="#dept-tapes" class="group flex flex-col industrial-card rounded-lg border border-white/15 bg-surface-container p-3 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(52,211,153,0.35)] transition-all duration-300 cursor-pointer">
-            <div class="relative w-full aspect-square bg-black/60 rounded-md overflow-hidden border border-white/10 mb-3 flex items-center justify-center p-2">
-              <img src="assets/images/flake-king-orange-mixed-set.jpg" alt="Flake King Fine Line Masking Tapes" class="w-full h-full object-cover rounded group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-emerald-400 font-bold border border-emerald-500/40 backdrop-blur-sm">
-                Zero Residue
-              </span>
-            </div>
-            <div class="flex-grow flex flex-col justify-between">
-              <div>
-                <h3 class="font-headline text-xs sm:text-sm uppercase text-white font-bold tracking-tight group-hover:text-emerald-400 transition-colors">
-                  Fine Line Tapes
-                </h3>
-                <p class="font-body text-[11px] text-neutral-400 mt-1 leading-snug line-clamp-2">
-                  Precision thermal contouring tapes &amp; multi-width striping packs.
-                </p>
-              </div>
-              <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors">
-                <span class="text-emerald-400 font-semibold">View Tapes</span>
-                <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              <!-- Visual Finish Specimen Card (Kroma Mirror Skull) -->
+              <div class="relative h-44 sm:h-48 rounded-lg overflow-hidden border border-white/15 bg-black/60 mb-4 group/img cursor-pointer" onclick="window.paintApp && window.paintApp.openDetailModal('kroma-mirror-chrome-system', 'video')" title="Click to watch live 2K clearcoat booth proof">
+                <img src="assets/images/kroma-skull-studio-dark.jpg" alt="Kroma Edge Mirror Specimen" class="w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
+                
+                <!-- Video Trigger Overlay -->
+                <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-xs font-mono">
+                  <span class="px-2 py-0.5 rounded bg-black/90 text-emerald-400 font-bold border border-emerald-500/40 text-[10px]">
+                    ✦ 99.4% Specular Reflection
+                  </span>
+                  <button type="button" onclick="event.stopPropagation(); window.paintApp && window.paintApp.openDetailModal('kroma-mirror-chrome-system', 'video')" class="bg-red-600 hover:bg-red-500 text-white font-bold px-2.5 py-1 rounded flex items-center gap-1 text-[11px] shadow-lg transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-[14px]">play_circle</span>
+                    <span>Watch Booth Proof</span>
+                  </button>
+                </div>
               </div>
             </div>
-          </a>
 
-          <!-- Category 6: VsionAir Modular Rigging -->
-          <a href="#dept-vsionair" class="group flex flex-col industrial-card rounded-lg border border-white/15 bg-surface-container p-3 hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(34,211,238,0.35)] transition-all duration-300 cursor-pointer">
-            <div class="relative w-full aspect-square bg-black/60 rounded-md overflow-hidden border border-white/10 mb-3 flex items-center justify-center p-2">
-              <img src="https://vsionair.com/wp-content/uploads/2021/05/1000mm_x_1200mm_Vertical_Tool_Bars__Lighting_Camera_Rig_Reworked.png" alt="VsionAir Modular Workstations and Jigs" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-cyan-400 font-bold border border-cyan-500/40 backdrop-blur-sm">
-                360° Rigging
-              </span>
+            <!-- Quick Action CTAs -->
+            <div class="grid grid-cols-2 gap-2.5 pt-2 border-t border-white/10">
+              <a href="#dept-kroma-edge" class="mech-btn-candy !py-2.5 !text-xs uppercase font-mono text-center flex items-center justify-center gap-1.5 rounded">
+                <span>Explore Chrome</span>
+                <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+              </a>
+              <button onclick="window.paintApp ? window.paintApp.switchTab('tab-calculator', 'view-calculator') : document.getElementById('tab-calculator').click()" class="bg-surface border border-amber-500/60 hover:border-amber-400 text-amber-300 hover:text-white font-mono text-xs font-bold py-2.5 rounded flex items-center justify-center gap-1.5 transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-[16px] text-amber-400">calculate</span>
+                <span>Open Mix Lab</span>
+              </button>
             </div>
-            <div class="flex-grow flex flex-col justify-between">
-              <div>
-                <h3 class="font-headline text-xs sm:text-sm uppercase text-white font-bold tracking-tight group-hover:text-cyan-400 transition-colors">
-                  VsionAir™ Rigs
+          </div>
+
+          <!-- RIGHT COLUMN (7 of 12 cols): DAVE'S ZERO-SCROLL PRODUCT CATEGORIES -->
+          <div class="lg:col-span-7 flex flex-col justify-between space-y-3">
+            
+            <div class="flex items-center justify-between border-b border-white/10 pb-2">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-amber-400 text-base">grid_view</span>
+                <h3 class="font-headline text-sm sm:text-base uppercase text-white font-bold tracking-wide">
+                  Product Divisions — In Stock &amp; Dispatched From UK
                 </h3>
-                <p class="font-body text-[11px] text-neutral-400 mt-1 leading-snug line-clamp-2">
-                  Hands-free work-holding jigs, easels &amp; studio tool rigs.
-                </p>
               </div>
-              <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors">
-                <span class="text-cyan-400 font-semibold">View Rigging</span>
-                <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </div>
+              <span class="font-mono text-[11px] text-neutral-400 hidden sm:inline">6 Core Divisions</span>
             </div>
-          </a>
+
+            <!-- 6-Card Category Grid (2 rows x 3 cols) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 flex-grow">
+              
+              <!-- Card 1: Kroma Edge Chrome -->
+              <a href="#dept-kroma-edge" class="industrial-card rounded-lg border border-white/15 bg-surface-container p-3 flex flex-col justify-between hover:border-red-500 hover:shadow-[0_0_15px_rgba(239,68,68,0.25)] transition-all">
+                <div class="relative w-full aspect-video bg-black/60 rounded overflow-hidden mb-2 p-1 flex items-center justify-center">
+                  <img src="assets/images/kroma-detail-skull.jpg" alt="Mirror Chrome" class="w-full h-full object-contain">
+                  <span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-emerald-400 font-bold">2K System</span>
+                </div>
+                <div>
+                  <h4 class="font-headline text-xs sm:text-sm uppercase text-white font-bold">Kroma Chrome</h4>
+                  <p id="cockpit-price-kroma" class="font-mono text-[10px] text-neutral-400 mt-0.5">Kits from £65.00</p>
+                </div>
+              </a>
+
+              <!-- Card 2: Flake King Guns -->
+              <a href="#dept-guns" class="industrial-card rounded-lg border border-white/15 bg-surface-container p-3 flex flex-col justify-between hover:border-amber-400 hover:shadow-[0_0_15px_rgba(245,158,11,0.25)] transition-all">
+                <div class="relative w-full aspect-video bg-black/60 rounded overflow-hidden mb-2 p-1 flex items-center justify-center">
+                  <img src="https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FOM10001.png?fit=600%2C600&ssl=1" alt="Flake King Guns" class="w-full h-full object-contain">
+                  <span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-amber-300 font-bold">Billet CNC</span>
+                </div>
+                <div>
+                  <h4 class="font-headline text-xs sm:text-sm uppercase text-white font-bold">Flake Guns</h4>
+                  <p id="cockpit-price-guns" class="font-mono text-[10px] text-neutral-400 mt-0.5">Guns from £83.33</p>
+                </div>
+              </a>
+
+              <!-- Card 3: Metal Flakes -->
+              <a href="#dept-flakes" class="industrial-card rounded-lg border border-white/15 bg-surface-container p-3 flex flex-col justify-between hover:border-white hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all">
+                <div class="relative w-full aspect-video bg-black/60 rounded overflow-hidden mb-2">
+                  <img src="assets/images/flake-buggy-studio.jpg" alt="Metal Flakes" class="w-full h-full object-cover">
+                  <span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-emerald-400 font-bold">58+ Colors</span>
+                </div>
+                <div>
+                  <h4 class="font-headline text-xs sm:text-sm uppercase text-white font-bold">Metal Flakes</h4>
+                  <p class="font-mono text-[10px] text-neutral-400 mt-0.5">Vials &amp; Bulk Tins</p>
+                </div>
+              </a>
+
+              <!-- Card 4: Basecoats & Binders -->
+              <a href="#dept-basecoats-binders" class="industrial-card rounded-lg border border-white/15 bg-surface-container p-3 flex flex-col justify-between hover:border-amber-400 hover:shadow-[0_0_15px_rgba(245,158,11,0.25)] transition-all">
+                <div class="relative w-full aspect-video bg-black/60 rounded overflow-hidden mb-2 p-1 flex items-center justify-center">
+                  <img src="assets/images/fk100-prime-black-base.jpg" alt="Basecoats & Binders" class="w-full h-full object-contain">
+                  <span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-amber-300 font-bold">Solvent Base</span>
+                </div>
+                <div>
+                  <h4 class="font-headline text-xs sm:text-sm uppercase text-white font-bold">Base &amp; Binders</h4>
+                  <p class="font-mono text-[10px] text-neutral-400 mt-0.5">FK100 &amp; FK50 Prep</p>
+                </div>
+              </a>
+
+              <!-- Card 5: Fine Line Tapes -->
+              <a href="#dept-tapes" class="industrial-card rounded-lg border border-white/15 bg-surface-container p-3 flex flex-col justify-between hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(52,211,153,0.25)] transition-all">
+                <div class="relative w-full aspect-video bg-black/60 rounded overflow-hidden mb-2">
+                  <img src="assets/images/flake-king-orange-mixed-set.jpg" alt="Fine Line Masking Tapes" class="w-full h-full object-cover">
+                  <span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-mono text-emerald-400 font-bold">Zero Bleed</span>
+                </div>
+                <div>
+                  <h4 class="font-headline text-xs sm:text-sm uppercase text-white font-bold">Fine Line Tapes</h4>
+                  <p class="font-mono text-[10px] text-neutral-400 mt-0.5">Precision Contouring</p>
+                </div>
+              </a>
+
+              <!-- Card 6: VsionAir Rigs -->
+              <a href="#dept-vsionair" class="industrial-card rounded-lg border border-amber-500/30 bg-surface-container p-3 flex flex-col justify-between hover:border-amber-400 hover:shadow-[0_0_20px_rgba(245,158,11,0.25)] transition-all">
+                <div class="relative w-full aspect-video bg-black/60 rounded overflow-hidden mb-2 p-1 flex items-center justify-center">
+                  <img src="https://vsionair.com/wp-content/uploads/2021/05/1000mm_x_1200mm_Vertical_Tool_Bars__Lighting_Camera_Rig_Reworked.png" alt="VsionAir Rigs" class="w-full h-full object-contain">
+                  <span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-amber-950/90 border border-amber-500/60 text-[9px] font-mono text-amber-300 font-bold">COMING SOON</span>
+                </div>
+                <div>
+                  <h4 class="font-headline text-xs sm:text-sm uppercase text-white font-bold">VsionAir™ Rigs</h4>
+                  <p class="font-mono text-[10px] text-amber-400/90 mt-0.5">Coming Soon • 2026 Allocations</p>
+                </div>
+              </a>
+
+            </div>
+
+            <!-- Bottom Trade & Dispatch Callout Strip -->
+            <div class="bg-black/60 border border-white/10 p-2.5 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs font-mono text-neutral-300 gap-2">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-amber-400 font-bold">💼 TRADE:</span>
+                <span class="text-[11px] text-neutral-400">Bodyshops &amp; High-Volume Artists —</span>
+                <a href="dealers.html" class="text-emerald-400 hover:text-emerald-300 underline font-bold text-[11px] flex items-center gap-0.5">
+                  <span>Apply for Net Ex-VAT Billing</span>
+                  <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+                </a>
+              </div>
+              <span class="text-[10px] text-neutral-400 hidden md:inline">Tracked APC Overnight &amp; DHL Express</span>
+            </div>
+
+          </div>
 
         </div>
 
@@ -721,11 +703,11 @@
                   <span class="text-[9px] font-mono text-amber-300 font-bold bg-amber-950/80 border border-amber-500/40 px-2 py-0.5 rounded">5 SIZES AVAILABLE</span>
                 </div>
                 <select id="select-size-kroma-mirror-chrome-system" data-variant-prod="kroma-mirror-chrome-system" data-variant-key="size" data-select-size="kroma-mirror-chrome-system" class="mech-select !py-2 !px-3 text-xs w-full font-mono font-bold" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('kroma-mirror-chrome-system', 'size', this.value) : (window.onProductVariantChange ? window.onProductVariantChange('kroma-mirror-chrome-system', 'size', this.value) : null)">
-                  <option value="Small Kit (140g / 5 oz)" selected>Small Kit (140g / 5 oz) • 7–10 sq ft — €306.12 / £260.20</option>
-                  <option value="Medium Kit (420g / 15 oz)">Medium Kit (420g / 15 oz) • 22–30 sq ft — €834.86 / £709.63</option>
-                  <option value="Large Kit (1260g / 45 oz)">Large Kit (1260g / 45 oz) • 68–90 sq ft — €1,878.44 / £1,596.67</option>
-                  <option value="Extra Large Kit (2520g / 90 oz)">Extra Large Kit (2520g / 90 oz) • 135–180 sq ft — €3,381.18 / £2,874.00</option>
-                  <option value="Ultra Large Kit (10080g / 360 oz)">Ultra Large Kit (10kg / 360 oz) • Factory Run — €11,914.16 / £10,127.04</option>
+                  <option value="Small Kit (140g / 5 oz)" selected>Small Kit (140g / 5 oz) • 7–10 sq ft — €276.47 / £235.00</option>
+                  <option value="Medium Kit (420g / 15 oz)">Medium Kit (420g / 15 oz) • 22–30 sq ft — €752.94 / £640.00</option>
+                  <option value="Large Kit (1260g / 45 oz)">Large Kit (1260g / 45 oz) • 68–90 sq ft — €1,705.88 / £1,450.00</option>
+                  <option value="Extra Large Kit (2520g / 90 oz)">Extra Large Kit (2520g / 90 oz) • 135–180 sq ft — €3,000.00 / £2,550.00</option>
+                  <option value="Ultra Large Kit (10080g / 360 oz)">Ultra Large Kit (10kg / 360 oz) • Factory Run — €10,882.35 / £9,250.00</option>
                 </select>
 
                 <!-- Project Sizing Estimator & Beginner Confidence -->
@@ -748,8 +730,8 @@
             <div>
               <div class="flex items-baseline justify-between border-t border-white/10 pt-3 mb-4">
                 <div>
-                  <span id="price-eur-kroma-mirror-chrome-system" data-price-eur="kroma-mirror-chrome-system" data-price-primary="kroma-mirror-chrome-system" class="price-eur-kroma-mirror-chrome-system font-headline text-3xl text-white font-extrabold block">€306.12</span>
-                  <span id="price-gbp-kroma-mirror-chrome-system" data-price-gbp="kroma-mirror-chrome-system" data-price-secondary="kroma-mirror-chrome-system" class="price-gbp-kroma-mirror-chrome-system font-mono text-xs text-neutral-400">£260.20 + VAT</span>
+                  <span id="price-eur-kroma-mirror-chrome-system" data-price-eur="kroma-mirror-chrome-system" data-price-primary="kroma-mirror-chrome-system" class="price-eur-kroma-mirror-chrome-system font-headline text-3xl text-white font-extrabold block">€276.47</span>
+                  <span id="price-gbp-kroma-mirror-chrome-system" data-price-gbp="kroma-mirror-chrome-system" data-price-secondary="kroma-mirror-chrome-system" class="price-gbp-kroma-mirror-chrome-system font-mono text-xs text-neutral-400">£235.00 + VAT</span>
                 </div>
                 <span class="text-[11px] font-mono text-primary font-bold border border-primary/40 px-2.5 py-1 rounded bg-primary/10">
                   BATCH 1 ALLOCATION
@@ -808,9 +790,9 @@
                   <span class="text-[9px] font-mono text-emerald-400 font-bold bg-emerald-950/80 border border-emerald-500/40 px-1.5 py-0.5 rounded">3-PART SET</span>
                 </div>
                 <select id="select-size-kroma-dedicated-topcoat-clear" data-variant-prod="kroma-dedicated-topcoat-clear" data-variant-key="size" data-select-size="kroma-dedicated-topcoat-clear" class="mech-select !py-2 !px-3 text-xs w-full font-mono font-bold" onchange="window.paintApp && window.paintApp.onProductVariantChange ? window.paintApp.onProductVariantChange('kroma-dedicated-topcoat-clear', 'size', this.value) : (window.onProductVariantChange ? window.onProductVariantChange('kroma-dedicated-topcoat-clear', 'size', this.value) : null)">
-                  <option value="Topcoat Clear 180 SET (1.5 m²)" selected>Topcoat Clear 180 SET • 378g (~1.5 m²) — €73.05 / £62.09</option>
-                  <option value="Topcoat Clear 900 SET (6.0 m²)">Topcoat Clear 900 SET • 1,890g (~6.0 m²) — €323.51 / £274.98</option>
-                  <option value="Topcoat Clear 3600 SET (24.0 m²)">Topcoat Clear 3600 SET • 7,560g (~24 m²) — €1,170.59 / £995.00</option>
+                  <option value="Topcoat Clear 180 SET (1.5 m²)" selected>Topcoat Clear 180 SET • 378g (~1.5 m²) — €76.47 / £65.00</option>
+                  <option value="Topcoat Clear 900 SET (6.0 m²)">Topcoat Clear 900 SET • 1,890g (~6.0 m²) — €335.29 / £285.00</option>
+                  <option value="Topcoat Clear 3600 SET (24.0 m²)">Topcoat Clear 3600 SET • 7,560g (~24 m²) — €1,235.29 / £1,050.00</option>
                 </select>
                 <div class="flex items-center justify-between text-[9px] font-mono text-neutral-400 pt-0.5">
                   <span>Includes: Clear Base + Hardener + Dedicated Thinner</span>
@@ -824,8 +806,8 @@
             <div>
               <div class="flex items-baseline justify-between border-t border-white/10 pt-3 mb-3">
                 <div>
-                  <span id="price-eur-kroma-dedicated-topcoat-clear" data-price-eur="kroma-dedicated-topcoat-clear" data-price-primary="kroma-dedicated-topcoat-clear" class="price-eur-kroma-dedicated-topcoat-clear font-headline text-2xl text-white font-extrabold block">€73.05</span>
-                  <span id="price-gbp-kroma-dedicated-topcoat-clear" data-price-gbp="kroma-dedicated-topcoat-clear" data-price-secondary="kroma-dedicated-topcoat-clear" class="price-gbp-kroma-dedicated-topcoat-clear font-mono text-xs text-neutral-400">£62.09 + VAT</span>
+                  <span id="price-eur-kroma-dedicated-topcoat-clear" data-price-eur="kroma-dedicated-topcoat-clear" data-price-primary="kroma-dedicated-topcoat-clear" class="price-eur-kroma-dedicated-topcoat-clear font-headline text-2xl text-white font-extrabold block">€76.47</span>
+                  <span id="price-gbp-kroma-dedicated-topcoat-clear" data-price-gbp="kroma-dedicated-topcoat-clear" data-price-secondary="kroma-dedicated-topcoat-clear" class="price-gbp-kroma-dedicated-topcoat-clear font-mono text-xs text-neutral-400">£65.00 + VAT</span>
                 </div>
                 <span class="text-[10px] font-mono text-primary font-bold border border-primary/40 px-2 py-0.5 rounded bg-primary/10">
                   BATCH 1 ALLOCATION
@@ -1008,7 +990,7 @@
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <button onclick="window.paintApp.addProductToCartById('fk-2629')" class="mech-btn-candy !w-full !py-3.5 !text-xs tracking-wider flex items-center justify-center gap-2 cursor-pointer rounded shadow-lg">
                   <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
-                  <span class="font-extrabold">ADD MASTER KIT • £208.33</span>
+                  <span id="btn-master-kit-text" class="font-extrabold">ADD MASTER KIT • £208.33</span>
                 </button>
                 <button onclick="window.paintApp.openDetailModal('fk-2629')" class="mech-btn-secondary !w-full !py-3.5 !text-xs tracking-wider flex items-center justify-center gap-1.5 cursor-pointer rounded shadow-lg">
                   <span class="material-symbols-outlined text-[18px] text-primary">info</span>
@@ -2156,7 +2138,7 @@
           </div>
 
           <span class="font-mono text-xs text-amber-400 font-bold bg-amber-950/80 border border-amber-500/50 px-3 py-1.5 rounded self-start md:self-auto">
-            ⚠️ 2026 METAL REPRICING IN PROGRESS
+            ⏳ COMING SOON • 2026 DIRECT ALLOCATION
           </span>
         </div>
 
@@ -2165,20 +2147,20 @@
           <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div class="space-y-2 max-w-3xl">
               <div class="flex items-center gap-2 text-amber-400 font-mono text-xs font-bold uppercase tracking-wider">
-                <span class="material-symbols-outlined text-base">info</span>
-                <span>Raw Material Price Recalibration Notice</span>
+                <span class="material-symbols-outlined text-base">hourglass_top</span>
+                <span>2026 Direct Allocation Notice</span>
               </div>
               <h3 class="font-headline text-lg sm:text-xl uppercase text-white">
-                VsionAir Modular Hardware Temporarily Paused for 2026 Price Updates
+                VsionAir Modular Hardware Reserved as Coming Soon
               </h3>
               <p class="text-xs sm:text-sm text-neutral-300 font-body leading-relaxed">
-                Due to significant recent increases in global raw metal and aerospace-grade aluminium extrusion costs, public automated checkout for VsionAir workstations and jigs is temporarily paused while pricebooks are updated. If you need a turnkey studio build, custom rig, or bulk distributor allocation, our engineering team can provide immediate manual quotations.
+                All 69 VsionAir workstations, multi-axis jigs, tool bars, and modular hardware components are currently reserved as Coming Soon while global production allocation and raw metal pricing are finalized. Explore full CAD models, specifications, and configurations below, or contact engineering for advance build reservations.
               </p>
             </div>
 
             <div class="flex flex-col gap-2.5 flex-shrink-0 w-full sm:w-auto">
               <a href="mailto:info@coastairbrush.eu?subject=VsionAir%20Studio%20Rig%20Quote%20Request" class="mech-btn-candy !py-3 !px-6 text-xs text-center font-bold tracking-wider rounded">
-                Request Custom Studio Rig Quote
+                Request Advance Allocation Quote
               </a>
               <a href="https://vsionair.com" target="_blank" rel="noopener noreferrer" class="mech-btn-secondary !py-2.5 !px-6 text-xs text-center font-mono rounded">
                 Visit Official VsionAir Archives &rarr;
@@ -2189,42 +2171,42 @@
 
         <!-- The 5 Official Clean Categories from vsionair.com -->
         <div>
-          <span class="font-mono text-xs text-neutral-400 uppercase tracking-wider block mb-3 font-semibold">The 5 Official VsionAir Categories:</span>
+          <span class="font-mono text-xs text-neutral-400 uppercase tracking-wider block mb-3 font-semibold">The 5 Official VsionAir Categories (Coming Soon):</span>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             
-            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Work-Holding Jigs')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-primary hover:bg-surface-container-high transition-all group shadow-sm">
-              <span class="text-primary font-mono text-xs font-bold block mb-1 group-hover:text-primary-light">01 • JIGS</span>
-              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-primary transition-colors">Work-Holding Jigs</h5>
+            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Work-Holding Jigs')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-amber-400 hover:bg-surface-container-high transition-all group shadow-sm">
+              <span class="text-amber-400 font-mono text-xs font-bold block mb-1">01 • JIGS</span>
+              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-amber-400 transition-colors">Work-Holding Jigs</h5>
               <p class="text-[11px] text-neutral-400 mb-2">Helmets, Goalie Masks, Tanks, Fenders, Skateboards, Guitars &amp; Wheels.</p>
-              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">View Products &rarr;</span>
+              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">Browse Coming Soon &rarr;</span>
             </div>
 
-            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Base Stands &amp; Easels')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-primary hover:bg-surface-container-high transition-all group shadow-sm">
-              <span class="text-primary font-mono text-xs font-bold block mb-1 group-hover:text-primary-light">02 • STANDS</span>
-              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-primary transition-colors">Base Stands &amp; Easels</h5>
+            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Base Stands &amp; Easels')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-amber-400 hover:bg-surface-container-high transition-all group shadow-sm">
+              <span class="text-amber-400 font-mono text-xs font-bold block mb-1">02 • STANDS</span>
+              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-amber-400 transition-colors">Base Stands &amp; Easels</h5>
               <p class="text-[11px] text-neutral-400 mb-2">Desk Mount Stands, Heavy Tri-Stands, and Modular Studio Easels.</p>
-              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">View Products &rarr;</span>
+              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">Browse Coming Soon &rarr;</span>
             </div>
 
-            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Tool Bars &amp; Lighting Rigs')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-primary hover:bg-surface-container-high transition-all group shadow-sm">
-              <span class="text-primary font-mono text-xs font-bold block mb-1 group-hover:text-primary-light">03 • RIGS</span>
-              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-primary transition-colors">Frames &amp; Lighting Rigs</h5>
+            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Tool Bars &amp; Lighting Rigs')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-amber-400 hover:bg-surface-container-high transition-all group shadow-sm">
+              <span class="text-amber-400 font-mono text-xs font-bold block mb-1">03 • RIGS</span>
+              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-amber-400 transition-colors">Frames &amp; Lighting Rigs</h5>
               <p class="text-[11px] text-neutral-400 mb-2">Vertical Tool Bars, Camera Mounts, and Overhead Lighting Gantry Rigs.</p>
-              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">View Products &rarr;</span>
+              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">Browse Coming Soon &rarr;</span>
             </div>
 
-            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Tool &amp; Airbrush Holders')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-primary hover:bg-surface-container-high transition-all group shadow-sm">
-              <span class="text-primary font-mono text-xs font-bold block mb-1 group-hover:text-primary-light">04 • HOLDERS</span>
-              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-primary transition-colors">Tool &amp; Airbrush Holders</h5>
+            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Tool &amp; Airbrush Holders')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-amber-400 hover:bg-surface-container-high transition-all group shadow-sm">
+              <span class="text-amber-400 font-mono text-xs font-bold block mb-1">04 • HOLDERS</span>
+              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-amber-400 transition-colors">Tool &amp; Airbrush Holders</h5>
               <p class="text-[11px] text-neutral-400 mb-2">Airbrush Cradles, Cleaning Pots, Needle Trays &amp; Bench Organizers.</p>
-              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">View Products &rarr;</span>
+              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">Browse Coming Soon &rarr;</span>
             </div>
 
-            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Fixings, Knobs &amp; Hardware')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-primary hover:bg-surface-container-high transition-all group shadow-sm">
-              <span class="text-primary font-mono text-xs font-bold block mb-1 group-hover:text-primary-light">05 • HARDWARE</span>
-              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-primary transition-colors">Fixings, Knobs &amp; Bolts</h5>
+            <div onclick="window.paintApp &amp;&amp; window.paintApp.filterAndScrollToVsionCategory('Fixings, Knobs &amp; Hardware')" class="p-4 bg-surface-container border border-white/10 rounded cursor-pointer hover:border-amber-400 hover:bg-surface-container-high transition-all group shadow-sm">
+              <span class="text-amber-400 font-mono text-xs font-bold block mb-1">05 • HARDWARE</span>
+              <h5 class="font-headline text-sm uppercase text-white font-bold mb-1 group-hover:text-amber-400 transition-colors">Fixings, Knobs &amp; Bolts</h5>
               <p class="text-[11px] text-neutral-400 mb-2">Billet Wing Knobs, M6/M10 Coach Bolts, Washers &amp; IABS Brackets.</p>
-              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">View Products &rarr;</span>
+              <span class="text-[10px] font-mono text-amber-400 font-bold opacity-80 group-hover:opacity-100 flex items-center gap-1">Browse Coming Soon &rarr;</span>
             </div>
 
           </div>
@@ -2271,7 +2253,7 @@
             <button data-cat-val="Dry Metal Flake Guns" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">FLAKE GUNS</button>
             <button data-cat-val="Flake King Gun Accessories" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">GUN ACCESSORIES</button>
             <button data-cat-val="Masking Products" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">FINE LINE TAPES (6)</button>
-            <button data-brand-val="VsionAir" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">VSIONAIR</button>
+            <button data-brand-val="VsionAir" class="brand-pill px-3 py-1.5 border border-amber-500/60 bg-black/60 text-amber-300 hover:text-white hover:border-amber-400 transition-colors cursor-pointer">VSIONAIR (COMING SOON)</button>
           </div>
 
           <!-- Sorter Dropdown & Reset -->
@@ -7560,21 +7542,21 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- STAKEHOLDER REVIEW & PRE-LAUNCH STAGING MODAL -->
+  <!-- FORMULATION AUDIT & PRE-ORDER REVIEW MODAL -->
   <!-- ========================================================================= -->
   <div id="modal-review-mode" class="fixed inset-0 bg-black/85 backdrop-blur-md z-[9999] hidden flex items-center justify-center p-4 overflow-y-auto">
-    <div class="review-modal-box max-w-xl w-full p-6 bg-[#161819] border-2 border-amber-500/70 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] text-neutral-200 max-h-[92vh] overflow-y-auto custom-scrollbar my-auto">
+    <div class="review-modal-box max-w-xl w-full p-6 bg-[#161819] border-2 border-red-600/70 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] text-neutral-200 max-h-[92vh] overflow-y-auto custom-scrollbar my-auto">
       <div class="flex items-start justify-between gap-4 border-b border-white/10 pb-4 mb-4">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded bg-amber-500/20 border border-amber-500 flex items-center justify-center text-amber-400">
+          <div class="w-10 h-10 rounded bg-red-600/20 border border-red-500 flex items-center justify-center text-red-400">
             <span class="material-symbols-outlined text-[24px]">verified</span>
           </div>
           <div>
             <h3 class="font-headline text-xl uppercase text-white font-bold tracking-wide">
-              Official Partner Review Mode
+              Formulation &amp; Cart Audit
             </h3>
-            <p class="font-mono text-xs text-amber-400 font-bold">
-              Coast Airbrush USA (Placentia, CA) • Operational Sign-off Phase
+            <p class="font-mono text-xs text-red-400 font-bold">
+              Coast Airbrush Europe • Custom Paint Formulation Lab
             </p>
           </div>
         </div>
@@ -7584,10 +7566,10 @@
       </div>
 
       <div class="space-y-3 font-body text-sm leading-relaxed mb-6">
-        <div class="p-3 bg-black/40 border border-amber-500/40 rounded text-xs font-mono text-amber-200 flex items-start gap-2.5">
-          <span class="material-symbols-outlined text-amber-400 text-[18px] flex-shrink-0 mt-0.5">lock_clock</span>
+        <div class="p-3 bg-black/40 border border-red-500/40 rounded text-xs font-mono text-neutral-200 flex items-start gap-2.5">
+          <span class="material-symbols-outlined text-red-400 text-[18px] flex-shrink-0 mt-0.5">science</span>
           <div>
-            <strong>LIVE CHECKOUT PAUSED:</strong> To ensure operational perfection, commercial ordering is held until Dave and the Coast Airbrush Placentia leadership team complete their audit of technical data sheets, European pricing matrices, and formulation calculators.
+            <strong>FORMULATION AUDIT:</strong> Review your custom paint recipes, Bill of Materials, and exact weight ratio calculations before transferring directly to the Shopify checkout permalink.
           </div>
         </div>
 
