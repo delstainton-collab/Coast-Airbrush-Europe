@@ -5,12 +5,19 @@ assets/videos/
 *.mp4
 *.webm
 *.mov
-Images/
+/Images/
 coast-shopify-media-files/
 coast-shopify-media-files.zip
 coast-airbrush-eu-shopify-theme.zip
 .git
 .github
-docs/
-scripts/
+/docs/
+/scripts/
 server.js
+
+# Explicitly ensure static assets are included
+!assets/
+!assets/images/
+!assets/images/**
+!assets/docs/
+!assets/docs/**

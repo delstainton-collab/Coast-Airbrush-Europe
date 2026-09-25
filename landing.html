@@ -150,11 +150,13 @@
   <div class="static-buggy-bg"></div>
   <div class="static-metal-sheen"></div>
 
-  <!-- Header (Clean Branding Bar — Zero Links) -->
+  <!-- Header (Clean Branding Bar) -->
   <header class="w-full border-b border-white/20 bg-[#121414]/90 backdrop-blur-md sticky top-0 z-30">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <img src="assets/images/coast_logo_white.png" alt="Coast Airbrush Europe" class="h-9 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+        <a href="index.html?preview=true" title="Coast Airbrush Europe Home">
+          <img src="assets/images/coast_logo_white.png" onerror="this.onerror=null; this.src='coast_logo_white.png';" alt="Coast Airbrush Europe" class="h-9 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+        </a>
       </div>
 
       <div class="flex items-center gap-2 sm:gap-3 font-mono text-[11px] sm:text-xs">
@@ -162,9 +164,10 @@
           🇬🇧 UK DISPATCH • REACH COMPLIANT
         </span>
         <span class="hidden sm:inline text-white/30">•</span>
-        <span class="text-primary font-bold tracking-wider uppercase bg-black/60 px-2.5 py-1 rounded border border-primary/40">
-          Store Opening Soon
-        </span>
+        <a href="index.html?preview=true" class="text-primary hover:text-white font-bold tracking-wider uppercase bg-black/60 hover:bg-black/90 px-3 py-1 rounded border border-primary/40 flex items-center gap-1.5 transition-all shadow-sm" title="Preview Full Storefront Catalog & Mix Lab">
+          <span class="material-symbols-outlined text-[14px]">storefront</span>
+          <span>Catalog Preview</span>
+        </a>
       </div>
     </div>
   </header>
@@ -231,10 +234,86 @@
           We are excited to announce that the very first release in Europe is the revolutionary <strong class="text-white font-semibold">Kromaedge</strong> product line. Engineered for deep, liquid-mirror reflections, superior atomization, and flawless edge-to-edge application, Kromaedge sets a new benchmark in sprayable chrome technology.
         </p>
 
-        <!-- Promotional Status Notice -->
-        <div class="font-mono text-sm font-bold text-primary flex items-center gap-2 pt-1 text-shadow-contrast">
-          <span class="material-symbols-outlined text-[18px]">verified</span>
-          <span>European Premiere • Arriving With Store Launch</span>
+        <!-- Product Visual Showcase Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+          <!-- Card 1: Kroma Edge Mirror Specimen -->
+          <div class="inner-panel rounded-lg overflow-hidden border border-white/20 bg-black/60 flex flex-col group">
+            <div class="relative h-44 overflow-hidden bg-black/80 flex items-center justify-center">
+              <img src="assets/images/kroma-skull-studio-dark.jpg" onerror="this.onerror=null; this.src='assets/images/kroma-detail-skull.jpg';" alt="Kroma Edge Mirror Chrome Specimen" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <span class="absolute top-2 left-2 bg-black/80 border border-primary/50 text-primary font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase">
+                ✦ 99.4% Reflection
+              </span>
+              <span class="absolute bottom-2 right-2 bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded">
+                Zero Groundcoat Required
+              </span>
+            </div>
+            <div class="p-3.5 space-y-1">
+              <h4 class="font-headline text-sm uppercase text-white font-bold">Kroma Edge™ Mirror Chrome 2K System</h4>
+              <p class="font-mono text-xs text-neutral-300">Self-organizing optical coating. Direct chemical bond to plastic, resin, aluminum &amp; steel.</p>
+            </div>
+          </div>
+
+          <!-- Card 2: Kroma Edge 4-Part System Kit -->
+          <div class="inner-panel rounded-lg overflow-hidden border border-white/20 bg-black/60 flex flex-col group">
+            <div class="relative h-44 overflow-hidden bg-black/80 flex items-center justify-center p-2">
+              <img src="assets/images/kroma-detail-skull.jpg" onerror="this.onerror=null; this.src='assets/images/kroma-detail-helmet.jpg';" alt="Kroma Edge Complete 4-Part Kit" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <span class="absolute top-2 left-2 bg-black/80 border border-amber-500/50 text-amber-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase">
+                Complete 4-Part System
+              </span>
+              <span class="absolute bottom-2 right-2 bg-black/80 border border-white/30 text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded">
+                140g &rarr; 10kg Kits
+              </span>
+            </div>
+            <div class="p-3.5 space-y-1">
+              <h4 class="font-headline text-sm uppercase text-white font-bold">Complete 4-Part Formulated Kit</h4>
+              <p class="font-mono text-xs text-neutral-300">Pre-measured Binder, Reducer, Hardener &amp; Optical Mirror Seeds with precision mixing ratio.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flake King & Hardware Product Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+          <!-- Subcard 1: Flake King Flake Gun -->
+          <div class="inner-panel p-2.5 rounded border border-white/15 bg-black/40 flex items-center gap-3">
+            <img src="assets/images/flake-buggy-studio.jpg" alt="Flake King Dry Flake Gun" class="w-14 h-14 object-cover rounded flex-shrink-0 border border-white/20">
+            <div class="min-w-0">
+              <div class="font-headline text-xs uppercase text-white font-bold truncate">Flake King™ Dry Guns</div>
+              <div class="font-mono text-[11px] text-primary">36 Metal Flakes Dropping</div>
+            </div>
+          </div>
+
+          <!-- Subcard 2: Basecoats & Binders -->
+          <div class="inner-panel p-2.5 rounded border border-white/15 bg-black/40 flex items-center gap-3">
+            <img src="assets/images/fk100-prime-black-base.jpg" alt="FK100 Prime Black Base" class="w-14 h-14 object-contain rounded flex-shrink-0 border border-white/20 bg-black">
+            <div class="min-w-0">
+              <div class="font-headline text-xs uppercase text-white font-bold truncate">Basecoats &amp; Binders</div>
+              <div class="font-mono text-[11px] text-emerald-400">FK50, FK55 &amp; FK100</div>
+            </div>
+          </div>
+
+          <!-- Subcard 3: Fine-Line Tapes -->
+          <div class="inner-panel p-2.5 rounded border border-white/15 bg-black/40 flex items-center gap-3">
+            <img src="assets/images/flake-king-orange-mixed-set.webp" alt="Flake King Fine Line Masking Tape" class="w-14 h-14 object-contain rounded flex-shrink-0 border border-white/20 bg-black">
+            <div class="min-w-0">
+              <div class="font-headline text-xs uppercase text-white font-bold truncate">Fine Line Tapes</div>
+              <div class="font-mono text-[11px] text-amber-400">Green &amp; Orange Sets</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Promotional Status Notice & Storefront Preview CTA -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
+          <div class="font-mono text-xs font-bold text-primary flex items-center gap-2 text-shadow-contrast">
+            <span class="material-symbols-outlined text-[18px]">verified</span>
+            <span>European Premiere • Direct UK &amp; Netherlands Dispatch</span>
+          </div>
+
+          <a href="index.html?preview=true" class="mech-button-primary !py-2 !px-4 text-xs font-mono font-bold tracking-wider flex items-center justify-center gap-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] uppercase text-white whitespace-nowrap hover:brightness-110 transition-all" title="Explore Live 125-Product Storefront">
+            <span>Explore 125-Product Catalog</span>
+            <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+          </a>
         </div>
       </section>
 

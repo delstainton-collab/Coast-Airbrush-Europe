@@ -1,19 +1,22 @@
 {
   "framework": null,
   "cleanUrls": false,
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(png|jpg|jpeg|webp|svg|ico|pdf)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ],
   "redirects": [
     { "source": "/", "destination": "/landing.html", "permanent": false },
-    { "source": "/index.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/index", "destination": "/landing.html", "permanent": false },
-    { "source": "/about.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/about", "destination": "/landing.html", "permanent": false },
-    { "source": "/dealers.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/dealers", "destination": "/landing.html", "permanent": false },
-    { "source": "/shipping.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/shipping", "destination": "/landing.html", "permanent": false },
-    { "source": "/support.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/support", "destination": "/landing.html", "permanent": false },
-    { "source": "/privacy.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/privacy", "destination": "/landing.html", "permanent": false }
+    { "source": "/index", "destination": "/landing.html", "permanent": false }
   ]
 }
