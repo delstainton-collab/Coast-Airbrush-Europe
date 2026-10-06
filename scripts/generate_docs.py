@@ -1,0 +1,561 @@
+import os
+import subprocess
+
+html_content = """<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Coast Airbrush Europe & T5 Product Distribution Ltd - Strategic Partnership Proposal</title>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: #222222;
+    margin: 40px;
+  }
+  h1 {
+    color: #b71c1c;
+    font-size: 26pt;
+    margin-bottom: 5px;
+    border-bottom: 3px solid #b71c1c;
+    padding-bottom: 10px;
+  }
+  h2 {
+    color: #1a237e;
+    font-size: 18pt;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-bottom: 1.5px solid #dcdcdc;
+    padding-bottom: 6px;
+  }
+  h3 {
+    color: #333333;
+    font-size: 14pt;
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  p, li {
+    font-size: 11pt;
+    margin-bottom: 8px;
+  }
+  .header-box {
+    background-color: #f5f5f5;
+    border-left: 6px solid #b71c1c;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+  }
+  .header-box p {
+    margin: 4px 0;
+  }
+  .callout-box {
+    background-color: #e8f4fd;
+    border-left: 5px solid #1976d2;
+    padding: 12px 18px;
+    margin: 15px 0;
+    border-radius: 4px;
+  }
+  .highlight-box {
+    background-color: #fbe9e7;
+    border-left: 5px solid #d32f2f;
+    padding: 12px 18px;
+    margin: 15px 0;
+    border-radius: 4px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 10.5pt;
+  }
+  th {
+    background-color: #212121;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px 12px;
+    border: 1px solid #333333;
+  }
+  td {
+    padding: 9px 12px;
+    border: 1px solid #dcdcdc;
+    vertical-align: top;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  .lead {
+    font-size: 12pt;
+    font-weight: bold;
+    color: #444444;
+  }
+  .signature-table {
+    margin-top: 40px;
+    width: 100%;
+    border: none;
+  }
+  .signature-table td {
+    border: none;
+    padding: 20px;
+    width: 50%;
+  }
+  .sig-line {
+    border-top: 2px solid #333;
+    margin-top: 50px;
+    padding-top: 8px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-box">
+  <h1>COAST AIRBRUSH EUROPE &amp; T5 PRODUCT DISTRIBUTION LTD</h1>
+  <p class="lead">Joint Strategic Proposal, European &amp; UK Competitor Intelligence, Go-to-Market Plan &amp; Commercial Term Sheet</p>
+  <p><strong>Prepared For:</strong> Ryan Royal (Managing Director, T5 Product Distribution Ltd) &amp; Derek Stainton (Director, Coast Airbrush Europe)</p>
+  <p><strong>Date:</strong> Autumn 2026 | <strong>Status:</strong> Confidential — Commercial-in-Confidence</p>
+</div>
+
+<h2>1. Executive Summary &amp; Strategic Rationale</h2>
+
+<h3>1.1 The Market Opportunity</h3>
+<p>Custom automotive finishes, motorcycle customization, helmet artistry, and bespoke airbrushing represent a high-margin, resilient sector within the broader European automotive refinish market (&euro;4.2B+). However, following Brexit and widespread European supply chain shifts, the European and UK custom paint market is plagued by three fundamental failures:</p>
+<ol>
+  <li><strong>Severe Product Fragmentation:</strong> Painters, bike customizers, and trade jobbers are forced to piece together basecoats, custom candies, metal flakes, and specialty reducers from multiple erratic suppliers with inconsistent quality.</li>
+  <li><strong>Post-Brexit Import Friction &amp; Hazmat Freight Surcharges:</strong> Shipping solvent paints individually across the UK-EU border incurs crushing carrier dangerous goods (UN1263 Class 3) surcharges (&euro;45 to &euro;95 per parcel), lengthy customs holds, and unexpected doorstep import fees.</li>
+  <li><strong>Outdated Digital Infrastructure:</strong> Incumbents lack modern digital mixing engines, live formula calculators, and automated e-commerce replenishment systems.</li>
+</ol>
+
+<div class="callout-box">
+  <strong>The Strategic Alliance:</strong> This joint venture unites <strong>Derek Stainton</strong> (Coast Airbrush US relationship, brand marketing, e-commerce, proprietary mixing engine software, and European distributor sales) with <strong>T5 Product Distribution Ltd</strong> (headed by Managing Director <strong>Ryan Royal</strong>, providing working capital, bulk purchasing, bonded/domestic storage, hazmat logistics, and fulfillment operations).
+</div>
+
+<h3>1.2 The Breakthrough Distribution Mechanism: "Demand Proving to Territory Lockdown"</h3>
+<p>The core commercial innovation solves the single greatest barrier in automotive paint distribution: <strong>Distributor Channel Conflict</strong>.</p>
+<ul>
+  <li><strong>Phase 1 (D2C Demand Validation):</strong> End users across the UK and Continental Europe purchase directly via <code>coastairbrush.eu</code>. This generates immediate high-margin revenue, tests SKU velocity, captures customer emails/profiles, and builds geographic heatmaps of proven demand.</li>
+  <li><strong>Phase 2 (Country Distributor Appointment &amp; Web Cut-Off):</strong> The moment an exclusive Master Distributor agreement is executed in a specific European country (e.g., Germany, France, Spain, Italy, Sweden):
+    <ul>
+      <li><strong>Direct website purchasing is immediately disabled for that country.</strong></li>
+      <li>100% of website traffic, customer inquiries, and commercial body shop leads from that territory are automatically geo-routed exclusively to the local appointed distributor.</li>
+      <li>This guarantees the distributor a protected, captive market with existing paying customers, making the Coast Airbrush distribution license an irresistible commercial proposition.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h2>2. UK &amp; European Competitor Analysis</h2>
+
+<p>A comprehensive audit of custom paint manufacturers, specialized coating brands, and distribution jobbers across the UK and Continental Europe reveals clear structural vulnerabilities:</p>
+
+<h3>2.1 House of Kolor (Valspar / Sherwin-Williams Automotive)</h3>
+<ul>
+  <li><strong>Profile:</strong> The historic pioneer of custom automotive paint (founded 1956). Acquired by Valspar, now part of Sherwin-Williams. Distributed in the UK via regional factors (Jawel Paints, Autopaint Solutions, Martin Brown Paints). In Europe, availability is highly fractured.</li>
+  <li><strong>Product Strengths:</strong> Worldwide brand recognition, Shimrin2 basecoat system, iconic Kandys (KK, UK, KBC).</li>
+  <li><strong>Critical Weaknesses &amp; Market Gaps:</strong> Corporate neglect under parent Sherwin-Williams; severe post-Brexit UK stockouts; extreme price inflation per quart; strict solvent VOC regulatory friction; zero modern digital mixing software.</li>
+</ul>
+
+<h3>2.2 Custom Creative (Spain / Pan-European)</h3>
+<ul>
+  <li><strong>Profile:</strong> Prominent Spanish manufacturer specializing in custom automotive candies, fluorescent paints, pinstriping lacquers, and flakes.</li>
+  <li><strong>Product Strengths:</strong> High-quality formulations, full European chemical compliance, solid southern European distribution.</li>
+  <li><strong>Critical Weaknesses &amp; Market Gaps:</strong> Lacks the 40-year American Kustom Kulture heritage of Coast Airbrush; weak direct presence in the UK following Brexit; sells direct to consumers online while trying to sign local dealers, causing channel margin friction.</li>
+</ul>
+
+<h3>2.3 Specialist Paints / Custom Paints Ltd (UK)</h3>
+<ul>
+  <li><strong>Profile:</strong> UK-based manufacturer and direct distributor operating the "Inspire Paints" line out of St Helens, UK.</li>
+  <li><strong>Product Strengths:</strong> Broad range of special-effect coatings (pearls, candies, thermochromic, hydrographic, chrome).</li>
+  <li><strong>Critical Weaknesses &amp; Market Gaps:</strong> Operates almost exclusively on a Direct-to-Consumer e-commerce model, which alienates professional trade refinish distributors and factors who demand territory protection; perceived as a hobbyist brand rather than an elite custom shop system; heavy cross-border customs friction into Europe.</li>
+</ul>
+
+<h3>2.4 Stardust Colors (France / Pan-European)</h3>
+<ul>
+  <li><strong>Profile:</strong> French manufacturer and distributor founded in 2009 in Saint-Laurent-des-Arbres, France.</li>
+  <li><strong>Product Strengths:</strong> Giant catalog of optical effect pigments (crystalizer, chameleon, phosphorescent, holographic, chrome).</li>
+  <li><strong>Critical Weaknesses &amp; Market Gaps:</strong> Pure e-commerce catalog mindset; lacks authentic custom lifestyle identity; no dedicated dealer loyalty or protected territory distribution model; weak airbrush and striping line.</li>
+</ul>
+
+<h3>2.5 Createx Colors (Distributed via Createx Handels-GmbH, Germany)</h3>
+<ul>
+  <li><strong>Profile:</strong> The global standard in water-based airbrush colors (Wicked Colors, candy2o, Illustration Colors), with a master European warehouse in Germany.</li>
+  <li><strong>Product Strengths:</strong> Non-toxic, water-based formulations; zero VOC issues; high artist loyalty in fine art, RC cars, and textiles.</li>
+  <li><strong>Critical Weaknesses &amp; Market Gaps:</strong> <strong>The Automotive Solvent Void:</strong> Professional automotive customizers, hot-rod builders, and chopper painters still demand high-solids solvent-borne urethanes, candies, and clearcoats for production speed, flow-out, and depth of gloss. Createx does not fulfill this solvent demand.</li>
+</ul>
+
+<h3>2.6 Competitor Comparison Matrix</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Competitor</th>
+      <th>HQ Origin</th>
+      <th>Primary Product Focus</th>
+      <th>UK / EU Distribution Model</th>
+      <th>Digital Mixing Tools</th>
+      <th>Jobber Channel Protection</th>
+      <th>Brand Heritage &amp; Pull</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>House of Kolor</strong></td>
+      <td>USA</td>
+      <td>Solvent Custom Paint</td>
+      <td>Moderate (UK factors; fractured EU)</td>
+      <td>Low (Static PDF charts)</td>
+      <td>Low (Eroded margins; stockouts)</td>
+      <td>Iconic (5/5)</td>
+    </tr>
+    <tr>
+      <td><strong>Custom Creative</strong></td>
+      <td>Spain</td>
+      <td>Custom Solvents &amp; Candies</td>
+      <td>Strong Southern EU; Weak UK</td>
+      <td>Moderate (Basic formulas)</td>
+      <td>Moderate (Competes with site)</td>
+      <td>Regional Trade (3/5)</td>
+    </tr>
+    <tr>
+      <td><strong>Specialist Paints</strong></td>
+      <td>UK</td>
+      <td>Special Effect Coatings</td>
+      <td>Strong UK D2C; Fragmented EU</td>
+      <td>Low (Standard e-commerce)</td>
+      <td>None (Pure D2C focus)</td>
+      <td>Hobbyist/Niche (2/5)</td>
+    </tr>
+    <tr>
+      <td><strong>Stardust Colors</strong></td>
+      <td>France</td>
+      <td>Optical Effect Paints</td>
+      <td>Strong EU Direct; Weak UK</td>
+      <td>Moderate (Technical data)</td>
+      <td>Low (Direct web sales)</td>
+      <td>Industrial Chemical (2/5)</td>
+    </tr>
+    <tr>
+      <td><strong>Createx Colors</strong></td>
+      <td>USA / DE</td>
+      <td>Water-Based Airbrush</td>
+      <td>High (Createx GmbH wholesale)</td>
+      <td>Moderate (Color guides)</td>
+      <td>High (Protected dealers)</td>
+      <td>Airbrush Standard (4/5)</td>
+    </tr>
+    <tr style="background-color: #fbe9e7; font-weight: bold;">
+      <td><strong>Coast Airbrush Europe (Us)</strong></td>
+      <td>USA / JP / UK</td>
+      <td>Solvent Custom System &amp; Kroma Edge + Flake King</td>
+      <td>Hybrid D2C to Protected Exclusive Master Distributors</td>
+      <td>High (Live Web Mixing Engine, AI Agents, CRM)</td>
+      <td>Absolute (100% Web Cut-Off Guarantee per Country)</td>
+      <td>World's #1 Custom Paint Destination (5/5)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>3. Comprehensive Sales &amp; Marketing Plan</h2>
+
+<h3>3.1 The 3-Phase Commercial Rollout</h3>
+<ol>
+  <li><strong>Phase 1: D2C Demand Generation &amp; Heatmapping (Months 1–3)</strong>
+    <p>Launch <code>coastairbrush.eu</code> shipping from T5 facilities across the UK and EU. Generates rapid retail cash flow, tests SKU velocity (Kroma Edge candies, basecoats, reducers, Flake King), and identifies exact geographical clusters of custom painters and shops.</p>
+  </li>
+  <li><strong>Phase 2: Distributor Recruitment &amp; Frictionless Handover (Months 4–9)</strong>
+    <p>Derek approaches premier paint factors in Germany (DACH), France, Italy, Spain, and Benelux with empirical data: <em>"We have 120 custom paint shops in your country spending &euro;15,000/month on our website. We want to hand you this customer base exclusively. When you sign and stock, we switch off direct consumer sales in your territory and route all local traffic, leads, and orders directly through you."</em></p>
+  </li>
+  <li><strong>Phase 3: Pan-European Network Maturity (Months 10+)</strong>
+    <p>Consolidate 6 to 8 Master Distributors covering all European economic zones, supported by automated B2B portal reordering, container-load ocean replenishment from Japan, and dedicated warehouse buffer stocks at T5.</p>
+  </li>
+</ol>
+
+<h3>3.2 Target Distributor Commercial Terms</h3>
+<ul>
+  <li><strong>Initial Stocking Order (ISO):</strong> &euro;25,000 to &euro;50,000 mandatory initial buy-in covering core fast-moving inventory, point-of-sale display racks, and sample spray-out decks.</li>
+  <li><strong>Annual Performance Commitments:</strong> &euro;120,000 to &euro;250,000 annual quota to retain national exclusivity, audited quarterly via the CRM.</li>
+  <li><strong>Volume Retro-Rebates:</strong> Tiered rebate structure (3% at 100% of quota, 5% at 120%, 7.5% at 150%) disbursed quarterly to incentivize high-volume reorders.</li>
+  <li><strong>Minimum Advertised Price (MAP):</strong> Strictly enforced pan-European MAP agreement to preserve healthy margins across all borders.</li>
+</ul>
+
+<h3>3.3 Marketing &amp; Brand Engine</h3>
+<ul>
+  <li><strong>Ambassador Seeding:</strong> Supply complete paint systems to 15 elite custom motorcycle builders, hot-rod painters, and helmet artists across the UK, Germany, France, and Spain for viral social proof.</li>
+  <li><strong>Video &amp; Technical Content Playbook:</strong> Short-form, high-impact video reels demonstrating candy spray-outs, metal flake reduction, and clearcoat depth across Instagram, TikTok, and YouTube.</li>
+  <li><strong>Proprietary Mixing Software Moat:</strong> The interactive paint mixing engine and CRM system at <code>coastairbrush.eu</code> locks painters and jobbers into our paint system by calculating exact formulation ratios and layer sequences.</li>
+  <li><strong>Trade Show Presence:</strong> High-visibility exhibition booths at <strong>Essen Motor Show</strong> (Germany), <strong>Automechanika Frankfurt</strong>, and <strong>Motorcycle Live</strong> (UK).</li>
+</ul>
+
+<hr>
+
+<h2>4. Operational Division of Responsibilities (RACI Matrix)</h2>
+
+<p>A rigorous division of responsibilities ensures seamless execution and accountability:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Operational Domain / Task</th>
+      <th>Derek Stainton (Coast Europe)</th>
+      <th>Ryan Royal / T5 Distribution</th>
+      <th>Lead Entity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Coast Airbrush US Relationship &amp; IP Licensing</strong></td>
+      <td>Accountable / Responsible</td>
+      <td>Informed</td>
+      <td>Derek Stainton</td>
+    </tr>
+    <tr>
+      <td><strong>Product Selection, Color Systems &amp; Formulations</strong></td>
+      <td>Accountable / Responsible</td>
+      <td>Consulted</td>
+      <td>Derek Stainton</td>
+    </tr>
+    <tr>
+      <td><strong>Website, E-Commerce, UX &amp; Mixing Engine Software</strong></td>
+      <td>Accountable / Responsible</td>
+      <td>Informed</td>
+      <td>Derek Stainton</td>
+    </tr>
+    <tr>
+      <td><strong>European Distributor Sourcing, Pitching &amp; Sales</strong></td>
+      <td>Accountable / Responsible</td>
+      <td>Consulted</td>
+      <td>Derek Stainton</td>
+    </tr>
+    <tr>
+      <td><strong>Brand Marketing, Social Media &amp; Content Playbooks</strong></td>
+      <td>Accountable / Responsible</td>
+      <td>Informed</td>
+      <td>Derek Stainton</td>
+    </tr>
+    <tr>
+      <td><strong>Technical Support &amp; Painter Application Advice</strong></td>
+      <td>Accountable / Responsible</td>
+      <td>Informed</td>
+      <td>Derek Stainton</td>
+    </tr>
+    <tr>
+      <td><strong>Working Capital Deployment &amp; Inventory Purchasing</strong></td>
+      <td>Consulted</td>
+      <td>Accountable / Responsible</td>
+      <td>Ryan Royal / T5</td>
+    </tr>
+    <tr>
+      <td><strong>Inbound Freight, Ocean Shipping &amp; Customs Clearance</strong></td>
+      <td>Consulted</td>
+      <td>Accountable / Responsible</td>
+      <td>Ryan Royal / T5</td>
+    </tr>
+    <tr>
+      <td><strong>Warehousing, ADR Hazmat Storage &amp; Safety</strong></td>
+      <td>Informed</td>
+      <td>Accountable / Responsible</td>
+      <td>Ryan Royal / T5</td>
+    </tr>
+    <tr>
+      <td><strong>Order Fulfillment (Pick, Pack &amp; Same-Day Dispatch)</strong></td>
+      <td>Informed</td>
+      <td>Accountable / Responsible</td>
+      <td>Ryan Royal / T5</td>
+    </tr>
+    <tr>
+      <td><strong>B2B Pallet Freight to European Distributors</strong></td>
+      <td>Consulted</td>
+      <td>Accountable / Responsible</td>
+      <td>Ryan Royal / T5</td>
+    </tr>
+    <tr>
+      <td><strong>Back-Office Invoicing, Credit Control &amp; VAT Reporting</strong></td>
+      <td>Consulted</td>
+      <td>Accountable / Responsible</td>
+      <td>Ryan Royal / T5</td>
+    </tr>
+    <tr>
+      <td><strong>Website Country Geo-Fencing &amp; Distributor Cut-Off</strong></td>
+      <td>Accountable / Responsible</td>
+      <td>Informed</td>
+      <td>Derek Stainton</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>5. Financial Architecture &amp; Commercial Term Sheet</h2>
+
+<h3>5.1 Landed Cost &amp; Unit Economics (Kroma Edge Custom Paint Kit)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cost Component</th>
+      <th>Cost / Value (&euro; EUR)</th>
+      <th>Strategic Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1. Supplier Base FOB Price (Japan / US bulk)</td>
+      <td>&euro;32.20</td>
+      <td>Direct manufacturer wholesale pricing</td>
+    </tr>
+    <tr>
+      <td>2. Inbound Ocean Freight Allocation (Per Unit)</td>
+      <td>&euro;3.00</td>
+      <td>Bulk sea container economics</td>
+    </tr>
+    <tr>
+      <td>3. Hazmat / ADR Dangerous Goods Allocation</td>
+      <td>&euro;1.50</td>
+      <td>Bulk hazardous sea cargo amortized</td>
+    </tr>
+    <tr>
+      <td>4. Customs Brokerage &amp; Port Entry Fees</td>
+      <td>&euro;0.50</td>
+      <td>Commercial clearance entry</td>
+    </tr>
+    <tr>
+      <td>5. Customs Duty Rate</td>
+      <td>&euro;0.00</td>
+      <td><strong>0.0% Duty</strong> under Japan-UK/EU EPA (REX Origin)</td>
+    </tr>
+    <tr style="background-color: #f5f5f5; font-weight: bold;">
+      <td>TOTAL TRUE LANDED COST (COGS)</td>
+      <td>&euro;37.20</td>
+      <td>Landed at T5 warehouse</td>
+    </tr>
+    <tr>
+      <td><strong>A. Direct B2C Retail Price (excl. VAT)</strong></td>
+      <td>&euro;119.95</td>
+      <td><strong>Gross Profit: &euro;82.75 | Margin: 68.99%</strong></td>
+    </tr>
+    <tr>
+      <td><strong>B. B2B Wholesale Distributor Price (excl. VAT)</strong></td>
+      <td>&euro;74.50</td>
+      <td><strong>Gross Profit: &euro;37.30 | Margin: 50.07%</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>5.2 Definition of Gross Profit &amp; Remuneration Structure</h3>
+<div class="highlight-box">
+  <p><strong>Gross Profit Formula:</strong></p>
+  <p><strong>Gross Profit = Net Invoiced Product Sales &minus; True Landed Cost of Goods Sold (COGS)</strong></p>
+  <p><em>Where Net Invoiced Sales represents collected revenue net of VAT and returns; True Landed COGS includes supplier FOB cost, inbound freight, duty, customs clearance, and direct inbound handling. No general office or corporate overhead is deducted.</em></p>
+</div>
+
+<p><strong>Proposed Remuneration Split:</strong></p>
+<ul>
+  <li><strong>Derek Stainton Receives:</strong> <strong>35% of Total Product Gross Profit</strong> across all channels (both initial direct website sales and recurring B2B European distributor sales).</li>
+  <li><strong>T5 Product Distribution Retains:</strong> <strong>65% of Total Product Gross Profit</strong>, compensating T5 for deploying inventory capital, inventory holding risk, warehouse lease space, pick/pack labor, and credit control.</li>
+  <li><strong>Settlement Schedule:</strong> T5 provides an automated monthly Gross Profit &amp; Sales Ledger within 10 business days of month-end; profit share fee is remitted via bank transfer by the 15th of each month (Net 15 days).</li>
+</ul>
+
+<h3>5.3 24-Month Conservative Financial Projections</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Financial Metric</th>
+      <th>Year 1 (Launch &amp; Foundation)</th>
+      <th>Year 2 (Network Expansion)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Direct D2C Web Sales (excl. VAT)</td>
+      <td>&euro;180,000</td>
+      <td>&euro;90,000 (Shifted to Distributors)</td>
+    </tr>
+    <tr>
+      <td>B2B European Distributor Sales (excl. VAT)</td>
+      <td>&euro;320,000 (3 Distributors)</td>
+      <td>&euro;980,000 (7 Distributors)</td>
+    </tr>
+    <tr style="font-weight: bold; background-color: #f5f5f5;">
+      <td>TOTAL ANNUAL REVENUE</td>
+      <td>&euro;500,000</td>
+      <td>&euro;1,070,000</td>
+    </tr>
+    <tr>
+      <td>Blended Gross Margin (%)</td>
+      <td>56.8%</td>
+      <td>51.6%</td>
+    </tr>
+    <tr style="font-weight: bold; background-color: #e8f4fd;">
+      <td>TOTAL GROSS PROFIT POOL</td>
+      <td>&euro;284,000</td>
+      <td>&euro;552,120</td>
+    </tr>
+    <tr style="font-weight: bold; color: #b71c1c;">
+      <td>Derek Stainton Share (35%)</td>
+      <td>&euro;99,400</td>
+      <td>&euro;193,242</td>
+    </tr>
+    <tr style="font-weight: bold; color: #1a237e;">
+      <td>T5 Product Distribution Share (65%)</td>
+      <td>&euro;184,600</td>
+      <td>&euro;358,878</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>6. Regulatory, Hazmat &amp; Logistics Framework</h2>
+<ul>
+  <li><strong>Dangerous Goods Exemption (ADR Limited Quantity):</strong> Solvent paints are classified as UN1263 Class 3 Flammable Liquids. By packaging paints in containers &le; 5L within outer packaging &le; 30kg, shipments qualify for the <strong>ADR Limited Quantity (LQ)</strong> road exemption. This completely eliminates expensive carrier Hazmat surcharges on standard ground parcel deliveries across the UK and Europe.</li>
+  <li><strong>Postponed VAT Accounting (PVA):</strong> T5 utilizes UK Postponed VAT Accounting on bulk imports, eliminating upfront cash VAT payments at the border and protecting working capital cash flow.</li>
+  <li><strong>Safety Compliance:</strong> All products supplied with localized CLP hazard pictograms and multi-lingual SDS (English, German, French, Spanish) accessible via the online platform.</li>
+</ul>
+
+<hr>
+
+<h2>7. Roundtable Agreement &amp; Term Sheet Sign-Off</h2>
+
+<p>By signing below, the parties agree in principle to the terms outlined in this document and commit to proceeding with the formal operating partnership agreement:</p>
+
+<table class="signature-table">
+  <tr>
+    <td>
+      <div class="sig-line">
+        Ryan Royal<br>
+        Managing Director, T5 Product Distribution Ltd<br>
+        Date: ________________________
+      </div>
+    </td>
+    <td>
+      <div class="sig-line">
+        Derek Stainton<br>
+        Founder &amp; Director, Coast Airbrush Europe<br>
+        Date: ________________________
+      </div>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
+"""
+
+html_path = "/Volumes/Media SSD/Coast Airbrush Paint System/docs/Coast_Airbrush_Europe_T5_Partnership_Strategy.html"
+docx_path = "/Volumes/Media SSD/Coast Airbrush Paint System/docs/Coast_Airbrush_Europe_T5_Partnership_Strategy.docx"
+
+with open(html_path, "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print(f"HTML generated at: {html_path}")
+
+cmd = ["textutil", "-convert", "docx", html_path, "-output", docx_path]
+res = subprocess.run(cmd, capture_output=True, text=True)
+
+if res.returncode == 0:
+    print(f"DOCX successfully generated at: {docx_path}")
+else:
+    print(f"Error converting to docx: {res.stderr}")

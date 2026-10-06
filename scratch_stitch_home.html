@@ -1,399 +1,428 @@
-<!DOCTYPE html><html class="dark" lang="en" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Chrome &amp; Kustom | Coast Airbrush EU</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<style>
-        .material-symbols-outlined {
-            font-family: 'Material Symbols Outlined';
-            font-weight: normal;
-            font-style: normal;
-            font-size: 24px;
-            line-height: 1;
-            letter-spacing: normal;
-            text-transform: none;
-            display: inline-block;
-            white-space: nowrap;
-            word-wrap: normal;
-            direction: ltr;
-            -webkit-font-feature-settings: 'liga';
-            -webkit-font-smoothing: antialiased;
-        }
-        .pinstripe {
-            background-image: linear-gradient(90deg, transparent 0%, #d32f2f 50%, transparent 100%);
-            height: 2px;
-            width: 100%;
-        }
-        .metal-sheen {
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.05) 100%);
-        }
-    </style>
-<script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "tertiary-fixed": "#e5e2e1",
-                      "on-background": "#e2e2e2",
-                      "on-surface": "#e2e2e2",
-                      "on-tertiary-fixed": "#1c1b1b",
-                      "secondary": "#c6c6c6",
-                      "error-container": "#93000a",
-                      "surface-variant": "#333535",
-                      "secondary-fixed-dim": "#c6c6c6",
-                      "surface": "#121414",
-                      "primary-fixed": "#ffdad6",
-                      "on-primary": "#680008",
-                      "on-secondary-fixed-variant": "#464747",
-                      "surface-container-lowest": "#0c0f0f",
-                      "surface-tint": "#ffb3ac",
-                      "surface-bright": "#37393a",
-                      "primary-container": "#d32f2f",
-                      "primary": "#ffb3ac",
-                      "outline-variant": "#5b403d",
-                      "on-error-container": "#ffdad6",
-                      "surface-dim": "#121414",
-                      "on-secondary": "#2f3131",
-                      "on-tertiary-container": "#f7f3f3",
-                      "error": "#ffb4ab",
-                      "inverse-on-surface": "#2f3131",
-                      "tertiary-container": "#706f6f",
-                      "background": "#121414",
-                      "inverse-primary": "#ba1a20",
-                      "on-error": "#690005",
-                      "secondary-fixed": "#e3e2e2",
-                      "secondary-container": "#484949",
-                      "on-tertiary": "#313030",
-                      "outline": "#ab8985",
-                      "surface-container-low": "#1a1c1c",
-                      "surface-container": "#1e2020",
-                      "on-tertiary-fixed-variant": "#474646",
-                      "on-surface-variant": "#e4beba",
-                      "inverse-surface": "#e2e2e2",
-                      "surface-container-highest": "#333535",
-                      "on-primary-container": "#fff2f0",
-                      "on-primary-fixed": "#410003",
-                      "surface-container-high": "#282a2b",
-                      "primary-fixed-dim": "#ffb3ac",
-                      "on-secondary-fixed": "#1a1c1c",
-                      "tertiary": "#c8c6c5",
-                      "tertiary-fixed-dim": "#c8c6c5",
-                      "on-secondary-container": "#b8b8b8",
-                      "on-primary-fixed-variant": "#930010"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.125rem",
-                      "lg": "0.25rem",
-                      "xl": "0.5rem",
-                      "full": "0.75rem"
-              },
-              "spacing": {
-                      "margin-mobile": "1rem",
-                      "margin-desktop": "2.5rem",
-                      "gutter": "1.5rem",
-                      "unit": "4px"
-              },
-              "fontFamily": {
-                      "label-xs": [
-                              "JetBrains Mono"
-                      ],
-                      "label-sm": [
-                              "JetBrains Mono"
-                      ],
-                      "headline-lg-mobile": [
-                              "Anybody"
-                      ],
-                      "headline-md": [
-                              "Anybody"
-                      ],
-                      "headline-xl": [
-                              "Anybody"
-                      ],
-                      "headline-lg": [
-                              "Anybody"
-                      ],
-                      "body-md": [
-                              "Hanken Grotesk"
-                      ],
-                      "body-lg": [
-                              "Hanken Grotesk"
-                      ]
-              },
-              "fontSize": {
-                      "label-xs": [
-                              "10px",
-                              {
-                                      "lineHeight": "12px",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "label-sm": [
-                              "12px",
-                              {
-                                      "lineHeight": "16px",
-                                      "letterSpacing": "0.05em",
-                                      "fontWeight": "500"
-                              }
-                      ],
-                      "headline-lg-mobile": [
-                              "32px",
-                              {
-                                      "lineHeight": "38px",
-                                      "fontWeight": "800"
-                              }
-                      ],
-                      "headline-md": [
-                              "24px",
-                              {
-                                      "lineHeight": "32px",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "headline-xl": [
-                              "64px",
-                              {
-                                      "lineHeight": "72px",
-                                      "letterSpacing": "-0.02em",
-                                      "fontWeight": "900"
-                              }
-                      ],
-                      "headline-lg": [
-                              "40px",
-                              {
-                                      "lineHeight": "48px",
-                                      "letterSpacing": "-0.01em",
-                                      "fontWeight": "800"
-                              }
-                      ],
-                      "body-md": [
-                              "16px",
-                              {
-                                      "lineHeight": "24px",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "body-lg": [
-                              "18px",
-                              {
-                                      "lineHeight": "28px",
-                                      "fontWeight": "400"
-                              }
-                      ]
-              }
-      },
-          },
-        }
-      </script>
-</head>
-<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
-<!-- TopNavBar -->
-<nav class="bg-surface dark:bg-surface font-label-sm text-label-sm uppercase tracking-widest flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 sticky top-0 z-50 border-b-2 border-secondary dark:border-secondary shadow-[0_4px_0px_0px_rgba(0,0,0,1)]">
-<!-- Logo Area -->
-<a class="flex-shrink-0 flex items-center h-16 w-48 relative" href="#"><img alt="COAST AIRBRUSH Logo" class="w-full h-full object-contain transition-transform hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5pFzzOzoRN7qng2aiFdrXVjhCYDifLjweXtm4qoN7_Asnt6G8jt8xJ9EH5imeGICVxNv_tPRjsJKauQ22bdythcUaA-Zc2ptsoznOflXberkR3L7T6mCHd0ZR7RRTh7cmfCGEEQjs476Iu7c0vCa0KGmYTWfakg3aoz7JcpVvBDFRuj_OjKYAJVJ6T_2w2V1bzP-Qk-oCvMU-Itm7J9quVm5e430z2mvz_cF1NOR8ynjPgoMfp57LS8KtXG3P_qqU3r0"></a>
-<!-- Desktop Navigation -->
-<div class="hidden md:flex space-x-8">
-<a class="text-primary border-b-2 border-primary-container pb-1 hover:bg-surface-container-highest transition-all duration-150 active:translate-y-0.5 active:shadow-none" href="#">SHOP</a>
-<a class="text-on-surface hover:text-primary transition-colors duration-200 hover:bg-surface-container-highest transition-all duration-150 active:translate-y-0.5 active:shadow-none" href="#">FORUM</a>
-<a class="text-on-surface hover:text-primary transition-colors duration-200 hover:bg-surface-container-highest transition-all duration-150 active:translate-y-0.5 active:shadow-none" href="#">KITS</a>
-<a class="text-on-surface hover:text-primary transition-colors duration-200 hover:bg-surface-container-highest transition-all duration-150 active:translate-y-0.5 active:shadow-none" href="#">ABOUT</a>
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-secondary":"#2a313b","on-tertiary-fixed-variant":"#004b71","surface-container-high":"#2a2a2c","on-secondary-fixed-variant":"#404752","surface-bright":"#39393b","surface-container":"#201f21","outline-variant":"#5c403c","on-secondary-fixed":"#151c25","on-tertiary-container":"#f3f8ff","surface-variant":"#353437","surface-container-low":"#1c1b1d","on-background":"#e5e1e4","tertiary-fixed-dim":"#90cdff","surface-tint":"#ffb4ab","surface-dim":"#131315","on-surface":"#e5e1e4","inverse-primary":"#bf0715","surface-container-lowest":"#0e0e10","on-error":"#690005","surface-container-highest":"#353437","secondary-fixed-dim":"#c0c7d3","secondary-fixed":"#dce3f0","on-primary":"#690005","tertiary-container":"#0078b2","on-tertiary":"#003450","secondary":"#c0c7d3","on-primary-fixed":"#410002","on-tertiary-fixed":"#001e30","surface":"#131315","tertiary-fixed":"#cbe6ff","primary-fixed-dim":"#ffb4ab","background":"#131315","secondary-container":"#404752","outline":"#ac8884","tertiary":"#90cdff","on-primary-container":"#fff6f5","error":"#ffb4ab","on-secondary-container":"#afb5c2","primary":"#ffb4ab","inverse-surface":"#e5e1e4","inverse-on-surface":"#313032","primary-fixed":"#ffdad6","error-container":"#93000a","on-primary-fixed-variant":"#93000b","on-surface-variant":"#e6bdb8","primary-container":"#dc2626","on-error-container":"#ffdad6"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-xs":"0.25rem","gutter":"1.5rem","space-sm":"0.5rem","space-lg":"1.5rem","space-xl":"2.5rem","space-md":"1rem","margin":"2rem"},"fontFamily":{"body-sm":["Inter"],"headline-md":["Inter"],"headline-lg":["Inter"],"body-lg":["Inter"],"body-md":["Inter"],"label-caps":["Inter"],"code-spec":["Inter"],"display-hero":["Inter"],"headline-xl":["Inter"],"headline-sm":["Inter"]},"fontSize":{"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"400"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-lg":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"label-caps":["11px",{"lineHeight":"14px","letterSpacing":"0.08em","fontWeight":"700"}],"code-spec":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"display-hero":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"800"}],"headline-xl":["40px",{"lineHeight":"48px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased" data-__gcrweb-annotatedpagecontent-processed="BC7812CD16491FEE4B3B1E34EE235EA7" style="cursor: grabbing;"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.5)]"><div class="bg-surface-container-lowest border-b border-surface-container-high"><div class="max-w-[1440px] mx-auto px-margin h-8 flex items-center justify-between font-label-caps text-label-caps text-secondary tracking-wider"><div class="flex items-center gap-space-sm truncate"><span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span><span class="truncate">Official European Distributor for Iwata Custom Lines &amp; Flake King | ADR / Hazmat Certified Shipping Across UK &amp; EU | Fast TDS/SDS Access</span></div><div class="hidden md:flex items-center gap-space-lg text-secondary"><div class="flex items-center gap-space-xs hover:text-on-surface cursor-pointer transition-colors"><span class="">EUR €</span><span class="material-symbols-outlined text-[14px]">expand_more</span></div><span class="text-surface-container-highest">|</span><a class="hover:text-on-surface transition-colors" href="#">Technical Support Hotline</a><span class="text-surface-container-highest">|</span><a class="hover:text-on-surface transition-colors" href="#">ISO 9001 Compliance</a></div></div></div><div class="h-20 max-w-[1440px] mx-auto px-margin flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md shrink-0"><img alt="Coast Airbrush Europe Logo" class="h-9 w-auto object-contain" style="filter: invert(1) brightness(2); mix-blend-mode: screen;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1GppDBbEAL75i7QbsYqV9OVo17lG1hIxxo-jXgukWNuPKwLof0PVgwbs9eXDbyEb9e5xLJ-l_X6jxkWXNqfBzhitehyjYlbDCxhnuLKr8PrfgZnK9tf06BPSo5XcbDa1ZU-AJBc5fn7ZXQxmGhO5FvBdZqjJ4QmIVN-W5SFRm-mb6qn_dMjz5CFUdQsXcqkrp_Altt3Xdc6lCCRPSZwcGQmhY5AotLa3x3lbm8402znCToLN63VlCTQdiWNCY9-PPnA"><span class="font-headline-sm text-headline-sm uppercase tracking-tight text-on-surface border-l border-surface-container-high pl-space-md hidden sm:inline">Coast Airbrush <span class="text-primary-container font-extrabold">Europe</span></span></div><div class="flex-1 max-w-lg hidden lg:block"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-secondary text-[18px]">search</span><input class="w-full h-10 pl-10 pr-20 bg-surface-dim border border-surface-container-high rounded-lg text-on-surface font-body-sm text-body-sm placeholder:text-secondary focus:outline-none focus:border-primary-container transition-colors" placeholder="Search by SKU, gun model, or paint chemistry..." type="text"><span class="absolute right-2 font-code-spec text-code-spec text-secondary bg-surface-container px-space-xs py-0.5 rounded border border-surface-container-high">CMD + K</span></div></div><div class="flex items-center gap-space-md shrink-0"><a class="hidden sm:flex items-center gap-space-xs px-space-md py-2 border border-surface-container-high hover:border-secondary rounded-lg font-label-caps text-label-caps uppercase text-on-surface transition-all" href="#"><span class="">B2B Portal</span></a><div class="flex items-center gap-space-sm"><button aria-label="Saved TDS Specs" class="w-10 h-10 rounded-lg border border-surface-container-high bg-surface-container-low flex items-center justify-center text-secondary hover:text-on-surface hover:border-secondary transition-all"><span class="material-symbols-outlined text-[20px]">description</span></button><button aria-label="Cart" class="relative w-10 h-10 rounded-lg border border-surface-container-high bg-surface-container-low flex items-center justify-center text-secondary hover:text-on-surface hover:border-secondary transition-all"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><span class="absolute -top-1.5 -right-1.5 h-5 min-w-[20px] px-1 bg-primary-container text-on-primary-container font-label-caps text-label-caps rounded-full flex items-center justify-center shadow-lg">3</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div><div class="border-t border-surface-container-high bg-surface-container-lowest/80"><div class="max-w-[1440px] mx-auto px-margin"><nav class="flex items-center space-x-space-lg overflow-x-auto py-2" data-active-classes="text-primary-container border-b-2 border-primary-container"><a class="text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps tracking-wider uppercase transition-colors whitespace-nowrap py-1" data-path="airbrushes-guns" href="#">Airbrushes &amp; Guns</a><a class="text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps tracking-wider uppercase transition-colors whitespace-nowrap py-1" data-path="custom-paint-lines" href="#">Custom Paint Lines</a><a class="text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps tracking-wider uppercase transition-colors whitespace-nowrap py-1" data-path="flake-systems" href="#">Flake Systems</a><a class="text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps tracking-wider uppercase transition-colors whitespace-nowrap py-1" data-path="clears-primers" href="#">Clears &amp; Primers</a><a class="text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps tracking-wider uppercase transition-colors whitespace-nowrap py-1" data-path="kits-bundles" href="#">Kits &amp; Bundles</a><a class="text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps tracking-wider uppercase transition-colors whitespace-nowrap py-1" data-path="b2b-trade" href="#">B2B Trade</a></nav></div></div></header><main class="w-full pt-36 bg-surface min-h-[calc(100vh-288px)]"><div class="max-w-[1440px] mx-auto px-margin"><div class="flex flex-col w-full">
+<!-- SECTION 1: HERO SECTION (SPLIT ASYMMETRIC 7/5 ARCHITECTURE) -->
+<section class="w-full pb-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<!-- Left Column (Technical Manifesto & Action System) -->
+<div class="lg:col-span-6 flex flex-col space-y-space-md">
+<!-- Technical Badges -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-2 py-1 bg-primary-container text-on-primary-container font-label-caps text-label-caps uppercase tracking-wider rounded">
+            [ Official Distributor ]
+          </span>
+<span class="px-2.5 py-1 bg-surface-container-high text-secondary font-code-spec text-code-spec uppercase tracking-wider rounded">
+            Japanese Precision × European Logistics
+          </span>
 </div>
-<!-- Trailing Icons -->
-<div class="flex items-center space-x-4">
-<button class="text-primary dark:text-primary hover:bg-surface-container-highest transition-all duration-150 p-2 rounded-full active:translate-y-0.5 active:shadow-none flex items-center justify-center">
-<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
-</button>
-<button class="text-primary dark:text-primary hover:bg-surface-container-highest transition-all duration-150 p-2 rounded-full active:translate-y-0.5 active:shadow-none flex items-center justify-center">
-<span class="material-symbols-outlined" data-icon="person">person</span>
-</button>
-<!-- Mobile Menu Toggle -->
-<button class="md:hidden text-primary p-2">
-<span class="material-symbols-outlined" data-icon="menu">menu</span>
-</button>
-</div>
-</nav>
-<!-- Main Content Canvas -->
-<main class="flex-grow flex flex-col gap-16 pb-20">
-<!-- Hero Section -->
-<section class="relative w-full h-auto py-16 bg-surface-container-lowest border-b-2 border-secondary overflow-hidden"><!-- Background Image with Overlay -->
-<div class="absolute inset-0 bg-cover bg-center" style="background-image: linear-gradient(to right, rgba(18, 20, 20, 0.9) 0%, rgba(18, 20, 20, 0.4) 50%, rgba(18, 20, 20, 0.2) 100%), url(&quot;https://lh3.googleusercontent.com/aida/AEtjO1Vhrrnuz3jyhR4A0VX8t7zfqmk0kYdRywsYSqJWXeW8Oco_wrh0AZMEPer9BfEyRuPQ94qoCa3JT_UuxD3aP5BBBwduH7LkKrN06tLjmOT1NRwztFGa8s0DXLr8PUMQPRGBsaqrGbgL3iJxKqi_goQBP-DNY8em3IbknCAhqczGmb0Lfr1P_5cwsl_ds1OcfCK1QnQ57Vfe5ZYh9feqsvgIkBSNRYEgSktNsB_HaTEu3y83TgcqNevPUarJ&quot;);">
-</div>
-<!-- Metallic Overlay -->
-<div class="absolute inset-0 metal-sheen opacity-30"></div>
-<!-- Pinstripe Accent -->
-<div class="absolute bottom-0 w-full h-1 bg-primary-container z-10"></div>
-
-<div class="relative z-20 h-full flex flex-col justify-center items-start px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full">
-    <div class="max-w-2xl">
-        <div class="mb-8 w-full max-w-[400px]">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuChXEJG8AwbEYrhJPSvdYBX3V2zWnMmVOs57592ZhOQ7SKROVn6aqhPRzGjY02SJ0Jt7WeRjf0--Z5tnh9oWheXM0MBWOPadUXpDDPA9TvcxrCVZ1Etwd8ITmUMUkRnZoeaPzBq8eO-HZCJHgfw0gM2HGit8V9D9OdA4m_90LzyETDwCNIDiXAG-94RWEwmmcCLWx1GieRKmAF8tMANbzDdukxAlTruMKBA_TEgkI3uuLHD15KQle18XjLX0bJzzkX0ZzQ" alt="Coast Airbrush" class="w-full h-auto drop-shadow-[0_0_25px_rgba(211,47,47,0.6)]">
-        </div>
-        <div class="flex items-center gap-2 mb-4">
-            <span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">speed</span>
-            <span class="font-label-sm text-label-sm uppercase text-secondary tracking-widest">Master Series</span>
-        </div>
-        <h1 class="font-headline-xl text-headline-lg-mobile md:text-headline-xl uppercase text-primary italic mb-6 tracking-tighter drop-shadow-[0_0_15px_rgba(211,47,47,0.5)]">KUSTOM KULTURE REFINED.</h1>
-        <p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-lg">
-            High-performance paints, precision equipment, and the raw industrial energy of the garage. Equip yourself with the best in the business.
+<!-- High-Impact Technical Headline -->
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight leading-tight">
+          Precision Meets Chemistry: Europe’s Exclusive Home for Custom Paint &amp; Finishing Hardware
+        </h1>
+<!-- Subtext -->
+<p class="font-body-lg text-body-lg text-secondary leading-relaxed">
+          Specialized spray equipment, electro-luminescent coatings, and extreme-grade automotive clears engineered for master custom painters, motorcycle restorers, and commercial bodyshops across the UK &amp; EU.
         </p>
-        <button class="bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase px-8 py-4 border-b-2 border-secondary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-inverse-primary hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center gap-2">
-            SHOP REFINED COLORS
-            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-        </button>
-    </div>
-</div></section>
-<!-- Container for Grid Layout -->
-<div class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full flex flex-col gap-16">
-<!-- Bento Grid Section: Products -->
-<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-<!-- Section Header -->
-<div class="col-span-1 md:col-span-12 flex justify-between items-end mb-4 border-b-2 border-secondary pb-2 relative">
-<h2 class="font-headline-lg text-headline-md md:text-headline-lg uppercase text-on-surface">Top Tier Kits &amp; Metals</h2>
-<div class="pinstripe absolute bottom-0 left-0 w-1/3"></div>
+<!-- Action Row -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="h-11 px-space-lg bg-primary-container hover:bg-primary-container/90 active:scale-[0.98] text-on-primary-container font-headline-sm text-body-md uppercase tracking-wider rounded flex items-center justify-center gap-space-sm shadow-md transition-all" href="#">
+<span class="">Explore Exclusive Hardware</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="h-11 px-space-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-headline-sm text-body-md uppercase tracking-wider rounded flex items-center justify-center gap-space-sm shadow-sm transition-all" href="#">
+<span class="material-symbols-outlined text-[18px] text-secondary">file_download</span>
+<span class="">Download Chemical TDS Guides</span>
+</a>
 </div>
-<!-- Featured Kit Card (Large) -->
-<div class="col-span-1 md:col-span-8 bg-surface-container border-2 border-secondary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group hover:border-primary-container transition-colors relative overflow-hidden flex flex-col md:flex-row h-full min-h-[400px]">
-<div class="w-full md:w-1/2 h-64 md:h-full bg-surface-dim relative border-b-2 md:border-b-0 md:border-r-2 border-secondary">
-<img class="absolute inset-0 w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500" data-alt="A meticulously arranged collection of premium airbrush equipment and high-gloss metallic paint bottles resting on a diamond-plate steel workbench. The scene is illuminated by harsh, directional workshop lighting, casting hard shadows that emphasize the mechanical brutalism of the tools. Deep charcoal grays and blinding chrome highlights dominate, accented by vibrant, bloody red paint splatters. The composition feels like a technical blueprint brought to visceral life." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBavElGrP0UeSQQie53Hp7PUjGuy-joCWAUarZIPbjEC6dZUHUMg32_CPrjc-CHYCuArdyC4R6i5h2_pjSPm1a7hYYzdOGX0shgKhyIL6eiKR0aWgWshECdmAdA1uHZ1JIPfEQnEEfSg7aLF9AI9eqpAI7zZSJZ86tWqelCE3gT9ebSGOk3e7rte-1MB1HLR0F9eMCbJDu5yV17Jgz81wkoUoipjWSX9lsLUUpRdFVPWUK5mJyYTNw6mQ">
-<div class="absolute top-4 left-4 bg-secondary text-surface font-label-xs text-label-xs px-2 py-1 uppercase border border-surface shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px]">build</span> Pro Series
-                        </div>
+<!-- Quick Spec Bar -->
+<div class="mt-space-sm p-space-md bg-surface-container-low rounded shadow-sm">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md font-code-spec text-code-spec text-secondary divide-y sm:divide-y-0 sm:divide-x divide-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span class="text-on-surface font-semibold">0.18mm</span> Micro-Atomization
+            </div>
+<div class="flex items-center gap-space-xs sm:pl-space-md pt-2 sm:pt-0">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary shrink-0"></span>
+<span class="text-on-surface font-semibold">ADR Class 3</span> Certified Dispatch
+            </div>
+<div class="flex items-center gap-space-xs sm:pl-space-md pt-2 sm:pt-0">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim shrink-0"></span>
+<span class="text-on-surface font-semibold">OEM-Grade</span> Molecular Adhesion
+            </div>
 </div>
-<div class="w-full md:w-1/2 p-8 flex flex-col justify-between bg-gradient-to-b from-surface-container to-surface">
+</div>
+</div>
+<!-- Right Column (Flagship Cinematic Visual + Floating Telemetry) -->
+<div class="lg:col-span-6 relative">
+<div class="relative w-full rounded overflow-hidden bg-surface-container-lowest shadow-xl group">
+<!-- Ambient Rim Radial Backing -->
+<div class="absolute -top-12 -right-12 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Hero Image -->
+<img alt="Atawi Custom Micro-Gravity Feed Airbrush Machined by Iwata Japan resting on slate with candied red metallic flaked tank" class="w-full h-[460px] object-cover object-center group-hover:scale-[1.01] transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQcCUjsaHzlJN4eL08MYkdNRFkz8p8tiwad5Oq_5iPbNX0cUp_rgUaWJaGaiYK9fjks93zuSoUn4C3T1LqGGVCMvZK0_WfdG4na2MVLnoRTp6UpdyTT_AKMo2ShlnVZ5VhyXd1ius7gwAtFvtRvqJKS2URTuoQUI7-ECZSzbCWOTW5EPiM2xGdGtsvZyK-SceDkG5G82Ind5yh8jNlpQLlFOUFRcmfS_ykQ3yxJf7NqTwkBgELPTP4">
+<!-- Gradient Depth Scrim Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/20 to-transparent pointer-events-none"></div>
+<!-- Bottom Telemetry HUD Overlay -->
+<div class="absolute bottom-4 left-4 right-4 p-space-md bg-surface-container-lowest/90 backdrop-blur-md rounded shadow-lg flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps uppercase text-secondary tracking-widest">Flagship Instrument • Gun Lineage 2025</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Atawi Custom Micro-Gravity Feed</span>
+<span class="font-code-spec text-code-spec text-secondary">Tuned &amp; Hand-Lapped by Iwata Japan</span>
+</div>
+<div class="flex items-center gap-space-xs self-start sm:self-center px-3 py-1.5 bg-surface-container rounded shadow-inner shrink-0">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-ping"></span>
+<span class="w-2 h-2 rounded-full bg-primary-container -ml-3"></span>
+<span class="font-code-spec text-code-spec text-on-surface font-medium">In Stock (Batch 04/50)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: VALUE PROPOSITION STRIP (4-COLUMN ENGINEERED BAR) -->
+<section class="w-full py-space-md">
+<div class="w-full bg-surface-container-low rounded p-space-lg shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Metric 1 -->
+<div class="flex flex-col space-y-space-xs">
+<div class="flex items-center gap-space-sm text-primary-container">
+<span class="material-symbols-outlined text-[20px]">precision_manufacturing</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface">Exclusive Iwata Engineering</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">
+            Direct European factory access to Atawi custom-tuned airbrushes, matched nozzles, and hand-polished needle sets.
+          </p>
+</div>
+<!-- Metric 2 -->
+<div class="flex flex-col space-y-space-xs">
+<div class="flex items-center gap-space-sm text-primary-container">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface">Certified Chemical Logistics</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">
+            Fully certified ADR Hazmat courier shipping networks delivering hazardous coatings safely across UK &amp; mainland EU.
+          </p>
+</div>
+<!-- Metric 3 -->
+<div class="flex flex-col space-y-space-xs">
+<div class="flex items-center gap-space-sm text-primary-container">
+<span class="material-symbols-outlined text-[20px]">fact_check</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface">Instant TDS / SDS Access</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">
+            Instant 1-click technical compliance libraries and mixing ratio matrices for every solvent, pigment, and UV resin chemistry.
+          </p>
+</div>
+<!-- Metric 4 -->
+<div class="flex flex-col space-y-space-xs">
+<div class="flex items-center gap-space-sm text-primary-container">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface">Next-Day Bodyshop Dispatch</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">
+            Commercial orders verified before 14:00 CET are dispatched same-day with end-to-end dangerous goods telematics tracking.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: FEATURED FLAGSHIP HARDWARE SHOWCASE ("ENGINEERED EXCLUSIVES") -->
+<section class="w-full pt-space-xl pb-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs mb-space-xs">
+<span class="w-2 h-2 bg-primary-container rounded-full"></span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-secondary">Precision Flow Dynamics</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Engineered Exclusives</h2>
+<p class="font-body-md text-body-md text-secondary">Tournament-grade airbrushes and dry flake application systems calibrated for high-pressure finishes.</p>
+</div>
+<a class="inline-flex items-center gap-space-xs font-label-caps text-label-caps uppercase tracking-wider text-on-surface hover:text-primary transition-colors shrink-0" href="#">
+<span class="">View Full Hardware Lineup</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<!-- Product Grid (3 Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1: Atawi Custom Precision -->
+<div class="bg-surface-container-low rounded p-space-lg flex flex-col justify-between shadow-md hover:bg-surface-container transition-all group">
 <div>
-<h3 class="font-headline-md text-headline-md uppercase text-primary mb-2">The Outlaw Compressor Kit</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6">Industrial strength airflow meets pinpoint precision. Built for the garage, refined for the gallery.</p>
-<div class="flex flex-wrap gap-2 mb-6">
-<span class="bg-surface-dim border border-secondary text-on-surface font-label-xs text-label-xs px-3 py-1 uppercase flex items-center gap-1">
-<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> 50 PSI Max
-                                </span>
-<span class="bg-surface-dim border border-secondary text-on-surface font-label-xs text-label-xs px-3 py-1 uppercase flex items-center gap-1">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Dual Action
-                                </span>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-2 py-0.5 bg-primary-container text-on-primary-container font-label-caps text-label-caps rounded uppercase">Iwata Exclusivity</span>
+<span class="font-code-spec text-code-spec text-secondary">SKU: ATA-018-PRO</span>
+</div>
+<div class="relative w-full h-56 rounded overflow-hidden bg-surface-container-lowest mb-space-md">
+<img alt="Atawi Custom Precision Airbrush" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQcCUjsaHzlJN4eL08MYkdNRFkz8p8tiwad5Oq_5iPbNX0cUp_rgUaWJaGaiYK9fjks93zuSoUn4C3T1LqGGVCMvZK0_WfdG4na2MVLnoRTp6UpdyTT_AKMo2ShlnVZ5VhyXd1ius7gwAtFvtRvqJKS2URTuoQUI7-ECZSzbCWOTW5EPiM2xGdGtsvZyK-SceDkG5G82Ind5yh8jNlpQLlFOUFRcmfS_ykQ3yxJf7NqTwkBgELPTP4">
+<div class="absolute top-2 right-2 px-2 py-1 bg-surface-container-lowest/80 backdrop-blur rounded font-code-spec text-code-spec text-on-surface">
+              Matched 0.18mm
+            </div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Atawi Custom Precision Airbrush</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-space-md">
+            Hand-tuned Iwata fluid head engineered for high-solids micro-metallics, automotive pin-lines, and ultra-fine feathering.
+          </p>
+<!-- Spec Pills -->
+<div class="flex flex-wrap gap-1.5 mb-space-md">
+<span class="px-2 py-0.5 bg-surface-container-high text-secondary rounded font-code-spec text-code-spec">0.18mm Matched Head</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-secondary rounded font-code-spec text-code-spec">Japanese Machined Chrome</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-secondary rounded font-code-spec text-code-spec">Linear Trigger Action</span>
 </div>
 </div>
-<div class="flex items-center justify-between mt-auto pt-4 border-t-2 border-secondary border-dashed">
-<span class="font-headline-md text-headline-md text-on-surface">$499.00</span>
-<button class="w-10 h-10 border-2 border-secondary hover:border-primary text-secondary hover:text-primary flex items-center justify-center transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] bg-surface-dim">
-<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+<div>
+<div class="flex items-baseline justify-between pt-space-sm mb-space-sm bg-surface-container-lowest/40 p-2 rounded">
+<div>
+<span class="font-label-caps text-label-caps text-secondary block">NET TRADE ALLOCATION</span>
+<span class="font-headline-md text-headline-md text-on-surface">€449.00</span>
+<span class="font-code-spec text-code-spec text-secondary"> EUR (ex. VAT)</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary-container font-code-spec text-code-spec">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+<span class="">6 left in batch</span>
+</div>
+</div>
+<button class="w-full h-11 bg-primary-container hover:bg-primary-container/90 active:scale-[0.98] text-on-primary-container font-label-caps text-label-caps uppercase tracking-wider rounded flex items-center justify-center gap-space-xs transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span class="">View Specs &amp; Buy</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Flake King 1000 Dry Gun Kit -->
+<div class="bg-surface-container-low rounded p-space-lg flex flex-col justify-between shadow-md hover:bg-surface-container transition-all group">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface font-label-caps text-label-caps rounded uppercase">Pneumatic System</span>
+<span class="font-code-spec text-code-spec text-secondary">SKU: FK-1000-SYS</span>
+</div>
+<div class="relative w-full h-56 rounded overflow-hidden bg-surface-container-lowest mb-space-md flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Industrial studio product shot of the Flake King 1000 Dry Gun metallic applicator system resting in a dark matte technical display foam with precision brass anodized fittings and pneumatic quick release couplings under crisp edge lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBI4q-7-j6hhO9ehoMox3KZv01NBILNK6TglScAA1fN4QfQsL3ehI4QFl8yOh2-hEH9PBbMccntKXfaKE5d27i86fq_ubURQQJHybqxYJ6pGJh-lmDJU6Fg5Vm6qNsnGcefB92q_p5-sk1I6MV2pHhgdTyZeAM4JB3I7oLTmU7fZ26NcKi3RArXQDfNvdtF6SM4sjd6VevKyrnNJCKDOWU92TrbtknHIIKPfkTH9nIvLjs1NvKna-e">
+<div class="absolute top-2 right-2 px-2 py-1 bg-surface-container-lowest/80 backdrop-blur rounded font-code-spec text-code-spec text-on-surface">
+              Patented Dry Tech
+            </div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Flake King 1000 Dry Gun Kit</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-space-md">
+            Pioneering dry flake projector gun. Applies metallic flake into wet clear coat without pre-mixing in paint cups.
+          </p>
+<!-- Spec Pills -->
+<div class="flex flex-wrap gap-1.5 mb-space-md">
+<span class="px-2 py-0.5 bg-surface-container-high text-secondary rounded font-code-spec text-code-spec">Zero-Air Blown Tech</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-secondary rounded font-code-spec text-code-spec">Save 40% Flake Waste</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-secondary rounded font-code-spec text-code-spec">Patented Nozzle System</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline justify-between pt-space-sm mb-space-sm bg-surface-container-lowest/40 p-2 rounded">
+<div>
+<span class="font-label-caps text-label-caps text-secondary block">NET TRADE ALLOCATION</span>
+<span class="font-headline-md text-headline-md text-on-surface">€289.00</span>
+<span class="font-code-spec text-code-spec text-secondary"> EUR (ex. VAT)</span>
+</div>
+<div class="flex items-center gap-1.5 text-secondary font-code-spec text-code-spec">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim"></span>
+<span class="">Ready for Dispatch</span>
+</div>
+</div>
+<button class="w-full h-11 bg-primary-container hover:bg-primary-container/90 active:scale-[0.98] text-on-primary-container font-label-caps text-label-caps uppercase tracking-wider rounded flex items-center justify-center gap-space-xs transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span class="">View Specs &amp; Buy</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Iwata Custom Micron CM-B Takumi -->
+<div class="bg-surface-container-low rounded p-space-lg flex flex-col justify-between shadow-md hover:bg-surface-container transition-all group">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface font-label-caps text-label-caps rounded uppercase">Takumi Masterclass</span>
+<span class="font-code-spec text-code-spec text-secondary">SKU: IWT-CMB-TKM</span>
+</div>
+<div class="relative w-full h-56 rounded overflow-hidden bg-surface-container-lowest mb-space-md">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Macro luxury photography of an Iwata Custom Micron CM-B Takumi airbrush featuring side-feed cup, polished stainless steel crown cap, and micro stop regulator handle set on an obsidian stone bench with reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeZd8V2Dp4LZ6kqtz-PkX-0aSNoBM7YHzX2R9ODDf1ZdI0StrLoRzGncl2U_eoz5C28M7J1pi0ALV4Ugc-xj2j3fG5eO0lKjPRAK-FoL6HYP0DVAVIo6Z9vbkQzYyVF4Ny6V8xoYwe2q3c-drAGVayknX52LDFbvdqAaHD4K1YzLUGmnL167BMd39vLgT5FvTVPt4JHNVwjjpUtlFjDGQ8xT13405Zumvdv_8r7ZNUDvFHJMc4ndwC">
+<div class="absolute top-2 right-2 px-2 py-1 bg-surface-container-lowest/80 backdrop-blur rounded font-code-spec text-code-spec text-on-surface">
+              Side-Feed Ergonomics
+            </div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Iwata Custom Micron CM-B Takumi</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-space-md">
+            The benchmark for absolute tactile mastery. Redesigned trigger geometry with unobstructed sightline over the crown cap.
+          </p>
+<!-- Spec Pills -->
+<div class="flex flex-wrap gap-1.5 mb-space-md">
+<span class="px-2 py-0.5 bg-surface-container-high text-secondary rounded font-code-spec text-code-spec">Side-Feed 0.18mm</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-secondary rounded font-code-spec text-code-spec">Crown Cap System</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-secondary rounded font-code-spec text-code-spec">Pre-set Micro Handle</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline justify-between pt-space-sm mb-space-sm bg-surface-container-lowest/40 p-2 rounded">
+<div>
+<span class="font-label-caps text-label-caps text-secondary block">NET TRADE ALLOCATION</span>
+<span class="font-headline-md text-headline-md text-on-surface">€585.00</span>
+<span class="font-code-spec text-code-spec text-secondary"> EUR (ex. VAT)</span>
+</div>
+<div class="flex items-center gap-1.5 text-secondary font-code-spec text-code-spec">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span class="">Official Certified Stock</span>
+</div>
+</div>
+<button class="w-full h-11 bg-primary-container hover:bg-primary-container/90 active:scale-[0.98] text-on-primary-container font-label-caps text-label-caps uppercase tracking-wider rounded flex items-center justify-center gap-space-xs transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span class="">View Specs &amp; Buy</span>
 </button>
 </div>
 </div>
 </div>
-<!-- Latest Metal Flakes (Small Stack) -->
-<div class="col-span-1 md:col-span-4 flex flex-col gap-gutter h-full">
-<!-- Flake Item 1 -->
-<div class="bg-surface-container border-2 border-secondary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex-grow flex flex-col relative overflow-hidden group">
-<div class="h-32 bg-surface-dim border-b-2 border-secondary relative">
-<img class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A close-up, macro shot of rich, dark ruby red metallic flake paint glistening under intense spotlighting. The texture is gritty and deeply reflective, resembling crushed rubies mixed in motor oil. The surrounding aesthetic is dark and brutalist, with deep black vignettes ensuring the high-gloss red dominates the frame." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYjvbnNECBYPygPVQ1XL5eFtbNAmCtclEB4Fs-w1E49c54w1fzpbaTbq8eSxt34Ynv0Qhlga9hV304V0qQncK8geyEPrG_3inqk1VVoJkvEagwpqgWsdEV7Mf5gmBGF78EL1zUnPTSs9LluAu4MUIL3hjsUZxJbGFm9Nl7c71CIJQ66TnHKdxpYgzJ47g5QeLUTaGxConxq3L2h6aFOBEyyiLhIO_ID7C-TZ2P6VxDLLLO0XiHbNbMqA">
-<div class="absolute bottom-0 right-0 bg-primary-container w-12 h-12 flex items-center justify-center border-l-2 border-t-2 border-secondary">
-<span class="material-symbols-outlined text-on-primary-container">water_drop</span>
+</section>
+<!-- SECTION 4: PAINT SYSTEMS & SPECIALTY CHEMISTRY GRID -->
+<section class="w-full py-space-xl">
+<div class="flex flex-col mb-space-lg">
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-primary-container mb-space-xs">
+        Advanced Formulations for Extreme Finishes
+      </span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+        Specialty Chemical Formulations &amp; Coating Systems
+      </h2>
+<p class="font-body-md text-body-md text-secondary">
+        REACH-compliant European stock holding of patented electroluminescent paints, instant UV cure clears, and 99.8% mirror chromes.
+      </p>
 </div>
+<!-- 4-Card Responsive Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Chem 1: KromaEdge -->
+<div class="bg-surface-container-low rounded p-space-md flex flex-col justify-between shadow-md hover:bg-surface-container transition-all">
+<div>
+<div class="w-full h-44 rounded overflow-hidden bg-surface-container-lowest mb-space-md relative">
+<img class="w-full h-full object-cover" data-alt="Curved aerodynamic supercar panel coated in flawless mirror finish KromaEdge chrome reflecting sharp studio overhead LED strip lights against dark pitch obsidian shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6ZUSGpsEQ_A-ih7vROGsOt53cZ0aMsi8szxbR6ZcnHR1ie9jfLj8d-9aOw5w6rb9oXybcIbJe92aIxlOwWJ4JsXmh7eev56v_kVo4uXLUsienbgCGRDv7q3X2oWnZIIiFBtUwU0ux863sS3lPEu2i9KeAusftA7c4yHnQHhot_igGlpKh3UPId9bHxiIJPgCuqv_iG_VAKZJ50b8DRd_GFa40e86CTEfPLZnbeAuWh6jZSnetxo4s">
+<span class="absolute top-2 left-2 px-2 py-0.5 bg-surface-container-lowest/90 backdrop-blur rounded font-label-caps text-label-caps uppercase text-primary">
+              Solvent-Based Extreme Mirror
+            </span>
 </div>
-<div class="p-4 flex-grow flex flex-col justify-between">
-<h4 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold tracking-tight">Bloodhound Red Flake</h4>
-<div class="flex items-center justify-between mt-4">
-<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">$24.00</span>
-<a class="text-primary hover:text-primary-container font-label-xs text-label-xs uppercase flex items-center" href="#">View <span class="material-symbols-outlined text-[14px]">chevron_right</span></a>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">KromaEdge Spray-on Chrome System</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-space-sm leading-relaxed">
+            Real 99.8% reflective silver-metallic surface chemistry for composite, metal, and 3D printed substrates.
+          </p>
+<div class="p-2 bg-surface-container-lowest rounded font-code-spec text-code-spec text-secondary mb-space-md">
+            3-Stage Process • 48hr Cure • UV Stable
+          </div>
 </div>
+<a class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface hover:text-primary transition-colors flex items-center justify-between pt-space-xs" href="#">
+<span class="">Explore KromaEdge System Kits</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
 </div>
+<!-- Chem 2: Clean Armor UV Curable Ultra-Clear -->
+<div class="bg-surface-container-low rounded p-space-md flex flex-col justify-between shadow-md hover:bg-surface-container transition-all">
+<div>
+<div class="w-full h-44 rounded overflow-hidden bg-surface-container-lowest mb-space-md relative">
+<img class="w-full h-full object-cover" data-alt="Precision carbon fiber motorcycle helmet receiving high intensity violet 395nm UV light instantly curing a crystal-clear high-gloss optical Clean Armor coating with zero overspray." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjzkVdBlTogTMgNIa8qi9hlXtlW8S-MdBukibQACFcuzgMb6IVhMnn8J8HnYVkVxrp1hr1iqHRK2bjSV-wFcgtJrdxy1cCDCiE5dOmdUDFdt1tVI7h2IUlzStSTSdMHWZ4yyfjwf3Uc-CmgYQlQ-bJSwy4rtxpKUHl_ZhZIrra9y5m48n0_HXkopnlEP3huvnoXjFzHj8bgSMTpEivjVLlzNXihWxUAME3cm57_u0D6GzXVQWDtT2X">
+<span class="absolute top-2 left-2 px-2 py-0.5 bg-surface-container-lowest/90 backdrop-blur rounded font-label-caps text-label-caps uppercase text-tertiary">
+              100% Solids Zero-VOC
+            </span>
 </div>
-<!-- Flake Item 2 -->
-<div class="bg-surface-container border-2 border-secondary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex-grow flex flex-col relative overflow-hidden group">
-<div class="h-32 bg-surface-dim border-b-2 border-secondary relative">
-<img class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A macro shot of intense, polished chrome silver metallic flake paint. The texture is harsh and angular, catching light like shattered glass on an asphalt road. The lighting is cold, stark white against deep, impenetrable black shadows, reinforcing a mechanical, industrial garage vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU8kCBWAmdFaGsVAGlOict2oqcARIbnI7p-eNn0NUwUBdwR5TtiYD3b_TNtwaieX0IBB99hle6vpUv6qU4DYPXX9NWILucwcy0_leBFqbdE8LFD8j0yzRN-zOKh225Fdz1bfM40IZh4-bNxCJw5oIH65KbEQJ4POOIBejKJfCcAmaX6eMOBFZOelse4U0VfRRuyHaD7Er66aLBSLDJZ8kYHzda3_1mQf0iB0Rm_aIdRPWPxSdz1j8FMw">
-<div class="absolute bottom-0 right-0 bg-secondary w-12 h-12 flex items-center justify-center border-l-2 border-t-2 border-surface-container">
-<span class="material-symbols-outlined text-surface">auto_awesome</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Clean Armor UV Curable Ultra-Clear</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-space-sm leading-relaxed">
+            Instant cure in 2 minutes under 395nm UV light. Zero shrinkage, glass-like depth, self-leveling automotive clear.
+          </p>
+<div class="p-2 bg-surface-container-lowest rounded font-code-spec text-code-spec text-secondary mb-space-md">
+            Zero Flash Time • 9H Hardness • OEM Certified
+          </div>
 </div>
+<a class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface hover:text-primary transition-colors flex items-center justify-between pt-space-xs" href="#">
+<span class="">Explore Clean Armor Clear Kits</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
 </div>
-<div class="p-4 flex-grow flex flex-col justify-between">
-<h4 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold tracking-tight">Chrome Shrapnel</h4>
-<div class="flex items-center justify-between mt-4">
-<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">$24.00</span>
-<a class="text-primary hover:text-primary-container font-label-xs text-label-xs uppercase flex items-center" href="#">View <span class="material-symbols-outlined text-[14px]">chevron_right</span></a>
+<!-- Chem 3: LumiLor Light Emitting Coating -->
+<div class="bg-surface-container-low rounded p-space-md flex flex-col justify-between shadow-md hover:bg-surface-container transition-all">
+<div>
+<div class="w-full h-44 rounded overflow-hidden bg-surface-container-lowest mb-space-md relative">
+<img class="w-full h-full object-cover" data-alt="Custom sculpted motorcycle gas tank painted in deep crimson basecoat with sharp geometric tribal pinstripes glowing bright cyan electroluminescent light via LumiLor electrical pulse." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvg_v8EMiEre2UzmUOOwnaIXLKPtv9CTNErcWEisFnz0g-dtkAwCbN6Tzp5qnWQR8KzSgZ4p6_aZYljTw9V8Up85dR2X8XS3o0HhRUdTTO9rYa_hfmrHpHp_H5zjvxO07LUN3aSSjqvYSJmOxcWUNZxQh_yCFEmw37BuTUFV8Zmgg227BYV0ZWMGp0yjVrkQmuifPyJZCohQ9eNjCmEViQXf2JQsWhl8iY8Z-Nau1oKlwqTZsTZtFM">
+<span class="absolute top-2 left-2 px-2 py-0.5 bg-surface-container-lowest/90 backdrop-blur rounded font-label-caps text-label-caps uppercase text-primary-container">
+              Electroluminescent Chem
+            </span>
 </div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">LumiLor Light Emitting Coating</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-space-sm leading-relaxed">
+            World's only patented sprayable light system. Turns painted surfaces into direct electrical light emitters.
+          </p>
+<div class="p-2 bg-surface-container-lowest rounded font-code-spec text-code-spec text-secondary mb-space-md">
+            Multilayer Stack • Inverter Driven • Submersible
+          </div>
 </div>
+<a class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface hover:text-primary transition-colors flex items-center justify-between pt-space-xs" href="#">
+<span class="">Explore LumiLor Bundles</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<!-- Chem 4: Ace of Shades & HyperFX Metal Flakes -->
+<div class="bg-surface-container-low rounded p-space-md flex flex-col justify-between shadow-md hover:bg-surface-container transition-all">
+<div>
+<div class="w-full h-44 rounded overflow-hidden bg-surface-container-lowest mb-space-md relative">
+<img class="w-full h-full object-cover" data-alt="Extreme macro shot of hex-cut metallic automotive red and gold flake particles sparkling under direct spotlight with ultra-sharp prismatic reflections on a deep slate surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8CvGwLMBa2yYyN66eggynLa7ziKUeF0Oi75AN4jgX3bDjUj8CpvEOZqq1es8QPUYlGGda4EpWJlSUu3WlnOYecV7UG4-enuYQNAUjyxLb0qZgN0d9eHpZapMQ9D_eB8eulGms5NHTeN4JJYhi-ZYTSs048QY0hOAV9PEL2_cltBmxqH8lDFsVQgFZtshWyXTObhdavwCgEH2DMaxGPOFQ2YyxIesIgcUkDHBql3spKx1QfKSjtPVc">
+<span class="absolute top-2 left-2 px-2 py-0.5 bg-surface-container-lowest/90 backdrop-blur rounded font-label-caps text-label-caps uppercase text-secondary">
+              Solvent-Proof Automotive Flake
+            </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Ace of Shades &amp; HyperFX Flakes</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-space-sm leading-relaxed">
+            Hex-cut ultra-thin metallic and holographic flakes engineered to lie flat with minimum clear coats.
+          </p>
+<div class="p-2 bg-surface-container-lowest rounded font-code-spec text-code-spec text-secondary mb-space-md">
+            0.004" to 0.015" Sizes • 50+ Custom Blends
+          </div>
+</div>
+<a class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface hover:text-primary transition-colors flex items-center justify-between pt-space-xs" href="#">
+<span class="">Explore Flake Library</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
 </div>
 </div>
 </section>
-<!-- Community Promo Section -->
-<section class="border-2 border-secondary bg-surface-container-high relative overflow-hidden mt-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-<!-- Background Texture -->
-<div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-secondary to-transparent"></div>
-<div class="flex flex-col md:flex-row">
-<!-- Text Content -->
-<div class="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center relative z-10 border-b-2 md:border-b-0 md:border-r-2 border-secondary bg-surface/50 backdrop-blur-sm">
-<div class="flex items-center gap-2 mb-4">
-<span class="w-2 h-2 bg-primary-container rounded-full animate-pulse"></span>
-<span class="font-label-sm text-label-sm uppercase text-secondary tracking-widest">Restricted Access</span>
+<!-- SECTION 5: B2B TRADE & BODYSHOP COMMERCIAL PORTAL BANNER -->
+<section class="w-full py-space-lg mb-space-xl">
+<div class="relative w-full rounded p-space-xl bg-surface-container-low shadow-xl overflow-hidden">
+<!-- Ambient Crimson Backing Flare -->
+<div class="absolute -bottom-16 -left-16 w-80 h-80 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg">
+<!-- Text Group -->
+<div class="flex-1 max-w-3xl space-y-space-sm">
+<div class="flex items-center gap-space-xs font-label-caps text-label-caps uppercase tracking-wider text-primary-container">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="">Commercial Accounts &amp; Authorized Applicator Network</span>
 </div>
-<h2 class="font-headline-lg text-headline-md md:text-headline-lg uppercase text-on-surface mb-4">The 'Owner's Only' Forum</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mb-8 border-l-2 border-primary-container pl-4">Connect with elite builders, share techniques, and access unreleased pigments. This is where Kustom Kulture lives.</p>
-<div class="flex gap-4">
-<button class="bg-transparent border-2 border-secondary text-on-surface font-label-sm text-label-sm uppercase px-6 py-3 hover:bg-surface-variant hover:border-on-surface transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-0.5 active:shadow-none flex items-center gap-2">
-                                REQUEST INVITE
-                            </button>
-<button class="text-primary hover:text-primary-container font-label-sm text-label-sm uppercase underline decoration-2 underline-offset-4 flex items-center gap-1">
-                                LOGIN <span class="material-symbols-outlined text-[16px]">login</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+            Run a Commercial Bodyshop, Custom Shop, or Paint Studio?
+          </h2>
+<p class="font-body-md text-body-md text-secondary leading-relaxed">
+            Apply for Trade Tier 1/2 Pricing, Automated VAT Reverse-Charging, Net-30 Invoicing, and Priority Chemical Hazmat Allocations across all European territories.
+          </p>
+<!-- Quick Perk Pills -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+<span class="px-2.5 py-1 bg-surface-container-high rounded font-code-spec text-code-spec text-on-surface flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-tertiary">check_circle</span>
+              Verified VAT Exemption
+            </span>
+<span class="px-2.5 py-1 bg-surface-container-high rounded font-code-spec text-code-spec text-on-surface flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-tertiary">check_circle</span>
+              Bulk Litre Drum Sourcing
+            </span>
+<span class="px-2.5 py-1 bg-surface-container-high rounded font-code-spec text-code-spec text-on-surface flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-tertiary">check_circle</span>
+              Dedicated Technical Chemist Support
+            </span>
+</div>
+</div>
+<!-- Action Column -->
+<div class="flex flex-col sm:flex-row lg:flex-col gap-space-sm shrink-0 w-full sm:w-auto">
+<button class="h-11 px-space-lg bg-surface-container-highest hover:bg-surface-bright active:scale-[0.98] text-on-surface font-headline-sm text-body-md uppercase tracking-wider rounded flex items-center justify-center gap-space-xs shadow-md transition-all">
+<span class="material-symbols-outlined text-[18px] text-primary-container">domain</span>
+<span class="">Apply for B2B Trade Account</span>
 </button>
-</div>
-</div>
-<!-- Visual/Stats Content -->
-<div class="w-full md:w-1/2 bg-surface-container-lowest relative p-8 flex flex-col justify-center items-center overflow-hidden">
-<!-- Abstract mechanical graphic -->
-<div class="absolute inset-0 opacity-20 pointer-events-none flex items-center justify-center">
-<span class="material-symbols-outlined text-[240px] text-secondary transform -rotate-45">settings</span>
-</div>
-<div class="grid grid-cols-2 gap-8 w-full max-w-sm relative z-10">
-<div class="bg-surface border-2 border-secondary p-4 text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-<span class="block font-headline-lg text-headline-lg text-primary mb-1">10K+</span>
-<span class="font-label-xs text-label-xs uppercase text-secondary">Active Builders</span>
-</div>
-<div class="bg-surface border-2 border-secondary p-4 text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-<span class="block font-headline-lg text-headline-lg text-on-surface mb-1">500+</span>
-<span class="font-label-xs text-label-xs uppercase text-secondary">Custom Mixes</span>
-</div>
+<a class="h-11 px-space-lg bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-label-caps text-label-caps uppercase tracking-wider rounded flex items-center justify-center gap-space-xs transition-colors shadow-sm" href="#">
+<span class="">Existing Trade Login</span>
+<span class="material-symbols-outlined text-[16px]">login</span>
+</a>
 </div>
 </div>
 </div>
 </section>
-</div>
-</main>
-<!-- Footer -->
-<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full px-margin-mobile md:px-margin-desktop py-12 gap-gutter flex flex-col md:flex-row justify-between items-center border-t-2 border-secondary relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-1 before:bg-[linear-gradient(90deg,transparent_0%,#d32f2f_50%,transparent_100%)] transition-all duration-300 ease-in-out mt-auto">
-<div class="flex flex-col items-center md:items-start mb-8 md:mb-0">
-<span class="font-headline-md text-headline-md font-black text-primary mb-2">COAST AIRBRUSH</span>
-<span class="font-label-xs text-label-xs uppercase text-secondary dark:text-secondary">© 2024 COAST AIRBRUSH. KUSTOM KULTURE REFINED.</span>
-</div>
-<nav class="flex flex-wrap justify-center md:justify-end gap-6 font-label-xs text-label-xs uppercase">
-<a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="#"><img alt="COAST AIRBRUSH Logo" class="w-full h-full object-contain transition-transform hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoqV6woak0qGcEeFKTqtPwRvUYvlJ40jFEPWojmg2uiJsyO2riqtROiisFE02wiy5kRWeckyFYJSd1wW73izdEg4cRFTNa9z0aP4oCqSF3F-2lBu_b_4a8W8FNddmXBl8vJb2FGv9h4gxr5P309LtcLoQ8yN1BTAdAkqwrDb_4QnqO6Ngi2Ro9LF5ImQEs0SeynDBc7n_Inmlt1RPaYpvSaKR3awWIiphQAUnI_nknU27L6jBn0W1v_jUvCcVJwjwhwYw"></a>
-<a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="#">Privacy Policy</a>
-<a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="#">Shipping Info</a>
-<a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="#">Authorized Dealers</a>
-</nav>
-</footer>
-
-
-<div id="ai-chat-widget" class="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-4">
-  <!-- Chat Window -->
-  <div id="chat-window" class="hidden bg-surface-container-high border-2 border-secondary shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] w-80 overflow-hidden flex flex-col">
-    <div class="bg-primary-container p-4 border-b-2 border-secondary flex justify-between items-center"><div class="flex items-center"><div class="w-8 h-8 rounded-full border border-on-primary-container overflow-hidden flex-shrink-0 mr-2"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCCHXspIV_hCfu9D82nDzSWqmzGc5xfIkwNWZ6-kzhajLsDD0H4BA6bmOxodmCf_DGLOCETIJtvbYoIXx9LpknQrefX-E51tiL-IzN8jmt345YXTpzeXq5BUN5Zzf22GY0AgxEqbKle70Ql-tCxiY-Dw4RghxudDCJdaTA7k1NpgGHVqPBVmq-6v5Jiv5vEjKIUiGZ4tQ-rj8_gEG8EL-1IDM2_rNFzZwQPknPe1ZW3tdPTOAUaCz8-oJq2dHT6JyGt78" alt="AI Avatar" class="w-full h-full object-cover"></div><span class="font-label-sm text-label-sm uppercase text-on-primary-container tracking-widest">Kustom AI Assistant</span></div><button onclick="document.getElementById('chat-window').classList.add('hidden')" class="text-on-primary-container hover:scale-110 transition-transform"><span class="material-symbols-outlined text-[20px]">close</span></button></div>
-    <div class="p-6 bg-surface-dim">
-      <div class="bg-surface-container border-l-2 border-primary-container p-4 mb-4">
-        <p class="font-body-md text-body-md text-on-surface">Need help with your kustom project? Ask me anything!</p>
-      </div>
-      <div class="flex gap-2">
-        <input type="text" placeholder="Type your message..." class="flex-grow bg-surface-container-lowest border-2 border-secondary p-2 text-label-sm focus:border-primary-container focus:ring-0 outline-none text-on-surface">
-        <button class="bg-primary-container text-on-primary-container p-2 border-2 border-secondary shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-          <span class="material-symbols-outlined">send</span>
-        </button>
-      </div>
-    </div>
-  </div>
-  <!-- Toggle Button -->
-  <button onclick="document.getElementById('chat-window').classList.toggle('hidden')" class="w-16 h-16 bg-primary-container text-on-primary-container rounded-full border-2 border-secondary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center justify-center group"><div class="w-full h-full rounded-full overflow-hidden border-2 border-primary-container group-hover:rotate-12 transition-transform"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdAPuPUOBOdP6FuMZnOD8MW9mbI551fmZj-hXbAixAkA_fYSyHMMZx3f3XO9dNGZMSZs8oivHieXvPJnlHDLRzC9tSmJhN55iavx_YbyQGoIv_Iu9O76dFHR_gxk6KhcygY5Tliiy5ct5jqGyhdD12RM3bez1wDjeWSNp-pTPt9G9FSSDx1Xh7diNVW5hCo60cCox-1mjWvHRoBzEqRN9qbWMNACX-yJt1zFjt2e508Ofs5CSQykuf_xaIjmirfQ_Tmug" alt="AI Avatar" class="w-full h-full object-cover"></div></button>
-</div>
+</div></div></main><footer class="w-full bg-surface-container-lowest border-t border-surface-container-high mt-space-xl"><div class="max-w-[1440px] mx-auto px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter"><div class="flex flex-col space-y-space-md"><div class="flex items-center gap-space-sm"><img alt="Coast Airbrush Europe Logo" class="h-8 w-auto object-contain" style="filter: invert(1) brightness(2); mix-blend-mode: screen;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4eKHhKvkg6j9W-2eo-oHmcs_B880u2Munueus3DDfwt6e2q3n7GFsjxPAR1OiEuagUNJf2MPvcISqxeMradJF1uMsUAN7lB5byeJuuiIrbsBKWcT_uG4HTptC5NXV5QybRCmuThB8O3VZwfPrFeEW3aYfhpJwdgea_PNpjqLgmCGDDIY5eGHm7PEMzaoP2yZqg5P92GD4r0AaqEHYewocQLWc5h8DHYGG0iSX9yHw4G1qq1eOFlJ8uZSy6zqhf77iyA"><span class="font-headline-sm text-headline-sm uppercase tracking-tight text-on-surface">Coast Airbrush <span class="text-primary-container font-bold">Europe</span></span></div><p class="font-body-sm text-body-sm text-secondary leading-relaxed">Engineered European distribution hub for professional custom automotive finishes, Iwata instrumentation, and Flake King pneumatic flake dispersal systems.</p><div class="flex flex-wrap items-center gap-space-sm pt-space-xs"><div class="px-2 py-1 bg-surface-container-low border border-surface-container-high rounded font-code-spec text-code-spec text-on-surface-variant flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-primary-container"></span>ADR Hazmat Certified</div><div class="px-2 py-1 bg-surface-container-low border border-surface-container-high rounded font-code-spec text-code-spec text-on-surface-variant">ISO 9001:2015</div></div></div><div><h4 class="font-label-caps text-label-caps text-on-surface uppercase tracking-wider mb-space-md pb-space-xs border-b border-surface-container-high">Product Lines</h4><ul class="space-y-space-sm font-body-sm text-body-sm text-secondary"><li class="hover:text-on-surface transition-colors"><a href="#" class="">Atawi Precision Series Guns</a></li><li class="hover:text-on-surface transition-colors"><a href="#" class="">Flake King Dry Systems</a></li><li class="hover:text-on-surface transition-colors"><a href="#" class="">KromaEdge Mirror Chromes</a></li><li class="hover:text-on-surface transition-colors"><a href="#" class="">LumiLor Electro-luminescent</a></li><li class="hover:text-on-surface transition-colors"><a href="#" class="">Clean Armor UV Hard Clears</a></li></ul></div><div><h4 class="font-label-caps text-label-caps text-on-surface uppercase tracking-wider mb-space-md pb-space-xs border-b border-surface-container-high">Safety &amp; Compliance</h4><ul class="space-y-space-sm font-body-sm text-body-sm text-secondary"><li class="hover:text-on-surface transition-colors"><a href="#" class="">SDS &amp; Technical Library</a></li><li class="hover:text-on-surface transition-colors"><a href="#" class="">ADR Road Transport Protocols</a></li><li class="hover:text-on-surface transition-colors"><a href="#" class="">EU REACH Chemical Compliance</a></li><li class="hover:text-on-surface transition-colors"><a href="#" class="">Spray Booth Exhaust Guides</a></li><li class="hover:text-on-surface transition-colors"><a href="#" class="">Dangerous Goods Documentation</a></li></ul></div><div><h4 class="font-label-caps text-label-caps text-on-surface uppercase tracking-wider mb-space-md pb-space-xs border-b border-surface-container-high">B2B Trade &amp; Exclusive Drops</h4><p class="font-body-sm text-body-sm text-secondary mb-space-sm">Register authorized studio workshops for trade allocation pricing and batch drops.</p><div class="flex flex-col space-y-space-xs"><div class="flex gap-space-xs"><input class="flex-1 h-10 px-3 bg-surface-dim border border-surface-container-high rounded text-on-surface font-body-sm text-body-sm placeholder:text-secondary focus:outline-none focus:border-primary-container" placeholder="pro.finisher@studio.eu" type="email"><button class="h-10 px-4 bg-primary-container text-on-primary-container font-label-caps text-label-caps uppercase rounded hover:bg-primary-container/90 transition-colors shrink-0">Subscribe</button></div><span class="font-code-spec text-code-spec text-secondary">Weekly allocation alerts. No spam.</span></div></div></div><div class="border-t border-surface-container-high mt-space-xl pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-md font-body-sm text-body-sm text-secondary"><div class="">© 2025 Coast Airbrush Europe Ltd. All rights reserved. Registered VAT GB / EU IOSS.</div><div class="flex items-center gap-space-md font-code-spec text-code-spec"><span class="">SECURE ENCRYPTED CHECKOUT</span><span class="">|</span><span class="">UN1263 PAINT RELATED MATERIAL</span></div></div></div></footer>
 
 </body></html>

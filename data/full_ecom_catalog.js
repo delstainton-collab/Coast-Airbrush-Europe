@@ -844,6 +844,89 @@ export const ECOM_CATALOG = [
     "countryOfOrigin": "GB"
   },
   {
+    "id": "atawi-precision-airbrush",
+    "brand": "Atawi / Iwata",
+    "category": "Dry Metal Flake Guns",
+    "name": "Atawi Precision Detail Airbrush (0.18mm Matched Head System)",
+    "sku": "ATA-018-PRO",
+    "priceGbp": 290.83,
+    "priceEur": 374.17,
+    "priceRetailGbp": 290.83,
+    "priceRetailEur": 374.17,
+    "priceRrpExVat": 290.83,
+    "priceRrpIncVat": 349.00,
+    "inStock": true,
+    "isPreOrder": false,
+    "badge": "COAST x IWATA EXCLUSIVE",
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQcCUjsaHzlJN4eL08MYkdNRFkz8p8tiwad5Oq_5iPbNX0cUp_rgUaWJaGaiYK9fjks93zuSoUn4C3T1LqGGVCMvZK0_WfdG4na2MVLnoRTp6UpdyTT_AKMo2ShlnVZ5VhyXd1ius7gwAtFvtRvqJKS2URTuoQUI7-ECZSzbCWOTW5EPiM2xGdGtsvZyK-SceDkG5G82Ind5yh8jNlpQLlFOUFRcmfS_ykQ3yxJf7NqTwkBgELPTP4",
+    "description": "Exclusive Coast Airbrush x Iwata limited release. Hand-tuned matched 0.18mm fluid head engineered for high-solids micro-metallics, candy transitions, automotive pinstriping, and extreme micro-detail. Features hand-lapped stainless steel needle, linear trigger action, and 4-axis Japanese CNC brass body.",
+    "sizes": [
+      "0.18mm Matched Head (Bare Tool)",
+      "0.18mm Master Studio Setup (+ Hose & Lube)"
+    ],
+    "packSizes": [
+      "Precision Gun Unit"
+    ],
+    "hasOptions": true,
+    "hasFullMatrix": true,
+    "stockCode": "ATA-018-PRO",
+    "barcode": "5060733580496",
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAQcCUjsaHzlJN4eL08MYkdNRFkz8p8tiwad5Oq_5iPbNX0cUp_rgUaWJaGaiYK9fjks93zuSoUn4C3T1LqGGVCMvZK0_WfdG4na2MVLnoRTp6UpdyTT_AKMo2ShlnVZ5VhyXd1ius7gwAtFvtRvqJKS2URTuoQUI7-ECZSzbCWOTW5EPiM2xGdGtsvZyK-SceDkG5G82Ind5yh8jNlpQLlFOUFRcmfS_ykQ3yxJf7NqTwkBgELPTP4",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAUO-kdxmINosr5Tn7YnlntrEK3OzDlh9LCiarPx94G68eUj5Wh7YJLFSU6smH-9cySdlGfgkyw1xVF-odNaxOwEqjTc7p9MW_x8Z2H9gj4WxMkAdx11gsTVaUvm-F8tYXfmE9y18RWJC7JypbkWjMhZ001uk6areWq8uPN7a4mVpofDQVVD0W4QjDlrhjDrgqYmUScM8DzPuBcWWtmpDLUOdiRAZUSmPIvLwMc-xaljt84FZsCnccE",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuB2SAxbSmkpKP_Yv9Oi5UTcb2Y99noamlLpZz90gdVMAj7yWajsNtFRx42FpGWGGjDOxVsQALGgLto_racaV2AUycQI-a5y5yIbENhwh8afzVD-ioH5ZAivpU9TeadBLFVYgant6tG6WhvyctjBzubYfaXjgpj5Qu4E0mHiwPM-_2nRppC9f7Hdh2eEVYvJ5hFynIFnJr_gQaFVZ94EMKP_biWfECJQeuKxJzCHollN9H_yuUhWtf_f",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuA9Rj3Qqmp2HMLLaCEByxC1ALyjZeMSiNEk7CP_we34mEmmgu0qUx1ilAEeZw643U2dIeKgN-TQv17ET_BEASXNImRbQ6VDKeYGU2XjBqW5admFiW_ptW5ab_AE-vIWqphM_wvTKVnSYQgzOsii1GG3h4MhSDEeMG71VIOvS0vIakjyBvb-jIcu0djJtDWtgXKWTyu0OHOwh9qNErJ16YmJfop883w9idGKvcZ_wDS2rynRz8xd5xJx"
+    ],
+    "inTheBox": [
+      "Atawi 0.18mm Precision Airbrush Body",
+      "Pre-set Machined Micro Crown Needle Cap",
+      "Nozzle Maintenance Micro Spanner",
+      "Super Lube Synthetic Needle PTFE Sample",
+      "CNC Foam Cut Presentation Storage Box"
+    ],
+    "hsCode": "8424.20.00",
+    "countryOfOrigin": "JP"
+  },
+  {
+    "id": "iwata-cm-b-takumi",
+    "brand": "Iwata",
+    "category": "Dry Metal Flake Guns",
+    "name": "Iwata Custom Micron CM-B Takumi 0.18mm Side-Feed Airbrush",
+    "sku": "IWT-CMB-TKM",
+    "priceGbp": 487.50,
+    "priceEur": 585.00,
+    "priceRetailGbp": 487.50,
+    "priceRetailEur": 585.00,
+    "priceRrpExVat": 487.50,
+    "priceRrpIncVat": 585.00,
+    "inStock": true,
+    "isPreOrder": false,
+    "badge": "TAKUMI MASTERCLASS",
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAeZd8V2Dp4LZ6kqtz-PkX-0aSNoBM7YHzX2R9ODDf1ZdI0StrLoRzGncl2U_eoz5C28M7J1pi0ALV4Ugc-xj2j3fG5eO0lKjPRAK-FoL6HYP0DVAVIo6Z9vbkQzYyVF4Ny6V8xoYwe2q3c-drAGVayknX52LDFbvdqAaHD4K1YzLUGmnL167BMd39vLgT5FvTVPt4JHNVwjjpUtlFjDGQ8xT13405Zumvdv_8r7ZNUDvFHJMc4ndwC",
+    "description": "The Takumi series is the absolute pinnacle of Iwata craftsmanship. Redesigned side-feed geometry places the fluid cup directly in line with hand balance while providing an unobstructed line of sight directly over the nozzle crown. Hand-matched 0.18mm head system tuned by elite Japanese artisans.",
+    "sizes": [
+      "Standard Takumi 0.18mm"
+    ],
+    "packSizes": [
+      "Custom Micron Takumi Edition"
+    ],
+    "hasOptions": false,
+    "hasFullMatrix": true,
+    "stockCode": "IWT-CMB-TKM",
+    "barcode": "5060733580502",
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAeZd8V2Dp4LZ6kqtz-PkX-0aSNoBM7YHzX2R9ODDf1ZdI0StrLoRzGncl2U_eoz5C28M7J1pi0ALV4Ugc-xj2j3fG5eO0lKjPRAK-FoL6HYP0DVAVIo6Z9vbkQzYyVF4Ny6V8xoYwe2q3c-drAGVayknX52LDFbvdqAaHD4K1YzLUGmnL167BMd39vLgT5FvTVPt4JHNVwjjpUtlFjDGQ8xT13405Zumvdv_8r7ZNUDvFHJMc4ndwC"
+    ],
+    "inTheBox": [
+      "Iwata Custom Micron CM-B Takumi Airbrush",
+      "Side-Feed Gravity Cup with Lid",
+      "Hand-Matched 0.18mm Head Assembly (Pre-installed)",
+      "Takumi Red Metal Storage Case & Certificate of Hand-Testing"
+    ],
+    "hsCode": "8424.20.00",
+    "countryOfOrigin": "JP"
+  },
+  {
     "id": "fk-2602",
     "brand": "Flake King",
     "category": "Dry Metal Flake Guns",

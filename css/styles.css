@@ -1,26 +1,40 @@
-/* Coast Airbrush Europe - Mechanical Brutalism "Chrome & Kustom" Stitch Design System */
-@import url('https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+/* Coast Airbrush Europe - Precision Performance Engineering Stitch Design System */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 :root {
-  --bg-main: #121414;
-  --bg-surface: #121414;
-  --bg-card: #1e2020;
-  --bg-card-high: #282a2b;
-  --bg-input: #0c0f0f;
+  --bg-main: #0b0b0d;
+  --bg-surface: #131315;
+  --bg-surface-lowest: #0e0e10;
+  --bg-surface-low: #1c1b1d;
+  --bg-surface-container: #201f21;
+  --bg-surface-high: #2a2a2c;
+  --bg-surface-highest: #353437;
+  --bg-card: #141418;
+  --bg-card-high: #1c1c22;
+  --bg-input: #0b0b0d;
   
-  --primary-red: #d32f2f;
-  --primary-dark: #ba1a20;
-  --primary-tint: #ffb3ac;
+  --primary-red: #dc2626;
+  --primary-dark: #b91c1c;
+  --primary-tint: #ffb4ab;
+  --primary-container: #dc2626;
+  --on-primary: #690005;
+  --on-primary-container: #fff6f5;
   
-  --secondary: #c6c6c6;
-  --accent-chrome: #c6c6c6;
-  --accent-chrome-light: #e2e2e2;
-  --accent-cyan: #38bdf8;
+  --secondary: #c0c7d3;
+  --accent-chrome: #d1d5db;
+  --accent-chrome-light: #e5e1e4;
+  --accent-cyan: #90cdff;
   --scale-green: #22c55e;
+  --tertiary: #90cdff;
+  --tertiary-container: #0078b2;
   
-  --text-primary: #e2e2e2;
-  --text-secondary: #c6c6c6;
-  --text-muted: #e4beba;
+  --text-primary: #e5e1e4;
+  --text-secondary: #c0c7d3;
+  --text-muted: #9ca3af;
+  
+  --border-subtle: #27272a;
+  --border-prominent: #3f3f46;
+  --border-outline: #ac8884;
 }
 
 * {
@@ -30,7 +44,7 @@
 }
 
 body {
-  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--bg-main);
   color: var(--text-primary);
   line-height: 1.5;
@@ -58,27 +72,26 @@ body {
 
 /* Typography Classes */
 .font-headline {
-  font-family: 'Anybody', sans-serif;
-  font-style: italic;
-  font-weight: 900;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.02em;
 }
 
-.font-mono, .code-label, .part-number, .spec-data {
-  font-family: 'JetBrains Mono', monospace;
+.font-mono, .code-label, .part-number, .spec-data, .font-code-spec {
+  font-family: 'Inter', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 /* Pinstripe Accents */
 .pinstripe {
-  background-image: linear-gradient(90deg, transparent 0%, #d32f2f 50%, transparent 100%);
+  background-image: linear-gradient(90deg, transparent 0%, #dc2626 50%, transparent 100%);
   height: 2px;
   width: 100%;
 }
 
 .pinstripe-divider {
-  height: 2px;
-  background: #c6c6c6;
+  height: 1px;
+  background: #242429;
   position: relative;
 }
 .pinstripe-divider::after {
@@ -89,7 +102,7 @@ body {
   transform: translateX(-50%);
   width: 30%;
   height: 2px;
-  background: #d32f2f;
+  background: #dc2626;
 }
 
 .metal-sheen {
@@ -104,19 +117,27 @@ body {
   filter: drop-shadow(0 0 8px rgba(211, 47, 47, 0.6));
 }
 
-/* Modern High-End Industrial Component Cards */
-.industrial-card {
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: linear-gradient(180deg, #161819 0%, #0d0f10 100%);
+/* Modern High-End Industrial Component Cards & Unified Surfaces */
+.industrial-card,
+.b2b-card,
+.support-card,
+.shipping-card,
+.policy-card,
+.welcome-card {
+  border: 1px solid #242429;
+  background: #131315;
   box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.7), 0 2px 6px -1px rgba(0, 0, 0, 0.5);
   position: relative;
   border-radius: 4px;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.industrial-card:hover {
-  border-color: rgba(211, 47, 47, 0.7);
-  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.85), 0 0 16px rgba(211, 47, 47, 0.25);
-  transform: translateY(-2px);
+.industrial-card:hover,
+.b2b-card:hover,
+.support-card:hover,
+.shipping-card:hover,
+.policy-card:hover {
+  border-color: rgba(220, 38, 38, 0.6);
+  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.85), 0 0 16px rgba(220, 38, 38, 0.2);
 }
 
 /* Official Review Modal Box - GPU-safe, no hover transform jitter or backdrop-filter drop */
@@ -217,19 +238,19 @@ body {
 .metal-spec-plate-red::before { left: 2px; }
 .metal-spec-plate-red::after { right: 2px; }
 
-/* Brutalist Buttons */
+/* Precision Performance Engineering Buttons */
 .mech-btn-primary, .mech-button-primary {
-  background: linear-gradient(180deg, #d32f2f 0%, #ba1a20 100%);
+  background: #dc2626;
   color: #fff;
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 700;
-  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   padding: 10px 18px;
-  border: 2px solid #c6c6c6;
-  border-bottom: 2px solid #c6c6c6;
-  box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+  border: 1px solid #ef4444;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.35);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -238,27 +259,28 @@ body {
   text-decoration: none;
 }
 .mech-btn-primary:hover, .mech-button-primary:hover {
-  background: #ba1a20;
-  border-color: #fff;
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
+  background: #b91c1c;
+  border-color: #f87171;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.45);
+  transform: translateY(-1px);
 }
 .mech-btn-primary:active, .mech-button-primary:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0px 0px rgba(0,0,0,1);
+  transform: scale(0.98);
+  box-shadow: 0 1px 3px rgba(220, 38, 38, 0.2);
 }
 
-.mech-btn-secondary {
-  background: #1e2020;
-  color: #e2e2e2;
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 700;
-  font-size: 12px;
+.mech-btn-secondary, .mech-button-secondary {
+  background: #141418;
+  color: #e5e1e4;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   padding: 10px 18px;
-  border: 2px solid #c6c6c6;
-  box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+  border: 1px solid #3f3f46;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -266,24 +288,24 @@ body {
   transition: all 0.15s ease;
   text-decoration: none;
 }
-.mech-btn-secondary:hover {
-  background: #333535;
-  border-color: #ffb3ac;
+.mech-btn-secondary:hover, .mech-button-secondary:hover {
+  background: #1c1c22;
+  border-color: #9ca3af;
   color: #fff;
+  transform: translateY(-1px);
 }
-.mech-btn-secondary:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0px 0px rgba(0,0,0,1);
+.mech-btn-secondary:active, .mech-button-secondary:active {
+  transform: scale(0.98);
 }
 
 /* Nav Links - High Contrast Precision Styling */
 .nav-link {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  font-weight: 700;
-  color: #f3f4f6;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #c0c7d3;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   padding: 8px 14px;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -297,15 +319,15 @@ body {
 }
 .nav-link:hover {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #3f3f46;
   transform: translateY(-1px);
 }
 .nav-link.active {
   color: #ffffff;
-  background: #d32f2f;
-  border: 1px solid #ef5350;
-  box-shadow: 0 0 14px rgba(211, 47, 47, 0.45), 2px 2px 0px 0px rgba(0,0,0,1);
+  background: #dc2626;
+  border: 1px solid #ef4444;
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.4);
 }
 
 /* Custom Filter Checkbox */

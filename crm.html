@@ -8,7 +8,7 @@
   <!-- Google Fonts & Material Symbols -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,700;0,900;1,700;1,900&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
   
   <!-- Core Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
@@ -19,16 +19,16 @@
   <style>
     /* Specialized CRM Engine Styles */
     :root {
-      --crm-bg: #0e1010;
-      --crm-surface: #141717;
-      --crm-card: #1b1e1e;
-      --crm-card-hover: #232727;
-      --crm-border: #2d3333;
-      --crm-border-light: #3e4646;
-      --crm-red: #d32f2f;
-      --crm-red-glow: rgba(211, 47, 47, 0.4);
-      --crm-chrome: #c6c6c6;
-      --crm-chrome-bright: #f0f0f0;
+      --crm-bg: #0b0b0d;
+      --crm-surface: #131315;
+      --crm-card: #18181b;
+      --crm-card-hover: #222226;
+      --crm-border: #242429;
+      --crm-border-light: #323238;
+      --crm-red: #dc2626;
+      --crm-red-glow: rgba(220, 38, 38, 0.35);
+      --crm-chrome: #a1a1aa;
+      --crm-chrome-bright: #f4f4f5;
       --crm-green: #22c55e;
       --crm-amber: #f59e0b;
       --crm-cyan: #38bdf8;
@@ -36,8 +36,8 @@
 
     body.crm-body {
       background-color: var(--crm-bg);
-      color: #e2e2e2;
-      font-family: 'Hanken Grotesk', sans-serif;
+      color: #f4f4f5;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       margin: 0;
       padding: 0;
       min-height: 100vh;
@@ -47,8 +47,8 @@
 
     /* CRM Navigation Header */
     .crm-header {
-      background: linear-gradient(180deg, #181b1b 0%, #121414 100%);
-      border-bottom: 2px solid var(--crm-border);
+      background: linear-gradient(180deg, #18181b 0%, #131315 100%);
+      border-bottom: 1px solid var(--crm-border);
       padding: 12px 24px;
       display: flex;
       align-items: center;
@@ -85,11 +85,10 @@
     }
 
     .crm-title {
-      font-family: 'Anybody', sans-serif;
-      font-weight: 900;
-      font-style: italic;
-      font-size: 1.25rem;
-      letter-spacing: -0.02em;
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
       color: #fff;
       text-transform: uppercase;
       line-height: 1;
@@ -163,7 +162,7 @@
       padding: 7px 12px 7px 34px;
       color: #fff;
       font-size: 0.85rem;
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: 'Inter', sans-serif;
       width: 240px;
       transition: all 0.2s ease;
     }
@@ -752,7 +751,7 @@
       border-radius: 6px;
       padding: 10px 14px;
       color: #fff;
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 0.88rem;
       box-sizing: border-box;
     }
@@ -796,14 +795,9 @@
   <!-- CRM Command Header -->
   <header class="crm-header">
     <div style="display: flex; align-items: center; gap: 24px;">
-      <a href="index.html" class="crm-brand">
-        <div class="crm-logo-flame">
-          <span class="material-symbols-outlined" style="font-size: 24px;">local_fire_department</span>
-        </div>
-        <div class="crm-brand-text">
-          <span class="crm-title">COAST AIRBRUSH</span>
-          <span class="crm-subtitle">Enterprise CRM Suite</span>
-        </div>
+      <a href="index.html?preview=true" class="crm-brand" title="Coast Airbrush Europe Home">
+        <img src="assets/images/coast_logo_white.png" onerror="this.onerror=null; this.src='coast_logo_white.png';" alt="Coast Airbrush Europe" style="height: 32px; width: auto; object-fit: contain;">
+        <span style="background: #dc2626; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; padding: 2px 6px; border-radius: 2px; text-transform: uppercase;">EUROPE CRM</span>
       </a>
 
       <!-- View Navigation Tabs -->

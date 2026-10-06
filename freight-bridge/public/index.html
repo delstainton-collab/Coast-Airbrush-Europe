@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Freight Carrier Bridge & Logistics Middleware | Coast Airbrush Europe</title>
+  <style>
+    :root {
+      --bg: #090a0f;
+      --card-bg: #12151f;
+      --card-border: #232936;
+      --accent: #ff334b;
+      --accent-hover: #e0243b;
+      --text: #f0f2f5;
+      --text-muted: #8c96a8;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --info: #3b82f6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 24px;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-logo {
+      background: linear-gradient(135deg, #ff334b, #b91c1c);
+      color: #fff;
+      font-weight: 900;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+    .brand-title { font-size: 20px; font-weight: 700; color: #fff; }
+    .brand-subtitle { font-size: 12px; color: var(--text-muted); }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .badge-live { background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid var(--success); }
+    .badge-hazmat { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+
+    /* Tabs */
+    .tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; }
+    .tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--card-bg);
+      color: #fff;
+      border-color: var(--card-border);
+    }
+    .tab-btn.active { border-color: var(--accent); color: var(--accent); }
+
+    /* Layout */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; color: #fff; display: flex; justify-content: space-between; align-items: center; }
+
+    /* Forms */
+    label { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
+    input, select {
+      width: 100%;
+      background: #090b12;
+      border: 1px solid var(--card-border);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      font-size: 13px;
+    }
+    input:focus, select:focus { outline: none; border-color: var(--accent); }
+    button.btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+    }
+    button.btn-primary:hover { background: var(--accent-hover); }
+
+    /* Rates Results */
+    .rate-card {
+      background: #090b12;
+      border: 1px solid var(--card-border);
+      padding: 14px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .rate-price { font-size: 18px; font-weight: 800; color: #fff; }
+    .rate-service { font-weight: 700; color: #fff; font-size: 14px; margin-bottom: 2px; }
+    .rate-meta { font-size: 11px; color: var(--text-muted); }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+    th, td { padding: 10px; text-align: left; border-bottom: 1px solid var(--card-border); }
+    th { color: var(--text-muted); font-weight: 600; }
+    a.link { color: var(--accent); text-decoration: none; font-weight: 600; }
+    a.link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">CAE</div>
+        <div>
+          <div class="brand-title">Shopify Freight Carrier Bridge</div>
+          <div class="brand-subtitle">European LTL Pallet Dispatch & Multi-Carrier Middleware</div>
+        </div>
+      </div>
+      <div>
+        <span class="badge badge-live">● Service Active (Port 3015)</span>
+      </div>
+    </header>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('simulator')">⚡ Checkout Rate Simulator</button>
+      <button class="tab-btn" onclick="switchTab('shipments')">📦 Active Freight Shipments & BOLs</button>
+      <button class="tab-btn" onclick="switchTab('rules')">⚙️ Freight Rules & Carriers</button>
+    </div>
+
+    <!-- TAB 1: RATE SIMULATOR -->
+    <div id="tab-simulator">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Shopify Checkout Simulator</div>
+          <label>Preset Test Payload</label>
+          <select id="preset-selector" onchange="loadPreset()">
+            <option value="heavy-solvents">4x 20L Flammable Paint Drums (88kg, UN1263 ADR Hazmat)</option>
+            <option value="pallet-bulk">1x Full Pallet Shop Stock (180kg, House of Kolor Master Kit)</option>
+            <option value="small-parcel">1x Airbrush Handpiece (0.45kg, Parcel non-freight)</option>
+          </select>
+
+          <label>Destination Country</label>
+          <select id="dest-country">
+            <option value="DE">Germany (DE) - Zone 2</option>
+            <option value="FR">France (FR) - Zone 2</option>
+            <option value="IT">Italy (IT) - Zone 4</option>
+            <option value="NL">Netherlands (NL) - Zone 1 Domestic</option>
+            <option value="GB">United Kingdom (GB) - Zone 3 Cross-Border</option>
+          </select>
+
+          <label>Destination City</label>
+          <input type="text" id="dest-city" value="Stuttgart"/>
+
+          <label>Receiver Type</label>
+          <select id="dest-type">
+            <option value="commercial">Commercial Body Shop (Forklift Available)</option>
+            <option value="residential">Residential / Private Studio (Requires Tail-lift)</option>
+          </select>
+
+          <button class="btn-primary" onclick="simulateRates()">Fetch Live Freight Quotes (CarrierService)</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Evaluated Carrier Quotes</span>
+            <span id="timing-badge" class="badge" style="background:#1f2937; color:#9ca3af;">0 ms</span>
+          </div>
+
+          <div id="density-metrics" style="margin-bottom:14px; font-size:12px; color:var(--text-muted);">
+            Run simulation to calculate pallet density, ADR hazmat classification, and accessorial fees.
+          </div>
+
+          <div id="rates-container">
+            <div style="color:var(--text-muted); font-size:13px; text-align:center; padding:40px 0;">
+              Click "Fetch Live Freight Quotes" to run the Shopify CarrierService calculation pipeline.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: SHIPMENTS & BOLs -->
+    <div id="tab-shipments" style="display:none;">
+      <div class="card">
+        <div class="card-title">
+          <span>Active European LTL Shipments</span>
+          <button class="btn-primary" style="width:auto; padding:6px 14px;" onclick="triggerDispatchTest()">+ Dispatch Test Order</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>PRO / Tracking</th>
+              <th>Order Ref</th>
+              <th>Carrier</th>
+              <th>Destination</th>
+              <th>Packaging</th>
+              <th>Status</th>
+              <th>Bill of Lading</th>
+            </tr>
+          </thead>
+          <tbody id="shipments-table-body">
+            <tr><td colspan="7" style="text-align:center; color:var(--text-muted);">Loading shipments...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 3: RULES & CARRIERS -->
+    <div id="tab-rules" style="display:none;">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Freight Rules & Accessorial Margins</div>
+          <label>Minimum Freight Trigger (kg)</label>
+          <input type="number" id="rule-min-weight" value="30"/>
+          <label>Mandatory Pallet Threshold (kg)</label>
+          <input type="number" id="rule-max-weight" value="70"/>
+          <label>Merchant Gross Margin (%)</label>
+          <input type="number" id="rule-markup-pct" value="15"/>
+          <label>Tail-lift Surcharge (€)</label>
+          <input type="number" id="rule-liftgate" value="35"/>
+          <label>ADR Hazmat Handling Surcharge (€)</label>
+          <input type="number" id="rule-hazmat" value="25"/>
+          <button class="btn-primary" onclick="saveRules()">Save Rules</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Connected Carrier Accounts</div>
+          <div id="carriers-list">Loading carrier plugins...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tabId) {
+      document.getElementById('tab-simulator').style.display = tabId === 'simulator' ? 'block' : 'none';
+      document.getElementById('tab-shipments').style.display = tabId === 'shipments' ? 'block' : 'none';
+      document.getElementById('tab-rules').style.display = tabId === 'rules' ? 'block' : 'none';
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      if (tabId === 'shipments') loadShipments();
+      if (tabId === 'rules') loadRulesAndCarriers();
+    }
+
+    async function simulateRates() {
+      const preset = document.getElementById('preset-selector').value;
+      const country = document.getElementById('dest-country').value;
+      const city = document.getElementById('dest-city').value;
+      const isResidential = document.getElementById('dest-type').value === 'residential';
+
+      let items = [];
+      if (preset === 'heavy-solvents') {
+        items = [{ name: 'Kroma Edge UN1263 Reducer Solvent 20L Drum', sku: 'KE-SOLV-20L', quantity: 4, grams: 22000 }];
+      } else if (preset === 'pallet-bulk') {
+        items = [{ name: 'House of Kolor Master Painter Pallet Kit', sku: 'HOK-MASTER-PLT', quantity: 1, grams: 180000 }];
+      } else {
+        items = [{ name: 'Custom Micron Airbrush Handpiece', sku: 'CM-01', quantity: 1, grams: 450 }];
+      }
+
+      const payload = {
+        rate: {
+          origin: { country: 'NL', city: 'Rotterdam', postal_code: '3011 AA' },
+          destination: { country, city, residential: isResidential, company: isResidential ? '' : 'Automotive Shop' },
+          items,
+          currency: 'EUR'
+        }
+      };
+
+      const t0 = performance.now();
+      const res = await fetch('/api/freight/rates', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      const elapsed = Math.round(performance.now() - t0);
+      document.getElementById('timing-badge').textContent = `${elapsed} ms (SLA < 3000ms)`;
+
+      const container = document.getElementById('rates-container');
+      const metricsEl = document.getElementById('density-metrics');
+
+      if (data.metadata && data.metadata.isFreightEligible) {
+        metricsEl.innerHTML = `
+          <strong>Freight Density:</strong> ${data.metadata.palletCount} EUR-Pallet(s) | 
+          <strong>Chargeable Weight:</strong> ${data.metadata.chargeableWeightKg} kg | 
+          <strong>Hazmat ADR:</strong> ${data.metadata.isHazardous ? '<span class="badge badge-hazmat">UN1263 Class 3</span>' : 'Standard'} | 
+          <strong>Accessorials:</strong> €${(data.metadata.accessorialTotalCents / 100).toFixed(2)} (${data.metadata.accessorials.join(', ')})
+        `;
+      } else {
+        metricsEl.innerHTML = `<span style="color:#f59e0b;">⚠️ Non-freight parcel. Evaluated by standard parcel delivery network.</span>`;
+      }
+
+      if (!data.rates || data.rates.length === 0) {
+        container.innerHTML = `<div style="padding:20px; color:var(--text-muted); text-align:center;">No LTL freight rates generated (cart does not meet freight criteria).</div>`;
+        return;
+      }
+
+      container.innerHTML = data.rates.map(r => `
+        <div class="rate-card">
+          <div>
+            <div class="rate-service">${r.service_name}</div>
+            <div class="rate-meta">${r.description}</div>
+            <div class="rate-meta" style="color:#10b981; margin-top:4px;">Delivery: ${r.min_delivery_date ? r.min_delivery_date.substring(0, 10) : '2-3 days'}</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="rate-price">€${(parseInt(r.total_price) / 100).toFixed(2)}</div>
+            <div class="rate-meta">${r.currency} inc. margin</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function loadShipments() {
+      const res = await fetch('/api/freight/shipments');
+      const data = await res.json();
+      const tbody = document.getElementById('shipments-table-body');
+      if (!data.shipments || data.shipments.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--text-muted);">No active freight shipments yet. Dispatch a test order above.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = data.shipments.map(s => `
+        <tr>
+          <td><strong style="font-family:monospace;">${s.proNumber}</strong></td>
+          <td>${s.orderNumber}</td>
+          <td>${s.carrierName}</td>
+          <td>${s.destination?.city || ''}, ${s.destination?.country || ''}</td>
+          <td>${s.density?.palletCount || 1} Pallet(s) (${s.density?.chargeableWeightKg || ''} kg)</td>
+          <td><span class="badge badge-live">${s.status}</span></td>
+          <td>
+            <a class="link" href="/api/freight/bol/${s.proNumber}" target="_blank">📄 View BOL Document</a>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    async function triggerDispatchTest() {
+      const order = {
+        name: `#CAE-LIVE-${Math.floor(Math.random() * 10000)}`,
+        id: Date.now(),
+        line_items: [{ title: 'Kroma Edge 20L Flammable Paint Drum', quantity: 2, grams: 22000, sku: 'KE-SOLV-20L' }],
+        shipping_address: {
+          first_name: 'Dario',
+          last_name: 'Moretti',
+          company: 'Modena Paint Works',
+          address1: 'Via Emilia Est 12',
+          city: 'Modena',
+          zip: '41121',
+          country_code: 'IT'
+        }
+      };
+
+      await fetch('/api/freight/webhooks/orders-paid', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(order)
+      });
+
+      setTimeout(() => loadShipments(), 500);
+    }
+
+    async function loadRulesAndCarriers() {
+      const res = await fetch('/api/freight/rules');
+      const data = await res.json();
+      if (data.rules) {
+        document.getElementById('rule-min-weight').value = data.rules.minFreightWeightKg || 30;
+        document.getElementById('rule-max-weight').value = data.rules.ltlMandatoryWeightKg || 70;
+        document.getElementById('rule-markup-pct').value = data.rules.markupPercent || 15;
+      }
+
+      const resCarriers = await fetch('/api/freight/carriers');
+      const dataCarriers = await resCarriers.json();
+      const listEl = document.getElementById('carriers-list');
+      if (dataCarriers.carriers) {
+        listEl.innerHTML = dataCarriers.carriers.map(c => `
+          <div style="background:#090b12; border:1px solid var(--card-border); padding:12px; border-radius:6px; margin-bottom:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong>${c.name}</strong>
+              <span class="badge badge-live">AES-256 Encrypted</span>
+            </div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">Account: ${c.accountNumber} | Carrier ID: ${c.carrierId}</div>
+          </div>
+        `).join('');
+      }
+    }
+
+    async function saveRules() {
+      const rules = {
+        minFreightWeightKg: parseFloat(document.getElementById('rule-min-weight').value),
+        ltlMandatoryWeightKg: parseFloat(document.getElementById('rule-max-weight').value),
+        markupPercent: parseFloat(document.getElementById('rule-markup-pct').value)
+      };
+      await fetch('/api/freight/rules', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(rules)
+      });
+      alert('Freight rules saved successfully!');
+    }
+  </script>
+</body>
+</html>

@@ -6,6 +6,7 @@ THEME_ZIP = os.path.join(ROOT_DIR, "coast-airbrush-eu-shopify-theme.zip")
 
 MODULE_FILES = [
     "data/hero_config.js",
+    "data/shopify_variant_map.js",
     "data/kroma_edge.js",
     "data/full_ecom_catalog.js",
     "data/flake_king_tds.js",
@@ -323,24 +324,26 @@ PASSWORD_LAYOUT_LIQUID = """<!doctype html>
     <title>{{ shop.name }} - VIP Priority Launch Access</title>
     {{ content_for_header }}
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ 'styles.css' | asset_url }}">
     <style>
       .static-bg-overlay {
-        background: linear-gradient(180deg, rgba(14, 16, 16, 0.88) 0%, rgba(10, 12, 12, 0.82) 40%, rgba(8, 10, 10, 0.94) 100%),
+        background: linear-gradient(180deg, rgba(11, 11, 13, 0.88) 0%, rgba(11, 11, 13, 0.82) 40%, rgba(6, 6, 8, 0.94) 100%),
                     url('{{ 'flake_buggy_hero.jpg' | asset_url }}') no-repeat center center fixed;
         background-size: cover;
       }
     </style>
   </head>
-  <body class="static-bg-overlay bg-[#0e1010] text-white min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white relative">
+  <body class="static-bg-overlay bg-[#0b0b0d] text-white min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white relative font-sans">
     {{ content_for_layout }}
   </body>
 </html>
 """
 
 PASSWORD_TEMPLATE_LIQUID = """<div class="w-full flex-grow flex flex-col justify-center items-center py-10 px-4 sm:px-6 relative z-10">
-  <div class="max-w-xl w-full p-6 sm:p-10 bg-[#121414]/92 backdrop-blur-xl border-2 border-neutral-400/75 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded text-center space-y-6 my-auto">
+  <div class="max-w-xl w-full p-6 sm:p-10 bg-[#131315]/95 backdrop-blur-xl border border-[#242429] shadow-2xl rounded-sm text-center space-y-6 my-auto">
     
     <!-- Brand Logo -->
     <div class="flex justify-center">
@@ -348,8 +351,8 @@ PASSWORD_TEMPLATE_LIQUID = """<div class="w-full flex-grow flex flex-col justify
     </div>
     
     <!-- Live Launch Status Badge -->
-    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded bg-black/60 border border-red-500/60 text-red-400 font-mono text-[11px] font-bold uppercase tracking-widest shadow-sm">
-      <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded bg-black/60 border border-[#dc2626]/60 text-red-500 font-mono text-[11px] font-bold uppercase tracking-widest shadow-sm">
+      <span class="w-2 h-2 rounded-full bg-[#dc2626] animate-pulse"></span>
       Official European Hub • Opening Soon
     </div>
 
@@ -365,15 +368,15 @@ PASSWORD_TEMPLATE_LIQUID = """<div class="w-full flex-grow flex flex-col justify
 
     <!-- Trust & Fulfillment Badges -->
     <div class="grid grid-cols-3 gap-2 py-1 font-mono text-[10px] sm:text-[11px]">
-      <div class="p-2 rounded bg-black/50 border border-neutral-700/80 text-neutral-200 flex flex-col items-center justify-center">
+      <div class="p-2 rounded bg-black/50 border border-[#242429] text-neutral-200 flex flex-col items-center justify-center">
         <span class="text-base sm:text-lg mb-0.5">🇬🇧 🇳🇱</span>
         <span class="font-bold">UK &amp; EU Dispatch</span>
       </div>
-      <div class="p-2 rounded bg-black/50 border border-neutral-700/80 text-neutral-200 flex flex-col items-center justify-center">
+      <div class="p-2 rounded bg-black/50 border border-[#242429] text-neutral-200 flex flex-col items-center justify-center">
         <span class="text-base sm:text-lg mb-0.5">🛡️</span>
         <span class="font-bold">REACH Compliant</span>
       </div>
-      <div class="p-2 rounded bg-black/50 border border-neutral-700/80 text-neutral-200 flex flex-col items-center justify-center">
+      <div class="p-2 rounded bg-black/50 border border-[#242429] text-neutral-200 flex flex-col items-center justify-center">
         <span class="text-base sm:text-lg mb-0.5">⚡</span>
         <span class="font-bold">Zero US Customs</span>
       </div>
@@ -406,22 +409,22 @@ PASSWORD_TEMPLATE_LIQUID = """<div class="w-full flex-grow flex flex-col justify
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label for="VIPFirstName" class="block font-mono text-[11px] uppercase tracking-wider text-neutral-300 mb-1">First Name</label>
-            <input type="text" name="contact[first_name]" id="VIPFirstName" class="w-full bg-[#0c0e0e] border border-neutral-600 px-3.5 py-2.5 text-xs font-mono text-white rounded focus:border-red-500 focus:outline-none placeholder:text-neutral-600" placeholder="e.g. Marcus" required>
+            <input type="text" name="contact[first_name]" id="VIPFirstName" class="w-full bg-[#0b0b0d] border border-[#242429] px-3.5 py-2.5 text-xs font-mono text-white rounded-sm focus:border-[#dc2626] focus:outline-none placeholder:text-neutral-600" placeholder="e.g. Marcus" required>
           </div>
           <div>
             <label for="VIPLastName" class="block font-mono text-[11px] uppercase tracking-wider text-neutral-300 mb-1">Last Name</label>
-            <input type="text" name="contact[last_name]" id="VIPLastName" class="w-full bg-[#0c0e0e] border border-neutral-600 px-3.5 py-2.5 text-xs font-mono text-white rounded focus:border-red-500 focus:outline-none placeholder:text-neutral-600" placeholder="e.g. Vance" required>
+            <input type="text" name="contact[last_name]" id="VIPLastName" class="w-full bg-[#0b0b0d] border border-[#242429] px-3.5 py-2.5 text-xs font-mono text-white rounded-sm focus:border-[#dc2626] focus:outline-none placeholder:text-neutral-600" placeholder="e.g. Vance" required>
           </div>
         </div>
 
         <div>
           <label for="VIPEmail" class="block font-mono text-[11px] uppercase tracking-wider text-neutral-300 mb-1">Email Address</label>
-          <input type="email" name="contact[email]" id="VIPEmail" class="w-full bg-[#0c0e0e] border border-neutral-600 px-3.5 py-2.5 text-xs font-mono text-white rounded focus:border-red-500 focus:outline-none placeholder:text-neutral-600" placeholder="painter@customshop.com" required>
+          <input type="email" name="contact[email]" id="VIPEmail" class="w-full bg-[#0b0b0d] border border-[#242429] px-3.5 py-2.5 text-xs font-mono text-white rounded-sm focus:border-[#dc2626] focus:outline-none placeholder:text-neutral-600" placeholder="painter@customshop.com" required>
         </div>
 
         <div>
           <label for="VIPRole" class="block font-mono text-[11px] uppercase tracking-wider text-neutral-300 mb-1">Painter / Trade Focus (Optional)</label>
-          <select name="contact[note]" id="VIPRole" class="w-full bg-[#0c0e0e] border border-neutral-600 px-3.5 py-2.5 text-xs font-mono text-white rounded focus:border-red-500 focus:outline-none">
+          <select name="contact[note]" id="VIPRole" class="w-full bg-[#0b0b0d] border border-[#242429] px-3.5 py-2.5 text-xs font-mono text-white rounded-sm focus:border-[#dc2626] focus:outline-none">
             <option value="Custom Automotive &amp; Motorcycle Painting">Custom Automotive &amp; Motorcycle Painting</option>
             <option value="Airbrush &amp; Fine Art Refinishing">Airbrush &amp; Fine Art Refinishing</option>
             <option value="Commercial Body Shop / Trade Dealer">Commercial Body Shop / Trade Dealer</option>
@@ -429,7 +432,7 @@ PASSWORD_TEMPLATE_LIQUID = """<div class="w-full flex-grow flex flex-col justify
           </select>
         </div>
 
-        <button type="submit" class="w-full bg-[#d32f2f] hover:bg-[#b71c1c] text-white font-mono font-bold text-xs uppercase py-3.5 px-6 rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer flex items-center justify-center gap-2 tracking-wider">
+        <button type="submit" class="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white font-mono font-bold text-xs uppercase py-3.5 px-6 rounded-sm shadow-sm transition-all cursor-pointer flex items-center justify-center gap-2 tracking-wider">
           <span class="material-symbols-outlined text-[16px]">notifications_active</span>
           <span>Secure My VIP Priority Allocation &rarr;</span>
         </button>
@@ -603,13 +606,15 @@ def extract_snippets():
     end_marker = "  <!-- Application Master Scripts -->"
 
     p1 = html.find(m1)
+    if p1 == -1:
+        p1 = html.find('<header id="master-site-header"')
     p2 = html.find(m2)
     p3 = html.find(m3)
     p4 = html.find(m4)
     p5 = html.find(m5)
     pend = html.find(end_marker)
 
-    assert p1 != -1 and p2 != -1 and p3 != -1 and p4 != -1 and p5 != -1 and pend != -1, "Snippet markers missing in index.html"
+    assert p1 != -1 and p2 != -1 and p3 != -1 and p4 != -1 and p5 != -1 and pend != -1, f"Snippet markers missing in index.html: p1={p1}, p2={p2}, p3={p3}, p4={p4}, p5={p5}, pend={pend}"
 
     raw_snippets = {
         "snippets/header-and-departments.liquid": html[p1:p2].rstrip() + "\n",

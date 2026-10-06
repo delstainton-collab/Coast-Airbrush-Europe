@@ -1,0 +1,245 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Coast Airbrush Europe - Category PIM Schemas",
+  "version": "1.0.0",
+  "categories": {
+    "paint_system": {
+      "id": "paint_system",
+      "displayName": "Paint & Chemical Systems",
+      "shopifyProductType": "Mirror Chrome Systems",
+      "shopifyCategoryTaxonomy": "Business & Industrial > Manufacturing > Automotive Paint",
+      "allowedVariantOptions": [
+        "Size / Pack"
+      ],
+      "metafieldNamespace": "specs",
+      "metafields": [
+        {
+          "key": "mix_ratio",
+          "name": "Mix Ratio",
+          "type": "single_line_text_field",
+          "description": "Exact mixing ratio by parts (e.g. 5:5:2:2)",
+          "required": true
+        },
+        {
+          "key": "pot_life",
+          "name": "Pot Life",
+          "type": "single_line_text_field",
+          "description": "Usable working time after activation",
+          "required": false
+        },
+        {
+          "key": "flash_off_time",
+          "name": "Flash-Off Time",
+          "type": "single_line_text_field",
+          "description": "Interval between coats or prior to clearcoat",
+          "required": false
+        },
+        {
+          "key": "cure_time",
+          "name": "Cure Schedule",
+          "type": "single_line_text_field",
+          "description": "Air cure and force cure times and temperatures",
+          "required": false
+        },
+        {
+          "key": "coverage",
+          "name": "Theoretical Coverage",
+          "type": "single_line_text_field",
+          "description": "Coverage area in m² or sq ft per kit",
+          "required": false
+        },
+        {
+          "key": "film_thickness",
+          "name": "Dry Film Thickness",
+          "type": "single_line_text_field",
+          "description": "Target film thickness in microns (µm)",
+          "required": false
+        },
+        {
+          "key": "recommended_psi",
+          "name": "Operating Pressure (PSI)",
+          "type": "single_line_text_field",
+          "description": "Recommended spraying atomization pressure",
+          "required": false
+        },
+        {
+          "key": "recommended_nozzle",
+          "name": "Recommended Nozzle Size",
+          "type": "single_line_text_field",
+          "description": "Nozzle aperture for airbrush and mini spray gun",
+          "required": false
+        },
+        {
+          "key": "adr_hazmat_class",
+          "name": "ADR / Transport Hazmat Class",
+          "type": "single_line_text_field",
+          "description": "European ADR carriage classification and UN number",
+          "required": true
+        },
+        {
+          "key": "voc_compliance",
+          "name": "VOC / REACH Status",
+          "type": "single_line_text_field",
+          "description": "Compliance with European VOC directives and REACH 2026",
+          "required": true
+        },
+        {
+          "key": "tds_document_url",
+          "name": "Technical Data Sheet URL",
+          "type": "url",
+          "description": "Public link to technical data sheet PDF",
+          "required": false
+        }
+      ]
+    },
+    "metal_flake": {
+      "id": "metal_flake",
+      "displayName": "Dry Metal Flake (Glitter)",
+      "shopifyProductType": "Dry Metal Flake (Glitter)",
+      "shopifyCategoryTaxonomy": "Crafts & Hobbies > Crafting Supplies > Glitter",
+      "allowedVariantOptions": [
+        "Size / Pack"
+      ],
+      "metafieldNamespace": "specs",
+      "metafields": [
+        {
+          "key": "flake_material",
+          "name": "Flake Substrate Material",
+          "type": "single_line_text_field",
+          "description": "Physical material and coating formulation",
+          "required": true
+        },
+        {
+          "key": "micron_range",
+          "name": "Particle Size Range",
+          "type": "single_line_text_field",
+          "description": "Available micron and inch diameters (.002 to .040)",
+          "required": true
+        },
+        {
+          "key": "max_temp_c",
+          "name": "Thermal Resistance (°C)",
+          "type": "single_line_text_field",
+          "description": "Maximum continuous bake/cure temperature before color loss",
+          "required": false
+        },
+        {
+          "key": "solvent_resistance",
+          "name": "Solvent Resistance",
+          "type": "single_line_text_field",
+          "description": "Tested solvent and waterborne resistance",
+          "required": true
+        },
+        {
+          "key": "application_method",
+          "name": "Application Method",
+          "type": "single_line_text_field",
+          "description": "Dry spray vs wet clear suspension guidelines",
+          "required": true
+        },
+        {
+          "key": "lightfastness",
+          "name": "UV Lightfastness Rating",
+          "type": "single_line_text_field",
+          "description": "Florida outdoor exposure rating and pigment stability",
+          "required": false
+        },
+        {
+          "key": "tds_document_url",
+          "name": "Technical Data Sheet URL",
+          "type": "url",
+          "description": "Link to official TDS document",
+          "required": false
+        }
+      ]
+    },
+    "spray_hardware": {
+      "id": "spray_hardware",
+      "displayName": "Spray Guns & Equipment",
+      "shopifyProductType": "Dry Metal Flake Guns",
+      "shopifyCategoryTaxonomy": "Hardware > Tools > Paint Sprayers",
+      "allowedVariantOptions": [
+        "Title"
+      ],
+      "metafieldNamespace": "specs",
+      "metafields": [
+        {
+          "key": "feed_type",
+          "name": "Feed & Agitation Type",
+          "type": "single_line_text_field",
+          "description": "Venturi vacuum, gravity, or suction feed",
+          "required": true
+        },
+        {
+          "key": "operating_psi",
+          "name": "Operating Pressure (PSI)",
+          "type": "single_line_text_field",
+          "description": "Recommended compressor working pressure",
+          "required": true
+        },
+        {
+          "key": "body_material",
+          "name": "Chassis Construction",
+          "type": "single_line_text_field",
+          "description": "Machining and surface treatment",
+          "required": false
+        },
+        {
+          "key": "air_inlet_fitting",
+          "name": "Air Inlet Connection",
+          "type": "single_line_text_field",
+          "description": "Thread pitch and coupler type (e.g. 1/8 BSP, 1/4 NPT)",
+          "required": false
+        },
+        {
+          "key": "warranty_period",
+          "name": "European Warranty",
+          "type": "single_line_text_field",
+          "description": "Manufacturer warranty coverage",
+          "required": false
+        }
+      ]
+    },
+    "masking_products": {
+      "id": "masking_products",
+      "displayName": "Masking & Precision Tapes",
+      "shopifyProductType": "Masking Products",
+      "shopifyCategoryTaxonomy": "Hardware > Tape > Painter's Tape",
+      "allowedVariantOptions": [
+        "Title",
+        "Size / Pack"
+      ],
+      "metafieldNamespace": "specs",
+      "metafields": [
+        {
+          "key": "backing_material",
+          "name": "Backing Material",
+          "type": "single_line_text_field",
+          "description": "Rice paper washi, thermally stabilized PVC, or crepe",
+          "required": true
+        },
+        {
+          "key": "adhesive_type",
+          "name": "Adhesive Formula",
+          "type": "single_line_text_field",
+          "description": "Solvent resistant acrylic or natural rubber",
+          "required": true
+        },
+        {
+          "key": "temp_rating",
+          "name": "Bake Temperature Rating",
+          "type": "single_line_text_field",
+          "description": "Maximum oven/booth bake temperature and dwell time",
+          "required": true
+        },
+        {
+          "key": "clean_removal",
+          "name": "Residue-Free Removal",
+          "type": "single_line_text_field",
+          "description": "Adhesive release properties after paint bake",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -23,7 +23,9 @@
 
   <!-- Tailwind CSS & Google Fonts -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&amp;family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
   
   <script id="tailwind-config">
     tailwind.config = {
@@ -31,20 +33,25 @@
       theme: {
         extend: {
           colors: {
-            "surface": "#121414",
-            "surface-container": "#181a1a",
-            "surface-container-high": "#222525",
-            "surface-container-lowest": "#0c0e0e",
-            "primary": "#ffb3ac",
-            "primary-container": "#d32f2f",
+            "surface": "#0b0b0d",
+            "surface-dim": "#131315",
+            "surface-container-lowest": "#070709",
+            "surface-container-low": "#131315",
+            "surface-container": "#1a1a1e",
+            "surface-container-high": "#242429",
+            "surface-container-highest": "#2e2e35",
+            "primary": "#dc2626",
+            "primary-container": "#dc2626",
             "primary-dark": "#b71c1c",
-            "secondary": "#c6c6c6",
-            "on-surface": "#e2e2e2"
+            "secondary": "#9aa2b1",
+            "on-surface": "#f1f3f7",
+            "on-surface-variant": "#d4d8e2"
           },
           fontFamily: {
-            "headline": ["Anybody", "sans-serif"],
-            "body": ["Hanken Grotesk", "sans-serif"],
-            "mono": ["JetBrains Mono", "monospace"]
+            "headline": ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+            "body": ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"],
+            "sans": ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"]
           }
         }
       }
@@ -58,8 +65,8 @@
   
   <style>
     body {
-      font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #0e1010;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #0b0b0d;
       color: #ffffff;
       min-height: 100vh;
       margin: 0;
@@ -81,17 +88,16 @@
     }
 
     .support-card {
-      background: rgba(18, 20, 20, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(198, 198, 198, 0.35);
+      background: #131315;
+      border: 1px solid #242429;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+      border-radius: 4px;
     }
 
     .support-pill {
-      background: rgba(211, 47, 47, 0.15);
-      border: 1px solid rgba(211, 47, 47, 0.4);
-      color: #ffb3ac;
+      background: rgba(220, 38, 38, 0.15);
+      border: 1px solid rgba(220, 38, 38, 0.4);
+      color: #ffb4ab;
     }
 
     .accordion-header {
@@ -105,49 +111,127 @@
   <!-- Background Wallpaper -->
   <div class="static-buggy-bg"></div>
 
-  <!-- Official Review & Dispatch Banner -->
-  <div id="stakeholder-review-banner" class="bg-gradient-to-r from-amber-950/95 via-red-950/95 to-amber-950/95 border-b-2 border-amber-500/70 py-2 px-6 text-xs font-mono text-amber-200 flex flex-wrap items-center justify-between gap-3 shadow-md relative z-40">
-    <div class="flex items-center gap-2.5 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-amber-300 font-extrabold text-[10px] tracking-wider uppercase">
-        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse inline-block"></span>
-        TECHNICAL DESK ACTIVE
-      </span>
-      <span class="font-bold text-white tracking-wide text-[11px] sm:text-xs">
-        Coast Airbrush Europe Technical &amp; Operational Support
-      </span>
-      <span class="text-amber-400/60 hidden md:inline">•</span>
-      <span class="text-neutral-300 hidden md:inline text-[11px]">
-        UK Bonded Dispatch • ADR Hazchem Logistics • REACH Technical Sheets
-      </span>
-    </div>
-    <div class="flex items-center gap-3 ml-auto text-[11px]">
-      <a href="index.html" class="text-amber-300 hover:text-white underline font-bold">Main Storefront</a>
-    </div>
-  </div>
+  <!-- ========================================================================= -->
+  <!-- MASTER SITE HEADER (UNIFIED STICKY CONTAINER) -->
+  <!-- ========================================================================= -->
+  <header id="master-site-header" class="relative md:sticky top-0 z-50 w-full flex flex-col bg-surface-container-lowest/95 backdrop-blur-md border-b border-surface-container-high shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
 
-  <!-- Header Navigation -->
-  <header class="w-full border-b border-white/20 bg-[#121414]/90 backdrop-blur-md sticky top-0 z-30">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3 group" title="Coast Airbrush Europe">
-        <img src="assets/images/coast_logo_white.png" onerror="this.onerror=null; this.src='coast_logo_white.png';" alt="Coast Airbrush Europe" class="h-9 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+    <!-- TOP COMPLIANCE & LOGISTICS ANNOUNCEMENT BAR -->
+    <div id="top-shipping-banner" class="bg-surface-container-lowest border-b border-surface-container-high py-1.5 px-4 sm:px-6 md:px-8 text-xs tracking-wider">
+      <div class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-2 text-secondary font-label-caps">
+        <div class="flex items-center gap-2 flex-wrap text-[11px]">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse shrink-0"></span>
+          <span class="text-on-surface font-semibold">Official European Master Distributor:</span>
+          <span>Iwata Custom Lines &amp; Flake King</span>
+          <span class="text-surface-container-highest hidden sm:inline">|</span>
+          <span class="hidden sm:inline">ADR / Hazmat Certified UK &amp; EU Dispatch</span>
+          <span class="text-surface-container-highest hidden md:inline">|</span>
+          <span id="nav-vat-advisory-badge" class="inline-flex items-center gap-1 text-tertiary bg-surface-container-low px-2 py-0.5 rounded border border-surface-container-high" title="VAT status details for your destination country">
+            <span class="material-symbols-outlined text-[13px] text-tertiary">info</span>
+            <span id="nav-vat-advisory-text">All Retail Prices Shown Inclusive of VAT</span>
+          </span>
+        </div>
+
+        <!-- Country, Language & Currency Quick Switcher -->
+        <div class="flex items-center gap-2 ml-auto text-[11px]">
+          <div class="flex items-center gap-1 bg-surface-container-low border border-surface-container-high px-2 py-0.5 rounded">
+            <span class="material-symbols-outlined text-[13px] text-primary">translate</span>
+            <select id="select-site-language" class="bg-transparent text-on-surface text-[11px] font-bold uppercase outline-none cursor-pointer">
+              <option value="en" class="bg-surface text-on-surface">🇬🇧 EN</option>
+              <option value="de" class="bg-surface text-on-surface">🇩🇪 DE</option>
+              <option value="fr" class="bg-surface text-on-surface">🇫🇷 FR</option>
+              <option value="nl" class="bg-surface text-on-surface">🇳🇱 NL</option>
+              <option value="es" class="bg-surface text-on-surface">🇪🇸 ES</option>
+              <option value="it" class="bg-surface text-on-surface">🇮🇹 IT</option>
+              <option value="pl" class="bg-surface text-on-surface">🇵🇱 PL</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-1 bg-surface-container-low border border-surface-container-high px-2 py-0.5 rounded">
+            <span class="material-symbols-outlined text-[13px] text-primary">payments</span>
+            <select id="select-site-currency" class="bg-transparent text-on-surface text-[11px] font-bold uppercase outline-none cursor-pointer">
+              <option value="GBP" class="bg-surface text-on-surface">GBP (£)</option>
+              <option value="EUR" class="bg-surface text-on-surface">EUR (€)</option>
+              <option value="USD" class="bg-surface text-on-surface">USD ($)</option>
+            </select>
+          </div>
+
+          <div class="hidden md:flex items-center gap-1 bg-surface-container-low border border-surface-container-high px-2 py-0.5 rounded">
+            <span class="material-symbols-outlined text-[13px] text-primary">public</span>
+            <select id="select-site-destination" class="bg-transparent text-on-surface text-[11px] font-bold uppercase outline-none cursor-pointer">
+              <option value="GB" class="bg-surface text-on-surface">UK (GB)</option>
+              <option value="DE" class="bg-surface text-on-surface">DE (€)</option>
+              <option value="FR" class="bg-surface text-on-surface">FR (€)</option>
+              <option value="NL" class="bg-surface text-on-surface">NL (€)</option>
+              <option value="IE" class="bg-surface text-on-surface">IE (€)</option>
+              <option value="IT" class="bg-surface text-on-surface">IT (€)</option>
+              <option value="ES" class="bg-surface text-on-surface">ES (€)</option>
+              <option value="PL" class="bg-surface text-on-surface">PL (zł)</option>
+              <option value="BE" class="bg-surface text-on-surface">BE (€)</option>
+              <option value="CH" class="bg-surface text-on-surface">CH (CHF)</option>
+              <option value="SE" class="bg-surface text-on-surface">SE (kr)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN BRAND & NAVIGATION ROW -->
+    <div class="h-20 max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between gap-6 w-full">
+      <!-- Logo Lockup -->
+      <a class="flex items-center gap-3 shrink-0 cursor-pointer text-decoration-none group" href="index.html" title="Coast Airbrush Europe Home">
+        <img alt="Coast Airbrush" class="h-10 md:h-11 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" src="assets/images/coast_logo_white.png" onerror="this.onerror=null; this.src='coast_logo_white.png';">
+        <span class="inline-flex items-center font-headline tracking-wider uppercase border-l border-surface-container-high pl-3 text-white font-semibold">
+          <span class="text-primary-container font-extrabold text-sm md:text-base">EUROPE</span>
+        </span>
       </a>
 
-      <div class="flex items-center gap-3">
-        <span class="hidden lg:inline font-mono text-[11px] text-white/90 tracking-wider">
-          🇬🇧 UK DISPATCH • REACH COMPLIANT
-        </span>
-        <a href="dealers.html" class="hidden sm:inline-flex items-center gap-1.5 font-mono text-xs border border-white/20 hover:border-white/50 px-3.5 py-2 text-white transition-all">
-          <span class="material-symbols-outlined text-[15px] text-primary">storefront</span>
-          <span>Trade Portal</span>
+      <!-- Search Bar -->
+      <div class="flex-1 max-w-lg hidden lg:block">
+        <form action="index.html" method="GET" class="relative flex items-center">
+          <span class="material-symbols-outlined absolute left-3 text-secondary text-[18px]">search</span>
+          <input name="search" class="w-full h-10 pl-10 pr-4 bg-surface-dim border border-surface-container-high rounded-lg text-white font-mono text-xs placeholder:text-secondary focus:outline-none focus:border-primary-container transition-colors" placeholder="Search by SKU, gun model, or paint chemistry..." type="text">
+        </form>
+      </div>
+
+      <!-- Trailing Action Systems -->
+      <div class="flex items-center gap-4 shrink-0">
+        <!-- Quick Mix Pop-up Button -->
+        <a href="index.html?modal=quickmix" class="hidden md:inline-flex items-center gap-1.5 font-mono text-xs uppercase border border-surface-container-high bg-surface-container-low hover:bg-surface-container hover:border-secondary text-secondary hover:text-white px-3 py-2 rounded-lg transition-all shadow-sm active:scale-[0.98]" title="Quick Mix Ratio Calculator">
+          <span class="material-symbols-outlined text-[16px] text-primary-container">calculate</span>
+          <span>QUICK MIX</span>
         </a>
-        <a href="shipping.html" class="hidden md:inline-flex items-center gap-1.5 font-mono text-xs border border-white/20 hover:border-white/50 px-3.5 py-2 text-white transition-all">
-          <span class="material-symbols-outlined text-[15px]">local_shipping</span>
-          <span>Shipping Info</span>
+
+        <!-- B2B Trade Portal Button -->
+        <a id="btn-b2b-login" href="dealers.html" class="flex items-center gap-2 px-3.5 py-2 border border-surface-container-high hover:border-secondary rounded-lg font-mono text-xs uppercase text-white bg-surface-container-low hover:bg-surface-container transition-all" title="Authorized Trade &amp; Dealer Portal">
+          <span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+          <span>B2B PORTAL</span>
         </a>
-        <a href="index.html" class="mech-button-primary !py-2 !px-4 text-xs font-mono tracking-wider flex items-center gap-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-          <span class="material-symbols-outlined text-[16px]">storefront</span>
-          <span>MAIN SHOP</span>
+
+        <!-- Store Cart Button -->
+        <a href="index.html" class="relative w-10 h-10 rounded-lg border border-surface-container-high bg-surface-container-low flex items-center justify-center text-secondary hover:text-white hover:border-secondary transition-all" title="View Store &amp; Cart">
+          <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
         </a>
+      </div>
+    </div>
+
+    <!-- DEPARTMENT-LED HORIZONTAL NAVIGATION BAR -->
+    <div class="border-t border-surface-container-high bg-surface-container-lowest/80">
+      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8">
+        <nav class="flex items-center space-x-3 sm:space-x-4 overflow-x-auto py-2">
+          <a class="nav-link" href="index.html">SHOP</a>
+          <a href="index.html#dept-guns" class="nav-link">AIRBRUSHES &amp; GUNS</a>
+          <a href="index.html#dept-kroma-edge" class="nav-link">CUSTOM PAINT LINES</a>
+          <a href="index.html#dept-flakes" class="nav-link">FLAKE SYSTEMS</a>
+          <a href="index.html#dept-basecoats-binders" class="nav-link">BASECOATS &amp; BINDERS</a>
+          <a href="index.html#dept-tapes" class="nav-link">TAPES</a>
+          <a href="index.html#section-calc-lab" class="nav-link text-primary-container hover:text-white flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-[15px]">calculate</span> MIX LAB
+          </a>
+          <a href="index.html#section-booth-proof" class="nav-link">ACADEMY</a>
+          <a href="about.html" class="nav-link">ABOUT</a>
+          <a href="dealers.html" class="nav-link text-tertiary">B2B TRADE</a>
+        </nav>
       </div>
     </div>
   </header>
@@ -631,20 +715,80 @@
     </div>
   </main>
 
-  <!-- Unified Global Footer -->
-  <footer class="bg-surface-container-lowest text-secondary font-label-xs text-label-xs uppercase border-t-2 border-secondary relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-1 before:bg-[linear-gradient(90deg,transparent_0%,#d32f2f_50%,transparent_100%)] flex flex-col md:flex-row justify-between items-center w-full px-6 md:px-12 py-10 gap-6 mt-auto relative z-20">
-    <div class="h-9 w-auto">
-      <img src="assets/images/coast_logo_white.png" onerror="this.onerror=null; this.src='coast_logo_white.png';" alt="COAST AIRBRUSH" class="h-full w-auto object-contain">
+  <!-- ========================================================================= -->
+  <!-- MASTER SITE FOOTER -->
+  <!-- ========================================================================= -->
+  <footer class="w-full bg-surface-container-lowest border-t border-surface-container-high mt-16 relative z-20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Col 1: Brand & Logistics -->
+        <div class="flex flex-col space-y-4">
+          <div class="flex items-center gap-3">
+            <img alt="Coast Airbrush" class="h-8 md:h-9 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" src="assets/images/coast_logo_white.png" onerror="this.onerror=null; this.src='coast_logo_white.png';">
+            <span class="font-headline uppercase tracking-wider text-primary-container font-extrabold border-l border-surface-container-high pl-3 text-sm md:text-base">Europe</span>
+          </div>
+          <p class="font-body text-xs sm:text-sm text-secondary leading-relaxed">Engineered European distribution hub for professional custom automotive finishes, Iwata instrumentation, and Flake King pneumatic flake dispersal systems.</p>
+          <div class="flex flex-wrap items-center gap-2 pt-1">
+            <div class="px-2 py-1 bg-surface-container-low border border-surface-container-high rounded font-mono text-[11px] text-on-surface-variant flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-primary-container"></span>ADR Hazmat Certified</div>
+            <div class="px-2 py-1 bg-surface-container-low border border-surface-container-high rounded font-mono text-[11px] text-on-surface-variant">ISO 9001:2015</div>
+          </div>
+        </div>
+
+        <!-- Col 2: Product Lines -->
+        <div>
+          <h4 class="font-mono text-xs text-white uppercase tracking-wider mb-4 pb-2 border-b border-surface-container-high font-bold">Product Lines</h4>
+          <ul class="space-y-2 text-xs sm:text-sm text-secondary">
+            <li class="hover:text-white transition-colors"><a href="index.html#dept-guns">Atawi Precision Series Guns</a></li>
+            <li class="hover:text-white transition-colors"><a href="index.html#dept-flakes">Flake King Dry Systems</a></li>
+            <li class="hover:text-white transition-colors"><a href="index.html#dept-kroma-edge">KromaEdge Mirror Chromes</a></li>
+            <li class="hover:text-white transition-colors"><a href="index.html#dept-lumilor">LumiLor Electro-luminescent</a></li>
+            <li class="hover:text-white transition-colors"><a href="index.html#dept-clean-armor">Clean Armor UV Hard Clears</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Safety & Compliance -->
+        <div>
+          <h4 class="font-mono text-xs text-white uppercase tracking-wider mb-4 pb-2 border-b border-surface-container-high font-bold">Safety &amp; Compliance</h4>
+          <ul class="space-y-2 text-xs sm:text-sm text-secondary">
+            <li class="hover:text-white transition-colors"><a href="shipping.html">SDS &amp; Technical Library</a></li>
+            <li class="hover:text-white transition-colors"><a href="shipping.html">ADR Road Transport Protocols</a></li>
+            <li class="hover:text-white transition-colors"><a href="dealers.html">Authorized Distributors &amp; Bodyshops</a></li>
+            <li class="hover:text-white transition-colors"><a href="privacy.html">EU REACH &amp; Privacy Compliance</a></li>
+            <li class="hover:text-white transition-colors"><a href="support.html">Support &amp; Dangerous Goods</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: B2B Trade & Exclusive Drops -->
+        <div>
+          <h4 class="font-mono text-xs text-white uppercase tracking-wider mb-4 pb-2 border-b border-surface-container-high font-bold">B2B Trade &amp; Exclusive Drops</h4>
+          <p class="text-xs sm:text-sm text-secondary mb-3">Register authorized studio workshops for trade allocation pricing and batch drops.</p>
+          <div class="flex flex-col space-y-2">
+            <form onsubmit="event.preventDefault(); alert('Subscribed to pro allocation alerts!');" class="flex gap-2">
+              <input class="flex-1 h-10 px-3 bg-surface-dim border border-surface-container-high rounded text-white text-xs placeholder:text-secondary focus:outline-none focus:border-primary-container" placeholder="pro.finisher@studio.eu" type="email" required>
+              <button type="submit" class="h-10 px-4 bg-primary-container text-white font-mono text-xs uppercase rounded hover:bg-primary-container/90 transition-colors shrink-0 cursor-pointer font-bold">Subscribe</button>
+            </form>
+            <span class="font-mono text-[10px] text-secondary">Weekly allocation alerts. No spam.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-surface-container-high mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-secondary">
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <span>© 2026 Coast Airbrush Europe Ltd. All rights reserved. Registered VAT GB / EU IOSS.</span>
+          <a class="hover:text-white transition-colors" href="about.html">About Us</a>
+          <a class="hover:text-white transition-colors" href="dealers.html">B2B Dealers</a>
+          <a class="hover:text-white transition-colors" href="support.html">Support</a>
+          <a class="hover:text-white transition-colors" href="privacy.html">Privacy</a>
+          <a class="hover:text-white transition-colors" href="shipping.html">Shipping</a>
+        </div>
+        <div class="flex items-center gap-4 font-mono text-[11px]">
+          <span>SECURE ENCRYPTED CHECKOUT</span>
+          <span>|</span>
+          <span>UN1263 PAINT RELATED MATERIAL</span>
+        </div>
+      </div>
     </div>
-    <div class="flex gap-4 md:gap-8 flex-wrap justify-center font-bold text-xs">
-      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="about.html">About Us</a>
-      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300 text-white underline" href="support.html">Support</a>
-      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="privacy.html">Privacy Policy</a>
-      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="shipping.html">Shipping Info</a>
-      <a class="text-on-surface-variant hover:text-on-surface hover:underline decoration-primary decoration-2 transition-all duration-300" href="dealers.html">Authorized Dealers</a>
-      <a href="index.html?tab=admin" class="text-secondary/70 hover:text-amber-400 transition-colors flex items-center gap-1 font-mono text-[11px] uppercase" title="Coast Airbrush Europe Operator Admin Access"><span class="material-symbols-outlined text-[14px]">admin_panel_settings</span> admin access</a>
-    </div>
-    <div class="font-bold text-xs">© 2026 COAST AIRBRUSH. KUSTOM KULTURE REFINED.</div>
   </footer>
 
   <script>

@@ -2520,7 +2520,7 @@ class PaintSystemApp {
       html += `
         <span class="bg-sky-950 border border-sky-500 text-sky-300 text-[10px] px-2 py-0.5 rounded flex items-center gap-1">
           Search: "${this.searchQuery}"
-          <button onclick="document.getElementById('input-shop-search').value=''; window.paintApp.onSearchInput('');" class="hover:text-white font-bold cursor-pointer">✕</button>
+          <button onclick="window.paintApp.onSearchInput('');" class="hover:text-white font-bold cursor-pointer">✕</button>
         </span>
       `;
     }
@@ -2565,6 +2565,10 @@ class PaintSystemApp {
 
   onSearchInput(query) {
     this.searchQuery = (query || '').toLowerCase().trim();
+    const searchInput = document.getElementById('input-shop-search');
+    const storeHeaderSearch = document.getElementById('store-search-input');
+    if (searchInput && searchInput.value !== (query || '')) searchInput.value = query || '';
+    if (storeHeaderSearch && storeHeaderSearch.value !== (query || '')) storeHeaderSearch.value = query || '';
     this.renderActiveFilterChips();
     this.renderStorefrontGrid();
   }
@@ -2581,6 +2585,7 @@ class PaintSystemApp {
 
   setupShopFilters() {
     const searchInput = document.getElementById('input-shop-search');
+    const storeHeaderSearch = document.getElementById('store-search-input');
     const sortSelect = document.getElementById('select-shop-sort');
     const subcatBtns = document.querySelectorAll('.flake-subcat-btn');
     const resetBtn = document.getElementById('btn-reset-filters');
@@ -2601,10 +2606,40 @@ class PaintSystemApp {
       });
     });
 
-    // Search Input
+    // Search Input (Catalog)
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
         this.onSearchInput(e.target.value);
+      });
+    }
+
+    // Header Search Input (Stitch Header)
+    if (storeHeaderSearch) {
+      storeHeaderSearch.addEventListener('input', (e) => {
+        this.onSearchInput(e.target.value);
+      });
+      storeHeaderSearch.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const anchor = document.getElementById('storefront-catalog-anchor') || document.getElementById('dept-all-products');
+          if (anchor) {
+            anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    }
+
+    // CMD + K / Ctrl + K shortcut to focus search
+    if (!window._cmdKInitialized) {
+      window._cmdKInitialized = true;
+      window.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          const target = document.getElementById('store-search-input') || document.getElementById('input-shop-search');
+          if (target) {
+            target.focus();
+            target.select();
+          }
+        }
       });
     }
 

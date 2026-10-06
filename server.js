@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import nodemailer from "nodemailer";
+import { freightBridgeHandler } from "./freight-bridge/server.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -94,6 +95,20 @@ const server = http.createServer(async (req, res) => {
 
   const [rawUrlPath] = req.url.split("?");
   const safePath = path.normalize(decodeURIComponent(rawUrlPath));
+
+  // ==========================================
+  // FREIGHT CARRIER BRIDGE & SHOPIFY CARRIERSERVICE
+  // ==========================================
+  if (
+    safePath.startsWith("/api/freight") ||
+    safePath.startsWith("/api/carrier-service") ||
+    safePath === "/freight" ||
+    safePath === "/freight-bridge" ||
+    safePath === "/freight/dashboard"
+  ) {
+    const handled = await freightBridgeHandler(req, res);
+    if (handled) return;
+  }
 
   // ==========================================
   // API ROUTE 1: B2B TRADE LOGIN

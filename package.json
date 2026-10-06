@@ -7,6 +7,8 @@
   "scripts": {
     "start": "PORT=3013 node server.js",
     "dev": "PORT=3013 node server.js",
+    "freight:dev": "FREIGHT_BRIDGE_PORT=3015 node freight-bridge/server.js",
+    "test": "node test/test-core.js && node test/test-engine.js && node test/test-adapters.js && node test/test-services.js && node test/test-routes.js && node test/test-e2e.js",
     "build:theme": "python3 scripts/rebuild_shopify_theme.py"
   },
   "keywords": [
