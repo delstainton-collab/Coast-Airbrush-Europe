@@ -4,15 +4,10 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <script>
-    // PRE-LAUNCH HOLDING GATE: Redirect all public traffic to landing.html
-    // To preview the storefront in admin/testing mode, visit with ?preview=true
+    // PRE-LAUNCH STRICT LOCKDOWN: Unconditionally bounce all direct access to landing.html
     (function() {
       try {
-        var params = new URLSearchParams(window.location.search);
-        if (params.get('preview') === 'true' || sessionStorage.getItem('coast_store_preview') === 'true') {
-          sessionStorage.setItem('coast_store_preview', 'true');
-          return;
-        }
+        sessionStorage.removeItem('coast_store_preview');
       } catch (e) {}
       window.location.replace('landing.html');
     })();
@@ -6637,6 +6632,10 @@
               <span class="material-symbols-outlined text-[16px] text-primary">calculate</span>
               <span>CALCULATE MIX RATIOS &amp; SCALE TARGETS</span>
             </button>
+            <a id="btn-detail-view-full-pdp" href="product.html" class="w-full py-2.5 px-3 bg-surface-container border border-surface-container-high hover:border-primary-container text-on-surface hover:text-white rounded font-label-caps text-[11px] uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-sm">
+              <span class="material-symbols-outlined text-[16px] text-primary-container">open_in_new</span>
+              <span>Open Dedicated Stitch Product Page &rarr;</span>
+            </a>
           </div>
         </div>
       </div>

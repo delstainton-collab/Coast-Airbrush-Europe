@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // PRE-LAUNCH STRICT LOCKDOWN: Unconditionally bounce all direct access to landing.html
+    (function() {
+      window.location.replace('landing.html');
+    })();
+  </script>
   <title>Coast Airbrush Europe — Multi-Tier CRM & Communications Hub</title>
   
   <!-- Google Fonts & Material Symbols -->

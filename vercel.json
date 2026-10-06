@@ -17,6 +17,26 @@
   ],
   "redirects": [
     { "source": "/", "destination": "/landing.html", "permanent": false },
-    { "source": "/index", "destination": "/landing.html", "permanent": false }
+    { "source": "/index.html", "destination": "/landing.html", "permanent": false },
+    { "source": "/index", "destination": "/landing.html", "permanent": false },
+    { "source": "/about.html", "destination": "/landing.html", "permanent": false },
+    { "source": "/about", "destination": "/landing.html", "permanent": false },
+    { "source": "/dealers.html", "destination": "/landing.html", "permanent": false },
+    { "source": "/dealers", "destination": "/landing.html", "permanent": false },
+    { "source": "/shipping.html", "destination": "/landing.html", "permanent": false },
+    { "source": "/shipping", "destination": "/landing.html", "permanent": false },
+    { "source": "/support.html", "destination": "/landing.html", "permanent": false },
+    { "source": "/support", "destination": "/landing.html", "permanent": false },
+    { "source": "/privacy.html", "destination": "/landing.html", "permanent": false },
+    { "source": "/privacy", "destination": "/landing.html", "permanent": false },
+    { "source": "/product.html", "destination": "/landing.html", "permanent": false },
+    { "source": "/product", "destination": "/landing.html", "permanent": false },
+    { "source": "/crm.html", "destination": "/landing.html", "permanent": false },
+    { "source": "/crm", "destination": "/landing.html", "permanent": false },
+    { "source": "/preview_compromises.html", "destination": "/landing.html", "permanent": false },
+    { "source": "/scratch_stitch_home.html", "destination": "/landing.html", "permanent": false },
+    { "source": "/scratch_stitch_pdp.html", "destination": "/landing.html", "permanent": false },
+    { "source": "/pages/(.*)", "destination": "/landing.html", "permanent": false },
+    { "source": "/products/(.*)", "destination": "/landing.html", "permanent": false }
   ]
 }

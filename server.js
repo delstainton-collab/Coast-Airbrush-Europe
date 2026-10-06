@@ -850,14 +850,22 @@ const server = http.createServer(async (req, res) => {
   }
 
   // ==========================================
-  // STATIC FILE SERVING
+  // STATIC FILE SERVING (PRE-LAUNCH HOLDING LOCKDOWN)
   // ==========================================
-  let reqFile = safePath === "/" || safePath === "\\" ? "/landing.html" : safePath;
-  if (safePath === "/pages/about" || safePath === "/about") reqFile = "/about.html";
-  else if (safePath === "/pages/support" || safePath === "/support") reqFile = "/support.html";
-  else if (safePath === "/pages/shipping" || safePath === "/shipping") reqFile = "/shipping.html";
-  else if (safePath === "/pages/privacy" || safePath === "/pages/privacy-policy" || safePath === "/privacy") reqFile = "/privacy.html";
-  else if (safePath === "/pages/dealers" || safePath === "/dealers") reqFile = "/dealers.html";
+  let reqFile = safePath;
+  const storefrontRoutes = [
+    "/", "\\", "/index.html", "/index",
+    "/about.html", "/about", "/pages/about",
+    "/support.html", "/support", "/pages/support",
+    "/shipping.html", "/shipping", "/pages/shipping",
+    "/privacy.html", "/privacy", "/pages/privacy", "/pages/privacy-policy",
+    "/dealers.html", "/dealers", "/pages/dealers",
+    "/product.html", "/product", "/pages/product",
+    "/crm.html", "/crm"
+  ];
+  if (storefrontRoutes.includes(safePath) || safePath.startsWith("/pages/") || safePath.startsWith("/products/")) {
+    reqFile = "/landing.html";
+  }
   const filePath = path.join(__dirname, reqFile);
 
   if (!filePath.startsWith(__dirname)) {
