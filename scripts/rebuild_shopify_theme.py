@@ -1033,7 +1033,19 @@ PAGE_TEMPLATES = {
     sku: {{ product.selected_or_first_available_variant.sku | default: 'PRO-SERIES' | json }},
     description: {{ product.description | strip_html | json }},
     category: {{ product.type | default: product.collections.first.title | default: 'spray_hardware' | json }},
-    specs: {{ product.metafields.specs | json }},
+    specs: {
+      mix_ratio: {{ product.metafields.specs.mix_ratio.value | default: product.metafields.specs.mix_ratio | json }},
+      pot_life: {{ product.metafields.specs.pot_life.value | default: product.metafields.specs.pot_life | json }},
+      flash_off_time: {{ product.metafields.specs.flash_off_time.value | default: product.metafields.specs.flash_off_time | json }},
+      cure_time: {{ product.metafields.specs.cure_time.value | default: product.metafields.specs.cure_time | json }},
+      coverage: {{ product.metafields.specs.coverage.value | default: product.metafields.specs.coverage | json }},
+      film_thickness: {{ product.metafields.specs.film_thickness.value | default: product.metafields.specs.film_thickness | json }},
+      recommended_psi: {{ product.metafields.specs.recommended_psi.value | default: product.metafields.specs.recommended_psi | json }},
+      recommended_nozzle: {{ product.metafields.specs.recommended_nozzle.value | default: product.metafields.specs.recommended_nozzle | json }},
+      voc_compliance: {{ product.metafields.specs.voc_compliance.value | default: product.metafields.specs.voc_compliance | json }},
+      substrate_material: {{ product.metafields.specs.substrate_material.value | default: product.metafields.specs.substrate_material | json }},
+      particle_size: {{ product.metafields.specs.particle_size.value | default: product.metafields.specs.particle_size | json }}
+    },
     tags: {{ product.tags | json }},
     images: [{% for img in product.images %}{{ img | image_url: width: 1200 | json }}{% unless forloop.last %},{% endunless %}{% endfor %}],
     variants: [

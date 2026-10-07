@@ -1,8 +1,8 @@
 // Coast Airbrush Europe - Master Storefront & Mixing System Controller
 import { KROMA_EDGE_CATALOG } from '../data/kroma_edge.js';
-import { HOK_SHIMRIN2_CATALOG } from '../data/hok_shimrin2.js';
 import { ACE_OF_SHADES_CATALOG } from '../data/ace_of_shades.js';
 import { ECOM_CATALOG } from '../data/full_ecom_catalog.js';
+import { BRANDS_MASTER, getBrandById, getBrandByName, getAllBrands } from '../data/brands_master.js';
 import { FLAKE_KING_TDS, FLAKE_KING_WET_MIX_RATIOS, FLAKE_KING_MIXING_SYSTEMS } from '../data/flake_king_tds.js';
 import { calculateRequiredVolume, calculateMixingRecipe, calculateKromaCoverage, calculateUniversalCoverage, calculateTopcoatClearCoverage, calculateBoxSurfaceArea, calculatePanelSurfaceArea, calculateAreaFromVolume, PRESET_PANELS, CONVERSIONS } from './mixingEngine.js?v=20260909_calc_engine';
 import { ShopifyCartManager } from './shopifyCart.js';
@@ -75,12 +75,18 @@ if (typeof window !== 'undefined') {
       window.paintApp.onProductVariantChange(prodId, key, val);
     }
   };
+  window.renderCategoryPills = () => {
+    if (window.paintApp && typeof window.paintApp.renderCategoryPills === 'function') {
+      window.paintApp.renderCategoryPills();
+    }
+  };
 }
 
 class PaintSystemApp {
   constructor() {
     window.paintApp = this;
     window.app = this;
+    this.syncShopifyCatalog();
     this.adminController = new AdminController(this);
     this.currentCatalog = JSON.parse(JSON.stringify(KROMA_EDGE_CATALOG));
     
@@ -101,6 +107,10 @@ class PaintSystemApp {
     this.euLocalization = new EULocalizationManager();
     this.i18n = new I18nManager();
     this.shopifyCartManager = new ShopifyCartManager();
+    const initialCountry = this.euLocalization.getCountry();
+    if (initialCountry && initialCountry.currency) {
+      this.shopifyCartManager.setCurrency(initialCountry.currency);
+    }
     this.agentA = new MasterPainterAI(this.shopifyCartManager);
     this.agentB = new OrderConciergeAI();
     this.agentC = new SocialGrowthAI(this.shopifyCartManager);
@@ -163,6 +173,7 @@ class PaintSystemApp {
     this.reviewMode = urlParams.get('review') === 'true' || urlParams.get('staging') === 'true';
 
     this.initUI();
+    this.renderCategoryPills();
 
     if (!this.reviewMode) {
       const reviewBanner = document.getElementById('stakeholder-review-banner');
@@ -421,6 +432,21 @@ class PaintSystemApp {
         btn.click();
       }
     };
+
+    // Brand Showcase & Social Butterfly Global Bindings
+    window.BRANDS_MASTER = BRANDS_MASTER;
+    window.openBrandStoryModal = (brandId) => this.openBrandStoryModal(brandId);
+    window.closeBrandStoryModal = () => this.closeBrandStoryModal();
+    window.switchBrandModalTab = (tab) => this.switchBrandModalTab(tab);
+    window.shopCurrentModalBrand = () => this.shopCurrentModalBrand();
+    window.filterByBrandAndScroll = (brandName) => this.filterByBrandAndScroll(brandName);
+    window.exportBrandToSocialButterfly = (brandId) => this.exportBrandToSocialButterfly(brandId);
+    window.closeSocialButterflyModal = () => this.closeSocialButterflyModal();
+    window.copySocialButterflyPayload = () => this.copySocialButterflyPayload();
+    window.downloadSocialButterflyJson = (brandId) => this.downloadSocialButterflyJson(brandId);
+
+    // Initial Brand Showcase Rendering
+    try { this.renderBrandsShowcase(); } catch (e) { console.warn('renderBrandsShowcase error:', e); }
 
     // Navigation Tabs Setup
     try { this.setupTabs(); } catch (e) { console.warn('setupTabs error:', e); }
@@ -998,6 +1024,10 @@ class PaintSystemApp {
     });
 
     this.euLocalization.onUpdate(() => {
+      const country = this.euLocalization.getCountry();
+      if (country && country.currency) {
+        this.shopifyCartManager.setCurrency(country.currency);
+      }
       updateHeaderFromEU();
       this.syncFeaturedShowcaseCards();
       this.updateDropdownOptionPrices();
@@ -2268,9 +2298,10 @@ class PaintSystemApp {
       return product.category === 'Dedicated Clearcoats' || (product.name && product.name.includes('Topcoat Clear'));
     }
 
-    if (Array.isArray(product.category)) {
-      if (product.category.some(c => c.toLowerCase().includes(catId.toLowerCase()))) return true;
-    } else if ((product.category || '').toLowerCase().includes(catId.toLowerCase())) {
+    const prodCat = product.category || product.productType || product.type || '';
+    if (Array.isArray(prodCat)) {
+      if (prodCat.some(c => c.toLowerCase() === catId.toLowerCase() || c.toLowerCase().includes(catId.toLowerCase()))) return true;
+    } else if (prodCat.toLowerCase() === catId.toLowerCase() || prodCat.toLowerCase().includes(catId.toLowerCase())) {
       return true;
     }
 
@@ -2583,6 +2614,62 @@ class PaintSystemApp {
     }, 50);
   }
 
+  syncShopifyCatalog() {
+    if (typeof window !== 'undefined' && Array.isArray(window.SHOPIFY_CATALOG) && window.SHOPIFY_CATALOG.length > 0) {
+      window.SHOPIFY_CATALOG.forEach(shopifyProd => {
+        const cat = shopifyProd.category || shopifyProd.productType || shopifyProd.product_type || shopifyProd.type || '';
+        const normalized = {
+          ...shopifyProd,
+          category: cat,
+          productType: cat
+        };
+        const existingIdx = ECOM_CATALOG.findIndex(p => p.id === normalized.id || (p.sku && normalized.sku && p.sku === normalized.sku));
+        if (existingIdx >= 0) {
+          ECOM_CATALOG[existingIdx] = { ...ECOM_CATALOG[existingIdx], ...normalized };
+        } else {
+          ECOM_CATALOG.push(normalized);
+        }
+      });
+    }
+  }
+
+  renderCategoryPills() {
+    this.syncShopifyCatalog();
+    const container = document.getElementById('brand-filter-pills');
+    if (!container) return;
+
+    // Remove existing dynamic or static category pills to prevent duplication
+    const existingCatPills = container.querySelectorAll('button[data-cat-val]');
+    existingCatPills.forEach(btn => btn.remove());
+
+    const activeProducts = (typeof this.getEffectiveProducts === 'function' ? this.getEffectiveProducts() : ECOM_CATALOG)
+      .filter(p => !p.hideFromStorefront);
+
+    const categoryCounts = new Map();
+    activeProducts.forEach(p => {
+      const cat = (p.category || p.productType || p.type || '').trim();
+      if (!cat) return;
+      categoryCounts.set(cat, (categoryCounts.get(cat) || 0) + 1);
+    });
+
+    categoryCounts.forEach((count, cat) => {
+      if (count <= 0) return;
+      const btn = document.createElement('button');
+      btn.setAttribute('data-cat-val', cat);
+      const isActive = (this.activeCategoryFilter === cat) || 
+                      (cat === 'Dry Metal Flake Guns' && this.activeCategoryFilter === 'flake-guns-all');
+      btn.className = isActive
+        ? 'brand-pill active px-3 py-1.5 border border-primary bg-primary-container text-white font-bold transition-colors cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
+        : 'brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer';
+      btn.textContent = `${cat.toUpperCase()} (${count})`;
+      btn.addEventListener('click', () => {
+        this.activeBrandFilter = 'all';
+        this.setCategoryFilter(cat);
+      });
+      container.appendChild(btn);
+    });
+  }
+
   setupShopFilters() {
     const searchInput = document.getElementById('input-shop-search');
     const storeHeaderSearch = document.getElementById('store-search-input');
@@ -2605,6 +2692,9 @@ class PaintSystemApp {
         this.setBrandFilter(brand);
       });
     });
+
+    // Render dynamic category pills into #brand-filter-pills
+    this.renderCategoryPills();
 
     // Search Input (Catalog)
     if (searchInput) {
@@ -3303,10 +3393,19 @@ class PaintSystemApp {
             </div>
           `;
         } else if (prices) {
-          priceEl.innerHTML = `
-            <span>${prices.formattedPrimary}</span>
-            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded align-middle ml-2 ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}">${prices.primaryVatBadge}</span>
-          `;
+          if (prices.isB2B) {
+            priceEl.innerHTML = `
+              <div class="flex items-baseline gap-2 flex-wrap">
+                <span class="text-emerald-400 font-extrabold font-headline">${prices.formattedPrimary}</span>
+                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-500/40">${prices.tierRole === 'distributor' ? 'DISTRIBUTOR EX-VAT' : 'DEALER EX-VAT'}</span>
+              </div>
+            `;
+          } else {
+            priceEl.innerHTML = `
+              <span>${prices.formattedPrimary}</span>
+              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded align-middle ml-2 ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}">${prices.primaryVatBadge}</span>
+            `;
+          }
         }
       }
       const priceSubEl = document.getElementById('detail-price-sub');
@@ -3317,11 +3416,26 @@ class PaintSystemApp {
           `;
         } else if (prices) {
           const country = this.euLocalization.getCountry();
-          priceSubEl.innerHTML = `
-            <span class="text-white font-bold">${prices.formattedSecondary}</span>
-            <span class="text-slate-400 ml-1.5">• ${prices.formattedSecondaryCur}</span>
-            ${prices.isUK ? `<span class="text-amber-400 ml-1.5 hidden sm:inline">(20% UK HMRC VAT)</span>` : `<span class="text-emerald-400 ml-1.5 hidden sm:inline">(${prices.vatRatePercent}% ${country.code} Tax)</span>`}
-          `;
+          if (prices.isB2B) {
+            priceSubEl.innerHTML = `
+              <div class="space-y-1 font-mono text-xs">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-neutral-400">Retail MSRP: <span class="line-through text-neutral-300 font-bold">${prices.retailFormatted}</span></span>
+                  <span class="bg-emerald-950/80 text-emerald-300 border border-emerald-500/50 text-[10px] font-bold px-2 py-0.5 rounded">Save ${prices.marginPercent}% (${prices.savingsFormatted}/unit)</span>
+                </div>
+                <div class="text-amber-300 flex items-center gap-1.5 pt-0.5">
+                  <span class="material-symbols-outlined text-[15px]">inventory_2</span>
+                  <span>Minimum Order Quantity: <strong class="text-white">${prices.moqLabel}</strong></span>
+                </div>
+              </div>
+            `;
+          } else {
+            priceSubEl.innerHTML = `
+              <span class="text-white font-bold">${prices.formattedSecondary}</span>
+              <span class="text-slate-400 ml-1.5">• ${prices.formattedSecondaryCur}</span>
+              ${prices.isUK ? `<span class="text-amber-400 ml-1.5 hidden sm:inline">(20% UK HMRC VAT)</span>` : `<span class="text-emerald-400 ml-1.5 hidden sm:inline">(${prices.vatRatePercent}% ${country.code} Tax)</span>`}
+            `;
+          }
         }
       }
 
@@ -3449,6 +3563,9 @@ class PaintSystemApp {
         if (isComingSoon) {
           addCartBtn.textContent = '✉ REQUEST ALLOCATION QUOTE / REGISTER INTEREST';
           addCartBtn.className = 'mech-button-primary !w-full !justify-center !text-sm !py-3.5 font-bold tracking-wider opacity-90 hover:opacity-100 !bg-amber-600 hover:!bg-amber-500 !text-black border border-amber-400 cursor-pointer shadow-[0_0_12px_rgba(245,158,11,0.4)]';
+        } else if (prices && prices.isB2B) {
+          addCartBtn.textContent = `+ ADD CASE PACK (${prices.moq} UNITS)`;
+          addCartBtn.className = 'mech-button-primary !w-full !justify-center !text-sm !py-3.5 font-bold tracking-wider !bg-emerald-600 hover:!bg-emerald-500 shadow-[0_4px_14px_rgba(16,185,129,0.35)] cursor-pointer';
         } else {
           addCartBtn.textContent = isPreOrder ? '🛒 PRE-ORDER NOW • SECURE BATCH 1 ALLOCATION' : '+ ADD TO PROJECT CART';
           addCartBtn.className = 'mech-button-primary !w-full !justify-center !text-sm !py-3.5 font-bold tracking-wider';
@@ -3575,6 +3692,11 @@ class PaintSystemApp {
           videoTarget.innerHTML = '';
           videoList.innerHTML = '';
         }
+      }
+
+      const pdpLink = document.getElementById('btn-detail-view-full-pdp');
+      if (pdpLink && product) {
+        pdpLink.href = `product.html?id=${encodeURIComponent(product.id)}`;
       }
 
       modal.classList.add('active');
@@ -3963,6 +4085,7 @@ class PaintSystemApp {
         if (err) err.classList.add('hidden');
         this.b2bSession = data.user;
         this.isB2BMode = true;
+        this.shopifyCartManager.setTier(data.user.role, data.user);
         localStorage.setItem('cae_trade_token', data.token);
 
         await this.fetchB2BPricing(data.token);
@@ -3970,6 +4093,7 @@ class PaintSystemApp {
         this.closeTradePortalModal();
         this.updateTradeBanner();
         this.renderStorefrontGrid();
+        this.renderCartSummary(this.shopifyCartManager.getCartSummary());
         this.showToast(`✅ Welcome, ${data.user.contactName}! ${data.user.tierLabel} session unlocked.`, "success");
       } else {
         if (err) {
@@ -4047,9 +4171,11 @@ class PaintSystemApp {
     this.b2bSession = null;
     this.b2bPricing = null;
     this.isB2BMode = false;
+    this.shopifyCartManager.setTier('retail', null);
 
     this.updateTradeBanner();
     this.renderStorefrontGrid();
+    this.renderCartSummary(this.shopifyCartManager.getCartSummary());
     this.showToast("Trade session ended. Reverted to standard retail MSRP catalog.", "info");
   }
 
@@ -4065,11 +4191,14 @@ class PaintSystemApp {
         const data = await resp.json();
         this.b2bSession = data.user;
         this.isB2BMode = true;
+        this.shopifyCartManager.setTier(data.user.role, data.user);
         await this.fetchB2BPricing(token);
         this.updateTradeBanner();
         this.renderStorefrontGrid();
+        this.renderCartSummary(this.shopifyCartManager.getCartSummary());
       } else {
         localStorage.removeItem('cae_trade_token');
+        this.shopifyCartManager.setTier('retail', null);
       }
     } catch (e) {
       console.warn("Could not restore trade session:", e);
@@ -4491,6 +4620,9 @@ class PaintSystemApp {
       }
     }
 
+    const retailPriceEur = priceEur;
+    const retailPriceGbp = (finalGbp !== null) ? finalGbp : priceEur * 0.85;
+
     let finalEur = priceEur;
 
     if (this.isB2BMode && this.b2bSession) {
@@ -4534,6 +4666,32 @@ class PaintSystemApp {
       secondaryCurrencyFormatted = `£${finalGbp.toFixed(2)} GBP`;
     }
 
+    const isB2B = Boolean(this.isB2BMode && this.b2bSession);
+    const tierRole = this.b2bSession ? this.b2bSession.role : 'retail';
+
+    // Calculate full retail MSRP in local currency (anchor for transparent margin display)
+    const retailLocal = (country.currency === 'GBP') ? retailPriceGbp : retailPriceEur * country.rateToEur;
+    const retailBreakdown = this.euLocalization.calculatePriceBreakdown(retailLocal);
+    const retailDisplayNumber = vatMode === 'inc' ? retailBreakdown.priceGross : retailBreakdown.priceNet;
+    const retailFormatted = `${country.symbol}${retailDisplayNumber.toFixed(2)}`;
+
+    // Margin & Savings calculations
+    const savingsLocal = Math.max(0, retailDisplayNumber - displayPrimaryNumber);
+    const savingsFormatted = `${country.symbol}${savingsLocal.toFixed(2)}`;
+    const marginPercent = retailDisplayNumber > 0 ? Math.round(((retailDisplayNumber - displayPrimaryNumber) / retailDisplayNumber) * 100) : 0;
+
+    // Minimum Order Quantity (MOQ) logic
+    const isHardware = (prod.name || '').includes('Gun') || (prod.name || '').includes('Airbrush') || prod.category === 'Dry Metal Flake Guns' || prod.category === 'Airbrushes & Spray Guns' || prod.category === 'VsionAir Workstations';
+    let moq = 1;
+    let moqLabel = 'Single Unit';
+    if (tierRole === 'distributor') {
+      moq = isHardware ? 2 : 12;
+      moqLabel = isHardware ? '2 Units (Master Pack)' : '12 Units (Master Case)';
+    } else if (tierRole === 'dealer') {
+      moq = isHardware ? 1 : 6;
+      moqLabel = isHardware ? '1 Unit' : '6 Units (Inner Pack)';
+    }
+
     return {
       priceEur: finalEur,
       priceGbp: finalGbp,
@@ -4554,6 +4712,17 @@ class PaintSystemApp {
       formattedPrimaryWithBadge: `${country.symbol}${displayPrimaryNumber.toFixed(2)} ${primaryVatBadge}`,
       formattedSecondary: `${country.symbol}${displaySecondaryNumber.toFixed(2)} ${secondaryVatBadge}`,
       formattedSecondaryCur: secondaryCurrencyFormatted,
+      isB2B,
+      tierRole,
+      retailPriceEur,
+      retailPriceGbp,
+      retailLocal,
+      retailFormatted,
+      savingsLocal,
+      savingsFormatted,
+      marginPercent,
+      moq,
+      moqLabel,
       sku: matchedSku || matchedStockCode || prod.sku || 'N/A',
       stockCode: matchedStockCode || matchedSku || prod.stockCode || '',
       barcode: matchedBarcode || prod.barcode || ''
@@ -4793,14 +4962,25 @@ class PaintSystemApp {
                   </div>
                 ` : `
                   <div class="flex items-baseline gap-1.5 flex-wrap">
-                    <span id="price-eur-${prod.id}" data-price-eur="${prod.id}" data-price-primary="${prod.id}" class="price-eur-${prod.id} font-headline text-2xl text-white font-extrabold block leading-none">${prices.formattedPrimary}</span>
+                    <span id="price-eur-${prod.id}" data-price-eur="${prod.id}" data-price-primary="${prod.id}" class="price-eur-${prod.id} font-headline text-2xl ${this.isB2BMode ? 'text-emerald-400' : 'text-white'} font-extrabold block leading-none">${prices.formattedPrimary}</span>
                     <span id="price-vat-badge-${prod.id}" data-price-vat-badge="${prod.id}" class="price-vat-badge-${prod.id} text-[10px] font-mono font-bold px-1.5 py-0.5 rounded leading-none ${prices.vatMode === 'inc' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border border-amber-500/40'}">${prices.primaryVatBadge}</span>
                   </div>
                   <div class="flex items-center gap-1.5 mt-1 flex-wrap">
                     <span id="price-gbp-${prod.id}" data-price-gbp="${prod.id}" data-price-secondary="${prod.id}" class="price-gbp-${prod.id} font-mono text-[11px] text-neutral-300 font-medium">${prices.formattedSecondary}</span>
                     <span class="font-mono text-[10px] text-neutral-500">(${prices.formattedSecondaryCur})</span>
                   </div>
-                  ${this.isB2BMode && this.b2bSession ? `<span class="inline-block mt-1 text-[10px] font-mono text-emerald-400 bg-emerald-950/70 border border-emerald-500/50 px-1.5 py-0.5 rounded font-bold">✓ EX-VAT TRADE RATE</span>` : ''}
+                  ${this.isB2BMode && this.b2bSession ? `
+                    <div class="mt-1.5 pt-1.5 border-t border-white/10 space-y-1">
+                      <div class="flex items-center gap-1.5 flex-wrap text-[11px] font-mono">
+                        <span class="text-neutral-400">Retail MSRP: <span class="line-through text-neutral-300 font-semibold">${prices.retailFormatted}</span></span>
+                        <span class="bg-emerald-950/90 text-emerald-300 border border-emerald-500/50 text-[10px] font-bold px-1.5 py-0.2 rounded">Save ${prices.marginPercent}%</span>
+                      </div>
+                      <div class="text-[10px] font-mono text-amber-400 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[13px]">inventory_2</span>
+                        <span>MOQ: <strong class="text-white">${prices.moqLabel}</strong></span>
+                      </div>
+                    </div>
+                  ` : ''}
                 `}
               </div>
               <button onclick="window.paintApp.openDetailModal('${prod.id}')" class="text-neutral-300 hover:text-white font-mono text-xs uppercase flex items-center gap-0.5 font-bold cursor-pointer transition-colors">
@@ -4813,11 +4993,15 @@ class PaintSystemApp {
                 <button onclick="window.paintApp.openDetailModal('${prod.id}')" class="mech-btn-secondary !w-full !justify-center !text-xs !py-2.5 font-bold tracking-wider border-amber-500/60 text-amber-300 hover:text-white hover:bg-amber-950/80 cursor-pointer">
                   ⏳ VIEW SPECS • REQUEST QUOTE
                 </button>
+              ` : (this.isB2BMode && this.b2bSession ? `
+                <button onclick="window.paintApp.addProductToCartById('${prod.id}')" class="mech-button-primary !w-full !justify-center !text-xs !py-2.5 font-bold tracking-wider shadow-[0_4px_12px_rgba(16,185,129,0.3)] !bg-emerald-600 hover:!bg-emerald-500 cursor-pointer">
+                  + Add Case Pack (${prices.moq} Units)
+                </button>
               ` : `
                 <button onclick="window.paintApp.addProductToCartById('${prod.id}')" class="mech-button-primary !w-full !justify-center !text-xs !py-2.5 font-bold tracking-wider shadow-[0_4px_12px_rgba(211,47,47,0.3)]">
                   ${isPreOrder ? '🛒 Pre-Order Now' : '+ Add to Cart'}
                 </button>
-              `}
+              `)}
               ${prod.brand === 'Kroma Edge' || (prod.category || '').includes('Solvent') || (prod.category || '').includes('Paint') ? `
                 <button onclick="window.openQuickMixModal('${prod.id.includes('clear') ? 'kroma_edge_dedicated_clear' : 'kroma_edge_mirror_chrome'}')" class="mech-btn-secondary !w-full !justify-center !text-[11px] !py-1.5 flex items-center gap-1">
                   <span class="material-symbols-outlined text-[14px]">calculate</span>
@@ -5056,12 +5240,17 @@ class PaintSystemApp {
 
     // Locate matching variant SKU if present
     const variantSku = prices.sku || prod.sku;
+    const addQty = prices.moq || 1;
 
     this.shopifyCartManager.addItem({
       sku: variantSku,
       title: prod.name,
       priceEur: prices.priceEur,
-      quantity: 1,
+      priceGbp: prices.priceGbp,
+      retailPriceEur: prices.retailPriceEur,
+      retailPriceGbp: prices.retailPriceGbp,
+      quantity: addQty,
+      moq: prices.moq || 1,
       variantDetails: variantDesc
     });
     this.openCartDrawer();
@@ -7678,7 +7867,10 @@ class PaintSystemApp {
     }
   }
 
-  renderCartSummary(summary) {
+  renderCartSummary(rawSummary) {
+    const country = this.euLocalization.getCountry();
+    const summary = this.shopifyCartManager.getCartSummary(country.currency);
+
     const countBadge = document.getElementById('header-cart-count');
     const subtotalEl = document.getElementById('cart-drawer-subtotal');
     const vatLabelEl = document.getElementById('cart-drawer-vat-label');
@@ -7686,14 +7878,20 @@ class PaintSystemApp {
     const carrierEl = document.getElementById('cart-drawer-carrier');
     const carrierLabelEl = document.getElementById('cart-drawer-carrier-label');
     const shippingAmountEl = document.getElementById('cart-drawer-shipping-amount');
+    const smallOrderRowEl = document.getElementById('cart-drawer-small-order-row');
+    const smallOrderLabelEl = document.getElementById('cart-drawer-small-order-label');
+    const smallOrderAmountEl = document.getElementById('cart-drawer-small-order-amount');
+    const savingsRowEl = document.getElementById('cart-drawer-savings-row');
+    const savingsAmountEl = document.getElementById('cart-drawer-savings-amount');
     const ddpRowEl = document.getElementById('cart-drawer-ddp-row');
     const ddpAmountEl = document.getElementById('cart-drawer-ddp-amount');
     const totalEl = document.getElementById('cart-drawer-total');
     const convertedTotalEl = document.getElementById('cart-drawer-converted-total');
     const itemsContainer = document.getElementById('cart-drawer-items');
 
-    const country = this.euLocalization.getCountry();
-    const taxData = this.euLocalization.calculateTaxAndTotal(summary.subtotal);
+    // Calculate small order packaging fee in EUR for tax engine
+    const feeEur = summary.hasSmallOrderFee ? (country.currency === 'GBP' ? summary.smallOrderFee / 0.85 : summary.smallOrderFee) : 0.0;
+    const taxData = this.euLocalization.calculateTaxAndTotal(summary.subtotal, { smallOrderFeeEur: feeEur });
 
     if (countBadge) countBadge.textContent = summary.itemCount;
     if (subtotalEl) {
@@ -7718,8 +7916,35 @@ class PaintSystemApp {
         : `${country.symbol}${taxData.vatAmountLocal.toFixed(2)}`;
     }
 
+    // Small Order Consumables & Packaging Surcharge Row
+    if (smallOrderRowEl && smallOrderAmountEl) {
+      if (summary.hasSmallOrderFee) {
+        smallOrderRowEl.classList.remove('hidden');
+        if (smallOrderLabelEl) smallOrderLabelEl.textContent = 'Small Order Packaging Prep:';
+        smallOrderAmountEl.textContent = `${country.symbol}${summary.smallOrderFee.toFixed(2)}`;
+        smallOrderAmountEl.className = 'font-mono text-amber-400 font-bold';
+      } else if (summary.tier === 'retail' && summary.itemCount > 0 && summary.isMovMet) {
+        smallOrderRowEl.classList.remove('hidden');
+        if (smallOrderLabelEl) smallOrderLabelEl.textContent = 'Small Order Packaging Prep:';
+        smallOrderAmountEl.textContent = 'WAIVED (FREE)';
+        smallOrderAmountEl.className = 'font-mono text-emerald-400 font-bold';
+      } else {
+        smallOrderRowEl.classList.add('hidden');
+      }
+    }
+
+    // Wholesale Trade Margin Savings Row
+    if (savingsRowEl && savingsAmountEl) {
+      if (summary.isB2B && summary.totalSavings > 0) {
+        savingsRowEl.classList.remove('hidden');
+        savingsAmountEl.textContent = `-${country.symbol}${summary.totalSavings.toFixed(2)}`;
+      } else {
+        savingsRowEl.classList.add('hidden');
+      }
+    }
+
     if (shippingAmountEl) {
-      if (taxData.shippingBaseEur === 0) {
+      if (taxData.shippingBaseEur === 0 || (summary.isB2B && summary.isMovMet)) {
         shippingAmountEl.textContent = 'FREE';
         shippingAmountEl.className = 'font-mono text-emerald-400 font-bold';
       } else {
@@ -7731,7 +7956,7 @@ class PaintSystemApp {
     }
 
     if (ddpRowEl && ddpAmountEl) {
-      if (taxData.ddpAdminFeeEur > 0) {
+      if (taxData.ddpAdminFeeEur > 0 && !summary.isB2B) {
         ddpRowEl.classList.remove('hidden');
         ddpAmountEl.textContent = country.currency === 'EUR'
           ? `€${taxData.ddpAdminFeeEur.toFixed(2)}`
@@ -7742,8 +7967,12 @@ class PaintSystemApp {
     }
 
     if (carrierEl) {
-      const threshold = taxData.isUK ? '£150' : '€200';
-      carrierEl.textContent = `${country.carrier} (Free > ${threshold})`;
+      if (summary.isB2B) {
+        carrierEl.textContent = summary.tier === 'distributor' ? 'Regional Pallet Road Freight (Included)' : 'Commercial Express Courier (Included)';
+      } else {
+        const threshold = taxData.isUK ? '£150' : '€200';
+        carrierEl.textContent = `${country.carrier} (Free > ${threshold})`;
+      }
     }
 
     if (totalEl) {
@@ -7767,21 +7996,20 @@ class PaintSystemApp {
         itemsContainer.innerHTML = `<div class="py-12 text-center font-mono text-xs text-secondary">Your project cart is currently empty.</div>`;
       } else {
         summary.items.forEach((item, idx) => {
-          const itemPriceLocal = item.priceEur * country.rateToEur;
+          const itemPriceLocal = (country.currency === 'GBP') ? (item.priceGbp || item.priceEur * 0.85) : item.priceEur * country.rateToEur;
           const itemSubtotalLocal = itemPriceLocal * item.quantity;
-          const priceDisplay = country.currency === 'EUR'
-            ? `€${(item.priceEur * item.quantity).toFixed(2)}`
-            : `${country.symbol}${itemSubtotalLocal.toFixed(2)}`;
+          const priceDisplay = `${country.symbol}${itemSubtotalLocal.toFixed(2)}`;
 
           const row = document.createElement('div');
           row.className = 'cart-drawer-item p-3 flex justify-between items-center';
           row.innerHTML = `
             <div>
               <h5 class="font-headline text-sm uppercase text-on-surface">${item.title}</h5>
-              <div class="font-mono text-[11px] text-secondary">SKU: ${item.sku} | ${item.variantDetails || 'Std'} | Qty: ${item.quantity}</div>
+              <div class="font-mono text-[11px] text-secondary">SKU: ${item.sku} | ${item.variantDetails || 'Std'} | Qty: ${item.quantity} ${item.moq && item.moq > 1 ? `(MOQ: ${item.moq})` : ''}</div>
+              ${item.retailPriceEur && item.retailPriceEur > item.priceEur ? `<div class="font-mono text-[10px] text-emerald-400">Wholesale Trade Price (Retail: ${country.currency === 'GBP' ? '£' + (item.retailPriceGbp || item.retailPriceEur * 0.85).toFixed(2) : '€' + item.retailPriceEur.toFixed(2)})</div>` : ''}
             </div>
             <div class="text-right">
-              <div class="font-headline text-base text-primary">${priceDisplay}</div>
+              <div class="font-headline text-base ${summary.isB2B ? 'text-emerald-400' : 'text-primary'}">${priceDisplay}</div>
               <button onclick="window.paintApp.removeItem(${idx})" class="font-label-xs text-[10px] text-error hover:underline cursor-pointer">Remove</button>
             </div>
           `;
@@ -7790,51 +8018,94 @@ class PaintSystemApp {
       }
     }
 
-    // Dynamic Free Shipping Progress Calculation
+    // Dynamic Meter Calculation (Retail small order waiver vs. Dealer MOV vs. Distributor MOV)
     const isUK = taxData.isUK;
-    const thresholdVal = isUK ? 150 : 200;
-    const currentVal = isUK ? taxData.subtotalLocal : taxData.subtotalEur;
-    const remainingVal = Math.max(0, thresholdVal - currentVal);
-    const progressPercent = Math.min(100, Math.round((currentVal / thresholdVal) * 100));
     const currSymbol = isUK ? '£' : '€';
-
-    // Update Top Announcement Banner Meter
     const topMeterText = document.getElementById('shipping-meter-text');
     const topMeterFill = document.getElementById('shipping-meter-fill');
-
-    // Update In-Drawer Shipping Meter
     const drawerMeterText = document.getElementById('drawer-shipping-text');
     const drawerMeterPercent = document.getElementById('drawer-shipping-percent');
     const drawerMeterFill = document.getElementById('drawer-shipping-fill');
 
-    if (remainingVal <= 0 && currentVal > 0) {
-      const unlockedHtml = `<span class="text-emerald-400 font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">celebration</span> FREE APC OVERNIGHT SHIPPING UNLOCKED!</span>`;
-      if (topMeterText) topMeterText.innerHTML = unlockedHtml;
+    if (summary.isB2B) {
+      const tierName = summary.tier === 'distributor' ? 'DISTRIBUTOR' : 'DEALER';
+      if (!summary.isMovMet) {
+        const warningHtml = `<span class="material-symbols-outlined text-amber-400 text-[16px]">lock</span><span>${tierName} MINIMUM: <strong>${currSymbol}${summary.activeSubtotal.toFixed(2)}</strong> / ${currSymbol}${summary.movThreshold.toFixed(2)} (Add <strong class="text-amber-300 font-bold">${currSymbol}${summary.movRemaining.toFixed(2)}</strong> to checkout)</span>`;
+        if (topMeterText) topMeterText.innerHTML = warningHtml;
+        if (drawerMeterText) drawerMeterText.innerHTML = warningHtml;
+        if (drawerMeterPercent) drawerMeterPercent.textContent = `${summary.movProgressPercent}% OF MOV`;
+        if (topMeterFill) {
+          topMeterFill.style.width = `${summary.movProgressPercent}%`;
+          topMeterFill.classList.remove('shipping-progress-unlocked');
+        }
+        if (drawerMeterFill) {
+          drawerMeterFill.style.width = `${summary.movProgressPercent}%`;
+          drawerMeterFill.classList.remove('shipping-progress-unlocked');
+        }
+      } else {
+        const successHtml = `<span class="text-emerald-400 font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">verified</span> ${tierName} MINIMUM REACHED (${currSymbol}${summary.activeSubtotal.toFixed(2)}) — WHOLESALE CHECKOUT UNLOCKED</span>`;
+        if (topMeterText) topMeterText.innerHTML = successHtml;
+        if (drawerMeterText) drawerMeterText.innerHTML = successHtml;
+        if (drawerMeterPercent) drawerMeterPercent.textContent = '100% UNLOCKED';
+        if (topMeterFill) {
+          topMeterFill.style.width = '100%';
+          topMeterFill.classList.add('shipping-progress-unlocked');
+        }
+        if (drawerMeterFill) {
+          drawerMeterFill.style.width = '100%';
+          drawerMeterFill.classList.add('shipping-progress-unlocked');
+        }
+      }
+    } else if (summary.hasSmallOrderFee) {
+      // Retail customer under £25/€30 threshold: show fee waiver progress
+      const waiverHtml = `<span class="material-symbols-outlined text-amber-400 text-[16px]">handyman</span><span>Add <strong id="drawer-shipping-remaining" class="text-amber-300 font-bold">${currSymbol}${summary.movRemaining.toFixed(2)}</strong> more to <span class="text-emerald-400 font-bold">WAIVE</span> the ${currSymbol}${summary.smallOrderFee.toFixed(2)} Packaging Prep Fee!</span>`;
+      if (topMeterText) topMeterText.innerHTML = waiverHtml;
+      if (drawerMeterText) drawerMeterText.innerHTML = waiverHtml;
+      if (drawerMeterPercent) drawerMeterPercent.textContent = `${summary.movProgressPercent}% towards waiver`;
       if (topMeterFill) {
-        topMeterFill.style.width = '100%';
-        topMeterFill.classList.add('shipping-progress-unlocked');
-      }
-      if (drawerMeterText) drawerMeterText.innerHTML = unlockedHtml;
-      if (drawerMeterPercent) drawerMeterPercent.textContent = '100% UNLOCKED';
-      if (drawerMeterFill) {
-        drawerMeterFill.style.width = '100%';
-        drawerMeterFill.classList.add('shipping-progress-unlocked');
-      }
-    } else {
-      if (topMeterText) {
-        topMeterText.innerHTML = `Add <strong id="shipping-meter-remaining" class="text-amber-300 font-bold">${currSymbol}${remainingVal.toFixed(2)}</strong> to unlock <span class="text-emerald-400 font-bold">FREE APC OVERNIGHT SHIPPING</span> 🚚`;
-      }
-      if (topMeterFill) {
-        topMeterFill.style.width = `${progressPercent}%`;
+        topMeterFill.style.width = `${summary.movProgressPercent}%`;
         topMeterFill.classList.remove('shipping-progress-unlocked');
       }
-      if (drawerMeterText) {
-        drawerMeterText.innerHTML = `<span class="material-symbols-outlined text-amber-400 text-[16px]">local_shipping</span><span>Add <strong id="drawer-shipping-remaining" class="text-amber-300 font-bold">${currSymbol}${remainingVal.toFixed(2)}</strong> for FREE Express Delivery</span>`;
-      }
-      if (drawerMeterPercent) drawerMeterPercent.textContent = `${progressPercent}%`;
       if (drawerMeterFill) {
-        drawerMeterFill.style.width = `${progressPercent}%`;
+        drawerMeterFill.style.width = `${summary.movProgressPercent}%`;
         drawerMeterFill.classList.remove('shipping-progress-unlocked');
+      }
+    } else {
+      // Normal Retail customer over £25/€30: standard free shipping progress
+      const thresholdVal = isUK ? 150 : 200;
+      const currentVal = isUK ? taxData.subtotalLocal : taxData.subtotalEur;
+      const remainingVal = Math.max(0, thresholdVal - currentVal);
+      const progressPercent = Math.min(100, Math.round((currentVal / thresholdVal) * 100));
+
+      if (remainingVal <= 0 && currentVal > 0) {
+        const unlockedHtml = `<span class="text-emerald-400 font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">celebration</span> FREE APC OVERNIGHT SHIPPING UNLOCKED!</span>`;
+        if (topMeterText) topMeterText.innerHTML = unlockedHtml;
+        if (topMeterFill) {
+          topMeterFill.style.width = '100%';
+          topMeterFill.classList.add('shipping-progress-unlocked');
+        }
+        if (drawerMeterText) drawerMeterText.innerHTML = unlockedHtml;
+        if (drawerMeterPercent) drawerMeterPercent.textContent = '100% UNLOCKED';
+        if (drawerMeterFill) {
+          drawerMeterFill.style.width = '100%';
+          drawerMeterFill.classList.add('shipping-progress-unlocked');
+        }
+      } else {
+        if (topMeterText) {
+          topMeterText.innerHTML = `Add <strong id="shipping-meter-remaining" class="text-amber-300 font-bold">${currSymbol}${remainingVal.toFixed(2)}</strong> to unlock <span class="text-emerald-400 font-bold">FREE APC OVERNIGHT SHIPPING</span> 🚚`;
+        }
+        if (topMeterFill) {
+          topMeterFill.style.width = `${progressPercent}%`;
+          topMeterFill.classList.remove('shipping-progress-unlocked');
+        }
+        if (drawerMeterText) {
+          drawerMeterText.innerHTML = `<span class="material-symbols-outlined text-amber-400 text-[16px]">local_shipping</span><span>Add <strong id="drawer-shipping-remaining" class="text-amber-300 font-bold">${currSymbol}${remainingVal.toFixed(2)}</strong> for FREE Express Delivery</span>`;
+        }
+        if (drawerMeterPercent) drawerMeterPercent.textContent = `${progressPercent}%`;
+        if (drawerMeterFill) {
+          drawerMeterFill.style.width = `${progressPercent}%`;
+          drawerMeterFill.classList.remove('shipping-progress-unlocked');
+        }
       }
     }
 
@@ -7865,6 +8136,49 @@ class PaintSystemApp {
         `;
       }).join('');
     }
+
+    // Checkout Buttons Handling (Two-Path B2B vs Standard Retail)
+    const btnShopify = document.getElementById('btn-drawer-checkout-shopify');
+    const btnAccount = document.getElementById('btn-drawer-checkout-account');
+    const btnAccountText = document.getElementById('btn-drawer-account-text');
+
+    if (summary.isB2B) {
+      if (!summary.isMovMet) {
+        if (btnShopify) {
+          btnShopify.disabled = true;
+          btnShopify.innerHTML = `<span class="flex items-center justify-center gap-1.5"><span class="material-symbols-outlined text-[16px]">lock</span> <span>MINIMUM ${currSymbol}${summary.movThreshold.toFixed(0)} ORDER VALUE REQUIRED</span></span>`;
+          btnShopify.className = 'mech-button-primary !w-full !justify-center !py-3.5 !text-xs font-bold opacity-60 cursor-not-allowed !bg-neutral-800 !border-neutral-600 !text-neutral-400';
+        }
+        if (btnAccount) {
+          btnAccount.classList.remove('hidden');
+          btnAccount.disabled = true;
+          btnAccount.className = '!w-full !justify-center !py-3 !text-xs font-bold bg-neutral-900 border border-neutral-700 text-neutral-500 opacity-50 cursor-not-allowed flex items-center gap-2 rounded';
+          if (btnAccountText) btnAccountText.textContent = `CHARGE TO ACCOUNT (LOCKED: MIN. ${currSymbol}${summary.movThreshold.toFixed(0)})`;
+        }
+      } else {
+        if (btnShopify) {
+          btnShopify.disabled = false;
+          btnShopify.innerHTML = `<span class="flex items-center justify-center gap-1.5"><span class="material-symbols-outlined text-[16px]">credit_card</span> <span>PAY BY CARD NOW (${currSymbol}${taxData.totalLocal.toFixed(2)})</span></span>`;
+          btnShopify.className = 'mech-button-primary !w-full !justify-center !py-3.5 !text-sm font-bold shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] !bg-primary cursor-pointer';
+        }
+        if (btnAccount) {
+          btnAccount.classList.remove('hidden');
+          btnAccount.disabled = false;
+          btnAccount.className = '!w-full !justify-center !py-3 !text-xs font-bold !bg-emerald-950/90 !border-2 !border-emerald-500 !text-emerald-300 hover:!bg-emerald-900 cursor-pointer flex items-center gap-2 rounded shadow-md transition-all active:scale-[0.99]';
+          if (btnAccountText) btnAccountText.textContent = `CHARGE TO TRADE ACCOUNT (${this.b2bSession?.paymentTerms || 'NET 30 DAYS'})`;
+          btnAccount.onclick = () => this.openTradeAccountModal();
+        }
+      }
+    } else {
+      if (btnShopify) {
+        btnShopify.disabled = (summary.itemCount === 0);
+        btnShopify.innerHTML = 'PROCEED TO EUROPEAN CHECKOUT &rarr;';
+        btnShopify.className = 'mech-button-primary !w-full !justify-center !py-3.5 !text-sm font-bold shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]';
+      }
+      if (btnAccount) {
+        btnAccount.classList.add('hidden');
+      }
+    }
   }
 
   removeItem(index) {
@@ -7872,9 +8186,14 @@ class PaintSystemApp {
   }
 
   checkoutShopify() {
-    const summary = this.shopifyCartManager.getCartSummary();
+    const country = this.euLocalization.getCountry();
+    const summary = this.shopifyCartManager.getCartSummary(country.currency);
     if (summary.items.length === 0) {
       this.showToast("Please add items to your cart before proceeding to checkout.", "warning");
+      return;
+    }
+    if (summary.isB2B && !summary.isMovMet) {
+      this.showToast(`⚠️ Minimum Order Value not reached. Requires ${country.symbol}${summary.movThreshold.toFixed(2)} spend. Shortfall: ${country.symbol}${summary.movRemaining.toFixed(2)}.`, "warning", 5000);
       return;
     }
     if (this.reviewMode) {
@@ -7883,6 +8202,169 @@ class PaintSystemApp {
     }
     const permalink = this.shopifyCartManager.generateShopifyCartPermalink();
     window.open(permalink, '_blank');
+  }
+
+  openTradeAccountModal() {
+    const country = this.euLocalization.getCountry();
+    const summary = this.shopifyCartManager.getCartSummary(country.currency);
+
+    if (!this.b2bSession) {
+      this.showToast("Please sign in with your trade credentials to charge on account.", "warning");
+      this.openTradePortalModal();
+      return;
+    }
+
+    if (!summary.isMovMet) {
+      this.showToast(`⚠️ Minimum Order Value of ${country.symbol}${summary.movThreshold.toFixed(2)} must be reached before placing orders on account.`, "warning");
+      return;
+    }
+
+    const modal = document.getElementById('modal-trade-account-checkout');
+    if (!modal) return;
+
+    const compEl = document.getElementById('modal-account-company');
+    const contactEl = document.getElementById('modal-account-contact');
+    const vatEl = document.getElementById('modal-account-vat');
+    const countryEl = document.getElementById('modal-account-country');
+    const termsBadge = document.getElementById('modal-account-terms-badge');
+    const subtotalEl = document.getElementById('modal-account-subtotal');
+    const vatLabelEl = document.getElementById('modal-account-vat-label');
+    const vatAmountEl = document.getElementById('modal-account-vat-amount');
+    const totalEl = document.getElementById('modal-account-total');
+    const errEl = document.getElementById('modal-account-error');
+
+    if (errEl) errEl.classList.add('hidden');
+    if (compEl) compEl.textContent = this.b2bSession.company;
+    if (contactEl) contactEl.textContent = `Contact: ${this.b2bSession.contactName} (${this.b2bSession.email})`;
+    if (vatEl) vatEl.textContent = `VAT: ${this.b2bSession.vat || 'Verified'}`;
+    if (countryEl) countryEl.textContent = `Dispatch: ${this.b2bSession.country || country.name}`;
+    if (termsBadge) termsBadge.textContent = `${this.b2bSession.paymentTerms || 'Net 30 Days'} • Verified ${this.b2bSession.tierLabel || 'Trade Account'}`;
+
+    const isUK = country.code === 'GB' || (this.b2bSession.country && this.b2bSession.country.toLowerCase().includes('united kingdom'));
+    const isExVat = !isUK && Boolean(this.b2bSession.vat);
+    const vatRate = isUK ? 0.20 : (isExVat ? 0.0 : country.vatRate);
+    const vatAmt = summary.activeSubtotal * vatRate;
+    const totalLanded = summary.activeSubtotal + vatAmt;
+
+    if (subtotalEl) subtotalEl.textContent = `${country.symbol}${summary.activeSubtotal.toFixed(2)}`;
+    if (vatLabelEl) vatLabelEl.textContent = isUK ? 'UK VAT (20% HMRC):' : (isExVat ? 'EU VAT (0% Reverse Charge Art 138):' : `VAT (${(country.vatRate * 100).toFixed(0)}%):`);
+    if (vatAmountEl) vatAmountEl.textContent = `${country.symbol}${vatAmt.toFixed(2)}`;
+    if (totalEl) totalEl.textContent = `${country.symbol}${totalLanded.toFixed(2)}`;
+
+    modal.classList.add('active');
+    document.body.classList.add('modal-open');
+  }
+
+  closeTradeAccountModal() {
+    const modal = document.getElementById('modal-trade-account-checkout');
+    if (modal) modal.classList.remove('active');
+    if (!document.querySelector('.modal-overlay.active')) {
+      document.body.classList.remove('modal-open');
+    }
+  }
+
+  async submitTradeAccountOrder() {
+    const poInput = document.getElementById('modal-po-input');
+    const notesInput = document.getElementById('modal-account-notes');
+    const errEl = document.getElementById('modal-account-error');
+    const btn = document.getElementById('btn-submit-account-order');
+
+    const poNumber = (poInput?.value || '').trim();
+    const notes = (notesInput?.value || '').trim();
+
+    if (!poNumber) {
+      if (errEl) {
+        errEl.textContent = "Please enter your internal Purchase Order (PO) number to link with your accounting ledger.";
+        errEl.classList.remove('hidden');
+      }
+      return;
+    }
+
+    const token = localStorage.getItem('cae_trade_token');
+    if (!token) {
+      if (errEl) {
+        errEl.textContent = "Your trade session has expired. Please sign in again.";
+        errEl.classList.remove('hidden');
+      }
+      return;
+    }
+
+    const country = this.euLocalization.getCountry();
+    const summary = this.shopifyCartManager.getCartSummary(country.currency);
+
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span> Confirming Commercial Order...`;
+    }
+
+    try {
+      const resp = await fetch('/api/trade/place-account-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          poNumber,
+          notes,
+          items: summary.items,
+          currency: country.currency,
+          subtotal: summary.activeSubtotal
+        })
+      });
+
+      const data = await resp.json();
+      if (!data.success) {
+        if (errEl) {
+          errEl.textContent = data.error || "Failed to process commercial order.";
+          errEl.classList.remove('hidden');
+        }
+        return;
+      }
+
+      // Successful order placement on account
+      this.closeTradeAccountModal();
+      this.shopifyCartManager.clearCart();
+
+      // Show confirmation modal
+      const confModal = document.getElementById('modal-account-order-confirmed');
+      if (confModal && data.order) {
+        const idEl = document.getElementById('confirmed-order-id');
+        const poEl = document.getElementById('confirmed-po-number');
+        const termsEl = document.getElementById('confirmed-terms');
+        const dueEl = document.getElementById('confirmed-due-date');
+        const totEl = document.getElementById('confirmed-total');
+
+        if (idEl) idEl.textContent = data.order.orderId;
+        if (poEl) poEl.textContent = data.order.poNumber;
+        if (termsEl) termsEl.textContent = data.order.paymentTerms;
+        if (dueEl) dueEl.textContent = data.order.dueDate;
+        if (totEl) totEl.textContent = `${country.symbol}${data.order.financials.total.toFixed(2)}`;
+
+        confModal.classList.add('active');
+        document.body.classList.add('modal-open');
+      }
+
+      this.showToast(`✅ Commercial Order ${data.order.orderId} Confirmed on ${data.order.paymentTerms}!`, "success", 6000);
+    } catch (e) {
+      if (errEl) {
+        errEl.textContent = "Network communication error. Please try again or contact your account manager.";
+        errEl.classList.remove('hidden');
+      }
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = `<span class="material-symbols-outlined text-[18px]">verified</span> <span>CONFIRM &amp; DISPATCH ON ACCOUNT</span>`;
+      }
+    }
+  }
+
+  closeOrderConfirmedModal() {
+    const confModal = document.getElementById('modal-account-order-confirmed');
+    if (confModal) confModal.classList.remove('active');
+    if (!document.querySelector('.modal-overlay.active')) {
+      document.body.classList.remove('modal-open');
+    }
   }
 
   showReviewModeModal() {
@@ -8509,6 +8991,7 @@ class PaintSystemApp {
     const subtabs = [
       { btnId: 'subtab-admin-spreadsheet', panelId: 'admin-panel-spreadsheet' },
       { btnId: 'subtab-admin-taxonomy', panelId: 'admin-panel-taxonomy' },
+      { btnId: 'subtab-admin-brands', panelId: 'admin-panel-brands' },
       { btnId: 'subtab-admin-formulas', panelId: 'admin-panel-formulas' },
       { btnId: 'subtab-admin-hero', panelId: 'admin-panel-hero' },
       { btnId: 'subtab-admin-products', panelId: 'admin-panel-products' },
@@ -8546,6 +9029,9 @@ class PaintSystemApp {
               }
               if (s.panelId === 'admin-panel-taxonomy' && st.btnId === 'subtab-admin-taxonomy') {
                 this.renderAdminTaxonomy();
+              }
+              if (s.panelId === 'admin-panel-brands' && st.btnId === 'subtab-admin-brands') {
+                this.renderAdminBrands();
               }
             }
           });
@@ -10052,7 +10538,6 @@ class PaintSystemApp {
     const brands = [
       "Kroma Edge",
       "Flake King",
-      "House of Kolor",
       "Ace of Shades",
       "VsionAir"
     ];
@@ -13005,6 +13490,312 @@ ${result.description}
         </tr>
       `;
     }).join('');
+  }
+
+  // =========================================================================
+  // MASTER BRANDS, VENDORS & SOCIAL BUTTERFLY MARKETING SUITE
+  // =========================================================================
+  renderBrandsShowcase() {
+    const grid = document.getElementById('brands-showcase-grid');
+    if (!grid) return;
+    // Section already has high-impact static markup in index.html; ensure active brand bindings
+  }
+
+  openBrandStoryModal(brandId) {
+    this.currentModalBrandId = brandId || 'kroma-edge';
+    const brand = getBrandById(this.currentModalBrandId) || BRANDS_MASTER[0];
+    if (!brand) return;
+
+    const modal = document.getElementById('modal-brand-story');
+    if (!modal) return;
+
+    // Set Header Data
+    const titleEl = document.getElementById('modal-brand-title');
+    const taglineEl = document.getElementById('modal-brand-tagline');
+    const originEl = document.getElementById('modal-brand-origin-badge');
+    const tierEl = document.getElementById('modal-brand-distributor-tier');
+    const linkEl = document.getElementById('modal-brand-official-link');
+
+    if (titleEl) titleEl.textContent = brand.name;
+    if (taglineEl) taglineEl.textContent = brand.tagline;
+    if (originEl) originEl.innerHTML = `<span>🌐</span><span>ORIGIN: ${brand.origin.toUpperCase()}</span>`;
+    if (tierEl) tierEl.textContent = brand.distributorTier.toUpperCase();
+    if (linkEl) {
+      linkEl.href = brand.website;
+      linkEl.title = `Visit official ${brand.name} website`;
+    }
+
+    // Set Tab 1: Story & Heritage
+    const originTextEl = document.getElementById('modal-brand-story-origin');
+    const missionTextEl = document.getElementById('modal-brand-story-mission');
+    const techTextEl = document.getElementById('modal-brand-story-tech');
+
+    if (originTextEl) originTextEl.textContent = brand.story.originNarrative;
+    if (missionTextEl) missionTextEl.textContent = brand.story.europeanMission;
+    if (techTextEl) techTextEl.textContent = brand.story.technologyBreakthrough;
+
+    // Set Tab 2: Tech & USPs
+    const uspsListEl = document.getElementById('modal-brand-usps-list');
+    if (uspsListEl) {
+      uspsListEl.innerHTML = brand.usps.map((usp, i) => `
+        <div class="p-3 bg-black/50 border border-surface-container-high rounded flex items-start gap-2.5">
+          <span class="text-amber-400 font-bold text-sm shrink-0">0${i + 1}</span>
+          <p class="font-mono text-xs text-neutral-200 leading-relaxed">${usp}</p>
+        </div>
+      `).join('');
+    }
+
+    // Set Tab 3: TDS Specs
+    const tdsGridEl = document.getElementById('modal-brand-tds-grid');
+    if (tdsGridEl) {
+      const h = brand.applicationHighlights || {};
+      tdsGridEl.innerHTML = Object.entries(h).map(([k, v]) => {
+        const label = k.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
+        return `
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#242429] pb-2 gap-1">
+            <span class="text-secondary uppercase text-[11px] font-bold">${label}:</span>
+            <span class="text-white text-xs font-semibold sm:text-right max-w-md">${v}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Set Tab 4: Social Butterfly Hooks
+    const hooksEl = document.getElementById('modal-brand-social-hooks');
+    const hashEl = document.getElementById('modal-brand-hashtags');
+
+    if (hooksEl && brand.socialButterfly) {
+      hooksEl.innerHTML = brand.socialButterfly.campaignHooks.map((hook, i) => `
+        <div class="p-3.5 bg-black/60 border border-sky-500/30 rounded-lg space-y-1.5">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-mono text-sky-400 font-bold uppercase bg-sky-950/80 px-2 py-0.5 rounded border border-sky-500/30">
+              Hook ${i + 1} • ${hook.hookType}
+            </span>
+            <span class="text-[10px] text-neutral-400 font-mono">9:16 Video / Reel</span>
+          </div>
+          <h5 class="text-white font-bold text-xs sm:text-sm font-sans">${hook.headline}</h5>
+          <p class="text-neutral-300 font-mono text-[11px] leading-relaxed">${hook.scriptAngle}</p>
+        </div>
+      `).join('');
+    }
+
+    if (hashEl && brand.socialButterfly) {
+      hashEl.innerHTML = brand.socialButterfly.hashtags.map(t => `
+        <span class="bg-black border border-sky-500/40 text-sky-400 px-2 py-0.5 rounded text-[11px]">${t}</span>
+      `).join('') + `
+        <span class="bg-primary/20 border border-primary/40 text-red-300 px-2 py-0.5 rounded text-[11px] font-bold">@coastairbrusheurope</span>
+      `;
+    }
+
+    this.switchBrandModalTab('story');
+    modal.classList.remove('hidden');
+  }
+
+  closeBrandStoryModal() {
+    const modal = document.getElementById('modal-brand-story');
+    if (modal) modal.classList.add('hidden');
+  }
+
+  switchBrandModalTab(tabKey) {
+    const tabs = ['story', 'tech', 'tds', 'social'];
+    tabs.forEach(t => {
+      const btn = document.getElementById(`btn-brand-tab-${t}`);
+      const pane = document.getElementById(`brand-tab-content-${t}`);
+      if (btn) {
+        if (t === tabKey) {
+          btn.className = 'brand-modal-tab active px-3 py-1.5 rounded font-bold bg-primary text-white flex items-center gap-1.5 cursor-pointer';
+        } else {
+          btn.className = 'brand-modal-tab px-3 py-1.5 rounded font-bold text-neutral-400 hover:text-white flex items-center gap-1.5 cursor-pointer';
+        }
+      }
+      if (pane) {
+        if (t === tabKey) pane.classList.remove('hidden');
+        else pane.classList.add('hidden');
+      }
+    });
+  }
+
+  shopCurrentModalBrand() {
+    const brand = getBrandById(this.currentModalBrandId);
+    this.closeBrandStoryModal();
+    if (brand) {
+      this.filterByBrandAndScroll(brand.name);
+    }
+  }
+
+  filterByBrandAndScroll(brandName) {
+    let target = brandName;
+    if (target.includes('Iwata') || target.includes('Atawi')) target = 'Iwata';
+    else if (target.includes('Hyper FX') || target.includes('Createx')) target = 'Hyper FX';
+    else if (target.includes('Ace of Shades')) target = 'Ace of Shades';
+    else if (target.includes('Clean Armor')) target = 'Clean Armor';
+    else if (target.includes('LumiLor')) target = 'LumiLor';
+    else if (target.includes('Kroma')) target = 'Kroma Edge';
+    else if (target.includes('Flake King')) target = 'Flake King';
+
+    this.setBrandFilter(target);
+    const anchor = document.getElementById('storefront-catalog-anchor');
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    this.showToast(`Filtered catalog for ${brandName} products.`, 'info');
+  }
+
+  renderAdminBrands() {
+    const container = document.getElementById('admin-brands-grid');
+    if (!container) return;
+
+    container.innerHTML = BRANDS_MASTER.map(brand => {
+      const bn = brand.name.toLowerCase();
+      const count = ECOM_CATALOG.filter(p => (p.brand || '').toLowerCase().includes(brand.slug.replace('-', ' ')) || (p.brand || '').toLowerCase().includes(bn) || (brand.slug === 'iwata-atawi' && (p.brand || '').toLowerCase().includes('iwata'))).length;
+
+      return `
+        <div class="bg-surface-container border border-secondary/60 rounded-lg p-5 flex flex-col justify-between shadow-sm relative overflow-hidden">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-mono text-[10px] text-primary font-bold bg-primary/20 border border-primary/40 px-2 py-0.5 rounded">
+                ${brand.origin}
+              </span>
+              <span class="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-500/40 px-2 py-0.5 rounded">
+                ✓ VERIFIED DISTRIBUTOR
+              </span>
+            </div>
+
+            <div>
+              <h4 class="font-headline text-lg uppercase text-white font-bold">${brand.name}</h4>
+              <p class="font-mono text-[11px] text-neutral-400 leading-tight mt-0.5">${brand.legalName}</p>
+            </div>
+
+            <p class="font-body text-xs text-neutral-300 leading-relaxed line-clamp-3">
+              ${brand.story.originNarrative}
+            </p>
+
+            <div class="p-2.5 bg-black/50 border border-secondary/40 rounded font-mono text-[11px] flex items-center justify-between">
+              <span class="text-secondary">Catalog Mapped:</span>
+              <span class="text-white font-bold">${count > 0 ? count : brand.productIds.length} SKUs Active</span>
+            </div>
+          </div>
+
+          <div class="space-y-2 pt-4 border-t border-secondary/40 mt-4">
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="window.openBrandStoryModal &amp;&amp; window.openBrandStoryModal('${brand.id}')" class="mech-btn-secondary !text-[11px] !py-2 !px-2 flex items-center justify-center gap-1 cursor-pointer">
+                <span class="material-symbols-outlined text-[14px]">visibility</span>
+                <span>Story &amp; TDS</span>
+              </button>
+              <button onclick="window.paintApp.filterByBrandAndScroll('${brand.name}')" class="mech-btn-secondary !text-[11px] !py-2 !px-2 flex items-center justify-center gap-1 cursor-pointer">
+                <span class="material-symbols-outlined text-[14px]">inventory_2</span>
+                <span>View SKUs</span>
+              </button>
+            </div>
+            
+            <button onclick="window.exportBrandToSocialButterfly &amp;&amp; window.exportBrandToSocialButterfly('${brand.id}')" class="w-full bg-sky-950 hover:bg-sky-900 border border-sky-500 text-sky-200 font-mono text-xs font-bold py-2 px-3 rounded flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-sm">
+              <span class="material-symbols-outlined text-[16px] text-sky-400">rocket_launch</span>
+              <span>Export Social Butterfly Campaign</span>
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  exportBrandToSocialButterfly(brandId) {
+    const isAll = !brandId || brandId === 'all';
+    const brandsToExport = isAll ? BRANDS_MASTER : [getBrandById(brandId) || BRANDS_MASTER[0]];
+
+    const campaignPayload = {
+      agencyPlatform: "Social Butterfly Autonomous Media Agent",
+      targetApiEndpoint: "http://127.0.0.1:3008/api/campaigns",
+      generatedAt: new Date().toISOString(),
+      storefrontDomain: "https://coastairbrush.eu",
+      campaigns: brandsToExport.map(b => ({
+        brandId: b.id,
+        brandName: b.name,
+        originCountry: b.origin,
+        distributorBadge: b.distributorTier,
+        tagline: b.tagline,
+        category: b.category,
+        handlesToTag: b.socialButterfly.handles,
+        hashtags: b.socialButterfly.hashtags,
+        officialStorySummary: b.story.originNarrative,
+        europeanSalesAngle: b.story.europeanMission,
+        keySellingPoints: b.usps,
+        videoReelHooks: b.socialButterfly.campaignHooks.map(h => ({
+          format: "9:16 Vertical Video (Instagram Reels / TikTok / YouTube Shorts)",
+          hookHeadline: h.headline,
+          creativeConcept: h.scriptAngle,
+          callToAction: `Tap link in bio to shop official ${b.name} at CoastAirbrush.eu 🇬🇧 🇪🇺`
+        })),
+        linkedCatalogSkus: b.productIds
+      }))
+    };
+
+    this.currentSocialButterflyPayload = campaignPayload;
+    this.currentModalBrandId = isAll ? 'all' : brandsToExport[0].id;
+
+    const previewEl = document.getElementById('social-butterfly-json-preview');
+    if (previewEl) {
+      previewEl.textContent = JSON.stringify(campaignPayload, null, 2);
+    }
+
+    const copyPreviewEl = document.getElementById('social-butterfly-copy-preview');
+    if (copyPreviewEl) {
+      const b = brandsToExport[0];
+      const hook = b.socialButterfly.campaignHooks[0];
+      copyPreviewEl.textContent = `🎬 [SHORT-FORM VIDEO SCRIPT & REEL CAPTION]
+Brand: ${b.name}
+Hook: "${hook.headline}"
+
+Visual Direction: ${hook.scriptAngle}
+
+Caption Body:
+Stop struggling with outdated methods! As the authorized European distributor for ${b.name}, Coast Airbrush Europe brings you guaranteed authentic factory batches with rapid UK & EU 24/48H dispatch. No customs delays, full REACH 2026 certification.
+
+Key Features:
+${b.usps.slice(0, 3).map(u => `• ${u}`).join('\n')}
+
+🔗 Tap link in bio to secure your allocation at CoastAirbrush.eu
+${b.socialButterfly.hashtags.join(' ')} #coastairbrusheurope`;
+    }
+
+    const modal = document.getElementById('modal-social-butterfly-export');
+    if (modal) modal.classList.remove('hidden');
+  }
+
+  closeSocialButterflyModal() {
+    const modal = document.getElementById('modal-social-butterfly-export');
+    if (modal) modal.classList.add('hidden');
+  }
+
+  copySocialButterflyPayload() {
+    if (!this.currentSocialButterflyPayload) return;
+    const jsonStr = JSON.stringify(this.currentSocialButterflyPayload, null, 2);
+    if (navigator && navigator.clipboard) {
+      navigator.clipboard.writeText(jsonStr).then(() => {
+        const btnText = document.getElementById('btn-copy-sb-text');
+        if (btnText) {
+          btnText.textContent = '✓ Copied!';
+          setTimeout(() => { btnText.textContent = 'Copy JSON'; }, 2500);
+        }
+        this.showToast('Social Butterfly campaign JSON copied to clipboard!', 'success');
+      });
+    }
+  }
+
+  downloadSocialButterflyJson(brandId) {
+    if (!this.currentSocialButterflyPayload) {
+      this.exportBrandToSocialButterfly(brandId);
+    }
+    const jsonStr = JSON.stringify(this.currentSocialButterflyPayload, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `social_butterfly_campaign_${brandId || 'all'}_${Date.now()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    this.showToast('Downloaded Social Butterfly campaign package.', 'info');
   }
 
 }

@@ -4,8 +4,22 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <script>
-    // PRE-LAUNCH STRICT LOCKDOWN: Unconditionally bounce all direct access to landing.html
+    // PRE-LAUNCH HOLDING GATE & DEV MODE ACCESS
     (function() {
+      try {
+        var h = window.location.hostname;
+        var isLocal = h === 'localhost' || h === '127.0.0.1' || h.startsWith('192.168.') || h.startsWith('10.') || h === '';
+        var params = new URLSearchParams(window.location.search);
+        var hasDevParam = params.get('dev') === 'true' || params.get('preview') === 'true';
+        var isUnlocked = sessionStorage.getItem('coast_store_preview') === 'true' || localStorage.getItem('coast_dev_mode') === 'true' || document.cookie.indexOf('coast_dev_mode=true') !== -1;
+
+        if (isLocal || hasDevParam || isUnlocked) {
+          sessionStorage.setItem('coast_store_preview', 'true');
+          localStorage.setItem('coast_dev_mode', 'true');
+          document.cookie = "coast_dev_mode=true; path=/; max-age=2592000; SameSite=Lax";
+          return;
+        }
+      } catch (e) {}
       window.location.replace('landing.html');
     })();
   </script>
@@ -469,6 +483,27 @@
                 </div>
               </div>
 
+              <!-- Verified Manufacturer Brand Authority Bar -->
+              <div id="pdp-brand-seal-bar" class="p-3 bg-surface-container/70 border border-surface-container-high rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-8 h-8 rounded bg-black/60 border border-primary/40 flex items-center justify-center text-primary font-bold text-sm shrink-0">
+                    <span class="material-symbols-outlined text-[18px]">verified</span>
+                  </span>
+                  <div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span id="pdp-brand-name" class="font-bold text-white uppercase text-sm">Anest Iwata &amp; Atawi</span>
+                      <span id="pdp-brand-distributor-badge" class="bg-primary/20 text-primary border border-primary/40 px-2 py-0.5 text-[10px] rounded uppercase font-bold tracking-wider">Authorized European Distributor</span>
+                    </div>
+                    <p id="pdp-brand-tagline" class="text-secondary text-[11px] mt-0.5">Japanese Precision Atomization — The World Standard</p>
+                  </div>
+                </div>
+                <a id="btn-pdp-view-brand-story" href="index.html#dept-brands" class="border border-secondary/60 hover:border-primary text-secondary hover:text-white px-3 py-1.5 rounded text-[11px] uppercase transition-colors whitespace-nowrap flex items-center justify-center gap-1 cursor-pointer bg-black/40">
+                  <span class="material-symbols-outlined text-[14px]">auto_stories</span>
+                  <span>Brand Story &amp; TDS</span>
+                  <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                </a>
+              </div>
+
               <!-- Pricing Panel with Ex-VAT / Trade B2B Switcher -->
               <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col space-y-space-xs">
                 <div class="flex items-baseline justify-between">
@@ -609,17 +644,17 @@
           <!-- Section Header -->
           <div class="flex flex-col md:flex-row items-start md:items-end justify-between pb-space-md gap-2">
             <div>
-              <span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Calibration &amp; Mechanical Tolerances</span>
-              <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">Factory Bench Specifications</h2>
+              <span class="font-label-caps text-label-caps text-primary uppercase tracking-widest" id="specs-header-badge">Calibration &amp; Mechanical Tolerances</span>
+              <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold" id="specs-header-title">Factory Bench Specifications</h2>
             </div>
-            <div class="flex items-center gap-2 font-code-spec text-code-spec text-secondary">
+            <div class="flex items-center gap-2 font-code-spec text-code-spec text-secondary" id="specs-header-meta">
               <span class="w-2 h-2 rounded-full bg-tertiary"></span>
-              <span>ISO 9001:2015 Precision Calibrated at Iwata Plant Yokohama</span>
+              <span id="specs-header-meta-text">ISO 9001:2015 Precision Calibrated at Iwata Plant Yokohama</span>
             </div>
           </div>
 
-          <!-- Specification Cards Grid -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+          <!-- Specification Cards Grid (Dynamic container) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter" id="specs-cards-container">
             
             <!-- Spec Item 1 -->
             <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
@@ -704,83 +739,160 @@
       </section>
 
       <!-- ========================================================================= -->
-      <!-- DYNAMIC SYSTEM CROSS-SELL ("Sprayed Best With") -->
+      <!-- DYNAMIC APPLICATION SYSTEM & CROSS-SELL SELECTOR -->
       <!-- ========================================================================= -->
-      <section class="w-full py-space-xl">
+      <section class="w-full py-space-xl" id="section-system-cross-sell">
         <div class="max-w-[1440px] mx-auto px-margin">
           
           <!-- Section Title -->
-          <div class="flex flex-col space-y-1 mb-space-lg">
-            <span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Optimized Chemical Ecosystem</span>
-            <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">Complete the System Setup</h2>
-            <p class="font-body-md text-body-md text-secondary">Specially selected chemistries and inline filtration calibrated for zero tip-dry with precision matched heads.</p>
+          <div class="flex flex-col space-y-1 mb-space-md">
+            <span class="font-label-caps text-label-caps text-primary uppercase tracking-widest" id="system-setup-badge">Engineered Application Ecosystem</span>
+            <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold" id="system-setup-title">Complete the System Setup</h2>
+            <p class="font-body-md text-body-md text-secondary" id="system-setup-desc">Configure matched equipment, carrier binders, and receiving clears calibrated for your specific project scale.</p>
           </div>
 
-          <!-- Bundle Grid -->
+          <!-- Step 1 & Step 2: Interactive Project Scope & Application Pathway Selector -->
+          <div id="system-setup-controls" class="p-space-md bg-surface-container-low rounded-lg border border-surface-container-high flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md mb-space-md">
+            <!-- Step 1: Substrate Scale -->
+            <div class="flex-1 space-y-1.5">
+              <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[15px] text-primary">straighten</span>
+                <span>Step 1: Select Project Scale</span>
+              </span>
+              <div class="grid grid-cols-2 gap-2">
+                <button id="scope-btn-compact" onclick="setProjectScope('compact')" type="button" class="py-2.5 px-3 rounded border text-xs font-headline-sm uppercase tracking-wider font-bold transition-all text-left flex items-center gap-2 bg-primary-container text-on-primary-container border-primary-container cursor-pointer shadow-sm">
+                  <span class="material-symbols-outlined text-[18px]">sports_motorsports</span>
+                  <div>
+                    <span class="block text-xs font-bold leading-tight">Compact / Detail</span>
+                    <span class="block font-code-spec text-[10px] opacity-80 font-normal">Helmets, Skateboards, Tanks</span>
+                  </div>
+                </button>
+                <button id="scope-btn-large" onclick="setProjectScope('large')" type="button" class="py-2.5 px-3 rounded border text-xs font-headline-sm uppercase tracking-wider font-bold transition-all text-left flex items-center gap-2 bg-surface-container border-surface-container-high text-secondary hover:text-on-surface hover:border-secondary cursor-pointer shadow-sm">
+                  <span class="material-symbols-outlined text-[18px]">directions_car</span>
+                  <div>
+                    <span class="block text-xs font-bold leading-tight">Large / Commercial</span>
+                    <span class="block font-code-spec text-[10px] opacity-80 font-normal">Cars, Roofs, Vans, Marine</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 2: Application Pathway -->
+            <div class="flex-1 space-y-1.5">
+              <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[15px] text-primary">air</span>
+                <span>Step 2: Application Method</span>
+              </span>
+              <div class="grid grid-cols-2 gap-2">
+                <button id="method-btn-dry" onclick="setApplicationMethod('dry')" type="button" class="py-2.5 px-3 rounded border text-xs font-headline-sm uppercase tracking-wider font-bold transition-all text-left flex items-center gap-2 bg-primary-container text-on-primary-container border-primary-container cursor-pointer shadow-sm">
+                  <span class="material-symbols-outlined text-[18px]">air</span>
+                  <div>
+                    <span class="block text-xs font-bold leading-tight">Dry Gun Method</span>
+                    <span class="block font-code-spec text-[10px] opacity-80 font-normal">Direct into Tacky Clear</span>
+                  </div>
+                </button>
+                <button id="method-btn-wet" onclick="setApplicationMethod('wet')" type="button" class="py-2.5 px-3 rounded border text-xs font-headline-sm uppercase tracking-wider font-bold transition-all text-left flex items-center gap-2 bg-surface-container border-surface-container-high text-secondary hover:text-on-surface hover:border-secondary cursor-pointer shadow-sm">
+                  <span class="material-symbols-outlined text-[18px]">water_drop</span>
+                  <div>
+                    <span class="block text-xs font-bold leading-tight">Wet Spray Method</span>
+                    <span class="block font-code-spec text-[10px] opacity-80 font-normal">Mixed into Binder/Clear</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Technical Advisory Callout Banner -->
+          <div id="system-advisory-banner" class="mb-space-lg p-space-md rounded-lg border transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md bg-emerald-950/20 border-emerald-500/40 text-emerald-300">
+            <div class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-2xl text-emerald-400 mt-0.5" id="advisory-icon">verified</span>
+              <div>
+                <span class="font-label-caps text-[10px] font-bold uppercase tracking-widest text-emerald-400 block mb-0.5" id="advisory-badge">Optimal Dry Application Protocol</span>
+                <h4 class="font-headline-sm text-sm font-bold text-white" id="advisory-title">Direct Dry Spray into Tacky Clearcoat</h4>
+                <p class="font-body-sm text-xs text-neutral-300 mt-0.5 leading-relaxed" id="advisory-body">Shoot directly into fresh, wet/tacky 2K clearcoat at 15–20 PSI. Eliminates clearcoat contamination and saves 50% material waste. Zero fluid nozzle clogging risk.</p>
+              </div>
+            </div>
+            <div class="shrink-0 font-code-spec text-[11px] bg-black/40 px-3 py-1.5 rounded border border-white/10 text-neutral-300" id="advisory-meta">
+              <span>Rec. Pressure: 15–20 PSI</span>
+            </div>
+          </div>
+
+          <!-- Dynamic System Cards Grid -->
           <div class="grid grid-cols-1 lg:grid-cols-4 gap-gutter items-stretch">
             
-            <!-- Cross Sell Card 1: Candy Crimson Base -->
-            <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-space-md">
+            <!-- Dynamic Slot 1: Application Hardware / Carrier -->
+            <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-space-md" id="bundle-slot-1-card">
               <div class="flex items-start justify-between">
-                <span class="font-code-spec text-[11px] text-primary bg-primary-container/20 px-2 py-0.5 rounded border border-primary-container/30">BASECOAT</span>
+                <span class="font-code-spec text-[11px] text-primary bg-primary-container/20 px-2 py-0.5 rounded border border-primary-container/30 uppercase" id="slot-1-category">APPLICATION HARDWARE</span>
                 <label class="flex items-center gap-2 cursor-pointer">
-                  <input checked class="bundle-check w-4 h-4 rounded accent-primary-container bg-surface-dim cursor-pointer" data-price="18.50" data-name="Createx HyperFX Basecoat" data-sku="CRT-HYP-60" onchange="updateBundleTotal()" type="checkbox" />
+                  <input checked class="bundle-check w-4 h-4 rounded accent-primary-container bg-surface-dim cursor-pointer" id="slot-1-check" data-price="99.99" data-name="Flake King 550 Mini Dry Flake Gun" data-sku="FOM550" onchange="updateBundleTotal()" type="checkbox" />
                   <span class="font-label-caps text-label-caps text-on-surface uppercase">Added</span>
                 </label>
               </div>
-              <div class="aspect-square w-full rounded bg-surface-container-lowest border border-surface-container-high overflow-hidden flex items-center justify-center p-3">
-                <img alt="Createx HyperFX Crimson Basecoat" class="h-full w-full object-contain rounded" src="assets/images/kroma-detail-helmet.jpg" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuDQRSPf4Re12xdlNZcwyJA33rG2i8zV9auCcAsQEiJvWEfPUz7fPoQK0gy4J7649R1r_FZJlfSwOpx3i-otH78CC4qiKAtFCosvMxMiL2M92alfxCDd-766-tY3zeSSSWKlF6iDG-AREiAdihxLJ6diM6mjkBarYX4S_pvmL7YouRcLNQRLw9sEnKm4J22dak_zzqOe2rhUQNKZqu--TIIZOJp4u3LhjwLLzu_Spjda54mjSd7E6znd'" />
+              <div class="aspect-square w-full rounded bg-surface-container-lowest border border-surface-container-high overflow-hidden flex items-center justify-center p-3 relative">
+                <img id="slot-1-img" alt="Flake King 550 Mini Dry Metal Flake Gun" class="h-full w-full object-contain rounded" src="assets/images/flake-king-orange-tape-1mm.webp" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuAUO-kdxmINosr5Tn7YnlntrEK3OzDlh9LCiarPx94G68eUj5Wh7YJLFSU6smH-9cySdlGfgkyw1xVF-odNaxOwEqjTc7p9MW_x8Z2H9gj4WxMkAdx11gsTVaUvm-F8tYXfmE9y18RWJC7JypbkWjMhZ001uk6areWq8uPN7a4mVpofDQVVD0W4QjDlrhjDrgqYmUScM8DzPuBcWWtmpDLUOdiRAZUSmPIvLwMc-xaljt84FZsCnccE'" />
+                <!-- In Wet Mode: Carrier Radio Switches -->
+                <div id="slot-1-carrier-picker" class="hidden absolute inset-x-2 bottom-2 p-1.5 bg-black/90 backdrop-blur border border-white/20 rounded text-[10px] font-mono flex flex-col gap-1">
+                  <label class="flex items-center gap-1.5 cursor-pointer text-white">
+                    <input type="radio" name="carrier_type" value="fk50" checked onchange="selectCarrier('fk50')" class="accent-primary">
+                    <span>FK50 Waterbase (500ml) — £40.36</span>
+                  </label>
+                  <label class="flex items-center gap-1.5 cursor-pointer text-white">
+                    <input type="radio" name="carrier_type" value="solvent" onchange="selectCarrier('solvent')" class="accent-primary">
+                    <span>Solvent Binder (500ml) — £24.00</span>
+                  </label>
+                </div>
               </div>
               <div>
-                <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Createx HyperFX Basecoat</h3>
-                <p class="font-body-sm text-body-sm text-secondary mt-0.5">Candy Crimson 60ml • Pre-filtered sub-micron formulation.</p>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold" id="slot-1-title">Flake King 550 Mini Dry Metal Flake Gun</h3>
+                <p class="font-body-sm text-body-sm text-secondary mt-0.5" id="slot-1-desc">Compact precision gun for tight contours, motorcycle tanks, skateboards, and helmets.</p>
                 <div class="flex items-baseline justify-between mt-2 pt-2 bg-surface-container px-2 py-1 rounded border border-surface-container-high">
                   <span class="font-code-spec text-code-spec text-secondary">Add-on Price:</span>
-                  <span class="font-headline-sm text-headline-sm text-on-surface font-bold">£18.50</span>
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-bold" id="slot-1-price-display">£99.99</span>
                 </div>
               </div>
             </div>
 
-            <!-- Cross Sell Card 2: Pistol-Grip Inline Filter -->
+            <!-- Cross Sell Card 2: 2K Topcoat Clear System -->
             <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-space-md">
               <div class="flex items-start justify-between">
-                <span class="font-code-spec text-[11px] text-tertiary bg-tertiary-container/30 px-2 py-0.5 rounded border border-tertiary-container/40">AIR FILTRATION</span>
+                <span class="font-code-spec text-[11px] text-tertiary bg-tertiary-container/30 px-2 py-0.5 rounded border border-tertiary-container/40 uppercase">RECEIVING CLEAR</span>
                 <label class="flex items-center gap-2 cursor-pointer">
-                  <input checked class="bundle-check w-4 h-4 rounded accent-primary-container bg-surface-dim cursor-pointer" data-price="24.00" data-name="Iwata Inline Moisture Trap" data-sku="IWT-FLT-05" onchange="updateBundleTotal()" type="checkbox" />
+                  <input checked class="bundle-check w-4 h-4 rounded accent-primary-container bg-surface-dim cursor-pointer" data-price="65.00" data-name="Kroma Edge Dedicated Topcoat Clear System" data-sku="KE-TOPCOAT-CLR-1" onchange="updateBundleTotal()" type="checkbox" />
                   <span class="font-label-caps text-label-caps text-on-surface uppercase">Added</span>
                 </label>
               </div>
               <div class="aspect-square w-full rounded bg-surface-container-lowest border border-surface-container-high overflow-hidden flex items-center justify-center p-3">
-                <img alt="Iwata Pistol-Grip Moisture Filter" class="h-full w-full object-contain rounded" src="assets/images/flake-king-orange-tape-1mm.webp" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuC4FFxnt5UxPK8GXaDM0IpDZfNNJNQ5tSHV1zi1UzXFBa-Altl-4uo4JeRd4vvEG8SLRdw3AC6mjb2nPah6M1x47QhfFO9qfycUtR4yhBGN8ALc_rjTPevBbaeM_MQxadzUU-nb6V2pGdSykvgKI-znQr8Opr3ELtDo_bFzp8P_ulHzAXf4jTBqZ_JoJzJkvOXZuNGTgVnd57jLTnDB0K7ZdPL0zwQGX4uy542A0rgm7n1X0FMmcS3E'" />
+                <img alt="Kroma Edge Dedicated Topcoat Clear System" class="h-full w-full object-contain rounded" src="assets/images/kroma-detail-helmet.jpg" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuDQRSPf4Re12xdlNZcwyJA33rG2i8zV9auCcAsQEiJvWEfPUz7fPoQK0gy4J7649R1r_FZJlfSwOpx3i-otH78CC4qiKAtFCosvMxMiL2M92alfxCDd-766-tY3zeSSSWKlF6iDG-AREiAdihxLJ6diM6mjkBarYX4S_pvmL7YouRcLNQRLw9sEnKm4J22dak_zzqOe2rhUQNKZqu--TIIZOJp4u3LhjwLLzu_Spjda54mjSd7E6znd'" />
               </div>
               <div>
-                <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Iwata Inline Moisture Trap</h3>
-                <p class="font-body-sm text-body-sm text-secondary mt-0.5">Pistol-grip ergonomic 5-micron bronze condensation filter.</p>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Kroma Edge 2K Gloss Clear System</h3>
+                <p class="font-body-sm text-body-sm text-secondary mt-0.5">1L Kit • High-solids optical clearcoat for bedding flake and burial coats.</p>
                 <div class="flex items-baseline justify-between mt-2 pt-2 bg-surface-container px-2 py-1 rounded border border-surface-container-high">
                   <span class="font-code-spec text-code-spec text-secondary">Add-on Price:</span>
-                  <span class="font-headline-sm text-headline-sm text-on-surface font-bold">£24.00</span>
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-bold">£65.00</span>
                 </div>
               </div>
             </div>
 
-            <!-- Cross Sell Card 3: Ace of Shades Solvent Reducer -->
+            <!-- Cross Sell Card 3: Orange Fine Line Tape -->
             <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-space-md">
               <div class="flex items-start justify-between">
-                <span class="font-code-spec text-[11px] text-secondary bg-surface-container px-2 py-0.5 rounded border border-surface-container-high">SOLVENT REDUCER</span>
+                <span class="font-code-spec text-[11px] text-secondary bg-surface-container px-2 py-0.5 rounded border border-surface-container-high uppercase">PRECISION MASKING</span>
                 <label class="flex items-center gap-2 cursor-pointer">
-                  <input class="bundle-check w-4 h-4 rounded accent-primary-container bg-surface-dim cursor-pointer" data-price="14.95" data-name="Ultra-Pure Solvent Reducer" data-sku="AOS-RED-500" onchange="updateBundleTotal()" type="checkbox" />
-                  <span class="font-label-caps text-label-caps text-secondary uppercase">Select</span>
+                  <input checked class="bundle-check w-4 h-4 rounded accent-primary-container bg-surface-dim cursor-pointer" data-price="4.95" data-name="Flake King Orange Fine Line 3mm Tape" data-sku="FK-TAPE-ORANGE-3MM" onchange="updateBundleTotal()" type="checkbox" />
+                  <span class="font-label-caps text-label-caps text-on-surface uppercase">Added</span>
                 </label>
               </div>
               <div class="aspect-square w-full rounded bg-surface-container-lowest border border-surface-container-high overflow-hidden flex items-center justify-center p-3">
-                <img alt="Ace of Shades Ultra-Pure Reducer" class="h-full w-full object-contain rounded" src="assets/images/fk55-thinner.webp" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuAqJbrJmzPJSF3DTzU-bossZ9LozOcqvXzjUl2wX74QHaNAAemX5k7RhdJcE1LmC8DhuO9Lr934t_yVr2VMijZu-S5L2pVPGN45_1JcyrQPMuxP8y-xIzWohJQPmFYeqaVcBFqjfztxPo6SpmBMb9U7bNGeAkzRe8nT8gQXYperLdAE-7E5_Ic_9ycKHT1N8H7ksdZHIoHtmopyjXfaF2aPeeUP0h2m122s2brCjPQSaB2M0mIzAwN9'" />
+                <img alt="Flake King Orange Fine Line Masking Tape" class="h-full w-full object-contain rounded" src="assets/images/flake-king-orange-tape-1mm.webp" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuC4FFxnt5UxPK8GXaDM0IpDZfNNJNQ5tSHV1zi1UzXFBa-Altl-4uo4JeRd4vvEG8SLRdw3AC6mjb2nPah6M1x47QhfFO9qfycUtR4yhBGN8ALc_rjTPevBbaeM_MQxadzUU-nb6V2pGdSykvgKI-znQr8Opr3ELtDo_bFzp8P_ulHzAXf4jTBqZ_JoJzJkvOXZuNGTgVnd57jLTnDB0K7ZdPL0zwQGX4uy542A0rgm7n1X0FMmcS3E'" />
               </div>
               <div>
-                <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Ultra-Pure Solvent Reducer</h3>
-                <p class="font-body-sm text-body-sm text-secondary mt-0.5">500ml Can • Slow dry formula preventing dry-spray in booths.</p>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Orange Fine Line Masking Tape</h3>
+                <p class="font-body-sm text-body-sm text-secondary mt-0.5">3mm x 55m • Solvent-proof rice paper for razor-sharp multi-panel lines.</p>
                 <div class="flex items-baseline justify-between mt-2 pt-2 bg-surface-container px-2 py-1 rounded border border-surface-container-high">
                   <span class="font-code-spec text-code-spec text-secondary">Add-on Price:</span>
-                  <span class="font-headline-sm text-headline-sm text-on-surface font-bold">£14.95</span>
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-bold">£4.95</span>
                 </div>
               </div>
             </div>
@@ -789,28 +901,28 @@
             <div class="bg-surface-container p-space-lg rounded-lg border border-primary-container shadow-xl flex flex-col justify-between space-y-space-md">
               <div>
                 <span class="font-label-caps text-label-caps text-primary uppercase tracking-wider block mb-1">Bundle &amp; Save Promotion</span>
-                <h3 class="font-headline-md text-headline-md text-on-surface font-bold">System Bundle Offer</h3>
-                <p class="font-body-sm text-body-sm text-secondary mt-1">10% discount applied automatically to companion accessories purchased alongside this hardware tool.</p>
+                <h3 class="font-headline-md text-headline-md text-on-surface font-bold">Complete System Setup</h3>
+                <p class="font-body-sm text-body-sm text-secondary mt-1">10% trade discount applied automatically to all companion equipment and chemistries.</p>
               </div>
 
               <div class="space-y-space-xs py-space-sm bg-surface-container-lowest p-3 rounded border border-surface-container-high">
                 <div class="flex items-center justify-between font-code-spec text-code-spec text-secondary">
-                  <span>Selected Extras:</span>
-                  <span class="text-on-surface font-bold" id="bundle-extras-count">2 Items</span>
+                  <span>Selected Add-ons:</span>
+                  <span class="text-on-surface font-bold" id="bundle-extras-count">3 Items</span>
                 </div>
                 <div class="flex items-center justify-between font-code-spec text-code-spec text-secondary">
-                  <span>Accessory Savings:</span>
+                  <span>Companion Discount:</span>
                   <span class="text-primary font-bold">-10% DISCOUNT</span>
                 </div>
                 <div class="pt-2 flex items-baseline justify-between border-t border-surface-container-high">
-                  <span class="font-label-caps text-label-caps text-on-surface uppercase">Bundle Total:</span>
-                  <span class="font-headline-lg text-headline-lg text-on-surface font-extrabold" id="bundle-calc-price">£387.00</span>
+                  <span class="font-label-caps text-label-caps text-on-surface uppercase">System Total:</span>
+                  <span class="font-headline-lg text-headline-lg text-on-surface font-extrabold" id="bundle-calc-price">£161.95</span>
                 </div>
               </div>
 
-              <button class="w-full h-11 bg-primary-container hover:bg-inverse-primary text-on-primary-container font-label-caps text-label-caps uppercase tracking-wider rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer" onclick="triggerBundleAdd()" type="button">
+              <button class="w-full h-11 bg-primary-container hover:bg-inverse-primary text-on-primary-container font-label-caps text-label-caps uppercase tracking-wider rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer" onclick="triggerSystemSetupAdd()" type="button" id="btn-add-system-setup">
                 <span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
-                <span>Add Selected to Order</span>
+                <span>Add Flake + Matched Setup to Order</span>
               </button>
             </div>
 
@@ -1103,7 +1215,7 @@
           </div>
         </div>
 
-        <button onclick="window.location.href='index.html#checkout'" class="w-full h-12 bg-primary-container hover:bg-inverse-primary text-on-primary-container font-headline-sm uppercase tracking-wider rounded font-bold flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer">
+        <button onclick="handleShopifyCheckout()" class="w-full h-12 bg-primary-container hover:bg-inverse-primary text-on-primary-container font-headline-sm uppercase tracking-wider rounded font-bold flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer">
           <span class="material-symbols-outlined text-[20px]">lock</span>
           <span>Proceed to Trade Checkout &rarr;</span>
         </button>
@@ -1272,6 +1384,274 @@
       quantity = val;
     }
 
+    // Dynamic System Setup State
+    let currentScope = 'compact'; // 'compact' | 'large'
+    let currentMethod = 'dry';     // 'dry' | 'wet'
+    let selectedCarrier = 'fk50';  // 'fk50' | 'solvent'
+
+    const SYSTEM_EQUIPMENT = {
+      compact_dry: {
+        sku: 'FOM550',
+        shopifyVariantId: 4591028310001,
+        title: 'Flake King 550 Mini Dry Metal Flake Gun',
+        category: 'APPLICATION HARDWARE',
+        price: 99.99,
+        desc: 'Compact precision gun for tight contours, motorcycle tanks, skateboards, and helmets.',
+        img: 'assets/images/flake-king-orange-tape-1mm.webp'
+      },
+      large_dry: {
+        sku: 'FOM1000',
+        shopifyVariantId: 4591028310002,
+        title: 'Flake King 1000 Dry Metal Flake Gun',
+        category: 'PRODUCTION HARDWARE',
+        price: 108.33,
+        desc: 'High-CFM broad fan dry flake gun for full vehicle resprays, roofs, vans, and marine hulls.',
+        img: 'assets/images/flake-king-orange-tape-1mm.webp'
+      },
+      carrier_fk50: {
+        sku: 'FK50500',
+        shopifyVariantId: 4591028310003,
+        title: 'FK50 Waterbased Intercoat Surface Binder (500ml)',
+        category: 'WATERBORNE CARRIER',
+        price: 40.36,
+        desc: 'Zero-VOC aqueous intercoat binder engineered specifically for wet-sprayed flake suspension without sagging.',
+        img: 'assets/images/fk55-thinner.webp'
+      },
+      carrier_solvent: {
+        sku: 'SOLV-BIND-500',
+        shopifyVariantId: 4591028310004,
+        title: 'Pro-Series Solvent Transparent Base Binder (500ml)',
+        category: 'SOLVENTBORNE CARRIER',
+        price: 24.00,
+        desc: 'Ultra-pure solventborne intercoat clear binder for custom wet-flake suspension.',
+        img: 'assets/images/fk55-thinner.webp'
+      }
+    };
+
+    function setProjectScope(scope) {
+      currentScope = scope;
+      updateSystemSetupUI();
+    }
+
+    function setApplicationMethod(method) {
+      currentMethod = method;
+      updateSystemSetupUI();
+    }
+
+    function selectCarrier(carrier) {
+      selectedCarrier = carrier;
+      updateSystemSetupUI();
+    }
+
+    function updateSystemSetupUI() {
+      // 1. Update Scope Toggle Buttons
+      const btnCompact = document.getElementById('scope-btn-compact');
+      const btnLarge = document.getElementById('scope-btn-large');
+      if (btnCompact && btnLarge) {
+        if (currentScope === 'compact') {
+          btnCompact.className = 'py-2.5 px-3 rounded border text-xs font-headline-sm uppercase tracking-wider font-bold transition-all text-left flex items-center gap-2 bg-primary-container text-on-primary-container border-primary-container cursor-pointer shadow-sm';
+          btnLarge.className = 'py-2.5 px-3 rounded border text-xs font-headline-sm uppercase tracking-wider font-bold transition-all text-left flex items-center gap-2 bg-surface-container border-surface-container-high text-secondary hover:text-on-surface hover:border-secondary cursor-pointer shadow-sm';
+        } else {
+          btnLarge.className = 'py-2.5 px-3 rounded border text-xs font-headline-sm uppercase tracking-wider font-bold transition-all text-left flex items-center gap-2 bg-primary-container text-on-primary-container border-primary-container cursor-pointer shadow-sm';
+          btnCompact.className = 'py-2.5 px-3 rounded border text-xs font-headline-sm uppercase tracking-wider font-bold transition-all text-left flex items-center gap-2 bg-surface-container border-surface-container-high text-secondary hover:text-on-surface hover:border-secondary cursor-pointer shadow-sm';
+        }
+      }
+
+      // 2. Update Method Toggle Buttons
+      const btnDry = document.getElementById('method-btn-dry');
+      const btnWet = document.getElementById('method-btn-wet');
+      if (btnDry && btnWet) {
+        if (currentMethod === 'dry') {
+          btnDry.className = 'py-2.5 px-3 rounded border text-xs font-headline-sm uppercase tracking-wider font-bold transition-all text-left flex items-center gap-2 bg-primary-container text-on-primary-container border-primary-container cursor-pointer shadow-sm';
+          btnWet.className = 'py-2.5 px-3 rounded border text-xs font-headline-sm uppercase tracking-wider font-bold transition-all text-left flex items-center gap-2 bg-surface-container border-surface-container-high text-secondary hover:text-on-surface hover:border-secondary cursor-pointer shadow-sm';
+        } else {
+          btnWet.className = 'py-2.5 px-3 rounded border text-xs font-headline-sm uppercase tracking-wider font-bold transition-all text-left flex items-center gap-2 bg-primary-container text-on-primary-container border-primary-container cursor-pointer shadow-sm';
+          btnDry.className = 'py-2.5 px-3 rounded border text-xs font-headline-sm uppercase tracking-wider font-bold transition-all text-left flex items-center gap-2 bg-surface-container border-surface-container-high text-secondary hover:text-on-surface hover:border-secondary cursor-pointer shadow-sm';
+        }
+      }
+
+      // 3. Update Technical Advisory Banner
+      const banner = document.getElementById('system-advisory-banner');
+      const advIcon = document.getElementById('advisory-icon');
+      const advBadge = document.getElementById('advisory-badge');
+      const advTitle = document.getElementById('advisory-title');
+      const advBody = document.getElementById('advisory-body');
+      const advMeta = document.getElementById('advisory-meta');
+
+      if (banner && advIcon && advBadge && advTitle && advBody && advMeta) {
+        if (currentMethod === 'dry') {
+          banner.className = 'mb-space-lg p-space-md rounded-lg border transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md bg-emerald-950/20 border-emerald-500/40 text-emerald-300';
+          advIcon.textContent = 'verified';
+          advIcon.className = 'material-symbols-outlined text-2xl text-emerald-400 mt-0.5';
+          advBadge.textContent = 'Optimal Dry Application Protocol';
+          advBadge.className = 'font-label-caps text-[10px] font-bold uppercase tracking-widest text-emerald-400 block mb-0.5';
+          advTitle.textContent = currentScope === 'compact' 
+            ? 'Compact Dry Flake Delivery (Zero Clearcoat Waste)' 
+            : 'Commercial Dry Flake Delivery (Fast Wet-Edge Coverage)';
+          advBody.textContent = currentScope === 'compact'
+            ? 'Shoot directly into fresh, wet/tacky 2K clearcoat at 15–20 PSI using the FOM550. Eliminates clearcoat contamination and saves 50% material waste. Zero fluid nozzle clogging risk on tight contours.'
+            : 'Shoot directly into wet 2K clearcoat using the high-volume FOM1000. Provides rapid, even coverage across roofs, bonnets, and van sides with zero needle blockage.';
+          advMeta.innerHTML = '<span>Rec. Pressure: 15–20 PSI</span>';
+        } else {
+          // Wet method: Show amber warning & nozzle rules!
+          banner.className = 'mb-space-lg p-space-md rounded-lg border transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md bg-amber-950/30 border-amber-500/50 text-amber-200';
+          advIcon.textContent = 'warning';
+          advIcon.className = 'material-symbols-outlined text-2xl text-amber-400 mt-0.5';
+          advBadge.textContent = '⚠️ Critical Fluid Nozzle & Viscosity Requirement';
+          advBadge.className = 'font-label-caps text-[10px] font-bold uppercase tracking-widest text-amber-400 block mb-0.5';
+          
+          if (currentScope === 'compact') {
+            advTitle.textContent = 'Minimum 1.4mm Fluid Tip Required (Airbrushes Will Clog)';
+            advBody.textContent = 'For .008" (200µm) or larger flake, your fluid nozzle MUST be ≥1.4mm. Standard detail airbrushes (≤0.5mm) WILL CLOG IMMEDIATELY. Mix at 60g per 1000ml carrier binder. If using an airbrush, switch to the FOM500 dry gun adaptor.';
+            advMeta.innerHTML = '<span class="text-amber-300 font-bold">Min Nozzle: 1.4mm Spray Gun</span>';
+          } else {
+            advTitle.textContent = 'Conventional Wet Gun Limitation on Large Panels';
+            advBody.textContent = 'Conventional spray guns require massive 1.8mm–2.5mm nozzles for large flake, causing heavy clearcoat flooding, runs, and prolonged dry times. For large broad panels, the FOM1000 Dry Gun is strongly advised.';
+            advMeta.innerHTML = '<span class="text-amber-300 font-bold">Mix Ratio: 60g / 1000ml</span>';
+          }
+        }
+      }
+
+      // 4. Update Slot 1 Card (Hardware or Carrier)
+      const slot1Category = document.getElementById('slot-1-category');
+      const slot1Check = document.getElementById('slot-1-check');
+      const slot1Img = document.getElementById('slot-1-img');
+      const slot1Title = document.getElementById('slot-1-title');
+      const slot1Desc = document.getElementById('slot-1-desc');
+      const slot1Price = document.getElementById('slot-1-price-display');
+      const carrierPicker = document.getElementById('slot-1-carrier-picker');
+
+      let itemConfig;
+      if (currentMethod === 'dry') {
+        itemConfig = (currentScope === 'compact') ? SYSTEM_EQUIPMENT.compact_dry : SYSTEM_EQUIPMENT.large_dry;
+        if (carrierPicker) carrierPicker.classList.add('hidden');
+      } else {
+        itemConfig = (selectedCarrier === 'fk50') ? SYSTEM_EQUIPMENT.carrier_fk50 : SYSTEM_EQUIPMENT.carrier_solvent;
+        if (carrierPicker) carrierPicker.classList.remove('hidden');
+      }
+
+      if (slot1Category) slot1Category.textContent = itemConfig.category;
+      if (slot1Check) {
+        slot1Check.setAttribute('data-price', itemConfig.price);
+        slot1Check.setAttribute('data-name', itemConfig.title);
+        slot1Check.setAttribute('data-sku', itemConfig.sku);
+      }
+      if (slot1Img) slot1Img.src = itemConfig.img;
+      if (slot1Title) slot1Title.textContent = itemConfig.title;
+      if (slot1Desc) slot1Desc.textContent = itemConfig.desc;
+      if (slot1Price) slot1Price.textContent = '£' + itemConfig.price.toFixed(2);
+
+      updateBundleTotal();
+    }
+
+    function triggerSystemSetupAdd() {
+      const btn = document.getElementById('btn-add-system-setup');
+      const originalText = btn ? btn.innerHTML : '';
+      if (btn) {
+        btn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">sync</span><span>Configuring System Items...</span>';
+        btn.classList.add('opacity-80');
+      }
+
+      // 1. Add primary flake product
+      const primaryItem = {
+        id: (currentProduct ? currentProduct.id : 'krome-silver-metal-flake') + '_primary',
+        sku: (currentProduct ? currentProduct.sku : 'FK-FLAKE-KROME-008'),
+        title: (currentProduct ? currentProduct.name : 'Flake King Kromatic Silver Flake (0.008")'),
+        variantDetails: 'Primary Flake Specimen',
+        priceGbp: basePrice,
+        priceEur: Math.round(basePrice * 1.18 * 100) / 100,
+        price: basePrice,
+        quantity: quantity,
+        image: galleryImages[0] ? galleryImages[0].src : ''
+      };
+      saveCartItem(primaryItem);
+
+      // 2. Add all checked companion system items with 10% discount
+      const checkboxes = document.querySelectorAll('.bundle-check:checked');
+      checkboxes.forEach(cb => {
+        const itemPrice = parseFloat(cb.getAttribute('data-price') || 0) * 0.90;
+        const itemSku = cb.getAttribute('data-sku') || 'SYS-ACC';
+        const itemTitle = cb.getAttribute('data-name') || 'System Companion';
+        
+        saveCartItem({
+          id: 'sys_' + itemSku + '_' + Date.now(),
+          sku: itemSku,
+          title: itemTitle,
+          variantDetails: '10% Matched System Discount',
+          priceGbp: Math.round(itemPrice * 100) / 100,
+          priceEur: Math.round(itemPrice * 1.18 * 100) / 100,
+          price: Math.round(itemPrice * 100) / 100,
+          quantity: 1,
+          image: ''
+        });
+      });
+
+      // 3. If in live Shopify theme, sync with native /cart/add.js
+      syncCartWithShopifyNative();
+
+      setTimeout(() => {
+        if (btn) {
+          btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">done_all</span><span>System Added to Order</span>';
+          btn.classList.replace('bg-primary-container', 'bg-tertiary-container');
+        }
+        setTimeout(() => {
+          if (btn) {
+            btn.innerHTML = originalText;
+            btn.classList.replace('bg-tertiary-container', 'bg-primary-container');
+            btn.classList.remove('opacity-80');
+          }
+          toggleCartDrawer(true);
+        }, 600);
+      }, 500);
+    }
+
+    async function syncCartWithShopifyNative() {
+      const isShopify = typeof window !== 'undefined' && 
+        (window.Shopify || (window.location && (window.location.hostname.includes('myshopify.com') || window.location.hostname === 'coastairbrush.eu')));
+
+      if (isShopify && window.location.protocol.startsWith('http')) {
+        let items = JSON.parse(localStorage.getItem('coast_cart_items') || '[]');
+        if (!items.length) return;
+        try {
+          const payload = items.map(item => ({
+            id: item.variantId || item.id,
+            quantity: item.quantity || 1
+          }));
+          await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ items: payload })
+          });
+        } catch (e) {
+          console.info('Shopify native cart sync notice:', e);
+        }
+      }
+    }
+
+    async function handleShopifyCheckout() {
+      const isShopify = typeof window !== 'undefined' && 
+        (window.Shopify || (window.location && (window.location.hostname.includes('myshopify.com') || window.location.hostname === 'coastairbrush.eu')));
+
+      let items = JSON.parse(localStorage.getItem('coast_cart_items') || '[]');
+      if (!items.length) {
+        alert('Your project cart is empty.');
+        return;
+      }
+
+      if (isShopify && window.location.protocol.startsWith('http')) {
+        try {
+          await syncCartWithShopifyNative();
+          window.location.href = '/checkout';
+          return;
+        } catch (err) {
+          console.warn('Redirecting directly to checkout fallback', err);
+        }
+      }
+
+      // Standalone preview or local fallback
+      window.location.href = 'index.html#checkout';
+    }
+
     function updateBundleTotal() {
       const checkboxes = document.querySelectorAll('.bundle-check');
       let extrasTotal = 0;
@@ -1335,6 +1715,7 @@
       };
 
       saveCartItem(cartItem);
+      syncCartWithShopifyNative();
 
       setTimeout(() => {
         btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">done_all</span><span>Allocated to Cart</span>';
@@ -1500,6 +1881,47 @@
       basePrice = parseFloat(product.priceRrpIncVat || product.priceGbp || product.price || 349.00);
       updatePriceDisplay();
 
+      // Brand Authority Bar Dynamic Hydration
+      const brandName = product.brand || 'Coast Airbrush Europe';
+      const bNameEl = document.getElementById('pdp-brand-name');
+      const bBadgeEl = document.getElementById('pdp-brand-distributor-badge');
+      const bTaglineEl = document.getElementById('pdp-brand-tagline');
+      const bBtnEl = document.getElementById('btn-pdp-view-brand-story');
+
+      if (bNameEl) bNameEl.textContent = brandName;
+      if (bTaglineEl) {
+        const bn = brandName.toLowerCase();
+        if (bn.includes('kroma')) {
+          bTaglineEl.textContent = 'Beyond Reflection — Self-Organizing Mirror Chrome Technology';
+          if (bBadgeEl) bBadgeEl.textContent = 'Exclusive Master European Distributor';
+          if (bBtnEl) bBtnEl.href = 'index.html#dept-kroma-edge';
+        } else if (bn.includes('iwata') || bn.includes('atawi')) {
+          bTaglineEl.textContent = 'Japanese Precision Atomization — The World Standard';
+          if (bBadgeEl) bBadgeEl.textContent = 'Authorized Master Partner & Distributor';
+          if (bBtnEl) bBtnEl.href = 'index.html#dept-guns';
+        } else if (bn.includes('ace of shades')) {
+          bTaglineEl.textContent = 'By Custom – For Custom — Premier Solvent Candies & Clears';
+          if (bBadgeEl) bBadgeEl.textContent = 'Official Master European Importer';
+          if (bBtnEl) bBtnEl.href = 'index.html#dept-brands';
+        } else if (bn.includes('hyper fx') || bn.includes('createx')) {
+          bTaglineEl.textContent = 'Premier Waterbased Custom Paint Line — Zero Fumes';
+          if (bBadgeEl) bBadgeEl.textContent = 'Master European Distributor (Powered by Createx)';
+          if (bBtnEl) bBtnEl.href = 'index.html#dept-brands';
+        } else if (bn.includes('lumilor')) {
+          bTaglineEl.textContent = "The World's First Sprayable Electroluminescent Paint System";
+          if (bBadgeEl) bBadgeEl.textContent = 'Official European Distributor & Training Hub';
+          if (bBtnEl) bBtnEl.href = 'index.html#dept-brands';
+        } else if (bn.includes('clean armor')) {
+          bTaglineEl.textContent = '100% Solids Zero VOC Instant UV-Curing Clear Coat';
+          if (bBadgeEl) bBadgeEl.textContent = 'Exclusive Master European Distributor';
+          if (bBtnEl) bBtnEl.href = 'index.html#dept-brands';
+        } else if (bn.includes('flake king') || bn.includes('vsionair')) {
+          bTaglineEl.textContent = 'Patented Dry Venturi Flake Systems & Modular Workstations';
+          if (bBadgeEl) bBadgeEl.textContent = 'Manufacturer Collaboration & European Master Hub';
+          if (bBtnEl) bBtnEl.href = 'index.html#dept-flakes';
+        }
+      }
+
       if (product.images && product.images.length > 0) {
         galleryImages = product.images.map((src, idx) => ({
           src: src,
@@ -1517,6 +1939,331 @@
         const note = document.getElementById('product-stock-note');
         if (note) note.textContent = product.description.split('.')[0] + '.';
       }
+
+      // Dynamically render category bench specifications
+      renderCategorySpecifications(product);
+
+      // Check category and adapt system setup selector
+      const cat = (product.category || product.productType || '').toLowerCase();
+      const title = (product.name || product.title || '').toLowerCase();
+      const isFlake = cat.includes('flake') || cat.includes('glitter') || title.includes('flake');
+      const isPaint = cat.includes('paint') || cat.includes('chrome') || cat.includes('system') || title.includes('chrome');
+
+      // Adapt Buy Box for experienced painters
+      const vLabel = document.getElementById('variant-label-1');
+      const vAccessoryNote = document.getElementById('variant-accessory-note');
+      const vGroup = document.getElementById('nozzle-btn-group');
+      const bContainer = document.getElementById('bundle-variant-container');
+
+      if (isFlake || isPaint || !cat.includes('airbrush')) {
+        // Remove airbrush studio bundle upsell in buy box
+        bundleSurcharge = 0;
+        if (bContainer) bContainer.style.display = 'none';
+        if (vAccessoryNote) vAccessoryNote.style.display = 'none';
+        if (vLabel) vLabel.textContent = isFlake ? 'Select Jar / Pack Size' : 'Select Volume / Pack Size';
+
+        if (vGroup && product.variants && product.variants.length > 0) {
+          vGroup.innerHTML = product.variants.map((v, idx) => {
+            const vPrice = parseFloat(v.priceGbp || v.price || basePrice);
+            const isSelected = idx === 0;
+            if (isSelected) {
+              basePrice = vPrice;
+              activeNozzle = v.title || 'Standard';
+              const pSku = document.getElementById('product-sku-tag');
+              if (pSku) pSku.textContent = v.sku || product.sku;
+            }
+            return `
+              <button type="button" class="variant-pack-btn flex flex-col p-3 rounded-lg text-left transition-all relative border cursor-pointer ${isSelected ? 'bg-surface-container border-primary-container' : 'bg-surface-container-low border-surface-container-high hover:bg-surface-container'}" style="${isSelected ? 'box-shadow: 0 0 0 2px #dc2626;' : ''}" onclick="selectPackVariant(this, ${vPrice}, '${v.sku || product.sku}', '${v.title}')">
+                <div class="flex items-center justify-between w-full mb-1">
+                  <span class="font-headline-sm text-xs font-bold text-on-surface truncate">${v.title}</span>
+                  <span class="w-2.5 h-2.5 rounded-full ${isSelected ? 'bg-primary-container' : 'bg-surface-container-highest'}"></span>
+                </div>
+                <div class="flex items-baseline justify-between mt-1">
+                  <span class="font-headline-sm text-sm font-bold text-primary">£${vPrice.toFixed(2)}</span>
+                  <span class="font-code-spec text-[10px] text-secondary">In Stock</span>
+                </div>
+              </button>
+            `;
+          }).join('');
+        }
+      } else {
+        if (bContainer) bContainer.style.display = 'flex';
+        if (vAccessoryNote) vAccessoryNote.style.display = 'inline';
+        if (vLabel) vLabel.textContent = '1. Select Nozzle & Fluid Needle Matrix';
+      }
+      updatePriceDisplay();
+
+      const setupSection = document.getElementById('section-system-cross-sell');
+      const setupControls = document.getElementById('system-setup-controls');
+      const setupBadge = document.getElementById('system-setup-badge');
+      const setupTitle = document.getElementById('system-setup-title');
+      const setupDesc = document.getElementById('system-setup-desc');
+
+      if (isFlake) {
+        if (setupSection) setupSection.classList.remove('hidden');
+        if (setupControls) setupControls.classList.remove('hidden');
+        if (setupBadge) setupBadge.textContent = 'Engineered Application Ecosystem';
+        if (setupTitle) setupTitle.textContent = 'Flake System Architecture & Setup';
+        if (setupDesc) setupDesc.textContent = 'Configure matched equipment, carrier binders, and receiving clears calibrated for your specific project scale.';
+        updateSystemSetupUI();
+      }
+    }
+
+    function selectPackVariant(elem, price, sku, title) {
+      basePrice = price;
+      activeNozzle = title;
+      const pSku = document.getElementById('product-sku-tag');
+      if (pSku) pSku.textContent = sku;
+
+      document.querySelectorAll('.variant-pack-btn').forEach(btn => {
+        btn.style.boxShadow = 'none';
+        btn.classList.remove('bg-surface-container', 'border-primary-container');
+        btn.classList.add('bg-surface-container-low', 'border-surface-container-high');
+        const pip = btn.querySelector('.rounded-full');
+        if (pip) {
+          pip.classList.remove('bg-primary-container');
+          pip.classList.add('bg-surface-container-highest');
+        }
+      });
+
+      elem.style.boxShadow = '0 0 0 2px #dc2626';
+      elem.classList.remove('bg-surface-container-low', 'border-surface-container-high');
+      elem.classList.add('bg-surface-container', 'border-primary-container');
+      const activePip = elem.querySelector('.rounded-full');
+      if (activePip) {
+        activePip.classList.remove('bg-surface-container-highest');
+        activePip.classList.add('bg-primary-container');
+      }
+
+      updatePriceDisplay();
+      updateBundleTotal();
+    }
+
+    function renderCategorySpecifications(product) {
+      const container = document.getElementById('specs-cards-container');
+      if (!container) return;
+
+      const badgeElem = document.getElementById('specs-header-badge');
+      const titleElem = document.getElementById('specs-header-title');
+      const metaText = document.getElementById('specs-header-meta-text');
+
+      const customSpecs = (product && product.specs) || 
+                          (typeof window !== 'undefined' && window.SHOPIFY_CURRENT_PRODUCT && window.SHOPIFY_CURRENT_PRODUCT.specs) || 
+                          null;
+
+      const SPEC_DICTIONARY = {
+        mix_ratio: { title: 'Mix Chemistry', specName: 'Exact Mix Ratio', icon: 'science' },
+        pot_life: { title: 'Working Window', specName: 'Pot Life @ 20°C', icon: 'timer' },
+        flash_off_time: { title: 'Evaporation Kinetics', specName: 'Flash Off Time', icon: 'air' },
+        cure_time: { title: 'Cure Kinetics', specName: 'Bake & Air Cure', icon: 'heat_pump' },
+        coverage: { title: 'Surface Yield', specName: 'Theoretical Coverage', icon: 'format_paint' },
+        film_thickness: { title: 'Dry Film Build', specName: 'Target DFT Thickness', icon: 'straighten' },
+        recommended_psi: { title: 'Atomization Spec', specName: 'Spray Pressure', icon: 'speed' },
+        recommended_nozzle: { title: 'Nozzle Calibration', specName: 'Recommended Nozzle', icon: 'colorize' },
+        voc_compliance: { title: 'European Compliance', specName: 'VOC Compliance', icon: 'verified_user' },
+        substrate_material: { title: 'Substrate Architecture', specName: 'Flake Substrate Material', icon: 'layers' },
+        particle_size: { title: 'Particle Precision', specName: 'Particle Diameter Range', icon: 'straighten' }
+      };
+
+      const hasCustomSpecs = customSpecs && 
+                            typeof customSpecs === 'object' && 
+                            Object.keys(customSpecs).some(k => customSpecs[k] !== null && customSpecs[k] !== undefined && customSpecs[k] !== '');
+
+      if (hasCustomSpecs) {
+        if (badgeElem) badgeElem.textContent = 'Technical Specifications & Chemistry';
+        if (titleElem) titleElem.textContent = `${product?.name || product?.title || 'Product'} Technical Specifications`;
+        if (metaText) metaText.textContent = 'ISO 9001:2015 Tested Formulation & Quality Standards';
+
+        let html = '';
+        Object.entries(customSpecs).forEach(([key, val]) => {
+          if (val === null || val === undefined || val === '') return;
+          const def = SPEC_DICTIONARY[key] || {
+            title: key.replace(/_/g, ' ').toUpperCase(),
+            specName: key.replace(/_/g, ' ').toUpperCase(),
+            icon: 'science'
+          };
+          html += `
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">${def.title}</span>
+              <span class="material-symbols-outlined text-primary-container text-[20px]">${def.icon}</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">${def.specName}</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">${val}</p>
+            </div>
+          </div>
+          `;
+        });
+        container.innerHTML = html;
+        return;
+      }
+
+      const cat = (product?.category || product?.productType || '').toLowerCase();
+      const title = (product?.name || product?.title || '').toLowerCase();
+      const isFlake = cat.includes('flake') || cat.includes('glitter') || title.includes('flake');
+      const isPaint = cat.includes('paint') || cat.includes('chrome') || cat.includes('system') || title.includes('chrome');
+
+      if (isFlake) {
+        if (badgeElem) badgeElem.textContent = 'Thermoset & Substrate Tolerances';
+        if (titleElem) titleElem.textContent = 'Dry Metal Flake Bench Specifications';
+        if (metaText) metaText.textContent = 'ISO 9001:2015 Tested & Certified at DAS64 Laboratory UK';
+
+        container.innerHTML = `
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Substrate Architecture</span>
+              <span class="material-symbols-outlined text-primary-container text-[20px]">layers</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Flake Substrate Material</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">Thermoset PET Film</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Vacuum metallized polyethylene terephthalate with crosslinked thermoset protective coating.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Particle Precision</span>
+              <span class="material-symbols-outlined text-tertiary text-[20px]">straighten</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Particle Diameter Range</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">0.008" (200 Micron)</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Precision hexagonal die-cut edge for uniform 360° light reflectivity and zero irregular shards.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Thermal Rating</span>
+              <span class="material-symbols-outlined text-secondary text-[20px]">thermostat</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Maximum Continuous Heat</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">177°C / 350°F Continuous</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Endured continuous exposure to 350°F with zero loss of colour, curl, or reflectivity.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Chemical Resistance</span>
+              <span class="material-symbols-outlined text-primary-container text-[20px]">science</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Solvent Proofing Matrix</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">100% Automotive Solvent Proof</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Impervious to MEK, MIBK, high-flash naphtha, solvent urethanes, and aqueous waterborne clears.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">UV Stability</span>
+              <span class="material-symbols-outlined text-secondary text-[20px]">wb_sunny</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Lightfastness Rating</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">18 Months Direct Miami Sun</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Tested in Florida unshielded with zero discernible colour degradation or sparkle reduction.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">European Compliance</span>
+              <span class="material-symbols-outlined text-secondary text-[20px]">verified_user</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Safety &amp; Compliance</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">UK Made / REACH 2026</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Heavy-metal free non-toxic formulation manufactured in County Durham, United Kingdom.</p>
+            </div>
+          </div>
+        `;
+      } else {
+        if (badgeElem) badgeElem.textContent = 'Chemical Formulation & Kinetics';
+        if (titleElem) titleElem.textContent = 'Paint System Bench Specifications';
+        if (metaText) metaText.textContent = 'ISO 9001:2015 Tested Formulation';
+
+        container.innerHTML = `
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Mix Chemistry</span>
+              <span class="material-symbols-outlined text-primary-container text-[20px]">science</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Exact Mix Ratio</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">5:5:2:2 by Weight</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">5 Binder : 5 Reducer : 2 Hardener : 2 Mirror Seeds. Self-organizing metallic alignment.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Working Window</span>
+              <span class="material-symbols-outlined text-tertiary text-[20px]">timer</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Pot Life @ 20°C</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">3.0 Hours Induction</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Mix immediately prior to spray. Continuous wet coat without intermediate flash off.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Cure Kinetics</span>
+              <span class="material-symbols-outlined text-secondary text-[20px]">heat_pump</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Bake &amp; Air Cure</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">36h Air / 2h @ 65°C</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Infrared or booth bake recommended for ultimate surface hardness before topcoating.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Dry Film Build</span>
+              <span class="material-symbols-outlined text-primary-container text-[20px]">straighten</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Target DFT Thickness</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">15–30 µm (Microns)</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Optical reflective alignment locks in mirror finish at 25 microns nominal dry film.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Atomization Spec</span>
+              <span class="material-symbols-outlined text-secondary text-[20px]">speed</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Spray Pressure &amp; Tip</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">20–25 PSI (0.3–0.5mm)</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Mini spray gun 0.8–1.2mm or precision airbrush 0.3–0.5mm matched nozzle.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Regulatory &amp; Hazmat</span>
+              <span class="material-symbols-outlined text-secondary text-[20px]">local_shipping</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Carriage &amp; ADR Class</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">UN1263 Class 3 LQ</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Fully REACH 2026 compliant with UK &amp; European DPD/ADR Limited Quantity transport.</p>
+            </div>
+          </div>
+        `;
+      }
+    }
+    if (typeof window !== 'undefined') {
+      window.renderCategorySpecifications = renderCategorySpecifications;
     }
   </script>
 
