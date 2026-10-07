@@ -169,8 +169,7 @@ def transform_html_for_liquid(html):
             filename = "kroma-skull-mirror.jpg"
         else:
             filename = full_path.split("/")[-1]
-        filt = "asset_url" if filename in THEME_CORE_ASSET_FILENAMES else "file_url"
-        return f"url('{{{{ '{filename}' | {filt} }}}}')"
+        return f"url('{{{{ '{filename}' | asset_url }}}}')"
 
     def replace_src(m):
         prefix = m.group(1)
@@ -180,21 +179,19 @@ def transform_html_for_liquid(html):
             filename = "kroma-skull-mirror.jpg"
         else:
             filename = full_path.split("/")[-1]
-        filt = "asset_url" if filename in THEME_CORE_ASSET_FILENAMES else "file_url"
-        return f"{prefix}{{{{ '{filename}' | {filt} }}}}{quote}"
+        return f"{prefix}{{{{ '{filename}' | asset_url }}}}{quote}"
 
     def replace_this_src(m):
         prefix = m.group(1)
         full_path = m.group(2)
         quote = m.group(3)
         filename = full_path.split("/")[-1]
-        filt = "asset_url" if filename in THEME_CORE_ASSET_FILENAMES else "file_url"
-        return f"{prefix}{{{{ '{filename}' | {filt} }}}}{quote}"
+        return f"{prefix}{{{{ '{filename}' | asset_url }}}}{quote}"
 
     def replace_doc(m):
         full_path = m.group(1)
         filename = full_path.split("/")[-1]
-        return f"href=\"{{{{ '{filename}' | file_url }}}}\""
+        return f"href=\"{{{{ '{filename}' | asset_url }}}}\""
 
     out = re.sub(r"url\(['\"]?((?:assets/images/|Images/)[^'\")]+)['\"]?\)", replace_url, html)
     out = re.sub(r"(src=['\"])((?:assets/images/|Images/)[^'\">]+)(['\"])", replace_src, out)
@@ -214,23 +211,23 @@ def transform_html_for_liquid(html):
     return out
 
 def transform_theme_liquid(content):
-    content = re.sub(r"\{\{\s*'flake_buggy_hero\.jpg'\s*\|\s*asset_url\s*\}\}", r"{{ 'flake_buggy_hero.jpg' | file_url }}", content)
-    content = re.sub(r"https://coastairbrush\.eu/assets/images/([a-zA-Z0-9_\-\.]+)", r"https:{{ '\1' | file_url }}", content)
-    content = re.sub(r"assets/images/([a-zA-Z0-9_\-\.]+)", r"{{ '\1' | file_url }}", content)
+    content = re.sub(r"\{\{\s*'flake_buggy_hero\.jpg'\s*\|\s*(?:file_url|asset_url)\s*\}\}", r"{{ 'flake_buggy_hero.jpg' | asset_url }}", content)
+    content = re.sub(r"https://coastairbrush\.eu/assets/images/([a-zA-Z0-9_\-\.]+)", r"https:{{ '\1' | asset_url }}", content)
+    content = re.sub(r"assets/images/([a-zA-Z0-9_\-\.]+)", r"{{ '\1' | asset_url }}", content)
     root_script = """    <script>
       window.SHOPIFY_ASSET_URL_ROOT = "{{ 'coast_logo_white.png' | asset_url | split: 'coast_logo_white.png' | first }}";
-      window.SHOPIFY_FILE_URL_ROOT = "{{ 'flake_buggy_hero.jpg' | file_url | split: 'flake_buggy_hero.jpg' | first }}";
+      window.SHOPIFY_FILE_URL_ROOT = "{{ 'coast_logo_white.png' | asset_url | split: 'coast_logo_white.png' | first }}";
     </script>\n"""
     if "window.SHOPIFY_FILE_URL_ROOT" not in content:
         if "window.SHOPIFY_ASSET_URL_ROOT" in content:
             content = re.sub(r"window\.SHOPIFY_ASSET_URL_ROOT\s*=\s*[^;]+;",
-                             """window.SHOPIFY_ASSET_URL_ROOT = "{{ 'coast_logo_white.png' | asset_url | split: 'coast_logo_white.png' | first }}";\n      window.SHOPIFY_FILE_URL_ROOT = "{{ 'flake_buggy_hero.jpg' | file_url | split: 'flake_buggy_hero.jpg' | first }}";""",
+                             """window.SHOPIFY_ASSET_URL_ROOT = "{{ 'coast_logo_white.png' | asset_url | split: 'coast_logo_white.png' | first }}";\n      window.SHOPIFY_FILE_URL_ROOT = "{{ 'coast_logo_white.png' | asset_url | split: 'coast_logo_white.png' | first }}";""",
                              content)
         else:
             content = content.replace("    <!-- Coast Airbrush Europe Storefront Application Engine -->", root_script + "    <!-- Coast Airbrush Europe Storefront Application Engine -->")
     else:
         content = re.sub(r"window\.SHOPIFY_FILE_URL_ROOT\s*=\s*[^;]+;",
-                         """window.SHOPIFY_FILE_URL_ROOT = "{{ 'flake_buggy_hero.jpg' | file_url | split: 'flake_buggy_hero.jpg' | first }}";""",
+                         """window.SHOPIFY_FILE_URL_ROOT = "{{ 'coast_logo_white.png' | asset_url | split: 'coast_logo_white.png' | first }}";""",
                          content)
 
     # Ensure global admin views and modals are rendered after content_for_layout
@@ -269,10 +266,8 @@ def get_theme_and_media_assets():
                 if ext in [".jpg", ".jpeg", ".png", ".webp", ".svg", ".gif", ".ico"]:
                     f_lower = f.lower()
                     full_path = os.path.join(root, f)
-                    if f in THEME_CORE_ASSET_FILENAMES:
+                    if f in THEME_CORE_ASSET_FILENAMES or f_lower in referenced:
                         theme_assets[f"assets/{f}"] = full_path
-                        content_media[f] = full_path
-                    elif f_lower in referenced:
                         content_media[f] = full_path
 
     doc_dir = os.path.join(ROOT_DIR, "assets", "docs")
@@ -283,6 +278,7 @@ def get_theme_and_media_assets():
                     continue
                 ext = os.path.splitext(f)[1].lower()
                 if ext == ".pdf":
+                    theme_assets[f"assets/{f}"] = os.path.join(root, f)
                     content_media[f] = os.path.join(root, f)
 
     root_ico = os.path.join(ROOT_DIR, "favicon.ico")
@@ -2740,11 +2736,11 @@ def main():
     theme_sz = os.path.getsize(THEME_ZIP)
     print(f"Theme successfully updated: {THEME_ZIP} ({theme_sz / 1024:.1f} KB / {theme_sz / (1024*1024):.2f} MB)")
 
-    # 2. Build Companion Media Package for Shopify Admin > Content > Files
+    # 2. Build Companion Media Package for Standalone Archiving
     media_zip_temp = MEDIA_ZIP + ".tmp"
     with zipfile.ZipFile(media_zip_temp, "w", zipfile.ZIP_DEFLATED) as mz:
         for filename, filepath in sorted(content_media.items()):
-            mz.write(filepath, filename)
+            mz.write(filepath, f"coast-shopify-media-files/{filename}")
 
     os.replace(media_zip_temp, MEDIA_ZIP)
     media_sz = os.path.getsize(MEDIA_ZIP)
