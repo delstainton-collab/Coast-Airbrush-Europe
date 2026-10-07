@@ -232,6 +232,13 @@ def transform_theme_liquid(content):
         content = re.sub(r"window\.SHOPIFY_FILE_URL_ROOT\s*=\s*[^;]+;",
                          """window.SHOPIFY_FILE_URL_ROOT = "{{ 'flake_buggy_hero.jpg' | file_url | split: 'flake_buggy_hero.jpg' | first }}";""",
                          content)
+
+    # Ensure global admin views and modals are rendered after content_for_layout
+    if "{% render 'modals-and-drawers' %}" not in content:
+        content = content.replace(
+            "{{ content_for_layout }}",
+            "{{ content_for_layout }}\n\n    {% render 'admin-views' %}\n    {% render 'modals-and-drawers' %}"
+        )
     return content
 
 def get_theme_and_media_assets():
@@ -729,7 +736,284 @@ PASSWORD_TEMPLATE_LIQUID = """<div class="w-full flex-grow flex flex-col justify
 </footer>
 """
 
+INDEX_JSON_TEMPLATE = """{
+  "name": "Home page",
+  "sections": {
+    "announcement_bar": {
+      "type": "announcement-bar",
+      "settings": {
+        "show_announcement": true,
+        "announcement_text": "Official European Master Distributor: Iwata Custom Lines & Flake King",
+        "announcement_link": "",
+        "badge_text": "⚡ 24/48H RAPID DISPATCH (UK & EU)",
+        "enable_vat_toggle": true
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu",
+        "show_search": true,
+        "show_quick_mix": true,
+        "show_b2b_button": true
+      }
+    },
+    "hero_carousel": {
+      "type": "hero-carousel",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "image_filename": "kroma-skull-studio-dark.jpg",
+            "caption": "01/06 • 100% Mirror Anatomic Chrome Skull (Zero Gray Haze)",
+            "badge": "Zero Gray Clouding",
+            "position": "center right 18%"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "image_filename": "kroma-surfer-wave-studio.jpg",
+            "caption": "02/06 • Full-Scale Silver Surfer on Ocean Wave (Pier Sunset)",
+            "badge": "Full Figure Liquid Chrome",
+            "position": "center right 10%"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "image_filename": "kroma-helmet-mirror.jpg",
+            "caption": "03/06 • 99.4% Specular Mirror Racing Helmet (Standard 2K Clearcoat)",
+            "badge": "Standard 2K Clearcoat Applied",
+            "position": "center right 15%"
+          }
+        },
+        "slide_4": {
+          "type": "slide",
+          "settings": {
+            "image_filename": "kroma-detail-skull.jpg",
+            "caption": "04/06 • Liquid Metal Silver Surfer Front Profile (HVLP Applied)",
+            "badge": "HVLP 1.3mm Tip Applied",
+            "position": "center right 15%"
+          }
+        },
+        "slide_5": {
+          "type": "slide",
+          "settings": {
+            "image_filename": "kroma-detail-helmet.jpg",
+            "caption": "05/06 • Back Anatomy & Platelet Alignment Reflection",
+            "badge": "Self-Aligning Platelets",
+            "position": "center right 15%"
+          }
+        },
+        "slide_6": {
+          "type": "slide",
+          "settings": {
+            "image_filename": "flake-buggy-studio.jpg",
+            "caption": "06/06 • Custom Flake Sand Rail & Chassis (Coast Signature)",
+            "badge": "Coast Signature Flake Finish",
+            "position": "center right 10%"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3",
+        "slide_4",
+        "slide_5",
+        "slide_6"
+      ],
+      "settings": {
+        "heading": "Engineered European Custom Paint Hub",
+        "subheading": "Direct European warehouse access to legendary American custom painting technologies. Zero import taxes, pre-cleared ADR hazmat freight, and 24h tracked dispatch.",
+        "badge_text": "OFFICIAL EUROPEAN DISTRIBUTION HUB",
+        "cta_label": "Explore European Stock",
+        "cta_link": "#storefront-catalog-anchor",
+        "secondary_cta_label": "TDS Mixing Matrix",
+        "secondary_cta_link": "#mixing-calculator-section"
+      }
+    },
+    "storefront_catalog": {
+      "type": "storefront-catalog",
+      "blocks": {
+        "category_filter_1": {
+          "type": "category_filter",
+          "settings": {
+            "title": "ALL PRODUCTS",
+            "filter_type": "all",
+            "filter_value": "all",
+            "border_color": "#dc2626"
+          }
+        },
+        "category_filter_2": {
+          "type": "category_filter",
+          "settings": {
+            "title": "KROMA EDGE",
+            "filter_type": "brand",
+            "filter_value": "Kroma Edge",
+            "border_color": "#dc2626"
+          }
+        },
+        "category_filter_3": {
+          "type": "category_filter",
+          "settings": {
+            "title": "IWATA AIRBRUSHES",
+            "filter_type": "brand",
+            "filter_value": "Iwata",
+            "border_color": "#dc2626"
+          }
+        },
+        "category_filter_4": {
+          "type": "category_filter",
+          "settings": {
+            "title": "ACE OF SHADES",
+            "filter_type": "brand",
+            "filter_value": "Ace of Shades",
+            "border_color": "#f59e0b"
+          }
+        },
+        "category_filter_5": {
+          "type": "category_filter",
+          "settings": {
+            "title": "HYPER FX (CREATEX)",
+            "filter_type": "brand",
+            "filter_value": "Hyper FX",
+            "border_color": "#10b981"
+          }
+        },
+        "category_filter_6": {
+          "type": "category_filter",
+          "settings": {
+            "title": "LUMILOR",
+            "filter_type": "brand",
+            "filter_value": "LumiLor",
+            "border_color": "#a855f7"
+          }
+        },
+        "category_filter_7": {
+          "type": "category_filter",
+          "settings": {
+            "title": "CLEAN ARMOR",
+            "filter_type": "brand",
+            "filter_value": "Clean Armor",
+            "border_color": "#10b981"
+          }
+        },
+        "category_filter_8": {
+          "type": "category_filter",
+          "settings": {
+            "title": "FLAKE KING",
+            "filter_type": "brand",
+            "filter_value": "Flake King",
+            "border_color": "#242429"
+          }
+        },
+        "category_filter_9": {
+          "type": "category_filter",
+          "settings": {
+            "title": "VSIONAIR",
+            "filter_type": "brand",
+            "filter_value": "VsionAir",
+            "border_color": "#f59e0b"
+          }
+        },
+        "category_filter_10": {
+          "type": "category_filter",
+          "settings": {
+            "title": "CLEARCOAT KITS",
+            "filter_type": "cat",
+            "filter_value": "Dedicated Clearcoats",
+            "border_color": "#242429"
+          }
+        },
+        "category_filter_11": {
+          "type": "category_filter",
+          "settings": {
+            "title": "FLAKES (36)",
+            "filter_type": "cat",
+            "filter_value": "Dry Metal Flake (Glitter)",
+            "border_color": "#242429"
+          }
+        },
+        "category_filter_12": {
+          "type": "category_filter",
+          "settings": {
+            "title": "TAPES (6)",
+            "filter_type": "cat",
+            "filter_value": "Masking Products",
+            "border_color": "#242429"
+          }
+        }
+      },
+      "block_order": [
+        "category_filter_1",
+        "category_filter_2",
+        "category_filter_3",
+        "category_filter_4",
+        "category_filter_5",
+        "category_filter_6",
+        "category_filter_7",
+        "category_filter_8",
+        "category_filter_9",
+        "category_filter_10",
+        "category_filter_11",
+        "category_filter_12"
+      ],
+      "settings": {
+        "heading": "In-Stock Guns, Paints, Flakes & Tapes",
+        "products_per_page": 24,
+        "show_category_filter": true,
+        "show_brand_filter": true,
+        "show_search": true,
+        "show_sort": true
+      }
+    },
+    "mixing_calculator": {
+      "type": "mixing-calculator",
+      "settings": {
+        "show_calculator": true,
+        "heading": "TDS MIXING MATRIX & PROJECT VOLUME ESTIMATOR",
+        "subheading": "Calibrated exclusively to official KromaEdge Technical Data Sheets (2 oz = 2 sq ft coverage). Select your formula below to calculate exact component volumes and digital scale tare targets.",
+        "badge_text": "KROMAEDGE™ PRECISION LAB",
+        "enable_scale_mode": true
+      }
+    },
+    "b2b_trade_portal": {
+      "type": "b2b-trade-portal",
+      "settings": {
+        "show_portal": true,
+        "heading": "Run a Commercial Bodyshop, Custom Shop, or Paint Studio?",
+        "subheading": "Apply for Trade Tier 1/2 Pricing, Automated VAT Reverse-Charging, Net-30 Invoicing, and Priority Chemical Hazmat Allocations across all European territories.",
+        "tier2_mov": "£500.00 / €550.00 ex-VAT (6-Unit Case MOQ)",
+        "tier1_mov": "£2,000.00 / €2,500.00 ex-VAT (Pallet Allocation)",
+        "button_label": "Apply for B2B Trade Account",
+        "button_link": "/pages/dealers"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "brand_description": "Engineered European distribution hub for professional custom automotive finishes, Iwata instrumentation, and Flake King pneumatic flake dispersal systems.",
+        "show_logistics_hub": true,
+        "show_newsletter": true
+      }
+    }
+  },
+  "order": [
+    "announcement_bar",
+    "header",
+    "hero_carousel",
+    "storefront_catalog",
+    "mixing_calculator",
+    "b2b_trade_portal",
+    "footer"
+  ]
+}
+"""
+
 PAGE_TEMPLATES = {
+    "templates/index.json": INDEX_JSON_TEMPLATE,
     "templates/password.liquid": PASSWORD_TEMPLATE_LIQUID,
     "templates/page.about.liquid": "{% render 'page-about' %}\n",
     "templates/page.support.liquid": "{% render 'page-support' %}\n",
@@ -2372,6 +2656,11 @@ def main():
                 if fname.startswith("assets/") and fname not in [
                     "assets/coast-storefront-bundle.js", "assets/styles.css", "assets/full_ecom_catalog.js"
                 ] and fname not in theme_assets:
+                    continue
+
+                # Strip out obsolete templates/index.liquid in favor of OS 2.0 templates/index.json
+                if fname == "templates/index.liquid":
+                    print("Stripping obsolete templates/index.liquid from theme zip")
                     continue
 
                 written_files.add(fname)
