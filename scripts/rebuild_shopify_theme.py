@@ -9,8 +9,8 @@ MODULE_FILES = [
     "data/shopify_variant_map.js",
     "data/kroma_edge.js",
     "data/full_ecom_catalog.js",
+    "data/brands_master.js",
     "data/flake_king_tds.js",
-    "data/hok_shimrin2.js",
     "data/ace_of_shades.js",
     "js/mixingEngine.js",
     "js/shopifyCart.js",
@@ -207,6 +207,7 @@ def transform_html_for_liquid(html):
     out = re.sub(r'href=["\'](?:\./)?shipping\.html(#[\w-]*)?["\']', r'href="/pages/shipping\1"', out)
     out = re.sub(r'href=["\'](?:\./)?privacy\.html(#[\w-]*)?["\']', r'href="/pages/privacy-policy\1"', out)
     out = re.sub(r'href=["\'](?:\./)?dealers\.html(#[\w-]*)?["\']', r'href="/pages/dealers\1"', out)
+    out = re.sub(r'href=["\'](?:\./)?product\.html(#[\w-]*)?["\']', r'href="/products/atawi-precision-detail-airbrush\1"', out)
     out = re.sub(r'href=["\'](?:\./)?index\.html\?tab=admin["\']', r'href="/?tab=admin"', out)
     out = re.sub(r'href=["\'](?:\./)?index\.html(#[\w-]*)?["\']', r'href="/\1"', out)
 
@@ -235,8 +236,8 @@ def transform_theme_liquid(content):
 
 def get_theme_and_media_assets():
     files_to_scan = [
-        "index.html", "about.html", "support.html", "shipping.html", "privacy.html", "dealers.html",
-        "css/styles.css", "data/full_ecom_catalog.js", "data/hero_config.js", "data/kroma_edge.js",
+        "index.html", "about.html", "support.html", "shipping.html", "privacy.html", "dealers.html", "product.html",
+        "css/styles.css", "data/full_ecom_catalog.js", "data/brands_master.js", "data/hero_config.js", "data/kroma_edge.js",
         "js/app.js", "js/adminController.js"
     ]
     all_text = ""
@@ -293,10 +294,13 @@ def extract_content_page(filename):
     style_match = re.search(r"<style>(.*?)</style>", html, re.DOTALL)
     style_content = f"<style>\n{style_match.group(1).strip()}\n</style>\n" if style_match else ""
 
+    tw_match = re.search(r'(<script id="tailwind-config">.*?</script>)', html, re.DOTALL)
+    tw_content = f"{tw_match.group(1)}\n" if tw_match else ""
+
     body_match = re.search(r"<body[^>]*>(.*?)</body>", html, re.DOTALL)
     body_content = body_match.group(1).strip() if body_match else html
 
-    combined = f"{style_content}\n{body_content}\n"
+    combined = f"{tw_content}\n{style_content}\n{body_content}\n"
     return transform_html_for_liquid(combined)
 
 SETTINGS_SCHEMA_JSON = """[
@@ -309,8 +313,254 @@ SETTINGS_SCHEMA_JSON = """[
     "theme_support_url": "https://coastairbrush.eu/pages/support"
   },
   {
-    "name": "Theme settings",
-    "settings": []
+    "name": "Branding & Logos",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Logos & Visual Identity"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_white",
+        "label": "White Logo (Dark Backgrounds)",
+        "info": "Primary white Coast Airbrush Europe brand logo (assets/images/coast_logo_white.png)"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_red",
+        "label": "Red Logo (Accent Header)",
+        "info": "Secondary red Coast Airbrush Europe brand logo (assets/images/coast_logo_red.png)"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_black",
+        "label": "Black Logo (Light Mode / Documents)",
+        "info": "Monochrome black Coast Airbrush Europe logo (assets/images/coast_logo_black.png)"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 80,
+        "max": 320,
+        "step": 10,
+        "unit": "px",
+        "label": "Custom Logo Width",
+        "default": 180
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Browser tab icon (32x32px or SVG recommended)"
+      }
+    ]
+  },
+  {
+    "name": "Color Scheme",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Mechanical Brutalism Core Palette"
+      },
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Chassis Background",
+        "default": "#0b0b0d",
+        "info": "Deep chassis obsidian background"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Container & Card Surface",
+        "default": "#131315",
+        "info": "Engineered panel & modal container surface"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Primary Accent Red",
+        "default": "#dc2626",
+        "info": "Kustom Red high-visibility accent & CTA buttons"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Industrial Border",
+        "default": "#242429",
+        "info": "Milled steel border outlining modules and cards"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Primary Text",
+        "default": "#ffffff",
+        "info": "High-contrast reading text"
+      },
+      {
+        "type": "color",
+        "id": "color_text_muted",
+        "label": "Secondary / Muted Text",
+        "default": "#9ca3af",
+        "info": "Technical metadata and sub-labels"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_hover",
+        "label": "Accent Red Hover",
+        "default": "#b91c1c",
+        "info": "Hover state for primary action buttons"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Storefront Typography"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Headline Font Family",
+        "default": "inter_n7",
+        "info": "Modern engineered grotesque font family"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body Font Family",
+        "default": "inter_n4",
+        "info": "High legibility sans-serif for descriptions and pricing"
+      },
+      {
+        "type": "text",
+        "id": "font_mono",
+        "label": "Monospace Specification Font",
+        "default": "'JetBrains Mono', monospace",
+        "info": "Used for SKU codes, TDS ratios, and pallet density readouts"
+      }
+    ]
+  },
+  {
+    "name": "Header Alerts & Dispatch",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Announcement & Live Logistics Bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_announcement",
+        "label": "Display Announcement Bar",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Announcement Message",
+        "default": "Official European Master Distributor: Iwata Custom Lines & Flake King"
+      },
+      {
+        "type": "url",
+        "id": "announcement_link",
+        "label": "Announcement Link"
+      },
+      {
+        "type": "text",
+        "id": "dispatch_speed_badge",
+        "label": "Dispatch Speed Badge",
+        "default": "⚡ 24/48H RAPID DISPATCH (UK & EU)",
+        "info": "Live logistics guarantee badge"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_vat_toggle",
+        "label": "Enable Dynamic VAT Toggle (Ex/Inc VAT)",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Logistics & Warehouses",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Dual Fulfillment Hubs (UK & EU)"
+      },
+      {
+        "type": "text",
+        "id": "uk_hub_name",
+        "label": "UK Fulfillment Hub Name",
+        "default": "Coast Airbrush Europe - UK Hub"
+      },
+      {
+        "type": "textarea",
+        "id": "uk_hub_address",
+        "label": "UK Hub Address & Logistics",
+        "default": "Unit 4 Gateway Business Park, Basildon, Essex, SS14 3WB, United Kingdom"
+      },
+      {
+        "type": "text",
+        "id": "support_phone",
+        "label": "UK & EU Phone Desk",
+        "default": "+44 (0) 1268 765 432"
+      },
+      {
+        "type": "text",
+        "id": "nl_hub_name",
+        "label": "Netherlands Fulfillment Hub Name",
+        "default": "Coast Airbrush Europe - NL Bonded Hub"
+      },
+      {
+        "type": "textarea",
+        "id": "nl_hub_address",
+        "label": "Netherlands Hub Address & Logistics",
+        "default": "Distributieweg 18, 2645 EJ Delfgauw, Rotterdam Logistics Corridor, Netherlands"
+      },
+      {
+        "type": "text",
+        "id": "support_email",
+        "label": "Support Desk Email",
+        "default": "support@coastairbrush.eu"
+      },
+      {
+        "type": "text",
+        "id": "orders_email",
+        "label": "B2B Trade & Orders Email",
+        "default": "orders@coastairbrush.eu"
+      }
+    ]
+  },
+  {
+    "name": "Social Links",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social Media Channels"
+      },
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "Instagram Profile"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube",
+        "label": "YouTube Channel"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook",
+        "label": "Facebook Page"
+      },
+      {
+        "type": "url",
+        "id": "social_twitter",
+        "label": "Twitter / X Profile"
+      }
+    ]
   }
 ]
 """
@@ -486,6 +736,42 @@ PAGE_TEMPLATES = {
     "templates/page.shipping.liquid": "{% render 'page-shipping' %}\n",
     "templates/page.privacy.liquid": "{% render 'page-privacy' %}\n",
     "templates/page.dealers.liquid": "{% render 'page-dealers' %}\n",
+    "templates/page.product.liquid": "{% render 'page-product' %}\n",
+    "templates/product.liquid": """{% render 'page-product' %}
+{% if product %}
+<script>
+  window.SHOPIFY_CURRENT_PRODUCT = {
+    id: {{ product.id | json }},
+    title: {{ product.title | json }},
+    name: {{ product.title | json }},
+    handle: {{ product.handle | json }},
+    price: {{ product.price | divided_by: 100.0 | json }},
+    sku: {{ product.selected_or_first_available_variant.sku | default: 'PRO-SERIES' | json }},
+    description: {{ product.description | strip_html | json }},
+    category: {{ product.type | default: product.collections.first.title | default: 'spray_hardware' | json }},
+    specs: {{ product.metafields.specs | json }},
+    tags: {{ product.tags | json }},
+    images: [{% for img in product.images %}{{ img | image_url: width: 1200 | json }}{% unless forloop.last %},{% endunless %}{% endfor %}],
+    variants: [
+      {% for variant in product.variants %}
+        {
+          id: {{ variant.id | json }},
+          title: {{ variant.title | json }},
+          sku: {{ variant.sku | json }},
+          price: {{ variant.price | divided_by: 100.0 | json }},
+          available: {{ variant.available | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  };
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof hydrateProductData === 'function') {
+      hydrateProductData(window.SHOPIFY_CURRENT_PRODUCT);
+    }
+  });
+</script>
+{% endif %}
+""",
     "templates/page.liquid": """{% assign handle = page.handle | downcase %}
 {% if handle contains 'about' %}
   {% render 'page-about' %}
@@ -497,6 +783,8 @@ PAGE_TEMPLATES = {
   {% render 'page-privacy' %}
 {% elsif handle contains 'dealer' %}
   {% render 'page-dealers' %}
+{% elsif handle contains 'product' %}
+  {% render 'page-product' %}
 {% else %}
   <div class="max-w-5xl mx-auto py-12 px-6">
     <h1 class="font-headline text-3xl uppercase text-white font-bold mb-6">{{ page.title }}</h1>
@@ -527,6 +815,9 @@ PAGE_TEMPLATES = {
     } else if (p.indexOf('dealer') !== -1) {
       target = 'dealers';
       pageTitle = 'Become an Authorized Dealer & Distributor | Coast Airbrush Europe';
+    } else if (p.indexOf('product') !== -1) {
+      target = 'product';
+      pageTitle = 'Atawi Precision Detail Airbrush (0.18mm) | Coast Airbrush Europe';
     }
 
     if (pageTitle) {
@@ -561,6 +852,9 @@ PAGE_TEMPLATES = {
   <div id="route-dealers" class="page-route-item" style="display: none;">
     {% render 'page-dealers' %}
   </div>
+  <div id="route-product" class="page-route-item" style="display: none;">
+    {% render 'page-product' %}
+  </div>
   <div id="route-real-404" class="page-route-item" style="display: none;">
     <div class="max-w-lg mx-auto my-20 p-8 bg-[#181a1b] border-2 border-secondary text-center space-y-6">
       <h1 class="font-headline text-4xl uppercase text-white font-bold">404 - Page Not Found</h1>
@@ -582,6 +876,7 @@ PAGE_TEMPLATES = {
     else if (p.indexOf('shipping') !== -1 || p.indexOf('delivery') !== -1) target = 'shipping';
     else if (p.indexOf('privacy') !== -1) target = 'privacy';
     else if (p.indexOf('dealer') !== -1) target = 'dealers';
+    else if (p.indexOf('product') !== -1) target = 'product';
 
     var el = document.getElementById('route-' + target);
     if (el) el.style.setProperty('display', 'block', 'important');
@@ -632,6 +927,7 @@ def extract_snippets():
     snippets["snippets/page-shipping.liquid"] = extract_content_page("shipping.html")
     snippets["snippets/page-privacy.liquid"] = extract_content_page("privacy.html")
     snippets["snippets/page-dealers.liquid"] = extract_content_page("dealers.html")
+    snippets["snippets/page-product.liquid"] = extract_content_page("product.html")
 
     return snippets
 
