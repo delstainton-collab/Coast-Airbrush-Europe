@@ -889,6 +889,1425 @@ PAGE_TEMPLATES = {
 """
 }
 
+ANNOUNCEMENT_BAR_SECTION = """{% if section.settings.show_announcement %}
+  <!-- TOP COMPLIANCE & LOGISTICS ANNOUNCEMENT BAR -->
+  <div id="top-shipping-banner" class="bg-[#0b0b0d] border-b border-[#242429] py-1.5 px-margin-mobile md:px-margin text-xs tracking-wider">
+    <div class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-2 text-neutral-400 font-mono">
+      <div class="flex items-center gap-2 flex-wrap text-[11px]">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#dc2626] animate-pulse shrink-0"></span>
+        {% if section.settings.announcement_link != blank %}
+          <a href="{{ section.settings.announcement_link }}" class="text-white hover:text-[#dc2626] transition-colors font-semibold">
+            {{ section.settings.announcement_text | default: 'Official European Master Distributor: Iwata Custom Lines & Flake King' }}
+          </a>
+        {% else %}
+          <span class="text-white font-semibold">{{ section.settings.announcement_text | default: 'Official European Master Distributor: Iwata Custom Lines & Flake King' }}</span>
+        {% endif %}
+        <span class="text-[#242429] hidden sm:inline">|</span>
+        <span class="hidden sm:inline">ADR / Hazmat Certified UK &amp; EU Dispatch</span>
+        <span class="text-[#242429] hidden md:inline">|</span>
+        <!-- Dynamic VAT Advisory Badge for UK & European Customers -->
+        <span id="nav-vat-advisory-badge" class="inline-flex items-center gap-1 text-neutral-300 bg-[#131315] px-2 py-0.5 rounded border border-[#242429]" title="VAT status details for your destination country">
+          <span class="material-symbols-outlined text-[13px] text-neutral-400">info</span>
+          <span id="nav-vat-advisory-text">All Retail Prices Shown Inclusive of VAT</span>
+        </span>
+        <span class="font-mono text-[11px] bg-emerald-950/80 text-emerald-400 border border-emerald-700/80 px-2 py-0.5 font-bold rounded-sm ml-1">
+          {{ section.settings.badge_text | default: '⚡ 24/48H RAPID DISPATCH (UK & EU)' }}
+        </span>
+      </div>
+
+      <!-- Country, Language & Currency Quick Switcher -->
+      <div class="flex items-center gap-2 ml-auto text-[11px]">
+        <!-- Language Selector -->
+        <div class="flex items-center gap-1 bg-[#131315] border border-[#242429] px-2 py-0.5 rounded">
+          <span class="material-symbols-outlined text-[13px] text-[#dc2626]">translate</span>
+          <select id="select-site-language" class="bg-transparent text-white text-[11px] font-bold uppercase outline-none cursor-pointer">
+            <option value="en" class="bg-[#131315] text-white">🇬🇧 EN</option>
+            <option value="de" class="bg-[#131315] text-white">🇩🇪 DE</option>
+            <option value="fr" class="bg-[#131315] text-white">🇫🇷 FR</option>
+            <option value="nl" class="bg-[#131315] text-white">🇳🇱 NL</option>
+            <option value="es" class="bg-[#131315] text-white">🇪🇸 ES</option>
+            <option value="it" class="bg-[#131315] text-white">🇮🇹 IT</option>
+            <option value="pl" class="bg-[#131315] text-white">🇵🇱 PL</option>
+          </select>
+        </div>
+
+        <!-- Country Selector -->
+        <div class="flex items-center gap-1 bg-[#131315] border border-[#242429] px-2 py-0.5 rounded">
+          <span id="nav-selected-country-flag" class="text-xs">🇬🇧</span>
+          <select id="select-eu-country" class="bg-transparent text-white text-[11px] font-bold uppercase outline-none cursor-pointer">
+            <option value="GB" class="bg-[#131315] text-white">GB (£)</option>
+            <option value="DE" class="bg-[#131315] text-white">DE (€)</option>
+            <option value="FR" class="bg-[#131315] text-white">FR (€)</option>
+            <option value="NL" class="bg-[#131315] text-white">NL (€)</option>
+            <option value="IT" class="bg-[#131315] text-white">IT (€)</option>
+            <option value="ES" class="bg-[#131315] text-white">ES (€)</option>
+            <option value="PL" class="bg-[#131315] text-white">PL (zł)</option>
+            <option value="BE" class="bg-[#131315] text-white">BE (€)</option>
+            <option value="CH" class="bg-[#131315] text-white">CH (CHF)</option>
+            <option value="SE" class="bg-[#131315] text-white">SE (kr)</option>
+          </select>
+        </div>
+
+        <!-- VAT Display Mode Switcher (Ex VAT / Inc VAT) -->
+        {% if section.settings.enable_vat_toggle != false %}
+        <div id="nav-vat-toggle-group" class="flex items-center bg-[#131315] border border-[#242429] rounded text-[11px] font-mono overflow-hidden shadow-sm" title="Toggle prices between Exclusive and Inclusive of VAT">
+          <button type="button" id="btn-vat-toggle-ex" class="px-2 py-0.5 font-bold transition-all text-neutral-400 hover:text-white cursor-pointer" title="Display prices excluding VAT">EX VAT</button>
+          <div class="w-[1px] h-3.5 bg-[#242429]"></div>
+          <button type="button" id="btn-vat-toggle-inc" class="px-2 py-0.5 font-bold transition-all text-neutral-400 hover:text-white cursor-pointer" title="Display prices including VAT">INC VAT</button>
+        </div>
+        {% endif %}
+
+        <!-- Preferred Unit Toggle (Metric / Imperial) -->
+        <button id="btn-toggle-units" class="hidden sm:flex items-center gap-1 bg-[#131315] border border-[#242429] px-2 py-0.5 text-[11px] text-neutral-400 hover:text-[#dc2626] transition-colors cursor-pointer" title="Toggle Unit Preference">
+          <span class="material-symbols-outlined text-[13px]">straighten</span>
+          <span id="label-unit-toggle">METRIC</span>
+        </button>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Display Announcement Bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Message",
+      "default": "Official European Master Distributor: Iwata Custom Lines & Flake King"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement Link"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Dispatch Speed Badge",
+      "default": "⚡ 24/48H RAPID DISPATCH (UK & EU)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_vat_toggle",
+      "label": "Enable VAT Mode Switcher",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
+    }
+  ]
+}
+{% endschema %}
+"""
+
+HEADER_SECTION = """<header id="master-site-header" class="relative md:sticky top-0 z-50 w-full flex flex-col bg-[#0b0b0d]/95 backdrop-blur-md border-b border-[#242429] shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
+
+  <!-- DEV MODE STATUS BAR (Shows when previewing/dev mode) -->
+  <div id="dev-mode-bar" class="hidden bg-[#0d2818] border-b border-emerald-500/40 text-emerald-300 px-4 py-1.5 text-[11px] font-mono flex items-center justify-between z-50">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="font-bold tracking-wider uppercase text-emerald-200">🛠️ STOREFRONT DEV MODE</span>
+      <span class="text-emerald-500/60 hidden sm:inline">|</span>
+      <span class="text-emerald-300/80 hidden sm:inline">Active Development Environment</span>
+    </div>
+    <div class="flex items-center gap-3 text-[11px]">
+      <a href="/pages/about" class="hover:underline text-emerald-200 font-semibold flex items-center gap-1">
+        <span>About Europe</span> &rarr;
+      </a>
+      <span class="text-emerald-500/40">•</span>
+      <a href="/pages/shipping" class="hover:underline text-emerald-200 font-semibold flex items-center gap-1">
+        <span>ADR Shipping</span> &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- MAIN BRAND & NAVIGATION ROW -->
+  <div class="h-20 max-w-[1440px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between gap-space-lg w-full">
+    <!-- Logo Lockup -->
+    <a id="nav-logo-btn" class="flex items-center gap-3 shrink-0 cursor-pointer text-decoration-none group" href="/" title="{{ shop.name }} Home">
+      {% assign logo_img = section.settings.logo | default: settings.logo_white %}
+      {% if logo_img %}
+        <img alt="{{ shop.name }}" class="h-10 md:h-11 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" src="{{ logo_img | image_url: width: 400 }}" style="max-width: {{ section.settings.logo_width | default: 180 }}px;">
+      {% else %}
+        <img alt="{{ shop.name }}" class="h-10 md:h-11 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" src="{{ 'coast_logo_white.png' | asset_url }}" style="max-width: {{ section.settings.logo_width | default: 180 }}px;" onerror="this.onerror=null; this.src='coast_logo_white.png';">
+      {% endif %}
+      <span class="inline-flex items-center font-headline text-headline-sm tracking-wider uppercase border-l border-[#242429] pl-3 text-white font-semibold">
+        <span class="text-[#dc2626] font-extrabold text-sm md:text-base">EUROPE</span>
+      </span>
+    </a>
+
+    <!-- Search Bar with CMD + K -->
+    {% if section.settings.show_search != false %}
+    <div class="flex-1 max-w-lg hidden lg:block">
+      <div class="relative flex items-center">
+        <span class="material-symbols-outlined absolute left-3 text-neutral-400 text-[18px]">search</span>
+        <input id="store-search-input" class="w-full h-10 pl-10 pr-20 bg-[#131315] border border-[#242429] rounded-lg text-white font-mono text-xs placeholder:text-neutral-500 focus:outline-none focus:border-[#dc2626] transition-colors" placeholder="Search by SKU, gun model, or paint chemistry..." type="text">
+        <span class="absolute right-2 font-mono text-[10px] text-neutral-400 bg-[#0b0b0d] px-1.5 py-0.5 rounded border border-[#242429]">CMD + K</span>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Trailing Action Systems -->
+    <div class="flex items-center gap-space-md shrink-0">
+      <!-- Quick Mix Pop-up Button -->
+      {% if section.settings.show_quick_mix != false %}
+      <button onclick="window.openQuickMixModal && window.openQuickMixModal()" class="hidden md:inline-flex items-center gap-1.5 font-mono text-xs border border-[#242429] bg-[#131315] hover:bg-[#1c1d22] hover:border-neutral-400 text-neutral-300 hover:text-white px-3 py-2 rounded-lg transition-all shadow-sm active:scale-[0.98] cursor-pointer" title="Open Quick Mix Calculator Pop-up">
+        <span class="material-symbols-outlined text-[16px] text-[#dc2626]">calculate</span>
+        <span>QUICK MIX</span>
+      </button>
+      {% endif %}
+
+      <!-- B2B Trade Portal Button -->
+      {% if section.settings.show_b2b_button != false %}
+      <a id="btn-b2b-login" href="/pages/dealers" onclick="event.preventDefault(); window.openTradePortalModal && window.openTradePortalModal();" class="hidden sm:flex items-center gap-space-xs px-space-md py-2 border border-[#242429] hover:border-neutral-400 rounded-lg font-mono text-xs uppercase text-white bg-[#131315] hover:bg-[#1c1d22] transition-all cursor-pointer" title="Authorized Trade &amp; Dealer Portal">
+        <span class="w-2 h-2 rounded-full bg-[#dc2626] animate-pulse"></span>
+        <span>B2B PORTAL</span>
+      </a>
+      {% endif %}
+
+      <!-- Action Icons: Saved TDS Specs & Cart Drawer -->
+      <div class="flex items-center gap-space-sm">
+        <!-- Saved TDS Specs -->
+        <button aria-label="Saved TDS Specs" onclick="window.openFlakeTDSModal && window.openFlakeTDSModal()" class="w-10 h-10 rounded-lg border border-[#242429] bg-[#131315] flex items-center justify-center text-neutral-400 hover:text-white hover:border-neutral-400 transition-all cursor-pointer" title="Open Technical TDS Library">
+          <span class="material-symbols-outlined text-[20px]">description</span>
+        </button>
+
+        <!-- Cart Drawer Button -->
+        <button id="btn-toggle-cart-drawer" aria-label="Cart" class="relative w-10 h-10 rounded-lg border border-[#242429] bg-[#131315] flex items-center justify-center text-neutral-400 hover:text-white hover:border-neutral-400 transition-all cursor-pointer" title="Open Shopping Cart">
+          <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+          <span id="header-cart-count" class="absolute -top-1.5 -right-1.5 h-5 min-w-[20px] px-1 bg-[#dc2626] text-white font-mono text-[10px] font-bold rounded-full flex items-center justify-center shadow-lg">0</span>
+        </button>
+
+        <!-- Operator / Admin Login -->
+        <button onclick="window.openAdminLogin && window.openAdminLogin()" aria-label="Admin Access" class="w-8 h-8 rounded-full bg-[#dc2626]/20 border border-[#dc2626]/40 flex items-center justify-center ml-space-xs text-[#dc2626] hover:bg-[#dc2626] hover:text-white transition-colors cursor-pointer" title="Operator Console">
+          <span class="material-symbols-outlined text-[18px]">person</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEPARTMENT-LED HORIZONTAL NAVIGATION BAR -->
+  <div class="border-t border-[#242429] bg-[#0b0b0d]/80">
+    <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin">
+      <nav class="flex items-center space-x-space-md sm:space-x-space-lg overflow-x-auto py-2 font-mono text-xs uppercase">
+        {% if section.settings.menu != blank and linklists[section.settings.menu].links.size > 0 %}
+          {% for link in linklists[section.settings.menu].links %}
+            <a href="{{ link.url }}" class="nav-link{% if link.active %} active{% endif %} text-neutral-300 hover:text-white transition-colors">{{ link.title }}</a>
+          {% endfor %}
+        {% else %}
+          <a id="tab-storefront" class="nav-link active" href="javascript:void(0)">SHOP</a>
+          <a href="#dept-brands" class="nav-link text-[#dc2626] font-bold flex items-center gap-1" title="Explore Authorized European Manufacturers"><span class="material-symbols-outlined text-[15px]">verified</span> BRANDS</a>
+          <a href="#dept-guns" class="nav-link">AIRBRUSHES &amp; GUNS</a>
+          <a href="#dept-kroma-edge" class="nav-link">CUSTOM PAINT LINES</a>
+          <a href="#dept-flakes" class="nav-link">FLAKE SYSTEMS</a>
+          <a href="#dept-basecoats-binders" class="nav-link">BASECOATS &amp; BINDERS</a>
+          <a href="#dept-tapes" class="nav-link">TAPES</a>
+          <a id="tab-calculator" class="nav-link text-[#dc2626] hover:text-white flex items-center gap-1 font-bold" href="javascript:void(0)">
+            <span class="material-symbols-outlined text-[15px]">calculate</span> MIX LAB
+          </a>
+          <a id="tab-academy" class="nav-link" href="javascript:void(0)">ACADEMY</a>
+          <a id="nav-about-link" class="nav-link" href="/pages/about">ABOUT</a>
+          <a href="/pages/dealers" class="nav-link text-neutral-400">B2B TRADE</a>
+        {% endif %}
+      </nav>
+    </div>
+  </div>
+
+  <!-- Dynamic Active Trade Session Banner (Hidden by default, shown when verified B2B partner logs in) -->
+  <div id="trade-active-banner" class="hidden w-full bg-[#131315] border-b border-[#dc2626] text-white py-2.5 px-margin-mobile md:px-margin z-40 transition-all">
+    <div class="max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs font-mono">
+      <div class="flex items-center gap-2.5 flex-wrap">
+        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#dc2626] text-white font-bold text-[11px]">✓</span>
+        <span class="font-bold text-white tracking-wide uppercase text-sm" id="trade-banner-company">Apex Custom Paintworks Ltd</span>
+        <span class="bg-[#0b0b0d] px-2.5 py-0.5 rounded text-[10px] text-neutral-300 border border-[#242429] uppercase tracking-wider font-bold" id="trade-banner-tier">Tier 2: Authorized Trade Dealer</span>
+        <span class="text-neutral-400 text-[11px]" id="trade-banner-vat">VAT: GB123456789</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-[11px] text-neutral-400 font-bold hidden md:inline">Wholesale pricing unlocked • Ex-VAT billing active</span>
+        <button onclick="window.handleTradeLogout && window.handleTradeLogout()" class="px-3 py-1 bg-[#242429] hover:bg-[#dc2626] text-white text-xs font-bold rounded border border-[#242429] transition-colors flex items-center gap-1 cursor-pointer">
+          <span class="material-symbols-outlined text-[14px]">logout</span> Log Out Trade Session
+        </button>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+<!-- Mobile Secondary Navigation Bar -->
+<div class="lg:hidden bg-[#131315] border-b border-[#242429] flex overflow-x-auto py-2 px-4 gap-2 text-xs font-mono">
+  <button onclick="document.getElementById('tab-storefront') && document.getElementById('tab-storefront').click()" class="nav-link !text-xs !py-1 !px-2.5 active">Shop</button>
+  <a href="#dept-brands" class="nav-link !text-xs !py-1 !px-2.5 text-[#dc2626] font-bold">Brands</a>
+  <a href="#dept-kroma-edge" class="nav-link !text-xs !py-1 !px-2.5 text-neutral-300">Chrome &amp; Clears</a>
+  <a href="#dept-guns" class="nav-link !text-xs !py-1 !px-2.5 text-[#dc2626] font-bold">Guns</a>
+  <a href="#dept-flakes" class="nav-link !text-xs !py-1 !px-2.5 text-neutral-300">Flakes</a>
+  <a href="#dept-basecoats-binders" class="nav-link !text-xs !py-1 !px-2.5 text-amber-300 font-bold">Basecoats &amp; Binders</a>
+  <a href="#dept-tapes" class="nav-link !text-xs !py-1 !px-2.5 text-neutral-300">Tapes</a>
+  <button onclick="document.getElementById('tab-calculator') && document.getElementById('tab-calculator').click()" class="nav-link !text-xs !py-1 !px-2.5">Mix Lab</button>
+  <a href="/pages/about" class="nav-link !text-xs !py-1 !px-2.5">About</a>
+  <a href="/pages/dealers" class="nav-link !text-xs !py-1 !px-2.5 text-neutral-300">Dealers</a>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Custom Store Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 80,
+      "max": 320,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo Width",
+      "default": 180
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show Search Bar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_mix",
+      "label": "Show Quick Mix Button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_b2b_button",
+      "label": "Show B2B Trade Portal Button",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header"
+    }
+  ]
+}
+{% endschema %}
+"""
+
+HERO_CAROUSEL_SECTION = """<section class="relative w-full py-16 lg:py-24 bg-[#0b0b0d] border-b-2 border-[#242429] overflow-hidden min-h-[600px] lg:min-h-[680px] flex items-center">
+  <!-- Ambient Slideshow: Real Optical Finishes -->
+  <div id="hero-crossfade-container" class="hero-crossfade-container">
+    {% for block in section.blocks %}
+      {% assign slide_img = block.settings.image %}
+      {% assign slide_file = block.settings.image_filename | default: 'kroma-skull-studio-dark.jpg' %}
+      <div class="hero-crossfade-slide{% if forloop.first %} active{% endif %}"
+           {{ block.shopify_attributes }}
+           style="background-image: url('{% if slide_img %}{{ slide_img | image_url: width: 2000 }}{% else %}{{ slide_file | asset_url }}{% endif %}'); background-position: {{ block.settings.position | default: 'center right 15%' }};"
+           data-caption="{{ block.settings.caption | escape }}"
+           data-badge="{{ block.settings.badge | escape }}">
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Directional Mask for High-Contrast Text Legibility -->
+  <div class="hero-directional-overlay"></div>
+  <div class="absolute inset-0 metal-sheen opacity-10 pointer-events-none z-10"></div>
+  <div class="absolute bottom-0 w-full h-1 bg-gradient-to-r from-[#dc2626] via-[#b91c1c] to-transparent z-20"></div>
+
+  <div class="relative z-20 h-full flex flex-col justify-center px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <div class="lg:col-span-9 space-y-5 max-w-3xl">
+        <!-- Authority Pill -->
+        <div id="hero-authority-pill" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/85 border border-[#dc2626]/60 backdrop-blur-md font-mono text-[11px] text-white font-bold uppercase tracking-wider shadow-[0_0_18px_rgba(220,38,38,0.35)]">
+          <span id="hero-pill-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="hero-pill-status" class="text-neutral-200">{{ section.settings.pill_status | default: '✦ OFFICIAL EUROPEAN MASTER HUB' }}</span>
+          <span class="text-neutral-500">•</span>
+          <span id="hero-pill-location" class="text-amber-300">{{ section.settings.pill_location | default: 'PLACENTIA, CA AUTHORIZED' }}</span>
+        </div>
+
+        <!-- Approved Master Headline & Statement -->
+        <div class="space-y-3">
+          <h1 id="hero-headline" class="font-headline text-3xl sm:text-5xl lg:text-6xl uppercase text-white tracking-tight leading-[1.06] drop-shadow-[0_4px_30px_rgba(0,0,0,1)] font-black">
+            <span id="hero-headline-prefix">{{ section.settings.headline_prefix | default: 'THE EUROPEAN MASTER HUB FOR' }}</span> <br>
+            <span id="hero-headline-accent" class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-[#dc2626]">{{ section.settings.headline_accent | default: 'KROMA EDGE CHROME, FLAKE KING & VSIONAIR' }}</span>
+          </h1>
+          <p id="hero-subheadline" class="font-headline text-base sm:text-xl text-neutral-200 font-medium tracking-wide drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
+            {{ section.settings.subheadline | default: 'Engineered for automotive refinishers, custom shops & airbrush artists across Europe.' }}
+          </p>
+          <p id="hero-description" class="font-body text-sm sm:text-base text-neutral-300 font-normal leading-relaxed max-w-2xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+            {{ section.settings.description | default: 'Direct European bonded dispatch from our UK logistics center. Zero US import customs, next-day tracked APC & DHL Express, full EU REACH & VOC regulatory compliance, and factory-authorized technical support.' }}
+          </p>
+        </div>
+
+        <!-- Action Row -->
+        <div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+          <a class="h-11 px-6 bg-[#dc2626] hover:bg-[#b91c1c] active:scale-[0.98] text-white font-headline text-sm uppercase tracking-wider rounded flex items-center justify-center gap-2 shadow-md transition-all font-bold" href="#dept-guns">
+            <span>Explore Exclusive Hardware</span>
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </a>
+          <button type="button" onclick="window.openFlakeTDSModal && window.openFlakeTDSModal()" class="h-11 px-6 bg-[#131315] hover:bg-[#1c1d22] text-white font-headline text-sm uppercase tracking-wider rounded flex items-center justify-center gap-2 shadow-sm transition-all border border-[#242429] cursor-pointer font-bold">
+            <span class="material-symbols-outlined text-[18px] text-neutral-400">file_download</span>
+            <span>Download Chemical TDS Guides</span>
+          </button>
+        </div>
+
+        <!-- Trust Line -->
+        <div id="hero-trust-bar" class="flex items-center gap-2 font-mono text-[11px] text-neutral-400 pt-1">
+          <span class="material-symbols-outlined text-[15px] text-emerald-400">verified_user</span>
+          <span id="hero-trust-line">{{ section.settings.trust_line | default: 'Dispatched from UK Hub • Tracked APC Overnight & DHL Express • 100% REACH & VOC Certified • Zero US Customs' }}</span>
+        </div>
+
+        <!-- Carousel Slide Indicators & Captions -->
+        <div class="flex items-center gap-4 pt-4 border-t border-[#242429]">
+          <div id="hero-slide-dots" class="flex items-center gap-2">
+            {% for block in section.blocks %}
+              <button class="hero-indicator-dot{% if forloop.first %} active{% endif %} w-2.5 h-2.5 rounded-full bg-white/30 transition-all cursor-pointer hover:bg-white/70" onclick="window.setHeroSlide && window.setHeroSlide({{ forloop.index0 }})" title="Slide {{ forloop.index }}"></button>
+            {% endfor %}
+          </div>
+          <div id="hero-caption-text" class="font-mono text-xs text-neutral-300">
+            {{ section.blocks.first.settings.caption | default: '01/06 • 100% Mirror Anatomic Chrome Skull (Zero Gray Haze)' }}
+          </div>
+          <span id="hero-artifact-badge" class="font-mono text-[11px] text-emerald-400 bg-emerald-950/60 border border-emerald-500/40 px-2 py-0.5 rounded">
+            {{ section.blocks.first.settings.badge | default: 'Zero Gray Clouding' }}
+          </span>
+          <div class="flex items-center gap-1.5 ml-auto">
+            <button onclick="window.prevHeroSlide && window.prevHeroSlide()" class="w-8 h-8 rounded bg-[#131315] border border-[#242429] text-neutral-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer" title="Previous Slide">
+              <span class="material-symbols-outlined text-sm">chevron_left</span>
+            </button>
+            <button onclick="window.nextHeroSlide && window.nextHeroSlide()" class="w-8 h-8 rounded bg-[#131315] border border-[#242429] text-neutral-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer" title="Next Slide">
+              <span class="material-symbols-outlined text-sm">chevron_right</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pill_status",
+      "label": "Authority Pill Status",
+      "default": "✦ OFFICIAL EUROPEAN MASTER HUB"
+    },
+    {
+      "type": "text",
+      "id": "pill_location",
+      "label": "Authority Pill Location",
+      "default": "PLACENTIA, CA AUTHORIZED"
+    },
+    {
+      "type": "text",
+      "id": "headline_prefix",
+      "label": "Headline Prefix",
+      "default": "THE EUROPEAN MASTER HUB FOR"
+    },
+    {
+      "type": "text",
+      "id": "headline_accent",
+      "label": "Headline Accent",
+      "default": "KROMA EDGE CHROME, FLAKE KING & VSIONAIR"
+    },
+    {
+      "type": "text",
+      "id": "subheadline",
+      "label": "Subheadline",
+      "default": "Engineered for automotive refinishers, custom shops & airbrush artists across Europe."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Direct European bonded dispatch from our UK logistics center. Zero US import customs, next-day tracked APC & DHL Express, full EU REACH & VOC regulatory compliance, and factory-authorized technical support."
+    },
+    {
+      "type": "text",
+      "id": "trust_line",
+      "label": "Trust Line",
+      "default": "Dispatched from UK Hub • Tracked APC Overnight & DHL Express • 100% REACH & VOC Certified • Zero US Customs"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Hero Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide Image"
+        },
+        {
+          "type": "text",
+          "id": "image_filename",
+          "label": "Fallback Asset Filename",
+          "default": "kroma-skull-studio-dark.jpg"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Slide Caption",
+          "default": "100% Mirror Anatomic Chrome Skull (Zero Gray Haze)"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Technical Badge",
+          "default": "Zero Gray Clouding"
+        },
+        {
+          "type": "text",
+          "id": "position",
+          "label": "CSS Background Position",
+          "default": "center right 15%"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Carousel",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "image_filename": "kroma-skull-studio-dark.jpg",
+            "caption": "01/06 • 100% Mirror Anatomic Chrome Skull (Zero Gray Haze)",
+            "badge": "Zero Gray Clouding",
+            "position": "center right 18%"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "image_filename": "kroma-surfer-wave-studio.jpg",
+            "caption": "02/06 • Full-Scale Silver Surfer on Ocean Wave (Pier Sunset)",
+            "badge": "Full Figure Liquid Chrome",
+            "position": "center right 10%"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "image_filename": "kroma-helmet-mirror.jpg",
+            "caption": "03/06 • 99.4% Specular Mirror Racing Helmet (Standard 2K Clearcoat)",
+            "badge": "Standard 2K Clearcoat Applied",
+            "position": "center right 15%"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "image_filename": "kroma-detail-skull.jpg",
+            "caption": "04/06 • Liquid Metal Silver Surfer Front Profile (HVLP Applied)",
+            "badge": "HVLP 1.3mm Tip Applied",
+            "position": "center right 15%"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "image_filename": "kroma-detail-helmet.jpg",
+            "caption": "05/06 • Back Anatomy & Platelet Alignment Reflection",
+            "badge": "Self-Aligning Platelets",
+            "position": "center right 15%"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "image_filename": "flake-buggy-studio.jpg",
+            "caption": "06/06 • Custom Flake Sand Rail & Chassis (Coast Signature)",
+            "badge": "Coast Signature Flake Finish",
+            "position": "center right 10%"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+"""
+
+STOREFRONT_CATALOG_SECTION = """<div id="storefront-catalog-anchor" class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full py-12 flex-grow flex flex-col gap-6">
+  
+  <!-- Catalog Toolbar & Controls -->
+  <div class="bg-[#131315] border-2 border-[#242429] p-4 sm:p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] space-y-3">
+    <!-- Status Bar -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#242429] text-xs font-mono">
+      <div class="flex items-center gap-2">
+        <span class="bg-[#dc2626] text-white text-[9px] font-bold px-2 py-0.5 uppercase tracking-wider rounded-sm">OFFICIAL MASTER DISTRIBUTOR</span>
+        <span class="text-neutral-400 uppercase text-[11px] font-bold">{{ section.settings.heading | default: 'In-Stock Guns, Paints, Flakes & Tapes' }}</span>
+      </div>
+      <span class="font-mono text-[11px] bg-emerald-950/80 text-emerald-400 border border-emerald-700/80 px-2.5 py-0.5 font-bold self-start sm:self-auto rounded-sm">
+        {{ section.settings.badge_text | default: '⚡ 24/48H RAPID DISPATCH (UK & EU)' }}
+      </span>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-3 items-stretch lg:items-center justify-between">
+      
+      <!-- Search Bar -->
+      {% if section.settings.enable_search != false %}
+      <div class="relative flex-grow max-w-xl">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 text-[18px]">search</span>
+        <input id="input-shop-search" type="text" placeholder="Search by SKU, product name, flake micron, color..." class="w-full pl-9 pr-4 py-2.5 bg-[#0b0b0d] border border-[#242429] text-white rounded text-xs font-mono focus:border-[#dc2626] focus:outline-none">
+      </div>
+      {% endif %}
+
+      <!-- Brand & Category Quick Filter Pills -->
+      <div id="brand-filter-pills" class="flex items-center gap-1.5 flex-wrap font-mono text-xs">
+        <span class="text-neutral-400 font-bold uppercase text-[11px] mr-1 hidden sm:inline">Filter:</span>
+        
+        <!-- Render Customizer Blocks -->
+        {% for block in section.blocks %}
+          {% if block.type == 'category_filter' %}
+            {% assign b_type = block.settings.filter_type | default: 'brand' %}
+            {% assign b_val = block.settings.filter_value | default: 'all' %}
+            {% assign b_border = block.settings.border_color | default: '#242429' %}
+            <button 
+              {{ block.shopify_attributes }}
+              data-{{ b_type }}-val="{{ b_val }}" 
+              class="brand-pill{% if b_val == 'all' %} active{% endif %} px-3 py-1.5 border bg-black/60 text-white font-bold hover:border-[#dc2626] transition-colors cursor-pointer"
+              style="border-color: {{ b_border }};">
+              {{ block.settings.title | default: b_val | upcase }}
+            </button>
+          {% endif %}
+        {% endfor %}
+
+        <!-- Dynamic Shopify Collections -->
+        {% if section.settings.enable_dynamic_collections != false %}
+          {% for col in collections %}
+            {% unless col.handle == 'frontpage' or col.all_products_count == 0 %}
+              <button data-collection-handle="{{ col.handle }}" data-cat-val="{{ col.title | escape }}" class="brand-pill px-3 py-1.5 border border-[#242429] bg-black/60 text-neutral-400 hover:text-white hover:border-[#dc2626] transition-colors cursor-pointer">
+                {{ col.title | upcase }} ({{ col.all_products_count }})
+              </button>
+            {% endunless %}
+          {% endfor %}
+        {% endif %}
+      </div>
+
+      <!-- Sorter Dropdown & Reset -->
+      {% if section.settings.enable_sorting != false %}
+      <div class="flex items-center gap-2 flex-shrink-0 font-mono text-xs">
+        <span class="text-neutral-400 uppercase font-bold">Sort:</span>
+        <select id="select-shop-sort" class="bg-[#0b0b0d] border border-[#242429] text-white py-1.5 px-3 uppercase rounded focus:border-[#dc2626] focus:outline-none cursor-pointer">
+          <option value="popular">Popularity</option>
+          <option value="price-asc">Price: Low &rarr; High</option>
+          <option value="price-desc">Price: High &rarr; Low</option>
+          <option value="name">Name (A-Z)</option>
+        </select>
+
+        <button id="btn-reset-filters" class="border border-[#242429] hover:border-[#dc2626] text-neutral-400 hover:text-white px-2.5 py-2 uppercase transition-colors cursor-pointer flex items-center gap-1" title="Reset all filters">
+          <span class="material-symbols-outlined text-[14px]">refresh</span>
+          <span class="hidden sm:inline">Reset</span>
+        </button>
+      </div>
+      {% endif %}
+
+    </div>
+
+    <!-- Contextual Subcategory Bar (Dynamic: Flake Guns / Jigs / Flakes) -->
+    <div id="contextual-subcat-bar" class="hidden items-center gap-1.5 flex-wrap font-mono text-xs pt-2.5 border-t border-[#242429]"></div>
+  </div>
+
+  <!-- Results Count & Active Filter Tags -->
+  <div class="flex items-center justify-between text-xs font-mono text-neutral-400">
+    <span id="shop-results-count" class="font-bold uppercase text-white">Showing 57 Products</span>
+    <div id="active-filter-chips" class="flex items-center gap-1.5 flex-wrap">
+      <!-- Active filter tags appear here -->
+    </div>
+  </div>
+
+  <!-- Product Grid (Full Width 4-Column Responsive Grid) -->
+  <div id="storefront-product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
+    <!-- Product cards injected via JS -->
+  </div>
+
+</div>
+
+<!-- Shopify Live Catalog JSON Data for Client-Side Hydration -->
+<script id="shopify-catalog-data" type="application/json">
+[
+  {% paginate collections.all.products by 250 %}
+    {% for prod in collections.all.products %}
+      {
+        "id": {{ prod.id | json }},
+        "title": {{ prod.title | json }},
+        "name": {{ prod.title | json }},
+        "handle": {{ prod.handle | json }},
+        "vendor": {{ prod.vendor | json }},
+        "type": {{ prod.type | json }},
+        "price": {{ prod.price | divided_by: 100.0 | json }},
+        "compare_at_price": {{ prod.compare_at_price | divided_by: 100.0 | json }},
+        "available": {{ prod.available | json }},
+        "tags": {{ prod.tags | json }},
+        "description": {{ prod.description | strip_html | truncatewords: 50 | json }},
+        "images": [{% for img in prod.images %}{{ img | image_url: width: 800 | json }}{% unless forloop.last %},{% endunless %}{% endfor %}],
+        "specs": {
+          {% if prod.metafields.specs %}
+            {% for spec in prod.metafields.specs %}
+              {{ spec.first | json }}: {{ spec.last | json }}{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+          {% endif %}
+        },
+        "variants": [
+          {% for v in prod.variants %}
+            {
+              "id": {{ v.id | json }},
+              "title": {{ v.title | json }},
+              "sku": {{ v.sku | json }},
+              "price": {{ v.price | divided_by: 100.0 | json }},
+              "available": {{ v.available | json }}
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  {% endpaginate %}
+]
+</script>
+
+{% schema %}
+{
+  "name": "Storefront Catalog",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Catalog Heading",
+      "default": "In-Stock Guns, Paints, Flakes & Tapes"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Dispatch Badge",
+      "default": "⚡ 24/48H RAPID DISPATCH (UK & EU)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_search",
+      "label": "Enable Search Input",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "label": "Enable Sorting Dropdown",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_dynamic_collections",
+      "label": "Include Dynamic Collection Pills",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 12,
+      "max": 96,
+      "step": 4,
+      "label": "Products per Page",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_filter",
+      "name": "Category Filter Pill",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Pill Title",
+          "default": "Kroma Edge"
+        },
+        {
+          "type": "select",
+          "id": "filter_type",
+          "label": "Filter Type",
+          "options": [
+            { "value": "brand", "label": "Brand / Manufacturer" },
+            { "value": "cat", "label": "Product Category / Type" },
+            { "value": "tag", "label": "Product Tag" }
+          ],
+          "default": "brand"
+        },
+        {
+          "type": "text",
+          "id": "filter_value",
+          "label": "Filter Match Value",
+          "default": "Kroma Edge"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border Accent Color",
+          "default": "#242429"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Storefront Catalog",
+      "blocks": [
+        {
+          "type": "category_filter",
+          "settings": {
+            "title": "ALL",
+            "filter_type": "brand",
+            "filter_value": "all",
+            "border_color": "#dc2626"
+          }
+        },
+        {
+          "type": "category_filter",
+          "settings": {
+            "title": "KROMA EDGE",
+            "filter_type": "brand",
+            "filter_value": "Kroma Edge",
+            "border_color": "#0284c7"
+          }
+        },
+        {
+          "type": "category_filter",
+          "settings": {
+            "title": "IWATA / ATAWI",
+            "filter_type": "brand",
+            "filter_value": "Iwata",
+            "border_color": "#dc2626"
+          }
+        },
+        {
+          "type": "category_filter",
+          "settings": {
+            "title": "ACE OF SHADES",
+            "filter_type": "brand",
+            "filter_value": "Ace of Shades",
+            "border_color": "#f59e0b"
+          }
+        },
+        {
+          "type": "category_filter",
+          "settings": {
+            "title": "HYPER FX (CREATEX)",
+            "filter_type": "brand",
+            "filter_value": "Hyper FX",
+            "border_color": "#10b981"
+          }
+        },
+        {
+          "type": "category_filter",
+          "settings": {
+            "title": "LUMILOR",
+            "filter_type": "brand",
+            "filter_value": "LumiLor",
+            "border_color": "#a855f7"
+          }
+        },
+        {
+          "type": "category_filter",
+          "settings": {
+            "title": "CLEAN ARMOR",
+            "filter_type": "brand",
+            "filter_value": "Clean Armor",
+            "border_color": "#10b981"
+          }
+        },
+        {
+          "type": "category_filter",
+          "settings": {
+            "title": "FLAKE KING",
+            "filter_type": "brand",
+            "filter_value": "Flake King",
+            "border_color": "#242429"
+          }
+        },
+        {
+          "type": "category_filter",
+          "settings": {
+            "title": "VSIONAIR",
+            "filter_type": "brand",
+            "filter_value": "VsionAir",
+            "border_color": "#f59e0b"
+          }
+        },
+        {
+          "type": "category_filter",
+          "settings": {
+            "title": "CLEARCOAT KITS",
+            "filter_type": "cat",
+            "filter_value": "Dedicated Clearcoats",
+            "border_color": "#242429"
+          }
+        },
+        {
+          "type": "category_filter",
+          "settings": {
+            "title": "FLAKES (36)",
+            "filter_type": "cat",
+            "filter_value": "Dry Metal Flake (Glitter)",
+            "border_color": "#242429"
+          }
+        },
+        {
+          "type": "category_filter",
+          "settings": {
+            "title": "TAPES (6)",
+            "filter_type": "cat",
+            "filter_value": "Masking Products",
+            "border_color": "#242429"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+"""
+
+MIXING_CALCULATOR_SECTION = """{% if section.settings.show_calculator != false %}
+  <div id="view-calculator" class="tab-view flex-grow flex flex-col py-8 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full" style="display: none;">
+    <!-- Return to Storefront Quick-Link -->
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-3 bg-[#131315] border border-[#242429] p-3 rounded shadow-sm">
+      <button onclick="window.paintApp ? window.paintApp.switchTab('tab-storefront', 'view-storefront') : (document.getElementById('tab-storefront') && document.getElementById('tab-storefront').click());" class="bg-[#dc2626] hover:bg-[#b91c1c] text-white !py-2 !px-4 text-xs font-mono font-bold flex items-center gap-2 cursor-pointer shadow-md hover:brightness-110 transition-all rounded-sm">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        <span>RETURN TO PRODUCT STOREFRONT</span>
+      </button>
+      <div class="font-mono text-xs text-neutral-300 flex items-center gap-2">
+        <span class="text-emerald-400">✓ In-Booth Formulation Tool</span>
+        <span class="text-[#242429] hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Your active cart &amp; product selections remain saved</span>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div class="border-b-2 border-[#242429] pb-4 mb-8 flex flex-col sm:flex-row justify-between sm:items-end gap-4">
+      <div>
+        <div class="flex items-center gap-2 font-mono">
+          <span class="bg-[#dc2626] text-white text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider rounded-sm">{{ section.settings.badge_text | default: 'KROMAEDGE™ PRECISION LAB' }}</span>
+          <span class="bg-[#131315] border border-[#242429] text-neutral-300 text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider rounded-sm">OFFICIAL TDS BENCHMARKED</span>
+        </div>
+        <h2 class="font-headline text-2xl sm:text-3xl uppercase text-[#dc2626] mt-1.5 font-bold">{{ section.settings.heading | default: 'TDS MIXING MATRIX & PROJECT VOLUME ESTIMATOR' }}</h2>
+        <p class="font-mono text-xs text-neutral-400 mt-1 max-w-3xl">
+          {{ section.settings.subheading | default: 'Calibrated exclusively to official KromaEdge Technical Data Sheets (2 oz = 2 sq ft coverage). Select your formula below to calculate exact component volumes and digital scale tare targets.' }}
+        </p>
+      </div>
+      {% if section.settings.enable_scale_mode != false %}
+      <button id="btn-open-scale-mode-header" onclick="window.paintApp && window.paintApp.openScaleMode ? window.paintApp.openScaleMode() : null" class="bg-[#131315] border border-[#242429] text-white hover:border-[#dc2626] px-3 py-2 font-mono text-xs self-start sm:self-auto flex items-center gap-1.5 rounded-sm cursor-pointer">
+        <span class="material-symbols-outlined text-[16px] text-[#dc2626]">scale</span> DIGITAL SCALE MODE
+      </button>
+      {% endif %}
+    </div>
+
+    <!-- Streamlined Linear Mixing Suite (4-Step Painter's Flow) -->
+    <div class="space-y-6">
+      
+      <!-- STEP 1: SELECT COATING / PAINT SYSTEM -->
+      <div id="step-1-system-card" class="p-6 border-2 border-[#242429] bg-[#131315] rounded">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b-2 border-[#242429] gap-3">
+          <div>
+            <div class="flex items-center gap-2 mb-1 font-mono">
+              <span class="bg-[#dc2626] text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">STEP 1 OF 4</span>
+              <span class="bg-[#0b0b0d] text-neutral-400 text-[10px] border border-[#242429] px-2 py-0.5 rounded-sm">PAINT FORMULATION ENGINE</span>
+            </div>
+            <h3 class="font-headline text-lg sm:text-xl text-white uppercase font-bold">Select Coating / Paint System</h3>
+            <p class="font-mono text-xs text-neutral-400 mt-0.5">
+              Select your paint chemistry first. Each coating dictates exact coverage rates, coat count rules, pot life, and digital scale tare ratios.
+            </p>
+          </div>
+          <!-- SDS & TDS Quick Download Actions in Header -->
+          <div class="flex items-center gap-2 self-start sm:self-auto font-mono text-xs">
+            <button id="btn-calc-download-tds" class="bg-[#0b0b0d] border border-[#242429] hover:border-[#dc2626] hover:text-[#dc2626] text-neutral-300 px-3 py-1.5 uppercase transition-all flex items-center gap-1.5 cursor-pointer rounded-sm" title="Download Technical Data Sheet">
+              <span class="material-symbols-outlined text-[15px] text-sky-400">description</span>
+              <span>TDS SPEC</span>
+            </button>
+            <button id="btn-calc-download-sds" class="bg-[#0b0b0d] border border-[#242429] hover:border-[#dc2626] hover:text-[#dc2626] text-neutral-300 px-3 py-1.5 uppercase transition-all flex items-center gap-1.5 cursor-pointer rounded-sm" title="Download Safety Data Sheet">
+              <span class="material-symbols-outlined text-[15px] text-red-400">picture_as_pdf</span>
+              <span>REACH SDS</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Formula Grid -->
+        <div class="space-y-3 font-mono">
+          <label class="text-xs text-neutral-400 uppercase block font-bold">Active Storefront Coating Systems:</label>
+          <div id="mixing-systems-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+            <!-- Injected dynamically by JS -->
+          </div>
+          <select id="select-mixing-system" class="sr-only"></select>
+        </div>
+
+        <!-- Dynamic Live Spec & Surface Coverage Banner -->
+        <div id="system-description" class="mt-5 pt-4 border-t border-[#242429]">
+          <!-- Rendered dynamically by JS -->
+        </div>
+      </div>
+
+      <!-- STEP 2: PROJECT DIMENSIONS & BATCH VOLUME ESTIMATOR -->
+      <div id="project-estimator-card" class="p-6 border-2 border-[#242429] bg-[#131315] relative overflow-hidden rounded">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b-2 border-[#242429] gap-3">
+          <div>
+            <div class="flex items-center gap-2 mb-1 font-mono">
+              <span class="bg-[#dc2626] text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">STEP 2 OF 4</span>
+              <span class="bg-[#0b0b0d] text-neutral-400 text-[10px] border border-[#242429] px-2 py-0.5 rounded-sm">TDS-BENCHMARKED AREA &amp; VOLUME</span>
+            </div>
+            <h3 class="font-headline text-lg sm:text-xl text-white uppercase font-bold">Project Dimensions &amp; Batch Volume</h3>
+            <p class="font-mono text-xs text-neutral-400 mt-0.5">
+              Input physical measurements or select an automotive preset. Volume and scale recipes auto-calculate and live-sync below in real time.
+            </p>
+          </div>
+          
+          <!-- Unit Switcher -->
+          <div class="flex items-center gap-2 self-start sm:self-auto bg-[#0b0b0d] p-1.5 border border-[#242429] rounded">
+            <span class="font-mono text-[10px] text-neutral-400 uppercase font-bold px-1">Units:</span>
+            <div class="flex gap-1" id="estimator-unit-toggle">
+              <button type="button" id="btn-unit-imperial" class="px-2.5 py-1 text-xs font-mono font-bold bg-[#dc2626] text-white rounded transition-colors cursor-pointer shadow-sm">Imperial (In/Ft)</button>
+              <button type="button" id="btn-unit-metric" class="px-2.5 py-1 text-xs font-mono font-bold bg-[#131315] hover:bg-[#242429] text-neutral-400 hover:text-white rounded transition-colors cursor-pointer">Metric (Cm/M)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculation Mode Selector Tabs -->
+        <div class="flex flex-wrap gap-2 mb-5 pb-3 border-b border-[#242429]">
+          <button type="button" id="btn-calc-mode-box" class="px-3 py-1.5 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-[#dc2626]/20 border-[#dc2626] text-[#dc2626] flex items-center gap-1.5 shadow-sm">
+            <span class="material-symbols-outlined text-[16px]">view_in_ar</span>
+            <span>3D Object / Box (L × W × H)</span>
+          </button>
+          <button type="button" id="btn-calc-mode-panel" class="px-3 py-1.5 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-[#0b0b0d] border-[#242429] text-neutral-400 hover:text-white hover:border-neutral-400 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">crop_landscape</span>
+            <span>2D Flat Panel (L × W)</span>
+          </button>
+          <button type="button" id="btn-calc-mode-cylinder" class="px-3 py-1.5 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-[#0b0b0d] border-[#242429] text-neutral-400 hover:text-white hover:border-neutral-400 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">radio_button_checked</span>
+            <span>Cylinder / Tank / Helmet</span>
+          </button>
+          <button type="button" id="btn-calc-mode-preset" class="px-3 py-1.5 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-[#0b0b0d] border-[#242429] text-neutral-400 hover:text-white hover:border-neutral-400 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">directions_car</span>
+            <span>Automotive Preset</span>
+          </button>
+        </div>
+
+        <!-- Mode Input Rows -->
+        <div id="estimator-inputs-container" class="space-y-4">
+          <!-- Dynamically swapped by JS -->
+        </div>
+
+        <!-- Calculated Live Metrics Banner -->
+        <div class="mt-6 pt-5 border-t border-[#242429] grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-center">
+          <div class="p-3 bg-[#0b0b0d] border border-[#242429] rounded">
+            <span class="text-[10px] text-neutral-400 uppercase block font-bold">Total Surface Area</span>
+            <span id="metric-surface-area" class="text-lg font-bold text-white">0.00 sq ft</span>
+          </div>
+          <div class="p-3 bg-[#0b0b0d] border border-[#242429] rounded">
+            <span class="text-[10px] text-neutral-400 uppercase block font-bold">Recommended Coats</span>
+            <span id="metric-coat-count" class="text-lg font-bold text-[#dc2626]">2 Medium Wet</span>
+          </div>
+          <div class="p-3 bg-[#0b0b0d] border border-[#242429] rounded">
+            <span class="text-[10px] text-neutral-400 uppercase block font-bold">Target Volume (mL)</span>
+            <span id="metric-target-volume-ml" class="text-lg font-bold text-emerald-400">140 mL</span>
+          </div>
+          <div class="p-3 bg-[#0b0b0d] border border-[#242429] rounded">
+            <span class="text-[10px] text-neutral-400 uppercase block font-bold">Target Volume (Fl Oz)</span>
+            <span id="metric-target-volume-oz" class="text-lg font-bold text-sky-400">4.73 fl oz</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: DIGITAL SCALE TARE RATIO MATRIX -->
+      <div id="recipe-matrix-card" class="p-6 border-2 border-[#242429] bg-[#131315] rounded">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b-2 border-[#242429] gap-3">
+          <div>
+            <div class="flex items-center gap-2 mb-1 font-mono">
+              <span class="bg-[#dc2626] text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">STEP 3 OF 4</span>
+              <span class="bg-[#0b0b0d] text-neutral-400 text-[10px] border border-[#242429] px-2 py-0.5 rounded-sm">GRAM SCALE TARE FORMULA</span>
+            </div>
+            <h3 class="font-headline text-lg sm:text-xl text-white uppercase font-bold">Component Weights &amp; Ratios</h3>
+            <p class="font-mono text-xs text-neutral-400 mt-0.5">
+              Precision digital scale recipe. Place your mixing cup on the scale, tare between steps, and pour to cumulative weights.
+            </p>
+          </div>
+          <span id="formula-ratio-badge" class="font-mono text-xs bg-[#0b0b0d] border border-[#242429] text-[#dc2626] px-3 py-1 font-bold rounded">
+            RATIO: 4:1:1
+          </span>
+        </div>
+
+        <!-- Recipe Table -->
+        <div class="overflow-x-auto border border-[#242429] rounded">
+          <table class="w-full text-left font-mono text-xs">
+            <thead class="bg-[#0b0b0d] text-neutral-400 uppercase text-[11px] border-b border-[#242429]">
+              <tr>
+                <th class="p-3">Step</th>
+                <th class="p-3">Component</th>
+                <th class="p-3">Ratio %</th>
+                <th class="p-3">Volume</th>
+                <th class="p-3">Tare Target</th>
+                <th class="p-3">Cumulative Weight</th>
+              </tr>
+            </thead>
+            <tbody id="recipe-table-body" class="divide-y divide-[#242429] text-white">
+              <!-- Dynamically populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- STEP 4: APPLICATION PROTOCOL & TIMELINE -->
+      <div id="application-guide-card" class="p-6 border-2 border-[#242429] bg-[#131315] rounded">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b-2 border-[#242429] gap-3">
+          <div>
+            <div class="flex items-center gap-2 mb-1 font-mono">
+              <span class="bg-[#dc2626] text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">STEP 4 OF 4</span>
+              <span class="bg-[#0b0b0d] text-neutral-400 text-[10px] border border-[#242429] px-2 py-0.5 rounded-sm">TECHNICAL DATA SPECIFICATION</span>
+            </div>
+            <h3 class="font-headline text-lg sm:text-xl text-white uppercase font-bold">Application Protocol &amp; Timeline</h3>
+            <p class="font-mono text-xs text-neutral-400 mt-0.5">
+              Manufacturer flash times, spray gun nozzle sizing, recommended PSI, and full cure windows.
+            </p>
+          </div>
+        </div>
+
+        <div id="application-guide-timeline" class="space-y-4 font-mono text-xs">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Mixing Calculator",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_calculator",
+      "label": "Enable Mixing Calculator",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Calculator Heading",
+      "default": "TDS MIXING MATRIX & PROJECT VOLUME ESTIMATOR"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Calculator Subheading",
+      "default": "Calibrated exclusively to official KromaEdge Technical Data Sheets (2 oz = 2 sq ft coverage). Select your formula below to calculate exact component volumes and digital scale tare targets."
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Lab Badge Text",
+      "default": "KROMAEDGE™ PRECISION LAB"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_scale_mode",
+      "label": "Enable Digital Scale Mode Button",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mixing Calculator"
+    }
+  ]
+}
+{% endschema %}
+"""
+
+B2B_TRADE_PORTAL_SECTION = """{% if section.settings.show_portal %}
+<section class="w-full py-space-lg mb-space-xl px-margin-mobile md:px-margin bg-[#0b0b0d]">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="relative w-full rounded border border-[#242429] p-space-xl bg-[#131315] shadow-xl overflow-hidden">
+      <!-- Ambient Crimson Backing Flare -->
+      <div class="absolute -bottom-16 -left-16 w-80 h-80 bg-[#dc2626]/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg">
+        <!-- Text Group -->
+        <div class="flex-1 max-w-3xl space-y-space-sm">
+          <div class="flex items-center gap-space-xs font-mono text-xs uppercase tracking-wider text-[#dc2626] font-bold">
+            <span class="material-symbols-outlined text-[18px]">verified</span>
+            <span>Commercial Accounts &amp; Authorized Applicator Network</span>
+          </div>
+          <h2 class="font-headline text-2xl sm:text-3xl text-white tracking-tight font-bold">
+            {{ section.settings.heading | default: 'Run a Commercial Bodyshop, Custom Shop, or Paint Studio?' }}
+          </h2>
+          <p class="font-body text-sm sm:text-base text-neutral-300 leading-relaxed">
+            {{ section.settings.subheading | default: 'Apply for Trade Tier 1/2 Pricing, Automated VAT Reverse-Charging, Net-30 Invoicing, and Priority Chemical Hazmat Allocations across all European territories.' }}
+          </p>
+
+          <!-- MOV Threshold Badges -->
+          <div class="p-3 bg-[#0b0b0d] border border-[#242429] rounded font-mono text-xs text-neutral-300 space-y-1.5 my-2">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <span class="font-bold text-amber-400 uppercase text-[11px] flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">local_shipping</span> Tier 2 Trade Stockist MOV:
+              </span>
+              <span class="text-white font-bold">{{ section.settings.tier2_mov | default: '£500.00 / €550.00 ex-VAT (6-Unit Case MOQ)' }}</span>
+            </div>
+            <div class="flex items-center justify-between flex-wrap gap-2 border-t border-[#242429] pt-1">
+              <span class="font-bold text-emerald-400 uppercase text-[11px] flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">inventory_2</span> Tier 1 Regional Distributor MOV:
+              </span>
+              <span class="text-white font-bold">{{ section.settings.tier1_mov | default: '£2,000.00 / €2,500.00 ex-VAT (Pallet Allocation)' }}</span>
+            </div>
+          </div>
+
+          <!-- Quick Perk Pills -->
+          <div class="flex flex-wrap items-center gap-2 pt-1 font-mono text-xs text-white">
+            <span class="px-2.5 py-1 bg-[#1c1d22] rounded flex items-center gap-1.5 shadow-sm border border-[#242429]">
+              <span class="material-symbols-outlined text-[14px] text-emerald-400">check_circle</span>
+              Verified VAT Exemption (0% Reverse-Charge)
+            </span>
+            <span class="px-2.5 py-1 bg-[#1c1d22] rounded flex items-center gap-1.5 shadow-sm border border-[#242429]">
+              <span class="material-symbols-outlined text-[14px] text-emerald-400">check_circle</span>
+              Bulk Litre Drum Sourcing
+            </span>
+            <span class="px-2.5 py-1 bg-[#1c1d22] rounded flex items-center gap-1.5 shadow-sm border border-[#242429]">
+              <span class="material-symbols-outlined text-[14px] text-emerald-400">check_circle</span>
+              Dedicated Technical Chemist Support
+            </span>
+          </div>
+        </div>
+
+        <!-- Action Column -->
+        <div class="flex flex-col sm:flex-row lg:flex-col gap-2.5 shrink-0 w-full sm:w-auto">
+          <a href="{{ section.settings.button_link | default: '/pages/dealers' }}" class="h-11 px-6 bg-[#dc2626] hover:bg-[#b91c1c] active:scale-[0.98] text-white font-headline text-sm uppercase tracking-wider rounded flex items-center justify-center gap-2 shadow-md transition-all font-bold border border-[#dc2626] text-center">
+            <span class="material-symbols-outlined text-[18px]">domain</span>
+            <span>{{ section.settings.button_label | default: 'Apply for B2B Trade Account' }}</span>
+          </a>
+          <button onclick="window.openTradePortalModal && window.openTradePortalModal()" class="h-11 px-6 bg-[#0b0b0d] hover:bg-[#1c1d22] text-neutral-300 hover:text-white font-mono text-xs uppercase tracking-wider rounded flex items-center justify-center gap-2 transition-colors shadow-sm border border-[#242429] font-bold cursor-pointer">
+            <span>Existing Trade Login</span>
+            <span class="material-symbols-outlined text-[16px]">login</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "B2B Trade Portal",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_portal",
+      "label": "Show B2B Portal Banner",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Banner Heading",
+      "default": "Run a Commercial Bodyshop, Custom Shop, or Paint Studio?"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Banner Subheading",
+      "default": "Apply for Trade Tier 1/2 Pricing, Automated VAT Reverse-Charging, Net-30 Invoicing, and Priority Chemical Hazmat Allocations across all European territories."
+    },
+    {
+      "type": "text",
+      "id": "tier2_mov",
+      "label": "Tier 2 Minimum Order Value (MOV)",
+      "default": "£500.00 / €550.00 ex-VAT (6-Unit Case MOQ)"
+    },
+    {
+      "type": "text",
+      "id": "tier1_mov",
+      "label": "Tier 1 Minimum Order Value (MOV)",
+      "default": "£2,000.00 / €2,500.00 ex-VAT (Pallet Allocation)"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Action Button Label",
+      "default": "Apply for B2B Trade Account"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Action Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "B2B Trade Portal"
+    }
+  ]
+}
+{% endschema %}
+"""
+
+FOOTER_SECTION = """<footer class="w-full bg-[#0b0b0d] border-t border-[#242429] mt-space-xl">
+  <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-space-xl">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+      <!-- Col 1: Brand & Logistics -->
+      <div class="flex flex-col space-y-space-md">
+        <div class="flex items-center gap-3">
+          <img alt="{{ shop.name }}" class="h-8 md:h-9 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" src="{{ 'coast_logo_white.png' | asset_url }}" onerror="this.onerror=null; this.src='coast_logo_white.png';">
+          <span class="font-headline text-headline-sm uppercase tracking-wider text-[#dc2626] font-extrabold border-l border-[#242429] pl-3 text-sm md:text-base">Europe</span>
+        </div>
+        <p class="font-body text-xs sm:text-sm text-neutral-400 leading-relaxed">
+          {{ section.settings.brand_description | default: 'Engineered European distribution hub for professional custom automotive finishes, Iwata instrumentation, and Flake King pneumatic flake dispersal systems.' }}
+        </p>
+        
+        <!-- Warehouse Logistics Info -->
+        {% if section.settings.show_logistics_hub != false %}
+        <div class="font-mono text-[11px] text-neutral-400 space-y-1 bg-[#131315] p-2.5 rounded border border-[#242429]">
+          <div class="text-white font-bold uppercase text-[10px] tracking-wider mb-1 flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#dc2626]"></span> Dual European Fulfillment Hubs
+          </div>
+          <div>🇬🇧 <strong>UK Hub:</strong> {{ settings.uk_hub_address | default: 'Unit 4 Gateway Business Park, Basildon, Essex, SS14 3WB, United Kingdom' }}</div>
+          <div>🇳🇱 <strong>EU Hub:</strong> {{ settings.nl_hub_address | default: 'Distributieweg 18, 2645 EJ Delfgauw, Rotterdam Corridor, Netherlands' }}</div>
+          <div class="pt-1 text-neutral-300">✉️ {{ settings.support_email | default: 'support@coastairbrush.eu' }} • 📞 {{ settings.support_phone | default: '+44 (0) 1268 765 432' }}</div>
+        </div>
+        {% endif %}
+
+        <div class="flex flex-wrap items-center gap-space-sm pt-space-xs font-mono text-xs">
+          <div class="px-2 py-1 bg-[#131315] border border-[#242429] rounded text-white flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-[#dc2626]"></span>
+            <span>ADR Hazmat Certified</span>
+          </div>
+          <div class="px-2 py-1 bg-[#131315] border border-[#242429] rounded text-neutral-400">
+            <span>ISO 9001:2015</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 2: Product Lines -->
+      <div>
+        <h4 class="font-mono text-xs text-white uppercase tracking-wider mb-space-md pb-space-xs border-b border-[#242429]">Product Lines</h4>
+        <ul class="space-y-space-sm font-body text-xs sm:text-sm text-neutral-400">
+          <li class="hover:text-white transition-colors"><a href="#dept-guns">Atawi Precision Series Guns</a></li>
+          <li class="hover:text-white transition-colors"><a href="#dept-flake-king">Flake King Dry Systems</a></li>
+          <li class="hover:text-white transition-colors"><a href="#dept-kroma-edge">KromaEdge Mirror Chromes</a></li>
+          <li class="hover:text-white transition-colors"><a href="#dept-lumilor">LumiLor Electro-luminescent</a></li>
+          <li class="hover:text-white transition-colors"><a href="#dept-clean-armor">Clean Armor UV Hard Clears</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Safety & Compliance -->
+      <div>
+        <h4 class="font-mono text-xs text-white uppercase tracking-wider mb-space-md pb-space-xs border-b border-[#242429]">Safety &amp; Compliance</h4>
+        <ul class="space-y-space-sm font-body text-xs sm:text-sm text-neutral-400">
+          <li class="hover:text-white transition-colors"><a href="/pages/shipping">SDS &amp; Technical Library</a></li>
+          <li class="hover:text-white transition-colors"><a href="/pages/shipping">ADR Road Transport Protocols</a></li>
+          <li class="hover:text-white transition-colors"><a href="/pages/dealers">Authorized Distributors &amp; Bodyshops</a></li>
+          <li class="hover:text-white transition-colors"><a href="/pages/privacy-policy">EU REACH &amp; Privacy Compliance</a></li>
+          <li class="hover:text-white transition-colors"><a href="/pages/support">Support &amp; Dangerous Goods</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: B2B Trade & Exclusive Drops -->
+      <div>
+        <h4 class="font-mono text-xs text-white uppercase tracking-wider mb-space-md pb-space-xs border-b border-[#242429]">B2B Trade &amp; Exclusive Drops</h4>
+        <p class="font-body text-xs sm:text-sm text-neutral-400 mb-space-sm">Register authorized studio workshops for trade allocation pricing and batch drops.</p>
+        {% if section.settings.show_newsletter != false %}
+        <div class="flex flex-col space-y-space-xs">
+          {% form 'customer', class: 'flex gap-2' %}
+            <input type="hidden" name="contact[tags]" value="prospect, newsletter">
+            <input class="flex-1 h-10 px-3 bg-[#131315] border border-[#242429] rounded text-white font-mono text-xs placeholder:text-neutral-500 focus:outline-none focus:border-[#dc2626]" name="contact[email]" placeholder="pro.finisher@studio.eu" type="email" required>
+            <button type="submit" class="h-10 px-4 bg-[#dc2626] text-white font-mono text-xs uppercase rounded hover:bg-[#b91c1c] transition-colors shrink-0 cursor-pointer font-bold">Subscribe</button>
+          {% endform %}
+          <span class="font-mono text-[10px] text-neutral-500">Weekly allocation alerts. No spam.</span>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-[#242429] mt-space-xl pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-md font-mono text-xs text-neutral-400">
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+        <span>© 2026 Coast Airbrush Europe Ltd. All rights reserved. Registered VAT GB / EU IOSS.</span>
+        <a class="hover:text-white transition-colors" href="/pages/about">About Us</a>
+        <a class="hover:text-white transition-colors" href="/pages/support">Support</a>
+        <a class="hover:text-white transition-colors" href="/pages/privacy-policy">Privacy</a>
+        <a class="hover:text-white transition-colors" href="/pages/shipping">Shipping</a>
+        <a class="hover:text-white transition-colors" href="/pages/dealers">Dealers</a>
+        <button onclick="window.openAdminLogin && window.openAdminLogin()" class="hover:text-amber-400 transition-colors inline-flex items-center gap-1 font-mono text-[11px] cursor-pointer"><span class="material-symbols-outlined text-[14px]">admin_panel_settings</span> admin access</button>
+      </div>
+      <div class="flex items-center gap-space-md font-mono text-[11px] text-neutral-400">
+        <span>SECURE ENCRYPTED CHECKOUT</span>
+        <span>|</span>
+        <span class="text-amber-400 font-bold">UN1263 PAINT RELATED MATERIAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "brand_description",
+      "label": "Brand Description",
+      "default": "Engineered European distribution hub for professional custom automotive finishes, Iwata instrumentation, and Flake King pneumatic flake dispersal systems."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_logistics_hub",
+      "label": "Show Logistics Hub Addresses",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show Newsletter Signup",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer"
+    }
+  ]
+}
+{% endschema %}
+"""
+
+THEME_SECTIONS = {
+    "sections/announcement-bar.liquid": ANNOUNCEMENT_BAR_SECTION,
+    "sections/header.liquid": HEADER_SECTION,
+    "sections/hero-carousel.liquid": HERO_CAROUSEL_SECTION,
+    "sections/storefront-catalog.liquid": STOREFRONT_CATALOG_SECTION,
+    "sections/mixing-calculator.liquid": MIXING_CALCULATOR_SECTION,
+    "sections/b2b-trade-portal.liquid": B2B_TRADE_PORTAL_SECTION,
+    "sections/footer.liquid": FOOTER_SECTION
+}
+
 def extract_snippets():
     with open(os.path.join(ROOT_DIR, "index.html"), "r", encoding="utf-8") as f:
         html = f.read()
@@ -964,6 +2383,8 @@ def main():
                     zout.writestr(item, snippets[fname])
                 elif fname in PAGE_TEMPLATES:
                     zout.writestr(item, PAGE_TEMPLATES[fname])
+                elif fname in THEME_SECTIONS:
+                    zout.writestr(item, THEME_SECTIONS[fname])
                 elif fname == "assets/coast-storefront-bundle.js":
                     zout.writestr(item, bundle_code)
                 elif fname == "assets/styles.css":
@@ -992,6 +2413,13 @@ def main():
                     zout.writestr(tmpl_path, tmpl_content)
                     written_files.add(tmpl_path)
                     print(f"Added new template to theme zip: {tmpl_path}")
+
+            # Add newly created sections
+            for sec_path, sec_content in THEME_SECTIONS.items():
+                if sec_path not in written_files:
+                    zout.writestr(sec_path, sec_content)
+                    written_files.add(sec_path)
+                    print(f"Added new section to theme zip: {sec_path}")
 
             # Add core theme assets (logos, favicon)
             for zip_path, file_path in theme_assets.items():
