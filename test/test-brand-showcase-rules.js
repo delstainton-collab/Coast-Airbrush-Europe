@@ -19,7 +19,9 @@ const phantomIds = [
   "aos-super-shine-79-clear",
   "aos-prime-time-epoxy-primer",
   "anest-iwata-supernova-ws400",
-  "anest-iwata-lph400-lvlp"
+  "anest-iwata-lph400-lvlp",
+  "atawi-precision-airbrush",
+  "iwata-cm-b-takumi"
 ];
 
 phantomIds.forEach(id => {
@@ -74,8 +76,8 @@ const zeroCountBrands = BRANDS_MASTER.filter(b => getBrandProductCount(b, ECOM_C
 console.log(`  Active Brands with Products (${activeBrands.length}):`, activeBrands.map(b => `${b.name} (${getBrandProductCount(b, ECOM_CATALOG)} SKUs)`));
 console.log(`  Suppressed Brands with 0 Products (${zeroCountBrands.length}):`, zeroCountBrands.map(b => b.name));
 
-assert.strictEqual(activeBrands.length, 4, "Exactly 4 brands should have active products (Kroma Edge, Flake King, VsionAir, Iwata/Atawi)");
-assert.strictEqual(zeroCountBrands.length, 4, "Exactly 4 brands should have 0 products and be blocked from display (Ace of Shades, Hyper FX, LumiLor, Clean Armor)");
+assert.strictEqual(activeBrands.length, 3, "Exactly 3 brands should have active products (Kroma Edge, Flake King, VsionAir)");
+assert.strictEqual(zeroCountBrands.length, 5, "Exactly 5 brands should have 0 products and be blocked from display (Iwata, Ace of Shades, Hyper FX, LumiLor, Clean Armor)");
 
 // [Test 3] Verify Brand Logos in Brand Boxes
 console.log("\n[Test 3] Verifying Brand Logo paths for active brand boxes...");
@@ -98,6 +100,8 @@ const gridStart = html.indexOf('id="brands-showcase-grid"');
 const gridEnd = html.indexOf('</section>', gridStart);
 const gridHtml = html.substring(gridStart, gridEnd);
 
+assert(!gridHtml.includes("Anest Iwata"), "Anest Iwata box must NOT be displayed in brand grid");
+assert(!gridHtml.includes("iwata-atawi-logo.svg"), "Anest Iwata logo must NOT be present in brand grid");
 assert(!gridHtml.includes("Ace of Shades"), "Ace of Shades box must NOT be displayed in brand grid");
 assert(!gridHtml.includes("Hyper FX"), "Hyper FX box must NOT be displayed in brand grid");
 assert(!gridHtml.includes("LumiLor"), "LumiLor box must NOT be displayed in brand grid");
@@ -106,7 +110,6 @@ assert(!gridHtml.includes("Clean Armor"), "Clean Armor box must NOT be displayed
 assert(gridHtml.includes("kroma-edge-logo.svg"), "Kroma Edge logo must be present in brand box");
 assert(gridHtml.includes("flake-king-logo.svg"), "Flake King logo must be present in brand box");
 assert(gridHtml.includes("vsionair-logo.svg"), "VsionAir logo must be present in brand box");
-assert(gridHtml.includes("iwata-atawi-logo.svg"), "Anest Iwata logo must be present in brand box");
 console.log("✔ index.html verified: 0-product brands suppressed, active brand boxes contain Brand Logos.");
 
 console.log("\n=================================================================");

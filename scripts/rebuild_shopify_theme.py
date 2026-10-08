@@ -215,7 +215,7 @@ def transform_html_for_liquid(html):
     out = re.sub(r'href=["\'](?:\./)?shipping\.html(#[\w-]*)?["\']', r'href="/pages/shipping\1"', out)
     out = re.sub(r'href=["\'](?:\./)?privacy\.html(#[\w-]*)?["\']', r'href="/pages/privacy-policy\1"', out)
     out = re.sub(r'href=["\'](?:\./)?dealers\.html(#[\w-]*)?["\']', r'href="/pages/dealers\1"', out)
-    out = re.sub(r'href=["\'](?:\./)?product\.html(#[\w-]*)?["\']', r'href="/products/atawi-precision-detail-airbrush\1"', out)
+    out = re.sub(r'href=["\'](?:\./)?product\.html(#[\w-]*)?["\']', r'href="/products/flake-king-pro-series-kit\1"', out)
     out = re.sub(r'href=["\'](?:\./)?index\.html\?tab=admin["\']', r'href="/?tab=admin"', out)
     out = re.sub(r'href=["\'](?:\./)?index\.html(#[\w-]*)?["\']', r'href="/\1"', out)
 
@@ -1121,7 +1121,7 @@ PAGE_TEMPLATES = {
       pageTitle = 'Become an Authorized Dealer & Distributor | Coast Airbrush Europe';
     } else if (p.indexOf('product') !== -1) {
       target = 'product';
-      pageTitle = 'Atawi Precision Detail Airbrush (0.18mm) | Coast Airbrush Europe';
+      pageTitle = 'Flake King Pro Series Kit | Coast Airbrush Europe';
     }
 
     if (pageTitle) {
@@ -2000,10 +2000,19 @@ STOREFRONT_CATALOG_SECTION = """<div id="storefront-catalog-anchor" class="px-ma
         {
           "type": "category_filter",
           "settings": {
-            "title": "IWATA / ATAWI",
+            "title": "FLAKE KING",
             "filter_type": "brand",
-            "filter_value": "Iwata",
-            "border_color": "#dc2626"
+            "filter_value": "Flake King",
+            "border_color": "#ef4444"
+          }
+        },
+        {
+          "type": "category_filter",
+          "settings": {
+            "title": "VSIONAIR",
+            "filter_type": "brand",
+            "filter_value": "VsionAir",
+            "border_color": "#f59e0b"
           }
         },
         {
@@ -2513,7 +2522,7 @@ FOOTER_SECTION = """<footer class="w-full bg-[#0b0b0d] border-t border-[#242429]
       <div>
         <h4 class="font-mono text-xs text-white uppercase tracking-wider mb-space-md pb-space-xs border-b border-[#242429]">Product Lines</h4>
         <ul class="space-y-space-sm font-body text-xs sm:text-sm text-neutral-400">
-          <li class="hover:text-white transition-colors"><a href="#dept-guns">Atawi Precision Series Guns</a></li>
+          <li class="hover:text-white transition-colors"><a href="#dept-hardware">VsionAir Modular Workstations</a></li>
           <li class="hover:text-white transition-colors"><a href="#dept-flake-king">Flake King Dry Systems</a></li>
           <li class="hover:text-white transition-colors"><a href="#dept-kroma-edge">KromaEdge Mirror Chromes</a></li>
           <li class="hover:text-white transition-colors"><a href="#dept-lumilor">LumiLor Electro-luminescent</a></li>
