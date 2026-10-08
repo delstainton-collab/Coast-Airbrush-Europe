@@ -1,4 +1,7 @@
 import nodemailer from "nodemailer";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 export default async function handler(req, res) {
   // CORS Preflight
@@ -25,9 +28,57 @@ export default async function handler(req, res) {
       return res.status(400).json({ success: false, error: "A valid email address is required." });
     }
 
+    // 0. LOCAL BACKUP PERSISTENCE (if filesystem is writable)
+    try {
+      const __filename = fileURLToPath(import.meta.url);
+      const __dirname = path.dirname(__filename);
+      const subsFile = path.resolve(__dirname, "../../data/launch_subscribers.json");
+      const csvFile = path.resolve(__dirname, "../../data/launch_subscribers.csv");
+      
+      let subs = [];
+      if (fs.existsSync(subsFile)) {
+        try { subs = JSON.parse(fs.readFileSync(subsFile, "utf8")); } catch (e) { subs = []; }
+      }
+
+      const existing = subs.find(s => s.email === email);
+      const nowIso = new Date().toISOString();
+      if (existing) {
+        existing.lastSeenAt = nowIso;
+        if (firstName) existing.firstName = firstName;
+        if (lastName) existing.lastName = lastName;
+        if (focus) existing.focus = focus;
+      } else {
+        subs.unshift({
+          id: "vip_" + Date.now(),
+          firstName,
+          lastName,
+          email,
+          focus,
+          submittedAt: nowIso,
+          status: "confirmed_vip",
+          tags: ["pre-launch-vip", "european-launch"]
+        });
+      }
+
+      fs.writeFileSync(subsFile, JSON.stringify(subs, null, 2), "utf8");
+
+      const csvHeader = "First Name,Last Name,Email,Accepts Email Marketing,Tags,Note\n";
+      const csvRows = subs.map(s => {
+        const fn = `"${(s.firstName || '').replace(/"/g, '""')}"`;
+        const ln = `"${(s.lastName || '').replace(/"/g, '""')}"`;
+        const em = `"${(s.email || '').replace(/"/g, '""')}"`;
+        const tags = `"pre-launch-vip, european-launch"`;
+        const note = `"${(s.focus || '').replace(/"/g, '""')}"`;
+        return `${fn},${ln},${em},yes,${tags},${note}`;
+      }).join("\n");
+      fs.writeFileSync(csvFile, csvHeader + csvRows, "utf8");
+    } catch (fsErr) {
+      // Ignored in read-only serverless environments
+    }
+
     // 1. PUSH TO SHOPIFY CUSTOMER CRM
     const shopifyToken = process.env.SHOPIFY_ADMIN_TOKEN || "";
-    const shopDomain = process.env.SHOPIFY_STORE_DOMAIN || "coast-airbrush-eu-dev.myshopify.com";
+    const shopDomain = process.env.SHOPIFY_STORE_DOMAIN || "coast-airbrush-europe.myshopify.com";
 
     const customerUrl = `https://${shopDomain}/admin/api/2024-01/customers.json`;
     const payload = {
@@ -45,53 +96,84 @@ export default async function handler(req, res) {
       }
     };
 
-    let shopifyStatus = "created";
+    let shopifyStatus = "pending";
+    let shopifyIsSuccess = false;
+    let shopifyMessage = "";
 
-    try {
-      const sRes = await fetch(customerUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Shopify-Access-Token": shopifyToken
-        },
-        body: JSON.stringify(payload)
-      });
-
-      const sData = await sRes.json();
-
-      // If customer already exists, update tags
-      if (sRes.status === 422 && sData.errors && sData.errors.email) {
-        shopifyStatus = "existing_updated";
-        const searchUrl = `https://${shopDomain}/admin/api/2024-01/customers/search.json?query=email:${encodeURIComponent(email)}`;
-        const searchRes = await fetch(searchUrl, {
-          headers: { "X-Shopify-Access-Token": shopifyToken }
+    if (!shopifyToken) {
+      shopifyStatus = "missing_token";
+      shopifyMessage = "SHOPIFY_ADMIN_TOKEN is not configured in environment variables.";
+      console.warn("Shopify customer push skipped:", shopifyMessage);
+    } else {
+      try {
+        const sRes = await fetch(customerUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Shopify-Access-Token": shopifyToken
+          },
+          body: JSON.stringify(payload)
         });
-        const searchData = await searchRes.json();
-        if (searchData.customers && searchData.customers.length > 0) {
-          const cust = searchData.customers[0];
-          const existingTags = cust.tags ? cust.tags.split(",").map(t => t.trim()) : [];
-          if (!existingTags.includes("pre-launch-vip")) existingTags.push("pre-launch-vip");
-          if (!existingTags.includes("european-launch")) existingTags.push("european-launch");
 
-          await fetch(`https://${shopDomain}/admin/api/2024-01/customers/${cust.id}.json`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              "X-Shopify-Access-Token": shopifyToken
-            },
-            body: JSON.stringify({
-              customer: {
-                id: cust.id,
-                tags: existingTags.join(", "),
-                note: (cust.note ? cust.note + " | " : "") + (focus || "VIP Launch Lead")
-              }
-            })
+        const sData = await sRes.json().catch(() => ({}));
+
+        if (sRes.status === 201) {
+          shopifyStatus = "created";
+          shopifyIsSuccess = true;
+          shopifyMessage = "Created in Customers (Tags: pre-launch-vip, european-launch)";
+        } else if (sRes.status === 422 && sData.errors && sData.errors.email) {
+          // If customer already exists, update tags
+          const searchUrl = `https://${shopDomain}/admin/api/2024-01/customers/search.json?query=email:${encodeURIComponent(email)}`;
+          const searchRes = await fetch(searchUrl, {
+            headers: { "X-Shopify-Access-Token": shopifyToken }
           });
+          const searchData = await searchRes.json().catch(() => ({}));
+
+          if (searchRes.ok && searchData.customers && searchData.customers.length > 0) {
+            const cust = searchData.customers[0];
+            const existingTags = cust.tags ? cust.tags.split(",").map(t => t.trim()) : [];
+            if (!existingTags.includes("pre-launch-vip")) existingTags.push("pre-launch-vip");
+            if (!existingTags.includes("european-launch")) existingTags.push("european-launch");
+
+            const putRes = await fetch(`https://${shopDomain}/admin/api/2024-01/customers/${cust.id}.json`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                "X-Shopify-Access-Token": shopifyToken
+              },
+              body: JSON.stringify({
+                customer: {
+                  id: cust.id,
+                  tags: existingTags.join(", "),
+                  note: (cust.note ? cust.note + " | " : "") + (focus || "VIP Launch Lead")
+                }
+              })
+            });
+
+            if (putRes.ok) {
+              shopifyStatus = "existing_updated";
+              shopifyIsSuccess = true;
+              shopifyMessage = `Updated Existing Customer (Tags Added, ID: ${cust.id})`;
+            } else {
+              const putData = await putRes.json().catch(() => ({}));
+              shopifyStatus = "update_failed";
+              shopifyMessage = `Failed updating customer tags (HTTP ${putRes.status}: ${JSON.stringify(putData.errors || putData)})`;
+            }
+          } else {
+            shopifyStatus = "search_failed";
+            shopifyMessage = `Duplicate email found, but customer lookup failed (HTTP ${searchRes.status})`;
+          }
+        } else {
+          shopifyStatus = "api_error";
+          const errDetail = sData.errors ? JSON.stringify(sData.errors) : `HTTP ${sRes.status} ${sRes.statusText}`;
+          shopifyMessage = `Shopify API rejected creation: ${errDetail}`;
+          console.warn("Shopify push rejected:", shopifyMessage);
         }
+      } catch (shopifyErr) {
+        shopifyStatus = "network_error";
+        shopifyMessage = `Network error connecting to Shopify: ${shopifyErr.message}`;
+        console.warn("Shopify push error:", shopifyErr.message);
       }
-    } catch (shopifyErr) {
-      console.warn("Shopify push warning:", shopifyErr.message);
-      shopifyStatus = "error_skipped";
     }
 
     // 2. DISPATCH AUTOMATED EMAILS VIA GOOGLE WORKSPACE
@@ -195,7 +277,19 @@ export default async function handler(req, res) {
       </tr>
       <tr>
         <td style="padding: 8px 0; color: #94a3b8;">Shopify Sync:</td>
-        <td style="padding: 8px 0; color: #10b981; font-weight: bold;">${shopifyStatus === "created" ? "Created in Customers (Tags: pre-launch-vip, european-launch)" : "Updated Existing Customer"}</td>
+        <td style="padding: 8px 0;">
+          ${shopifyIsSuccess ? `
+            <span style="color: #10b981; font-weight: bold;">
+              ${shopifyStatus === "created" ? "✅ Created in Customers (Tags: pre-launch-vip, european-launch)" : "🔄 Updated Existing Customer (Tags Added)"}
+            </span>
+          ` : `
+            <div style="color: #ef4444; font-weight: bold;">⚠️ NOT SYNCED TO SHOPIFY</div>
+            <div style="font-size: 12px; color: #fca5a5; margin-top: 2px;">${shopifyMessage}</div>
+            <div style="font-size: 11px; color: #fbbf24; margin-top: 4px; background: rgba(245, 158, 11, 0.1); padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.3);">
+              ⚡ <strong>Action Needed:</strong> Add this customer manually in Shopify Admin using the details above, or verify SHOPIFY_ADMIN_TOKEN in Vercel settings.
+            </div>
+          `}
+        </td>
       </tr>
       <tr>
         <td style="padding: 8px 0; color: #94a3b8;">Registered At:</td>
@@ -238,7 +332,14 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       success: true,
-      message: "VIP priority allocation confirmed in Shopify and confirmation email dispatched.",
+      message: shopifyIsSuccess
+        ? "VIP priority allocation confirmed in Shopify and confirmation email dispatched."
+        : "VIP priority allocation recorded and confirmation email dispatched (Shopify sync pending).",
+      shopifySync: {
+        success: shopifyIsSuccess,
+        status: shopifyStatus,
+        message: shopifyMessage
+      },
       lead: { firstName, lastName, email, focus }
     });
   } catch (err) {

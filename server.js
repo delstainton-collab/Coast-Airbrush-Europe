@@ -944,13 +944,13 @@ export async function appHandler(req, res) {
       fs.writeFileSync(csvFile, csvHeader + csvRows, "utf8");
 
       // Optional Shopify API forward if token configured
-      syncToShopifyCustomer({ firstName, lastName, email, focus }).catch((err) => {
+      syncToShopifyCustomer({ firstName, lastName, email, focus }).then((shopifySync) => {
+        dispatchVipEmails({ firstName, lastName, email, focus, shopifySync }).catch((err) => {
+          console.warn("Email dispatch background error:", err);
+        });
+      }).catch((err) => {
         console.warn("Shopify customer push background error:", err);
-      });
-
-      // Dispatch automated VIP customer & admin alert emails
-      dispatchVipEmails({ firstName, lastName, email, focus }).catch((err) => {
-        console.warn("Email dispatch background error:", err);
+        dispatchVipEmails({ firstName, lastName, email, focus, shopifySync: { success: false, message: err.message } }).catch(() => {});
       });
 
       return sendJson(res, 200, {
@@ -965,9 +965,15 @@ export async function appHandler(req, res) {
 
   async function syncToShopifyCustomer({ firstName, lastName, email, focus }) {
     const shopifyToken = process.env.SHOPIFY_ADMIN_TOKEN || "";
-    const shopDomain = process.env.SHOPIFY_STORE_DOMAIN || "coast-airbrush-eu-dev.myshopify.com";
+    const shopDomain = process.env.SHOPIFY_STORE_DOMAIN || "coast-airbrush-europe.myshopify.com";
 
-    if (!shopifyToken || !shopDomain) return null;
+    if (!shopifyToken) {
+      return {
+        success: false,
+        status: "missing_token",
+        message: "SHOPIFY_ADMIN_TOKEN is not configured in environment variables."
+      };
+    }
 
     try {
       const url = `https://${shopDomain}/admin/api/2024-01/customers.json`;
@@ -995,19 +1001,28 @@ export async function appHandler(req, res) {
         body: JSON.stringify(payload)
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
+      if (response.status === 201) {
+        return {
+          success: true,
+          status: "created",
+          message: "Created in Customers (Tags: pre-launch-vip, european-launch)",
+          customer: data.customer
+        };
+      }
+
       if (response.status === 422 && data.errors && data.errors.email) {
         const searchUrl = `https://${shopDomain}/admin/api/2024-01/customers/search.json?query=email:${encodeURIComponent(email)}`;
         const searchRes = await fetch(searchUrl, {
           headers: { "X-Shopify-Access-Token": shopifyToken }
         });
-        const searchData = await searchRes.json();
-        if (searchData.customers && searchData.customers.length > 0) {
+        const searchData = await searchRes.json().catch(() => ({}));
+        if (searchRes.ok && searchData.customers && searchData.customers.length > 0) {
           const cust = searchData.customers[0];
           const existingTags = cust.tags ? cust.tags.split(",").map(t => t.trim()) : [];
           if (!existingTags.includes("pre-launch-vip")) existingTags.push("pre-launch-vip");
           if (!existingTags.includes("european-launch")) existingTags.push("european-launch");
-          await fetch(`https://${shopDomain}/admin/api/2024-01/customers/${cust.id}.json`, {
+          const putRes = await fetch(`https://${shopDomain}/admin/api/2024-01/customers/${cust.id}.json`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
@@ -1021,19 +1036,37 @@ export async function appHandler(req, res) {
               }
             })
           });
+          if (putRes.ok) {
+            return {
+              success: true,
+              status: "existing_updated",
+              message: `Updated Existing Customer (Tags Added, ID: ${cust.id})`
+            };
+          }
         }
       }
-      return data;
+
+      const errDetail = data.errors ? JSON.stringify(data.errors) : `HTTP ${response.status} ${response.statusText}`;
+      return {
+        success: false,
+        status: "api_error",
+        message: `Shopify API rejected creation: ${errDetail}`
+      };
     } catch (err) {
       console.warn("Shopify sync background error:", err);
-      return null;
+      return {
+        success: false,
+        status: "network_error",
+        message: `Network error connecting to Shopify: ${err.message}`
+      };
     }
   }
 
-  async function dispatchVipEmails({ firstName, lastName, email, focus }) {
+  async function dispatchVipEmails({ firstName, lastName, email, focus, shopifySync }) {
     const mailUser = process.env.GOOGLE_MAIL_USER || "admin@coastairbrush.eu";
     const mailPass = (process.env.GOOGLE_MAIL_PASS || "exsdvdoeogurifzf").replace(/\s+/g, "");
     const adminAlertRecipient = process.env.ADMIN_ALERT_EMAIL || "del@das64design.com, admin@coastairbrush.eu";
+    const shopDomain = process.env.SHOPIFY_STORE_DOMAIN || "coast-airbrush-europe.myshopify.com";
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -1041,6 +1074,9 @@ export async function appHandler(req, res) {
     });
 
     const displayName = firstName ? `${firstName} ${lastName}`.trim() : "Custom Artist";
+    const isSyncSuccess = shopifySync && shopifySync.success;
+    const syncStatus = shopifySync ? shopifySync.status : "skipped";
+    const syncMessage = shopifySync ? shopifySync.message : "Shopify push not configured";
 
     const customerHtml = `
 <!DOCTYPE html>
@@ -1125,12 +1161,28 @@ export async function appHandler(req, res) {
         <td style="padding: 8px 0; color: #f59e0b; font-weight: bold;">${focus}</td>
       </tr>
       <tr>
+        <td style="padding: 8px 0; color: #94a3b8;">Shopify Sync:</td>
+        <td style="padding: 8px 0;">
+          ${isSyncSuccess ? `
+            <span style="color: #10b981; font-weight: bold;">
+              ${syncStatus === "created" ? "✅ Created in Customers (Tags: pre-launch-vip, european-launch)" : "🔄 Updated Existing Customer"}
+            </span>
+          ` : `
+            <div style="color: #ef4444; font-weight: bold;">⚠️ NOT SYNCED TO SHOPIFY</div>
+            <div style="font-size: 12px; color: #fca5a5; margin-top: 2px;">${syncMessage}</div>
+            <div style="font-size: 11px; color: #fbbf24; margin-top: 4px; background: rgba(245, 158, 11, 0.1); padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.3);">
+              ⚡ <strong>Action Needed:</strong> Add this customer manually in Shopify Admin using the details above, or check SHOPIFY_ADMIN_TOKEN in environment variables.
+            </div>
+          `}
+        </td>
+      </tr>
+      <tr>
         <td style="padding: 8px 0; color: #94a3b8;">Registered At:</td>
         <td style="padding: 8px 0; color: #cbd5e1;">${new Date().toUTCString()}</td>
       </tr>
     </table>
     <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #334155;">
-      <a href="https://coast-airbrush-eu-dev.myshopify.com/admin/customers" style="display: inline-block; background: #0284c7; color: #ffffff; text-decoration: none; padding: 10px 18px; border-radius: 6px; font-size: 13px; font-weight: bold;">View Customers in Shopify Admin →</a>
+      <a href="https://${shopDomain}/admin/customers" style="display: inline-block; background: #0284c7; color: #ffffff; text-decoration: none; padding: 10px 18px; border-radius: 6px; font-size: 13px; font-weight: bold;">View Customers in Shopify Admin →</a>
     </div>
   </div>
 </body>
