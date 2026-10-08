@@ -10,7 +10,7 @@
     "freight:dev": "FREIGHT_BRIDGE_PORT=3015 node freight-bridge/server.js",
     "bom:dev": "BOM_PORT=3016 node bom-engine/server.js",
     "bom:summary": "node bom-engine/cli.js --summary",
-    "test:theme": "node test/test-theme-schema.js && node test/test-theme-sections.js && node test/test-theme-templates.js && node test/test-dynamic-specs-and-categories.js && node test/test-brand-showcase-rules.js && node --test test/test-partner-backdoor.js",
+    "test:theme": "node test/test-theme-schema.js && node test/test-theme-sections.js && node test/test-theme-templates.js && node test/test-dynamic-specs-and-categories.js && node test/test-category-dropdown.js && node test/test-brand-showcase-rules.js && node --test test/test-partner-backdoor.js",
     "test": "node test/test-core.js && node test/test-engine.js && node test/test-adapters.js && node test/test-services.js && node test/test-routes.js && node test/test-e2e.js && node test/test-tiers-mov.js && node bom-engine/test/test-bom-engine.js && node test/test-subscribe-flow.js && npm run test:theme",
     "build:theme": "python3 scripts/rebuild_shopify_theme.py"
   },

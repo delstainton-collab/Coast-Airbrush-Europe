@@ -637,6 +637,29 @@ body {
   transform: translate3d(0, 0, 0) !important;
 }
 
+/* Quick Mix Modal - Precision Performance Engineering Theme Overrides */
+#modal-quick-mix .modal-box {
+  background: #121215 !important;
+  border: 1px solid #27272a !important;
+  border-radius: 8px !important;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+}
+
+#modal-quick-mix ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+#modal-quick-mix ::-webkit-scrollbar-track {
+  background: #121215;
+}
+#modal-quick-mix ::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 3px;
+}
+#modal-quick-mix ::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
 /* Body lock & floating toast suppression during active modal sessions */
 body:has(.modal-overlay.active),
 body.modal-open {

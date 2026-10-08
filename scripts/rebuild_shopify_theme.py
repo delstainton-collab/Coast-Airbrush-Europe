@@ -9,6 +9,7 @@ MODULE_FILES = [
     "data/shopify_variant_map.js",
     "data/kroma_edge.js",
     "data/full_ecom_catalog.js",
+    "data/taxonomy.js",
     "data/brands_master.js",
     "data/flake_king_tds.js",
     "data/ace_of_shades.js",
@@ -586,162 +587,616 @@ PASSWORD_LAYOUT_LIQUID = """<!doctype html>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{{ shop.name }} - VIP Priority Launch Access</title>
+    <title>{{ shop.name }} - European Launch &amp; Kroma Edge Premiere</title>
     {{ content_for_header }}
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ 'styles.css' | asset_url }}">
+    <link rel="icon" type="image/x-icon" href="{{ 'favicon.ico' | asset_url }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ 'apple-touch-icon.png' | asset_url }}">
+    
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface": "#0b0b0d",
+              "surface-container-lowest": "#060608",
+              "surface-container-low": "#131315",
+              "surface-container": "#18181b",
+              "surface-container-high": "#242429",
+              "surface-container-highest": "#2e2e34",
+              "primary": "#dc2626",
+              "primary-container": "#991b1b",
+              "primary-dark": "#7f1d1d",
+              "secondary": "#a1a1aa",
+              "on-surface": "#f4f4f5",
+              "on-surface-variant": "#a1a1aa"
+            },
+            fontFamily: {
+              "headline": ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+              "body": ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+              "mono": ["JetBrains Mono", "monospace"]
+            }
+          }
+        }
+      }
+    </script>
     <style>
-      .static-bg-overlay {
-        background: linear-gradient(180deg, rgba(11, 11, 13, 0.88) 0%, rgba(11, 11, 13, 0.82) 40%, rgba(6, 6, 8, 0.94) 100%),
-                    url('{{ 'flake_buggy_hero.jpg' | asset_url }}') no-repeat center center fixed;
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: #0b0b0d;
+        color: #f4f4f5;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      .static-buggy-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(180deg, rgba(11, 11, 13, 0.78) 0%, rgba(11, 11, 13, 0.58) 40%, rgba(6, 6, 8, 0.88) 100%), 
+                    url('{{ 'flake_buggy_hero.jpg' | asset_url }}') no-repeat center center;
         background-size: cover;
+        z-index: 0;
+        pointer-events: none;
+        transform: translate3d(0, 0, 0);
+        will-change: transform;
+      }
+      .static-metal-sheen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.02) 100%);
+        z-index: 1;
+        pointer-events: none;
+      }
+      .welcome-card {
+        background: rgba(19, 19, 21, 0.90);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid #242429;
+        border-radius: 4px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+      }
+      .inner-panel {
+        background: rgba(11, 11, 13, 0.80);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid #242429;
+        border-radius: 4px;
+      }
+      .red-accent-rule {
+        height: 2px;
+        background: linear-gradient(90deg, #dc2626 0%, rgba(220, 38, 38, 0.3) 60%, transparent 100%);
+      }
+      .text-shadow-contrast {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95), 0 0 12px rgba(0, 0, 0, 0.8);
+      }
+      .mech-btn-primary {
+        background-color: #dc2626;
+        color: #ffffff;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 700;
+        transition: all 0.2s ease;
+        border-radius: 2px;
+      }
+      .mech-btn-primary:hover {
+        background-color: #b91c1c;
       }
     </style>
   </head>
-  <body class="static-bg-overlay bg-[#0b0b0d] text-white min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white relative font-sans">
+  <body class="flex flex-col justify-between selection:bg-red-600 selection:text-white relative font-sans">
+    <div class="static-buggy-bg"></div>
+    <div class="static-metal-sheen"></div>
     {{ content_for_layout }}
   </body>
 </html>
 """
 
-PASSWORD_TEMPLATE_LIQUID = """<div class="w-full flex-grow flex flex-col justify-center items-center py-10 px-4 sm:px-6 relative z-10">
-  <div class="max-w-xl w-full p-6 sm:p-10 bg-[#131315]/95 backdrop-blur-xl border border-[#242429] shadow-2xl rounded-sm text-center space-y-6 my-auto">
-    
-    <!-- Brand Logo -->
-    <div class="flex justify-center">
-      <img src="{{ 'coast_logo_white.png' | asset_url }}" alt="Coast Airbrush Europe" class="h-11 sm:h-13 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-    </div>
-    
-    <!-- Live Launch Status Badge -->
-    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded bg-black/60 border border-[#dc2626]/60 text-red-500 font-mono text-[11px] font-bold uppercase tracking-widest shadow-sm">
-      <span class="w-2 h-2 rounded-full bg-[#dc2626] animate-pulse"></span>
-      Official European Hub • Opening Soon
+PASSWORD_TEMPLATE_LIQUID = """<!-- Header (Clean Branding Bar with Partner Backdoor Trigger) -->
+<header class="w-full border-b border-[#242429] bg-[#0b0b0d]/90 backdrop-blur-md sticky top-0 z-30">
+  <div class="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <a href="#subscribe-form" class="flex items-center gap-2" title="Coast Airbrush Europe">
+        <img src="{{ 'coast_logo_white.png' | asset_url }}" alt="Coast Airbrush Europe" class="h-8 md:h-9 w-auto object-contain">
+        <span class="bg-[#dc2626] text-white text-[9px] font-mono font-bold tracking-widest px-1.5 py-0.5 rounded-sm uppercase">EUROPE</span>
+      </a>
     </div>
 
-    <!-- Hero Title & Value Proposition -->
-    <div class="space-y-2.5">
-      <h1 class="font-headline text-2xl sm:text-3xl uppercase text-white font-bold tracking-tight">
-        VIP Priority Early Access
-      </h1>
-      <p class="text-xs sm:text-sm text-neutral-300 font-body leading-relaxed max-w-lg mx-auto">
-        Coast Airbrush Europe brings legendary American custom paint systems direct to UK & European painters. Doors unlock soon. Register below for <strong class="text-white font-semibold">24-hour priority allocation</strong> on the initial batch of Kroma Edge mirror chrome &amp; Flake King systems before public release.
-      </p>
-    </div>
+    <div class="flex items-center gap-2 sm:gap-3 font-mono text-[11px] sm:text-xs">
+      <span class="hidden md:inline text-white/80 tracking-wider text-shadow-contrast">
+        🇬🇧 UK DISPATCH • REACH COMPLIANT
+      </span>
+      <span class="hidden md:inline text-white/30">•</span>
 
-    <!-- Trust & Fulfillment Badges -->
-    <div class="grid grid-cols-3 gap-2 py-1 font-mono text-[10px] sm:text-[11px]">
-      <div class="p-2 rounded bg-black/50 border border-[#242429] text-neutral-200 flex flex-col items-center justify-center">
-        <span class="text-base sm:text-lg mb-0.5">🇬🇧 🇳🇱</span>
-        <span class="font-bold">UK &amp; EU Dispatch</span>
-      </div>
-      <div class="p-2 rounded bg-black/50 border border-[#242429] text-neutral-200 flex flex-col items-center justify-center">
-        <span class="text-base sm:text-lg mb-0.5">🛡️</span>
-        <span class="font-bold">REACH Compliant</span>
-      </div>
-      <div class="p-2 rounded bg-black/50 border border-[#242429] text-neutral-200 flex flex-col items-center justify-center">
-        <span class="text-base sm:text-lg mb-0.5">⚡</span>
-        <span class="font-bold">Zero US Customs</span>
-      </div>
-    </div>
-
-    <!-- Primary Form: Customer Lead Capture to Shopify Customers -->
-    {% form 'customer', class: 'space-y-4 text-left pt-2' %}
-      {{ form.errors | default_errors }}
-      
-      {% if form.posted_successfully? %}
-        <div class="p-6 bg-black/80 border-2 border-emerald-500 rounded text-center space-y-3">
-          <div class="w-12 h-12 rounded-full bg-emerald-950 border border-emerald-500 text-emerald-400 flex items-center justify-center mx-auto">
-            <span class="material-symbols-outlined text-2xl">verified</span>
-          </div>
-          <h3 class="font-headline text-lg uppercase text-white font-bold tracking-wide">
-            You're on the VIP Allocation List!
-          </h3>
-          <p class="font-mono text-xs text-neutral-300">
-            We have reserved your early access alert. You will receive a direct access link 24 hours before doors open to the general public.
-          </p>
-          <div class="pt-2">
-            <span class="font-mono text-[11px] text-emerald-400 font-bold bg-emerald-950/60 px-3 py-1 rounded border border-emerald-500/40">
-              Priority Status: Activated
-            </span>
-          </div>
-        </div>
-      {% else %}
-        <input type="hidden" name="contact[tags]" value="prospect, pre-launch-vip, european-launch">
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label for="VIPFirstName" class="block font-mono text-[11px] uppercase tracking-wider text-neutral-300 mb-1">First Name</label>
-            <input type="text" name="contact[first_name]" id="VIPFirstName" class="w-full bg-[#0b0b0d] border border-[#242429] px-3.5 py-2.5 text-xs font-mono text-white rounded-sm focus:border-[#dc2626] focus:outline-none placeholder:text-neutral-600" placeholder="e.g. Marcus" required>
-          </div>
-          <div>
-            <label for="VIPLastName" class="block font-mono text-[11px] uppercase tracking-wider text-neutral-300 mb-1">Last Name</label>
-            <input type="text" name="contact[last_name]" id="VIPLastName" class="w-full bg-[#0b0b0d] border border-[#242429] px-3.5 py-2.5 text-xs font-mono text-white rounded-sm focus:border-[#dc2626] focus:outline-none placeholder:text-neutral-600" placeholder="e.g. Vance" required>
-          </div>
-        </div>
-
-        <div>
-          <label for="VIPEmail" class="block font-mono text-[11px] uppercase tracking-wider text-neutral-300 mb-1">Email Address</label>
-          <input type="email" name="contact[email]" id="VIPEmail" class="w-full bg-[#0b0b0d] border border-[#242429] px-3.5 py-2.5 text-xs font-mono text-white rounded-sm focus:border-[#dc2626] focus:outline-none placeholder:text-neutral-600" placeholder="painter@customshop.com" required>
-        </div>
-
-        <div>
-          <label for="VIPRole" class="block font-mono text-[11px] uppercase tracking-wider text-neutral-300 mb-1">Painter / Trade Focus (Optional)</label>
-          <select name="contact[note]" id="VIPRole" class="w-full bg-[#0b0b0d] border border-[#242429] px-3.5 py-2.5 text-xs font-mono text-white rounded-sm focus:border-[#dc2626] focus:outline-none">
-            <option value="Custom Automotive &amp; Motorcycle Painting">Custom Automotive &amp; Motorcycle Painting</option>
-            <option value="Airbrush &amp; Fine Art Refinishing">Airbrush &amp; Fine Art Refinishing</option>
-            <option value="Commercial Body Shop / Trade Dealer">Commercial Body Shop / Trade Dealer</option>
-            <option value="Model / Scale &amp; Hobbyist">Model / Scale &amp; Hobbyist</option>
-          </select>
-        </div>
-
-        <button type="submit" class="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white font-mono font-bold text-xs uppercase py-3.5 px-6 rounded-sm shadow-sm transition-all cursor-pointer flex items-center justify-center gap-2 tracking-wider">
-          <span class="material-symbols-outlined text-[16px]">notifications_active</span>
-          <span>Secure My VIP Priority Allocation &rarr;</span>
-        </button>
-
-        <div class="flex items-center justify-center gap-1.5 text-[11px] font-mono text-neutral-400 pt-1 text-center">
-          <span class="material-symbols-outlined text-[13px] text-red-400">shield</span>
-          <span>Zero spam. Direct launch alert &amp; first batch access link only.</span>
-        </div>
-      {% endif %}
-    {% endform %}
-
-    <!-- Staff & Trade Partner Gate (Storefront Password Unlock) -->
-    <div class="pt-6 border-t border-white/10 space-y-3">
-      <button type="button" onclick="const sec = document.getElementById('staff-password-section'); sec.classList.toggle('hidden');" class="font-mono text-xs text-neutral-300 hover:text-white flex items-center justify-center gap-1.5 mx-auto transition-colors cursor-pointer bg-[#18181b] border border-[#242429] hover:border-[#dc2626] px-3.5 py-1.5 rounded-sm shadow-sm">
-        <span class="material-symbols-outlined text-[15px] text-amber-400">vpn_key</span>
+      <!-- Trade Partner & VIP Storefront Access Passcode Trigger -->
+      <button type="button" onclick="openPartnerBackdoorModal()" class="px-2.5 py-1.5 rounded-sm bg-[#131315] hover:bg-[#18181b] border border-[#242429] hover:border-[#dc2626] text-neutral-300 hover:text-white transition-all cursor-pointer font-mono text-[11px] tracking-wider uppercase flex items-center gap-1.5 shadow-sm" title="Trade Partner &amp; VIP Storefront Access">
+        <span class="material-symbols-outlined text-[14px] text-amber-400">vpn_key</span>
         <span>Trade Partner &amp; VIP Storefront Access</span>
       </button>
 
-      <div id="staff-password-section" class="{% if form.errors %}block{% else %}hidden{% endif %} p-4 bg-black/70 border border-[#242429] rounded-sm space-y-3 text-left">
-        <p class="font-mono text-[11px] text-neutral-300">
-          Authorized trade partners, distributors, and preview evaluators: enter your storefront password below to unlock the full catalog.
-        </p>
-        {% form 'storefront_password', class: 'space-y-3' %}
-          {{ form.errors | default_errors }}
-          <div class="flex flex-col sm:flex-row gap-2">
-            <input type="password" name="password" id="Password" class="flex-grow bg-[#0c0e0e] border border-neutral-600 px-3.5 py-2.5 text-xs font-mono text-white rounded-sm focus:border-[#dc2626] focus:outline-none" placeholder="Enter Storefront Password" required>
-            <button type="submit" class="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-mono font-bold text-xs uppercase px-4 py-2.5 rounded-sm transition-all cursor-pointer whitespace-nowrap">
-              Unlock &rarr;
-            </button>
-          </div>
-        {% endform %}
+      <!-- Public VIP Email Registration -->
+      <a href="#subscribe-form" class="mech-btn-primary !py-1.5 !px-3 text-[11px] font-mono font-bold tracking-wider uppercase flex items-center gap-1.5 transition-all shadow-sm" title="Register for VIP Launch Allocation">
+        <span class="material-symbols-outlined text-[14px]">notifications_active</span>
+        <span class="hidden sm:inline">Register VIP</span>
+        <span class="sm:hidden">VIP</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Main Floating Promotional Story -->
+<main class="w-full flex-grow flex flex-col justify-center items-center py-12 sm:py-20 px-4 sm:px-6 relative z-10">
+  <article class="welcome-card w-full max-w-3xl p-6 sm:p-12 space-y-12 rounded-sm my-auto">
+    
+    <!-- SECTION 1: ABOUT COAST AIRBRUSH EUROPE -->
+    <section class="space-y-4">
+      <div class="flex items-center justify-between flex-wrap gap-2">
+        <div class="font-mono text-xs font-bold uppercase tracking-widest text-[#dc2626] flex items-center gap-2 bg-black/60 px-3 py-1 rounded border border-[#dc2626]/40">
+          <span class="inline-block w-2 h-2 rounded-full bg-[#dc2626] animate-pulse"></span>
+          Official European Operations
+        </div>
+        <span class="font-mono text-[11px] text-white/80 text-shadow-contrast font-bold">EST. 2026</span>
       </div>
 
-      <div class="pt-2 text-[11px] font-mono text-neutral-500 text-center">
+      <h1 class="font-headline text-3xl sm:text-5xl uppercase text-white tracking-tight leading-tight text-shadow-contrast font-bold">
+        About Coast Airbrush Europe
+      </h1>
+
+      <p class="font-headline text-lg sm:text-2xl text-[#dc2626] font-medium tracking-wide text-shadow-contrast">
+        Precision Engineering. Personal Support. No Compromises.
+      </p>
+
+      <div class="red-accent-rule"></div>
+
+      <p class="text-base sm:text-lg text-white leading-relaxed font-normal pt-1 text-shadow-contrast">
+        Coast Airbrush Europe brings the legendary heritage of American custom paint craftsmanship direct to European painters and refinishers. We are redefining the custom painting standard with proprietary, market-leading equipment backed by genuine human expertise before, during, and after every purchase.
+      </p>
+
+      <!-- Trust Badges Grid -->
+      <div class="grid grid-cols-3 gap-2 pt-2 font-mono text-[10px] sm:text-[11px]">
+        <div class="p-2.5 rounded bg-black/60 border border-[#242429] text-neutral-200 flex flex-col items-center justify-center">
+          <span class="text-base sm:text-lg mb-0.5">🇬🇧 🇳🇱</span>
+          <span class="font-bold">UK &amp; EU Dispatch</span>
+        </div>
+        <div class="p-2.5 rounded bg-black/60 border border-[#242429] text-neutral-200 flex flex-col items-center justify-center">
+          <span class="text-base sm:text-lg mb-0.5">🛡️</span>
+          <span class="font-bold">REACH Compliant</span>
+        </div>
+        <div class="p-2.5 rounded bg-black/60 border border-[#242429] text-neutral-200 flex flex-col items-center justify-center">
+          <span class="text-base sm:text-lg mb-0.5">⚡</span>
+          <span class="font-bold">Zero US Customs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: EXCLUSIVE PRODUCT ROLLOUT -->
+    <section class="space-y-3">
+      <h2 class="font-headline text-xl sm:text-2xl uppercase text-white tracking-tight text-shadow-contrast font-bold">
+        Exclusive Product Rollout: <span class="text-neutral-400">The Next 6 Months</span>
+      </h2>
+
+      <div class="red-accent-rule"></div>
+
+      <p class="text-sm sm:text-base text-white/95 leading-relaxed font-light text-shadow-contrast">
+        Over the next six months, we are launching an exclusive lineup of groundbreaking, professional-grade products found nowhere else. We reject generic clones and faceless marketplaces to bring you purpose-built innovations that protect your craft and elevate your finish.
+      </p>
+    </section>
+
+    <!-- SECTION 3: PHASE 1 LAUNCH: THE KROMAEDGE SPRAYABLE CHROME SYSTEM -->
+    <section class="space-y-4">
+      <div class="space-y-1">
+        <div class="font-mono text-xs text-[#dc2626] font-bold uppercase tracking-wider text-shadow-contrast">
+          PHASE 1 LAUNCH
+        </div>
+        <h2 class="font-headline text-xl sm:text-2xl uppercase text-white tracking-tight text-shadow-contrast font-bold">
+          The Kromaedge Sprayable Chrome System
+        </h2>
+      </div>
+
+      <div class="red-accent-rule"></div>
+
+      <p class="text-sm sm:text-base text-white/95 leading-relaxed font-light text-shadow-contrast">
+        We are excited to announce that the very first release in Europe is the revolutionary <strong class="text-white font-semibold">Kromaedge</strong> product line. Engineered for deep, liquid-mirror reflections, superior atomization, and flawless edge-to-edge application, Kromaedge sets a new benchmark in sprayable chrome technology.
+      </p>
+
+      <!-- Product Visual Showcase Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+        <!-- Card 1: Kroma Edge Mirror Specimen -->
+        <div class="inner-panel rounded overflow-hidden border border-white/20 bg-black/60 flex flex-col group">
+          <div class="relative h-44 overflow-hidden bg-black/80 flex items-center justify-center">
+            <img src="{{ 'kroma-skull-studio-dark.jpg' | asset_url }}" alt="Kroma Edge Mirror Chrome Specimen" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <span class="absolute top-2 left-2 bg-black/80 border border-[#dc2626]/50 text-[#dc2626] font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase">
+              ✦ 99.4% Reflection
+            </span>
+            <span class="absolute bottom-2 right-2 bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded">
+              Zero Groundcoat Required
+            </span>
+          </div>
+          <div class="p-3.5 space-y-1">
+            <h4 class="font-headline text-sm uppercase text-white font-bold">Kroma Edge™ Mirror Chrome 2K System</h4>
+            <p class="font-mono text-xs text-neutral-300">Self-organizing optical coating. Direct chemical bond to plastic, resin, aluminum &amp; steel.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Kroma Edge 4-Part System Kit -->
+        <div class="inner-panel rounded overflow-hidden border border-white/20 bg-black/60 flex flex-col group">
+          <div class="relative h-44 overflow-hidden bg-black/80 flex items-center justify-center p-2">
+            <img src="{{ 'kroma-detail-skull.jpg' | asset_url }}" alt="Kroma Edge Complete 4-Part Kit" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <span class="absolute top-2 left-2 bg-black/80 border border-amber-500/50 text-amber-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase">
+              Complete 4-Part System
+            </span>
+            <span class="absolute bottom-2 right-2 bg-black/80 border border-white/30 text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded">
+              140g &rarr; 10kg Kits
+            </span>
+          </div>
+          <div class="p-3.5 space-y-1">
+            <h4 class="font-headline text-sm uppercase text-white font-bold">Complete 4-Part Formulated Kit</h4>
+            <p class="font-mono text-xs text-neutral-300">Pre-measured Binder, Reducer, Hardener &amp; Optical Mirror Seeds with precision mixing ratio.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flake King & Hardware Product Row -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+        <!-- Subcard 1: Flake King Flake Gun -->
+        <div class="inner-panel p-2.5 rounded border border-white/15 bg-black/40 flex items-center gap-3">
+          <img src="{{ 'flake-buggy-studio.jpg' | asset_url }}" alt="Flake King Dry Flake Gun" class="w-14 h-14 object-cover rounded flex-shrink-0 border border-white/20">
+          <div class="min-w-0">
+            <div class="font-headline text-xs uppercase text-white font-bold truncate">Flake King™ Dry Guns</div>
+            <div class="font-mono text-[11px] text-[#dc2626]">36 Metal Flakes Dropping</div>
+          </div>
+        </div>
+
+        <!-- Subcard 2: Basecoats & Binders -->
+        <div class="inner-panel p-2.5 rounded border border-white/15 bg-black/40 flex items-center gap-3">
+          <img src="{{ 'fk100-prime-black-base.jpg' | asset_url }}" alt="FK100 Prime Black Base" class="w-14 h-14 object-contain rounded flex-shrink-0 border border-white/20 bg-black">
+          <div class="min-w-0">
+            <div class="font-headline text-xs uppercase text-white font-bold truncate">Basecoats &amp; Binders</div>
+            <div class="font-mono text-[11px] text-emerald-400">FK50, FK55 &amp; FK100</div>
+          </div>
+        </div>
+
+        <!-- Subcard 3: Fine-Line Tapes -->
+        <div class="inner-panel p-2.5 rounded border border-white/15 bg-black/40 flex items-center gap-3">
+          <img src="{{ 'flake-king-orange-mixed-set.jpg' | asset_url }}" alt="Flake King Fine Line Masking Tape" class="w-14 h-14 object-contain rounded flex-shrink-0 border border-white/20 bg-black">
+          <div class="min-w-0">
+            <div class="font-headline text-xs uppercase text-white font-bold truncate">Fine Line Tapes</div>
+            <div class="font-mono text-[11px] text-amber-400">Green &amp; Orange Sets</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Promotional Status Notice & Actions -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
+        <div class="font-mono text-xs font-bold text-[#dc2626] flex items-center gap-2 text-shadow-contrast">
+          <span class="material-symbols-outlined text-[18px]">verified</span>
+          <span>European Premiere • Direct UK &amp; Netherlands Dispatch</span>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" onclick="openPartnerBackdoorModal()" class="px-3.5 py-2 rounded-sm bg-[#131315] hover:bg-[#18181b] border border-[#242429] hover:border-[#dc2626] text-neutral-200 hover:text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-sm" title="Trade Partner &amp; VIP Storefront Access">
+            <span class="material-symbols-outlined text-[15px] text-amber-400">vpn_key</span>
+            <span>Partner Catalog Preview</span>
+          </button>
+          <a href="#subscribe-form" class="mech-btn-primary !py-2 !px-4 text-xs font-mono font-bold tracking-wider flex items-center justify-center gap-1.5 shadow-sm uppercase text-white whitespace-nowrap transition-all" title="Register to Reserve Your Launch Allocation">
+            <span class="material-symbols-outlined text-[15px]">notifications_active</span>
+            <span>Register Allocation</span>
+            <span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: STAY AHEAD OF THE LAUNCH -->
+    <section class="space-y-4">
+      <h2 class="font-headline text-xl sm:text-2xl uppercase text-white tracking-tight text-shadow-contrast font-bold">
+        Stay Ahead of the Launch
+      </h2>
+
+      <div class="red-accent-rule"></div>
+
+      <div class="space-y-3 text-sm sm:text-base text-white/95 leading-relaxed font-light text-shadow-contrast">
+        <p>
+          Don't miss a single drop as our European rollout unfolds. Register below for early access alerts, priority product allocation, and direct technical updates.
+        </p>
+      </div>
+
+      <!-- Lead Capture Form to Native Shopify Customers -->
+      <div class="inner-panel p-5 sm:p-6 rounded space-y-4 shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)] border border-[#242429]">
+        {% form 'customer', id: 'subscribe-form', class: 'space-y-3' %}
+          {{ form.errors | default_errors }}
+          
+          {% if form.posted_successfully? %}
+            <div class="p-6 bg-black/80 border-2 border-emerald-500 rounded text-center space-y-3">
+              <div class="w-12 h-12 rounded-full bg-emerald-950 border border-emerald-500 text-emerald-400 flex items-center justify-center mx-auto">
+                <span class="material-symbols-outlined text-2xl">verified</span>
+              </div>
+              <h3 class="font-headline text-lg uppercase text-white font-bold tracking-wide">
+                You're on the VIP Allocation List!
+              </h3>
+              <p class="font-mono text-xs text-neutral-300">
+                We have reserved your early access alert. You will receive a direct access link 24 hours before doors open to the general public.
+              </p>
+              <div class="font-mono text-xs text-white/85 space-y-2 pt-2 text-left max-w-sm mx-auto">
+                <div class="flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-[#dc2626] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">1</span>
+                  <span>Open the notification from <strong>Coast Airbrush Europe</strong>.</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-[#dc2626] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">2</span>
+                  <span>Click your private allocation link.</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-[#dc2626] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">3</span>
+                  <span>Secure first batch Kroma Edge &amp; Flake King reserves.</span>
+                </div>
+              </div>
+              <div class="pt-2">
+                <span class="font-mono text-[11px] text-emerald-400 font-bold bg-emerald-950/60 px-3 py-1 rounded border border-emerald-500/40">
+                  Priority Status: Activated
+                </span>
+              </div>
+            </div>
+          {% else %}
+            <input type="hidden" name="contact[tags]" value="prospect, pre-launch-vip, european-launch">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <input 
+                type="text" 
+                name="contact[first_name]" 
+                id="VIPFirstName" 
+                required 
+                placeholder="First Name" 
+                class="bg-[#0b0b0d] border border-[#242429] focus:border-[#dc2626] text-white px-3.5 py-2.5 text-xs sm:text-sm font-mono focus:outline-none placeholder:text-neutral-500 rounded-sm"
+              >
+              <input 
+                type="text" 
+                name="contact[last_name]" 
+                id="VIPLastName" 
+                required 
+                placeholder="Last Name" 
+                class="bg-[#0b0b0d] border border-[#242429] focus:border-[#dc2626] text-white px-3.5 py-2.5 text-xs sm:text-sm font-mono focus:outline-none placeholder:text-neutral-500 rounded-sm"
+              >
+            </div>
+            <div>
+              <input 
+                type="email" 
+                name="contact[email]" 
+                id="VIPEmail" 
+                required 
+                placeholder="Enter Your Email Address" 
+                class="w-full bg-[#0b0b0d] border border-[#242429] focus:border-[#dc2626] text-white px-3.5 py-2.5 text-xs sm:text-sm font-mono focus:outline-none placeholder:text-neutral-500 rounded-sm"
+              >
+            </div>
+            <div>
+              <select 
+                name="contact[note]" 
+                id="VIPRole" 
+                class="w-full bg-[#0b0b0d] border border-[#242429] focus:border-[#dc2626] text-neutral-300 px-3.5 py-2.5 text-xs sm:text-sm font-mono focus:outline-none rounded-sm"
+              >
+                <option value="Custom Automotive &amp; Motorcycle Painting">Custom Automotive &amp; Motorcycle Painting</option>
+                <option value="Airbrush &amp; Fine Art Refinishing">Airbrush &amp; Fine Art Refinishing</option>
+                <option value="Commercial Body Shop / Trade Dealer">Commercial Body Shop / Trade Dealer</option>
+                <option value="Model / Scale &amp; Hobbyist">Model / Scale &amp; Hobbyist</option>
+              </select>
+            </div>
+            <button 
+              type="submit" 
+              class="w-full mech-btn-primary !py-3 !px-5 text-xs font-mono font-bold tracking-wider flex items-center justify-center gap-1.5 shadow-sm uppercase cursor-pointer"
+            >
+              <span class="material-symbols-outlined text-[16px]">notifications_active</span>
+              <span>Lock In VIP Access &rarr;</span>
+            </button>
+            
+            <p class="font-mono text-[11px] text-white/85 italic flex items-center justify-center gap-1.5 text-shadow-contrast pt-1">
+              <span class="material-symbols-outlined text-[#dc2626] text-[13px]">shield</span>
+              Direct technical updates. Exclusive early drops. Zero spam.
+            </p>
+          {% endif %}
+        {% endform %}
+      </div>
+    </section>
+
+    <!-- SECTION 5: THE COAST GUARANTEE -->
+    <section class="space-y-4">
+      <h2 class="font-headline text-xl sm:text-2xl uppercase text-white tracking-tight text-shadow-contrast font-bold">
+        The Coast Guarantee
+      </h2>
+
+      <div class="red-accent-rule"></div>
+
+      <ul class="space-y-2.5">
+        <li class="inner-panel p-3.5 sm:p-4 flex items-start gap-3 rounded-sm transition-colors hover:border-[#dc2626]/60">
+          <span class="material-symbols-outlined text-[#dc2626] text-xl flex-shrink-0 mt-0.5">support_agent</span>
+          <div class="space-y-0.5">
+            <h3 class="font-headline text-sm sm:text-base uppercase text-white text-shadow-contrast font-bold">Personal Human Support</h3>
+            <p class="text-xs sm:text-sm text-white/90 font-light text-shadow-contrast">
+              (Expert 1-on-1 guidance before, whilst, and after your purchase)
+            </p>
+          </div>
+        </li>
+
+        <li class="inner-panel p-3.5 sm:p-4 flex items-start gap-3 rounded-sm transition-colors hover:border-[#dc2626]/60">
+          <span class="material-symbols-outlined text-emerald-400 text-xl flex-shrink-0 mt-0.5">verified_user</span>
+          <div class="space-y-0.5">
+            <h3 class="font-headline text-sm sm:text-base uppercase text-white text-shadow-contrast font-bold">Guaranteed Authenticity</h3>
+            <p class="text-xs sm:text-sm text-white/90 font-light text-shadow-contrast">
+              (Proprietary products backed by full factory warranty)
+            </p>
+          </div>
+        </li>
+
+        <li class="inner-panel p-3.5 sm:p-4 flex items-start gap-3 rounded-sm transition-colors hover:border-[#dc2626]/60">
+          <span class="material-symbols-outlined text-sky-400 text-xl flex-shrink-0 mt-0.5">smart_toy</span>
+          <div class="space-y-0.5">
+            <h3 class="font-headline text-sm sm:text-base uppercase text-white text-shadow-contrast font-bold">24/7 AI Knowledge Base</h3>
+            <p class="text-xs sm:text-sm text-white/90 font-light text-shadow-contrast">
+              (Instant technical specs and baseline troubleshooting)
+            </p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+  </article>
+</main>
+
+<!-- Footer -->
+<footer class="w-full border-t border-[#242429] bg-[#0b0b0d]/90 backdrop-blur-md py-6 px-6 text-center font-mono text-xs text-neutral-400 relative z-20">
+  <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2.5">
+      <img src="{{ 'coast_logo_white.png' | asset_url }}" alt="Coast Airbrush Europe" class="h-6 w-auto object-contain">
+      <span class="text-white font-bold">&copy; 2026 Coast Airbrush Europe.</span>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-3 text-neutral-400">
+      <span>Precision Performance Engineering • Direct UK &amp; EU Logistics</span>
+      <span class="text-neutral-600 hidden sm:inline">•</span>
+      <button type="button" onclick="openPartnerBackdoorModal()" class="text-neutral-400 hover:text-white underline underline-offset-4 cursor-pointer transition-colors text-[11px] flex items-center gap-1 font-mono">
+        <span class="material-symbols-outlined text-[13px] text-amber-400">vpn_key</span>
+        <span>Trade Partner &amp; VIP Storefront Access</span>
+      </button>
+    </div>
+  </div>
+</footer>
+
+<!-- Trade Partner & VIP Storefront Password Backdoor Modal -->
+<div id="partner-backdoor-modal" class="fixed inset-0 z-50 {% if form.errors %}flex{% else %}hidden{% endif %} items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity" role="dialog" aria-modal="true" aria-labelledby="backdoor-modal-title">
+  <div class="relative w-full max-w-md bg-[#131315] border border-[#242429] shadow-2xl rounded-sm p-6 sm:p-7 space-y-5 text-left transform transition-all">
+    <!-- Modal Header -->
+    <div class="flex items-start justify-between border-b border-[#242429] pb-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-sm bg-red-950/80 border border-red-500/40 flex items-center justify-center text-red-500 flex-shrink-0">
+          <span class="material-symbols-outlined text-[20px]">vpn_key</span>
+        </div>
+        <div>
+          <h2 id="backdoor-modal-title" class="font-headline text-base uppercase text-white font-bold tracking-tight">Partner &amp; VIP Backdoor</h2>
+          <p class="font-mono text-[11px] text-neutral-400">Pre-Launch Storefront Access</p>
+        </div>
+      </div>
+      <button type="button" onclick="closePartnerBackdoorModal()" class="text-neutral-400 hover:text-white p-1 rounded transition-colors cursor-pointer" aria-label="Close modal">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="space-y-4">
+      <p class="font-mono text-xs text-neutral-300 leading-relaxed">
+        Authorized trade partners, distributors, and preview evaluators: enter your storefront password below to unlock the complete Coast Airbrush Europe storefront and live mixing engine.
+      </p>
+
+      {% form 'storefront_password', id: 'partner-passcode-form', class: 'space-y-3' %}
+        {% if form.errors %}
+          <div class="p-3 rounded-sm font-mono text-xs flex items-center gap-2 bg-red-950/80 border border-red-500 text-red-300">
+            <span class="material-symbols-outlined text-[16px]">error</span>
+            <span>{{ form.errors | default_errors | strip_html }}</span>
+          </div>
+        {% endif %}
+
+        <div class="space-y-1.5">
+          <label for="Password" class="block font-mono text-[10px] uppercase tracking-wider text-neutral-400">
+            Storefront Password
+          </label>
+          <div class="relative">
+            <input
+              type="password"
+              name="password"
+              id="Password"
+              required
+              autocomplete="current-password"
+              placeholder="Enter Storefront Password"
+              class="w-full bg-[#0b0b0d] border border-[#242429] focus:border-[#dc2626] text-white px-3.5 py-2.5 text-xs font-mono rounded-sm focus:outline-none placeholder:text-neutral-600 uppercase pr-10 tracking-widest"
+            >
+            <button
+              type="button"
+              onclick="togglePasscodeVisibility()"
+              class="absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-300 transition-colors cursor-pointer p-1"
+              aria-label="Toggle password visibility"
+            >
+              <span id="passcode-visibility-icon" class="material-symbols-outlined text-[16px]">visibility</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 pt-2">
+          <button
+            type="submit"
+            id="btn-partner-unlock"
+            class="flex-1 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-mono font-bold text-xs uppercase py-2.5 px-4 rounded-sm shadow-sm transition-all cursor-pointer flex items-center justify-center gap-1.5 tracking-wider"
+          >
+            <span class="material-symbols-outlined text-[15px]">lock_open</span>
+            <span>Unlock Storefront &rarr;</span>
+          </button>
+          <button
+            type="button"
+            onclick="closePartnerBackdoorModal()"
+            class="px-3.5 py-2.5 rounded-sm bg-[#18181b] border border-[#242429] text-neutral-400 hover:text-white font-mono text-xs uppercase transition-colors cursor-pointer"
+          >
+            Cancel
+          </button>
+        </div>
+      {% endform %}
+
+      <div class="pt-2 text-[11px] font-mono text-neutral-500 text-center border-t border-[#242429]">
         <a href="/admin" class="hover:text-neutral-300 transition-colors">Store Admin Login (/admin)</a>
       </div>
     </div>
-
   </div>
 </div>
 
-<footer class="w-full py-4 text-center font-mono text-[11px] text-neutral-500 relative z-20">
-  &copy; 2026 Coast Airbrush Europe. Precision Engineering. Personal Support. No Compromises.
-</footer>
+<!-- Interactive Modal Scripts -->
+<script>
+  function openPartnerBackdoorModal() {
+    const modal = document.getElementById('partner-backdoor-modal');
+    const input = document.getElementById('Password');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      if (input) setTimeout(() => input.focus(), 50);
+    }
+  }
+
+  function closePartnerBackdoorModal() {
+    const modal = document.getElementById('partner-backdoor-modal');
+    if (modal) {
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+    }
+  }
+
+  function togglePasscodeVisibility() {
+    const input = document.getElementById('Password');
+    const icon = document.getElementById('passcode-visibility-icon');
+    if (!input || !icon) return;
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.textContent = 'visibility_off';
+    } else {
+      input.type = 'password';
+      icon.textContent = 'visibility';
+    }
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePartnerBackdoorModal();
+  });
+  document.addEventListener('click', function(e) {
+    const modal = document.getElementById('partner-backdoor-modal');
+    if (modal && !modal.classList.contains('hidden') && e.target === modal) {
+      closePartnerBackdoorModal();
+    }
+  });
+</script>
 """
 
 INDEX_JSON_TEMPLATE = """{

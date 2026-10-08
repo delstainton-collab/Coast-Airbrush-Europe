@@ -129,7 +129,7 @@
     "brand": "Flake King",
     "retailPriceGbp": 59.99,
     "retailPriceEur": 70.19,
-    "finishedStockQty": 59,
+    "finishedStockQty": 67,
     "assemblyTimeMinutes": 10,
     "assemblyLaborRatePerHour": 36,
     "components": [

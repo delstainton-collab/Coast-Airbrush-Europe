@@ -3,6 +3,7 @@ import { KROMA_EDGE_CATALOG } from '../data/kroma_edge.js';
 import { ACE_OF_SHADES_CATALOG } from '../data/ace_of_shades.js';
 import { ECOM_CATALOG } from '../data/full_ecom_catalog.js';
 import { BRANDS_MASTER, getBrandById, getBrandByName, getAllBrands } from '../data/brands_master.js';
+import { MASTER_TAXONOMY, findTaxonomyCategory } from '../data/taxonomy.js';
 import { FLAKE_KING_TDS, FLAKE_KING_WET_MIX_RATIOS, FLAKE_KING_MIXING_SYSTEMS } from '../data/flake_king_tds.js';
 import { calculateRequiredVolume, calculateMixingRecipe, calculateKromaCoverage, calculateUniversalCoverage, calculateTopcoatClearCoverage, calculateBoxSurfaceArea, calculatePanelSurfaceArea, calculateAreaFromVolume, PRESET_PANELS, CONVERSIONS } from './mixingEngine.js?v=20260909_calc_engine';
 import { ShopifyCartManager } from './shopifyCart.js';
@@ -2259,6 +2260,30 @@ class PaintSystemApp {
 
   matchCategory(product, catId) {
     if (!catId || catId === 'all') return true;
+
+    // Check MASTER_TAXONOMY first
+    if (typeof findTaxonomyCategory === 'function') {
+      const taxMatch = findTaxonomyCategory(catId);
+      if (taxMatch) {
+        const prodCat = (product.category || product.productType || product.type || '').trim().toLowerCase();
+        const prodTags = Array.isArray(product.tags) ? product.tags.map(t => String(t).toLowerCase()) : [];
+
+        if (taxMatch.type === 'subcategory') {
+          return taxMatch.sub.matchValues.some(val => {
+            const v = val.toLowerCase();
+            return prodCat === v || prodTags.includes(v);
+          });
+        } else if (taxMatch.type === 'department') {
+          return taxMatch.dept.subcategories.some(sub => {
+            return sub.matchValues.some(val => {
+              const v = val.toLowerCase();
+              return prodCat === v || prodTags.includes(v);
+            });
+          });
+        }
+      }
+    }
+
     if (catId === 'vsionair-all') return product.brand === 'VsionAir';
     if (catId === 'Work-Holding Jigs' || catId === 'vsionair-jigs') {
       return product.brand === 'VsionAir' && (product.category === 'Work-Holding Jigs' || ['Helmet Jigs', 'Motorcycle Part Jigs', 'Canvass Jig', 'Vsion Easel Modules', 'Car & Motorcycle Wheel Jig', 'Skateboard Jig', 'Thermal Mug Jig', 'Guitar Parts Jigs'].includes(product.category));
@@ -2528,11 +2553,17 @@ class PaintSystemApp {
         'Basecoats & Binders': 'Basecoats & Binders',
         'Wet Products': 'Basecoats & Binders'
       };
-      const catLabel = CATEGORY_NAMES[this.activeCategoryFilter] || this.activeCategoryFilter;
+      let catLabel = CATEGORY_NAMES[this.activeCategoryFilter] || this.activeCategoryFilter;
+      if (typeof findTaxonomyCategory === 'function') {
+        const taxMatch = findTaxonomyCategory(this.activeCategoryFilter);
+        if (taxMatch) {
+          catLabel = (taxMatch.type === 'subcategory') ? `${taxMatch.dept.name} > ${taxMatch.sub.name}` : taxMatch.dept.name;
+        }
+      }
       html += `
         <span class="bg-primary/20 border border-primary text-white text-[10px] px-2.5 py-0.5 rounded font-mono font-bold flex items-center gap-1.5 shadow-sm">
-          <span>Department: <span class="text-primary">${catLabel}</span></span>
-          <button onclick="window.paintApp.setCategoryFilter('all')" class="hover:text-primary font-bold cursor-pointer text-xs" title="Clear Department Filter">✕</button>
+          <span>Category: <span class="text-primary">${catLabel}</span></span>
+          <button onclick="window.paintApp.setCategoryFilter('all')" class="hover:text-primary font-bold cursor-pointer text-xs" title="Clear Category Filter">✕</button>
         </span>
       `;
     }
@@ -2553,11 +2584,21 @@ class PaintSystemApp {
       `;
     }
 
+    if (this.activeBrandFilter !== 'all' || this.activeCategoryFilter !== 'all' || this.activeFlakeSubcat !== 'all' || this.searchQuery) {
+      html += `
+        <button onclick="window.paintApp.resetAllFilters ? window.paintApp.resetAllFilters() : null;" class="text-secondary/70 hover:text-white underline text-[10px] ml-2 font-mono uppercase cursor-pointer">Clear All</button>
+      `;
+    }
+
     container.innerHTML = html;
   }
 
   setCategoryFilter(catId) {
     this.activeCategoryFilter = catId;
+    const selectCat = document.getElementById('select-shop-category');
+    if (selectCat && selectCat.value !== catId) {
+      selectCat.value = catId;
+    }
     const brandPills = document.querySelectorAll('#brand-filter-pills .brand-pill');
     brandPills.forEach(btn => {
       const match = (btn.getAttribute('data-cat-val') === catId) || 
@@ -2566,17 +2607,23 @@ class PaintSystemApp {
       btn.className = match ? 'brand-pill active px-3 py-1.5 border border-primary bg-primary-container text-white font-bold transition-colors cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' : 'brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer';
     });
     this.renderCategoryButtons();
+    this.renderActiveFilterChips();
     this.renderStorefrontGrid();
   }
 
   setBrandFilter(brand) {
     this.activeBrandFilter = brand;
+    const selectBrand = document.getElementById('select-shop-brand');
+    if (selectBrand && selectBrand.value !== brand) {
+      selectBrand.value = brand;
+    }
     const brandPills = document.querySelectorAll('#brand-filter-pills .brand-pill');
     brandPills.forEach(btn => {
       const match = !btn.getAttribute('data-cat-val') && ((btn.getAttribute('data-brand-val') || 'all') === brand);
       btn.className = match ? 'brand-pill active px-3 py-1.5 border border-primary bg-primary-container text-white font-bold transition-colors cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' : 'brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer';
     });
     this.renderCategoryButtons();
+    this.renderActiveFilterChips();
     this.renderStorefrontGrid();
   }
 
@@ -2630,8 +2677,128 @@ class PaintSystemApp {
     }
   }
 
+  resetAllFilters() {
+    this.activeCategoryFilter = 'all';
+    this.activeBrandFilter = 'all';
+    this.activeFlakeSubcat = 'all';
+    this.searchQuery = '';
+    const selectCat = document.getElementById('select-shop-category');
+    if (selectCat) selectCat.value = 'all';
+    const selectBrand = document.getElementById('select-shop-brand');
+    if (selectBrand) selectBrand.value = 'all';
+    const selectSort = document.getElementById('select-shop-sort');
+    if (selectSort) selectSort.value = 'popular';
+    const searchInput = document.getElementById('input-shop-search');
+    if (searchInput) searchInput.value = '';
+    const storeHeaderSearch = document.getElementById('store-search-input');
+    if (storeHeaderSearch) storeHeaderSearch.value = '';
+    this.renderCategoryDropdown();
+    this.renderCategoryButtons();
+    this.renderActiveFilterChips();
+    this.renderStorefrontGrid();
+  }
+
+  renderCategoryDropdown() {
+    this.syncShopifyCatalog();
+    const selectCat = document.getElementById('select-shop-category');
+    const selectBrand = document.getElementById('select-shop-brand');
+
+    const activeProducts = (typeof this.getEffectiveProducts === 'function' ? this.getEffectiveProducts() : ECOM_CATALOG)
+      .filter(p => !p.hideFromStorefront);
+
+    // 1. Populate Category Dropdown using MASTER_TAXONOMY (GOLDEN RULE: 0-product categories are invisible)
+    if (selectCat) {
+      let optionsHtml = `<option value="all">ALL CATEGORIES (${activeProducts.length})</option>`;
+      const categorizedProductIds = new Set();
+
+      if (Array.isArray(MASTER_TAXONOMY)) {
+        MASTER_TAXONOMY.forEach(dept => {
+          const deptSubOptions = [];
+          let deptTotalCount = 0;
+
+          dept.subcategories.forEach(sub => {
+            const matchingProds = activeProducts.filter(p => {
+              const prodCat = (p.category || p.productType || p.type || '').trim().toLowerCase();
+              const prodTags = Array.isArray(p.tags) ? p.tags.map(t => String(t).toLowerCase()) : [];
+              return sub.matchValues.some(val => {
+                const v = val.toLowerCase();
+                return prodCat === v || prodTags.includes(v);
+              });
+            });
+
+            const count = matchingProds.length;
+            // RULE: If count === 0, it is INVISIBLE until we do have products!
+            if (count > 0) {
+              matchingProds.forEach(p => categorizedProductIds.add(p.id || p.sku));
+              deptTotalCount += count;
+              const isSelected = (this.activeCategoryFilter === sub.id || this.activeCategoryFilter === sub.name);
+              deptSubOptions.push(`  <option value="${sub.id}" ${isSelected ? 'selected' : ''}>${sub.name} (${count})</option>`);
+            }
+          });
+
+          // Only render optgroup if the department has active products!
+          if (deptSubOptions.length > 0) {
+            const isDeptSelected = (this.activeCategoryFilter === dept.id);
+            optionsHtml += `<optgroup label="${dept.name.toUpperCase()}">`;
+            optionsHtml += `  <option value="${dept.id}" ${isDeptSelected ? 'selected' : ''}>All ${dept.name} (${deptTotalCount})</option>`;
+            optionsHtml += deptSubOptions.join('\n');
+            optionsHtml += `</optgroup>`;
+          }
+        });
+      }
+
+      // Check for dynamic / uncategorized categories from Shopify catalog
+      const uncategorized = activeProducts.filter(p => !categorizedProductIds.has(p.id || p.sku));
+      if (uncategorized.length > 0) {
+        const uncategorizedCounts = new Map();
+        uncategorized.forEach(p => {
+          const cat = (p.category || p.productType || p.type || 'Other').trim();
+          uncategorizedCounts.set(cat, (uncategorizedCounts.get(cat) || 0) + 1);
+        });
+        if (uncategorizedCounts.size > 0) {
+          optionsHtml += `<optgroup label="ADDITIONAL SPECIALTIES">`;
+          uncategorizedCounts.forEach((count, cat) => {
+            if (count > 0) {
+              const isSelected = (this.activeCategoryFilter === cat);
+              optionsHtml += `  <option value="${this.escapeHtml(cat)}" ${isSelected ? 'selected' : ''}>${this.escapeHtml(cat.toUpperCase())} (${count})</option>`;
+            }
+          });
+          optionsHtml += `</optgroup>`;
+        }
+      }
+
+      selectCat.innerHTML = optionsHtml;
+      selectCat.value = this.activeCategoryFilter || 'all';
+    }
+
+    // 2. Populate Brand Dropdown (GOLDEN RULE: Only brands with > 0 products are visible)
+    if (selectBrand) {
+      let brandHtml = `<option value="all">ALL BRANDS (${activeProducts.length})</option>`;
+      const brandCounts = new Map();
+      activeProducts.forEach(p => {
+        const b = (p.brand || '').trim();
+        if (b) {
+          brandCounts.set(b, (brandCounts.get(b) || 0) + 1);
+        }
+      });
+
+      const sortedBrands = Array.from(brandCounts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+      sortedBrands.forEach(([brandName, count]) => {
+        if (count > 0) {
+          const isSelected = (this.activeBrandFilter && this.activeBrandFilter.toLowerCase() === brandName.toLowerCase());
+          brandHtml += `<option value="${this.escapeHtml(brandName)}" ${isSelected ? 'selected' : ''}>${this.escapeHtml(brandName.toUpperCase())} (${count})</option>`;
+        }
+      });
+
+      selectBrand.innerHTML = brandHtml;
+      selectBrand.value = this.activeBrandFilter || 'all';
+    }
+  }
+
   renderCategoryPills() {
     this.syncShopifyCatalog();
+    this.renderCategoryDropdown();
+
     const container = document.getElementById('brand-filter-pills');
     if (!container) return;
 
@@ -2671,11 +2838,34 @@ class PaintSystemApp {
     const searchInput = document.getElementById('input-shop-search');
     const storeHeaderSearch = document.getElementById('store-search-input');
     const sortSelect = document.getElementById('select-shop-sort');
+    const selectCat = document.getElementById('select-shop-category');
+    const selectBrand = document.getElementById('select-shop-brand');
     const subcatBtns = document.querySelectorAll('.flake-subcat-btn');
     const resetBtn = document.getElementById('btn-reset-filters');
     const brandPills = document.querySelectorAll('#brand-filter-pills .brand-pill');
 
-    // Brand & Category Pills
+    // Category Dropdown Listener
+    if (selectCat) {
+      selectCat.addEventListener('change', (e) => {
+        this.setCategoryFilter(e.target.value);
+      });
+    }
+
+    // Brand Dropdown Listener
+    if (selectBrand) {
+      selectBrand.addEventListener('change', (e) => {
+        this.setBrandFilter(e.target.value);
+      });
+    }
+
+    // Reset Button Listener
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        this.resetAllFilters();
+      });
+    }
+
+    // Brand & Category Pills (Compatibility)
     brandPills.forEach(btn => {
       btn.addEventListener('click', () => {
         const cat = btn.getAttribute('data-cat-val');
@@ -2690,7 +2880,8 @@ class PaintSystemApp {
       });
     });
 
-    // Render dynamic category pills into #brand-filter-pills
+    // Initial render of category dropdown & pills
+    this.renderCategoryDropdown();
     this.renderCategoryPills();
 
     // Search Input (Catalog)
@@ -4279,25 +4470,52 @@ class PaintSystemApp {
         const isSelected = sys.id === this.selectedSystem.id;
         const card = document.createElement('button');
         card.type = 'button';
-        card.className = `p-3 text-left border-2 transition-colors duration-150 cursor-pointer rounded flex flex-col justify-between ${
-          isSelected 
-            ? 'bg-primary-container/20 border-primary shadow-[2px_2px_0px_0px_rgba(211,47,47,0.8)]' 
-            : 'bg-surface-dim border-secondary/60 hover:border-secondary hover:bg-surface-container'
-        }`;
-        card.innerHTML = `
-          <div class="flex items-center justify-between mb-1.5 w-full">
-            <span class="font-mono text-[10px] font-bold uppercase ${isSelected ? 'text-primary' : 'text-secondary'}">
-              ${sys.badge || 'FORMULA'}
-            </span>
-            ${isSelected ? '<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>' : ''}
-          </div>
-          <div class="font-headline text-xs text-on-surface uppercase font-bold leading-tight mb-1">
-            ${sys.name.split('(')[0].trim()}
-          </div>
-          <div class="font-mono text-[10px] text-amber-400 font-bold">
-            ${sys.ratioText}
-          </div>
-        `;
+        if (isModal) {
+          card.className = `p-3 text-left border rounded transition-all duration-150 cursor-pointer flex flex-col justify-between group relative overflow-hidden ${
+            isSelected 
+              ? 'bg-gradient-to-br from-red-950/40 via-[#18181d] to-[#141418] border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.25),inset_0_0_0_1px_rgba(220,38,38,0.4)]' 
+              : 'bg-[#16161a] border-[#27272a] hover:border-neutral-500 hover:bg-[#1a1a20]'
+          }`;
+          card.innerHTML = `
+            <div class="flex items-center justify-between mb-1.5 w-full">
+              <span class="font-mono text-[9px] font-bold tracking-widest uppercase px-1.5 py-0.5 rounded ${
+                isSelected 
+                  ? 'bg-red-500/20 text-red-400 border border-red-500/40' 
+                  : 'bg-neutral-800 text-neutral-400 border border-white/5'
+              }">
+                ${sys.badge || 'FORMULA'}
+              </span>
+              ${isSelected ? '<span class="material-symbols-outlined text-red-500 text-[18px]">check_circle</span>' : ''}
+            </div>
+            <div class="font-headline text-xs ${isSelected ? 'text-white' : 'text-neutral-200 group-hover:text-white'} uppercase font-bold leading-tight mb-1">
+              ${sys.name.split('(')[0].trim()}
+            </div>
+            <div class="font-mono text-[10px] ${isSelected ? 'text-amber-300 font-semibold' : 'text-neutral-400 group-hover:text-amber-300/90 font-medium'} flex items-center gap-1.5">
+              <span class="text-neutral-500 text-[9px] font-bold">RATIO:</span>
+              <span>${sys.ratioText}</span>
+            </div>
+          `;
+        } else {
+          card.className = `p-3 text-left border-2 transition-colors duration-150 cursor-pointer rounded flex flex-col justify-between ${
+            isSelected 
+              ? 'bg-primary-container/20 border-primary shadow-[2px_2px_0px_0px_rgba(211,47,47,0.8)]' 
+              : 'bg-surface-dim border-secondary/60 hover:border-secondary hover:bg-surface-container'
+          }`;
+          card.innerHTML = `
+            <div class="flex items-center justify-between mb-1.5 w-full">
+              <span class="font-mono text-[10px] font-bold uppercase ${isSelected ? 'text-primary' : 'text-secondary'}">
+                ${sys.badge || 'FORMULA'}
+              </span>
+              ${isSelected ? '<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>' : ''}
+            </div>
+            <div class="font-headline text-xs text-on-surface uppercase font-bold leading-tight mb-1">
+              ${sys.name.split('(')[0].trim()}
+            </div>
+            <div class="font-mono text-[10px] text-amber-400 font-bold">
+              ${sys.ratioText}
+            </div>
+          `;
+        }
         card.addEventListener('click', () => {
           this.onSystemChange(sys.id);
         });
@@ -4391,7 +4609,7 @@ class PaintSystemApp {
       badge.textContent = `Ratio: ${this.selectedSystem.ratioText}`;
     }
     if (modalRatioBadge && this.selectedSystem) {
-      modalRatioBadge.textContent = `Ratio: ${this.selectedSystem.ratioText}`;
+      modalRatioBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block mr-1.5"></span><span>Ratio: <strong class="text-white font-bold">${this.selectedSystem.ratioText}</strong></span>`;
     }
   }
 
@@ -4428,6 +4646,19 @@ class PaintSystemApp {
     const unitSelect = document.getElementById('select-modal-volume-unit');
     if (unitSelect) unitSelect.value = unit;
     if (volInput) volInput.value = vol;
+
+    document.querySelectorAll('.quick-mix-preset-btn').forEach(btn => {
+      const bVol = parseFloat(btn.getAttribute('data-vol'));
+      const bUnit = btn.getAttribute('data-unit') || 'ml';
+      if (bVol === parseFloat(vol) && bUnit === unit) {
+        btn.classList.add('border-red-500/80', 'bg-red-950/40', 'text-white', 'shadow-[0_0_8px_rgba(220,38,38,0.25)]');
+        btn.classList.remove('bg-[#1c1c22]', 'border-white/10', 'text-neutral-300');
+      } else {
+        btn.classList.remove('border-red-500/80', 'bg-red-950/40', 'text-white', 'shadow-[0_0_8px_rgba(220,38,38,0.25)]');
+        btn.classList.add('bg-[#1c1c22]', 'border-white/10', 'text-neutral-300');
+      }
+    });
+
     this.updateModalCalculation();
   }
 
@@ -4494,14 +4725,18 @@ class PaintSystemApp {
       const cumulative = step.cumulativeWeightGrams || 0;
 
       const tr = document.createElement('tr');
-      tr.className = 'hover:bg-surface-container/60 transition-colors';
+      tr.className = 'hover:bg-white/[0.03] transition-colors';
       tr.innerHTML = `
-        <td class="p-2.5"><span class="metal-spec-plate text-[10px]">${index + 1}</span></td>
-        <td class="p-2.5 font-bold text-on-surface">${name}</td>
-        <td class="p-2.5 text-primary font-bold">${step.percentage}%</td>
-        <td class="p-2.5 text-neutral-300">${Math.round(step.volumeMl)} mL</td>
-        <td class="p-2.5 text-neutral-300">${weight.toFixed(1)} g</td>
-        <td class="p-2.5 font-bold text-primary">${cumulative.toFixed(1)} g</td>
+        <td class="py-2.5 px-3">
+          <span class="w-6 h-5 rounded bg-neutral-800 text-neutral-300 font-mono text-[10px] font-bold inline-flex items-center justify-center border border-white/10">0${index + 1}</span>
+        </td>
+        <td class="py-2.5 px-3 font-semibold text-white text-xs">${name}</td>
+        <td class="py-2.5 px-3 text-right text-neutral-300 font-mono text-xs">${step.percentage}%</td>
+        <td class="py-2.5 px-3 text-right text-neutral-400 font-mono text-xs">${Math.round(step.volumeMl)} mL</td>
+        <td class="py-2.5 px-3 text-right text-neutral-300 font-mono text-xs">${weight.toFixed(1)} g</td>
+        <td class="py-2.5 px-3 text-right">
+          <span class="inline-block px-2.5 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 font-mono font-bold text-xs tracking-tight shadow-[0_0_8px_rgba(34,197,94,0.15)]">${cumulative.toFixed(1)} g</span>
+        </td>
       `;
       tbody.appendChild(tr);
     });
