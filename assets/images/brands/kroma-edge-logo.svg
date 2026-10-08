@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" fill="none">
+  <defs>
+    <linearGradient id="kromaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="chromeSheen" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+  </defs>
+  <!-- Prism / Hexagon Mirror Icon -->
+  <g transform="translate(10, 10)">
+    <polygon points="30,4 56,18 56,46 30,60 4,46 4,18" stroke="url(#kromaGrad)" stroke-width="2.5" fill="#0b0b0d"/>
+    <polygon points="30,12 48,22 48,42 30,52 12,42 12,22" stroke="#38bdf8" stroke-width="1.2" fill="none" opacity="0.6"/>
+    <!-- Central Optical Flash -->
+    <path d="M30,16 L30,48 M16,32 L44,32" stroke="url(#kromaGrad)" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="30" cy="32" r="3.5" fill="#ffffff"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="78" y="38" font-family="'Industry', 'Impact', 'Barlow Condensed', sans-serif" font-size="28" font-weight="900" letter-spacing="3" fill="url(#chromeSheen)">
+    KROMA <tspan fill="#38bdf8">EDGE</tspan>
+  </text>
+  <text x="80" y="55" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="9" font-weight="700" letter-spacing="4" fill="#94a3b8">
+    OPTICAL MIRROR COATINGS
+  </text>
+</svg>

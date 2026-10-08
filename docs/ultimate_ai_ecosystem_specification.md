@@ -92,17 +92,17 @@ To achieve maximum sales volume with minimal staffing, four specialized AI agent
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐
 │ COAST AIRBRUSH EUROPE - CUSTOM PAINT BATCH LABEL                         │
-│ SKU: HOK-KK01-QT              ORDER #: #EU-10492                        │
+│ SKU: KE-CANDY-RED-QT          ORDER #: #EU-10492                        │
 │ BATCH ID: B-2026-0829         MIX RATIO: 4 : 1 : 1                      │
 ├──────────────────────────────────────────────────────────────────────────┤
 │ COMPONENT breakdown (Cumulative Gram Scale Target):                      │
-│  - S2-00 FX Karrier Base:       320.0g  (Scale Target: 320.0g)          │
-│  - KK01 Kandy Koncentrate:       40.0g  (Scale Target: 360.0g)          │
-│  - RU311 Medium Reducer:         80.0g  (Scale Target: 440.0g)          │
+│  - KE-BINDER-01 Clear Base:     320.0g  (Scale Target: 320.0g)          │
+│  - KE-PIG-RED Candy Pigment:     40.0g  (Scale Target: 360.0g)          │
+│  - KE-RED-MED Reducer:           80.0g  (Scale Target: 440.0g)          │
 ├──────────────────────────────────────────────────────────────────────────┤
 │ ⚠️ UN1263 CLASS 3 FLAMMABLE LIQUID  [GHS Flame Symbol]                   │
 │ ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| │
-│ *HOK-KK01-QT-B20260829*                                                  │
+│ *KE-CANDY-RED-QT-B20260829*                                              │
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -216,7 +216,7 @@ sequenceDiagram
 
 The ecosystem is built to handle the full Coast Airbrush product catalog:
 
-1. **Solvent-Based Paints (House of Kolor, Ace of Shades, Kroma Edge)**:
+1. **Solvent-Based Paints (Ace of Shades, Kroma Edge)**:
    - Classification: UN1263 Class 3 Flammable Liquids, Packing Group II/III.
    - Compliance: ADR Limited Quantity ground shipping across EU/UK.
 2. **Water-Based Acrylic Paints (Createx, Wicked Colors)**:

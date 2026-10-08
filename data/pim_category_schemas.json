@@ -150,6 +150,20 @@
           "type": "url",
           "description": "Link to official TDS document",
           "required": false
+        },
+        {
+          "key": "wet_min_nozzle",
+          "name": "Minimum Wet Nozzle Size",
+          "type": "single_line_text_field",
+          "description": "Minimum fluid tip required to prevent clogging (e.g. 1.4mm)",
+          "required": false
+        },
+        {
+          "key": "recommended_dry_gun",
+          "name": "Recommended Dry Gun Setup",
+          "type": "single_line_text_field",
+          "description": "Matched dry flake gun for substrate size (FOM550 vs FOM1000)",
+          "required": false
         }
       ]
     },

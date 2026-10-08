@@ -105,7 +105,7 @@ Before public pre-order launch, Coast Airbrush Europe will seed **50 Exclusive P
 To channel established brand equity into the European pre-order launch, Coast Airbrush Europe will leverage official global brand assets:
 
 1. **Official Store Locator Routing**: Signal / Show Up (Japan/US) and Coast Airbrush US will update their international dealer locators and website popups:
-   > *"European Customer? Pre-order your Kroma Edge & House of Kolor inventory directly from Coast Airbrush Europe for zero import tax friction and local EU/UK shipping."*
+   > *"European Customer? Pre-order your Kroma Edge & Flake King inventory directly from Coast Airbrush Europe for zero import tax friction and local EU/UK shipping."*
 2. **Co-Branded Email Blast & Social Takeover**: Joint email announcement to 150,000+ global airbrush subscribers announcing the official opening of European pre-orders on `coastairbrush.eu` and `coastairbrush.co.uk`.
 
 ---

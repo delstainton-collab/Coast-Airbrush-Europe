@@ -1,0 +1,267 @@
+{
+  "VAX-JG-GLMSK": {
+    "parentSku": "VAX-JG-GLMSK",
+    "title": "VsionAir Ice Hockey Goalie Mask Jig",
+    "brand": "VsionAir",
+    "retailPriceGbp": 110.39,
+    "retailPriceEur": 129.16,
+    "finishedStockQty": 6,
+    "assemblyTimeMinutes": 20,
+    "assemblyLaborRatePerHour": 36,
+    "components": [
+      {
+        "sku": "VAX-FRAME-GLMSK",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "VAX-6W-KNB-M",
+        "qty": 3,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "VAX-6W-KNB-F",
+        "qty": 2,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "VAX-6R-WSHR",
+        "qty": 4,
+        "scrapFactor": 0.05
+      },
+      {
+        "sku": "VAX-6S-WSHR",
+        "qty": 4,
+        "scrapFactor": 0.02
+      },
+      {
+        "sku": "VAX-MAG-NEO-50",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "PKG-BOX-VAX-JIG",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "PKG-FOAM-VAX-JIG",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "DOC-MAN-VAX-JIG",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "qty": 1,
+        "scrapFactor": 0.02
+      }
+    ]
+  },
+  "FOM1000": {
+    "parentSku": "FOM1000",
+    "title": "Flake King 1000 Dry Metal Flake Gun",
+    "brand": "Flake King",
+    "retailPriceGbp": 109.95,
+    "retailPriceEur": 128.64,
+    "finishedStockQty": 12,
+    "assemblyTimeMinutes": 15,
+    "assemblyLaborRatePerHour": 36,
+    "components": [
+      {
+        "sku": "FK-BODY-1000",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "FK-TUBE-VENTURI",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "FK-VALVE-AIR",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "FK-NOZZLE-SET",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "FK-JAR-30",
+        "qty": 1,
+        "scrapFactor": 0.02
+      },
+      {
+        "sku": "FK-FIT-14BSP",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "PKG-BOX-FK1000",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "PKG-FOAM-FK1000",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "qty": 1,
+        "scrapFactor": 0.02
+      }
+    ]
+  },
+  "FOM500": {
+    "parentSku": "FOM500",
+    "title": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "brand": "Flake King",
+    "retailPriceGbp": 59.99,
+    "retailPriceEur": 70.19,
+    "finishedStockQty": 59,
+    "assemblyTimeMinutes": 10,
+    "assemblyLaborRatePerHour": 36,
+    "components": [
+      {
+        "sku": "FK-ADAPT-500",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "FK-JAR-30",
+        "qty": 1,
+        "scrapFactor": 0.02
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "qty": 1,
+        "scrapFactor": 0.02
+      }
+    ]
+  },
+  "VAX-LCT-RIG-1200": {
+    "parentSku": "VAX-LCT-RIG-1200",
+    "title": "VsionAir Lighting, Camera & Dual Vertical Toolbar Rig (1.2m)",
+    "brand": "VsionAir",
+    "retailPriceGbp": 143.99,
+    "retailPriceEur": 168.47,
+    "finishedStockQty": 4,
+    "assemblyTimeMinutes": 25,
+    "assemblyLaborRatePerHour": 36,
+    "components": [
+      {
+        "sku": "VAX-BAR-1200",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "VAX-BRK-IABS",
+        "qty": 2,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "VAX-6W-KNB-M",
+        "qty": 4,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "VAX-6W-KNB-F",
+        "qty": 4,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "VAX-6R-WSHR",
+        "qty": 8,
+        "scrapFactor": 0.05
+      },
+      {
+        "sku": "VAX-6S-WSHR",
+        "qty": 8,
+        "scrapFactor": 0.02
+      },
+      {
+        "sku": "PKG-BOX-VAX-JIG",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "DOC-MAN-VAX-JIG",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "qty": 1,
+        "scrapFactor": 0.02
+      }
+    ]
+  },
+  "KE-MIRROR-140G": {
+    "parentSku": "KE-MIRROR-140G",
+    "title": "Kroma Edge Self-Organizing Mirror Chrome System (140g Kit)",
+    "brand": "Kroma Edge",
+    "retailPriceGbp": 235,
+    "retailPriceEur": 276.48,
+    "finishedStockQty": 18,
+    "assemblyTimeMinutes": 10,
+    "assemblyLaborRatePerHour": 36,
+    "components": [
+      {
+        "sku": "KE-BOT-BINDER-50",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "KE-BOT-REDUCER-50",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "KE-BOT-HARDENER-20",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "KE-BOT-SEEDS-20",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "ACC-PIPETTE-3ML",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "PKG-BOX-KM140",
+        "qty": 1,
+        "scrapFactor": 0
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "qty": 2,
+        "scrapFactor": 0.02
+      }
+    ]
+  }
+}

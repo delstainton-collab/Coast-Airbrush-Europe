@@ -839,7 +839,7 @@ const FALLBACK_TRADE_APPLICATIONS = [
     sector: "Custom Automotive & Motorcycle Refinishing",
     tierDesired: "dealer",
     monthlyVolume: "€2,000 – €5,000",
-    currentBrands: "House of Kolor, Mipa",
+    currentBrands: "Custom Creative, Mipa",
     status: "pending_review"
   }
 ];

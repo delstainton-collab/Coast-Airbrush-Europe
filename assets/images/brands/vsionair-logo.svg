@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" fill="none">
+  <defs>
+    <linearGradient id="vaxGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <!-- Workstation Tri-Stand Target Icon -->
+  <g transform="translate(10, 12)">
+    <rect x="2" y="2" width="56" height="56" rx="6" fill="#18181b" stroke="#27272a" stroke-width="1.5"/>
+    <!-- Outer Precision Crosshair -->
+    <circle cx="30" cy="30" r="18" stroke="url(#vaxGold)" stroke-width="2" stroke-dasharray="24 4"/>
+    <circle cx="30" cy="30" r="10" stroke="#f8fafc" stroke-width="1.5"/>
+    <path d="M30,6 L30,54 M6,30 L54,30" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="30" cy="30" r="3" fill="#ef4444"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="78" y="38" font-family="'Industry', 'Impact', 'Barlow Condensed', sans-serif" font-size="28" font-weight="900" letter-spacing="3" fill="#ffffff">
+    VSION<tspan fill="url(#vaxGold)">AIR</tspan>
+  </text>
+  <text x="80" y="55" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="9" font-weight="700" letter-spacing="3" fill="#9ca3af">
+    MODULAR RIGS &amp; WORKSTATIONS
+  </text>
+</svg>

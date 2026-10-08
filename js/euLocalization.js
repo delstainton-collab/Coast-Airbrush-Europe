@@ -770,13 +770,16 @@ export class EULocalizationManager {
     this.notify();
   }
 
-  calculateTaxAndTotal(subtotalEur) {
+  calculateTaxAndTotal(subtotalEur, options = {}) {
     const country = this.getCountry();
     const isUK = country.code === 'GB';
     
     // Tax calculation: UK always pays 20% UK VAT. EU B2C pays destination VAT (IOSS/DDP); EU B2B with valid VIES is 0%
     const appliedTaxRate = (!isUK && this.isVatExempt) ? 0.0 : country.vatRate;
     const vatAmountEur = subtotalEur * appliedTaxRate;
+
+    // Small order packaging & consumables surcharge (waived above £25/€30 or for wholesale)
+    const smallOrderFeeEur = (options && options.smallOrderFeeEur) ? Number(options.smallOrderFeeEur) : 0.0;
 
     // Shipping & DDP Cost Recovery Engine (dispatched from UK)
     let shippingBaseEur = 0;
@@ -798,12 +801,14 @@ export class EULocalizationManager {
     }
 
     const shippingTotalEur = shippingBaseEur + ddpAdminFeeEur;
-    const totalEur = subtotalEur + vatAmountEur + shippingTotalEur;
+    const totalEur = subtotalEur + vatAmountEur + shippingTotalEur + smallOrderFeeEur;
 
     return {
       subtotalEur,
       vatRatePercent: (appliedTaxRate * 100).toFixed(0),
       vatAmountEur,
+      smallOrderFeeEur,
+      smallOrderFeeLocal: this.convertPrice(smallOrderFeeEur),
       shippingBaseEur,
       ddpAdminFeeEur,
       shippingTotalEur,

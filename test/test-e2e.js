@@ -126,7 +126,7 @@ const checkoutPayload = {
       },
       {
         name: "Custom Paint Clearcoat 5L",
-        sku: "HOK-UC35",
+        sku: "CAE-UC35",
         quantity: 2,
         grams: 5500,
         price: 11000

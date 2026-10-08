@@ -433,17 +433,14 @@ class PaintSystemApp {
       }
     };
 
-    // Brand Showcase & Social Butterfly Global Bindings
+    // Brand Showcase & Vendor Master Global Bindings
     window.BRANDS_MASTER = BRANDS_MASTER;
     window.openBrandStoryModal = (brandId) => this.openBrandStoryModal(brandId);
     window.closeBrandStoryModal = () => this.closeBrandStoryModal();
     window.switchBrandModalTab = (tab) => this.switchBrandModalTab(tab);
     window.shopCurrentModalBrand = () => this.shopCurrentModalBrand();
     window.filterByBrandAndScroll = (brandName) => this.filterByBrandAndScroll(brandName);
-    window.exportBrandToSocialButterfly = (brandId) => this.exportBrandToSocialButterfly(brandId);
-    window.closeSocialButterflyModal = () => this.closeSocialButterflyModal();
-    window.copySocialButterflyPayload = () => this.copySocialButterflyPayload();
-    window.downloadSocialButterflyJson = (brandId) => this.downloadSocialButterflyJson(brandId);
+    window.downloadBrandsCatalogJson = () => this.downloadBrandsCatalogJson();
 
     // Initial Brand Showcase Rendering
     try { this.renderBrandsShowcase(); } catch (e) { console.warn('renderBrandsShowcase error:', e); }
@@ -13493,12 +13490,133 @@ ${result.description}
   }
 
   // =========================================================================
-  // MASTER BRANDS, VENDORS & SOCIAL BUTTERFLY MARKETING SUITE
+  // MASTER BRANDS & VENDOR PARTNER SHOWCASE
   // =========================================================================
+  getBrandProductCount(brand, catalog) {
+    if (!catalog || !Array.isArray(catalog)) return 0;
+    const slug = (brand.slug || brand.id || '').toLowerCase();
+    const brandName = (brand.name || '').toLowerCase();
+    const filterBrand = (brand.filterBrand || '').toLowerCase();
+
+    return catalog.filter(p => {
+      if (p.hideFromStorefront) return false;
+      const pb = (p.brand || '').toLowerCase();
+      if (slug === 'iwata-atawi' || slug === 'iwata' || slug === 'atawi') {
+        return pb.includes('iwata') || pb.includes('atawi');
+      }
+      if (slug === 'flake-king') {
+        return pb === 'flake king' || pb.includes('flake king');
+      }
+      if (slug === 'vsionair') {
+        return pb === 'vsionair' || pb.includes('vsionair');
+      }
+      if (slug === 'kroma-edge') {
+        return pb.includes('kroma');
+      }
+      if (slug === 'ace-of-shades') {
+        return pb.includes('ace of shades');
+      }
+      if (slug === 'hyper-fx') {
+        return pb.includes('hyper fx') || pb.includes('createx');
+      }
+      if (slug === 'lumilor') {
+        return pb.includes('lumilor');
+      }
+      if (slug === 'clean-armor') {
+        return pb.includes('clean armor');
+      }
+      if (filterBrand && pb.includes(filterBrand)) return true;
+      return pb.includes(brandName);
+    }).length;
+  }
+
   renderBrandsShowcase() {
     const grid = document.getElementById('brands-showcase-grid');
     if (!grid) return;
-    // Section already has high-impact static markup in index.html; ensure active brand bindings
+
+    const catalog = window.SHOPIFY_CATALOG || ECOM_CATALOG || [];
+
+    // MANDATORY RULE: If we do not have any products by that Brand currently (count === 0),
+    // then the Brand box / banner is NOT displayed.
+    const activeBrands = BRANDS_MASTER.filter(brand => {
+      const count = this.getBrandProductCount(brand, catalog);
+      return count > 0;
+    });
+
+    // Update section header count badge
+    const badgeEl = document.getElementById('brands-count-badge');
+    if (badgeEl) {
+      badgeEl.innerHTML = `
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        <span>✦ OFFICIAL EUROPEAN PARTNER ECOSYSTEM • ${activeBrands.length} ACTIVE MANUFACTURERS</span>
+      `;
+    }
+
+    grid.innerHTML = activeBrands.map(brand => {
+      const count = this.getBrandProductCount(brand, catalog);
+      const borderHover = brand.slug === 'kroma-edge' ? 'hover:border-sky-500/70' :
+                          brand.slug === 'vsionair' ? 'hover:border-amber-500/70' :
+                          brand.slug === 'iwata-atawi' ? 'hover:border-red-500/70' : 'hover:border-red-500/70';
+      const textAccent = brand.slug === 'kroma-edge' ? 'text-sky-400' :
+                         brand.slug === 'vsionair' ? 'text-amber-400' :
+                         brand.slug === 'iwata-atawi' ? 'text-red-400' : 'text-red-400';
+      const bgAccentBadge = brand.slug === 'kroma-edge' ? 'bg-sky-950/60 border-sky-500/40 text-sky-400' :
+                            brand.slug === 'vsionair' ? 'bg-amber-950/60 border-amber-500/40 text-amber-400' :
+                            brand.slug === 'iwata-atawi' ? 'bg-red-950/60 border-red-500/40 text-red-400' : 'bg-red-950/60 border-red-500/40 text-red-400';
+      const glowBg = brand.slug === 'kroma-edge' ? 'bg-sky-500/10' :
+                     brand.slug === 'vsionair' ? 'bg-amber-500/10' :
+                     brand.slug === 'iwata-atawi' ? 'bg-red-500/10' : 'bg-red-500/10';
+
+      const uspsList = (brand.usps || []).slice(0, 3).map(u => {
+        const parts = u.split(':');
+        const boldPart = parts.length > 1 ? `<strong>${parts[0]}:</strong>${parts.slice(1).join(':')}` : u;
+        return `<li class="flex items-start gap-1.5"><span class="${textAccent} font-bold">✓</span> <span>${boldPart}</span></li>`;
+      }).join('');
+
+      return `
+        <div class="bg-surface-container border border-surface-container-high ${borderHover} transition-all rounded-lg p-5 flex flex-col justify-between shadow-md group relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-24 h-24 ${glowBg} rounded-full blur-2xl pointer-events-none"></div>
+          <div>
+            <!-- Top Badges & Origin -->
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="font-mono text-[10px] sm:text-[11px] font-bold ${bgAccentBadge} border px-2.5 py-0.5 rounded flex items-center gap-1">
+                <span>${brand.origin.includes('Japan') ? '🇯🇵' : '🇬🇧'}</span>
+                <span>${brand.badgeText || brand.distributorTier}</span>
+              </span>
+              <span class="text-[10px] font-mono text-secondary uppercase">${(brand.category || '').split('&')[0].trim()}</span>
+            </div>
+
+            <!-- Brand Logo Box inside Brand Card -->
+            <div class="h-14 w-full flex items-center justify-start mb-3 bg-[#0d0d10] p-2.5 rounded border border-[#242429] shadow-inner group-hover:border-[#383842] transition-colors">
+              <img src="${brand.logoImage}" alt="${brand.name} Official Logo" class="h-full w-auto max-h-9 object-contain" onerror="this.style.display='none'">
+            </div>
+
+            <h3 class="font-headline text-2xl uppercase text-white font-bold tracking-tight group-hover:${textAccent} transition-colors">
+              ${brand.name}
+            </h3>
+            <p class="font-mono text-xs ${textAccent} font-semibold mb-3">
+              ${brand.tagline}
+            </p>
+            <p class="font-body text-xs text-neutral-300 leading-relaxed mb-4 line-clamp-3">
+              ${brand.story ? brand.story.originNarrative : ''}
+            </p>
+            <ul class="font-mono text-[11px] text-neutral-300 space-y-1.5 mb-5 border-t border-surface-container-high pt-3">
+              ${uspsList}
+            </ul>
+          </div>
+          <div class="flex items-center gap-2 pt-3 border-t border-surface-container-high">
+            <button onclick="window.openBrandStoryModal && window.openBrandStoryModal('${brand.id}')" class="mech-btn-secondary !text-[11px] !py-2 !px-2.5 flex-1 text-center font-mono flex items-center justify-center gap-1 cursor-pointer">
+              <span class="material-symbols-outlined text-[14px]">auto_stories</span>
+              <span>Story &amp; TDS</span>
+            </button>
+            <button onclick="window.filterByBrandAndScroll && window.filterByBrandAndScroll('${brand.filterBrand || brand.name}')" class="mech-button-primary !text-[11px] !py-2 !px-3 font-mono font-bold text-center flex items-center justify-center gap-1 cursor-pointer">
+              <span>Shop (${count})</span>
+              <span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
   }
 
   openBrandStoryModal(brandId) {
@@ -13515,6 +13633,17 @@ ${result.description}
     const originEl = document.getElementById('modal-brand-origin-badge');
     const tierEl = document.getElementById('modal-brand-distributor-tier');
     const linkEl = document.getElementById('modal-brand-official-link');
+
+    const logoEl = document.getElementById('modal-brand-logo');
+    if (logoEl) {
+      if (brand.logoImage) {
+        logoEl.src = brand.logoImage;
+        logoEl.alt = `${brand.name} Official Logo`;
+        logoEl.classList.remove('hidden');
+      } else {
+        logoEl.classList.add('hidden');
+      }
+    }
 
     if (titleEl) titleEl.textContent = brand.name;
     if (taglineEl) taglineEl.textContent = brand.tagline;
@@ -13560,33 +13689,6 @@ ${result.description}
       }).join('');
     }
 
-    // Set Tab 4: Social Butterfly Hooks
-    const hooksEl = document.getElementById('modal-brand-social-hooks');
-    const hashEl = document.getElementById('modal-brand-hashtags');
-
-    if (hooksEl && brand.socialButterfly) {
-      hooksEl.innerHTML = brand.socialButterfly.campaignHooks.map((hook, i) => `
-        <div class="p-3.5 bg-black/60 border border-sky-500/30 rounded-lg space-y-1.5">
-          <div class="flex items-center justify-between gap-2">
-            <span class="text-[10px] font-mono text-sky-400 font-bold uppercase bg-sky-950/80 px-2 py-0.5 rounded border border-sky-500/30">
-              Hook ${i + 1} • ${hook.hookType}
-            </span>
-            <span class="text-[10px] text-neutral-400 font-mono">9:16 Video / Reel</span>
-          </div>
-          <h5 class="text-white font-bold text-xs sm:text-sm font-sans">${hook.headline}</h5>
-          <p class="text-neutral-300 font-mono text-[11px] leading-relaxed">${hook.scriptAngle}</p>
-        </div>
-      `).join('');
-    }
-
-    if (hashEl && brand.socialButterfly) {
-      hashEl.innerHTML = brand.socialButterfly.hashtags.map(t => `
-        <span class="bg-black border border-sky-500/40 text-sky-400 px-2 py-0.5 rounded text-[11px]">${t}</span>
-      `).join('') + `
-        <span class="bg-primary/20 border border-primary/40 text-red-300 px-2 py-0.5 rounded text-[11px] font-bold">@coastairbrusheurope</span>
-      `;
-    }
-
     this.switchBrandModalTab('story');
     modal.classList.remove('hidden');
   }
@@ -13597,7 +13699,7 @@ ${result.description}
   }
 
   switchBrandModalTab(tabKey) {
-    const tabs = ['story', 'tech', 'tds', 'social'];
+    const tabs = ['story', 'tech', 'tds'];
     tabs.forEach(t => {
       const btn = document.getElementById(`btn-brand-tab-${t}`);
       const pane = document.getElementById(`brand-tab-content-${t}`);
@@ -13626,6 +13728,7 @@ ${result.description}
   filterByBrandAndScroll(brandName) {
     let target = brandName;
     if (target.includes('Iwata') || target.includes('Atawi')) target = 'Iwata';
+    else if (target.includes('VsionAir')) target = 'VsionAir';
     else if (target.includes('Hyper FX') || target.includes('Createx')) target = 'Hyper FX';
     else if (target.includes('Ace of Shades')) target = 'Ace of Shades';
     else if (target.includes('Clean Armor')) target = 'Clean Armor';
@@ -13687,115 +13790,24 @@ ${result.description}
                 <span>View SKUs</span>
               </button>
             </div>
-            
-            <button onclick="window.exportBrandToSocialButterfly &amp;&amp; window.exportBrandToSocialButterfly('${brand.id}')" class="w-full bg-sky-950 hover:bg-sky-900 border border-sky-500 text-sky-200 font-mono text-xs font-bold py-2 px-3 rounded flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-sm">
-              <span class="material-symbols-outlined text-[16px] text-sky-400">rocket_launch</span>
-              <span>Export Social Butterfly Campaign</span>
-            </button>
           </div>
         </div>
       `;
     }).join('');
   }
 
-  exportBrandToSocialButterfly(brandId) {
-    const isAll = !brandId || brandId === 'all';
-    const brandsToExport = isAll ? BRANDS_MASTER : [getBrandById(brandId) || BRANDS_MASTER[0]];
-
-    const campaignPayload = {
-      agencyPlatform: "Social Butterfly Autonomous Media Agent",
-      targetApiEndpoint: "http://127.0.0.1:3008/api/campaigns",
-      generatedAt: new Date().toISOString(),
-      storefrontDomain: "https://coastairbrush.eu",
-      campaigns: brandsToExport.map(b => ({
-        brandId: b.id,
-        brandName: b.name,
-        originCountry: b.origin,
-        distributorBadge: b.distributorTier,
-        tagline: b.tagline,
-        category: b.category,
-        handlesToTag: b.socialButterfly.handles,
-        hashtags: b.socialButterfly.hashtags,
-        officialStorySummary: b.story.originNarrative,
-        europeanSalesAngle: b.story.europeanMission,
-        keySellingPoints: b.usps,
-        videoReelHooks: b.socialButterfly.campaignHooks.map(h => ({
-          format: "9:16 Vertical Video (Instagram Reels / TikTok / YouTube Shorts)",
-          hookHeadline: h.headline,
-          creativeConcept: h.scriptAngle,
-          callToAction: `Tap link in bio to shop official ${b.name} at CoastAirbrush.eu 🇬🇧 🇪🇺`
-        })),
-        linkedCatalogSkus: b.productIds
-      }))
-    };
-
-    this.currentSocialButterflyPayload = campaignPayload;
-    this.currentModalBrandId = isAll ? 'all' : brandsToExport[0].id;
-
-    const previewEl = document.getElementById('social-butterfly-json-preview');
-    if (previewEl) {
-      previewEl.textContent = JSON.stringify(campaignPayload, null, 2);
-    }
-
-    const copyPreviewEl = document.getElementById('social-butterfly-copy-preview');
-    if (copyPreviewEl) {
-      const b = brandsToExport[0];
-      const hook = b.socialButterfly.campaignHooks[0];
-      copyPreviewEl.textContent = `🎬 [SHORT-FORM VIDEO SCRIPT & REEL CAPTION]
-Brand: ${b.name}
-Hook: "${hook.headline}"
-
-Visual Direction: ${hook.scriptAngle}
-
-Caption Body:
-Stop struggling with outdated methods! As the authorized European distributor for ${b.name}, Coast Airbrush Europe brings you guaranteed authentic factory batches with rapid UK & EU 24/48H dispatch. No customs delays, full REACH 2026 certification.
-
-Key Features:
-${b.usps.slice(0, 3).map(u => `• ${u}`).join('\n')}
-
-🔗 Tap link in bio to secure your allocation at CoastAirbrush.eu
-${b.socialButterfly.hashtags.join(' ')} #coastairbrusheurope`;
-    }
-
-    const modal = document.getElementById('modal-social-butterfly-export');
-    if (modal) modal.classList.remove('hidden');
-  }
-
-  closeSocialButterflyModal() {
-    const modal = document.getElementById('modal-social-butterfly-export');
-    if (modal) modal.classList.add('hidden');
-  }
-
-  copySocialButterflyPayload() {
-    if (!this.currentSocialButterflyPayload) return;
-    const jsonStr = JSON.stringify(this.currentSocialButterflyPayload, null, 2);
-    if (navigator && navigator.clipboard) {
-      navigator.clipboard.writeText(jsonStr).then(() => {
-        const btnText = document.getElementById('btn-copy-sb-text');
-        if (btnText) {
-          btnText.textContent = '✓ Copied!';
-          setTimeout(() => { btnText.textContent = 'Copy JSON'; }, 2500);
-        }
-        this.showToast('Social Butterfly campaign JSON copied to clipboard!', 'success');
-      });
-    }
-  }
-
-  downloadSocialButterflyJson(brandId) {
-    if (!this.currentSocialButterflyPayload) {
-      this.exportBrandToSocialButterfly(brandId);
-    }
-    const jsonStr = JSON.stringify(this.currentSocialButterflyPayload, null, 2);
+  downloadBrandsCatalogJson() {
+    const jsonStr = JSON.stringify(BRANDS_MASTER, null, 2);
     const blob = new Blob([jsonStr], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `social_butterfly_campaign_${brandId || 'all'}_${Date.now()}.json`;
+    a.download = `coast_airbrush_partner_brands_${Date.now()}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    this.showToast('Downloaded Social Butterfly campaign package.', 'info');
+    this.showToast('Downloaded manufacturer brand catalog JSON.', 'info');
   }
 
 }

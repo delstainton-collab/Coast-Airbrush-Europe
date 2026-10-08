@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" fill="none">
+  <defs>
+    <linearGradient id="aosGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+  </defs>
+  <!-- Spade Emblem -->
+  <g transform="translate(10, 12)">
+    <rect x="2" y="2" width="56" height="56" rx="6" fill="#18181b" stroke="#27272a" stroke-width="1.5"/>
+    <path d="M30,14 C25,24 16,30 16,36 C16,42 22,44 26,40 C28,38 30,36 30,36 C30,36 32,38 34,40 C38,44 44,42 44,36 C44,30 35,24 30,14 Z" fill="url(#aosGold)"/>
+    <path d="M28,38 L25,48 L35,48 L32,38 Z" fill="url(#aosGold)"/>
+  </g>
+  <text x="78" y="38" font-family="'Industry', 'Impact', 'Barlow Condensed', sans-serif" font-size="26" font-weight="900" letter-spacing="2" fill="#ffffff">
+    ACE OF <tspan fill="url(#aosGold)">SHADES</tspan>
+  </text>
+  <text x="80" y="55" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="9" font-weight="700" letter-spacing="3" fill="#9ca3af">
+    BY CUSTOM — FOR CUSTOM • USA
+  </text>
+</svg>

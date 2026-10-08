@@ -4,8 +4,38 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <script>
-    // PRE-LAUNCH STRICT LOCKDOWN: Unconditionally bounce all direct access to landing.html
+    // PRE-LAUNCH HOLDING GATE & DEV/PARTNER MODE ACCESS
     (function() {
+      try {
+        var h = window.location.hostname;
+        var isLocal = h === 'localhost' || h === '127.0.0.1' || h.startsWith('192.168.') || h.startsWith('10.') || h === '' || window.location.protocol === 'file:';
+        var isShopify = (typeof window.Shopify !== 'undefined') || h.includes('myshopify.com') || h.includes('shopifypreview.com') || window.location.search.includes('preview_theme_id') || window.location.search.includes('_fd=0');
+        var params = new URLSearchParams(window.location.search);
+        var hasPartnerParam = params.has('partner') || params.has('access') || params.has('key') || params.get('vip') === 'true' || params.get('vip') === '1';
+        var hasDevParam = params.get('dev') === 'true' || params.get('dev') === '1' ||
+                          params.get('preview') === 'true' || params.get('preview') === '1' ||
+                          hasPartnerParam;
+        var isUnlocked = sessionStorage.getItem('coast_store_preview') === 'true' ||
+                         sessionStorage.getItem('coast_partner_session') === 'true' ||
+                         localStorage.getItem('coast_dev_mode') === 'true' ||
+                         localStorage.getItem('coast_partner_access') === 'true' ||
+                         document.cookie.indexOf('coast_dev_mode=true') !== -1 ||
+                         document.cookie.indexOf('coast_store_preview=true') !== -1 ||
+                         document.cookie.indexOf('coast_partner_access=true') !== -1;
+
+        if (isLocal || isShopify || hasDevParam || isUnlocked) {
+          sessionStorage.setItem('coast_store_preview', 'true');
+          localStorage.setItem('coast_dev_mode', 'true');
+          document.cookie = "coast_dev_mode=true; path=/; max-age=2592000; SameSite=Lax";
+          document.cookie = "coast_store_preview=true; path=/; max-age=2592000; SameSite=Lax";
+          if (hasPartnerParam || localStorage.getItem('coast_partner_access') === 'true') {
+            sessionStorage.setItem('coast_partner_session', 'true');
+            localStorage.setItem('coast_partner_access', 'true');
+            document.cookie = "coast_partner_access=true; path=/; max-age=2592000; SameSite=Lax";
+          }
+          return;
+        }
+      } catch (e) {}
       window.location.replace('landing.html');
     })();
   </script>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" fill="none">
+  <defs>
+    <linearGradient id="iwataRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+  </defs>
+  <!-- Spray Atomization Ring / Split Nozzle Icon -->
+  <g transform="translate(10, 12)">
+    <rect x="2" y="2" width="56" height="56" rx="6" fill="#18181b" stroke="#27272a" stroke-width="1.5"/>
+    <!-- Atomizer Nozzle Pattern -->
+    <circle cx="30" cy="30" r="18" stroke="#ffffff" stroke-width="1.5"/>
+    <circle cx="30" cy="30" r="10" stroke="url(#iwataRed)" stroke-width="2.5"/>
+    <!-- Split Nozzle Jets -->
+    <path d="M30,14 L30,22 M30,38 L30,46 M14,30 L22,30 M38,30 L46,30" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="30" cy="30" r="3.5" fill="#ffffff"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="78" y="34" font-family="'Industry', 'Impact', 'Barlow Condensed', sans-serif" font-size="22" font-weight="900" letter-spacing="2" fill="#ffffff">
+    ANEST IWATA <tspan fill="url(#iwataRed)">// ATAWI</tspan>
+  </text>
+  <text x="80" y="52" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="9" font-weight="700" letter-spacing="3" fill="#9ca3af">
+    JAPANESE PRECISION ATOMIZATION
+  </text>
+</svg>

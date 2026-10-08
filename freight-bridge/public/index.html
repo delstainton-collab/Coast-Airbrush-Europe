@@ -167,7 +167,7 @@
           <label>Preset Test Payload</label>
           <select id="preset-selector" onchange="loadPreset()">
             <option value="heavy-solvents">4x 20L Flammable Paint Drums (88kg, UN1263 ADR Hazmat)</option>
-            <option value="pallet-bulk">1x Full Pallet Shop Stock (180kg, House of Kolor Master Kit)</option>
+            <option value="pallet-bulk">1x Full Pallet Shop Stock (180kg, Kroma Edge Master Painter Kit)</option>
             <option value="small-parcel">1x Airbrush Handpiece (0.45kg, Parcel non-freight)</option>
           </select>
 
@@ -285,7 +285,7 @@
       if (preset === 'heavy-solvents') {
         items = [{ name: 'Kroma Edge UN1263 Reducer Solvent 20L Drum', sku: 'KE-SOLV-20L', quantity: 4, grams: 22000 }];
       } else if (preset === 'pallet-bulk') {
-        items = [{ name: 'House of Kolor Master Painter Pallet Kit', sku: 'HOK-MASTER-PLT', quantity: 1, grams: 180000 }];
+        items = [{ name: 'Kroma Edge Master Painter Pallet Kit', sku: 'KE-MASTER-PLT', quantity: 1, grams: 180000 }];
       } else {
         items = [{ name: 'Custom Micron Airbrush Handpiece', sku: 'CM-01', quantity: 1, grams: 450 }];
       }

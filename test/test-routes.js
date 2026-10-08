@@ -25,8 +25,8 @@ const shopifyRatePayload = {
     },
     items: [
       {
-        name: "House of Kolor Kandy Basecoat 20L Drum",
-        sku: "HOK-KBC-20L",
+        name: "Kroma Edge Kandy Basecoat 20L Drum",
+        sku: "KE-KBC-20L",
         quantity: 2,
         grams: 22000,
         price: 34000

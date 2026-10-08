@@ -4,17 +4,69 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <script>
-    // PRE-LAUNCH STRICT LOCKDOWN: Unconditionally bounce all direct access to landing.html
+    // PRE-LAUNCH HOLDING GATE & DEV/PARTNER MODE ACCESS
     (function() {
       try {
-        sessionStorage.removeItem('coast_store_preview');
+        var h = window.location.hostname;
+        var isLocal = h === 'localhost' || h === '127.0.0.1' || h.startsWith('192.168.') || h.startsWith('10.') || h === '' || window.location.protocol === 'file:';
+        var isShopify = (typeof window.Shopify !== 'undefined') || h.includes('myshopify.com') || h.includes('shopifypreview.com') || window.location.search.includes('preview_theme_id') || window.location.search.includes('_fd=0');
+        var params = new URLSearchParams(window.location.search);
+        var hasPartnerParam = params.has('partner') || params.has('access') || params.has('key') || params.get('vip') === 'true' || params.get('vip') === '1';
+        var hasDevParam = params.get('dev') === 'true' || params.get('dev') === '1' ||
+                          params.get('preview') === 'true' || params.get('preview') === '1' ||
+                          hasPartnerParam;
+        var isUnlocked = sessionStorage.getItem('coast_store_preview') === 'true' ||
+                         sessionStorage.getItem('coast_partner_session') === 'true' ||
+                         localStorage.getItem('coast_dev_mode') === 'true' ||
+                         localStorage.getItem('coast_partner_access') === 'true' ||
+                         document.cookie.indexOf('coast_dev_mode=true') !== -1 ||
+                         document.cookie.indexOf('coast_store_preview=true') !== -1 ||
+                         document.cookie.indexOf('coast_partner_access=true') !== -1;
+
+        if (isLocal || isShopify || hasDevParam || isUnlocked) {
+          sessionStorage.setItem('coast_store_preview', 'true');
+          localStorage.setItem('coast_dev_mode', 'true');
+          document.cookie = "coast_dev_mode=true; path=/; max-age=2592000; SameSite=Lax";
+          document.cookie = "coast_store_preview=true; path=/; max-age=2592000; SameSite=Lax";
+          if (hasPartnerParam || localStorage.getItem('coast_partner_access') === 'true') {
+            sessionStorage.setItem('coast_partner_session', 'true');
+            localStorage.setItem('coast_partner_access', 'true');
+            document.cookie = "coast_partner_access=true; path=/; max-age=2592000; SameSite=Lax";
+          }
+          window.addEventListener('DOMContentLoaded', function() {
+            var b = document.getElementById('dev-mode-bar');
+            if (b) {
+              b.classList.remove('hidden');
+              if (hasPartnerParam || localStorage.getItem('coast_partner_access') === 'true') {
+                var titleSpan = b.querySelector('.dev-title');
+                if (titleSpan) titleSpan.textContent = '🔑 PARTNER PREVIEW SESSION';
+                var descSpan = b.querySelector('.dev-desc');
+                if (descSpan) descSpan.textContent = 'Authorized Partner Storefront Access';
+              }
+            }
+          });
+          return;
+        }
       } catch (e) {}
       window.location.replace('landing.html');
     })();
+
+    window.exitPartnerPreview = function() {
+      try {
+        sessionStorage.removeItem('coast_store_preview');
+        sessionStorage.removeItem('coast_partner_session');
+        localStorage.removeItem('coast_dev_mode');
+        localStorage.removeItem('coast_partner_access');
+        document.cookie = "coast_dev_mode=; path=/; max-age=0";
+        document.cookie = "coast_store_preview=; path=/; max-age=0";
+        document.cookie = "coast_partner_access=; path=/; max-age=0";
+      } catch (e) {}
+      window.location.href = 'landing.html';
+    };
   </script>
   <title>Coast Airbrush Europe | Custom Automotive Paint, Kroma Edge &amp; Airbrush Mixing Engine</title>
   <meta name="description" content="The official European hub for Coast Airbrush, Kroma Edge, and Flake King. Interactive custom paint mixing ratio engine, technical data sheets, and fast UK &amp; EU dispatch with zero US import duties.">
-  <meta name="keywords" content="Coast Airbrush Europe, Kroma Edge, Flake King, custom automotive paint, airbrush paint mixing calculator, candy concentrate, House of Kolor Europe, low VOC custom paint, automotive refinishing EU">
+  <meta name="keywords" content="Coast Airbrush Europe, Kroma Edge, Flake King, custom automotive paint, airbrush paint mixing calculator, candy concentrate, low VOC custom paint, automotive refinishing EU">
   <meta name="author" content="Coast Airbrush Europe">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://coastairbrush.eu/">
@@ -290,6 +342,34 @@
   <!-- ========================================================================= -->
   <header id="master-site-header" class="relative md:sticky top-0 z-50 w-full flex flex-col bg-surface-container-lowest/95 backdrop-blur-md border-b border-surface-container-high shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
 
+    <!-- DEV MODE STATUS BAR (Shows when previewing/dev mode) -->
+    <div id="dev-mode-bar" class="hidden bg-[#0d2818] border-b border-emerald-500/40 text-emerald-300 px-4 py-1.5 text-[11px] font-mono flex items-center justify-between z-50">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-bold tracking-wider uppercase text-emerald-200 dev-title">🛠️ STOREFRONT DEV MODE</span>
+        <span class="text-emerald-500/60 hidden sm:inline">|</span>
+        <span class="text-emerald-300/80 hidden sm:inline dev-desc">Active Development Environment</span>
+      </div>
+      <div class="flex items-center gap-2.5 text-[11px]">
+        <button type="button" onclick="exitPartnerPreview()" class="hover:underline text-amber-300 font-semibold flex items-center gap-1 cursor-pointer bg-black/40 px-2 py-0.5 rounded border border-amber-500/30 text-[10px] tracking-wider uppercase" title="Lock Storefront and Return to Holding Page">
+          <span class="material-symbols-outlined text-[13px] text-amber-400">lock</span>
+          <span>Exit Preview</span>
+        </button>
+        <span class="text-emerald-500/40">•</span>
+        <a href="/landing.html" class="hover:underline text-emerald-200 font-semibold flex items-center gap-1">
+          <span>Holding Page</span> &rarr;
+        </a>
+        <span class="text-emerald-500/40 hidden md:inline">•</span>
+        <a href="/freight" class="hover:underline text-emerald-200 font-semibold hidden md:flex items-center gap-1">
+          <span>Freight Bridge</span> &rarr;
+        </a>
+        <span class="text-emerald-500/40 hidden md:inline">•</span>
+        <a href="/workshop" class="hover:underline text-emerald-200 font-semibold hidden md:flex items-center gap-1">
+          <span>BOM Engine</span> &rarr;
+        </a>
+      </div>
+    </div>
+
     <!-- TOP COMPLIANCE & LOGISTICS ANNOUNCEMENT BAR -->
     <div id="top-shipping-banner" class="bg-surface-container-lowest border-b border-surface-container-high py-1.5 px-margin-mobile md:px-margin text-xs tracking-wider">
       <div class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-2 text-secondary font-label-caps">
@@ -415,6 +495,7 @@
       <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin">
         <nav class="flex items-center space-x-space-md sm:space-x-space-lg overflow-x-auto py-2">
           <a id="tab-storefront" class="nav-link active" href="javascript:void(0)">SHOP</a>
+          <a href="#dept-brands" class="nav-link text-primary font-bold flex items-center gap-1" title="Explore Authorized European Manufacturers"><span class="material-symbols-outlined text-[15px]">verified</span> BRANDS</a>
           <a href="#dept-guns" class="nav-link">AIRBRUSHES &amp; GUNS</a>
           <a href="#dept-kroma-edge" class="nav-link">CUSTOM PAINT LINES</a>
           <a href="#dept-flakes" class="nav-link">FLAKE SYSTEMS</a>
@@ -453,6 +534,7 @@
   <!-- Mobile Secondary Navigation Bar -->
   <div class="lg:hidden bg-surface-container-low border-b border-surface-container-high flex overflow-x-auto py-2 px-4 gap-2 text-xs">
     <button onclick="document.getElementById('tab-storefront').click()" class="nav-link !text-xs !py-1 !px-2.5 active">Shop</button>
+    <a href="#dept-brands" class="nav-link !text-xs !py-1 !px-2.5 text-primary font-bold">Brands</a>
     <a href="#dept-kroma-edge" class="nav-link !text-xs !py-1 !px-2.5 text-neutral-300">Chrome &amp; Clears</a>
     <a href="#dept-guns" class="nav-link !text-xs !py-1 !px-2.5 text-primary font-bold">Guns</a>
     <a href="#dept-flakes" class="nav-link !text-xs !py-1 !px-2.5 text-neutral-300">Flakes</a>
@@ -921,6 +1003,216 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- MASTER BRANDS & DISTRIBUTED MANUFACTURERS SHOWCASE SECTION (#dept-brands) -->
+    <!-- ========================================================================= -->
+    <section id="dept-brands" class="py-16 bg-surface-container-low border-b border-surface-container-high px-margin-mobile md:px-margin-desktop">
+      <div class="max-w-[1440px] mx-auto space-y-8">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-surface-container-high pb-4 gap-4">
+          <div>
+            <div id="brands-count-badge" class="inline-flex items-center gap-2 px-3 py-1 rounded bg-red-950/60 border border-primary/50 text-primary font-mono text-[11px] font-bold mb-2">
+              <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              <span>✦ OFFICIAL EUROPEAN PARTNER ECOSYSTEM • 4 ACTIVE MANUFACTURERS</span>
+            </div>
+            <h2 class="font-headline text-3xl sm:text-4xl uppercase text-white font-bold tracking-tight">
+              AUTHORIZED MANUFACTURERS &amp; BRAND STORIES
+            </h2>
+            <p class="font-body text-sm text-neutral-300 max-w-3xl mt-1 leading-relaxed">
+              Coast Airbrush Europe acts as the premier European bridgehead for legendary American, British, and Japanese custom coating and equipment innovators. Direct factory dispatch, authentic European warranties, technical TDS certification, and REACH 2026 compliance.
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="font-mono text-xs text-secondary hidden sm:inline">Official European Hub</span>
+            <button onclick="window.paintApp && window.paintApp.setBrandFilter('all'); const anchor = document.getElementById('storefront-catalog-anchor'); if(anchor) anchor.scrollIntoView({behavior:'smooth'});" class="mech-btn-secondary !text-xs !py-2 !px-3 font-mono flex items-center gap-1 cursor-pointer">
+              <span>View All 127 SKUs &rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Manufacturer Cards Grid (Dynamically filtered: only brands with active in-stock products are displayed) -->
+        <div id="brands-showcase-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+          <!-- 1. KROMA EDGE -->
+          <div class="bg-surface-container border border-surface-container-high hover:border-sky-500/70 transition-all rounded-lg p-5 flex flex-col justify-between shadow-md group relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-sky-500/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="font-mono text-[11px] text-sky-400 font-bold bg-sky-950/60 border border-sky-500/40 px-2.5 py-0.5 rounded flex items-center gap-1">
+                  <span>🇯🇵 / 🇬🇧</span>
+                  <span>EXCLUSIVE MASTER DISTRIBUTOR</span>
+                </span>
+                <span class="text-[10px] font-mono text-secondary uppercase">OPTICAL LABS</span>
+              </div>
+
+              <!-- Brand Logo Box inside Brand Card -->
+              <div class="h-14 w-full flex items-center justify-start mb-3 bg-[#0d0d10] p-2.5 rounded border border-[#242429] shadow-inner group-hover:border-[#383842] transition-colors">
+                <img src="assets/images/brands/kroma-edge-logo.svg" alt="Kroma Edge Official Logo" class="h-full w-auto max-h-9 object-contain" onerror="this.style.display='none'">
+              </div>
+
+              <h3 class="font-headline text-2xl uppercase text-white font-bold tracking-tight group-hover:text-sky-400 transition-colors">
+                Kroma Edge
+              </h3>
+              <p class="font-mono text-xs text-sky-300 font-semibold mb-3">
+                Beyond Reflection — Self-Organizing Mirror Chrome
+              </p>
+              <p class="font-body text-xs text-neutral-300 leading-relaxed mb-4">
+                The world's first self-organizing 2K optical mirror coating. Micro-fine synthetic metallic particles align naturally on the surface without toxic chemical tank plating or delicate silvering baths. Paired with non-clouding dedicated clearcoat.
+              </p>
+              <ul class="font-mono text-[11px] text-neutral-300 space-y-1.5 mb-5 border-t border-surface-container-high pt-3">
+                <li class="flex items-center gap-1.5"><span class="text-sky-400 font-bold">✓</span> <span><strong>No Black Base Required:</strong> Direct-to-sealer</span></li>
+                <li class="flex items-center gap-1.5"><span class="text-sky-400 font-bold">✓</span> <span><strong>Single Wet Coat:</strong> Zero pinholing or haze</span></li>
+                <li class="flex items-center gap-1.5"><span class="text-sky-400 font-bold">✓</span> <span><strong>Dedicated Clear:</strong> Zero grey-out optical clouding</span></li>
+              </ul>
+            </div>
+            <div class="flex items-center gap-2 pt-3 border-t border-surface-container-high">
+              <button onclick="window.openBrandStoryModal && window.openBrandStoryModal('kroma-edge')" class="mech-btn-secondary !text-[11px] !py-2 !px-2.5 flex-1 text-center font-mono flex items-center justify-center gap-1 cursor-pointer">
+                <span class="material-symbols-outlined text-[14px]">auto_stories</span>
+                <span>Story &amp; TDS</span>
+              </button>
+              <button onclick="window.filterByBrandAndScroll && window.filterByBrandAndScroll('Kroma Edge')" class="mech-button-primary !text-[11px] !py-2 !px-3 font-mono font-bold text-center flex items-center justify-center gap-1 cursor-pointer">
+                <span>Shop (2)</span>
+                <span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. FLAKE KING -->
+          <div class="bg-surface-container border border-surface-container-high hover:border-red-500/70 transition-all rounded-lg p-5 flex flex-col justify-between shadow-md group relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-red-500/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="font-mono text-[11px] text-red-400 font-bold bg-red-950/60 border border-red-500/40 px-2.5 py-0.5 rounded flex items-center gap-1">
+                  <span>🇬🇧 UK</span>
+                  <span>PATENTED VENTURI TECH</span>
+                </span>
+                <span class="text-[10px] font-mono text-secondary uppercase">CO. DURHAM</span>
+              </div>
+
+              <!-- Brand Logo Box inside Brand Card -->
+              <div class="h-14 w-full flex items-center justify-start mb-3 bg-[#0d0d10] p-2.5 rounded border border-[#242429] shadow-inner group-hover:border-[#383842] transition-colors">
+                <img src="assets/images/brands/flake-king-logo.svg" alt="Flake King Official Logo" class="h-full w-auto max-h-9 object-contain" onerror="this.style.display='none'">
+              </div>
+
+              <h3 class="font-headline text-2xl uppercase text-white font-bold tracking-tight group-hover:text-red-400 transition-colors">
+                Flake King
+              </h3>
+              <p class="font-mono text-xs text-red-300 font-semibold mb-3">
+                Patented Dry Venturi Flake Guns, Flakes &amp; Tapes
+              </p>
+              <p class="font-body text-xs text-neutral-300 leading-relaxed mb-4">
+                The world's patented dry metal flake application system. Shoot dry flake into wet clear with zero gun clogs, 70% clearcoat savings, and soft-brush cleanup. Paired with 40+ solvent-proof 177°C flakes and Prime Green precision tapes.
+              </p>
+              <ul class="font-mono text-[11px] text-neutral-300 space-y-1.5 mb-5 border-t border-surface-container-high pt-3">
+                <li class="flex items-center gap-1.5"><span class="text-red-400 font-bold">✓</span> <span><strong>Patented Dry Guns:</strong> FK1000 &amp; FK500 zero gun clog</span></li>
+                <li class="flex items-center gap-1.5"><span class="text-red-400 font-bold">✓</span> <span><strong>Solvent-Proof Flakes:</strong> 177°C heat &amp; UV zero-fade</span></li>
+                <li class="flex items-center gap-1.5"><span class="text-red-400 font-bold">✓</span> <span><strong>Prime Green &amp; Orange:</strong> Zero bleed translucent PVC</span></li>
+              </ul>
+            </div>
+            <div class="flex items-center gap-2 pt-3 border-t border-surface-container-high">
+              <button onclick="window.openBrandStoryModal && window.openBrandStoryModal('flake-king')" class="mech-btn-secondary !text-[11px] !py-2 !px-2.5 flex-1 text-center font-mono flex items-center justify-center gap-1 cursor-pointer">
+                <span class="material-symbols-outlined text-[14px]">auto_stories</span>
+                <span>Story &amp; TDS</span>
+              </button>
+              <button onclick="window.filterByBrandAndScroll && window.filterByBrandAndScroll('Flake King')" class="mech-button-primary !text-[11px] !py-2 !px-3 font-mono font-bold text-center flex items-center justify-center gap-1 cursor-pointer">
+                <span>Shop (54)</span>
+                <span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. VSIONAIR -->
+          <div class="bg-surface-container border border-surface-container-high hover:border-amber-500/70 transition-all rounded-lg p-5 flex flex-col justify-between shadow-md group relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="font-mono text-[11px] text-amber-400 font-bold bg-amber-950/60 border border-amber-500/40 px-2.5 py-0.5 rounded flex items-center gap-1">
+                  <span>🇬🇧 UK</span>
+                  <span>MODULAR RIGS &amp; JIGS</span>
+                </span>
+                <span class="text-[10px] font-mono text-secondary uppercase">ERGONOMICS</span>
+              </div>
+
+              <!-- Brand Logo Box inside Brand Card -->
+              <div class="h-14 w-full flex items-center justify-start mb-3 bg-[#0d0d10] p-2.5 rounded border border-[#242429] shadow-inner group-hover:border-[#383842] transition-colors">
+                <img src="assets/images/brands/vsionair-logo.svg" alt="VsionAir Official Logo" class="h-full w-auto max-h-9 object-contain" onerror="this.style.display='none'">
+              </div>
+
+              <h3 class="font-headline text-2xl uppercase text-white font-bold tracking-tight group-hover:text-amber-400 transition-colors">
+                VsionAir
+              </h3>
+              <p class="font-mono text-xs text-amber-300 font-semibold mb-3">
+                Modular Workstation Rigs, Turntables &amp; Paint Jigs
+              </p>
+              <p class="font-body text-xs text-neutral-300 leading-relaxed mb-4">
+                The world's first professional modular painting rig ecosystem. Laser-cut British steel, 360° lockable indexing, magnetic body clamps, and specialized jigs for tanks, helmets, and ice hockey goalie masks.
+              </p>
+              <ul class="font-mono text-[11px] text-neutral-300 space-y-1.5 mb-5 border-t border-surface-container-high pt-3">
+                <li class="flex items-center gap-1.5"><span class="text-amber-400 font-bold">✓</span> <span><strong>Tri-Stand Modular Rig:</strong> 360° rotating painter base</span></li>
+                <li class="flex items-center gap-1.5"><span class="text-amber-400 font-bold">✓</span> <span><strong>Specialized Jigs:</strong> Helmets, tanks, &amp; goalie masks</span></li>
+                <li class="flex items-center gap-1.5"><span class="text-amber-400 font-bold">✓</span> <span><strong>100% British Steel:</strong> Heavy powder-coated durability</span></li>
+              </ul>
+            </div>
+            <div class="flex items-center gap-2 pt-3 border-t border-surface-container-high">
+              <button onclick="window.openBrandStoryModal && window.openBrandStoryModal('vsionair')" class="mech-btn-secondary !text-[11px] !py-2 !px-2.5 flex-1 text-center font-mono flex items-center justify-center gap-1 cursor-pointer">
+                <span class="material-symbols-outlined text-[14px]">auto_stories</span>
+                <span>Story &amp; TDS</span>
+              </button>
+              <button onclick="window.filterByBrandAndScroll && window.filterByBrandAndScroll('VsionAir')" class="mech-button-primary !text-[11px] !py-2 !px-3 font-mono font-bold text-center flex items-center justify-center gap-1 cursor-pointer">
+                <span>Shop (69)</span>
+                <span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. ANEST IWATA & ATAWI -->
+          <div class="bg-surface-container border border-surface-container-high hover:border-red-500/70 transition-all rounded-lg p-5 flex flex-col justify-between shadow-md group relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-red-500/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="font-mono text-[11px] text-red-400 font-bold bg-red-950/60 border border-red-500/40 px-2.5 py-0.5 rounded flex items-center gap-1">
+                  <span>🇯🇵 JAPAN</span>
+                  <span>OFFICIAL MASTER PARTNER</span>
+                </span>
+                <span class="text-[10px] font-mono text-secondary uppercase">YOKOHAMA</span>
+              </div>
+
+              <!-- Brand Logo Box inside Brand Card -->
+              <div class="h-14 w-full flex items-center justify-start mb-3 bg-[#0d0d10] p-2.5 rounded border border-[#242429] shadow-inner group-hover:border-[#383842] transition-colors">
+                <img src="assets/images/brands/iwata-atawi-logo.svg" alt="Anest Iwata & Atawi Official Logo" class="h-full w-auto max-h-9 object-contain" onerror="this.style.display='none'">
+              </div>
+
+              <h3 class="font-headline text-2xl uppercase text-white font-bold tracking-tight group-hover:text-red-400 transition-colors">
+                Anest Iwata &amp; Atawi
+              </h3>
+              <p class="font-mono text-xs text-red-300 font-semibold mb-3">
+                Japanese Precision Atomization — The World Standard
+              </p>
+              <p class="font-body text-xs text-neutral-300 leading-relaxed mb-4">
+                Over 90 years of precision atomization engineering. Featuring the exclusive Coast x Iwata ATAWI signature 0.18mm series and Takumi masterclass matched head assemblies tuned by Japanese master craftsmen.
+              </p>
+              <ul class="font-mono text-[11px] text-neutral-300 space-y-1.5 mb-5 border-t border-surface-container-high pt-3">
+                <li class="flex items-center gap-1.5"><span class="text-red-400 font-bold">✓</span> <span><strong>Atawi Signature 0.18mm:</strong> Micro-detail &amp; candying</span></li>
+                <li class="flex items-center gap-1.5"><span class="text-red-400 font-bold">✓</span> <span><strong>Takumi Matched Head:</strong> Hand-tested in Yokohama</span></li>
+                <li class="flex items-center gap-1.5"><span class="text-red-400 font-bold">✓</span> <span><strong>Side-Feed Visibility:</strong> Direct line of sight to tip</span></li>
+              </ul>
+            </div>
+            <div class="flex items-center gap-2 pt-3 border-t border-surface-container-high">
+              <button onclick="window.openBrandStoryModal && window.openBrandStoryModal('iwata-atawi')" class="mech-btn-secondary !text-[11px] !py-2 !px-2.5 flex-1 text-center font-mono flex items-center justify-center gap-1 cursor-pointer">
+                <span class="material-symbols-outlined text-[14px]">auto_stories</span>
+                <span>Story &amp; TDS</span>
+              </button>
+              <button onclick="window.filterByBrandAndScroll && window.filterByBrandAndScroll('Iwata')" class="mech-button-primary !text-[11px] !py-2 !px-3 font-mono font-bold text-center flex items-center justify-center gap-1 cursor-pointer">
+                <span>Shop (2)</span>
+                <span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+              </button>
+            </div>
+          </div>        </div>
+
       </div>
     </section>
 
@@ -2534,15 +2826,17 @@
           <div id="brand-filter-pills" class="flex items-center gap-1.5 flex-wrap font-mono text-xs">
             <span class="text-secondary font-bold uppercase text-[11px] mr-1 hidden sm:inline">Filter:</span>
             <button data-brand-val="all" class="brand-pill active px-3 py-1.5 border border-secondary bg-black/60 text-white font-bold hover:border-primary transition-colors cursor-pointer">ALL</button>
-            <button data-brand-val="Kroma Edge" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">KROMA EDGE</button>
-            <button data-cat-val="Dedicated Clearcoats" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">CLEARCOAT KITS</button>
+            <button data-brand-val="Kroma Edge" class="brand-pill px-3 py-1.5 border border-sky-500/50 bg-black/60 text-sky-300 hover:text-white hover:border-sky-400 transition-colors cursor-pointer">KROMA EDGE</button>
+            <button data-brand-val="Iwata" class="brand-pill px-3 py-1.5 border border-red-500/50 bg-black/60 text-red-300 hover:text-white hover:border-red-400 transition-colors cursor-pointer">IWATA / ATAWI</button>
+            <button data-brand-val="Ace of Shades" class="brand-pill px-3 py-1.5 border border-amber-500/50 bg-black/60 text-amber-300 hover:text-white hover:border-amber-400 transition-colors cursor-pointer">ACE OF SHADES</button>
+            <button data-brand-val="Hyper FX" class="brand-pill px-3 py-1.5 border border-emerald-500/50 bg-black/60 text-emerald-300 hover:text-white hover:border-emerald-400 transition-colors cursor-pointer">HYPER FX (CREATEX)</button>
+            <button data-brand-val="LumiLor" class="brand-pill px-3 py-1.5 border border-purple-500/50 bg-black/60 text-purple-300 hover:text-white hover:border-purple-400 transition-colors cursor-pointer">LUMILOR</button>
+            <button data-brand-val="Clean Armor" class="brand-pill px-3 py-1.5 border border-emerald-500/50 bg-black/60 text-emerald-300 hover:text-white hover:border-emerald-400 transition-colors cursor-pointer">CLEAN ARMOR</button>
             <button data-brand-val="Flake King" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">FLAKE KING</button>
-            <button data-cat-val="Dry Metal Flake (Glitter)" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">METAL FLAKES (36)</button>
-            <button data-cat-val="Basecoats & Binders" class="brand-pill px-3 py-1.5 border border-amber-500/60 bg-black/60 text-amber-300 hover:text-white hover:border-amber-400 transition-colors cursor-pointer">BASECOATS &amp; BINDERS (3)</button>
-            <button data-cat-val="Dry Metal Flake Guns" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">FLAKE GUNS</button>
-            <button data-cat-val="Flake King Gun Accessories" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">GUN ACCESSORIES</button>
-            <button data-cat-val="Masking Products" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">FINE LINE TAPES (6)</button>
-            <button data-brand-val="VsionAir" class="brand-pill px-3 py-1.5 border border-amber-500/60 bg-black/60 text-amber-300 hover:text-white hover:border-amber-400 transition-colors cursor-pointer">VSIONAIR (COMING SOON)</button>
+            <button data-brand-val="VsionAir" class="brand-pill px-3 py-1.5 border border-amber-500/60 bg-black/60 text-amber-300 hover:text-white hover:border-amber-400 transition-colors cursor-pointer">VSIONAIR</button>
+            <button data-cat-val="Dedicated Clearcoats" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">CLEARCOAT KITS</button>
+            <button data-cat-val="Dry Metal Flake (Glitter)" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">FLAKES (36)</button>
+            <button data-cat-val="Masking Products" class="brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer">TAPES (6)</button>
           </div>
 
           <!-- Sorter Dropdown & Reset -->
@@ -3980,6 +4274,9 @@
         <button id="subtab-admin-taxonomy" class="admin-subtab font-mono text-xs uppercase px-4 py-2 border-2 border-secondary bg-surface text-secondary hover:text-white flex items-center gap-2">
           <span class="material-symbols-outlined text-[16px]">category</span> Taxonomy &amp; Categories
         </button>
+        <button id="subtab-admin-brands" class="admin-subtab font-mono text-xs uppercase px-4 py-2 border-2 border-secondary bg-surface text-secondary hover:text-white flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px]">verified</span> Brands &amp; Vendors Hub
+        </button>
         <button id="subtab-admin-formulas" class="admin-subtab active font-mono text-xs uppercase px-4 py-2 border-2 border-primary bg-primary/20 text-white font-bold flex items-center gap-2">
           <span class="material-symbols-outlined text-[16px]">science</span> Formulas &amp; Mixing Lab
         </button>
@@ -5005,7 +5302,6 @@
                   <option value="">-- Choose Brand --</option>
                   <option value="Kroma Edge">Kroma Edge</option>
                   <option value="Flake King">Flake King</option>
-                  <option value="House of Kolor">House of Kolor</option>
                   <option value="Ace of Shades">Ace of Shades</option>
                   <option value="VsionAir">VsionAir</option>
                 </select>
@@ -5089,7 +5385,6 @@
             <option value="all">All Brands</option>
             <option value="Kroma Edge">Kroma Edge</option>
             <option value="Flake King">Flake King</option>
-            <option value="House of Kolor">House of Kolor</option>
             <option value="Ace of Shades">Ace of Shades</option>
             <option value="VsionAir">VsionAir</option>
           </select>
@@ -5277,7 +5572,6 @@
             <option value="all">All Brands (All Catalog)</option>
             <option value="Kroma Edge">Kroma Edge</option>
             <option value="Flake King">Flake King</option>
-            <option value="House of Kolor">House of Kolor</option>
             <option value="Ace of Shades">Ace of Shades</option>
           </select>
         </div>
@@ -5300,6 +5594,62 @@
       <!-- Products Grid/Table -->
       <div id="admin-products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Dynamically rendered via Admin Controller -->
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SUB-PANEL: BRANDS & VENDOR PARTNERS HUB -->
+    <!-- ========================================================================= -->
+    <div id="admin-panel-brands" class="admin-panel flex flex-col gap-6" style="display: none;">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-secondary/40 pb-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <h3 class="font-headline text-xl uppercase text-primary">Vendor Brand Management &amp; Partner Lines</h3>
+            <span class="bg-primary/20 text-primary border border-primary/40 text-[10px] font-mono px-2 py-0.5 uppercase font-bold flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              7 Distributed Brands Active
+            </span>
+          </div>
+          <p class="font-mono text-xs text-secondary mt-1">
+            Associate catalog products with manufacturers, inspect verified distributor agreements, edit official brand narratives, and review manufacturer specifications.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="window.downloadBrandsCatalogJson &amp;&amp; window.downloadBrandsCatalogJson()" class="font-mono text-xs border border-secondary bg-surface-container px-3 py-2 text-on-surface hover:border-primary transition-all flex items-center gap-1.5 cursor-pointer">
+            <span class="material-symbols-outlined text-[16px]">download</span>
+            <span>BRAND CATALOG (JSON)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
+        <div class="p-3 bg-surface border border-secondary/60 rounded flex flex-col">
+          <span class="text-secondary text-[11px] uppercase">Active Partner Lines</span>
+          <span class="text-white text-xl font-bold mt-1">7 Manufacturers</span>
+          <span class="text-emerald-400 text-[10px] mt-0.5">100% REACH Compliant</span>
+        </div>
+        <div class="p-3 bg-surface border border-secondary/60 rounded flex flex-col">
+          <span class="text-secondary text-[11px] uppercase">Catalog Products Mapped</span>
+          <span class="text-white text-xl font-bold mt-1">139 SKUs</span>
+          <span class="text-sky-400 text-[10px] mt-0.5">Dual Currencies (GBP/EUR)</span>
+        </div>
+        <div class="p-3 bg-surface border border-secondary/60 rounded flex flex-col">
+          <span class="text-secondary text-[11px] uppercase">Distribution Status</span>
+          <span class="text-emerald-400 text-xl font-bold mt-1">VERIFIED DIRECT</span>
+          <span class="text-neutral-400 text-[10px] mt-0.5">Master Importer</span>
+        </div>
+        <div class="p-3 bg-surface border border-secondary/60 rounded flex flex-col">
+          <span class="text-secondary text-[11px] uppercase">Exclusive Territories</span>
+          <span class="text-amber-400 text-xl font-bold mt-1">UK &amp; European Hub</span>
+          <span class="text-secondary text-[10px] mt-0.5">Direct Factory Warranties</span>
+        </div>
+      </div>
+
+      <!-- Admin Brands Cards Grid -->
+      <div id="admin-brands-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered dynamically by renderAdminBrands() -->
       </div>
     </div>
 
@@ -5818,6 +6168,134 @@
           </button>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: B2B COMMERCIAL PURCHASE ORDER CHECKOUT (ON CREDIT ACCOUNT) -->
+  <!-- ========================================================================= -->
+  <div id="modal-trade-account-checkout" class="modal-overlay">
+    <div class="modal-box !max-w-[620px] bg-[#121416] border-2 border-emerald-500 text-white shadow-2xl">
+      <div class="bg-emerald-950/90 p-4 border-b border-emerald-500/50 flex justify-between items-center">
+        <div class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-emerald-400 text-2xl">account_balance</span>
+          <div>
+            <h3 class="font-headline text-lg uppercase text-white font-bold tracking-tight">PLACE ORDER ON COMMERCIAL ACCOUNT</h3>
+            <span id="modal-account-terms-badge" class="font-mono text-[11px] text-emerald-300 font-semibold block">Net 30 Days Credit Line • Verified Trade Partner</span>
+          </div>
+        </div>
+        <button onclick="window.paintApp && window.paintApp.closeTradeAccountModal()" class="text-neutral-400 hover:text-white cursor-pointer">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4">
+        <!-- Account Verification Card -->
+        <div class="bg-black/60 p-3.5 rounded border border-white/10 flex justify-between items-center font-mono text-xs">
+          <div>
+            <div id="modal-account-company" class="font-bold text-white text-sm">Company Name</div>
+            <div id="modal-account-contact" class="text-neutral-400">Contact: Verified Partner</div>
+          </div>
+          <div class="text-right">
+            <div id="modal-account-vat" class="text-emerald-400 font-semibold">VAT: Verified</div>
+            <div id="modal-account-country" class="text-neutral-400">Dispatch: UK / EU</div>
+          </div>
+        </div>
+
+        <!-- PO Number Entry -->
+        <div>
+          <label class="block font-mono text-xs uppercase text-neutral-300 font-bold mb-1">
+            Internal Purchase Order (PO) Number <span class="text-primary">*</span>
+          </label>
+          <input type="text" id="modal-po-input" placeholder="e.g. PO-2026-APEX-049" class="mech-input !py-2 !px-3 w-full font-mono text-sm uppercase">
+          <p class="text-[10px] font-mono text-neutral-400 mt-1">This reference will appear on your commercial VAT invoice and shipping manifest.</p>
+        </div>
+
+        <!-- Dispatch Notes -->
+        <div>
+          <label class="block font-mono text-xs uppercase text-neutral-300 font-bold mb-1">
+            Special Dispatch &amp; Delivery Instructions (Optional)
+          </label>
+          <textarea id="modal-account-notes" rows="2" placeholder="e.g. Tailgate lift required, deliver to Bay 3, call receiving 30 mins prior." class="mech-input !py-2 !px-3 w-full font-mono text-xs"></textarea>
+        </div>
+
+        <!-- Order Financial Summary -->
+        <div class="bg-surface-container p-3.5 rounded border border-white/10 font-mono text-xs space-y-1.5">
+          <div class="flex justify-between text-neutral-400">
+            <span>Wholesale Subtotal (Ex-VAT):</span>
+            <span id="modal-account-subtotal" class="text-white font-bold">£0.00</span>
+          </div>
+          <div class="flex justify-between text-neutral-400">
+            <span id="modal-account-vat-label">VAT Treatment:</span>
+            <span id="modal-account-vat-amount" class="text-white font-bold">£0.00</span>
+          </div>
+          <div class="flex justify-between text-neutral-400">
+            <span>Commercial Hazardous Road Freight:</span>
+            <span class="text-emerald-400 font-bold">FREE (MOV Exceeded)</span>
+          </div>
+          <div class="flex justify-between items-baseline pt-2 border-t border-white/10 text-sm">
+            <span class="font-headline uppercase text-white font-bold">Total Invoiced on Account:</span>
+            <span id="modal-account-total" class="font-headline text-lg text-emerald-400 font-extrabold">£0.00</span>
+          </div>
+        </div>
+
+        <div id="modal-account-error" class="hidden p-3 rounded bg-red-950/80 border border-red-500 text-red-200 text-xs font-mono"></div>
+
+        <button onclick="window.paintApp && window.paintApp.submitTradeAccountOrder()" id="btn-submit-account-order" class="mech-button-primary !w-full !py-3.5 !text-sm font-bold !bg-emerald-600 hover:!bg-emerald-500 !text-white flex items-center justify-center gap-2 shadow-lg cursor-pointer">
+          <span class="material-symbols-outlined text-[18px]">verified</span>
+          <span>CONFIRM &amp; DISPATCH ON ACCOUNT</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: B2B COMMERCIAL ORDER CONFIRMATION -->
+  <!-- ========================================================================= -->
+  <div id="modal-account-order-confirmed" class="modal-overlay">
+    <div class="modal-box !max-w-[560px] bg-[#121416] border-2 border-emerald-500 text-white shadow-2xl">
+      <div class="bg-emerald-950/90 p-5 border-b border-emerald-500/50 text-center space-y-1">
+        <span class="material-symbols-outlined text-emerald-400 text-4xl block">check_circle</span>
+        <h3 class="font-headline text-xl uppercase text-white font-bold">COMMERCIAL ORDER CONFIRMED</h3>
+        <p class="font-mono text-xs text-emerald-300">Charged to Approved Trade Account</p>
+      </div>
+      <div class="p-6 space-y-4 font-mono text-xs">
+        <div class="bg-black/60 p-4 rounded border border-white/10 space-y-2">
+          <div class="flex justify-between">
+            <span class="text-neutral-400">Order Reference:</span>
+            <span id="confirmed-order-id" class="text-white font-bold text-sm">CAE-PO-2026-XXXXX</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-neutral-400">Purchase Order (PO):</span>
+            <span id="confirmed-po-number" class="text-amber-300 font-bold">PO-XXXX</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-neutral-400">Payment Terms:</span>
+            <span id="confirmed-terms" class="text-white font-bold">Net 30 Days</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-neutral-400">Invoice Due Date:</span>
+            <span id="confirmed-due-date" class="text-white font-bold">YYYY-MM-DD</span>
+          </div>
+          <div class="flex justify-between border-t border-white/10 pt-2">
+            <span class="text-neutral-400">Total Landed Amount:</span>
+            <span id="confirmed-total" class="text-emerald-400 font-bold text-sm">£0.00</span>
+          </div>
+        </div>
+
+        <div class="p-3 bg-emerald-950/40 rounded border border-emerald-500/30 text-[11px] text-neutral-300 space-y-1">
+          <div class="text-emerald-300 font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">local_shipping</span>
+            <span>Dispatch Allocation Logged</span>
+          </div>
+          <div>Official PDF commercial invoice and SDS hazardous packing note dispatched to your account billing email.</div>
+        </div>
+
+        <button onclick="window.paintApp && window.paintApp.closeOrderConfirmedModal()" class="mech-button-primary !w-full !py-3 !text-xs font-bold !bg-emerald-600 hover:!bg-emerald-500 !text-white flex items-center justify-center gap-2 cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">done</span>
+          <span>RETURN TO STORE</span>
+        </button>
       </div>
     </div>
   </div>
@@ -7118,6 +7596,20 @@
             <span id="cart-drawer-carrier-label">Shipping &amp; ADR Packaging:</span>
             <span id="cart-drawer-shipping-amount" class="font-mono text-on-surface">€0.00</span>
           </div>
+          <div id="cart-drawer-small-order-row" class="flex justify-between text-secondary hidden">
+            <span class="flex items-center gap-1 text-amber-400">
+              <span class="material-symbols-outlined text-[13px]">handyman</span>
+              <span id="cart-drawer-small-order-label">Small Order Packaging Prep:</span>
+            </span>
+            <span id="cart-drawer-small-order-amount" class="font-mono text-amber-400 font-bold">£3.95</span>
+          </div>
+          <div id="cart-drawer-savings-row" class="flex justify-between text-emerald-400 hidden">
+            <span class="flex items-center gap-1 font-bold">
+              <span class="material-symbols-outlined text-[13px]">savings</span>
+              <span>Wholesale Margin Savings:</span>
+            </span>
+            <span id="cart-drawer-savings-amount" class="font-mono font-bold">-£0.00</span>
+          </div>
           <div id="cart-drawer-ddp-row" class="flex justify-between text-secondary hidden">
             <span class="flex items-center gap-1 text-amber-400">
               <span class="material-symbols-outlined text-[12px]">gavel</span> DDP Customs Clearance Fee:
@@ -7151,9 +7643,19 @@
           </div>
         </div>
 
-        <button id="btn-drawer-checkout-shopify" class="mech-button-primary !w-full !justify-center !py-3.5 !text-sm font-bold shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
-          PROCEED TO EUROPEAN CHECKOUT &rarr;
-        </button>
+        <!-- Two-Path B2B Checkout Actions -->
+        <div id="cart-drawer-checkout-actions" class="flex flex-col gap-2">
+          <!-- Card / Standard Checkout Button -->
+          <button id="btn-drawer-checkout-shopify" class="mech-button-primary !w-full !justify-center !py-3.5 !text-sm font-bold shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+            PROCEED TO EUROPEAN CHECKOUT &rarr;
+          </button>
+          
+          <!-- B2B Account Credit Checkout Button -->
+          <button id="btn-drawer-checkout-account" class="hidden !w-full !justify-center !py-3 !text-xs font-bold !bg-emerald-950/80 !border-2 !border-emerald-500 !text-emerald-300 hover:!bg-emerald-900 cursor-pointer flex items-center gap-2 rounded">
+            <span class="material-symbols-outlined text-[16px]">receipt_long</span>
+            <span id="btn-drawer-account-text">CHARGE TO TRADE ACCOUNT (NET 30 DAYS)</span>
+          </button>
+        </div>
 
         <div class="flex gap-2">
           <button id="btn-drawer-export-csv" class="mech-btn-secondary !flex-1 !justify-center !text-xs !py-2">
@@ -7954,6 +8456,140 @@
           </button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: BRAND HERITAGE & TDS ENGINE -->
+  <!-- ========================================================================= -->
+  <div id="modal-brand-story" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[9999] hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="max-w-4xl w-full bg-[#131315] border-2 border-[#242429] shadow-2xl rounded-lg text-neutral-200 max-h-[92vh] flex flex-col overflow-hidden my-auto">
+      
+      <!-- Modal Header -->
+      <div id="modal-brand-header-bg" class="p-6 bg-gradient-to-r from-red-950/80 via-black to-black border-b border-[#242429] relative">
+        <button onclick="window.closeBrandStoryModal &amp;&amp; window.closeBrandStoryModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-white p-1 rounded-full bg-black/50 border border-white/10 cursor-pointer">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pr-8">
+          <div>
+            <div class="flex items-center gap-2 mb-2 flex-wrap">
+              <span id="modal-brand-origin-badge" class="font-mono text-[10px] text-primary font-bold bg-primary/20 border border-primary/40 px-2.5 py-0.5 rounded flex items-center gap-1">
+                <span>🇬🇧</span>
+                <span>ORIGIN: UNITED KINGDOM</span>
+              </span>
+              <span id="modal-brand-distributor-tier" class="font-mono text-[10px] text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-500/40 px-2.5 py-0.5 rounded">
+                EXCLUSIVE MASTER EUROPEAN DISTRIBUTOR
+              </span>
+            </div>
+            <div id="modal-brand-logo-container" class="mb-2">
+              <img id="modal-brand-logo" src="" alt="Brand Logo" class="hidden h-10 w-auto object-contain p-1.5 bg-black/70 rounded border border-neutral-800">
+            </div>
+            <h2 id="modal-brand-title" class="font-headline text-3xl sm:text-4xl uppercase text-white font-bold tracking-tight">
+              Flake King &amp; VsionAir
+            </h2>
+            <p id="modal-brand-tagline" class="font-mono text-xs text-neutral-300 mt-1">
+              Dry Venturi Flake Guns, Fine Line Tapes &amp; Modular Workstations
+            </p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <a id="modal-brand-official-link" href="https://flakeking.com" target="_blank" class="border border-neutral-700 bg-black/60 text-neutral-300 hover:text-white hover:border-neutral-500 px-3 py-1.5 rounded font-mono text-[11px] flex items-center gap-1">
+              <span>Official Site</span>
+              <span class="material-symbols-outlined text-[13px]">open_in_new</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="flex items-center gap-2 mt-6 overflow-x-auto border-t border-white/10 pt-3 font-mono text-xs">
+          <button id="btn-brand-tab-story" onclick="window.paintApp &amp;&amp; window.paintApp.switchBrandModalTab('story')" class="brand-modal-tab active px-3 py-1.5 rounded font-bold bg-primary text-white flex items-center gap-1.5 cursor-pointer">
+            <span class="material-symbols-outlined text-[15px]">auto_stories</span>
+            <span>Heritage &amp; Story</span>
+          </button>
+          <button id="btn-brand-tab-tech" onclick="window.paintApp &amp;&amp; window.paintApp.switchBrandModalTab('tech')" class="brand-modal-tab px-3 py-1.5 rounded font-bold text-neutral-400 hover:text-white flex items-center gap-1.5 cursor-pointer">
+            <span class="material-symbols-outlined text-[15px]">psychology</span>
+            <span>Tech &amp; USPs</span>
+          </button>
+          <button id="btn-brand-tab-tds" onclick="window.paintApp &amp;&amp; window.paintApp.switchBrandModalTab('tds')" class="brand-modal-tab px-3 py-1.5 rounded font-bold text-neutral-400 hover:text-white flex items-center gap-1.5 cursor-pointer">
+            <span class="material-symbols-outlined text-[15px]">science</span>
+            <span>TDS Specs</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="p-6 overflow-y-auto flex-grow space-y-6 custom-scrollbar">
+        
+        <!-- TAB 1: STORY & HERITAGE -->
+        <div id="brand-tab-content-story" class="brand-tab-pane space-y-5">
+          <div class="p-4 bg-black/40 border border-[#242429] rounded-lg">
+            <h4 class="font-headline text-sm uppercase text-primary font-bold mb-2 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">history_edu</span>
+              <span>The Origin Narrative</span>
+            </h4>
+            <p id="modal-brand-story-origin" class="font-body text-xs sm:text-sm text-neutral-300 leading-relaxed">
+              <!-- Origin narrative -->
+            </p>
+          </div>
+
+          <div class="p-4 bg-black/40 border border-emerald-500/30 rounded-lg">
+            <h4 class="font-headline text-sm uppercase text-emerald-400 font-bold mb-2 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">verified</span>
+              <span>The European Distribution Mission</span>
+            </h4>
+            <p id="modal-brand-story-mission" class="font-body text-xs sm:text-sm text-neutral-300 leading-relaxed">
+              <!-- Mission narrative -->
+            </p>
+          </div>
+
+          <div class="p-4 bg-black/40 border border-[#242429] rounded-lg">
+            <h4 class="font-headline text-sm uppercase text-sky-400 font-bold mb-2 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">bolt</span>
+              <span>Core Technological Breakthrough</span>
+            </h4>
+            <p id="modal-brand-story-tech" class="font-body text-xs sm:text-sm text-neutral-300 leading-relaxed">
+              <!-- Tech narrative -->
+            </p>
+          </div>
+        </div>
+
+        <!-- TAB 2: TECH & USPS -->
+        <div id="brand-tab-content-tech" class="brand-tab-pane space-y-4 hidden">
+          <h4 class="font-headline text-sm uppercase text-white font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-amber-400 text-[18px]">star</span>
+            <span>Why This Manufacturer Leads The Industry</span>
+          </h4>
+          <div id="modal-brand-usps-list" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <!-- Populated dynamically with USPs -->
+          </div>
+        </div>
+
+        <!-- TAB 3: TDS SPECS -->
+        <div id="brand-tab-content-tds" class="brand-tab-pane space-y-4 hidden">
+          <h4 class="font-headline text-sm uppercase text-white font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sky-400 text-[18px]">description</span>
+            <span>Technical Data &amp; Application Guidelines</span>
+          </h4>
+          <div id="modal-brand-tds-grid" class="bg-black/40 border border-[#242429] rounded-lg p-4 font-mono text-xs space-y-3">
+            <!-- Populated dynamically with application guidelines -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 bg-black/80 border-t border-[#242429] flex items-center justify-end gap-3 font-mono text-xs">
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <button onclick="window.closeBrandStoryModal &amp;&amp; window.closeBrandStoryModal()" class="mech-btn-secondary !text-xs !py-2.5 !px-4 flex-1 text-center cursor-pointer">
+            Close
+          </button>
+          <button id="btn-brand-modal-shop-now" onclick="window.paintApp &amp;&amp; window.paintApp.shopCurrentModalBrand()" class="mech-button-primary !text-xs !py-2.5 !px-5 flex-1 text-center font-bold cursor-pointer flex items-center justify-center gap-1">
+            <span>Shop Brand Products</span>
+            <span class="material-symbols-outlined text-[15px]">arrow_downward</span>
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 

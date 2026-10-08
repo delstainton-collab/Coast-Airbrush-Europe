@@ -74,14 +74,14 @@ A comprehensive audit of custom paint manufacturers, specialized coating brands,
 │                               EUROPEAN CUSTOM PAINT COMPETITIVE LANDSCAPE                       │
 ├───────────────────────────────┬─────────────────────────────────┬───────────────────────────────┤
 │    TRADITIONAL HERITAGE       │       SPECIALIST FACTORY        │       WATER-BASED / AIRBRUSH  │
-│    - House of Kolor (US/UK)   │       - Custom Creative (Spain) │       - Createx Colors (DE)   │
+│    - Legacy Solvent Imports   │       - Custom Creative (Spain) │       - Createx Colors (DE)   │
 │    - DNA Custom Paints (AU)   │       - Specialist Paints (UK)  │       - Wicked Colors (US/EU) │
 │    - Mipa VIP (Germany)       │       - Stardust Colors (FR)    │       - Vallejo Premium (ES)  │
 └───────────────────────────────┴─────────────────────────────────┴───────────────────────────────┘
 ```
 
-### 1. House of Kolor (Valspar / Sherwin-Williams Automotive)
-* **Profile**: The historic pioneer of custom automotive paint (founded by Jon Kosmoski in 1956). Acquired by Valspar, now part of Sherwin-Williams.
+### 1. Legacy US Solvent Brands (Traditional Automotive Importers)
+* **Profile**: Historic legacy custom automotive solvent paint lines imported from North America.
 * **UK / European Distribution Model**: Distributed in the UK via regional factors and retail jobbers (e.g., Jawel Paints, Autopaint Solutions, Martin Brown Paints). In Europe, availability is highly fractured, reliant on legacy refinish jobbers.
 * **Product Strengths**: World-renowned brand recognition; high pigment loading; Shimrin2 basecoat system; legendary Kandys (KK, UK, KBC).
 * **Vulnerabilities & Market Gaps**:
@@ -137,7 +137,7 @@ A comprehensive audit of custom paint manufacturers, specialized coating brands,
 
 | Competitor | Origin | Primary Product Focus | EU / UK Distribution Strength | Digital Tools & Mixing Tech | Channel Protection for Jobbers | Brand Heritage & Cultural Pull |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **House of Kolor** | USA | Solvent Automotive Custom Paint | Moderate (UK factors; fragmented in EU) | Low (Static PDF charts) | Low (Discounts eroded; fragmented supply) | ★★★★★ (Iconic, legendary) |
+| **Legacy US Solvent Brands** | USA | Solvent Automotive Custom Paint | Moderate (UK factors; fragmented in EU) | Low (Static PDF charts) | Low (Discounts eroded; fragmented supply) | ★★★★☆ (Historic recognition) |
 | **Custom Creative** | Spain | Custom Solvents, Candies, Flakes | Strong in Southern EU; Weak in UK | Moderate (Basic formulas online) | Moderate (Competes with direct site) | ★★★☆☆ (Solid European trade brand) |
 | **Specialist Paints** | UK | Special Effect Paints (Inspire) | Strong UK D2C; Fragmented EU | Low (Standard e-commerce) | ❌ None (Direct-to-consumer model) | ★★☆☆☆ (Niche hobbyist/custom) |
 | **Stardust Colors** | France | Special Effect & Optical Paints | Strong EU Direct Shipping; Weak UK | Moderate (Technical data sheets) | Low (Direct internet sales focus) | ★★☆☆☆ (Chemical specialist) |

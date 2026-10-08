@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import nodemailer from "nodemailer";
 import { freightBridgeHandler } from "./freight-bridge/server.js";
+import { bomEngineHandler } from "./bom-engine/server.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -50,6 +51,32 @@ function getPricebook() {
   }
 }
 
+function getBrandsMaster() {
+  try {
+    const raw = fs.readFileSync(path.join(__dirname, "data", "brands_master.json"), "utf8");
+    return JSON.parse(raw);
+  } catch (e) {
+    return [];
+  }
+}
+
+let cachedCatalog = null;
+function getCatalogProducts() {
+  if (cachedCatalog) return cachedCatalog;
+  try {
+    const raw = fs.readFileSync(path.join(__dirname, "data", "full_ecom_catalog.js"), "utf8");
+    const jsonMatch = raw.match(/export\s+const\s+ECOM_CATALOG\s*=\s*(\[[\s\S]*?\]);\s*$/);
+    if (jsonMatch) {
+      cachedCatalog = JSON.parse(jsonMatch[1]);
+      return cachedCatalog;
+    }
+  } catch (e) {
+    console.warn("Failed to parse catalog:", e.message);
+  }
+  return [];
+}
+
+
 function parseJsonBody(req) {
   return new Promise((resolve, reject) => {
     let body = "";
@@ -81,7 +108,7 @@ function sendJson(res, statusCode, data) {
   res.end(JSON.stringify(data));
 }
 
-const server = http.createServer(async (req, res) => {
+export async function appHandler(req, res) {
   // CORS Preflight
   if (req.method === "OPTIONS") {
     res.writeHead(204, {
@@ -111,6 +138,29 @@ const server = http.createServer(async (req, res) => {
   }
 
   // ==========================================
+  // DECOUPLED MODULE: WORKSHOP BOM & MANUFACTURING ENGINE
+  // ==========================================
+  const normBomPath = safePath.replace(/\/+$/, "") || "/";
+  if (
+    normBomPath.startsWith("/api/bom") ||
+    normBomPath === "/workshop" ||
+    normBomPath === "/bom" ||
+    normBomPath === "/workshop.html" ||
+    normBomPath === "/bom.html" ||
+    normBomPath.includes("workshop_console")
+  ) {
+    if (["/workshop", "/bom", "/workshop.html", "/bom.html"].includes(normBomPath) || normBomPath.includes("workshop_console")) {
+      const workshopHtmlPath = path.join(__dirname, "bom-engine", "ui", "workshop_console.html");
+      if (fs.existsSync(workshopHtmlPath)) {
+        res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+        return fs.createReadStream(workshopHtmlPath).pipe(res);
+      }
+    }
+    const handled = await bomEngineHandler(req, res);
+    if (handled) return;
+  }
+
+  // ==========================================
   // API ROUTE 1: B2B TRADE LOGIN
   // ==========================================
   if (req.method === "POST" && safePath === "/api/auth/trade-login") {
@@ -136,6 +186,10 @@ const server = http.createServer(async (req, res) => {
       }
 
       const token = "CAE_B2B_" + user.role.toUpperCase() + "_" + Buffer.from(user.id + ":" + Date.now()).toString("base64");
+      const movGbp = user.role === "distributor" ? 2000.0 : (user.role === "dealer" ? 500.0 : 0.0);
+      const movEur = user.role === "distributor" ? 2500.0 : (user.role === "dealer" ? 550.0 : 0.0);
+      const defaultMoq = user.role === "distributor" ? 12 : (user.role === "dealer" ? 6 : 1);
+
       activeSessions.set(token, {
         id: user.id,
         email: user.email,
@@ -149,6 +203,10 @@ const server = http.createServer(async (req, res) => {
         currency: user.currency,
         discountMultiplier: user.discountMultiplier,
         paymentTerms: user.paymentTerms,
+        creditTerms: user.paymentTerms || (user.role === "distributor" ? "Net 60 Days" : "Net 30 Days"),
+        movGbp,
+        movEur,
+        defaultMoq,
         createdAt: Date.now()
       });
 
@@ -167,7 +225,11 @@ const server = http.createServer(async (req, res) => {
           country: user.country,
           currency: user.currency,
           discountMultiplier: user.discountMultiplier,
-          paymentTerms: user.paymentTerms
+          paymentTerms: user.paymentTerms,
+          creditTerms: user.paymentTerms || (user.role === "distributor" ? "Net 60 Days" : "Net 30 Days"),
+          movGbp,
+          movEur,
+          defaultMoq
         }
       });
     } catch (e) {
@@ -301,6 +363,144 @@ const server = http.createServer(async (req, res) => {
   }
 
   // ==========================================
+  // API ROUTE 5B: PLACE ORDER ON CREDIT ACCOUNT (NET 30 / NET 60)
+  // ==========================================
+  if (req.method === "POST" && safePath === "/api/trade/place-account-order") {
+    const authHeader = req.headers["authorization"] || "";
+    const token = authHeader.replace(/^Bearer\s+/i, "").trim();
+    const session = activeSessions.get(token);
+
+    if (!session) {
+      return sendJson(res, 401, {
+        success: false,
+        error: "Unauthorized: Active commercial trade session required to place orders on account."
+      });
+    }
+
+    try {
+      const payload = await parseJsonBody(req);
+      const items = Array.isArray(payload.items) ? payload.items : [];
+      const poNumber = (payload.poNumber || "").trim();
+      const notes = (payload.notes || "").trim();
+      const currency = (payload.currency || session.currency || "GBP").toUpperCase();
+      const isGbp = currency === "GBP";
+
+      if (items.length === 0) {
+        return sendJson(res, 400, { success: false, error: "Cart is empty. Please add items to place a trade order." });
+      }
+
+      if (!poNumber) {
+        return sendJson(res, 400, { success: false, error: "An Internal Purchase Order (PO) Number is mandatory for billing on credit accounts." });
+      }
+
+      // Calculate server-verified subtotal
+      const computedSubtotal = items.reduce((sum, item) => {
+        const itemPrice = isGbp
+          ? (item.priceGbp ?? item.unitPrice ?? item.price ?? (item.priceEur ? item.priceEur * 0.85 : 0))
+          : (item.priceEur ?? item.unitPrice ?? item.price ?? (item.priceGbp ? item.priceGbp / 0.85 : 0));
+        return sum + (Number(itemPrice || 0) * Number(item.quantity || 1));
+      }, 0);
+      const verifiedSubtotal = computedSubtotal > 0 ? computedSubtotal : Number(payload.subtotal || 0);
+
+      // Server-side strict MOV verification
+      const role = session.role;
+      let movThreshold = 0;
+      if (role === "dealer") {
+        movThreshold = isGbp ? 500.0 : 550.0;
+        if (!Number.isFinite(verifiedSubtotal) || verifiedSubtotal < movThreshold) {
+          return sendJson(res, 400, {
+            success: false,
+            error: `Minimum Order Value not reached. Authorized Dealers require a minimum spend of ${isGbp ? '£500.00' : '€550.00'} ex-VAT. Current subtotal: ${isGbp ? '£' : '€'}${verifiedSubtotal.toFixed(2)}.`
+          });
+        }
+      } else if (role === "distributor") {
+        movThreshold = isGbp ? 2000.0 : 2500.0;
+        if (!Number.isFinite(verifiedSubtotal) || verifiedSubtotal < movThreshold) {
+          return sendJson(res, 400, {
+            success: false,
+            error: `Minimum Order Value not reached. Master Distributors require a minimum spend of ${isGbp ? '£2,000.00' : '€2,500.00'} ex-VAT. Current subtotal: ${isGbp ? '£' : '€'}${verifiedSubtotal.toFixed(2)}.`
+          });
+        }
+      }
+
+      // Calculate due date based on payment terms
+      const now = new Date();
+      const termsDays = session.paymentTerms && session.paymentTerms.includes("60") ? 60 : 30;
+      const dueDate = new Date(now.getTime() + termsDays * 24 * 60 * 60 * 1000);
+
+      // Tax calculation: UK pays 20% VAT; EU B2B with valid VAT is 0% reverse charge
+      const isUK = session.country && (session.country.toLowerCase().includes("united kingdom") || session.country.toLowerCase() === "uk");
+      const vatRate = isUK ? 0.20 : 0.0;
+      const vatAmount = verifiedSubtotal * vatRate;
+      const shippingAmount = 0.0; // B2B orders meeting MOV qualify for free pallet/road freight
+      const totalAmount = verifiedSubtotal + vatAmount + shippingAmount;
+
+      const orderRecord = {
+        orderId: `CAE-PO-${now.getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`,
+        status: "CONFIRMED_ON_ACCOUNT",
+        placedAt: now.toISOString(),
+        paymentTerms: session.paymentTerms || "Net 30 Days",
+        dueDate: dueDate.toISOString().split("T")[0],
+        poNumber,
+        buyer: {
+          company: session.company,
+          contactName: session.contactName,
+          email: session.email,
+          vat: session.vat,
+          eori: session.eori,
+          country: session.country,
+          role: session.role,
+          tierLabel: session.tierLabel
+        },
+        financials: {
+          currency,
+          subtotal: Math.round(verifiedSubtotal * 100) / 100,
+          vatRatePercent: isUK ? 20 : 0,
+          vatTreatment: isUK ? "20% UK HMRC VAT" : "0% EU Intra-Community Reverse Charge (Art 138 EU VAT Dir)",
+          vatAmount: Math.round(vatAmount * 100) / 100,
+          shipping: shippingAmount,
+          total: Math.round(totalAmount * 100) / 100
+        },
+        logistics: {
+          dispatchHub: isUK 
+            ? "UK Central Distribution Center (APC Overnight ADR Hazmat)" 
+            : "Netherlands Bonded 3PL (Rotterdam DDP Road Freight)",
+          dispatchStatus: "Queued for Priority Warehouse Picking",
+          notes
+        },
+        items: items.map(i => ({
+          sku: i.sku,
+          title: i.title,
+          quantity: i.quantity,
+          variantDetails: i.variantDetails || "Standard",
+          unitPrice: isGbp ? (i.priceGbp || i.price) : (i.priceEur || i.price),
+          lineTotal: Math.round((Number(isGbp ? (i.priceGbp || i.price) : (i.priceEur || i.price)) * Number(i.quantity)) * 100) / 100
+        }))
+      };
+
+      // Save order to data/trade_orders.json
+      const ordersFile = path.join(__dirname, "data", "trade_orders.json");
+      let allOrders = [];
+      try {
+        allOrders = JSON.parse(fs.readFileSync(ordersFile, "utf8"));
+      } catch (e) {
+        allOrders = [];
+      }
+      allOrders.unshift(orderRecord);
+      fs.writeFileSync(ordersFile, JSON.stringify(allOrders, null, 2));
+
+      return sendJson(res, 201, {
+        success: true,
+        message: `Order ${orderRecord.orderId} successfully placed on your commercial account under terms: ${orderRecord.paymentTerms}.`,
+        order: orderRecord
+      });
+    } catch (err) {
+      console.error("Failed to place account order:", err);
+      return sendJson(res, 500, { success: false, error: "Failed to process commercial purchase order: " + err.message });
+    }
+  }
+
+  // ==========================================
   // API ROUTE 6: SOCIAL DM & COMMENT AUTOMATION WEBHOOK
   // ==========================================
   if (req.method === "POST" && safePath === "/api/social/dm") {
@@ -344,13 +544,13 @@ const server = http.createServer(async (req, res) => {
       } else if (text.includes("mix") || text.includes("candy") || text.includes("ratio") || text.includes("reducer")) {
         matched = {
           keyword: "MIX",
-          sku: "HOK-KK01-QT",
-          name: "House of Kolor Kandy Apple Red + RU311 Reducer Pack",
+          sku: "KE-CANDY-RED-QT",
+          name: "Kroma Edge Kandy Apple Red + High-Gloss Reducer Pack",
           priceUSD: 85.00,
           priceEUR: 79.00,
           priceGBP: 68.00,
           dispatchHub: "ADR LQ Hazmat Ground Freight Certified",
-          videoUrl: "/assets/videos/hok-candy-mixing-tips.mp4"
+          videoUrl: "/assets/videos/candy-mixing-tips.mp4"
         };
       } else if (text.includes("iwata") || text.includes("needle") || text.includes("bubble") || text.includes("packing")) {
         matched = {
@@ -362,6 +562,61 @@ const server = http.createServer(async (req, res) => {
           priceGBP: 145.00,
           dispatchHub: "Official European Iwata Distributor",
           videoUrl: "/assets/videos/iwata-bubbling-needle-packing.mp4"
+        };
+      } else if (text.includes("clean armor") || text.includes("clean armour") || text.includes("uv-900") || text.includes("uv clear") || text.includes("uv cure")) {
+        matched = {
+          keyword: "CLEAN_ARMOR",
+          sku: "CA-UV900-CLEAR-1L",
+          name: "Clean Armor UV 900 High-Gloss Clearcoat (100% Solids, Zero VOC, 120s UV Cure)",
+          priceUSD: 199.00,
+          priceEUR: 185.00,
+          priceGBP: 158.00,
+          dispatchHub: "Netherlands & UK Hubs (ADR Hazmat Exempt — 100% Solids)",
+          videoUrl: "/assets/videos/clean-armor-120s-uv-cure.mp4"
+        };
+      } else if (text.includes("lumilor") || text.includes("light up") || text.includes("electric paint") || text.includes("electroluminescent")) {
+        matched = {
+          keyword: "LUMILOR",
+          sku: "LL-STARTER-KIT-4OZ",
+          name: "LumiLor Patented Electric Light Up Paint Starter Kit (Backplane, Dielectric, Luminescent, Conductive + Inverter)",
+          priceUSD: 595.00,
+          priceEUR: 545.00,
+          priceGBP: 465.00,
+          dispatchHub: "Official Master European Distributor (Direct Dispatch)",
+          videoUrl: "/assets/videos/lumilor-field-emission-demo.mp4"
+        };
+      } else if (text.includes("ace of shades") || text.includes("super shine") || text.includes("solvent candy") || text.includes("shade")) {
+        matched = {
+          keyword: "ACE_OF_SHADES",
+          sku: "AOS-SS79-CLEAR",
+          name: "Ace of Shades Super Shine '79 High-Solids Solvent Clearcoat (By Custom – For Custom)",
+          priceUSD: 125.00,
+          priceEUR: 115.00,
+          priceGBP: 98.00,
+          dispatchHub: "UK Central Distribution Center (ADR LQ Hazmat Certified)",
+          videoUrl: "/assets/videos/ace-of-shades-depth-demo.mp4"
+        };
+      } else if (text.includes("hyper fx") || text.includes("createx") || text.includes("waterbased") || text.includes("water-based") || text.includes("candy2o")) {
+        matched = {
+          keyword: "HYPER_FX",
+          sku: "HFX-PRIMARY-SET-4OZ",
+          name: "Hyper FX Premier Custom Waterbased Paint Master Set (Coast Airbrush Formulation Powered by Createx)",
+          priceUSD: 158.00,
+          priceEUR: 145.00,
+          priceGBP: 125.00,
+          dispatchHub: "UK & Netherlands Hub (REACH 2026 Guaranteed)",
+          videoUrl: "/assets/videos/hyper-fx-waterbased-flow.mp4"
+        };
+      } else if (text.includes("vsionair") || text.includes("tri-stand") || text.includes("workstation") || text.includes("turntable") || text.includes("rig")) {
+        matched = {
+          keyword: "VSIONAIR",
+          sku: "VA-TRISTAND-PRO",
+          name: "VsionAir Modular All-Angle Tri-Stand Workstation System (360° Rotating Quick-Release Rigs)",
+          priceUSD: 410.00,
+          priceEUR: 375.00,
+          priceGBP: 320.00,
+          dispatchHub: "UK & Netherlands Hub (Factory Direct Stock)",
+          videoUrl: "/assets/videos/vsionair-modular-workstation.mp4"
         };
       } else if (text.includes("tds") || text.includes("sheet") || text.includes("guide") || text.includes("data")) {
         return sendJson(res, 200, {
@@ -396,6 +651,88 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 400, { success: false, error: "Invalid webhook payload" });
     }
   }
+
+  // ==========================================
+  // API ROUTE: BRANDS MASTER DIRECTORY & PROFILES
+  // ==========================================
+  if (req.method === "GET" && safePath === "/api/brands") {
+    try {
+      const brands = getBrandsMaster();
+      const catalog = getCatalogProducts();
+
+      // Augment each brand with live product counts and flagship items
+      const enrichedBrands = brands.map(b => {
+        const brandKey = b.name.toLowerCase().split(" ")[0]; // "kroma", "anest", "ace", "hyper", "lumilor", "clean", "flake"
+        const matchingProducts = catalog.filter(p => {
+          const pb = (p.brand || "").toLowerCase();
+          const pName = (p.name || "").toLowerCase();
+          const pDesc = (p.description || "").toLowerCase();
+          return pb.includes(brandKey) || pName.includes(brandKey) || pDesc.includes(brandKey) || (b.productIds || []).includes(p.id);
+        });
+
+        return {
+          ...b,
+          totalSkus: matchingProducts.length,
+          flagshipSkus: matchingProducts.slice(0, 4).map(p => ({
+            id: p.id,
+            name: p.name,
+            sku: p.sku,
+            priceGbp: p.priceGbp,
+            priceEur: p.priceEur,
+            badge: p.badge || null,
+            image: p.image
+          }))
+        };
+      });
+
+      return sendJson(res, 200, {
+        success: true,
+        count: enrichedBrands.length,
+        brands: enrichedBrands
+      });
+    } catch (e) {
+      return sendJson(res, 500, { success: false, error: "Failed to load brands directory: " + e.message });
+    }
+  }
+
+  // ==========================================
+  // API ROUTE: BRAND DOSSIER BY ID/SLUG
+  // ==========================================
+  if (req.method === "GET" && safePath.startsWith("/api/brands/")) {
+    try {
+      const brandId = safePath.replace("/api/brands/", "").trim().toLowerCase();
+      const brands = getBrandsMaster();
+      const brand = brands.find(b => 
+        b.id.toLowerCase() === brandId || 
+        b.slug.toLowerCase() === brandId ||
+        b.name.toLowerCase().includes(brandId)
+      );
+
+      if (!brand) {
+        return sendJson(res, 404, { success: false, error: `Brand "${brandId}" not found in master directory.` });
+      }
+
+      const catalog = getCatalogProducts();
+      const brandKey = brand.name.toLowerCase().split(" ")[0];
+      const associatedProducts = catalog.filter(p => {
+        const pb = (p.brand || "").toLowerCase();
+        const pName = (p.name || "").toLowerCase();
+        const pDesc = (p.description || "").toLowerCase();
+        return pb.includes(brandKey) || pName.includes(brandKey) || pDesc.includes(brandKey) || (brand.productIds || []).includes(p.id);
+      });
+
+      return sendJson(res, 200, {
+        success: true,
+        brand,
+        products: associatedProducts,
+        totalProducts: associatedProducts.length
+      });
+    } catch (e) {
+      return sendJson(res, 500, { success: false, error: "Failed to load brand dossier: " + e.message });
+    }
+  }
+
+
 
 
   // ==========================================
@@ -751,7 +1088,7 @@ const server = http.createServer(async (req, res) => {
         <ul class="perks-list">
           <li><strong>24-Hour Advance Store Access:</strong> You will receive a direct access link to shop our opening catalog before the general European public launch next week.</li>
           <li><strong>Dual UK & European Warehouse Fulfillment:</strong> Direct local dispatch with fast carrier rates and zero post-Brexit customs delays or unexpected import tariffs.</li>
-          <li><strong>REACH & CLP 2026 Guaranteed Formulations:</strong> Genuine House of Kolor, Kroma-Edge, and Flake King products formulation-verified and ready for European pro use.</li>
+          <li><strong>REACH & CLP 2026 Guaranteed Formulations:</strong> Genuine Kroma-Edge, Flake King, and VsionAir products formulation-verified and ready for European pro use.</li>
         </ul>
 
         <p style="margin-top: 28px; color: #94a3b8; font-size: 14px;">Keep an eye on your inbox—we will transmit your personal launch pass as soon as our warehouse gates open.</p>
@@ -850,21 +1187,53 @@ const server = http.createServer(async (req, res) => {
   }
 
   // ==========================================
-  // STATIC FILE SERVING (PRE-LAUNCH HOLDING LOCKDOWN)
+  // STATIC FILE SERVING & DEV MODE ROUTING
   // ==========================================
+  const host = req.headers.host || "";
+  const isLocalHost = host.includes("localhost") || host.includes("127.0.0.1") || host.startsWith("192.168.") || host.startsWith("10.");
+  const reqUrl = req.url || "";
+  const hasDevQuery = reqUrl.includes("dev=true") ||
+                      reqUrl.includes("preview=true") ||
+                      reqUrl.includes("partner=") ||
+                      reqUrl.includes("access=") ||
+                      reqUrl.includes("vip=true") ||
+                      reqUrl.includes("key=");
+  const cookieHeader = req.headers.cookie || "";
+  const hasDevCookie = cookieHeader.includes("coast_dev_mode=true") ||
+                       cookieHeader.includes("coast_store_preview=true") ||
+                       cookieHeader.includes("coast_partner_access=true");
+  const isDevMode = isLocalHost || hasDevQuery || hasDevCookie || process.env.DEV_MODE === "true" || process.env.NODE_ENV !== "production";
+
   let reqFile = safePath;
-  const storefrontRoutes = [
-    "/", "\\", "/index.html", "/index",
-    "/about.html", "/about", "/pages/about",
-    "/support.html", "/support", "/pages/support",
-    "/shipping.html", "/shipping", "/pages/shipping",
-    "/privacy.html", "/privacy", "/pages/privacy", "/pages/privacy-policy",
-    "/dealers.html", "/dealers", "/pages/dealers",
-    "/product.html", "/product", "/pages/product",
-    "/crm.html", "/crm"
-  ];
-  if (storefrontRoutes.includes(safePath) || safePath.startsWith("/pages/") || safePath.startsWith("/products/")) {
-    reqFile = "/landing.html";
+
+  // Pretty route mapping
+  if (safePath === "/pages/about" || safePath === "/about") reqFile = "/about.html";
+  else if (safePath === "/pages/support" || safePath === "/support") reqFile = "/support.html";
+  else if (safePath === "/pages/shipping" || safePath === "/shipping") reqFile = "/shipping.html";
+  else if (safePath === "/pages/privacy" || safePath === "/pages/privacy-policy" || safePath === "/privacy") reqFile = "/privacy.html";
+  else if (safePath === "/pages/dealers" || safePath === "/dealers") reqFile = "/dealers.html";
+  else if (safePath === "/pages/product" || safePath === "/product" || safePath.startsWith("/products/")) reqFile = "/product.html";
+  else if (safePath === "/crm") reqFile = "/crm.html";
+  else if (safePath === "/" || safePath === "\\" || safePath === "/index") {
+    reqFile = isDevMode ? "/index.html" : "/landing.html";
+  }
+
+  // If locked in production mode and NOT in dev mode, bounce storefront routes to landing.html
+  if (!isDevMode) {
+    const storefrontRoutes = [
+      "/index.html",
+      "/about.html",
+      "/support.html",
+      "/shipping.html",
+      "/privacy.html",
+      "/dealers.html",
+      "/product.html",
+      "/crm.html",
+      "/preview_compromises.html"
+    ];
+    if (storefrontRoutes.includes(reqFile) || safePath.startsWith("/pages/") || safePath.startsWith("/products/")) {
+      reqFile = "/landing.html";
+    }
   }
   const filePath = path.join(__dirname, reqFile);
 
@@ -914,16 +1283,30 @@ const server = http.createServer(async (req, res) => {
       }
     }
 
-    res.writeHead(200, {
+    const respHeaders = {
       "Content-Type": contentType,
       "Cache-Control": "no-cache",
       "Access-Control-Allow-Origin": "*"
-    });
+    };
+    if (hasDevQuery) {
+      respHeaders["Set-Cookie"] = [
+        "coast_dev_mode=true; Path=/; Max-Age=2592000; SameSite=Lax",
+        "coast_store_preview=true; Path=/; Max-Age=2592000; SameSite=Lax",
+        "coast_partner_access=true; Path=/; Max-Age=2592000; SameSite=Lax"
+      ];
+    }
+    res.writeHead(200, respHeaders);
 
     fs.createReadStream(filePath).pipe(res);
   });
-});
+}
 
-server.listen(PORT, () => {
-  console.log(`Coast Airbrush secure server running at http://localhost:${PORT}/`);
-});
+const server = http.createServer(appHandler);
+
+if (!process.env.NO_SERVER_LISTEN) {
+  server.listen(PORT, () => {
+    console.log(`Coast Airbrush secure server running at http://localhost:${PORT}/`);
+  });
+}
+
+export { server };

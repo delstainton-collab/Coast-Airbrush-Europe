@@ -7,7 +7,7 @@ console.log("=== Testing Pallet Density & Freight Rule Engine ===");
 
 // 1. Density test: 200kg of paint cans
 const itemsHeavy = [
-  { name: "House of Kolor Clearcoat 5L Drum", sku: "HOK-UC35-5L", quantity: 8, grams: 5500, length_cm: 20, width_cm: 20, height_cm: 30 }
+  { name: "Kroma Edge Clearcoat 5L Drum", sku: "KE-UC35-5L", quantity: 8, grams: 5500, length_cm: 20, width_cm: 20, height_cm: 30 }
 ];
 // 8 * 5.5kg = 44kg
 const densityHeavy = calculatePalletDensity(itemsHeavy);

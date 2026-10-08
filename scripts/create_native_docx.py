@@ -132,10 +132,10 @@ def create_docx(filename):
     body_elements.append(p("2. UK & European Competitor Analysis", style="Heading2"))
     body_elements.append(p("A comprehensive audit of custom paint manufacturers, specialized coating brands, and distribution jobbers across the UK and Continental Europe reveals clear structural vulnerabilities:"))
     
-    body_elements.append(p("2.1 House of Kolor (Valspar / Sherwin-Williams Automotive)", style="Heading3"))
-    body_elements.append(p("• Profile: The historic pioneer of custom automotive paint (founded 1956). Acquired by Valspar, now part of Sherwin-Williams. Distributed in the UK via regional factors (Jawel Paints, Autopaint Solutions, Martin Brown Paints). In Europe, availability is fractured."))
-    body_elements.append(p("• Strengths: Global brand recognition, Shimrin2 system, legendary Kandys."))
-    body_elements.append(p("• Weaknesses: Corporate neglect under parent Sherwin-Williams; severe post-Brexit UK stockouts; extreme price inflation per quart; strict solvent VOC regulatory friction; zero modern digital mixing software."))
+    body_elements.append(p("2.1 Legacy US Solvent Brands (Traditional Automotive Importers)", style="Heading3"))
+    body_elements.append(p("• Profile: Historic legacy custom automotive paint lines imported from North America. Distributed in the UK via regional factors (Jawel Paints, Autopaint Solutions, Martin Brown Paints). In Europe, availability is fractured."))
+    body_elements.append(p("• Strengths: Traditional brand recognition, traditional basecoat systems, traditional Kandys."))
+    body_elements.append(p("• Weaknesses: Severe post-Brexit UK stockouts; extreme price inflation per quart; strict solvent VOC regulatory friction; zero modern digital mixing software."))
 
     body_elements.append(p("2.2 Custom Creative (Spain / Pan-European)", style="Heading3"))
     body_elements.append(p("• Profile: Prominent Spanish manufacturer specializing in custom automotive candies, fluorescent paints, pinstriping lacquers, and flakes."))
@@ -161,7 +161,7 @@ def create_docx(filename):
     
     comp_headers = ["Competitor", "Origin", "Primary Focus", "UK/EU Distribution", "Digital Tools", "Channel Protection", "Brand Heritage"]
     comp_rows = [
-        ["House of Kolor", "USA", "Solvent Custom Paint", "Moderate (UK factors; fractured EU)", "Low (Static PDF charts)", "Low (Stockouts, eroded margin)", "Iconic (5/5)"],
+        ["Legacy US Solvent Brands", "USA", "Solvent Custom Paint", "Moderate (UK factors; fractured EU)", "Low (Static PDF charts)", "Low (Stockouts, eroded margin)", "Iconic (4/5)"],
         ["Custom Creative", "Spain", "Custom Solvents & Candies", "Strong Southern EU; Weak UK", "Moderate (Basic formulas)", "Moderate (Competes with site)", "Regional Trade (3/5)"],
         ["Specialist Paints", "UK", "Special Effect Coatings", "Strong UK D2C; Fragmented EU", "Low (Standard e-commerce)", "None (Pure D2C focus)", "Hobbyist/Niche (2/5)"],
         ["Stardust Colors", "France", "Optical Effect Paints", "Strong EU Direct; Weak UK", "Moderate (Technical data)", "Low (Direct web sales)", "Industrial Chemical (2/5)"],

@@ -73,7 +73,7 @@ To locate qualified European stocking partners, Coast Airbrush Europe will targe
 1. **Existing European Paint Jobbers & Distributors**:  
    Target regional automotive body shop suppliers (e.g., Mipa jobbers in Germany, Custom Creative distributors in Spain, Createx Europe, Sparmax Europe). These entities already possess **ADR-compliant warehousing**, dangerous goods safety advisors (DGSAs), and established European courier accounts.
 2. **Harder & Steenbeck & Anest Iwata European Dealer Network**:  
-   Leverage existing hardware relationships to identify top-performing European airbrush distributors interested in securing exclusive distribution for **Kroma Edge** and **House of Kolor** solvent paints.
+   Leverage existing hardware relationships to identify top-performing European airbrush distributors interested in securing exclusive distribution for **Kroma Edge** and **Flake King** systems.
 3. **Premier European Trade Events**:  
    - **Automechanika Frankfurt** (World's leading automotive aftermarket show): Ideal for meeting large-scale paint distributors.
    - **Essen Motor Show** (Europe's premier custom car & tuning exhibition): Ideal for meeting high-volume custom automotive paint jobbers.
@@ -119,7 +119,7 @@ SCENARIO B: NETHERLANDS BONDED HUB (ZERO DOUBLE DUTY)
 ```
 
 #### Detailed Duty Analysis:
-- Goods manufactured in the US (House of Kolor) or Japan (Anest Iwata) cleared into a UK warehouse pay UK customs duty upon import.
+- Goods manufactured in the US or Japan (Anest Iwata) cleared into a UK warehouse pay UK customs duty upon import.
 - Under post-Brexit Rules of Origin (UK-EU Trade and Cooperation Agreement), foreign-made goods cleared into the UK **do NOT acquire UK origin**.
 - When re-shipped from the UK to an EU customer, **EU customs duty (6.5% for paint) is charged a second time** at the EU border.
 - **Financial Impact**: Operating out of a UK warehouse burns **6.5% of gross revenue** in redundant duty leakage. An EU bonded hub completely eliminates this tax trap.
@@ -128,7 +128,7 @@ SCENARIO B: NETHERLANDS BONDED HUB (ZERO DOUBLE DUTY)
 
 ### 2.2 Dangerous Goods (UN1263 Class 3) Shipping Surcharge Comparison
 
-Kroma Edge and House of Kolor solvent paints are classified under **UN1263 Class 3 Flammable Liquids**. Shipping hazardous solvent liquids across international borders incurs severe freight penalties compared to domestic intra-EU ground freight:
+Kroma Edge solvent paints and reducers are classified under **UN1263 Class 3 Flammable Liquids**. Shipping hazardous solvent liquids across international borders incurs severe freight penalties compared to domestic intra-EU ground freight:
 
 ```
 PARCEL HAZMAT FREIGHT COST COMPARISON (UN1263 Solvent Paint Quart):

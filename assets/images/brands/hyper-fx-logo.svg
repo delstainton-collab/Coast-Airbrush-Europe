@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" fill="none">
+  <defs>
+    <linearGradient id="hfxEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(10, 12)">
+    <rect x="2" y="2" width="56" height="56" rx="6" fill="#18181b" stroke="#27272a" stroke-width="1.5"/>
+    <path d="M30,12 C30,12 18,28 18,36 C18,43 23,48 30,48 C37,48 42,43 42,36 C42,28 30,12 30,12 Z" fill="url(#hfxEmerald)"/>
+    <circle cx="26" cy="34" r="3" fill="#ffffff" opacity="0.7"/>
+  </g>
+  <text x="78" y="38" font-family="'Industry', 'Impact', 'Barlow Condensed', sans-serif" font-size="26" font-weight="900" letter-spacing="2" fill="#ffffff">
+    HYPER <tspan fill="url(#hfxEmerald)">FX</tspan>
+  </text>
+  <text x="80" y="55" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="9" font-weight="700" letter-spacing="3" fill="#9ca3af">
+    POWERED BY CREATEX COLORS
+  </text>
+</svg>

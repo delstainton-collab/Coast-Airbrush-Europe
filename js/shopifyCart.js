@@ -4,6 +4,42 @@
 import { recommendContainerPack } from './mixingEngine.js';
 import { SHOPIFY_VARIANT_MAP } from '../data/shopify_variant_map.js';
 
+export const TIER_RULES = {
+  retail: {
+    name: 'Normal (Retail)',
+    code: 'retail',
+    movThresholdGbp: 25.0,
+    movThresholdEur: 30.0,
+    smallOrderFeeGbp: 3.95,
+    smallOrderFeeEur: 4.50,
+    isHardMov: false, // charges small order fee instead of hard block
+    defaultMoqConsumables: 1,
+    defaultMoqHardware: 1
+  },
+  dealer: {
+    name: 'Authorized Dealer (Tier 2)',
+    code: 'dealer',
+    movThresholdGbp: 500.0,
+    movThresholdEur: 550.0,
+    smallOrderFeeGbp: 0,
+    smallOrderFeeEur: 0,
+    isHardMov: true, // hard block under MOV
+    defaultMoqConsumables: 6,
+    defaultMoqHardware: 1
+  },
+  distributor: {
+    name: 'Master Regional Distributor (Tier 1)',
+    code: 'distributor',
+    movThresholdGbp: 2000.0,
+    movThresholdEur: 2500.0,
+    smallOrderFeeGbp: 0,
+    smallOrderFeeEur: 0,
+    isHardMov: true, // hard block under MOV
+    defaultMoqConsumables: 12,
+    defaultMoqHardware: 2
+  }
+};
+
 export class ShopifyCartManager {
   constructor(shopifyDomain) {
     if (!shopifyDomain) {
@@ -18,10 +54,29 @@ export class ShopifyCartManager {
 
     this.variantMap = SHOPIFY_VARIANT_MAP || (typeof window !== 'undefined' && window.SHOPIFY_VARIANT_MAP) || {};
     this.cartItems = JSON.parse(localStorage.getItem('coast_cart_items') || '[]');
+    this.currentTier = 'retail';
+    this.tierSession = null;
+    this.activeCurrency = 'EUR';
     this.listeners = [];
 
     // Re-validate existing cart items with variant IDs if loaded from cache
     this.sanitizeCartItems();
+  }
+
+  setTier(tier, session = null) {
+    this.currentTier = (tier === 'dealer' || tier === 'distributor') ? tier : 'retail';
+    this.tierSession = session;
+    this.notifyListeners();
+  }
+
+  setCurrency(curr) {
+    if (curr) {
+      const upper = curr.toUpperCase();
+      if (this.activeCurrency !== upper) {
+        this.activeCurrency = upper;
+        this.notifyListeners();
+      }
+    }
   }
 
   /**
@@ -78,8 +133,12 @@ export class ShopifyCartManager {
   addItem(item) {
     const variantInfo = this.resolveVariant(item.sku);
     const resolvedVariantId = item.variantId || (variantInfo ? variantInfo.shopifyVariantId : null) || this.generateFallbackVariantId(item.sku);
-    const priceEur = item.priceEur || (variantInfo ? variantInfo.priceEur : item.price) || 24.00;
+    const priceEur = item.priceEur || (variantInfo ? variantInfo.priceEur : (item.priceGbp ? Math.round(item.priceGbp / 0.85 * 100) / 100 : item.price)) || 24.00;
     const priceGbp = item.priceGbp || (variantInfo ? variantInfo.priceGbp : Math.round(priceEur * 0.85 * 100) / 100);
+    const retailPriceEur = item.retailPriceEur || (variantInfo ? variantInfo.priceEur : (item.retailPriceGbp ? Math.round(item.retailPriceGbp / 0.85 * 100) / 100 : priceEur));
+    const retailPriceGbp = item.retailPriceGbp || (variantInfo ? variantInfo.priceGbp : Math.round(retailPriceEur * 0.85 * 100) / 100);
+    const moq = item.moq || 1;
+    const addQty = item.quantity || moq || 1;
 
     const existingIndex = this.cartItems.findIndex(i => 
       (i.variantId && i.variantId === resolvedVariantId) ||
@@ -87,7 +146,11 @@ export class ShopifyCartManager {
     );
 
     if (existingIndex > -1) {
-      this.cartItems[existingIndex].quantity += (item.quantity || 1);
+      this.cartItems[existingIndex].quantity += addQty;
+      if (item.priceEur) this.cartItems[existingIndex].priceEur = item.priceEur;
+      if (item.priceGbp) this.cartItems[existingIndex].priceGbp = item.priceGbp;
+      if (item.retailPriceEur) this.cartItems[existingIndex].retailPriceEur = item.retailPriceEur;
+      if (item.retailPriceGbp) this.cartItems[existingIndex].retailPriceGbp = item.retailPriceGbp;
     } else {
       this.cartItems.push({
         id: item.id || `var_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
@@ -97,9 +160,12 @@ export class ShopifyCartManager {
         title: item.title || (variantInfo ? variantInfo.productTitle : item.name) || 'Custom Formulation',
         variantDetails: item.variantDetails || (variantInfo ? variantInfo.variantTitle : item.containerLabel) || 'Standard',
         category: item.category || (variantInfo ? variantInfo.category : 'custom_paint'),
-        quantity: item.quantity || 1,
+        quantity: addQty,
+        moq: moq,
         priceEur: priceEur,
         priceGbp: priceGbp,
+        retailPriceEur: retailPriceEur,
+        retailPriceGbp: retailPriceGbp,
         properties: item.properties || {}
       });
     }
@@ -166,15 +232,54 @@ export class ShopifyCartManager {
     this.notifyListeners();
   }
 
-  getCartSummary() {
+  getCartSummary(overrideCurrency = null) {
+    const currency = (overrideCurrency || this.activeCurrency || 'EUR').toUpperCase();
+    const isGbp = currency === 'GBP';
     const itemCount = this.cartItems.reduce((sum, item) => sum + item.quantity, 0);
-    const subtotal = this.cartItems.reduce((sum, item) => sum + (item.priceEur * item.quantity), 0);
+    const subtotalEur = this.cartItems.reduce((sum, item) => sum + (item.priceEur * item.quantity), 0);
     const subtotalGbp = this.cartItems.reduce((sum, item) => sum + ((item.priceGbp || item.priceEur * 0.85) * item.quantity), 0);
+    
+    // Calculate retail MSRP totals and savings
+    const retailSubtotalEur = this.cartItems.reduce((sum, item) => sum + ((item.retailPriceEur || item.priceEur) * item.quantity), 0);
+    const retailSubtotalGbp = this.cartItems.reduce((sum, item) => sum + ((item.retailPriceGbp || item.priceGbp || item.priceEur * 0.85) * item.quantity), 0);
+    const totalSavingsEur = Math.max(0, retailSubtotalEur - subtotalEur);
+    const totalSavingsGbp = Math.max(0, retailSubtotalGbp - subtotalGbp);
+
+    // Tier specific MOV and small order rules
+    const rules = TIER_RULES[this.currentTier] || TIER_RULES.retail;
+    const movThreshold = isGbp ? rules.movThresholdGbp : rules.movThresholdEur;
+    const activeSubtotal = isGbp ? subtotalGbp : subtotalEur;
+    const isMovMet = activeSubtotal >= movThreshold;
+    const movRemaining = Math.max(0, Math.round((movThreshold - activeSubtotal) * 100) / 100);
+    const movProgressPercent = movThreshold > 0 ? Math.min(100, Math.round((activeSubtotal / movThreshold) * 100)) : 100;
+    
+    // Normal / retail customers: small order packaging surcharge if < £25/€30
+    const hasSmallOrderFee = (this.currentTier === 'retail' && activeSubtotal > 0 && !isMovMet);
+    const smallOrderFee = hasSmallOrderFee ? (isGbp ? rules.smallOrderFeeGbp : rules.smallOrderFeeEur) : 0.0;
+
     return {
       items: this.cartItems,
       itemCount,
-      subtotal: Math.round(subtotal * 100) / 100,
-      subtotalGbp: Math.round(subtotalGbp * 100) / 100
+      subtotal: Math.round(subtotalEur * 100) / 100,
+      subtotalEur: Math.round(subtotalEur * 100) / 100,
+      subtotalGbp: Math.round(subtotalGbp * 100) / 100,
+      activeSubtotal: Math.round(activeSubtotal * 100) / 100,
+      currency,
+      tier: this.currentTier,
+      tierRule: rules,
+      tierSession: this.tierSession,
+      isB2B: this.currentTier === 'dealer' || this.currentTier === 'distributor',
+      retailSubtotalEur: Math.round(retailSubtotalEur * 100) / 100,
+      retailSubtotalGbp: Math.round(retailSubtotalGbp * 100) / 100,
+      totalSavings: isGbp ? Math.round(totalSavingsGbp * 100) / 100 : Math.round(totalSavingsEur * 100) / 100,
+      movThreshold,
+      isHardMov: rules.isHardMov,
+      isMovMet,
+      movRemaining,
+      movProgressPercent,
+      hasSmallOrderFee,
+      smallOrderFee,
+      canCheckout: rules.isHardMov ? isMovMet : (itemCount > 0)
     };
   }
 

@@ -44,6 +44,31 @@
   }
   </script>
   
+  <script>
+    // AUTO-BYPASS TO STOREFRONT IF PARTNER / DEV / PREVIEW PARAMETER OR SESSION IS ACTIVE
+    (function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var partnerKey = params.get('partner') || params.get('access') || params.get('key');
+        var isDevOrPreview = params.get('dev') === 'true' || params.get('dev') === '1' ||
+                             params.get('preview') === 'true' || params.get('preview') === '1' ||
+                             params.get('vip') === 'true' || params.get('vip') === '1';
+        var hasBypassParam = Boolean(partnerKey || isDevOrPreview);
+
+        if (hasBypassParam) {
+          sessionStorage.setItem('coast_store_preview', 'true');
+          sessionStorage.setItem('coast_partner_session', 'true');
+          localStorage.setItem('coast_dev_mode', 'true');
+          localStorage.setItem('coast_partner_access', 'true');
+          document.cookie = "coast_dev_mode=true; path=/; max-age=2592000; SameSite=Lax";
+          document.cookie = "coast_store_preview=true; path=/; max-age=2592000; SameSite=Lax";
+          document.cookie = "coast_partner_access=true; path=/; max-age=2592000; SameSite=Lax";
+          window.location.replace('index.html?preview=true');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  
   <!-- Tailwind CSS & Google Fonts -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -165,16 +190,37 @@
           <img src="assets/images/coast_logo_white.png" onerror="this.onerror=null; this.src='coast_logo_white.png';" alt="Coast Airbrush Europe" class="h-8 md:h-9 w-auto object-contain">
           <span class="bg-[#dc2626] text-white text-[9px] font-mono font-bold tracking-widest px-1.5 py-0.5 rounded-sm uppercase">EUROPE</span>
         </a>
+        <div id="dev-portal-badge" class="hidden items-center ml-2">
+          <a href="index.html?dev=true" class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-red-950/80 border border-red-500/50 text-[10px] font-mono text-red-200 hover:bg-red-900 transition-colors shadow-sm" title="Active Developer Session - Enter Storefront">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>DEV STOREFRONT &rarr;</span>
+          </a>
+        </div>
       </div>
 
       <div class="flex items-center gap-2 sm:gap-3 font-mono text-[11px] sm:text-xs">
-        <span class="hidden sm:inline text-white/80 tracking-wider text-shadow-contrast">
+        <span class="hidden md:inline text-white/80 tracking-wider text-shadow-contrast">
           🇬🇧 UK DISPATCH • REACH COMPLIANT
         </span>
-        <span class="hidden sm:inline text-white/30">•</span>
+        <span class="hidden md:inline text-white/30">•</span>
+
+        <!-- Direct Unlocked Storefront CTA (Shows if partner session or dev mode is active) -->
+        <a id="unlocked-storefront-btn" href="index.html?preview=true" class="hidden mech-btn-primary !py-1.5 !px-3 text-[11px] font-mono font-bold tracking-wider uppercase items-center gap-1.5 transition-all shadow-sm bg-emerald-700 hover:bg-emerald-600 text-white" title="Enter Active Storefront Session">
+          <span class="material-symbols-outlined text-[14px]">storefront</span>
+          <span>Enter Store &rarr;</span>
+        </a>
+
+        <!-- Partner & VIP Passcode Backdoor Trigger -->
+        <button type="button" onclick="openPartnerBackdoorModal()" class="px-2.5 py-1.5 rounded-sm bg-[#131315] hover:bg-[#18181b] border border-[#242429] hover:border-[#dc2626] text-neutral-300 hover:text-white transition-all cursor-pointer font-mono text-[11px] tracking-wider uppercase flex items-center gap-1.5 shadow-sm" title="Authorized Partner & VIP Storefront Passcode">
+          <span class="material-symbols-outlined text-[14px] text-amber-400">key</span>
+          <span class="hidden xs:inline">Partner</span> Access
+        </button>
+
+        <!-- Public VIP Email Registration -->
         <a href="#subscribe-form" class="mech-btn-primary !py-1.5 !px-3 text-[11px] font-mono font-bold tracking-wider uppercase flex items-center gap-1.5 transition-all shadow-sm" title="Register for VIP Launch Allocation">
           <span class="material-symbols-outlined text-[14px]">notifications_active</span>
-          <span>Register VIP Access</span>
+          <span class="hidden sm:inline">Register VIP</span>
+          <span class="sm:hidden">VIP</span>
         </a>
       </div>
     </div>
@@ -318,11 +364,17 @@
             <span>European Premiere • Direct UK &amp; Netherlands Dispatch</span>
           </div>
 
-          <a href="#subscribe-form" class="mech-btn-primary !py-2 !px-4 text-xs font-mono font-bold tracking-wider flex items-center justify-center gap-1.5 shadow-sm uppercase text-white whitespace-nowrap transition-all" title="Register to Reserve Your Launch Allocation">
-            <span class="material-symbols-outlined text-[15px]">notifications_active</span>
-            <span>Register for Launch Allocation</span>
-            <span class="material-symbols-outlined text-[14px]">arrow_downward</span>
-          </a>
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" onclick="openPartnerBackdoorModal()" class="px-3.5 py-2 rounded-sm bg-[#131315] hover:bg-[#18181b] border border-[#242429] hover:border-[#dc2626] text-neutral-200 hover:text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-sm" title="Authorized Partners: Enter Storefront Catalog">
+              <span class="material-symbols-outlined text-[15px] text-amber-400">key</span>
+              <span>Partner Catalog Preview</span>
+            </button>
+            <a href="#subscribe-form" class="mech-btn-primary !py-2 !px-4 text-xs font-mono font-bold tracking-wider flex items-center justify-center gap-1.5 shadow-sm uppercase text-white whitespace-nowrap transition-all" title="Register to Reserve Your Launch Allocation">
+              <span class="material-symbols-outlined text-[15px]">notifications_active</span>
+              <span>Register Allocation</span>
+              <span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -481,16 +533,113 @@
     </article>
   </main>
 
-  <!-- Minimal Clean Footer (Zero Links) -->
+  <!-- Minimal Clean Footer with Partner Backdoor Trigger -->
   <footer class="w-full border-t border-[#242429] bg-[#0b0b0d]/90 backdrop-blur-md py-6 px-6 text-center font-mono text-xs text-neutral-400 relative z-20">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-2.5">
         <img src="assets/images/coast_logo_white.png" alt="Coast Airbrush Europe" class="h-6 w-auto object-contain">
         <span class="text-white font-bold">&copy; 2026 Coast Airbrush Europe.</span>
       </div>
-      <p class="text-neutral-400">Precision Performance Engineering • Direct UK &amp; EU Logistics</p>
+      <div class="flex flex-wrap items-center justify-center gap-3 text-neutral-400">
+        <span>Precision Performance Engineering • Direct UK &amp; EU Logistics</span>
+        <span class="text-neutral-600 hidden sm:inline">•</span>
+        <button type="button" onclick="openPartnerBackdoorModal()" class="text-neutral-400 hover:text-white underline underline-offset-4 cursor-pointer transition-colors text-[11px] flex items-center gap-1 font-mono">
+          <span class="material-symbols-outlined text-[13px] text-amber-400">vpn_key</span>
+          <span>Partner / VIP Backdoor</span>
+        </button>
+      </div>
     </div>
   </footer>
+
+  <!-- ========================================================================= -->
+  <!-- VIP & PARTNER ACCESS BACKDOOR MODAL (Mechanical Brutalism Styled Modal) -->
+  <!-- ========================================================================= -->
+  <div id="partner-backdoor-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity" role="dialog" aria-modal="true" aria-labelledby="backdoor-modal-title">
+    <div class="relative w-full max-w-md bg-[#131315] border border-[#242429] shadow-2xl rounded-sm p-6 sm:p-7 space-y-5 text-left transform transition-all">
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between border-b border-[#242429] pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-sm bg-red-950/80 border border-red-500/40 flex items-center justify-center text-red-500 flex-shrink-0">
+            <span class="material-symbols-outlined text-[20px]">vpn_key</span>
+          </div>
+          <div>
+            <h2 id="backdoor-modal-title" class="font-headline text-base uppercase text-white font-bold tracking-tight">Partner &amp; VIP Backdoor</h2>
+            <p class="font-mono text-[11px] text-neutral-400">Pre-Launch Storefront Access</p>
+          </div>
+        </div>
+        <button type="button" onclick="closePartnerBackdoorModal()" class="text-neutral-400 hover:text-white p-1 rounded transition-colors cursor-pointer" aria-label="Close modal">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="space-y-4">
+        <p class="font-mono text-xs text-neutral-300 leading-relaxed">
+          Authorized trade partners, distributors, and preview evaluators: enter your passcode below to unlock the complete Coast Airbrush Europe storefront and live mixing engine.
+        </p>
+
+        <form id="partner-passcode-form" onsubmit="handlePartnerPasscodeSubmit(event)" class="space-y-3">
+          <div class="space-y-1.5">
+            <label for="partner-passcode-input" class="block font-mono text-[10px] uppercase tracking-wider text-neutral-400">
+              Access Passcode
+            </label>
+            <div class="relative">
+              <input
+                id="partner-passcode-input"
+                type="password"
+                required
+                autocomplete="current-password"
+                placeholder="Enter passcode (e.g. COAST2026)"
+                class="w-full bg-[#0b0b0d] border border-[#242429] focus:border-[#dc2626] text-white px-3.5 py-2.5 text-xs font-mono rounded-sm focus:outline-none placeholder:text-neutral-600 uppercase pr-10 tracking-widest"
+              >
+              <button
+                type="button"
+                onclick="togglePasscodeVisibility()"
+                class="absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-300 transition-colors cursor-pointer p-1"
+                aria-label="Toggle password visibility"
+              >
+                <span id="passcode-visibility-icon" class="material-symbols-outlined text-[16px]">visibility</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Error / Success Alert Box -->
+          <div id="passcode-feedback" class="hidden p-3 rounded-sm font-mono text-xs items-center gap-2"></div>
+
+          <!-- Action Buttons -->
+          <div class="flex items-center gap-2 pt-2">
+            <button
+              type="submit"
+              id="btn-partner-unlock"
+              class="flex-1 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-mono font-bold text-xs uppercase py-2.5 px-4 rounded-sm shadow-sm transition-all cursor-pointer flex items-center justify-center gap-1.5 tracking-wider"
+            >
+              <span class="material-symbols-outlined text-[15px]">lock_open</span>
+              <span>Unlock Storefront &rarr;</span>
+            </button>
+            <button
+              type="button"
+              onclick="closePartnerBackdoorModal()"
+              class="px-3.5 py-2.5 rounded-sm bg-[#18181b] border border-[#242429] text-neutral-400 hover:text-white font-mono text-xs uppercase transition-colors cursor-pointer"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+
+        <!-- Shareable Link Hint for Merchant -->
+        <div class="p-3 bg-[#0b0b0d] border border-[#242429] rounded-sm space-y-1 text-left">
+          <div class="flex items-center gap-1.5 font-mono text-[10px] text-amber-400 font-bold uppercase">
+            <span class="material-symbols-outlined text-[13px]">share</span>
+            <span>Direct Partner Link Sharing</span>
+          </div>
+          <p class="font-mono text-[10px] text-neutral-400 leading-normal">
+            You can also send partners direct access via URL: <br>
+            <code class="text-white bg-black/60 px-1 py-0.5 rounded select-all font-mono">https://coastairbrush.eu/?partner=vip</code>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Interactive Scripts -->
   <script>
@@ -549,6 +698,119 @@
         }, 4000);
       }
     }
+
+    // PARTNER PASSCODE MODAL & AUTHENTICATION HANDLERS
+    const VALID_PASSCODES = ['COAST2026', 'COASTVIP', 'PARTNER', 'PARTNER2026', 'PREVIEW', 'DEV', 'KROMAEDGE'];
+
+    function openPartnerBackdoorModal() {
+      const modal = document.getElementById('partner-backdoor-modal');
+      const input = document.getElementById('partner-passcode-input');
+      const feedback = document.getElementById('passcode-feedback');
+      if (modal) {
+        modal.classList.remove('hidden');
+        if (feedback) feedback.classList.add('hidden');
+        if (input) {
+          input.value = '';
+          input.classList.remove('border-red-500');
+          setTimeout(() => input.focus(), 50);
+        }
+      }
+    }
+
+    function closePartnerBackdoorModal() {
+      const modal = document.getElementById('partner-backdoor-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function togglePasscodeVisibility() {
+      const input = document.getElementById('partner-passcode-input');
+      const icon = document.getElementById('passcode-visibility-icon');
+      if (!input || !icon) return;
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility_off';
+      } else {
+        input.type = 'password';
+        icon.textContent = 'visibility';
+      }
+    }
+
+    function handlePartnerPasscodeSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('partner-passcode-input');
+      const feedback = document.getElementById('passcode-feedback');
+      const btn = document.getElementById('btn-partner-unlock');
+      const enteredCode = (input ? input.value : '').trim().toUpperCase();
+
+      if (!enteredCode) return;
+
+      if (VALID_PASSCODES.includes(enteredCode)) {
+        // Correct passcode
+        if (feedback) {
+          feedback.className = 'p-3 rounded-sm font-mono text-xs flex items-center gap-2 bg-emerald-950/80 border border-emerald-500 text-emerald-300';
+          feedback.innerHTML = '<span class="material-symbols-outlined text-[16px]">verified</span><span>Passcode Accepted. Unlocking storefront session...</span>';
+          feedback.classList.remove('hidden');
+        }
+        if (btn) {
+          btn.disabled = true;
+          btn.classList.add('opacity-75');
+        }
+
+        // Persist partner access for 30 days
+        sessionStorage.setItem('coast_store_preview', 'true');
+        sessionStorage.setItem('coast_partner_session', 'true');
+        localStorage.setItem('coast_dev_mode', 'true');
+        localStorage.setItem('coast_partner_access', 'true');
+        document.cookie = "coast_dev_mode=true; path=/; max-age=2592000; SameSite=Lax";
+        document.cookie = "coast_store_preview=true; path=/; max-age=2592000; SameSite=Lax";
+        document.cookie = "coast_partner_access=true; path=/; max-age=2592000; SameSite=Lax";
+
+        setTimeout(() => {
+          window.location.href = 'index.html?preview=true';
+        }, 600);
+      } else {
+        // Invalid passcode
+        if (feedback) {
+          feedback.className = 'p-3 rounded-sm font-mono text-xs flex items-center gap-2 bg-red-950/80 border border-red-500 text-red-300 animate-pulse';
+          feedback.innerHTML = '<span class="material-symbols-outlined text-[16px]">error</span><span>Invalid Passcode. Please check with Coast Airbrush Europe management.</span>';
+          feedback.classList.remove('hidden');
+        }
+        if (input) {
+          input.classList.add('border-red-500');
+          input.focus();
+          input.select();
+        }
+      }
+    }
+
+    // Close modal on Escape or outside click
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closePartnerBackdoorModal();
+    });
+    document.addEventListener('click', function(e) {
+      const modal = document.getElementById('partner-backdoor-modal');
+      if (modal && !modal.classList.contains('hidden') && e.target === modal) {
+        closePartnerBackdoorModal();
+      }
+    });
+
+    // Check if session is already unlocked on load and reveal storefront CTAs
+    try {
+      var h = window.location.hostname;
+      var isLocal = h === 'localhost' || h === '127.0.0.1' || h.startsWith('192.168.') || h.startsWith('10.') || h === '';
+      var isDevUnlocked = sessionStorage.getItem('coast_store_preview') === 'true' ||
+                          sessionStorage.getItem('coast_partner_session') === 'true' ||
+                          localStorage.getItem('coast_dev_mode') === 'true' ||
+                          localStorage.getItem('coast_partner_access') === 'true' ||
+                          document.cookie.indexOf('coast_dev_mode=true') !== -1 ||
+                          document.cookie.indexOf('coast_store_preview=true') !== -1;
+      if (isLocal || isDevUnlocked) {
+        var badge = document.getElementById('dev-portal-badge');
+        if (badge) badge.classList.replace('hidden', 'flex');
+        var storeBtn = document.getElementById('unlocked-storefront-btn');
+        if (storeBtn) storeBtn.classList.replace('hidden', 'inline-flex');
+      }
+    } catch (e) {}
   </script>
 </body>
 </html>

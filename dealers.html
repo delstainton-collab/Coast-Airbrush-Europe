@@ -4,8 +4,38 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <script>
-    // PRE-LAUNCH STRICT LOCKDOWN: Unconditionally bounce all direct access to landing.html
+    // PRE-LAUNCH HOLDING GATE & DEV/PARTNER MODE ACCESS
     (function() {
+      try {
+        var h = window.location.hostname;
+        var isLocal = h === 'localhost' || h === '127.0.0.1' || h.startsWith('192.168.') || h.startsWith('10.') || h === '' || window.location.protocol === 'file:';
+        var isShopify = (typeof window.Shopify !== 'undefined') || h.includes('myshopify.com') || h.includes('shopifypreview.com') || window.location.search.includes('preview_theme_id') || window.location.search.includes('_fd=0');
+        var params = new URLSearchParams(window.location.search);
+        var hasPartnerParam = params.has('partner') || params.has('access') || params.has('key') || params.get('vip') === 'true' || params.get('vip') === '1';
+        var hasDevParam = params.get('dev') === 'true' || params.get('dev') === '1' ||
+                          params.get('preview') === 'true' || params.get('preview') === '1' ||
+                          hasPartnerParam;
+        var isUnlocked = sessionStorage.getItem('coast_store_preview') === 'true' ||
+                         sessionStorage.getItem('coast_partner_session') === 'true' ||
+                         localStorage.getItem('coast_dev_mode') === 'true' ||
+                         localStorage.getItem('coast_partner_access') === 'true' ||
+                         document.cookie.indexOf('coast_dev_mode=true') !== -1 ||
+                         document.cookie.indexOf('coast_store_preview=true') !== -1 ||
+                         document.cookie.indexOf('coast_partner_access=true') !== -1;
+
+        if (isLocal || isShopify || hasDevParam || isUnlocked) {
+          sessionStorage.setItem('coast_store_preview', 'true');
+          localStorage.setItem('coast_dev_mode', 'true');
+          document.cookie = "coast_dev_mode=true; path=/; max-age=2592000; SameSite=Lax";
+          document.cookie = "coast_store_preview=true; path=/; max-age=2592000; SameSite=Lax";
+          if (hasPartnerParam || localStorage.getItem('coast_partner_access') === 'true') {
+            sessionStorage.setItem('coast_partner_session', 'true');
+            localStorage.setItem('coast_partner_access', 'true');
+            document.cookie = "coast_partner_access=true; path=/; max-age=2592000; SameSite=Lax";
+          }
+          return;
+        }
+      } catch (e) {}
       window.location.replace('landing.html');
     })();
   </script>
@@ -401,7 +431,7 @@
           <!-- Pack 1: Flake King Countertop -->
           <div class="b2b-card p-6 rounded space-y-4 flex flex-col justify-between border-t-4 border-t-amber-400">
             <div class="space-y-3">
-              <span class="font-mono text-[10px] uppercase text-amber-400 bg-amber-950/60 border border-amber-500/40 px-2 py-0.5 rounded font-bold">Tier 2: Jobber / Studio Pack</span>
+              <span class="font-mono text-[10px] uppercase text-amber-400 bg-amber-950/60 border border-amber-500/40 px-2 py-0.5 rounded font-bold">Tier 2: Jobber / Studio Pack • £500 / €550 MOV • 6-Unit MOQ</span>
               <h3 class="font-headline text-xl uppercase text-white font-bold">Flake King &amp; Tape Countertop Spinner</h3>
               <p class="font-body text-xs text-neutral-300 leading-relaxed">
                 Rotary metal countertop display loaded with the 24 top-selling Flake King holographic and metallic dry flakes, 30 rolls of Prime Green/Orange precision tape, and 2 Flake King 1000 Guns.
@@ -432,7 +462,7 @@
           <div class="b2b-card p-6 rounded space-y-4 flex flex-col justify-between border-t-4 border-t-primary relative">
             <div class="space-y-3">
               <div class="flex justify-between items-center">
-                <span class="font-mono text-[10px] uppercase text-primary bg-primary/20 border border-primary/40 px-2 py-0.5 rounded font-bold">Tier 2: Refinisher Pro Hub</span>
+                <span class="font-mono text-[10px] uppercase text-primary bg-primary/20 border border-primary/40 px-2 py-0.5 rounded font-bold">Tier 2: Refinisher Pro Hub • £500 / €550 MOV • 6-Unit MOQ</span>
                 <span class="font-mono text-[9px] text-amber-400 font-bold uppercase">★ Most Popular</span>
               </div>
               <h3 class="font-headline text-xl uppercase text-white font-bold">Kroma Edge Mirror Chrome Studio Center</h3>
@@ -464,7 +494,7 @@
           <!-- Pack 3: Master Regional Distributor -->
           <div class="b2b-card p-6 rounded space-y-4 flex flex-col justify-between border-t-4 border-t-emerald-400">
             <div class="space-y-3">
-              <span class="font-mono text-[10px] uppercase text-emerald-400 bg-emerald-950/60 border border-emerald-500/40 px-2 py-0.5 rounded font-bold">Tier 1: Master Distributor</span>
+              <span class="font-mono text-[10px] uppercase text-emerald-400 bg-emerald-950/60 border border-emerald-500/40 px-2 py-0.5 rounded font-bold">Tier 1: Master Distributor • £2,000 / €2,500 MOV • Pallet / Master Cases</span>
               <h3 class="font-headline text-xl uppercase text-white font-bold">Master Regional Stocking Partner</h3>
               <p class="font-body text-xs text-neutral-300 leading-relaxed">
                 Exclusive national or multi-region distribution license. Pallet/container level volume, direct factory replenishment, 5% co-op marketing fund, and protected sub-dealer territories.
@@ -649,8 +679,8 @@
             <div class="space-y-1">
               <label class="font-label-xs text-[11px] uppercase text-secondary font-bold block">Partnership Tier Requested *</label>
               <select id="dealers-tier" class="mech-select !py-2.5 !text-xs">
-                <option value="dealer">Tier 2: Authorized Stockist Dealer (Shop Counter Racks &amp; Case Packs)</option>
-                <option value="distributor">Tier 1: Master Regional Distributor (Pallets &amp; Territory Exclusivity)</option>
+                <option value="dealer">Tier 2: Authorized Stockist Dealer (£500 / €550 MOV • 6-Unit Case Packs)</option>
+                <option value="distributor">Tier 1: Master Regional Distributor (£2,000 / €2,500 MOV • Pallets &amp; Master Cases)</option>
               </select>
             </div>
             <div class="space-y-1">
@@ -666,7 +696,7 @@
 
           <div class="space-y-1">
             <label class="font-label-xs text-[11px] uppercase text-secondary font-bold block">Current Paint / Gun Brands Carried &amp; Notes</label>
-            <textarea id="dealers-notes" rows="2" placeholder="e.g. Currently stocking House of Kolor, SATA, Anest Iwata. Interested in regional exclusivity for West Midlands." class="mech-input !py-2 !text-xs font-mono w-full"></textarea>
+            <textarea id="dealers-notes" rows="2" placeholder="e.g. Currently stocking Kroma Edge, SATA, Anest Iwata. Interested in regional exclusivity for West Midlands." class="mech-input !py-2 !text-xs font-mono w-full"></textarea>
           </div>
 
           <div id="dealers-apply-alert" class="hidden p-4 rounded font-mono text-xs"></div>
@@ -700,9 +730,9 @@
           </div>
 
           <div class="space-y-1.5 bg-black/40 p-4 rounded border border-white/5">
-            <h4 class="font-headline text-white font-bold uppercase text-sm">What are the Minimum Order Quantities (MOQ)?</h4>
+            <h4 class="font-headline text-white font-bold uppercase text-sm">What are the Minimum Order Quantities (MOQ) and Values (MOV)?</h4>
             <p class="leading-relaxed text-neutral-400">
-              Authorized Tier 2 Dealers can order in single case packs (e.g. 6 bottles or 1 starter kit). Tier 1 Regional Distributors order in master pallet quantities with structured Net 30/60 day terms.
+              Retail orders under £25.00 / €30.00 include a nominal £3.95 / €4.50 small order packaging surcharge (waived at £25+). Authorized Tier 2 Dealers require a Minimum Order Value of £500.00 / €550.00 ex-VAT and order in 6-unit inner packs. Tier 1 Regional Distributors require £2,000.00 / €2,500.00 ex-VAT MOV in 12-unit master cases / bulk pallets with structured Net 30/60 day terms.
             </p>
           </div>
 
@@ -820,11 +850,11 @@
           <div class="grid grid-cols-2 gap-2">
             <button type="button" onclick="prefillLogin('sarah.j@apexpaint.co.uk', 'ApexCustom2026!')" class="text-left bg-surface/90 hover:bg-surface-container border border-secondary/40 p-2 rounded cursor-pointer">
               <div class="font-bold text-white text-[11px]">Apex Custom</div>
-              <div class="font-mono text-[9px] text-neutral-400">Tier 2 Dealer</div>
+              <div class="font-mono text-[9px] text-amber-400">Tier 2 Dealer • £500 MOV</div>
             </button>
             <button type="button" onclick="prefillLogin('distributor@mipa-nordic.eu', 'Distributor2026!')" class="text-left bg-surface/90 hover:bg-surface-container border border-secondary/40 p-2 rounded cursor-pointer">
               <div class="font-bold text-white text-[11px]">Mipa Nordic</div>
-              <div class="font-mono text-[9px] text-neutral-400">Tier 1 Distributor</div>
+              <div class="font-mono text-[9px] text-emerald-400">Tier 1 Distributor • £2k MOV</div>
             </button>
           </div>
         </div>
@@ -897,25 +927,25 @@
             data = {
               success: true,
               token: "CAE_B2B_DEALER_DEMO_" + Date.now(),
-              user: { company: "Apex Custom Paintworks Ltd", role: "dealer" }
+              user: { company: "Apex Custom Paintworks Ltd", role: "dealer", movGbp: 500.00, movEur: 550.00, defaultMoq: 6 }
             };
           } else if (email.toLowerCase().includes("distributor") || email.toLowerCase().includes("mipa") || password === "Distributor2026!") {
             data = {
               success: true,
               token: "CAE_B2B_DIST_DEMO_" + Date.now(),
-              user: { company: "Mipa Nordic Logistics B.V.", role: "distributor" }
+              user: { company: "Mipa Nordic Logistics B.V.", role: "distributor", movGbp: 2000.00, movEur: 2500.00, defaultMoq: 12 }
             };
           } else if (email.toLowerCase().includes("dave") || email.toLowerCase().includes("coast") || password === "CoastUSA2026!") {
             data = {
               success: true,
               token: "CAE_B2B_STAKEHOLDER_USA_" + Date.now(),
-              user: { company: "Coast Airbrush Inc (USA HQ)", role: "stakeholder", contactName: "David Monning" }
+              user: { company: "Coast Airbrush Inc (USA HQ)", role: "stakeholder", contactName: "David Monning", movGbp: 0, movEur: 0, defaultMoq: 1 }
             };
           } else if (email.toLowerCase().includes("ryan") || email.toLowerCase().includes("flake") || password === "FlakeKing2026!") {
             data = {
               success: true,
               token: "CAE_B2B_STAKEHOLDER_FK_" + Date.now(),
-              user: { company: "Flake King Ltd (UK HQ)", role: "stakeholder", contactName: "Ryan Francis" }
+              user: { company: "Flake King Ltd (UK HQ)", role: "stakeholder", contactName: "Ryan Francis", movGbp: 0, movEur: 0, defaultMoq: 1 }
             };
           }
         }

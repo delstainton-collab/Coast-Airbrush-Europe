@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" fill="none">
+  <defs>
+    <linearGradient id="fkRedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+    <linearGradient id="goldCrown" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <!-- Crown Icon & Sparkle -->
+  <g transform="translate(10, 12)">
+    <!-- Shield Backing -->
+    <rect x="2" y="2" width="56" height="56" rx="6" fill="#18181b" stroke="#27272a" stroke-width="1.5"/>
+    <!-- 5-Point Crown -->
+    <path d="M12,42 L16,22 L24,32 L30,16 L36,32 L44,22 L48,42 Z" fill="url(#goldCrown)" stroke="#f59e0b" stroke-width="1.2" stroke-linejoin="round"/>
+    <rect x="14" y="42" width="32" height="4" rx="1" fill="#dc2626"/>
+    <!-- Sparkle Flake Elements -->
+    <circle cx="16" cy="18" r="2" fill="#ffffff"/>
+    <circle cx="30" cy="12" r="2.5" fill="#ffffff"/>
+    <circle cx="44" cy="18" r="2" fill="#ffffff"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="78" y="38" font-family="'Industry', 'Impact', 'Barlow Condensed', sans-serif" font-size="28" font-weight="900" letter-spacing="3" fill="#ffffff">
+    FLAKE <tspan fill="url(#fkRedGrad)">KING</tspan>
+  </text>
+  <text x="80" y="55" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="9" font-weight="700" letter-spacing="3" fill="#9ca3af">
+    DRY VENTURI FLAKE SYSTEMS • UK
+  </text>
+</svg>

@@ -76,9 +76,9 @@ Meta (Instagram & Facebook) protects video streams with authentication barriers.
 
 ---
 
-### 3. `hok-candy-mixing-tips.mp4`
-* **Original Subject**: Dave Monnig explaining candy mixing ratios (KK concentrates into SG100 intercoat clear) and reducer selection.
-* **Featured Product**: House of Kolor Kandy Apple Red + RU311 Reducer Pack (`HOK-KK01-QT`) + Free Mixing Lab
+### 3. `candy-mixing-tips.mp4`
+* **Original Subject**: Dave Monnig explaining candy mixing ratios and reducer selection for custom finishes.
+* **Featured Product**: Kroma Edge Kandy Apple Red + High-Gloss Reducer Pack (`KE-CANDY-RED-QT`) + Free Mixing Lab
 * **European Value Proposition**: Links directly to the free European Paint Mixing Calculator (`https://coastairbrush.eu/#mixing`).
 * **On-Screen Hook**: ⚠️ The #1 reason your candy paint stripes or clouds...
 * **On-Screen CTA**: 💬 Comment **"MIX"** for the free digital mixing calculator!
@@ -86,13 +86,13 @@ Meta (Instagram & Facebook) protects video streams with authentication barriers.
   ```
   The #1 rookie mistake with custom candy paint: wrong reduction ratio for your shop temperature! 🌡️🎨
 
-  Dave Monnig breaks down how KK concentrates and SG100 intercoat clear must be balanced to avoid blotching, tiger-striping, or solvent pops.
+  Dave Monnig breaks down how candy concentrates and intercoat clear must be balanced to avoid blotching, tiger-striping, or solvent pops.
 
   We built a 100% FREE European Digital Mixing Calculator that does the math for you in grams, mL, and fluid ounces.
 
   💬 Comment "MIX" below and we will DM you the instant link to calculate your next recipe!
 
-  #HouseOfKolor #CandyPaint #CustomPaintTips #AirbrushAcademy #CoastAirbrushEurope #PaintMixingLab
+  #KromaEdge #CandyPaint #CustomPaintTips #AirbrushAcademy #CoastAirbrushEurope #PaintMixingLab
   ```
 
 ---
@@ -146,17 +146,24 @@ Meta (Instagram & Facebook) protects video streams with authentication barriers.
 
 ---
 
-## 🤖 Live Automated Webhook Integration
+---
+
+## 🤖 Automated DM & Keyword Autoresponder Webhook
 
 When any user comments on your videos or sends a DM with:
-* **`GUN`** $\rightarrow$ Agent C sends Flake King 1000 cart link.
-* **`CHROME`** $\rightarrow$ Agent C sends Kroma Edge 2K Mirror Chrome cart link.
-* **`MIX`** $\rightarrow$ Agent C sends free Digital Mixing Calculator link.
-* **`TAPE`** $\rightarrow$ Agent C sends Fine Line Tape 4-roll pack link.
-* **`IWATA`** $\rightarrow$ Agent C sends Iwata Eclipse and OEM spares link.
-* **`TDS`** $\rightarrow$ Agent C sends the official PDF Technical Data Sheet.
+* **`CHROME`** $\rightarrow$ Kroma Edge Self-Organizing Mirror Chrome System (`KE-CHROME-1L`).
+* **`IWATA`** / **`ATAWI`** $\rightarrow$ Anest Iwata Custom Micron Takumi & Atawi CS 0.18mm Airbrush (`IW-CM-TAKUMI`).
+* **`ARMOR`** / **`UV`** $\rightarrow$ Clean Armor UV 900 120s High-Gloss Clearcoat (`CA-UV900-CLEAR-1L`).
+* **`LUMILOR`** / **`LIGHT`** $\rightarrow$ LumiLor Sprayable Electroluminescent Paint Starter Kit (`LL-STARTER-KIT-4OZ`).
+* **`SHADE`** / **`CANDY`** $\rightarrow$ Ace of Shades Super Shine '79 & Solvent Candies (`AOS-SS79-CLEAR`).
+* **`WATERBASED`** / **`HYPER`** $\rightarrow$ Hyper FX Premier Custom Paint Powered by Createx (`HFX-PRIMARY-SET-4OZ`).
+* **`GUN`** / **`FLAKE`** $\rightarrow$ Flake King 1000 Professional Dry Flake Gun (`FK-1000-GUN`).
+* **`RIG`** / **`VSIONAIR`** $\rightarrow$ VsionAir 360° All-Angle Modular Tri-Stand Workstation (`VA-TRISTAND-PRO`).
+* **`TAPE`** $\rightarrow$ Flake King Fine Line Mixed Tape Pack (`FK-TAPE-SET`).
+* **`TDS`** $\rightarrow$ Instant official PDF Technical Data Sheet download.
 
 **Live Webhook Endpoint**:  
 `POST /api/social/dm`  
-Payload: `{"message": "I want the dry flake gun", "platform": "instagram"}`  
-Response: Full product details, European stock notes, and 1-click checkout URL.
+Payload: `{"message": "Does Clean Armor cure in 120s under UV?", "platform": "instagram"}`  
+Response: Full verified technical answers, European warehouse dispatch notes, and 1-click checkout permalink.
+

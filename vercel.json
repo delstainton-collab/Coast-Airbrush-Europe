@@ -16,27 +16,200 @@
     }
   ],
   "redirects": [
-    { "source": "/", "destination": "/landing.html", "permanent": false },
-    { "source": "/index.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/index", "destination": "/landing.html", "permanent": false },
-    { "source": "/about.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/about", "destination": "/landing.html", "permanent": false },
-    { "source": "/dealers.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/dealers", "destination": "/landing.html", "permanent": false },
-    { "source": "/shipping.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/shipping", "destination": "/landing.html", "permanent": false },
-    { "source": "/support.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/support", "destination": "/landing.html", "permanent": false },
-    { "source": "/privacy.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/privacy", "destination": "/landing.html", "permanent": false },
-    { "source": "/product.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/product", "destination": "/landing.html", "permanent": false },
-    { "source": "/crm.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/crm", "destination": "/landing.html", "permanent": false },
-    { "source": "/preview_compromises.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/scratch_stitch_home.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/scratch_stitch_pdp.html", "destination": "/landing.html", "permanent": false },
-    { "source": "/pages/(.*)", "destination": "/landing.html", "permanent": false },
-    { "source": "/products/(.*)", "destination": "/landing.html", "permanent": false }
+    {
+      "source": "/",
+      "missing": [
+        { "type": "cookie", "key": "coast_dev_mode", "value": "true" },
+        { "type": "cookie", "key": "coast_store_preview", "value": "true" },
+        { "type": "cookie", "key": "coast_partner_access", "value": "true" },
+        { "type": "query", "key": "dev" },
+        { "type": "query", "key": "preview" },
+        { "type": "query", "key": "partner" },
+        { "type": "query", "key": "access" },
+        { "type": "query", "key": "vip" }
+      ],
+      "destination": "/landing.html",
+      "permanent": false
+    },
+    {
+      "source": "/index(.*)",
+      "missing": [
+        { "type": "cookie", "key": "coast_dev_mode", "value": "true" },
+        { "type": "cookie", "key": "coast_store_preview", "value": "true" },
+        { "type": "cookie", "key": "coast_partner_access", "value": "true" },
+        { "type": "query", "key": "dev" },
+        { "type": "query", "key": "preview" },
+        { "type": "query", "key": "partner" },
+        { "type": "query", "key": "access" },
+        { "type": "query", "key": "vip" }
+      ],
+      "destination": "/landing.html",
+      "permanent": false
+    },
+    {
+      "source": "/about(.*)",
+      "missing": [
+        { "type": "cookie", "key": "coast_dev_mode", "value": "true" },
+        { "type": "cookie", "key": "coast_store_preview", "value": "true" },
+        { "type": "cookie", "key": "coast_partner_access", "value": "true" },
+        { "type": "query", "key": "dev" },
+        { "type": "query", "key": "preview" },
+        { "type": "query", "key": "partner" },
+        { "type": "query", "key": "access" },
+        { "type": "query", "key": "vip" }
+      ],
+      "destination": "/landing.html",
+      "permanent": false
+    },
+    {
+      "source": "/dealers(.*)",
+      "missing": [
+        { "type": "cookie", "key": "coast_dev_mode", "value": "true" },
+        { "type": "cookie", "key": "coast_store_preview", "value": "true" },
+        { "type": "cookie", "key": "coast_partner_access", "value": "true" },
+        { "type": "query", "key": "dev" },
+        { "type": "query", "key": "preview" },
+        { "type": "query", "key": "partner" },
+        { "type": "query", "key": "access" },
+        { "type": "query", "key": "vip" }
+      ],
+      "destination": "/landing.html",
+      "permanent": false
+    },
+    {
+      "source": "/shipping(.*)",
+      "missing": [
+        { "type": "cookie", "key": "coast_dev_mode", "value": "true" },
+        { "type": "cookie", "key": "coast_store_preview", "value": "true" },
+        { "type": "cookie", "key": "coast_partner_access", "value": "true" },
+        { "type": "query", "key": "dev" },
+        { "type": "query", "key": "preview" },
+        { "type": "query", "key": "partner" },
+        { "type": "query", "key": "access" },
+        { "type": "query", "key": "vip" }
+      ],
+      "destination": "/landing.html",
+      "permanent": false
+    },
+    {
+      "source": "/support(.*)",
+      "missing": [
+        { "type": "cookie", "key": "coast_dev_mode", "value": "true" },
+        { "type": "cookie", "key": "coast_store_preview", "value": "true" },
+        { "type": "cookie", "key": "coast_partner_access", "value": "true" },
+        { "type": "query", "key": "dev" },
+        { "type": "query", "key": "preview" },
+        { "type": "query", "key": "partner" },
+        { "type": "query", "key": "access" },
+        { "type": "query", "key": "vip" }
+      ],
+      "destination": "/landing.html",
+      "permanent": false
+    },
+    {
+      "source": "/privacy(.*)",
+      "missing": [
+        { "type": "cookie", "key": "coast_dev_mode", "value": "true" },
+        { "type": "cookie", "key": "coast_store_preview", "value": "true" },
+        { "type": "cookie", "key": "coast_partner_access", "value": "true" },
+        { "type": "query", "key": "dev" },
+        { "type": "query", "key": "preview" },
+        { "type": "query", "key": "partner" },
+        { "type": "query", "key": "access" },
+        { "type": "query", "key": "vip" }
+      ],
+      "destination": "/landing.html",
+      "permanent": false
+    },
+    {
+      "source": "/product(.*)",
+      "missing": [
+        { "type": "cookie", "key": "coast_dev_mode", "value": "true" },
+        { "type": "cookie", "key": "coast_store_preview", "value": "true" },
+        { "type": "cookie", "key": "coast_partner_access", "value": "true" },
+        { "type": "query", "key": "dev" },
+        { "type": "query", "key": "preview" },
+        { "type": "query", "key": "partner" },
+        { "type": "query", "key": "access" },
+        { "type": "query", "key": "vip" }
+      ],
+      "destination": "/landing.html",
+      "permanent": false
+    },
+    {
+      "source": "/crm(.*)",
+      "missing": [
+        { "type": "cookie", "key": "coast_dev_mode", "value": "true" },
+        { "type": "cookie", "key": "coast_store_preview", "value": "true" },
+        { "type": "cookie", "key": "coast_partner_access", "value": "true" },
+        { "type": "query", "key": "dev" },
+        { "type": "query", "key": "preview" },
+        { "type": "query", "key": "partner" },
+        { "type": "query", "key": "access" },
+        { "type": "query", "key": "vip" }
+      ],
+      "destination": "/landing.html",
+      "permanent": false
+    },
+    {
+      "source": "/preview_compromises(.*)",
+      "missing": [
+        { "type": "cookie", "key": "coast_dev_mode", "value": "true" },
+        { "type": "cookie", "key": "coast_store_preview", "value": "true" },
+        { "type": "cookie", "key": "coast_partner_access", "value": "true" },
+        { "type": "query", "key": "dev" },
+        { "type": "query", "key": "preview" },
+        { "type": "query", "key": "partner" },
+        { "type": "query", "key": "access" },
+        { "type": "query", "key": "vip" }
+      ],
+      "destination": "/landing.html",
+      "permanent": false
+    },
+    {
+      "source": "/scratch_stitch_(.*)",
+      "missing": [
+        { "type": "cookie", "key": "coast_dev_mode", "value": "true" },
+        { "type": "cookie", "key": "coast_store_preview", "value": "true" },
+        { "type": "cookie", "key": "coast_partner_access", "value": "true" },
+        { "type": "query", "key": "dev" },
+        { "type": "query", "key": "preview" },
+        { "type": "query", "key": "partner" },
+        { "type": "query", "key": "access" },
+        { "type": "query", "key": "vip" }
+      ],
+      "destination": "/landing.html",
+      "permanent": false
+    },
+    {
+      "source": "/pages/(.*)",
+      "missing": [
+        { "type": "cookie", "key": "coast_dev_mode", "value": "true" },
+        { "type": "cookie", "key": "coast_store_preview", "value": "true" },
+        { "type": "cookie", "key": "coast_partner_access", "value": "true" },
+        { "type": "query", "key": "dev" },
+        { "type": "query", "key": "preview" },
+        { "type": "query", "key": "partner" },
+        { "type": "query", "key": "access" },
+        { "type": "query", "key": "vip" }
+      ],
+      "destination": "/landing.html",
+      "permanent": false
+    },
+    {
+      "source": "/products/(.*)",
+      "missing": [
+        { "type": "cookie", "key": "coast_dev_mode", "value": "true" },
+        { "type": "cookie", "key": "coast_store_preview", "value": "true" },
+        { "type": "cookie", "key": "coast_partner_access", "value": "true" },
+        { "type": "query", "key": "dev" },
+        { "type": "query", "key": "preview" },
+        { "type": "query", "key": "partner" },
+        { "type": "query", "key": "access" },
+        { "type": "query", "key": "vip" }
+      ],
+      "destination": "/landing.html",
+      "permanent": false
+    }
   ]
 }

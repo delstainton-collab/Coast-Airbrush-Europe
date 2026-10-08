@@ -156,7 +156,7 @@ export default async function handler(req, res) {
         <ul class="perks-list">
           <li><strong>24-Hour Advance Store Access:</strong> You will receive a direct access link to shop our opening catalog before the general European public launch next week.</li>
           <li><strong>Dual UK & European Warehouse Fulfillment:</strong> Direct local dispatch with fast carrier rates and zero post-Brexit customs delays or unexpected import tariffs.</li>
-          <li><strong>REACH & CLP 2026 Guaranteed Formulations:</strong> Genuine House of Kolor, Kroma-Edge, and Flake King products formulation-verified and ready for European pro use.</li>
+          <li><strong>REACH & CLP 2026 Guaranteed Formulations:</strong> Genuine Kroma-Edge, Flake King, and VsionAir products formulation-verified and ready for European pro use.</li>
         </ul>
 
         <p style="margin-top: 28px; color: #94a3b8; font-size: 14px;">Keep an eye on your inbox—we will transmit your personal launch pass as soon as our warehouse gates open.</p>

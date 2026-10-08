@@ -148,11 +148,11 @@ html_content = """<!DOCTYPE html>
 
 <p>A comprehensive audit of custom paint manufacturers, specialized coating brands, and distribution jobbers across the UK and Continental Europe reveals clear structural vulnerabilities:</p>
 
-<h3>2.1 House of Kolor (Valspar / Sherwin-Williams Automotive)</h3>
+<h3>2.1 Legacy US Solvent Brands (Traditional Automotive Importers)</h3>
 <ul>
-  <li><strong>Profile:</strong> The historic pioneer of custom automotive paint (founded 1956). Acquired by Valspar, now part of Sherwin-Williams. Distributed in the UK via regional factors (Jawel Paints, Autopaint Solutions, Martin Brown Paints). In Europe, availability is highly fractured.</li>
-  <li><strong>Product Strengths:</strong> Worldwide brand recognition, Shimrin2 basecoat system, iconic Kandys (KK, UK, KBC).</li>
-  <li><strong>Critical Weaknesses &amp; Market Gaps:</strong> Corporate neglect under parent Sherwin-Williams; severe post-Brexit UK stockouts; extreme price inflation per quart; strict solvent VOC regulatory friction; zero modern digital mixing software.</li>
+  <li><strong>Profile:</strong> Historic legacy custom automotive paint lines imported from North America. Distributed in the UK via regional factors (Jawel Paints, Autopaint Solutions, Martin Brown Paints). In Europe, availability is highly fractured.</li>
+  <li><strong>Product Strengths:</strong> Name recognition, traditional basecoat systems, traditional Kandys.</li>
+  <li><strong>Critical Weaknesses &amp; Market Gaps:</strong> Severe post-Brexit UK stockouts; extreme price inflation per quart; strict solvent VOC regulatory friction; zero modern digital mixing software.</li>
 </ul>
 
 <h3>2.2 Custom Creative (Spain / Pan-European)</h3>
@@ -199,7 +199,7 @@ html_content = """<!DOCTYPE html>
   </thead>
   <tbody>
     <tr>
-      <td><strong>House of Kolor</strong></td>
+      <td><strong>Legacy US Solvent Brands</strong></td>
       <td>USA</td>
       <td>Solvent Custom Paint</td>
       <td>Moderate (UK factors; fractured EU)</td>

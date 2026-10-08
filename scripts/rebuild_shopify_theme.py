@@ -152,6 +152,14 @@ THEME_CORE_ASSET_FILENAMES = {
     "apple-touch-icon.png",
     "icon-192.png",
     "icon-512.png",
+    "kroma-edge-logo.svg",
+    "flake-king-logo.svg",
+    "vsionair-logo.svg",
+    "iwata-atawi-logo.svg",
+    "ace-of-shades-logo.svg",
+    "hyper-fx-logo.svg",
+    "lumilor-logo.svg",
+    "clean-armor-logo.svg",
     "kroma-skull-studio-dark.jpg",
     "kroma-detail-skull.jpg",
     "flake-buggy-studio.jpg",
@@ -169,7 +177,8 @@ def transform_html_for_liquid(html):
             filename = "kroma-skull-mirror.jpg"
         else:
             filename = full_path.split("/")[-1]
-        return f"url('{{{{ '{filename}' | asset_url }}}}')"
+        filt = "asset_url" if filename in THEME_CORE_ASSET_FILENAMES else "file_url"
+        return f"url('{{{{ '{filename}' | {filt} }}}}')"
 
     def replace_src(m):
         prefix = m.group(1)
@@ -179,19 +188,21 @@ def transform_html_for_liquid(html):
             filename = "kroma-skull-mirror.jpg"
         else:
             filename = full_path.split("/")[-1]
-        return f"{prefix}{{{{ '{filename}' | asset_url }}}}{quote}"
+        filt = "asset_url" if filename in THEME_CORE_ASSET_FILENAMES else "file_url"
+        return f"{prefix}{{{{ '{filename}' | {filt} }}}}{quote}"
 
     def replace_this_src(m):
         prefix = m.group(1)
         full_path = m.group(2)
         quote = m.group(3)
         filename = full_path.split("/")[-1]
-        return f"{prefix}{{{{ '{filename}' | asset_url }}}}{quote}"
+        filt = "asset_url" if filename in THEME_CORE_ASSET_FILENAMES else "file_url"
+        return f"{prefix}{{{{ '{filename}' | {filt} }}}}{quote}"
 
     def replace_doc(m):
         full_path = m.group(1)
         filename = full_path.split("/")[-1]
-        return f"href=\"{{{{ '{filename}' | asset_url }}}}\""
+        return f"href=\"{{{{ '{filename}' | file_url }}}}\""
 
     out = re.sub(r"url\(['\"]?((?:assets/images/|Images/)[^'\")]+)['\"]?\)", replace_url, html)
     out = re.sub(r"(src=['\"])((?:assets/images/|Images/)[^'\">]+)(['\"])", replace_src, out)
@@ -211,23 +222,23 @@ def transform_html_for_liquid(html):
     return out
 
 def transform_theme_liquid(content):
-    content = re.sub(r"\{\{\s*'flake_buggy_hero\.jpg'\s*\|\s*(?:file_url|asset_url)\s*\}\}", r"{{ 'flake_buggy_hero.jpg' | asset_url }}", content)
-    content = re.sub(r"https://coastairbrush\.eu/assets/images/([a-zA-Z0-9_\-\.]+)", r"https:{{ '\1' | asset_url }}", content)
-    content = re.sub(r"assets/images/([a-zA-Z0-9_\-\.]+)", r"{{ '\1' | asset_url }}", content)
+    content = re.sub(r"\{\{\s*'flake_buggy_hero\.jpg'\s*\|\s*asset_url\s*\}\}", r"{{ 'flake_buggy_hero.jpg' | file_url }}", content)
+    content = re.sub(r"https://coastairbrush\.eu/assets/images/([a-zA-Z0-9_\-\.]+)", r"https:{{ '\1' | file_url }}", content)
+    content = re.sub(r"assets/images/([a-zA-Z0-9_\-\.]+)", r"{{ '\1' | file_url }}", content)
     root_script = """    <script>
       window.SHOPIFY_ASSET_URL_ROOT = "{{ 'coast_logo_white.png' | asset_url | split: 'coast_logo_white.png' | first }}";
-      window.SHOPIFY_FILE_URL_ROOT = "{{ 'coast_logo_white.png' | asset_url | split: 'coast_logo_white.png' | first }}";
+      window.SHOPIFY_FILE_URL_ROOT = "{{ 'flake_buggy_hero.jpg' | file_url | split: 'flake_buggy_hero.jpg' | first }}";
     </script>\n"""
     if "window.SHOPIFY_FILE_URL_ROOT" not in content:
         if "window.SHOPIFY_ASSET_URL_ROOT" in content:
             content = re.sub(r"window\.SHOPIFY_ASSET_URL_ROOT\s*=\s*[^;]+;",
-                             """window.SHOPIFY_ASSET_URL_ROOT = "{{ 'coast_logo_white.png' | asset_url | split: 'coast_logo_white.png' | first }}";\n      window.SHOPIFY_FILE_URL_ROOT = "{{ 'coast_logo_white.png' | asset_url | split: 'coast_logo_white.png' | first }}";""",
+                             """window.SHOPIFY_ASSET_URL_ROOT = "{{ 'coast_logo_white.png' | asset_url | split: 'coast_logo_white.png' | first }}";\n      window.SHOPIFY_FILE_URL_ROOT = "{{ 'flake_buggy_hero.jpg' | file_url | split: 'flake_buggy_hero.jpg' | first }}";""",
                              content)
         else:
             content = content.replace("    <!-- Coast Airbrush Europe Storefront Application Engine -->", root_script + "    <!-- Coast Airbrush Europe Storefront Application Engine -->")
     else:
         content = re.sub(r"window\.SHOPIFY_FILE_URL_ROOT\s*=\s*[^;]+;",
-                         """window.SHOPIFY_FILE_URL_ROOT = "{{ 'coast_logo_white.png' | asset_url | split: 'coast_logo_white.png' | first }}";""",
+                         """window.SHOPIFY_FILE_URL_ROOT = "{{ 'flake_buggy_hero.jpg' | file_url | split: 'flake_buggy_hero.jpg' | first }}";""",
                          content)
 
     # Ensure global admin views and modals are rendered after content_for_layout
@@ -266,8 +277,10 @@ def get_theme_and_media_assets():
                 if ext in [".jpg", ".jpeg", ".png", ".webp", ".svg", ".gif", ".ico"]:
                     f_lower = f.lower()
                     full_path = os.path.join(root, f)
-                    if f in THEME_CORE_ASSET_FILENAMES or f_lower in referenced:
+                    if f in THEME_CORE_ASSET_FILENAMES:
                         theme_assets[f"assets/{f}"] = full_path
+                        content_media[f] = full_path
+                    elif f_lower in referenced:
                         content_media[f] = full_path
 
     doc_dir = os.path.join(ROOT_DIR, "assets", "docs")
@@ -278,7 +291,6 @@ def get_theme_and_media_assets():
                     continue
                 ext = os.path.splitext(f)[1].lower()
                 if ext == ".pdf":
-                    theme_assets[f"assets/{f}"] = os.path.join(root, f)
                     content_media[f] = os.path.join(root, f)
 
     root_ico = os.path.join(ROOT_DIR, "favicon.ico")
@@ -697,22 +709,22 @@ PASSWORD_TEMPLATE_LIQUID = """<div class="w-full flex-grow flex flex-col justify
       {% endif %}
     {% endform %}
 
-    <!-- Staff & Trade Partner Gate (Collapsible) -->
+    <!-- Staff & Trade Partner Gate (Storefront Password Unlock) -->
     <div class="pt-6 border-t border-white/10 space-y-3">
-      <button type="button" onclick="const sec = document.getElementById('staff-password-section'); sec.classList.toggle('hidden');" class="font-mono text-xs text-neutral-400 hover:text-white flex items-center justify-center gap-1.5 mx-auto transition-colors cursor-pointer">
-        <span class="material-symbols-outlined text-[14px]">lock</span>
-        <span>Staff &amp; Trade Partner Access</span>
+      <button type="button" onclick="const sec = document.getElementById('staff-password-section'); sec.classList.toggle('hidden');" class="font-mono text-xs text-neutral-300 hover:text-white flex items-center justify-center gap-1.5 mx-auto transition-colors cursor-pointer bg-[#18181b] border border-[#242429] hover:border-[#dc2626] px-3.5 py-1.5 rounded-sm shadow-sm">
+        <span class="material-symbols-outlined text-[15px] text-amber-400">vpn_key</span>
+        <span>Trade Partner &amp; VIP Storefront Access</span>
       </button>
 
-      <div id="staff-password-section" class="hidden p-4 bg-black/60 border border-neutral-700 rounded space-y-3 text-left">
+      <div id="staff-password-section" class="{% if form.errors %}block{% else %}hidden{% endif %} p-4 bg-black/70 border border-[#242429] rounded-sm space-y-3 text-left">
         <p class="font-mono text-[11px] text-neutral-300">
-          Authorized staff &amp; trade dealers: enter your storefront password below to unlock the catalog preview.
+          Authorized trade partners, distributors, and preview evaluators: enter your storefront password below to unlock the full catalog.
         </p>
         {% form 'storefront_password', class: 'space-y-3' %}
           {{ form.errors | default_errors }}
           <div class="flex flex-col sm:flex-row gap-2">
-            <input type="password" name="password" id="Password" class="flex-grow bg-[#0c0e0e] border border-neutral-600 px-3.5 py-2 text-xs font-mono text-white rounded focus:border-red-500 focus:outline-none" placeholder="Enter Store Password" required>
-            <button type="submit" class="bg-neutral-800 hover:bg-neutral-700 text-white font-mono text-xs uppercase px-4 py-2 rounded border border-neutral-600 cursor-pointer whitespace-nowrap">
+            <input type="password" name="password" id="Password" class="flex-grow bg-[#0c0e0e] border border-neutral-600 px-3.5 py-2.5 text-xs font-mono text-white rounded-sm focus:border-[#dc2626] focus:outline-none" placeholder="Enter Storefront Password" required>
+            <button type="submit" class="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-mono font-bold text-xs uppercase px-4 py-2.5 rounded-sm transition-all cursor-pointer whitespace-nowrap">
               Unlock &rarr;
             </button>
           </div>
@@ -720,7 +732,7 @@ PASSWORD_TEMPLATE_LIQUID = """<div class="w-full flex-grow flex flex-col justify
       </div>
 
       <div class="pt-2 text-[11px] font-mono text-neutral-500 text-center">
-        <a href="/admin" class="hover:text-neutral-300 transition-colors">Store Owner Login (/admin)</a>
+        <a href="/admin" class="hover:text-neutral-300 transition-colors">Store Admin Login (/admin)</a>
       </div>
     </div>
 
@@ -2646,6 +2658,10 @@ def main():
     print(f"Bundling Shopify theme from: {ROOT_DIR}")
     snippets = extract_snippets()
     bundle_code = build_bundle()
+    theme_asset_bundle = os.path.join(ROOT_DIR, "coast-airbrush-eu-shopify-theme", "assets", "coast-storefront-bundle.js")
+    if os.path.exists(os.path.dirname(theme_asset_bundle)):
+        with open(theme_asset_bundle, "w", encoding="utf-8") as f:
+            f.write(bundle_code)
     theme_assets, content_media = get_theme_and_media_assets()
 
     with open(os.path.join(ROOT_DIR, "css", "styles.css"), "r", encoding="utf-8") as f:

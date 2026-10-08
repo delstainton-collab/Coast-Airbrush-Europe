@@ -1,6 +1,4 @@
-// Coast Airbrush Europe - Master Admin Controller & Add-On Management Suite
 import { KROMA_EDGE_CATALOG } from '../data/kroma_edge.js';
-import { HOK_SHIMRIN2_CATALOG } from '../data/hok_shimrin2.js';
 import { ACE_OF_SHADES_CATALOG } from '../data/ace_of_shades.js';
 import { PREORDER_PACKAGES } from './forumPreorderEngine.js';
 import { DEFAULT_HERO_CONFIG } from '../data/hero_config.js?v=20260908d';
@@ -190,7 +188,7 @@ export class AdminController {
         agentC: {
           name: "Kustom Marketer AI",
           postSchedule: "09:00, 14:00, 19:00 CET",
-          monitoredTags: ["#HouseOfKolor", "#KromaEdge", "#AirbrushArt", "#CustomPaint"]
+          monitoredTags: ["#FlakeKing", "#KromaEdge", "#AirbrushArt", "#CustomPaint"]
         },
         agentD: {
           name: "Stock Guru AI",
@@ -227,7 +225,7 @@ export class AdminController {
             name: "Master Painter VIP Exclusive Candy Drop",
             targetSegment: "master_painters",
             subject: "👑 VIP Artist Drop: Limited Batch Micro Pearls & Chrome Formula Unlocked",
-            body: "Hey {{customer_name}},\n\nAs one of our verified **{{tier}}** artists, you have first access to our fresh master batch of Kroma Edge Liquid Chrome and custom House of Kolor Shimrin2 color blends.\n\n✨ **Formulation Highlights:**\n• Ultra-high refraction index for mirror-finish reflection.\n• Precision calibrated for 0.2mm - 0.4mm Iwata and Custom Micron airbrushes.\n• Zero clouding when locked down under our Speed Clear.\n\nUse your VIP Studio code `MASTERARTIST` for priority dispatch and free sample pigment vials on orders placed this week.\n\nKeep laid out,\n**Coast Airbrush Europe Custom Lab**"
+            body: "Hey {{customer_name}},\n\nAs one of our verified **{{tier}}** artists, you have first access to our fresh master batch of Kroma Edge Liquid Chrome and custom Ace of Shades candy & pigment color blends.\n\n✨ **Formulation Highlights:**\n• Ultra-high refraction index for mirror-finish reflection.\n• Precision calibrated for 0.2mm - 0.4mm Iwata and Custom Micron airbrushes.\n• Zero clouding when locked down under our Speed Clear.\n\nUse your VIP Studio code `MASTERARTIST` for priority dispatch and free sample pigment vials on orders placed this week.\n\nKeep laid out,\n**Coast Airbrush Europe Custom Lab**"
           },
           {
             id: "tpl-adr-tracking",
@@ -673,7 +671,7 @@ export class AdminController {
       `• **Flawless Atomization:** Optimized for fine nozzle setups (0.2mm - 1.2mm) with consistent flow.\n` +
       `• **High Solid Content:** Rich pigment density reduces required coats while increasing UV & chemical resistance.\n` +
       `• **Pan-European Stock:** Fast UK & EU bonded 24h dispatch with ADR Limited Quantity compliance.\n` +
-      `• **Universal Compatibility:** Works seamlessly across House of Kolor, Kroma Edge, and solvent urethanes.\n\n` +
+      `• **Universal Compatibility:** Works seamlessly across Kroma Edge, Ace of Shades, and professional solvent urethanes.\n\n` +
       `*Part Number: ${sku} | Master Distributor: Coast Airbrush Europe*`;
 
     const seoKeywords = `${brand}, ${name}, ${cat}, custom paint, airbrush supply UK, custom car paint EU, urethane clearcoat, Kroma Edge chrome`;
@@ -1237,7 +1235,7 @@ PRINT 1,1`;
         "🎁 Backer VIP Perk: Add Flake King Spray Guns to Order #{{latest_order_id}} with Zero Extra Shipping"
       ];
       generatedBody = `Hello {{customer_name}},\n\nHere is your official logistics milestone report for your **{{tier}}** pre-order (**#{{latest_order_id}}**):\n\n` +
-        `🌊 **Ocean Freight Status:** The bulk shipping container carrying our Signal Japan Kroma Edge and California House of Kolor inventory is navigating on schedule toward Rotterdam Port.\n` +
+        `🌊 **Ocean Freight Status:** The bulk shipping container carrying our Signal Japan Kroma Edge and California custom pigment inventory is navigating on schedule toward Rotterdam Port.\n` +
         `⏱️ **Target Port Customs Clearance:** September 14, 2026.\n` +
         `📦 **Final Mile Carrier:** Handing off to DHL Hazmat ADR (EU) & DPD Express (UK) for insured ground transit.\n\n` +
         `✨ **Exclusive Backer Add-On Window (Save on Freight):**\n` +
@@ -1252,12 +1250,12 @@ PRINT 1,1`;
       predictedOpenRate = "79.2%";
     } else if (presetKey === 'vip_artist_exclusive') {
       subjectOptions = [
-        "👑 [Master Artist Exclusive] Limited Batch Liquid Chrome & House of Kolor Pearls Unlocked",
+        "👑 [Master Artist Exclusive] Limited Batch Liquid Chrome & Ace of Shades Pearls Unlocked",
         "🎨 Special Formulation Alert for {{customer_name}}: Micro-Refraction Pearls Ready for Spray",
         "💎 Secret Studio Vault: Custom Micron Tuned Formulas for {{customer_company}}"
       ];
       generatedBody = `Hey {{customer_name}},\n\nAs one of our verified **{{tier}}** artists, you know that true mirror chrome and candy depth depend on exact pigment purity.\n\n` +
-        `We have just finalized a limited micro-batch of our **Kroma Edge Liquid Chrome Special Edition** alongside rare House of Kolor Shimrin2 candy concentrates.\n\n` +
+        `We have just finalized a limited micro-batch of our **Kroma Edge Liquid Chrome Special Edition** alongside rare Ace of Shades candy concentrates.\n\n` +
         `🔬 **What makes this batch special for custom work:**\n` +
         `• Ultra-fine particle suspension designed specifically for 0.18mm - 0.35mm precision nozzles.\n` +
         `• Zero graininess under high-intensity spotlighting.\n` +

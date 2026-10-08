@@ -21,7 +21,7 @@ const orderPayload = {
   orderNumber: "#CAE-EU-10492",
   items: [
     { name: "Kroma Edge UN1263 Reducer Solvent 20L Drum", sku: "KE-SOLV-20L", quantity: 3, grams: 20000, length_cm: 30, width_cm: 30, height_cm: 45 },
-    { name: "House of Kolor Custom Lacquer Pallet Kit", sku: "HOK-BULK-PALLET", quantity: 1, grams: 80000, length_cm: 60, width_cm: 40, height_cm: 50 }
+    { name: "Kroma Edge Custom Lacquer Pallet Kit", sku: "KE-BULK-PALLET", quantity: 1, grams: 80000, length_cm: 60, width_cm: 40, height_cm: 50 }
   ],
   destination: {
     name: "Marco Rossi",

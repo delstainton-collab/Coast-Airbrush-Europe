@@ -7,7 +7,7 @@ const ROOT_DIR = path.resolve(__dirname, "../..");
 
 export const config = {
   // Service configuration
-  port: parseInt(process.env.FREIGHT_BRIDGE_PORT || "3015", 10),
+  port: parseInt(process.env.FREIGHT_BRIDGE_PORT || process.env.PORT || "3015", 10),
   host: process.env.FREIGHT_BRIDGE_HOST || "0.0.0.0",
   env: process.env.NODE_ENV || "development",
 

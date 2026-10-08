@@ -40,10 +40,14 @@ data/*_secure.json
 
 # Generated Shopify Companion Media Archive
 coast-shopify-media-files/
+coast-shopify-media-files*/
 coast-shopify-media-files.zip
+coast-airbrush-eu-shopify-theme/
+data/bol_documents/
+*.afphoto
 
 .vercel
 node_modules/
 data/launch_subscribers.*
 facebook-assets/
-preview_compromises.html
+

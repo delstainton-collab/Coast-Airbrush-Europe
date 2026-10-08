@@ -1,0 +1,968 @@
+[
+  {
+    "workOrderId": "WO-20261008-6355",
+    "timestamp": "2026-10-08T09:08:43.328Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 59,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261008",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 2
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 119
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 21
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 46
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 534
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261008-8277",
+    "timestamp": "2026-10-08T08:46:11.451Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 57,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261008",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 4
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 122
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 23
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 48
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 537
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261008-2327",
+    "timestamp": "2026-10-08T08:37:46.647Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 55,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261008",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 6
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 125
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 25
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 50
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 540
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-8421",
+    "timestamp": "2026-10-07T14:16:52.585Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 53,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 0
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 128
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 27
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 52
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 543
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-7616",
+    "timestamp": "2026-10-07T14:09:27.525Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 51,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 2
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 131
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 29
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 54
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 546
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-3639",
+    "timestamp": "2026-10-07T14:09:04.860Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 49,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 4
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 134
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 31
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 56
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 549
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-2752",
+    "timestamp": "2026-10-07T14:07:54.408Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 47,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 6
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 137
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 33
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 58
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 552
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-6042",
+    "timestamp": "2026-10-07T14:02:47.138Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 45,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 8
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 140
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 35
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 60
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 555
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-9886",
+    "timestamp": "2026-10-07T14:02:01.783Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 43,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 10
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 143
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 37
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 62
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 558
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-6553",
+    "timestamp": "2026-10-07T14:00:38.379Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 41,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 12
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 146
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 39
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 64
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 561
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-9005",
+    "timestamp": "2026-10-07T13:58:01.095Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 39,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 14
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 149
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 41
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 66
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 564
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-9440",
+    "timestamp": "2026-10-07T13:57:35.040Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 37,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 16
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 152
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 43
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 68
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 567
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-5857",
+    "timestamp": "2026-10-07T13:50:47.343Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 35,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 18
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 155
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 45
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 70
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 570
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-3632",
+    "timestamp": "2026-10-07T13:43:35.299Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 33,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 20
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 158
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 47
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 72
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 573
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-1053",
+    "timestamp": "2026-10-07T13:27:21.522Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 31,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 22
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 161
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 49
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 74
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 576
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-5898",
+    "timestamp": "2026-10-07T13:18:05.552Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 29,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 24
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 164
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 51
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 76
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 579
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-9435",
+    "timestamp": "2026-10-07T13:15:24.071Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 27,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 26
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 167
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 53
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 78
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 582
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-8553",
+    "timestamp": "2026-10-07T11:06:25.072Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 25,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 28
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 170
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 55
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 80
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 585
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-6783",
+    "timestamp": "2026-10-07T10:42:47.013Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 23,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 30
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 173
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 57
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 82
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 588
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261007-1321",
+    "timestamp": "2026-10-07T10:36:34.469Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 21,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261007",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 32
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 176
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 59
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 84
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 591
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261006-3992",
+    "timestamp": "2026-10-06T19:00:09.157Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 19,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261006",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 34
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 179
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 61
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 86
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 594
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261006-4546",
+    "timestamp": "2026-10-06T18:58:32.410Z",
+    "parentSku": "FOM500",
+    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "quantityBuilt": 2,
+    "newFinishedStock": 17,
+    "technician": "Unit Test Automated Bench",
+    "notes": "Automated test production run",
+    "batchCode": "BATCH-FOM500-20261006",
+    "deductedComponents": [
+      {
+        "sku": "FK-ADAPT-500",
+        "name": "Flake King 500 Airbrush Universal Mount Clamp & Venturi Barrel",
+        "quantityDeducted": 2,
+        "remainingStock": 36
+      },
+      {
+        "sku": "FK-JAR-30",
+        "name": "Flake King 30g Borosilicate Direct-Mount Glass Jar & Seal",
+        "quantityDeducted": 3,
+        "remainingStock": 182
+      },
+      {
+        "sku": "PKG-BOX-FK500",
+        "name": "Flake King 500 Euro-Slot Retail Hanging Box & Window Blister",
+        "quantityDeducted": 2,
+        "remainingStock": 63
+      },
+      {
+        "sku": "DOC-MAN-FK1000",
+        "name": "Flake King 1000 Technical Setup Sheet & Flake Sizing Guide",
+        "quantityDeducted": 2,
+        "remainingStock": 88
+      },
+      {
+        "sku": "LBL-BARCODE-TSPL",
+        "name": "Citizen Thermal Transfer 100x150mm Synthetic Barcode Serial Label",
+        "quantityDeducted": 3,
+        "remainingStock": 597
+      }
+    ]
+  },
+  {
+    "workOrderId": "WO-20261001-001",
+    "timestamp": "2026-10-01T10:30:00.000Z",
+    "parentSku": "FOM1000",
+    "productTitle": "Flake King 1000 Dry Metal Flake Gun",
+    "quantityBuilt": 10,
+    "technician": "Workshop Tech 1",
+    "notes": "Initial October assembly run. QC check 10/10 passed.",
+    "batchCode": "BATCH-FK-20261001"
+  },
+  {
+    "workOrderId": "WO-20261003-002",
+    "timestamp": "2026-10-03T14:15:00.000Z",
+    "parentSku": "VAX-JG-GLMSK",
+    "productTitle": "VsionAir Ice Hockey Goalie Mask Jig",
+    "quantityBuilt": 4,
+    "technician": "Lead Fabricator",
+    "notes": "Pre-order reservation build batch.",
+    "batchCode": "BATCH-VAX-20261003"
+  }
+]
