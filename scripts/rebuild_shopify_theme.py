@@ -706,9 +706,8 @@ PASSWORD_TEMPLATE_LIQUID = """<!-- Header (Clean Branding Bar with Partner Backd
 <header class="w-full border-b border-[#242429] bg-[#0b0b0d]/90 backdrop-blur-md sticky top-0 z-30">
   <div class="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <a href="#subscribe-form" class="flex items-center gap-2" title="Coast Airbrush Europe">
+      <a href="#subscribe-form" class="flex items-center" title="Coast Airbrush Europe">
         <img src="{{ 'coast_logo_white.png' | asset_url }}" alt="Coast Airbrush Europe" class="h-8 md:h-9 w-auto object-contain">
-        <span class="bg-[#dc2626] text-white text-[9px] font-mono font-bold tracking-widest px-1.5 py-0.5 rounded-sm uppercase">EUROPE</span>
       </a>
     </div>
 
@@ -1793,16 +1792,13 @@ HEADER_SECTION = """<header id="master-site-header" class="relative md:sticky to
   <!-- MAIN BRAND & NAVIGATION ROW -->
   <div class="h-20 max-w-[1440px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between gap-space-lg w-full">
     <!-- Logo Lockup -->
-    <a id="nav-logo-btn" class="flex items-center gap-3 shrink-0 cursor-pointer text-decoration-none group" href="/" title="{{ shop.name }} Home">
+    <a id="nav-logo-btn" class="flex items-center shrink-0 cursor-pointer text-decoration-none group" href="/" title="{{ shop.name }} Home">
       {% assign logo_img = section.settings.logo | default: settings.logo_white %}
       {% if logo_img %}
         <img alt="{{ shop.name }}" class="h-10 md:h-11 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" src="{{ logo_img | image_url: width: 400 }}" style="max-width: {{ section.settings.logo_width | default: 180 }}px;">
       {% else %}
         <img alt="{{ shop.name }}" class="h-10 md:h-11 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" src="{{ 'coast_logo_white.png' | asset_url }}" style="max-width: {{ section.settings.logo_width | default: 180 }}px;" onerror="this.onerror=null; this.src='coast_logo_white.png';">
       {% endif %}
-      <span class="inline-flex items-center font-headline text-headline-sm tracking-wider uppercase border-l border-[#242429] pl-3 text-white font-semibold">
-        <span class="text-[#dc2626] font-extrabold text-sm md:text-base">EUROPE</span>
-      </span>
     </a>
 
     <!-- Search Bar with CMD + K -->
@@ -2942,9 +2938,8 @@ FOOTER_SECTION = """<footer class="w-full bg-[#0b0b0d] border-t border-[#242429]
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
       <!-- Col 1: Brand & Logistics -->
       <div class="flex flex-col space-y-space-md">
-        <div class="flex items-center gap-3">
+        <div class="flex items-center">
           <img alt="{{ shop.name }}" class="h-8 md:h-9 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" src="{{ 'coast_logo_white.png' | asset_url }}" onerror="this.onerror=null; this.src='coast_logo_white.png';">
-          <span class="font-headline text-headline-sm uppercase tracking-wider text-[#dc2626] font-extrabold border-l border-[#242429] pl-3 text-sm md:text-base">Europe</span>
         </div>
         <p class="font-body text-xs sm:text-sm text-neutral-400 leading-relaxed">
           {{ section.settings.brand_description | default: 'Engineered European distribution hub for professional custom automotive finishes, Iwata instrumentation, and Flake King pneumatic flake dispersal systems.' }}
