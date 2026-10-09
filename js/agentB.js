@@ -156,10 +156,10 @@ export class OrderConciergeAI {
       invoiceNumber: `INV-CAE-${order.orderId}`,
       invoiceDate: new Date(order.orderDate).toLocaleDateString("en-GB"),
       seller: {
-        company: "Coast Airbrush Europe / UK Hub",
+        company: "Coast Airbrush Europe (DAS64 Ltd)",
         address: "Unit 4, Silverstone Park, Towcester, NN12 8TJ, UK",
-        eori: "GB992810284000 / NL861928401B01",
-        vatId: "GB992810284 (UK) / NL861928401B01 (EU IOSS)"
+        eori: "GB886634179000",
+        vatId: "GB886634179"
       },
       buyer: {
         name: order.customerName,
@@ -244,6 +244,18 @@ export class OrderConciergeAI {
           };
         }
       }
+    }
+
+    if (q.includes("kroma") || q.includes("solvent") || ((q.includes("shipping") || q.includes("delivery") || q.includes("dispatch")) && (q.includes("europe") || q.includes("eu") || q.includes("germany") || q.includes("france") || q.includes("spain") || q.includes("italy")))) {
+      return {
+        order: null,
+        text: `### 🇪🇺 European Shipping Status Update\n\n` +
+              `**1. Flake King, Iwata Hardware & Waterborne Lines:**\n` +
+              `✅ **100% Active & Shipping Daily:** All Flake King dry flakes, FK50 waterborne surface binders, Iwata airbrushes, spray guns, and masking lines are shipping across the UK and all 27 European Union member states with **DDP (Delivered Duty Paid)** pre-cleared tracked delivery.\n\n` +
+              `**2. KromaEdge Mirror Chrome System (UN1263 Class 3):**\n` +
+              `⚠️ **UK Dispatch Active • EU Onboarding Phase 2:** Because KromaEdge contains volatile optical solvents classified as dangerous goods (ADR Class 3 Flammable Liquid), cross-border road delivery requires certified hazardous material courier contracts. While final European carrier lanes are being finalized, KromaEdge orders are currently restricted to UK delivery addresses.\n\n` +
+              `👉 **Want priority allocation?** Drop your email here or on the KromaEdge product page, and our logistics desk will reserve your spot for the first European Phase 2 batch release!`
+      };
     }
 
     return {

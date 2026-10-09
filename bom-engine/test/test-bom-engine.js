@@ -3,14 +3,30 @@
  */
 
 import assert from "assert";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import { BomEngine } from "../core/bomEngine.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const DATA_DIR = path.join(path.dirname(__dirname), "data");
+const REGISTRY_PATH = path.join(DATA_DIR, "components_registry.json");
+const RECIPES_PATH = path.join(DATA_DIR, "product_recipes.json");
+const HISTORY_PATH = path.join(DATA_DIR, "production_history.json");
 
 async function runTests() {
   console.log("=================================================");
   console.log("🏭 COAST AIRBRUSH EUROPE: BOM ENGINE TEST SUITE");
   console.log("=================================================\n");
 
-  const engine = new BomEngine();
+  // Snapshot fixtures to restore after mutation tests
+  const snapRegistry = fs.readFileSync(REGISTRY_PATH, "utf8");
+  const snapRecipes = fs.readFileSync(RECIPES_PATH, "utf8");
+  const snapHistory = fs.readFileSync(HISTORY_PATH, "utf8");
+
+  try {
+    const engine = new BomEngine();
 
   // Test 1: Components and Recipes Load Correctly
   console.log("[Test 1] Verifying Data Loading...");
@@ -93,6 +109,11 @@ async function runTests() {
   console.log("\n=================================================");
   console.log("✅ ALL BOM ENGINE TESTS PASSED SUCCESSFULLY (7/7)");
   console.log("=================================================\n");
+  } finally {
+    fs.writeFileSync(REGISTRY_PATH, snapRegistry, "utf8");
+    fs.writeFileSync(RECIPES_PATH, snapRecipes, "utf8");
+    fs.writeFileSync(HISTORY_PATH, snapHistory, "utf8");
+  }
 }
 
 runTests().catch(err => {

@@ -467,20 +467,27 @@ console.log("\n[Test Suite 3] Testing templates/product.liquid in Theme Bundle..
 const themeZipPath = path.join(ROOT_DIR, "coast-airbrush-eu-shopify-theme.zip");
 assert(fs.existsSync(themeZipPath), `Shopify theme zip not found at: ${themeZipPath}`);
 
-// Extract templates/product.liquid from zip
+// Extract sections/main-product.liquid or templates/product.liquid from zip
 let productLiquidContent;
 try {
-  productLiquidContent = execSync(`unzip -p "${themeZipPath}" "templates/product.liquid"`, {
+  productLiquidContent = execSync(`unzip -p "${themeZipPath}" "sections/main-product.liquid"`, {
     encoding: "utf8",
     maxBuffer: 10 * 1024 * 1024
   });
 } catch (err) {
-  assert.fail(`Failed to read templates/product.liquid from theme zip: ${err.message}`);
+  try {
+    productLiquidContent = execSync(`unzip -p "${themeZipPath}" "templates/product.liquid"`, {
+      encoding: "utf8",
+      maxBuffer: 10 * 1024 * 1024
+    });
+  } catch (err2) {
+    assert.fail(`Failed to read product template from theme zip: ${err.message}`);
+  }
 }
 
 assert(
   productLiquidContent.includes("window.SHOPIFY_CURRENT_PRODUCT"),
-  "templates/product.liquid must define window.SHOPIFY_CURRENT_PRODUCT"
+  "Product template must define window.SHOPIFY_CURRENT_PRODUCT"
 );
 
 // Verify all required spec metafields are mapped into window.SHOPIFY_CURRENT_PRODUCT.specs

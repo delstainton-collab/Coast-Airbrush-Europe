@@ -26,12 +26,13 @@
         if (isLocal || isShopify || hasDevParam || isUnlocked) {
           sessionStorage.setItem('coast_store_preview', 'true');
           localStorage.setItem('coast_dev_mode', 'true');
-          document.cookie = "coast_dev_mode=true; path=/; max-age=2592000; SameSite=Lax";
-          document.cookie = "coast_store_preview=true; path=/; max-age=2592000; SameSite=Lax";
+          var secFlag = window.location.protocol === 'https:' ? '; Secure' : '';
+          document.cookie = "coast_dev_mode=true; path=/; max-age=2592000; SameSite=Lax" + secFlag;
+          document.cookie = "coast_store_preview=true; path=/; max-age=2592000; SameSite=Lax" + secFlag;
           if (hasPartnerParam || localStorage.getItem('coast_partner_access') === 'true') {
             sessionStorage.setItem('coast_partner_session', 'true');
             localStorage.setItem('coast_partner_access', 'true');
-            document.cookie = "coast_partner_access=true; path=/; max-age=2592000; SameSite=Lax";
+            document.cookie = "coast_partner_access=true; path=/; max-age=2592000; SameSite=Lax" + secFlag;
           }
           window.addEventListener('DOMContentLoaded', function() {
             var b = document.getElementById('dev-mode-bar');
@@ -44,6 +45,19 @@
                 if (descSpan) descSpan.textContent = 'Authorized Partner Storefront Access';
               }
             }
+            // Auto-propagate preview access parameter to internal links to guarantee zero bounce on safari/isolated sessions
+            var previewQuery = hasPartnerParam ? 'partner=true' : 'preview=true';
+            document.querySelectorAll('a[href]').forEach(function(a) {
+              var h = a.getAttribute('href');
+              if (h && !h.startsWith('http') && !h.startsWith('#') && !h.startsWith('mailto:') && !h.startsWith('javascript:')) {
+                if (h.indexOf('.html') !== -1) {
+                  if (h.indexOf('preview=') === -1 && h.indexOf('partner=') === -1 && h.indexOf('dev=') === -1) {
+                    var sep = h.indexOf('?') !== -1 ? '&' : '?';
+                    a.setAttribute('href', h + sep + previewQuery);
+                  }
+                }
+              }
+            });
           });
           return;
         }
@@ -343,29 +357,21 @@
   <header id="master-site-header" class="relative md:sticky top-0 z-50 w-full flex flex-col bg-surface-container-lowest/95 backdrop-blur-md border-b border-surface-container-high shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
 
     <!-- DEV MODE STATUS BAR (Shows when previewing/dev mode) -->
-    <div id="dev-mode-bar" class="hidden bg-[#0d2818] border-b border-emerald-500/40 text-emerald-300 px-4 py-1.5 text-[11px] font-mono flex items-center justify-between z-50">
+    <div id="dev-mode-bar" class="hidden bg-[#121215] border-b border-[#27272a] text-neutral-300 px-4 py-2 text-[11px] font-mono flex items-center justify-between z-50 shadow-sm">
       <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="font-bold tracking-wider uppercase text-emerald-200 dev-title">🛠️ STOREFRONT DEV MODE</span>
-        <span class="text-emerald-500/60 hidden sm:inline">|</span>
-        <span class="text-emerald-300/80 hidden sm:inline dev-desc">Active Development Environment</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]"></span>
+        <span class="font-bold tracking-wider uppercase text-white dev-title">STOREFRONT PREVIEW ACTIVE</span>
+        <span class="text-neutral-600 hidden sm:inline">|</span>
+        <span class="text-neutral-400 hidden sm:inline dev-desc">Technical Review &amp; Ordering Mode</span>
       </div>
-      <div class="flex items-center gap-2.5 text-[11px]">
-        <button type="button" onclick="exitPartnerPreview()" class="hover:underline text-amber-300 font-semibold flex items-center gap-1 cursor-pointer bg-black/40 px-2 py-0.5 rounded border border-amber-500/30 text-[10px] tracking-wider uppercase" title="Lock Storefront and Return to Holding Page">
+      <div class="flex items-center gap-3 text-[11px]">
+        <button type="button" onclick="exitPartnerPreview()" class="hover:bg-neutral-800 text-amber-400 font-semibold flex items-center gap-1.5 cursor-pointer bg-neutral-900 px-2.5 py-1 rounded border border-amber-500/30 text-[10px] tracking-wider uppercase transition-colors" title="Lock Storefront and Return to Holding Page">
           <span class="material-symbols-outlined text-[13px] text-amber-400">lock</span>
           <span>Exit Preview</span>
         </button>
-        <span class="text-emerald-500/40">•</span>
-        <a href="/landing.html" class="hover:underline text-emerald-200 font-semibold flex items-center gap-1">
+        <span class="text-neutral-700">•</span>
+        <a href="landing.html" class="hover:text-white text-neutral-400 font-medium flex items-center gap-1 transition-colors">
           <span>Holding Page</span> &rarr;
-        </a>
-        <span class="text-emerald-500/40 hidden md:inline">•</span>
-        <a href="/freight" class="hover:underline text-emerald-200 font-semibold hidden md:flex items-center gap-1">
-          <span>Freight Bridge</span> &rarr;
-        </a>
-        <span class="text-emerald-500/40 hidden md:inline">•</span>
-        <a href="/workshop" class="hover:underline text-emerald-200 font-semibold hidden md:flex items-center gap-1">
-          <span>BOM Engine</span> &rarr;
         </a>
       </div>
     </div>
@@ -2756,14 +2762,18 @@
     <div id="storefront-catalog-anchor" class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full py-12 flex-grow flex flex-col gap-6">
       
       <!-- Catalog Toolbar & Controls -->
-      <div class="bg-surface-container border-2 border-secondary p-4 sm:p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] space-y-3">
+      <div class="bg-[#141418] border border-[#27272a] rounded-lg p-4 sm:p-5 shadow-sm space-y-4">
         <!-- Status Bar -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-secondary/40 text-xs font-mono">
-          <div class="flex items-center gap-2">
-            <span class="metal-spec-plate-red text-[9px]">OFFICIAL MASTER DISTRIBUTOR</span>
-            <span class="text-secondary uppercase text-[11px] font-bold">In-Stock Guns, Paints, Flakes &amp; Tapes</span>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#27272a] text-xs font-mono">
+          <div class="flex items-center gap-2.5">
+            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-red-950/60 text-red-400 border border-red-500/40 uppercase tracking-wider">
+              <span class="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_6px_rgba(239,68,68,0.8)]"></span>
+              OFFICIAL MASTER DISTRIBUTOR
+            </span>
+            <span class="text-neutral-300 uppercase text-[11px] font-bold">In-Stock Guns, Paints, Flakes &amp; Tapes</span>
           </div>
-          <span class="font-label-xs text-[11px] bg-emerald-950/80 text-emerald-400 border border-emerald-700/80 px-2.5 py-0.5 font-bold self-start sm:self-auto rounded-sm">
+          <span class="text-[11px] font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-500/40 px-2.5 py-0.5 font-bold self-start sm:self-auto rounded flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
             ⚡ 24/48H RAPID DISPATCH (UK &amp; EU)
           </span>
         </div>
@@ -2772,32 +2782,32 @@
           
           <!-- Search Bar -->
           <div class="relative flex-grow max-w-xl">
-            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[18px]">search</span>
-            <input id="input-shop-search" type="text" placeholder="Search by SKU, product name, flake micron, color..." class="mech-input !pl-9 !py-2.5 !text-xs font-mono w-full">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 text-[18px]">search</span>
+            <input id="input-shop-search" type="text" placeholder="Search by SKU, product name, flake micron, color..." class="w-full bg-[#0b0b0d] border border-white/15 focus:border-red-500 text-white font-mono text-xs pl-9 pr-3.5 py-2.5 rounded focus:outline-none focus:ring-1 focus:ring-red-500 transition-colors shadow-inner">
           </div>
 
           <!-- Filter Controls: Clean Category & Brand Dropdowns, Sort, Reset -->
           <div class="flex items-center gap-2.5 flex-wrap flex-shrink-0 font-mono text-xs">
             <!-- Category Dropdown -->
             <div class="flex items-center gap-1.5">
-              <span class="text-secondary uppercase font-bold text-[11px] hidden sm:inline">Category:</span>
-              <select id="select-shop-category" class="mech-select !py-2 !px-3 font-mono text-xs uppercase bg-[#0b0b0d] border border-secondary text-white rounded cursor-pointer focus:border-primary">
+              <span class="text-neutral-400 uppercase font-bold text-[11px] hidden sm:inline">Category:</span>
+              <select id="select-shop-category" class="bg-[#0b0b0d] border border-[#27272a] focus:border-red-500 text-white font-mono text-xs uppercase px-3 py-2 rounded cursor-pointer transition-colors focus:outline-none">
                 <option value="all">ALL CATEGORIES</option>
               </select>
             </div>
 
             <!-- Brand Dropdown -->
             <div class="flex items-center gap-1.5">
-              <span class="text-secondary uppercase font-bold text-[11px] hidden sm:inline">Brand:</span>
-              <select id="select-shop-brand" class="mech-select !py-2 !px-3 font-mono text-xs uppercase bg-[#0b0b0d] border border-secondary text-white rounded cursor-pointer focus:border-primary">
+              <span class="text-neutral-400 uppercase font-bold text-[11px] hidden sm:inline">Brand:</span>
+              <select id="select-shop-brand" class="bg-[#0b0b0d] border border-[#27272a] focus:border-red-500 text-white font-mono text-xs uppercase px-3 py-2 rounded cursor-pointer transition-colors focus:outline-none">
                 <option value="all">ALL BRANDS</option>
               </select>
             </div>
 
             <!-- Sorter Dropdown & Reset -->
             <div class="flex items-center gap-1.5">
-              <span class="font-mono text-xs text-secondary uppercase font-bold hidden sm:inline">Sort:</span>
-              <select id="select-shop-sort" class="mech-select !py-2 !px-3 font-mono text-xs uppercase bg-[#0b0b0d] border border-secondary text-white rounded cursor-pointer focus:border-primary">
+              <span class="font-mono text-xs text-neutral-400 uppercase font-bold hidden sm:inline">Sort:</span>
+              <select id="select-shop-sort" class="bg-[#0b0b0d] border border-[#27272a] focus:border-red-500 text-white font-mono text-xs uppercase px-3 py-2 rounded cursor-pointer transition-colors focus:outline-none">
                 <option value="popular">Popularity</option>
                 <option value="price-asc">Price: Low &rarr; High</option>
                 <option value="price-desc">Price: High &rarr; Low</option>
@@ -2805,7 +2815,7 @@
               </select>
             </div>
 
-            <button id="btn-reset-filters" class="border border-secondary/60 hover:border-primary text-secondary hover:text-white px-2.5 py-2 font-mono text-xs uppercase transition-colors cursor-pointer flex items-center gap-1" title="Reset all filters">
+            <button id="btn-reset-filters" class="bg-[#16161a] hover:bg-[#1c1c22] border border-[#3f3f46] hover:border-neutral-400 text-neutral-300 hover:text-white px-3 py-2 font-mono text-xs uppercase rounded transition-all cursor-pointer flex items-center gap-1.5 shadow-sm" title="Reset all filters">
               <span class="material-symbols-outlined text-[14px]">refresh</span>
               <span class="hidden sm:inline">Reset</span>
             </button>
@@ -2840,63 +2850,73 @@
   <div id="view-calculator" class="tab-view flex-grow flex flex-col py-8 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full" style="display: none;">
     
     <!-- Return to Storefront Quick-Link -->
-    <div class="mb-6 flex flex-wrap items-center justify-between gap-3 bg-surface-container-high/90 border border-secondary p-3 rounded shadow-sm">
-      <button onclick="window.paintApp ? window.paintApp.switchTab('tab-storefront', 'view-storefront') : document.getElementById('tab-storefront').click();" class="mech-button-primary !py-2 !px-4 text-xs font-bold flex items-center gap-2 cursor-pointer shadow-md hover:brightness-110 transition-all">
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-3 bg-[#141418] border border-[#27272a] p-3.5 rounded-lg shadow-sm">
+      <button onclick="window.paintApp ? window.paintApp.switchTab('tab-storefront', 'view-storefront') : document.getElementById('tab-storefront').click();" class="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-headline text-xs uppercase tracking-wider font-bold py-2.5 px-4 rounded flex items-center gap-2 cursor-pointer shadow-md transition-all active:scale-98">
         <span class="material-symbols-outlined text-[18px]">arrow_back</span>
         <span>RETURN TO PRODUCT STOREFRONT</span>
       </button>
       <div class="font-mono text-xs text-neutral-300 flex items-center gap-2">
-        <span class="text-emerald-400">✓ In-Booth Formulation Tool</span>
-        <span class="text-secondary/60 hidden sm:inline">•</span>
-        <span class="hidden sm:inline">Your active cart &amp; product selections remain saved</span>
+        <span class="text-emerald-400 font-semibold flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>In-Booth Formulation Tool</span>
+        <span class="text-neutral-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline text-neutral-400">Your active cart &amp; product selections remain saved</span>
       </div>
     </div>
 
     <!-- Header -->
-    <div class="border-b-2 border-secondary pb-4 mb-8 flex flex-col sm:flex-row justify-between sm:items-end gap-4">
+    <div class="border-b border-[#27272a] pb-5 mb-8 flex flex-col sm:flex-row justify-between sm:items-end gap-4">
       <div>
         <div class="flex items-center gap-2">
-          <span class="metal-spec-plate-red">KROMAEDGE™ PRECISION LAB</span>
-          <span class="metal-spec-plate text-[10px]">OFFICIAL TDS BENCHMARKED</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-red-950/60 text-red-400 border border-red-500/40 uppercase tracking-wider">
+            <span class="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_6px_rgba(239,68,68,0.8)]"></span>
+            KROMAEDGE™ PRECISION LAB
+          </span>
+          <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-neutral-800 text-neutral-300 border border-white/10 uppercase tracking-wider">
+            OFFICIAL TDS BENCHMARKED
+          </span>
         </div>
-        <h2 class="font-headline text-2xl sm:text-3xl uppercase text-primary mt-1.5">TDS MIXING MATRIX &amp; PROJECT VOLUME ESTIMATOR</h2>
-        <p class="font-mono text-xs text-secondary mt-1 max-w-3xl">
+        <h2 class="font-headline text-2xl sm:text-3xl uppercase text-white font-bold tracking-tight mt-2">TDS MIXING MATRIX &amp; PROJECT VOLUME ESTIMATOR</h2>
+        <p class="font-mono text-xs text-neutral-400 mt-1 max-w-3xl leading-relaxed">
           Calibrated exclusively to official KromaEdge Technical Data Sheets (2 oz = 2 sq ft coverage). Select your formula below to calculate exact component volumes and digital scale tare targets.
         </p>
       </div>
-      <button id="btn-open-scale-mode-header" onclick="window.paintApp &amp;&amp; window.paintApp.openScaleMode ? window.paintApp.openScaleMode() : null" class="mech-btn-secondary !text-xs self-start sm:self-auto">
-        <span class="material-symbols-outlined text-[16px]">scale</span> DIGITAL SCALE MODE
+      <button id="btn-open-scale-mode-header" onclick="window.paintApp && window.paintApp.openScaleMode ? window.paintApp.openScaleMode() : null" class="bg-[#16161a] hover:bg-[#1c1c22] border border-[#3f3f46] hover:border-neutral-400 text-neutral-200 hover:text-white px-4 py-2.5 text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center gap-2 cursor-pointer shadow-sm self-start sm:self-auto">
+        <span class="material-symbols-outlined text-[16px] text-red-400">scale</span>
+        <span>DIGITAL SCALE MODE</span>
       </button>
     </div>
 
-    <!-- Streamlined Linear Mixing Suite -->
     <!-- Streamlined Linear Mixing Suite (4-Step Painter's Flow) -->
     <div class="space-y-6">
       
       <!-- ========================================================================= -->
       <!-- STEP 1: SELECT COATING / PAINT SYSTEM -->
       <!-- ========================================================================= -->
-      <div id="step-1-system-card" class="industrial-card p-6 border-2 border-secondary bg-surface-container-low">
+      <div id="step-1-system-card" class="p-6 border border-[#27272a] bg-[#141418] rounded-lg shadow-sm">
         
         <!-- Section Header -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b-2 border-secondary gap-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b border-[#27272a] gap-3">
           <div>
-            <div class="flex items-center gap-2 mb-1">
-              <span class="metal-spec-plate-red">STEP 1 OF 4</span>
-              <span class="metal-spec-plate text-[10px]">PAINT FORMULATION ENGINE</span>
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-red-950/60 text-red-400 border border-red-500/40 uppercase tracking-wider">
+                <span class="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_6px_rgba(239,68,68,0.8)]"></span>
+                STEP 1 OF 4
+              </span>
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-neutral-800 text-neutral-300 border border-white/10 uppercase tracking-wider">
+                PAINT FORMULATION ENGINE
+              </span>
             </div>
-            <h3 class="font-headline text-lg sm:text-xl text-white uppercase">Select Coating / Paint System</h3>
+            <h3 class="font-headline text-lg sm:text-xl text-white uppercase font-bold tracking-tight">Select Coating / Paint System</h3>
             <p class="font-mono text-xs text-neutral-400 mt-0.5">
               Select your paint chemistry first. Each coating dictates exact coverage rates, coat count rules, pot life, and digital scale tare ratios.
             </p>
           </div>
           <!-- SDS & TDS Quick Download Actions in Header -->
           <div class="flex items-center gap-2 self-start sm:self-auto">
-            <button id="btn-calc-download-tds" class="bg-surface border border-secondary/80 hover:border-primary hover:text-primary text-secondary px-3 py-1.5 text-xs font-mono uppercase transition-all flex items-center gap-1.5 cursor-pointer rounded-sm" title="Download Technical Data Sheet">
+            <button id="btn-calc-download-tds" class="bg-[#16161a] hover:bg-[#1c1c22] border border-[#3f3f46] hover:border-neutral-400 text-neutral-200 hover:text-white px-3.5 py-1.5 text-xs font-mono uppercase transition-all flex items-center gap-1.5 cursor-pointer rounded shadow-sm" title="Download Technical Data Sheet">
               <span class="material-symbols-outlined text-[15px] text-sky-400">description</span>
               <span>TDS SPEC</span>
             </button>
-            <button id="btn-calc-download-sds" class="bg-surface border border-secondary/80 hover:border-primary hover:text-primary text-secondary px-3 py-1.5 text-xs font-mono uppercase transition-all flex items-center gap-1.5 cursor-pointer rounded-sm" title="Download Safety Data Sheet">
+            <button id="btn-calc-download-sds" class="bg-[#16161a] hover:bg-[#1c1c22] border border-[#3f3f46] hover:border-neutral-400 text-neutral-200 hover:text-white px-3.5 py-1.5 text-xs font-mono uppercase transition-all flex items-center gap-1.5 cursor-pointer rounded shadow-sm" title="Download Safety Data Sheet">
               <span class="material-symbols-outlined text-[15px] text-red-400">picture_as_pdf</span>
               <span>REACH SDS</span>
             </button>
@@ -2905,7 +2925,10 @@
 
         <!-- Formula Grid -->
         <div class="space-y-3">
-          <label class="font-label-xs text-xs text-secondary uppercase block font-bold">Active Storefront Coating Systems:</label>
+          <label class="font-mono text-xs text-neutral-300 uppercase block font-bold tracking-wider flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_6px_rgba(239,68,68,0.8)]"></span>
+            <span>Active Storefront Coating Systems:</span>
+          </label>
           <div id="mixing-systems-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
             <!-- Injected dynamically by JS -->
           </div>
@@ -2913,7 +2936,7 @@
         </div>
 
         <!-- Dynamic Live Spec & Surface Coverage Banner -->
-        <div id="system-description" class="mt-5 pt-4 border-t border-secondary/40">
+        <div id="system-description" class="mt-5 pt-4 border-t border-[#27272a]">
           <!-- Rendered dynamically by JS -->
         </div>
 
@@ -2922,41 +2945,46 @@
       <!-- ========================================================================= -->
       <!-- STEP 2: PROJECT DIMENSIONS & BATCH VOLUME ESTIMATOR -->
       <!-- ========================================================================= -->
-      <div id="project-estimator-card" class="industrial-card p-6 border-2 border-secondary bg-surface-container-low relative overflow-hidden">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b-2 border-secondary gap-3">
+      <div id="project-estimator-card" class="p-6 border border-[#27272a] bg-[#141418] rounded-lg shadow-sm relative overflow-hidden">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b border-[#27272a] gap-3">
           <div>
-            <div class="flex items-center gap-2 mb-1">
-              <span class="metal-spec-plate-red">STEP 2 OF 4</span>
-              <span class="metal-spec-plate text-[10px]">TDS-BENCHMARKED AREA &amp; VOLUME</span>
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-red-950/60 text-red-400 border border-red-500/40 uppercase tracking-wider">
+                <span class="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_6px_rgba(239,68,68,0.8)]"></span>
+                STEP 2 OF 4
+              </span>
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-neutral-800 text-neutral-300 border border-white/10 uppercase tracking-wider">
+                TDS-BENCHMARKED AREA &amp; VOLUME
+              </span>
             </div>
-            <h3 class="font-headline text-lg sm:text-xl text-white uppercase">Project Dimensions &amp; Batch Volume</h3>
+            <h3 class="font-headline text-lg sm:text-xl text-white uppercase font-bold tracking-tight">Project Dimensions &amp; Batch Volume</h3>
             <p class="font-mono text-xs text-neutral-400 mt-0.5">
               Input physical measurements or select an automotive preset. Volume and scale recipes auto-calculate and live-sync below in real time.
             </p>
           </div>
           
           <!-- Unit Switcher -->
-          <div class="flex items-center gap-2 self-start sm:self-auto bg-surface-dim p-1.5 border border-secondary/60 rounded">
-            <span class="font-mono text-[10px] text-secondary uppercase font-bold px-1">Units:</span>
+          <div class="flex items-center gap-2 self-start sm:self-auto bg-[#0b0b0d] p-1 border border-[#27272a] rounded">
+            <span class="font-mono text-[10px] text-neutral-400 uppercase font-bold px-1.5">Units:</span>
             <div class="flex gap-1" id="estimator-unit-toggle">
-              <button type="button" id="btn-unit-imperial" class="px-2.5 py-1 text-xs font-mono font-bold bg-primary text-white rounded transition-colors cursor-pointer shadow-sm">Imperial (In/Ft)</button>
-              <button type="button" id="btn-unit-metric" class="px-2.5 py-1 text-xs font-mono font-bold bg-surface hover:bg-surface-variant text-secondary hover:text-white rounded transition-colors cursor-pointer">Metric (Cm/M)</button>
+              <button type="button" id="btn-unit-imperial" class="px-2.5 py-1 text-xs font-mono font-bold bg-[#dc2626] text-white rounded transition-colors cursor-pointer shadow-sm">Imperial (In/Ft)</button>
+              <button type="button" id="btn-unit-metric" class="px-2.5 py-1 text-xs font-mono font-bold bg-[#18181c] hover:bg-neutral-800 text-neutral-300 hover:text-white rounded transition-colors cursor-pointer">Metric (Cm/M)</button>
             </div>
           </div>
         </div>
 
         <!-- Calculation Mode Selector Tabs -->
-        <div class="flex flex-wrap gap-2 mb-5 pb-3 border-b border-secondary/40">
-          <button type="button" id="btn-calc-mode-box" class="px-3 py-1.5 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-primary/20 border-primary text-primary flex items-center gap-1.5 shadow-sm">
-            <span class="material-symbols-outlined text-[16px]">view_in_ar</span>
+        <div class="flex flex-wrap gap-2 mb-5 pb-3 border-b border-[#27272a]">
+          <button type="button" id="btn-calc-mode-box" class="px-3.5 py-2 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-red-950/40 border-red-500/80 text-white flex items-center gap-1.5 shadow-[0_0_10px_rgba(220,38,38,0.2)]">
+            <span class="material-symbols-outlined text-[16px] text-red-400">view_in_ar</span>
             <span>3D Object / Box (L × W × H)</span>
           </button>
-          <button type="button" id="btn-calc-mode-panel" class="px-3 py-1.5 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-surface border-secondary/60 text-secondary hover:text-white hover:border-secondary flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-[16px]">crop_landscape</span>
+          <button type="button" id="btn-calc-mode-panel" class="px-3.5 py-2 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-[#16161a] border-[#27272a] hover:border-neutral-500 text-neutral-300 hover:text-white flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px] text-neutral-400">crop_landscape</span>
             <span>2D Flat Panel (L × W)</span>
           </button>
-          <button type="button" id="btn-calc-mode-direct" class="px-3 py-1.5 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-surface border-secondary/60 text-secondary hover:text-white hover:border-secondary flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-[16px]">colorize</span>
+          <button type="button" id="btn-calc-mode-direct" class="px-3.5 py-2 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-[#16161a] border-[#27272a] hover:border-neutral-500 text-neutral-300 hover:text-white flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px] text-neutral-400">colorize</span>
             <span>Target Volume to Area</span>
           </button>
         </div>
@@ -2968,95 +2996,95 @@
             
             <!-- Mode 1: 3D Box Inputs -->
             <div id="estimator-box-inputs" class="space-y-3">
-              <label class="font-label-xs text-xs text-secondary uppercase block font-bold">Object Dimensions:</label>
+              <label class="font-mono text-xs text-neutral-300 uppercase block font-bold tracking-wider">Object Dimensions:</label>
               <div class="grid grid-cols-3 gap-3">
                 <div class="relative">
                   <label class="font-mono text-[10px] text-neutral-400 block mb-1">Length</label>
-                  <input type="number" id="est-length" class="mech-input font-mono text-sm font-bold w-full" placeholder="12" value="12" min="0.1" step="0.5">
-                  <span id="est-unit-label-l" class="absolute right-2.5 top-7 font-mono text-xs text-secondary">in</span>
+                  <input type="number" id="est-length" class="w-full bg-[#0b0b0d] border border-white/15 focus:border-red-500 text-white font-mono font-bold text-sm px-3.5 py-2 rounded focus:outline-none focus:ring-1 focus:ring-red-500 transition-colors shadow-inner" placeholder="12" value="12" min="0.1" step="0.5">
+                  <span id="est-unit-label-l" class="absolute right-2.5 top-7 font-mono text-xs text-neutral-400">in</span>
                 </div>
                 <div class="relative">
                   <label class="font-mono text-[10px] text-neutral-400 block mb-1">Width</label>
-                  <input type="number" id="est-width" class="mech-input font-mono text-sm font-bold w-full" placeholder="12" value="12" min="0.1" step="0.5">
-                  <span id="est-unit-label-w" class="absolute right-2.5 top-7 font-mono text-xs text-secondary">in</span>
+                  <input type="number" id="est-width" class="w-full bg-[#0b0b0d] border border-white/15 focus:border-red-500 text-white font-mono font-bold text-sm px-3.5 py-2 rounded focus:outline-none focus:ring-1 focus:ring-red-500 transition-colors shadow-inner" placeholder="12" value="12" min="0.1" step="0.5">
+                  <span id="est-unit-label-w" class="absolute right-2.5 top-7 font-mono text-xs text-neutral-400">in</span>
                 </div>
                 <div class="relative">
                   <label class="font-mono text-[10px] text-neutral-400 block mb-1">Height</label>
-                  <input type="number" id="est-height" class="mech-input font-mono text-sm font-bold w-full" placeholder="12" value="12" min="0.1" step="0.5">
-                  <span id="est-unit-label-h" class="absolute right-2.5 top-7 font-mono text-xs text-secondary">in</span>
+                  <input type="number" id="est-height" class="w-full bg-[#0b0b0d] border border-white/15 focus:border-red-500 text-white font-mono font-bold text-sm px-3.5 py-2 rounded focus:outline-none focus:ring-1 focus:ring-red-500 transition-colors shadow-inner" placeholder="12" value="12" min="0.1" step="0.5">
+                  <span id="est-unit-label-h" class="absolute right-2.5 top-7 font-mono text-xs text-neutral-400">in</span>
                 </div>
               </div>
               <div class="flex items-center gap-2 pt-1">
-                <input type="checkbox" id="check-open-bottom" class="rounded border-secondary bg-surface text-primary focus:ring-0">
+                <input type="checkbox" id="check-open-bottom" class="rounded border-[#27272a] bg-[#0b0b0d] text-red-600 focus:ring-0">
                 <label for="check-open-bottom" class="font-mono text-xs text-neutral-300 cursor-pointer">Open bottom / 5 sides only (e.g. car hood, cabinet, helmet shell)</label>
               </div>
             </div>
 
             <!-- Mode 2: 2D Panel Inputs (Hidden by default) -->
             <div id="estimator-panel-inputs" class="space-y-3 hidden">
-              <label class="font-label-xs text-xs text-secondary uppercase block font-bold">Flat Panel Dimensions:</label>
+              <label class="font-mono text-xs text-neutral-300 uppercase block font-bold tracking-wider">Flat Panel Dimensions:</label>
               <div class="grid grid-cols-2 gap-3">
                 <div class="relative">
                   <label class="font-mono text-[10px] text-neutral-400 block mb-1">Panel Length</label>
-                  <input type="number" id="est-panel-length" class="mech-input font-mono text-sm font-bold w-full" placeholder="24" value="24" min="0.1" step="0.5">
-                  <span id="est-panel-unit-label-l" class="absolute right-2.5 top-7 font-mono text-xs text-secondary">in</span>
+                  <input type="number" id="est-panel-length" class="w-full bg-[#0b0b0d] border border-white/15 focus:border-red-500 text-white font-mono font-bold text-sm px-3.5 py-2 rounded focus:outline-none focus:ring-1 focus:ring-red-500 transition-colors shadow-inner" placeholder="24" value="24" min="0.1" step="0.5">
+                  <span id="est-panel-unit-label-l" class="absolute right-2.5 top-7 font-mono text-xs text-neutral-400">in</span>
                 </div>
                 <div class="relative">
                   <label class="font-mono text-[10px] text-neutral-400 block mb-1">Panel Width</label>
-                  <input type="number" id="est-panel-width" class="mech-input font-mono text-sm font-bold w-full" placeholder="24" value="24" min="0.1" step="0.5">
-                  <span id="est-panel-unit-label-w" class="absolute right-2.5 top-7 font-mono text-xs text-secondary">in</span>
+                  <input type="number" id="est-panel-width" class="w-full bg-[#0b0b0d] border border-white/15 focus:border-red-500 text-white font-mono font-bold text-sm px-3.5 py-2 rounded focus:outline-none focus:ring-1 focus:ring-red-500 transition-colors shadow-inner" placeholder="24" value="24" min="0.1" step="0.5">
+                  <span id="est-panel-unit-label-w" class="absolute right-2.5 top-7 font-mono text-xs text-neutral-400">in</span>
                 </div>
               </div>
             </div>
 
             <!-- Mode 3: Direct Target Volume Input (Hidden by default) -->
             <div id="estimator-direct-inputs" class="space-y-3 hidden">
-              <label class="font-label-xs text-xs text-secondary uppercase block font-bold">Target Paint Volume:</label>
+              <label class="font-mono text-xs text-neutral-300 uppercase block font-bold tracking-wider">Target Paint Volume:</label>
               <div class="flex gap-2">
-                <input type="number" id="est-direct-volume" class="mech-input font-mono text-sm font-bold flex-1" placeholder="140" value="140" min="5" step="5">
-                <select id="est-direct-unit" class="mech-select w-32 font-mono text-xs">
+                <input type="number" id="est-direct-volume" class="flex-1 bg-[#0b0b0d] border border-white/15 focus:border-red-500 text-white font-mono font-bold text-sm px-3.5 py-2 rounded focus:outline-none focus:ring-1 focus:ring-red-500 transition-colors shadow-inner" placeholder="140" value="140" min="5" step="5">
+                <select id="est-direct-unit" class="w-32 bg-[#0b0b0d] border border-white/15 focus:border-red-500 text-white font-mono font-bold text-xs px-3 py-2 rounded focus:outline-none focus:ring-1 focus:ring-red-500 cursor-pointer">
                   <option value="ml">mL</option>
                   <option value="g">Grams (g)</option>
                   <option value="floz">Fluid Oz</option>
                 </select>
               </div>
-              <p class="font-mono text-[11px] text-secondary">Enter the volume or weight you have, and we'll calculate how much surface area it covers.</p>
+              <p class="font-mono text-[11px] text-neutral-400">Enter the volume or weight you have, and we'll calculate how much surface area it covers.</p>
             </div>
 
             <!-- Quick Automotive Presets -->
             <div class="pt-2">
-              <span class="font-mono text-[10px] text-secondary uppercase block mb-1.5 font-bold">Automotive &amp; Custom Presets:</span>
+              <span class="font-mono text-[10px] text-neutral-400 uppercase block mb-1.5 font-bold tracking-wider">Automotive &amp; Custom Presets:</span>
               <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 font-mono text-[11px]">
-                <button type="button" data-preset="helmet" class="btn-preset-chip p-2 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-left transition-colors cursor-pointer flex justify-between items-center">
-                  <span>Helmet</span><span class="text-primary font-bold">2.5 ft²</span>
+                <button type="button" data-preset="helmet" class="btn-preset-chip p-2.5 bg-[#16161a] hover:bg-[#1c1c22] border border-[#27272a] hover:border-neutral-500 text-neutral-300 hover:text-white rounded text-left transition-all cursor-pointer flex justify-between items-center">
+                  <span>Helmet</span><span class="text-red-400 font-bold">2.5 ft²</span>
                 </button>
-                <button type="button" data-preset="mc_tank" class="btn-preset-chip p-2 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-left transition-colors cursor-pointer flex justify-between items-center">
-                  <span>Tank</span><span class="text-primary font-bold">6.0 ft²</span>
+                <button type="button" data-preset="mc_tank" class="btn-preset-chip p-2.5 bg-[#16161a] hover:bg-[#1c1c22] border border-[#27272a] hover:border-neutral-500 text-neutral-300 hover:text-white rounded text-left transition-all cursor-pointer flex justify-between items-center">
+                  <span>Tank</span><span class="text-red-400 font-bold">6.0 ft²</span>
                 </button>
-                <button type="button" data-preset="mc_full" class="btn-preset-chip p-2 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-left transition-colors cursor-pointer flex justify-between items-center">
-                  <span>Full Bike</span><span class="text-primary font-bold">15.0 ft²</span>
+                <button type="button" data-preset="mc_full" class="btn-preset-chip p-2.5 bg-[#16161a] hover:bg-[#1c1c22] border border-[#27272a] hover:border-neutral-500 text-neutral-300 hover:text-white rounded text-left transition-all cursor-pointer flex justify-between items-center">
+                  <span>Full Bike</span><span class="text-red-400 font-bold">15.0 ft²</span>
                 </button>
-                <button type="button" data-preset="hood" class="btn-preset-chip p-2 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-left transition-colors cursor-pointer flex justify-between items-center">
-                  <span>Car Bonnet</span><span class="text-primary font-bold">22.0 ft²</span>
+                <button type="button" data-preset="hood" class="btn-preset-chip p-2.5 bg-[#16161a] hover:bg-[#1c1c22] border border-[#27272a] hover:border-neutral-500 text-neutral-300 hover:text-white rounded text-left transition-all cursor-pointer flex justify-between items-center">
+                  <span>Car Bonnet</span><span class="text-red-400 font-bold">22.0 ft²</span>
                 </button>
-                <button type="button" data-preset="guitar" class="btn-preset-chip p-2 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-left transition-colors cursor-pointer flex justify-between items-center">
-                  <span>Guitar</span><span class="text-primary font-bold">3.5 ft²</span>
+                <button type="button" data-preset="guitar" class="btn-preset-chip p-2.5 bg-[#16161a] hover:bg-[#1c1c22] border border-[#27272a] hover:border-neutral-500 text-neutral-300 hover:text-white rounded text-left transition-all cursor-pointer flex justify-between items-center">
+                  <span>Guitar</span><span class="text-red-400 font-bold">3.5 ft²</span>
                 </button>
-                <button type="button" data-preset="full_car" class="btn-preset-chip p-2 bg-surface hover:bg-surface-variant border border-secondary text-secondary hover:text-white rounded text-left transition-colors cursor-pointer flex justify-between items-center">
-                  <span>Full Respray</span><span class="text-primary font-bold">140 ft²</span>
+                <button type="button" data-preset="full_car" class="btn-preset-chip p-2.5 bg-[#16161a] hover:bg-[#1c1c22] border border-[#27272a] hover:border-neutral-500 text-neutral-300 hover:text-white rounded text-left transition-all cursor-pointer flex justify-between items-center">
+                  <span>Full Respray</span><span class="text-red-400 font-bold">140 ft²</span>
                 </button>
               </div>
             </div>
 
             <!-- Dynamic Adaptive Coat Selector (Adapts to Paint Type) -->
-            <div id="coat-selector-container" class="pt-3 border-t border-secondary/40">
+            <div id="coat-selector-container" class="pt-3 border-t border-[#27272a]">
               <div class="flex items-center justify-between gap-3">
                 <div>
                   <span id="label-coat-mode" class="font-mono text-xs font-bold text-white block uppercase">Application Coats</span>
                   <span id="note-coat-mode" class="font-mono text-[10px] text-neutral-400 block">Strictly 1 continuous wet coat for Kroma Edge Self-Organization.</span>
                 </div>
                 <div id="controls-coat-slider" class="flex items-center gap-3">
-                  <span id="badge-coat-status" class="metal-spec-plate-red !py-1 !px-2.5 font-bold">1 WET COAT ONLY</span>
+                  <span id="badge-coat-status" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[10px] font-mono font-bold bg-red-950/60 text-red-400 border border-red-500/40 uppercase tracking-wider">1 WET COAT ONLY</span>
                 </div>
               </div>
             </div>
@@ -3064,41 +3092,41 @@
           </div>
 
           <!-- Live Estimator Outputs & Batch Volume Setting (5 cols) -->
-          <div class="lg:col-span-5 bg-surface-dim p-5 border-2 border-secondary/80 rounded space-y-4">
+          <div class="lg:col-span-5 bg-[#0e0e12] p-5 border border-[#27272a] rounded-lg space-y-4 shadow-sm">
             
-            <div class="border-b border-secondary/60 pb-3">
-              <span class="font-mono text-[10px] text-secondary uppercase font-bold block">Total Surface Area:</span>
+            <div class="border-b border-[#27272a] pb-3">
+              <span class="font-mono text-[10px] text-neutral-400 uppercase font-bold tracking-wider block">Total Surface Area:</span>
               <div class="flex items-baseline gap-2 mt-0.5">
                 <span id="est-area-display" class="font-headline text-3xl text-emerald-400 font-bold">6.0 sq ft</span>
-                <span id="est-area-sqm-display" class="font-mono text-xs text-neutral-300">(0.56 m²)</span>
+                <span id="est-area-sqm-display" class="font-mono text-xs text-neutral-400">(0.56 m²)</span>
               </div>
             </div>
 
             <div class="grid grid-cols-2 gap-3">
-              <div class="bg-surface p-3 border border-secondary/50 rounded">
-                <span class="font-mono text-[10px] text-secondary uppercase font-bold block">Required Paint:</span>
-                <span id="est-volume-display" class="font-headline text-xl text-primary font-bold block mt-0.5">88.7 mL</span>
+              <div class="bg-[#141418] p-3.5 border border-[#27272a] rounded-md">
+                <span class="font-mono text-[10px] text-neutral-400 uppercase font-bold tracking-wider block">Required Paint:</span>
+                <span id="est-volume-display" class="font-headline text-xl text-white font-bold block mt-0.5">88.7 mL</span>
                 <span id="est-floz-display" class="font-mono text-[10px] text-neutral-400">3.0 fl oz (w/ 10% buffer)</span>
               </div>
-              <div class="bg-surface p-3 border border-secondary/50 rounded">
-                <span class="font-mono text-[10px] text-secondary uppercase font-bold block">Bench Pot Life:</span>
+              <div class="bg-[#141418] p-3.5 border border-[#27272a] rounded-md">
+                <span class="font-mono text-[10px] text-neutral-400 uppercase font-bold tracking-wider block">Bench Pot Life:</span>
                 <span id="est-potlife-display" class="font-headline text-xl text-amber-400 font-bold block mt-0.5">3 Hours</span>
                 <span class="font-mono text-[10px] text-neutral-400">Spray immediately after mix</span>
               </div>
             </div>
 
             <!-- Target Batch Volume Input & Quick Presets -->
-            <div class="bg-surface p-3.5 border border-secondary/60 rounded space-y-2.5">
+            <div class="bg-[#141418] p-4 border border-[#27272a] rounded-md space-y-3">
               <div>
-                <div class="flex items-center justify-between mb-1">
-                  <label for="input-total-volume" class="font-label-xs text-xs text-secondary uppercase font-bold">Batch Volume to Mix:</label>
+                <div class="flex items-center justify-between mb-1.5">
+                  <label for="input-total-volume" class="font-mono text-xs text-neutral-300 uppercase font-bold tracking-wider">Batch Volume to Mix:</label>
                   <span class="font-mono text-[10px] text-emerald-400 font-bold flex items-center gap-1">
                     <span class="material-symbols-outlined text-[13px]">autorenew</span> Live Synced
                   </span>
                 </div>
                 <div class="flex gap-2">
-                  <input type="number" id="input-total-volume" class="mech-input font-mono font-bold text-base flex-1" value="140" min="10" max="50000" step="10">
-                  <select id="select-volume-unit" class="mech-select w-28 font-mono text-xs">
+                  <input type="number" id="input-total-volume" class="flex-1 bg-[#0b0b0d] border border-white/15 focus:border-red-500 text-white font-mono font-bold text-base px-3.5 py-2 rounded focus:outline-none focus:ring-1 focus:ring-red-500 transition-colors shadow-inner" value="140" min="10" max="50000" step="10">
+                  <select id="select-volume-unit" class="w-28 bg-[#0b0b0d] border border-white/15 focus:border-red-500 text-white font-mono font-bold text-xs px-3 py-2 rounded focus:outline-none focus:ring-1 focus:ring-red-500 cursor-pointer">
                     <option value="ml">mL</option>
                     <option value="floz">Fl Oz</option>
                     <option value="pt">Pints</option>
@@ -3109,18 +3137,18 @@
 
               <!-- Quick Volume Presets -->
               <div>
-                <span class="font-mono text-[10px] text-neutral-400 uppercase block mb-1">Quick Volume Overrides:</span>
-                <div class="grid grid-cols-4 gap-1 font-mono text-[10px]">
-                  <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(56, 'ml')" class="p-1 bg-surface-dim hover:bg-surface-container border border-secondary/60 text-secondary hover:text-white rounded text-center transition-colors cursor-pointer">56 mL</button>
-                  <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(140, 'ml')" class="p-1 bg-surface-dim hover:bg-surface-container border border-secondary/60 text-secondary hover:text-white rounded text-center transition-colors cursor-pointer">140 mL</button>
-                  <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(420, 'ml')" class="p-1 bg-surface-dim hover:bg-surface-container border border-secondary/60 text-secondary hover:text-white rounded text-center transition-colors cursor-pointer">420 mL</button>
-                  <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(1000, 'ml')" class="p-1 bg-surface-dim hover:bg-surface-container border border-secondary/60 text-secondary hover:text-white rounded text-center transition-colors cursor-pointer">1000 mL</button>
+                <span class="font-mono text-[10px] text-neutral-400 uppercase block mb-1.5 font-bold tracking-wider">Quick Volume Overrides:</span>
+                <div class="grid grid-cols-4 gap-1.5 font-mono text-[11px]">
+                  <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(56, 'ml')" class="p-1.5 bg-[#1c1c22] hover:bg-neutral-800 border border-[#27272a] hover:border-neutral-500 text-neutral-300 hover:text-white rounded text-center transition-all cursor-pointer">56 mL</button>
+                  <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(140, 'ml')" class="p-1.5 bg-[#1c1c22] hover:bg-neutral-800 border border-[#27272a] hover:border-neutral-500 text-neutral-300 hover:text-white rounded text-center transition-all cursor-pointer">140 mL</button>
+                  <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(420, 'ml')" class="p-1.5 bg-[#1c1c22] hover:bg-neutral-800 border border-[#27272a] hover:border-neutral-500 text-neutral-300 hover:text-white rounded text-center transition-all cursor-pointer">420 mL</button>
+                  <button type="button" onclick="window.setMixVolumePreset && window.setMixVolumePreset(1000, 'ml')" class="p-1.5 bg-[#1c1c22] hover:bg-neutral-800 border border-[#27272a] hover:border-neutral-500 text-neutral-300 hover:text-white rounded text-center transition-all cursor-pointer">1000 mL</button>
                 </div>
               </div>
             </div>
 
             <!-- Auto-Sync & Jump Button -->
-            <button type="button" id="btn-sync-estimator-to-mix" class="mech-button-primary !w-full !py-2.5 !text-xs !justify-center flex items-center gap-2 cursor-pointer shadow-md">
+            <button type="button" id="btn-sync-estimator-to-mix" class="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white font-headline text-xs uppercase tracking-wider font-bold py-3 px-4 rounded flex items-center justify-center gap-2 cursor-pointer shadow-[0_2px_10px_rgba(220,38,38,0.35)] transition-all active:scale-98">
               <span class="material-symbols-outlined text-[16px]">done_all</span>
               <span>LIVE AUTO-SYNCED &bull; JUMP TO RECIPE TABLE &darr;</span>
             </button>
@@ -3142,21 +3170,29 @@
       <!-- ========================================================================= -->
       <!-- STEP 3: LIVE MIX RECIPE & DIGITAL SCALE POURING TARGETS -->
       <!-- ========================================================================= -->
-      <div id="step-3-recipe-card" class="industrial-card p-6 border-2 border-secondary bg-surface-container space-y-6">
+      <div id="step-3-recipe-card" class="p-6 border border-[#27272a] bg-[#141418] rounded-lg shadow-sm space-y-6">
         
         <!-- Header -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b-2 border-secondary gap-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#27272a] gap-3">
           <div>
-            <div class="flex items-center gap-2 mb-1">
-              <span class="metal-spec-plate-red">STEP 3 OF 4</span>
-              <span class="metal-spec-plate text-[10px]">DIGITAL TARE BENCHMARK</span>
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-red-950/60 text-red-400 border border-red-500/40 uppercase tracking-wider">
+                <span class="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_6px_rgba(239,68,68,0.8)]"></span>
+                STEP 3 OF 4
+              </span>
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-neutral-800 text-neutral-300 border border-white/10 uppercase tracking-wider">
+                DIGITAL TARE BENCHMARK
+              </span>
             </div>
-            <h3 class="font-headline text-lg sm:text-xl text-primary uppercase">Live Mix Recipe &amp; Scale Pouring Targets</h3>
-            <span class="font-mono text-xs text-secondary">Tare your scale to 0.0g and pour each component in order to the cumulative target weight.</span>
+            <h3 class="font-headline text-lg sm:text-xl text-white uppercase font-bold tracking-tight">Live Mix Recipe &amp; Scale Pouring Targets</h3>
+            <span class="font-mono text-xs text-neutral-400">Tare your scale to 0.0g and pour each component in order to the cumulative target weight.</span>
           </div>
           <div class="flex items-center gap-2.5 flex-wrap">
-            <span id="formula-ratio-badge" class="metal-spec-plate-red font-bold">5:5:2:2 by Weight</span>
-            <button id="btn-send-to-scale" onclick="window.paintApp && window.paintApp.openScaleMode ? window.paintApp.openScaleMode() : null" class="mech-button-primary !text-xs !py-2 !px-3.5 flex items-center gap-1.5 shadow-md cursor-pointer">
+            <span id="formula-ratio-badge" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#18181c] border border-white/10 font-mono text-[11px] text-neutral-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Ratio: <strong class="text-white font-bold">5:5:2:2 by Weight</strong></span>
+            </span>
+            <button id="btn-send-to-scale" onclick="window.paintApp && window.paintApp.openScaleMode ? window.paintApp.openScaleMode() : null" class="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-headline text-xs uppercase tracking-wider font-bold py-2.5 px-4 rounded flex items-center gap-2 cursor-pointer shadow-[0_2px_10px_rgba(220,38,38,0.35)] transition-all active:scale-98">
               <span class="material-symbols-outlined text-[16px]">scale</span>
               <span>DIGITAL SCALE MODE</span>
             </button>
@@ -3164,12 +3200,12 @@
         </div>
 
         <!-- Recipe Tab Selector for Kroma Edge System -->
-        <div id="recipe-view-tabs" class="flex flex-wrap gap-2 pb-1 border-b border-secondary/40">
-          <button type="button" id="btn-recipe-tab-base" class="px-3.5 py-1.5 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-primary/20 border-primary text-primary flex items-center gap-1.5 shadow-sm">
-            <span class="material-symbols-outlined text-[16px]">science</span>
+        <div id="recipe-view-tabs" class="flex flex-wrap gap-2 pb-1 border-b border-[#27272a]">
+          <button type="button" id="btn-recipe-tab-base" class="px-3.5 py-2 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-red-950/40 border-red-500/80 text-white flex items-center gap-1.5 shadow-[0_0_10px_rgba(220,38,38,0.2)]">
+            <span class="material-symbols-outlined text-[16px] text-red-400">science</span>
             <span id="recipe-tab-base-title">1. Primary Coating Mix Recipe</span>
           </button>
-          <button type="button" id="btn-recipe-tab-clear" class="px-3.5 py-1.5 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-surface border-purple-500/60 text-purple-300 hover:text-white hover:border-purple-400 flex items-center gap-1.5">
+          <button type="button" id="btn-recipe-tab-clear" class="px-3.5 py-2 text-xs font-mono font-bold border rounded transition-all cursor-pointer bg-[#16161a] border-purple-500/40 text-purple-300 hover:text-white hover:border-purple-400 flex items-center gap-1.5">
             <span class="material-symbols-outlined text-[16px]">shield</span>
             <span>2. Dedicated Topcoat Clear Co-Calculator (10:1)</span>
           </button>
@@ -3177,36 +3213,36 @@
 
         <!-- Tab Panel 1: Primary Recipe Table -->
         <div id="recipe-table-container" class="space-y-4">
-          <div class="overflow-x-auto border border-secondary/80 rounded bg-surface-container-lowest">
-            <table class="mech-table !m-0">
+          <div class="overflow-x-auto border border-[#27272a] rounded-md bg-[#0e0e12] shadow-sm">
+            <table class="w-full font-mono text-xs text-left border-collapse">
               <thead>
-                <tr class="bg-surface-container-high border-b-2 border-secondary">
-                  <th class="!py-3">Step</th>
-                  <th class="!py-3">Component</th>
-                  <th class="!py-3">SKU</th>
-                  <th class="!py-3">Mix %</th>
-                  <th class="!py-3">Volume</th>
-                  <th class="!py-3">Indiv. Weight</th>
-                  <th class="!py-3 text-primary font-bold">Cumulative Scale Target</th>
+                <tr class="bg-[#18181c] border-b border-[#27272a] text-[10px] text-neutral-400 uppercase tracking-wider font-semibold">
+                  <th class="py-3 px-3.5 w-14">Step</th>
+                  <th class="py-3 px-3.5">Component</th>
+                  <th class="py-3 px-3.5">SKU</th>
+                  <th class="py-3 px-3.5 text-right">Mix %</th>
+                  <th class="py-3 px-3.5 text-right">Volume</th>
+                  <th class="py-3 px-3.5 text-right">Indiv. Weight</th>
+                  <th class="py-3 px-3.5 text-right text-emerald-400 font-bold">Cumulative Scale Target</th>
                 </tr>
               </thead>
-              <tbody id="recipe-table-body">
+              <tbody id="recipe-table-body" class="divide-y divide-[#202025]">
                 <!-- Recipe rows dynamically rendered by JS -->
               </tbody>
             </table>
           </div>
 
           <!-- Recipe Footer Actions -->
-          <div class="flex flex-wrap justify-between items-center gap-4 pt-3 border-t border-secondary/60">
-            <div class="font-mono text-xs text-secondary flex items-center gap-2">
-              <span class="text-emerald-400 font-bold">✓ Specific Gravity Calibrated</span>
+          <div class="flex flex-wrap justify-between items-center gap-4 pt-3 border-t border-[#27272a]">
+            <div class="font-mono text-xs text-neutral-400 flex items-center gap-2">
+              <span class="text-emerald-400 font-semibold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Specific Gravity Calibrated</span>
               <span>(Solvent: 0.85 • Resin: 0.98 • Seeds: 1.10)</span>
             </div>
             <div class="flex items-center gap-2.5 flex-wrap">
-              <button id="btn-export-csv-bom" class="mech-btn-secondary !text-xs !py-2 !px-3">
+              <button id="btn-export-csv-bom" class="bg-[#16161a] hover:bg-[#1c1c22] border border-[#3f3f46] hover:border-neutral-400 text-neutral-200 hover:text-white px-3.5 py-1.5 text-xs font-mono uppercase rounded transition-all cursor-pointer shadow-sm">
                 CSV Mixing Sheet
               </button>
-              <button id="btn-export-json-recipe" class="mech-btn-secondary !text-xs !py-2 !px-3">
+              <button id="btn-export-json-recipe" class="bg-[#16161a] hover:bg-[#1c1c22] border border-[#3f3f46] hover:border-neutral-400 text-neutral-200 hover:text-white px-3.5 py-1.5 text-xs font-mono uppercase rounded transition-all cursor-pointer shadow-sm">
                 JSON Recipe
               </button>
             </div>
@@ -3214,20 +3250,24 @@
         </div>
 
         <!-- Tab Panel 2: Dedicated Topcoat Clear Co-Calculator (Kroma Edge) -->
-        <div id="kroma-topcoat-panel" class="p-5 border-2 border-purple-500/60 bg-surface-container-low rounded relative overflow-hidden transition-all duration-300 hidden">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-purple-500/40 gap-3">
+        <div id="kroma-topcoat-panel" class="p-5 border border-purple-500/40 bg-[#16161c] rounded-lg relative overflow-hidden transition-all duration-300 hidden">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-purple-500/30 gap-3">
             <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="metal-spec-plate !border-purple-400 !text-purple-300">STAGE 2 COMPANION</span>
-                <span class="metal-spec-plate text-[10px]">10 : 1 RATIO + 70-100% THINNER</span>
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-purple-950/60 text-purple-300 border border-purple-500/40 uppercase tracking-wider">
+                  STAGE 2 COMPANION
+                </span>
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-neutral-800 text-neutral-300 border border-white/10 uppercase tracking-wider">
+                  10 : 1 RATIO + 70-100% THINNER
+                </span>
               </div>
-              <h4 class="font-headline text-base sm:text-lg text-white uppercase">Kroma Edge Dedicated Topcoat Clear Co-Calculator</h4>
-              <p class="font-mono text-xs text-neutral-300 mt-0.5 max-w-3xl">
+              <h4 class="font-headline text-base sm:text-lg text-white uppercase font-bold tracking-tight">Kroma Edge Dedicated Topcoat Clear Co-Calculator</h4>
+              <p class="font-mono text-xs text-neutral-300 mt-0.5 max-w-3xl leading-relaxed">
                 Engineered with ultra-low turbidity to maximize chrome reflectivity without reactivating or clouding the mirror layer.
               </p>
             </div>
             <div class="flex items-center gap-2">
-              <span id="tc-reduction-badge" class="px-2.5 py-1 text-xs font-mono font-bold bg-purple-900/60 border border-purple-400 text-purple-200 rounded">
+              <span id="tc-reduction-badge" class="px-2.5 py-1 text-xs font-mono font-bold bg-purple-900/60 border border-purple-400/80 text-purple-200 rounded">
                 Reduction: <span id="tc-reduction-display">100%</span>
               </span>
             </div>
@@ -3235,13 +3275,13 @@
 
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <!-- Thinner Slider & Environmental Adjustment (5 cols) -->
-            <div class="lg:col-span-5 bg-surface-dim p-4 border border-purple-500/40 rounded space-y-4">
+            <div class="lg:col-span-5 bg-[#0e0e12] p-4 border border-purple-500/30 rounded-lg space-y-4">
               <div>
-                <div class="flex justify-between items-center mb-1">
+                <div class="flex justify-between items-center mb-1.5">
                   <label for="tc-reduction-slider" class="font-mono text-xs font-bold text-purple-300 uppercase">Thinner Reduction Level:</label>
                   <span id="tc-reduction-val-label" class="font-mono text-xs font-bold text-white">100% (High Flow)</span>
                 </div>
-                <input type="range" id="tc-reduction-slider" min="70" max="100" value="100" step="5" class="w-full accent-purple-500 cursor-pointer h-2 bg-surface rounded">
+                <input type="range" id="tc-reduction-slider" min="70" max="100" value="100" step="5" class="w-full accent-purple-500 cursor-pointer h-2 bg-[#18181c] rounded">
                 <div class="flex justify-between text-[10px] font-mono text-neutral-400 mt-1">
                   <span>70% (High Film Build)</span>
                   <span>85% (Balanced)</span>
@@ -3266,18 +3306,18 @@
             </div>
 
             <!-- Dedicated Clear Pouring Targets Table (7 cols) -->
-            <div class="lg:col-span-7 overflow-x-auto border border-purple-500/40 rounded bg-surface-container-lowest">
-              <table class="mech-table !m-0">
+            <div class="lg:col-span-7 overflow-x-auto border border-purple-500/30 rounded-md bg-[#0e0e12]">
+              <table class="w-full font-mono text-xs text-left border-collapse">
                 <thead>
-                  <tr class="bg-purple-950/50 border-b border-purple-500/40">
-                    <th class="!py-2.5 text-xs text-purple-200">Step</th>
-                    <th class="!py-2.5 text-xs text-purple-200">Component</th>
-                    <th class="!py-2.5 text-xs text-purple-200">Ratio</th>
-                    <th class="!py-2.5 text-xs text-purple-200">Weight</th>
-                    <th class="!py-2.5 text-xs text-purple-300 font-bold">Cumulative Target</th>
+                  <tr class="bg-purple-950/40 border-b border-purple-500/30 text-[10px] text-purple-200 uppercase tracking-wider font-semibold">
+                    <th class="py-3 px-3 w-14">Step</th>
+                    <th class="py-3 px-3">Component</th>
+                    <th class="py-3 px-3 text-right">Ratio</th>
+                    <th class="py-3 px-3 text-right">Weight</th>
+                    <th class="py-3 px-3 text-right text-purple-300 font-bold">Cumulative Target</th>
                   </tr>
                 </thead>
-                <tbody id="tc-recipe-table-body">
+                <tbody id="tc-recipe-table-body" class="divide-y divide-[#202025]">
                   <!-- Injected dynamically by JS -->
                 </tbody>
               </table>
@@ -3286,20 +3326,25 @@
         </div>
 
         <!-- Integrated Recommended Commercial Paint Kit Bundle -->
-        <div id="bundle-recommender-panel" class="pt-5 border-t-2 border-secondary/60">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-secondary/60 gap-3">
+        <div id="bundle-recommender-panel" class="pt-5 border-t border-[#27272a]">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-[#27272a] gap-3">
             <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="metal-spec-plate !border-emerald-500 !text-emerald-400 font-bold">1-CLICK STORE BUNDLE</span>
-                <span class="metal-spec-plate text-[10px]">REAL-WORLD JOB ALLOCATED</span>
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-950/60 text-emerald-400 border border-emerald-500/40 uppercase tracking-wider">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  1-CLICK STORE BUNDLE
+                </span>
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-neutral-800 text-neutral-300 border border-white/10 uppercase tracking-wider">
+                  REAL-WORLD JOB ALLOCATED
+                </span>
               </div>
-              <h4 class="font-headline text-base sm:text-lg text-white uppercase">Recommended Commercial Paint Kit Bundle</h4>
-              <p class="font-mono text-xs text-neutral-300 mt-0.5">
+              <h4 class="font-headline text-base sm:text-lg text-white uppercase font-bold tracking-tight">Recommended Commercial Paint Kit Bundle</h4>
+              <p class="font-mono text-xs text-neutral-400 mt-0.5">
                 Based on your estimated project area, here is the exact manufacturer kit tier configured for zero booth shortages.
               </p>
             </div>
             <div class="flex items-center gap-2">
-              <span class="px-3 py-1 bg-emerald-950/80 border border-emerald-500 text-emerald-400 font-mono text-xs font-bold rounded flex items-center gap-1.5">
+              <span class="px-3 py-1 bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 font-mono text-xs font-bold rounded flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-[16px]">check_circle</span>
                 <span>NO US IMPORT TARIFFS</span>
               </span>
@@ -3309,71 +3354,71 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             
             <!-- Primary Product Card -->
-            <div id="bundle-card-primary" class="bg-surface p-4 border border-secondary/80 rounded relative flex flex-col justify-between">
+            <div id="bundle-card-primary" class="bg-[#18181c] p-5 border border-[#27272a] rounded-lg relative flex flex-col justify-between">
               <div>
                 <div class="flex justify-between items-start mb-2">
-                  <span class="font-mono text-[10px] text-primary font-bold uppercase block">PRIMARY COATING:</span>
+                  <span class="font-mono text-[10px] text-red-400 font-bold uppercase block tracking-wider">PRIMARY COATING:</span>
                   <span id="bundle-primary-sku" class="font-mono text-[10px] text-neutral-400">KE-MIRROR-140G</span>
                 </div>
                 <h4 id="bundle-primary-title" class="font-headline text-base font-bold text-white leading-snug">
                   KromaEdge Mirror System Small Kit (140g)
                 </h4>
-                <p id="bundle-primary-desc" class="font-mono text-xs text-neutral-400 mt-1">
+                <p id="bundle-primary-desc" class="font-mono text-xs text-neutral-400 mt-1 leading-relaxed">
                   Complete 4-component system: 50g Binder, 50g Reducer, 20g Hardener, 20g Mirror Seeds.
                 </p>
               </div>
-              <div class="mt-4 pt-3 border-t border-secondary/40 flex justify-between items-center">
-                <span class="font-mono text-xs text-secondary">Price:</span>
+              <div class="mt-4 pt-3 border-t border-[#27272a] flex justify-between items-center">
+                <span class="font-mono text-xs text-neutral-400">Price:</span>
                 <span id="bundle-primary-price" class="font-headline text-lg font-bold text-white">€149.00</span>
               </div>
             </div>
 
             <!-- Companion / Clearcoat Card -->
-            <div id="bundle-card-companion" class="bg-surface p-4 border border-purple-500/60 rounded relative flex flex-col justify-between">
+            <div id="bundle-card-companion" class="bg-[#18181c] p-5 border border-purple-500/40 rounded-lg relative flex flex-col justify-between">
               <div>
                 <div class="flex justify-between items-start mb-2">
-                  <span class="font-mono text-[10px] text-purple-400 font-bold uppercase block">DEDICATED TOPCOAT:</span>
+                  <span class="font-mono text-[10px] text-purple-400 font-bold uppercase block tracking-wider">DEDICATED TOPCOAT:</span>
                   <span id="bundle-companion-sku" class="font-mono text-[10px] text-neutral-400">KE-CLEAR-180</span>
                 </div>
                 <h4 id="bundle-companion-title" class="font-headline text-base font-bold text-white leading-snug">
                   Topcoat Clear 180 SET (378g)
                 </h4>
-                <p id="bundle-companion-desc" class="font-mono text-xs text-neutral-400 mt-1">
+                <p id="bundle-companion-desc" class="font-mono text-xs text-neutral-400 mt-1 leading-relaxed">
                   Includes 180g Clear Base, 18g Hardener, and 180g Dedicated Thinner.
                 </p>
               </div>
-              <div class="mt-4 pt-3 border-t border-secondary/40 flex justify-between items-center">
-                <span class="font-mono text-xs text-secondary">Price:</span>
+              <div class="mt-4 pt-3 border-t border-[#27272a] flex justify-between items-center">
+                <span class="font-mono text-xs text-neutral-400">Price:</span>
                 <span id="bundle-companion-price" class="font-headline text-lg font-bold text-white">€89.00</span>
               </div>
             </div>
 
             <!-- Total & 1-Click Cart Checkout Action -->
-            <div class="bg-surface-dim p-4 border-2 border-emerald-500/70 rounded flex flex-col justify-between shadow-lg">
+            <div class="bg-[#18181c] p-5 border border-emerald-500/50 rounded-lg flex flex-col justify-between shadow-xl">
               <div>
                 <div class="flex items-center justify-between mb-2">
-                  <span class="font-mono text-[10px] text-emerald-400 font-bold uppercase flex items-center gap-1">
+                  <span class="font-mono text-[10px] text-emerald-400 font-bold uppercase flex items-center gap-1 tracking-wider">
                     <span class="material-symbols-outlined text-[15px]">verified</span>
                     <span>COMPLETE JOB BUNDLE:</span>
                   </span>
-                  <span class="metal-spec-plate text-[10px] !text-emerald-300">READY TO SPRAY</span>
+                  <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-emerald-950 text-emerald-300 border border-emerald-500/30 uppercase">READY TO SPRAY</span>
                 </div>
                 <div class="flex items-baseline justify-between mt-1">
                   <span class="font-mono text-xs text-neutral-300">Total Bundle:</span>
                   <span id="bundle-total-price" class="font-headline text-2xl font-bold text-emerald-400">€238.00</span>
                 </div>
-                <p class="font-mono text-[11px] text-neutral-400 mt-2">
+                <p class="font-mono text-[11px] text-neutral-400 mt-2 leading-relaxed">
                   Official Technical Support, digital TDS specifications, and digital scale assistant included.
                 </p>
               </div>
 
               <div class="mt-4 space-y-2">
-                <button type="button" id="btn-add-bundle-cart" class="mech-button-primary !w-full !py-3 !text-xs !justify-center flex items-center gap-2 cursor-pointer shadow-md font-bold tracking-wider hover:brightness-110">
+                <button type="button" id="btn-add-bundle-cart" class="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white font-headline text-xs uppercase tracking-wider font-bold py-3 px-4 rounded flex items-center justify-center gap-2 cursor-pointer shadow-[0_2px_10px_rgba(220,38,38,0.35)] transition-all active:scale-98">
                   <span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
                   <span>ADD COMPLETE BUNDLE TO CART</span>
                 </button>
-                <button type="button" id="btn-scale-from-bundle" onclick="window.paintApp && window.paintApp.openScaleMode ? window.paintApp.openScaleMode() : null" class="mech-btn-secondary !w-full !py-2 !text-xs !justify-center flex items-center gap-1.5 cursor-pointer">
-                  <span class="material-symbols-outlined text-[15px]">scale</span>
+                <button type="button" id="btn-scale-from-bundle" onclick="window.paintApp && window.paintApp.openScaleMode ? window.paintApp.openScaleMode() : null" class="w-full bg-[#16161a] hover:bg-[#1c1c22] border border-[#3f3f46] hover:border-neutral-400 text-neutral-200 hover:text-white font-headline text-xs uppercase tracking-wider font-bold py-2.5 px-4 rounded flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-sm">
+                  <span class="material-symbols-outlined text-[15px] text-red-400">scale</span>
                   <span>Open in Digital Scale Mode</span>
                 </button>
               </div>
@@ -3387,24 +3432,29 @@
       <!-- ========================================================================= -->
       <!-- STEP 4: SPRAY BOOTH MASTER APPLICATION GUIDE & TDS PROTOCOL -->
       <!-- ========================================================================= -->
-      <div id="application-guide-panel" class="industrial-card p-6 border-2 border-secondary bg-surface-container-low">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-secondary gap-3">
+      <div id="application-guide-panel" class="border border-[#27272a] bg-[#141418] rounded-lg p-6 shadow-sm space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#27272a] gap-3">
           <div>
             <div class="flex items-center gap-2 mb-1">
-              <span class="metal-spec-plate-red">STEP 4 OF 4</span>
-              <span class="metal-spec-plate text-[10px]">8-STAGE OFFICIAL WORKFLOW</span>
+              <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-red-500/10 border border-red-500/30 text-[10px] font-mono uppercase text-red-400 font-bold">
+                <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                <span>STEP 4 OF 4</span>
+              </span>
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#1c1c22] text-neutral-300 border border-[#27272a] uppercase">
+                8-STAGE OFFICIAL WORKFLOW
+              </span>
             </div>
-            <h3 class="font-headline text-lg sm:text-xl text-white uppercase">Master Spray Booth Application Guide</h3>
+            <h3 class="font-headline text-lg sm:text-xl text-white uppercase font-bold tracking-wide">Master Spray Booth Application Guide</h3>
             <p class="font-mono text-xs text-neutral-400 mt-0.5">
               Step-by-step technical execution protocol to ensure a flawless optical mirror finish with zero clouding or solvent entrapment.
             </p>
           </div>
-          <div class="flex items-center gap-2">
-            <button id="btn-guide-download-tds" class="bg-surface border border-secondary hover:border-primary hover:text-primary text-secondary px-3 py-1.5 text-xs font-mono uppercase transition-all flex items-center gap-1.5 cursor-pointer rounded-sm">
+          <div class="flex items-center gap-2 shrink-0">
+            <button id="btn-guide-download-tds" class="bg-[#16161a] hover:bg-[#1c1c22] border border-[#3f3f46] hover:border-neutral-400 text-neutral-200 hover:text-white px-3 py-1.5 text-xs font-mono uppercase transition-all flex items-center gap-1.5 cursor-pointer rounded shadow-sm">
               <span class="material-symbols-outlined text-[15px] text-sky-400">description</span>
               <span>DOWNLOAD TDS</span>
             </button>
-            <button id="btn-guide-download-sds" class="bg-surface border border-secondary hover:border-primary hover:text-primary text-secondary px-3 py-1.5 text-xs font-mono uppercase transition-all flex items-center gap-1.5 cursor-pointer rounded-sm">
+            <button id="btn-guide-download-sds" class="bg-[#16161a] hover:bg-[#1c1c22] border border-[#3f3f46] hover:border-neutral-400 text-neutral-200 hover:text-white px-3 py-1.5 text-xs font-mono uppercase transition-all flex items-center gap-1.5 cursor-pointer rounded shadow-sm">
               <span class="material-symbols-outlined text-[15px] text-red-400">picture_as_pdf</span>
               <span>DOWNLOAD REACH SDS</span>
             </button>
@@ -3425,46 +3475,59 @@
   <!-- TAB VIEW 3: DIGITAL SCALE MODE -->
   <!-- ========================================================================= -->
   <div id="view-scale" class="tab-view flex-grow flex flex-col py-8 px-margin-mobile md:px-margin-desktop max-w-[1000px] mx-auto w-full" style="display: none;">
-    <div class="border-b-2 border-secondary pb-4 mb-8 flex justify-between items-end">
+    <div class="border-b border-[#27272a] pb-5 mb-8 flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
       <div>
-        <span class="metal-spec-plate-red">BODYSHOP PRECISION SCALE</span>
-        <h2 class="font-headline text-3xl uppercase text-primary mt-1">GRAM SCALE MIX ASSISTANT</h2>
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#1c1c22] border border-[#27272a] text-[10px] font-mono uppercase text-neutral-300 font-bold tracking-wider">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>BODYSHOP PRECISION DIGITAL SCALE</span>
+        </div>
+        <h2 class="font-headline text-2xl sm:text-3xl uppercase text-white font-extrabold tracking-wide mt-2">GRAM SCALE MIX ASSISTANT</h2>
+        <p class="font-mono text-xs text-neutral-400 mt-1 max-w-xl">
+          Zero-tare digital dispensing guide. Place clean mixing cup on digital scale, tare to 0.0g, and pour each component sequentially until the target weight is reached.
+        </p>
       </div>
-      <div class="flex items-center gap-2">
-        <button onclick="window.print()" class="mech-btn-secondary !text-xs flex items-center gap-1.5 cursor-pointer">
-          <span class="material-symbols-outlined text-[15px]">print</span>
+      <div class="flex items-center gap-2 shrink-0">
+        <button type="button" onclick="window.print()" class="bg-[#16161a] hover:bg-[#1c1c22] border border-[#3f3f46] hover:border-neutral-400 text-neutral-200 hover:text-white font-headline text-xs uppercase tracking-wider font-bold py-2 px-3.5 rounded flex items-center gap-1.5 cursor-pointer shadow-sm transition-all">
+          <span class="material-symbols-outlined text-[16px] text-neutral-400">print</span>
           <span>PRINT BENCH SHEET</span>
         </button>
-        <button onclick="document.getElementById('tab-calculator').click()" class="mech-btn-secondary !text-xs">
-          &larr; BACK TO CALCULATOR
+        <button type="button" onclick="document.getElementById('tab-calculator').click()" class="bg-[#16161a] hover:bg-[#1c1c22] border border-[#3f3f46] hover:border-neutral-400 text-neutral-200 hover:text-white font-headline text-xs uppercase tracking-wider font-bold py-2 px-3.5 rounded flex items-center gap-1.5 cursor-pointer shadow-sm transition-all">
+          <span class="material-symbols-outlined text-[16px] text-neutral-400">arrow_back</span>
+          <span>BACK TO MIX LAB</span>
         </button>
       </div>
     </div>
 
-    <div class="industrial-card p-6 md:p-8 flex flex-col gap-6">
-      <div class="scale-display">
-        <div class="font-label-xs text-xs uppercase text-secondary mb-2 font-bold">LIVE MIX TARGET (CUMULATIVE GRAMS)</div>
-        <div id="scale-target-digits" class="scale-digits">0.0 g</div>
-        <div id="scale-step-title" class="font-label-sm text-sm uppercase text-primary font-bold mt-2">STEP 1: ADD BASECOAT</div>
+    <div class="border border-[#27272a] bg-[#141418] rounded-lg p-6 md:p-8 flex flex-col gap-6 shadow-2xl">
+      <div class="bg-[#0b0b0d] border border-[#27272a] rounded-lg p-6 text-center shadow-inner relative overflow-hidden">
+        <div class="absolute top-3 left-4 flex items-center gap-2 font-mono text-[10px] text-neutral-400 tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>LIVE TARE BENCH FEED</span>
+        </div>
+        <div class="font-mono text-xs uppercase text-neutral-400 mb-2 font-bold tracking-wider pt-2">LIVE MIX TARGET (CUMULATIVE GRAMS)</div>
+        <div id="scale-target-digits" class="font-mono text-5xl sm:text-6xl font-black text-emerald-400 tracking-tight drop-shadow-[0_0_20px_rgba(52,211,153,0.35)] py-2">0.0 g</div>
+        <div id="scale-step-title" class="font-headline text-sm sm:text-base uppercase text-white font-bold tracking-wide mt-2 px-3 py-1 inline-block rounded bg-[#18181d] border border-[#27272a]">STEP 1: ADD BASECOAT</div>
       </div>
 
-      <div class="flex justify-between items-center bg-surface-dim p-4 border-2 border-secondary">
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center bg-[#101014] p-4 sm:p-5 rounded-lg border border-[#27272a] gap-3">
         <div>
-          <span class="font-label-xs text-xs text-secondary uppercase block font-bold">Current Component</span>
-          <span id="scale-current-component" class="font-headline text-xl text-on-surface">Basecoat Component</span>
+          <span class="font-mono text-[10px] text-neutral-400 uppercase block font-bold tracking-wider mb-0.5">Current Component / Chemical</span>
+          <span id="scale-current-component" class="font-headline text-lg sm:text-xl text-white font-bold tracking-wide">Basecoat Component</span>
         </div>
-        <div class="text-right">
-          <span class="font-label-xs text-xs text-secondary uppercase block font-bold">Step Weight</span>
-          <span id="scale-step-weight" class="font-mono text-lg text-primary font-bold">+0.0 g</span>
+        <div class="sm:text-right">
+          <span class="font-mono text-[10px] text-neutral-400 uppercase block font-bold tracking-wider mb-0.5">Incremental Step Weight</span>
+          <span id="scale-step-weight" class="font-mono text-xl sm:text-2xl text-red-400 font-extrabold">+0.0 g</span>
         </div>
       </div>
 
-      <div class="flex justify-between gap-4">
-        <button id="btn-scale-prev-step" class="mech-btn-secondary !flex-1 !justify-center">
-          &larr; Previous Component
+      <div class="flex items-center justify-between gap-4 pt-2">
+        <button type="button" id="btn-scale-prev-step" class="flex-1 bg-[#16161a] hover:bg-[#1c1c22] border border-[#3f3f46] hover:border-neutral-400 text-neutral-200 hover:text-white font-headline text-xs sm:text-sm uppercase tracking-wider font-bold py-3.5 px-4 rounded flex items-center justify-center gap-2 cursor-pointer shadow-sm transition-all active:scale-98">
+          <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+          <span>Previous Component</span>
         </button>
-        <button id="btn-scale-next-step" class="mech-button-primary !flex-1 !justify-center">
-          Next Component &rarr;
+        <button type="button" id="btn-scale-next-step" class="flex-1 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-headline text-xs sm:text-sm uppercase tracking-wider font-bold py-3.5 px-4 rounded flex items-center justify-center gap-2 cursor-pointer shadow-[0_2px_12px_rgba(220,38,38,0.4)] transition-all active:scale-98">
+          <span>Next Component</span>
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
         </button>
       </div>
     </div>
@@ -6006,36 +6069,9 @@
 
         <!-- Tab 1 Content: Login -->
         <div id="view-trade-login" class="space-y-4">
-          <!-- Quick 1-Click Demo Accounts for Instant Review -->
-          <div class="bg-surface-container-high/80 p-3 rounded border border-white/10 space-y-2">
-            <span class="font-mono text-[10px] uppercase text-amber-400 font-bold tracking-wider block">
-              ⚡ 1-Click Demo Accounts (Instant Testing):
-            </span>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              <button type="button" onclick="window.fillDemoTradeLogin && window.fillDemoTradeLogin('dealer')" class="text-left bg-surface/90 hover:bg-surface-container border border-secondary/40 hover:border-primary p-2 rounded transition-all cursor-pointer">
-                <div class="font-bold text-white text-[11px] flex items-center gap-1">
-                  <span class="material-symbols-outlined text-xs text-primary">store</span> Apex Custom
-                </div>
-                <div class="font-mono text-[9px] text-emerald-400">✓ Approved Dealer</div>
-              </button>
-              <button type="button" onclick="window.fillDemoTradeLogin && window.fillDemoTradeLogin('distributor')" class="text-left bg-surface/90 hover:bg-surface-container border border-secondary/40 hover:border-emerald-400 p-2 rounded transition-all cursor-pointer">
-                <div class="font-bold text-white text-[11px] flex items-center gap-1">
-                  <span class="material-symbols-outlined text-xs text-emerald-400">local_shipping</span> Mipa Nordic
-                </div>
-                <div class="font-mono text-[9px] text-emerald-400">✓ Approved Master</div>
-              </button>
-              <button type="button" onclick="window.fillDemoTradeLogin && window.fillDemoTradeLogin('pending')" class="text-left bg-surface/90 hover:bg-surface-container border border-amber-500/50 hover:border-amber-400 p-2 rounded transition-all cursor-pointer">
-                <div class="font-bold text-white text-[11px] flex items-center gap-1">
-                  <span class="material-symbols-outlined text-xs text-amber-400">hourglass_top</span> Bavaria Kustom
-                </div>
-                <div class="font-mono text-[9px] text-amber-400">⏳ Pending Review</div>
-              </button>
-            </div>
-          </div>
-
           <div class="space-y-1">
             <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block">Business / Company Email</label>
-            <input type="email" id="input-trade-email" placeholder="sarah.j@apexpaint.co.uk" class="mech-input !py-2 !text-xs font-mono w-full">
+            <input type="email" id="input-trade-email" placeholder="trade@company.com" class="mech-input !py-2 !text-xs font-mono w-full">
           </div>
           <div class="space-y-1">
             <label class="font-label-xs text-[10px] uppercase text-secondary font-bold block">Trade Account Password</label>
@@ -6340,9 +6376,8 @@
           </div>
           <div id="admin-pin-error" class="text-rose-400 font-mono text-[11px] mt-1.5 text-center hidden font-bold"></div>
 
-          <div class="flex items-center justify-between w-full mt-2 px-1 text-[11px] font-mono text-neutral-400">
-            <span>Default PIN: <strong class="text-amber-300">COAST2026</strong></span>
-            <button type="button" id="btn-admin-auth-fill-default" class="text-amber-400 hover:text-white underline cursor-pointer">Quick Fill PIN</button>
+          <div class="w-full mt-2 text-center text-[10px] font-mono text-neutral-500">
+            <span>Restricted console. Unauthorized access attempts are monitored and recorded.</span>
           </div>
         </div>
 
@@ -7069,7 +7104,7 @@
             </button>
             <a id="btn-detail-view-full-pdp" href="product.html" class="w-full py-2.5 px-3 bg-surface-container border border-surface-container-high hover:border-primary-container text-on-surface hover:text-white rounded font-label-caps text-[11px] uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-sm">
               <span class="material-symbols-outlined text-[16px] text-primary-container">open_in_new</span>
-              <span>Open Dedicated Stitch Product Page &rarr;</span>
+              <span>View Full Product Page &amp; Technical Specs &rarr;</span>
             </a>
           </div>
         </div>
@@ -7243,7 +7278,7 @@
         <!-- Manufacturer Footer -->
         <div class="border-t border-secondary/60 pt-4 flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] font-mono text-secondary">
           <div>
-            <span class="text-white font-bold">Registered Office:</span> DAS64 Design Ltd., Barnard Castle, DL12 9DW, UK | Tel: +44 (0)1833 650 353
+            <span class="text-white font-bold">Registered Office:</span> DAS64 Ltd., Barnard Castle, DL12 9DW, UK | Tel: +44 (0)1833 650 353 | VAT: GB886634179 | EORI: GB886634179000
           </div>
           <div class="flex gap-3">
             <a href="https://www.flakeking.com" target="_blank" class="text-primary hover:underline">www.flakeking.com</a>
@@ -7772,7 +7807,7 @@
       <!-- Bottom Bar -->
       <div class="border-t border-surface-container-high mt-space-xl pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-md font-body-sm text-body-sm text-secondary">
         <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
-          <span>© 2026 Coast Airbrush Europe Ltd. All rights reserved. Registered VAT GB / EU IOSS.</span>
+          <span>© 2026 Coast Airbrush Europe (DAS64 Ltd). All rights reserved. Registered UK VAT GB886634179 • EORI GB886634179000.</span>
           <a class="hover:text-on-surface transition-colors" href="about.html">About Us</a>
           <button onclick="window.openWelcomeModal && window.openWelcomeModal(true)" class="hover:text-on-surface transition-colors cursor-pointer">Launch Info</button>
           <button onclick="window.openReferralModal && window.openReferralModal()" class="text-amber-400 hover:text-amber-300 transition-colors inline-flex items-center gap-1 cursor-pointer"><span class="material-symbols-outlined text-[14px]">card_giftcard</span> Painter Crew: Give £15, Get £15</button>

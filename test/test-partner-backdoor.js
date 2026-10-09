@@ -55,7 +55,7 @@ function mockRequest(url, headers = {}) {
 
 describe("Partner & VIP Backdoor Access Suite", () => {
 
-  it("1. landing.html contains partner backdoor modal and triggers", () => {
+  it("1. landing.html contains secure partner modal and does not leak credentials", () => {
     const landingHtml = fs.readFileSync(path.join(ROOT_DIR, "landing.html"), "utf8");
     
     // Modal existence
@@ -64,10 +64,13 @@ describe("Partner & VIP Backdoor Access Suite", () => {
     assert.ok(landingHtml.includes('id="btn-partner-unlock"'), "Unlock button exists");
     assert.ok(landingHtml.includes('openPartnerBackdoorModal()'), "Trigger function exists");
     
-    // Passcodes
-    assert.ok(landingHtml.includes("COAST2026"), "COAST2026 passcode supported");
-    assert.ok(landingHtml.includes("COASTVIP"), "COASTVIP passcode supported");
-    assert.ok(landingHtml.includes("PARTNER"), "PARTNER passcode supported");
+    // Security checks: Passcode and bypass URL are NOT revealed to users
+    assert.ok(!landingHtml.includes("e.g. COAST2026"), "Passcode hint removed from placeholder");
+    assert.ok(!landingHtml.includes("https://coastairbrush.eu/?partner=vip"), "Bypass link removed from modal");
+    assert.ok(landingHtml.includes("Enter authorized partner passcode"), "Secure placeholder used");
+
+    // Cryptographic security
+    assert.ok(landingHtml.includes("AUTHORIZED_HASHES") || landingHtml.includes("/api/auth/partner-verify"), "Secured with hashes or server verification");
 
     // Header & Footer backdoor triggers
     assert.ok(landingHtml.includes('openPartnerBackdoorModal()'), "Backdoor trigger wired in UI");
@@ -182,6 +185,62 @@ describe("Partner & VIP Backdoor Access Suite", () => {
     const rebuildScript = fs.readFileSync(path.join(ROOT_DIR, "scripts", "rebuild_shopify_theme.py"), "utf8");
     assert.ok(rebuildScript.includes("Trade Partner &amp; VIP Storefront Access"), "Theme script includes VIP access button in password template");
     assert.ok(rebuildScript.includes("Enter Storefront Password"), "Theme script provides clear placeholder");
+  });
+
+  it("6. server endpoint POST /api/auth/partner-verify securely validates passcodes with rate limiting", async () => {
+    function mockPostRequest(url, body, ip = "127.0.0.1") {
+      const req = new EventEmitter();
+      req.url = url;
+      req.method = "POST";
+      req.headers = { host: "coastairbrush.eu", "content-type": "application/json", "x-forwarded-for": ip };
+      req.on = function(event, listener) {
+        EventEmitter.prototype.on.call(this, event, listener);
+        if (event === "data") {
+          process.nextTick(() => listener(Buffer.from(JSON.stringify(body))));
+        } else if (event === "end") {
+          process.nextTick(listener);
+        }
+        return this;
+      };
+      return req;
+    }
+
+    // A: Valid passcode COAST2026 succeeds and sets 30-day cookie
+    const reqA = mockPostRequest("/api/auth/partner-verify", { passcode: "COAST2026" }, "10.0.0.1");
+    const resA = new MockResponse();
+    await new Promise(resolve => {
+      resA.on("finish", resolve);
+      appHandler(reqA, resA);
+    });
+    assert.equal(resA.statusCode, 200);
+    const jsonA = JSON.parse(resA.body);
+    assert.equal(jsonA.success, true);
+    assert.ok(resA.headers["Set-Cookie"].some(c => c.includes("coast_partner_access=true")));
+
+    // B: Invalid passcode returns 401
+    const reqB = mockPostRequest("/api/auth/partner-verify", { passcode: "WRONG_CODE" }, "10.0.0.2");
+    const resB = new MockResponse();
+    await new Promise(resolve => {
+      resB.on("finish", resolve);
+      appHandler(reqB, resB);
+    });
+    assert.equal(resB.statusCode, 401);
+    const jsonB = JSON.parse(resB.body);
+    assert.equal(jsonB.success, false);
+
+    // C: Rate limiting after 5 failures triggers 429 lockout
+    const testIp = "10.0.0.99";
+    for (let i = 0; i < 4; i++) {
+      const req = mockPostRequest("/api/auth/partner-verify", { passcode: "BAD" }, testIp);
+      const res = new MockResponse();
+      await new Promise(r => { res.on("finish", r); appHandler(req, res); });
+      assert.equal(res.statusCode, 401);
+    }
+    const req5 = mockPostRequest("/api/auth/partner-verify", { passcode: "BAD" }, testIp);
+    const res5 = new MockResponse();
+    await new Promise(r => { res5.on("finish", r); appHandler(req5, res5); });
+    assert.equal(res5.statusCode, 429);
+    assert.ok(JSON.parse(res5.body).error.includes("locked"));
   });
 
 });

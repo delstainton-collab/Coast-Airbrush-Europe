@@ -317,7 +317,7 @@
               <span>ADR Hazchem Certified</span>
             </div>
             <p class="text-neutral-300 leading-relaxed">
-              Solvent thinners and basecoats are packed in UN-certified impact-resistant cartons with hazardous shipping manifests via APC Overnight and DPD Hazchem.
+              <strong>95%+ of our catalog is water-based or dry goods</strong> (Flake King, FK50, airbrushes), shipping freely across Europe. Solvent-based <strong>KromaEdge</strong> is packed in UN-certified packaging for UK dispatch while European ADR courier routes complete onboarding.
             </p>
           </div>
         </div>
@@ -430,11 +430,28 @@
             <div class="p-4 rounded bg-[#0c0e0e] border border-secondary/30 space-y-2">
               <span class="text-primary font-bold uppercase flex items-center gap-2">
                 <span class="material-symbols-outlined text-base">local_fire_department</span>
-                <span>UN1263 Class 3 Classification</span>
+                <span>UN1263 Class 3 Classification (KromaEdge Only)</span>
               </span>
               <p>
-                Products including <strong>FK100 Jet Black Basecoat</strong>, <strong>FK55 Fast Reactive Thinners</strong>, and <strong>Kroma Edge Chrome System</strong> contain volatile organic solvents classified as flammable liquids. Under European ADR treaty regulations, paints must travel via authorized dangerous goods vehicles with certified spill kits.
+                The only solvent-based system in our catalog is the <strong>KromaEdge Self-Organizing Mirror Chrome System &amp; Dedicated Clear</strong>, which contains volatile organic carrier solvents classified under UN1263 Class 3 (Flammable Liquids). <strong>All other catalog lines—including Flake King dry flakes, FK50 waterborne surface binder, and spray hardware—are 100% water-based or inert dry goods and ship without chemical restrictions across the UK and all 27 EU member states.</strong>
               </p>
+            </div>
+
+            <div class="p-4 rounded bg-[#161208] border-2 border-amber-500/50 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-bold uppercase flex items-center gap-2">
+                  <span class="material-symbols-outlined text-base">alt_route</span>
+                  <span>KromaEdge European Phase 2 Onboarding</span>
+                </span>
+                <span class="text-[10px] font-bold text-amber-300 bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/40">UK DISPATCH ACTIVE</span>
+              </div>
+              <p class="text-neutral-300 text-xs">
+                KromaEdge is currently dispatched within the United Kingdom via APC Overnight Hazchem. Certified cross-border European ADR chemical road-courier lanes are in final carrier onboarding.
+              </p>
+              <div class="pt-1.5 flex gap-2">
+                <input type="email" id="input-shipping-kroma-email" placeholder="painter@bodyshop.eu" class="flex-1 bg-surface-dim border border-neutral-700 rounded px-3 py-1.5 text-white text-xs outline-none focus:border-amber-400">
+                <button type="button" onclick="const em = document.getElementById('input-shipping-kroma-email').value; if(em){ fetch('/api/leads/subscribe', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email:em, focus:'KromaEdge Shipping Page Waitlist', tags:['kroma-edge-eu-waitlist']})}); alert('✅ You are registered on the KromaEdge European Phase 2 Dispatch List!'); }" class="bg-amber-600 hover:bg-amber-500 text-black font-bold px-3 py-1.5 rounded uppercase text-[10px] shrink-0 cursor-pointer">Notify Me for EU</button>
+              </div>
             </div>
 
             <div class="p-4 rounded bg-[#0c0e0e] border border-secondary/30 space-y-2">
@@ -443,7 +460,7 @@
                 <span>Triple-Sealed UN Packaging</span>
               </span>
               <p>
-                We package all liquid paints in leak-tested aluminium cans sealed with tamper-evident locking rings, wrapped in heavy-gauge polythene barrier sleeves, and packed with high-absorption vermiculite pillows inside heavy corrugated outer cartons.
+                We package liquid paints in leak-tested aluminium cans sealed with tamper-evident locking rings, wrapped in heavy-gauge polythene barrier sleeves, and packed with high-absorption vermiculite pillows inside heavy corrugated outer cartons.
               </p>
             </div>
           </div>
@@ -556,7 +573,7 @@
       <!-- Bottom Bar -->
       <div class="border-t border-surface-container-high mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-secondary">
         <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
-          <span>© 2026 Coast Airbrush Europe Ltd. All rights reserved. Registered VAT GB / EU IOSS.</span>
+          <span>© 2026 Coast Airbrush Europe (DAS64 Ltd). All rights reserved. Registered UK VAT GB886634179 • EORI GB886634179000.</span>
           <a class="hover:text-white transition-colors" href="about.html">About Us</a>
           <a class="hover:text-white transition-colors" href="dealers.html">B2B Dealers</a>
           <a class="hover:text-white transition-colors" href="support.html">Support</a>

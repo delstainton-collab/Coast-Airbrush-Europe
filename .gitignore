@@ -50,4 +50,5 @@ data/bol_documents/
 node_modules/
 data/launch_subscribers.*
 facebook-assets/
+scratch/
 

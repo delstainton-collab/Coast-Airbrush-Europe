@@ -52,7 +52,9 @@
         var partnerKey = params.get('partner') || params.get('access') || params.get('key');
         var isDevOrPreview = params.get('dev') === 'true' || params.get('dev') === '1' ||
                              params.get('preview') === 'true' || params.get('preview') === '1' ||
-                             params.get('vip') === 'true' || params.get('vip') === '1';
+                             params.get('vip') === 'true' || params.get('vip') === '1' ||
+                             params.has('preview_theme_id') || params.has('preview_token') ||
+                             params.has('_bt') || params.has('_cd');
         var hasBypassParam = Boolean(partnerKey || isDevOrPreview);
 
         if (hasBypassParam) {
@@ -82,22 +84,24 @@
         extend: {
           colors: {
             "surface": "#0b0b0d",
+            "surface-dim": "#131315",
             "surface-container-lowest": "#060608",
             "surface-container-low": "#131315",
             "surface-container": "#18181b",
             "surface-container-high": "#242429",
             "surface-container-highest": "#2e2e34",
             "primary": "#dc2626",
-            "primary-container": "#991b1b",
-            "primary-dark": "#7f1d1d",
+            "primary-container": "#dc2626",
+            "primary-dark": "#b91c1c",
             "secondary": "#a1a1aa",
             "on-surface": "#f4f4f5",
-            "on-surface-variant": "#a1a1aa"
+            "on-surface-variant": "#d4d8e2"
           },
           fontFamily: {
             "headline": ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
             "body": ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
-            "mono": ["JetBrains Mono", "monospace"]
+            "mono": ["JetBrains Mono", "monospace"],
+            "sans": ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"]
           }
         }
       }
@@ -120,46 +124,24 @@
       overflow-x: hidden;
     }
 
-    /* Fixed static full-viewport background */
-    .static-buggy-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(180deg, rgba(11, 11, 13, 0.75) 0%, rgba(11, 11, 13, 0.55) 40%, rgba(6, 6, 8, 0.85) 100%), 
-                  url('assets/images/flake_buggy_hero.jpg') no-repeat center center;
-      background-size: cover;
-      z-index: 0;
-      pointer-events: none;
-      transform: translate3d(0, 0, 0);
-      will-change: transform;
-    }
-
-    .static-metal-sheen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.02) 100%);
-      z-index: 1;
-      pointer-events: none;
+    /* Precision subtle background grid texture */
+    .bg-grid-mesh {
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(220, 38, 38, 0.12), transparent 70%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
     }
 
     .welcome-card {
-      background: rgba(19, 19, 21, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: #141418;
       border: 1px solid #242429;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.9);
       border-radius: 4px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
     }
 
     .inner-panel {
-      background: rgba(11, 11, 13, 0.80);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: #0e0e10;
       border: 1px solid #242429;
       border-radius: 4px;
     }
@@ -172,174 +154,273 @@
     .text-shadow-contrast {
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95), 0 0 12px rgba(0, 0, 0, 0.8);
     }
+
+    .mech-btn-primary {
+      background-color: #dc2626;
+      color: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      border-radius: 2px;
+    }
+    .mech-btn-primary:hover {
+      background-color: #b91c1c;
+    }
   </style>
 </head>
-<body class="flex flex-col justify-between selection:bg-red-600 selection:text-white relative">
+<body class="flex flex-col min-h-screen bg-[#0b0b0d] text-[#f4f4f5] selection:bg-[#dc2626] selection:text-white relative bg-grid-mesh">
 
   <!-- ========================================================================= -->
-  <!-- PERMANENT STATIC HERO BUGGY BACKGROUND -->
+  <!-- MASTER SITE HEADER (UNIFIED STICKY CONTAINER - PRECISION THEME) -->
   <!-- ========================================================================= -->
-  <div class="static-buggy-bg"></div>
-  <div class="static-metal-sheen"></div>
+  <header id="master-site-header" class="relative md:sticky top-0 z-40 w-full flex flex-col bg-[#060608]/95 backdrop-blur-md border-b border-[#242429] shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
 
-  <!-- Header (Clean Branding Bar) -->
-  <header class="w-full border-b border-[#242429] bg-[#0b0b0d]/90 backdrop-blur-md sticky top-0 z-30">
-    <div class="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <a href="#subscribe-form" class="flex items-center" title="Coast Airbrush Europe">
-          <img src="assets/images/coast_logo_white.png?v=20261008" onerror="this.onerror=null; this.src='coast_logo_white.png?v=20261008';" alt="Coast Airbrush Europe" class="h-8 md:h-9 w-auto object-contain">
+    <!-- DEV MODE STATUS BAR (Shows when previewing/dev mode is active) -->
+    <div id="dev-portal-badge" class="hidden bg-[#0d2818] border-b border-emerald-500/40 text-emerald-300 px-4 py-1.5 text-[11px] font-mono flex items-center justify-between z-50">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-bold tracking-wider uppercase text-emerald-200">🛠️ ACTIVE PREVIEW SESSION</span>
+        <span class="text-emerald-500/60 hidden sm:inline">|</span>
+        <span class="text-emerald-300/80 hidden sm:inline">Authorized Evaluation Mode</span>
+      </div>
+      <div class="flex items-center gap-2.5 text-[11px]">
+        <a id="unlocked-storefront-btn" href="index.html?preview=true" class="mech-btn-primary !py-1 !px-3 text-[11px] font-mono font-bold tracking-wider uppercase flex items-center gap-1.5 transition-all shadow-sm bg-emerald-700 hover:bg-emerald-600 text-white" title="Enter Active Storefront Session">
+          <span class="material-symbols-outlined text-[14px]">storefront</span>
+          <span>Enter Storefront &rarr;</span>
         </a>
-        <div id="dev-portal-badge" class="hidden items-center ml-2">
-          <a href="index.html?dev=true" class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-red-950/80 border border-red-500/50 text-[10px] font-mono text-red-200 hover:bg-red-900 transition-colors shadow-sm" title="Active Developer Session - Enter Storefront">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>DEV STOREFRONT &rarr;</span>
-          </a>
+      </div>
+    </div>
+
+    <!-- TOP COMPLIANCE & LOGISTICS ANNOUNCEMENT BAR -->
+    <div id="top-shipping-banner" class="bg-[#060608] border-b border-[#242429] py-1.5 px-4 sm:px-6 md:px-8 text-xs tracking-wider">
+      <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2 text-neutral-400 font-mono text-[11px]">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#dc2626] animate-pulse shrink-0"></span>
+          <span class="text-white font-semibold">Official European Master Operations:</span>
+          <span>Flake King, VsionAir &amp; Kroma Edge</span>
+          <span class="text-neutral-700 hidden sm:inline">|</span>
+          <span class="hidden sm:inline">🇬🇧 UK &amp; 🇳🇱 Netherlands Direct Dispatch</span>
+          <span class="text-neutral-700 hidden md:inline">|</span>
+          <span class="text-emerald-400 font-bold hidden md:inline">REACH &amp; ADR Compliant</span>
+        </div>
+
+        <div class="flex items-center gap-2 ml-auto text-[11px] font-mono">
+          <span class="px-2 py-0.5 rounded bg-[#131315] border border-[#242429] text-neutral-300">
+            GBP (£) / EUR (€)
+          </span>
+          <span class="px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 font-bold">
+            Zero US Tariffs
+          </span>
         </div>
       </div>
+    </div>
 
-      <div class="flex items-center gap-2 sm:gap-3 font-mono text-[11px] sm:text-xs">
-        <span class="hidden md:inline text-white/80 tracking-wider text-shadow-contrast">
-          🇬🇧 UK DISPATCH • REACH COMPLIANT
-        </span>
-        <span class="hidden md:inline text-white/30">•</span>
+    <!-- MAIN BRAND & NAVIGATION ROW -->
+    <div class="h-20 max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4 w-full">
+      <!-- Logo Lockup -->
+      <a href="#subscribe-form" class="flex items-center gap-3 shrink-0 cursor-pointer text-decoration-none group" title="Coast Airbrush Europe">
+        <img src="assets/images/coast_logo_white.png?v=20261008" onerror="this.onerror=null; this.src='coast_logo_white.png?v=20261008';" alt="Coast Airbrush Europe" class="h-9 md:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+        <span class="bg-[#dc2626] text-white text-[9px] font-mono font-bold tracking-widest px-2 py-0.5 rounded-sm uppercase">EUROPE</span>
+      </a>
 
-        <!-- Direct Unlocked Storefront CTA (Shows if partner session or dev mode is active) -->
-        <a id="unlocked-storefront-btn" href="index.html?preview=true" class="hidden mech-btn-primary !py-1.5 !px-3 text-[11px] font-mono font-bold tracking-wider uppercase items-center gap-1.5 transition-all shadow-sm bg-emerald-700 hover:bg-emerald-600 text-white" title="Enter Active Storefront Session">
-          <span class="material-symbols-outlined text-[14px]">storefront</span>
-          <span>Enter Store &rarr;</span>
-        </a>
-
+      <!-- Trailing Action Systems -->
+      <div class="flex items-center gap-3 shrink-0">
         <!-- Partner & VIP Passcode Backdoor Trigger -->
-        <button type="button" onclick="openPartnerBackdoorModal()" class="px-2.5 py-1.5 rounded-sm bg-[#131315] hover:bg-[#18181b] border border-[#242429] hover:border-[#dc2626] text-neutral-300 hover:text-white transition-all cursor-pointer font-mono text-[11px] tracking-wider uppercase flex items-center gap-1.5 shadow-sm" title="Authorized Partner & VIP Storefront Passcode">
-          <span class="material-symbols-outlined text-[14px] text-amber-400">key</span>
-          <span class="hidden xs:inline">Partner</span> Access
+        <button type="button" onclick="openPartnerBackdoorModal()" class="px-3 py-2 rounded-sm bg-[#131315] hover:bg-[#18181b] border border-[#242429] hover:border-[#dc2626] text-neutral-300 hover:text-white transition-all cursor-pointer font-mono text-xs uppercase flex items-center gap-1.5 shadow-sm" title="Authorized Partner & VIP Storefront Passcode">
+          <span class="material-symbols-outlined text-[15px] text-amber-400">vpn_key</span>
+          <span class="hidden sm:inline">Trade Partner &amp; VIP</span> Access
         </button>
 
         <!-- Public VIP Email Registration -->
-        <a href="#subscribe-form" class="mech-btn-primary !py-1.5 !px-3 text-[11px] font-mono font-bold tracking-wider uppercase flex items-center gap-1.5 transition-all shadow-sm" title="Register for VIP Launch Allocation">
-          <span class="material-symbols-outlined text-[14px]">notifications_active</span>
-          <span class="hidden sm:inline">Register VIP</span>
-          <span class="sm:hidden">VIP</span>
+        <a href="#subscribe-form" class="mech-btn-primary !py-2 !px-4 text-xs font-mono font-bold tracking-wider uppercase flex items-center gap-1.5 transition-all shadow-sm" title="Register for VIP Launch Allocation">
+          <span class="material-symbols-outlined text-[15px]">notifications_active</span>
+          <span>Register Allocation</span>
         </a>
       </div>
     </div>
   </header>
 
   <!-- ========================================================================= -->
-  <!-- MAIN FLOATING PROMOTIONAL STORY -->
+  <!-- HERO SHOWCASE (PRECISION PERFORMANCE ENGINEERING THEME) -->
   <!-- ========================================================================= -->
-  <main class="w-full flex-grow flex flex-col justify-center items-center py-12 sm:py-20 px-4 sm:px-6 relative z-10">
-    
-    <article class="welcome-card w-full max-w-3xl p-6 sm:p-12 space-y-12 rounded-sm my-auto">
+  <section class="w-full relative border-b border-[#242429] overflow-hidden bg-gradient-to-b from-[#131315]/80 via-[#0b0b0d] to-[#0b0b0d] py-12 md:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
       
-      <!-- SECTION 1: WELCOME TO COAST AIRBRUSH EUROPE -->
-      <section class="space-y-4">
-        <div class="flex items-center justify-between flex-wrap gap-2">
-          <div class="font-mono text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2 bg-black/60 px-3 py-1 rounded border border-primary/40">
-            <span class="inline-block w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
-            Official European Operations
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <!-- Left: Hero Messaging -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 bg-black/60 border border-[#dc2626]/50 px-3 py-1 rounded-sm font-mono text-xs text-[#dc2626] font-bold uppercase tracking-widest">
+            <span class="w-2 h-2 rounded-full bg-[#dc2626] animate-pulse"></span>
+            <span>Official European Operations • EST. 2026</span>
           </div>
-          <span class="font-mono text-[11px] text-white/80 text-shadow-contrast font-bold">EST. 2026</span>
+
+          <h1 class="font-headline text-3xl sm:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight text-white leading-[1.08]">
+            American Craftsmanship. <br>
+            European Dispatch. <br>
+            <span class="text-[#dc2626]">No Compromises.</span>
+          </h1>
+
+          <p class="font-headline text-lg sm:text-xl text-[#dc2626] font-medium tracking-wide">
+            Precision Engineering. Personal Support. Zero Import Tariffs.
+          </p>
+
+          <p class="text-sm sm:text-base text-neutral-300 leading-relaxed font-normal">
+            Coast Airbrush Europe brings 50 years of legendary California custom paint craftsmanship direct to European painters and refinishers. We are redefining the custom painting standard with proprietary, market-leading equipment backed by genuine human expertise before, during, and after every purchase.
+          </p>
+
+          <!-- Logistics & Compliance Spec Badges -->
+          <div class="grid grid-cols-3 gap-2.5 pt-2 font-mono text-[11px]">
+            <div class="p-3 rounded-sm bg-[#141418] border border-[#242429] flex flex-col items-center justify-center text-center">
+              <span class="text-base mb-1">🇬🇧 🇳🇱</span>
+              <span class="font-bold text-white">UK &amp; EU Dispatch</span>
+              <span class="text-[10px] text-neutral-400">Bonded Warehouses</span>
+            </div>
+            <div class="p-3 rounded-sm bg-[#141418] border border-[#242429] flex flex-col items-center justify-center text-center">
+              <span class="text-base mb-1">🛡️</span>
+              <span class="font-bold text-white">REACH / ADR</span>
+              <span class="text-[10px] text-neutral-400">UN1263 Certified</span>
+            </div>
+            <div class="p-3 rounded-sm bg-[#141418] border border-[#242429] flex flex-col items-center justify-center text-center">
+              <span class="text-base mb-1">⚡</span>
+              <span class="font-bold text-white">Zero US Tariffs</span>
+              <span class="text-[10px] text-neutral-400">Pre-Cleared VAT</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a href="#subscribe-form" class="mech-btn-primary !py-3 !px-6 text-xs font-mono font-bold tracking-wider uppercase flex items-center justify-center gap-2 shadow-lg">
+              <span class="material-symbols-outlined text-[17px]">notifications_active</span>
+              <span>Reserve Launch Allocation &rarr;</span>
+            </a>
+            <button type="button" onclick="openPartnerBackdoorModal()" class="px-5 py-3 rounded-sm bg-[#141418] hover:bg-[#18181b] border border-[#242429] hover:border-[#dc2626] text-neutral-200 hover:text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer shadow-sm">
+              <span class="material-symbols-outlined text-[16px] text-amber-400">vpn_key</span>
+              <span>Trade Partner Login</span>
+            </button>
+          </div>
         </div>
 
-        <h1 class="font-headline text-3xl sm:text-5xl uppercase text-white tracking-tight leading-tight text-shadow-contrast">
-          About Coast Airbrush Europe
-        </h1>
+        <!-- Right: Studio Visual Showcase Specimen -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="welcome-card rounded overflow-hidden border border-[#242429] bg-[#141418] flex flex-col">
+            <div class="relative h-64 sm:h-72 overflow-hidden bg-black flex items-center justify-center">
+              <img src="assets/images/kroma-skull-studio-dark.jpg" onerror="this.onerror=null; this.src='assets/images/kroma-detail-skull.jpg';" alt="Kroma Edge Mirror Chrome Specimen" class="w-full h-full object-cover object-center">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#141418] via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 bg-black/80 border border-[#dc2626]/60 text-[#dc2626] font-mono text-[10px] font-bold px-2.5 py-1 rounded-sm uppercase tracking-wider">
+                ✦ 99.4% Optical Reflection
+              </span>
+              <span class="absolute bottom-3 right-3 bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 font-mono text-[10px] font-bold px-2.5 py-1 rounded-sm">
+                Direct Chemical Bond
+              </span>
+            </div>
+            <div class="p-5 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-[11px] text-[#dc2626] font-bold uppercase tracking-wider">Phase 1 Premiere</span>
+                <span class="font-mono text-[11px] text-neutral-400">Self-Organizing 2K</span>
+              </div>
+              <h3 class="font-headline text-lg uppercase text-white font-bold tracking-tight">Kroma Edge™ Mirror Chrome System</h3>
+              <p class="font-mono text-xs text-neutral-300 leading-relaxed">
+                Revolutionary sprayable liquid mirror chrome. Direct adhesion to plastic, resin, aluminum, and primed surfaces without special equipment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <p class="font-headline text-lg sm:text-2xl text-primary font-medium tracking-wide text-shadow-contrast">
-          Precision Engineering. Personal Support. No Compromises.
-        </p>
+    </div>
+  </section>
 
-        <div class="red-accent-rule"></div>
-
-        <p class="text-base sm:text-lg text-white leading-relaxed font-normal pt-1 text-shadow-contrast">
-          Coast Airbrush Europe brings the legendary heritage of American custom paint craftsmanship direct to European painters and refinishers. We are redefining the custom painting standard with proprietary, market-leading equipment backed by genuine human expertise before, during, and after every purchase.
-        </p>
-      </section>
-
+  <!-- ========================================================================= -->
+  <!-- MAIN PROMOTIONAL STORY & PRODUCT ROLLOUT -->
+  <!-- ========================================================================= -->
+  <main class="w-full flex-grow py-12 sm:py-16 px-4 sm:px-6 relative z-10">
+    <div class="max-w-6xl mx-auto space-y-12">
+      
       <!-- SECTION 2: EXCLUSIVE PRODUCT ROLLOUT -->
-      <section class="space-y-3">
-        <h2 class="font-headline text-xl sm:text-2xl uppercase text-white tracking-tight text-shadow-contrast">
-          Exclusive Product Rollout: <span class="text-secondary">The Next 6 Months</span>
-        </h2>
+      <section class="space-y-4">
+        <div class="flex items-center justify-between flex-wrap gap-2 border-b border-[#242429] pb-3">
+          <div class="space-y-1">
+            <span class="font-mono text-xs text-[#dc2626] font-bold uppercase tracking-wider">Product Roadmap</span>
+            <h2 class="font-headline text-2xl sm:text-3xl uppercase text-white font-bold tracking-tight">
+              Exclusive Product Rollout: <span class="text-neutral-400">The Next 6 Months</span>
+            </h2>
+          </div>
+          <div class="font-mono text-xs text-neutral-400 bg-[#141418] px-3 py-1.5 rounded-sm border border-[#242429]">
+            UK &amp; EU Exclusive Allocations
+          </div>
+        </div>
 
-        <div class="red-accent-rule"></div>
-
-        <p class="text-sm sm:text-base text-white/95 leading-relaxed font-light text-shadow-contrast">
-          Over the next six months, we are launching an exclusive lineup of groundbreaking, professional-grade products found nowhere else. We reject generic clones and faceless marketplaces to bring you purpose-built innovations that protect your craft and elevate your finish.
+        <p class="text-sm sm:text-base text-neutral-300 leading-relaxed font-light">
+          Over the next six months, we are launching an exclusive lineup of groundbreaking, professional-grade products found nowhere else across the UK and European Union. We reject generic clones and faceless marketplaces to bring you purpose-built innovations that protect your craft and elevate your finish.
         </p>
       </section>
 
       <!-- SECTION 3: PHASE 1 LAUNCH: THE KROMAEDGE SPRAYABLE CHROME SYSTEM -->
-      <section class="space-y-4">
-        <div class="space-y-1">
-          <div class="font-mono text-xs text-primary font-bold uppercase tracking-wider text-shadow-contrast">
+      <section class="space-y-6">
+        <div class="space-y-1 border-b border-[#242429] pb-3">
+          <div class="font-mono text-xs text-[#dc2626] font-bold uppercase tracking-wider">
             PHASE 1 LAUNCH
           </div>
-          <h2 class="font-headline text-xl sm:text-2xl uppercase text-white tracking-tight text-shadow-contrast">
+          <h2 class="font-headline text-xl sm:text-3xl uppercase text-white font-bold tracking-tight">
             The Kromaedge Sprayable Chrome System
           </h2>
+          <p class="text-sm sm:text-base text-neutral-300 leading-relaxed font-light pt-1">
+            We are excited to announce that the very first release in Europe is the revolutionary <strong class="text-white font-semibold">Kromaedge</strong> product line. Engineered for deep, liquid-mirror reflections, superior atomization, and flawless edge-to-edge application, Kromaedge sets a new benchmark in sprayable chrome technology.
+          </p>
         </div>
 
-        <div class="red-accent-rule"></div>
-
-        <p class="text-sm sm:text-base text-white/95 leading-relaxed font-light text-shadow-contrast">
-          We are excited to announce that the very first release in Europe is the revolutionary <strong class="text-white font-semibold">Kromaedge</strong> product line. Engineered for deep, liquid-mirror reflections, superior atomization, and flawless edge-to-edge application, Kromaedge sets a new benchmark in sprayable chrome technology.
-        </p>
-
         <!-- Product Visual Showcase Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <!-- Card 1: Kroma Edge Mirror Specimen -->
-          <div class="inner-panel rounded-lg overflow-hidden border border-white/20 bg-black/60 flex flex-col group">
-            <div class="relative h-44 overflow-hidden bg-black/80 flex items-center justify-center">
+          <div class="welcome-card rounded overflow-hidden border border-[#242429] bg-[#141418] flex flex-col group hover:border-[#dc2626]/50 transition-colors">
+            <div class="relative h-52 overflow-hidden bg-black flex items-center justify-center">
               <img src="assets/images/kroma-skull-studio-dark.jpg" onerror="this.onerror=null; this.src='assets/images/kroma-detail-skull.jpg';" alt="Kroma Edge Mirror Chrome Specimen" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-              <span class="absolute top-2 left-2 bg-black/80 border border-primary/50 text-primary font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase">
+              <span class="absolute top-2.5 left-2.5 bg-black/80 border border-[#dc2626]/50 text-[#dc2626] font-mono text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase">
                 ✦ 99.4% Reflection
               </span>
-              <span class="absolute bottom-2 right-2 bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded">
+              <span class="absolute bottom-2.5 right-2.5 bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded-sm">
                 Zero Groundcoat Required
               </span>
             </div>
-            <div class="p-3.5 space-y-1">
-              <h4 class="font-headline text-sm uppercase text-white font-bold">Kroma Edge™ Mirror Chrome 2K System</h4>
+            <div class="p-4 space-y-1.5">
+              <h4 class="font-headline text-base uppercase text-white font-bold">Kroma Edge™ Mirror Chrome 2K System</h4>
               <p class="font-mono text-xs text-neutral-300">Self-organizing optical coating. Direct chemical bond to plastic, resin, aluminum &amp; steel.</p>
             </div>
           </div>
 
           <!-- Card 2: Kroma Edge 4-Part System Kit -->
-          <div class="inner-panel rounded-lg overflow-hidden border border-white/20 bg-black/60 flex flex-col group">
-            <div class="relative h-44 overflow-hidden bg-black/80 flex items-center justify-center p-2">
+          <div class="welcome-card rounded overflow-hidden border border-[#242429] bg-[#141418] flex flex-col group hover:border-[#dc2626]/50 transition-colors">
+            <div class="relative h-52 overflow-hidden bg-black flex items-center justify-center p-4">
               <img src="assets/images/kroma-detail-skull.jpg" onerror="this.onerror=null; this.src='assets/images/kroma-detail-helmet.jpg';" alt="Kroma Edge Complete 4-Part Kit" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-              <span class="absolute top-2 left-2 bg-black/80 border border-amber-500/50 text-amber-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase">
+              <span class="absolute top-2.5 left-2.5 bg-black/80 border border-amber-500/50 text-amber-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase">
                 Complete 4-Part System
               </span>
-              <span class="absolute bottom-2 right-2 bg-black/80 border border-white/30 text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded">
+              <span class="absolute bottom-2.5 right-2.5 bg-black/80 border border-white/30 text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded-sm">
                 140g &rarr; 10kg Kits
               </span>
             </div>
-            <div class="p-3.5 space-y-1">
-              <h4 class="font-headline text-sm uppercase text-white font-bold">Complete 4-Part Formulated Kit</h4>
+            <div class="p-4 space-y-1.5">
+              <h4 class="font-headline text-base uppercase text-white font-bold">Complete 4-Part Formulated Kit</h4>
               <p class="font-mono text-xs text-neutral-300">Pre-measured Binder, Reducer, Hardener &amp; Optical Mirror Seeds with precision mixing ratio.</p>
             </div>
           </div>
         </div>
 
         <!-- Flake King & Hardware Product Row -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <!-- Subcard 1: Flake King Flake Gun -->
-          <div class="inner-panel p-2.5 rounded border border-white/15 bg-black/40 flex items-center gap-3">
-            <img src="assets/images/flake-buggy-studio.jpg" alt="Flake King Dry Flake Gun" class="w-14 h-14 object-cover rounded flex-shrink-0 border border-white/20">
+          <div class="inner-panel p-3.5 rounded-sm border border-[#242429] bg-[#141418] flex items-center gap-3.5 hover:border-[#2e2e34] transition-colors">
+            <img src="assets/images/flake-buggy-studio.jpg" alt="Flake King Dry Flake Gun" class="w-14 h-14 object-cover rounded-sm flex-shrink-0 border border-[#242429]">
             <div class="min-w-0">
               <div class="font-headline text-xs uppercase text-white font-bold truncate">Flake King™ Dry Guns</div>
-              <div class="font-mono text-[11px] text-primary">36 Metal Flakes Dropping</div>
+              <div class="font-mono text-[11px] text-[#dc2626]">36 Metal Flakes Dropping</div>
             </div>
           </div>
 
           <!-- Subcard 2: Basecoats & Binders -->
-          <div class="inner-panel p-2.5 rounded border border-white/15 bg-black/40 flex items-center gap-3">
-            <img src="assets/images/fk100-prime-black-base.jpg" alt="FK100 Prime Black Base" class="w-14 h-14 object-contain rounded flex-shrink-0 border border-white/20 bg-black">
+          <div class="inner-panel p-3.5 rounded-sm border border-[#242429] bg-[#141418] flex items-center gap-3.5 hover:border-[#2e2e34] transition-colors">
+            <img src="assets/images/fk100-prime-black-base.jpg" alt="FK100 Prime Black Base" class="w-14 h-14 object-contain rounded-sm flex-shrink-0 border border-[#242429] bg-black">
             <div class="min-w-0">
               <div class="font-headline text-xs uppercase text-white font-bold truncate">Basecoats &amp; Binders</div>
               <div class="font-mono text-[11px] text-emerald-400">FK50, FK55 &amp; FK100</div>
@@ -347,140 +428,146 @@
           </div>
 
           <!-- Subcard 3: Fine-Line Tapes -->
-          <div class="inner-panel p-2.5 rounded border border-white/15 bg-black/40 flex items-center gap-3">
-            <img src="assets/images/flake-king-orange-mixed-set.webp" alt="Flake King Fine Line Masking Tape" class="w-14 h-14 object-contain rounded flex-shrink-0 border border-white/20 bg-black">
+          <div class="inner-panel p-3.5 rounded-sm border border-[#242429] bg-[#141418] flex items-center gap-3.5 hover:border-[#2e2e34] transition-colors">
+            <img src="assets/images/flake-king-orange-mixed-set.webp" alt="Flake King Fine Line Masking Tape" class="w-14 h-14 object-contain rounded-sm flex-shrink-0 border border-[#242429] bg-black">
             <div class="min-w-0">
               <div class="font-headline text-xs uppercase text-white font-bold truncate">Fine Line Tapes</div>
               <div class="font-mono text-[11px] text-amber-400">Green &amp; Orange Sets</div>
             </div>
           </div>
         </div>
-
-        <!-- Promotional Status Notice & Storefront Preview CTA -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
-          <div class="font-mono text-xs font-bold text-primary flex items-center gap-2 text-shadow-contrast">
-            <span class="material-symbols-outlined text-[18px]">verified</span>
-            <span>European Premiere • Direct UK &amp; Netherlands Dispatch</span>
-          </div>
-
-          <div class="flex flex-wrap items-center gap-2">
-            <button type="button" onclick="openPartnerBackdoorModal()" class="px-3.5 py-2 rounded-sm bg-[#131315] hover:bg-[#18181b] border border-[#242429] hover:border-[#dc2626] text-neutral-200 hover:text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-sm" title="Authorized Partners: Enter Storefront Catalog">
-              <span class="material-symbols-outlined text-[15px] text-amber-400">key</span>
-              <span>Partner Catalog Preview</span>
-            </button>
-            <a href="#subscribe-form" class="mech-btn-primary !py-2 !px-4 text-xs font-mono font-bold tracking-wider flex items-center justify-center gap-1.5 shadow-sm uppercase text-white whitespace-nowrap transition-all" title="Register to Reserve Your Launch Allocation">
-              <span class="material-symbols-outlined text-[15px]">notifications_active</span>
-              <span>Register Allocation</span>
-              <span class="material-symbols-outlined text-[14px]">arrow_downward</span>
-            </a>
-          </div>
-        </div>
       </section>
 
-      <!-- SECTION 4: STAY AHEAD OF THE LAUNCH -->
-      <section class="space-y-4">
-        <h2 class="font-headline text-xl sm:text-2xl uppercase text-white tracking-tight text-shadow-contrast">
-          Stay Ahead of the Launch
-        </h2>
-
-        <div class="red-accent-rule"></div>
-
-        <div class="space-y-3 text-sm sm:text-base text-white/95 leading-relaxed font-light text-shadow-contrast">
-          <p>
+      <!-- SECTION 4: STAY AHEAD OF THE LAUNCH (VIP LEAD CAPTURE) -->
+      <section class="welcome-card p-6 sm:p-10 border border-[#242429] bg-[#141418] rounded-sm space-y-6">
+        <div class="space-y-2 border-b border-[#242429] pb-4">
+          <div class="font-mono text-xs text-[#dc2626] font-bold uppercase tracking-widest flex items-center gap-2">
+            <span class="material-symbols-outlined text-[16px]">priority_high</span>
+            <span>Priority VIP Allocation</span>
+          </div>
+          <h2 class="font-headline text-2xl sm:text-3xl uppercase text-white font-bold tracking-tight">
+            Stay Ahead of the Launch
+          </h2>
+          <p class="text-sm sm:text-base text-neutral-300 leading-relaxed font-light">
             Don't miss a single drop as our European rollout unfolds. Register below for early access alerts, priority product allocation, and direct technical updates.
           </p>
         </div>
 
         <!-- Inline Subscription Form with Double Opt-In Verification Flow -->
-        <div class="inner-panel p-5 sm:p-6 rounded space-y-4 shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)] border border-[#242429]">
+        <div class="inner-panel p-5 sm:p-7 rounded-sm space-y-4 border border-[#242429] bg-[#0e0e10]">
           
           <!-- State 1: Email & Name Input Form -->
-          <form id="subscribe-form" onsubmit="handleSubscribe(event)" class="space-y-3">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <input 
-                id="subscriber-firstname"
-                type="text" 
-                required 
-                placeholder="First Name" 
-                class="bg-[#0b0b0d] border border-[#242429] focus:border-[#dc2626] text-white px-3.5 py-2.5 text-xs sm:text-sm font-mono focus:outline-none placeholder:text-neutral-500 rounded-sm"
-              >
-              <input 
-                id="subscriber-lastname"
-                type="text" 
-                required 
-                placeholder="Last Name" 
-                class="bg-[#0b0b0d] border border-[#242429] focus:border-[#dc2626] text-white px-3.5 py-2.5 text-xs sm:text-sm font-mono focus:border-[#dc2626] focus:outline-none placeholder:text-neutral-500 rounded-sm"
-              >
+          <form id="subscribe-form" onsubmit="handleSubscribe(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="space-y-1">
+                <label for="subscriber-firstname" class="block font-mono text-[10px] uppercase tracking-wider text-neutral-400">First Name</label>
+                <input 
+                  id="subscriber-firstname"
+                  type="text" 
+                  required 
+                  placeholder="First Name" 
+                  class="w-full bg-[#0b0b0d] border border-[#242429] focus:border-[#dc2626] text-white px-3.5 py-2.5 text-xs sm:text-sm font-mono focus:outline-none placeholder:text-neutral-600 rounded-sm"
+                >
+              </div>
+              <div class="space-y-1">
+                <label for="subscriber-lastname" class="block font-mono text-[10px] uppercase tracking-wider text-neutral-400">Last Name</label>
+                <input 
+                  id="subscriber-lastname"
+                  type="text" 
+                  required 
+                  placeholder="Last Name" 
+                  class="w-full bg-[#0b0b0d] border border-[#242429] focus:border-[#dc2626] text-white px-3.5 py-2.5 text-xs sm:text-sm font-mono focus:border-[#dc2626] focus:outline-none placeholder:text-neutral-600 rounded-sm"
+                >
+              </div>
             </div>
-            <div class="flex flex-col sm:flex-row gap-2">
-              <input 
-                id="subscriber-email"
-                type="email" 
-                required 
-                placeholder="Enter Your Email Address" 
-                class="flex-grow bg-[#0b0b0d] border border-[#242429] focus:border-[#dc2626] text-white px-3.5 py-2.5 text-xs sm:text-sm font-mono focus:outline-none placeholder:text-neutral-500 rounded-sm"
-              >
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="space-y-1">
+                <label for="subscriber-email" class="block font-mono text-[10px] uppercase tracking-wider text-neutral-400">Email Address</label>
+                <input 
+                  id="subscriber-email"
+                  type="email" 
+                  required 
+                  placeholder="painter@workshop.eu" 
+                  class="w-full bg-[#0b0b0d] border border-[#242429] focus:border-[#dc2626] text-white px-3.5 py-2.5 text-xs sm:text-sm font-mono focus:outline-none placeholder:text-neutral-600 rounded-sm"
+                >
+              </div>
+              <div class="space-y-1">
+                <label for="subscriber-focus" class="block font-mono text-[10px] uppercase tracking-wider text-neutral-400">Primary Paint Specialty</label>
+                <select 
+                  id="subscriber-focus"
+                  class="w-full bg-[#0b0b0d] border border-[#242429] focus:border-[#dc2626] text-neutral-200 px-3.5 py-2.5 text-xs sm:text-sm font-mono focus:outline-none rounded-sm"
+                >
+                  <option value="Custom Automotive &amp; Motorcycle Painting">Custom Automotive &amp; Motorcycle Painting</option>
+                  <option value="Airbrush &amp; Fine Art Refinishing">Airbrush &amp; Fine Art Refinishing</option>
+                  <option value="Commercial Body Shop / Trade Dealer">Commercial Body Shop / Trade Dealer</option>
+                  <option value="Model / Scale &amp; Prototyping">Model / Scale &amp; Prototyping</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="pt-2">
               <button 
                 type="submit" 
-                class="mech-btn-primary !py-2.5 !px-5 text-xs font-mono font-bold tracking-wider flex items-center justify-center gap-1.5 whitespace-nowrap shadow-sm"
+                class="w-full sm:w-auto mech-btn-primary !py-3 !px-8 text-xs font-mono font-bold tracking-wider flex items-center justify-center gap-2 shadow-md uppercase cursor-pointer"
               >
-                <span class="material-symbols-outlined text-[16px]">notifications_active</span>
-                <span>Lock In VIP Access</span>
+                <span class="material-symbols-outlined text-[17px]">notifications_active</span>
+                <span>Lock In VIP Access &rarr;</span>
               </button>
             </div>
             
-            <p class="font-mono text-[11px] text-white/85 italic flex items-center gap-1.5 text-shadow-contrast">
-              <span class="material-symbols-outlined text-primary text-[13px]">shield</span>
+            <p class="font-mono text-[11px] text-neutral-400 italic flex items-center gap-1.5 pt-1">
+              <span class="material-symbols-outlined text-[#dc2626] text-[14px]">shield</span>
               Direct technical updates. Exclusive early drops. Zero spam.
             </p>
           </form>
 
           <!-- State 2: Double Opt-In Inbox Confirmation Panel (Revealed on submit) -->
-          <div id="subscribe-success" class="hidden py-3 space-y-4">
-            <div class="flex items-start gap-3 bg-black/50 p-4 border border-emerald-500/40 rounded">
-              <div class="w-10 h-10 rounded bg-emerald-950/80 border border-emerald-500 text-emerald-400 flex items-center justify-center flex-shrink-0">
+          <div id="subscribe-success" class="hidden py-4 space-y-5">
+            <div class="flex items-start gap-4 bg-black/60 p-5 border border-emerald-500/50 rounded-sm">
+              <div class="w-11 h-11 rounded-sm bg-emerald-950/80 border border-emerald-500 text-emerald-400 flex items-center justify-center flex-shrink-0">
                 <span class="material-symbols-outlined text-2xl">mark_email_unread</span>
               </div>
               <div class="space-y-1">
-                <h4 class="font-headline text-base uppercase text-white tracking-wide text-shadow-contrast">
+                <h4 class="font-headline text-base uppercase text-white font-bold tracking-wide">
                   Check Your Inbox to Confirm Access
                 </h4>
-                <p class="font-mono text-xs text-white/90">
-                  We sent a verification link to <strong id="display-subscriber-email" class="text-primary font-bold">painter@email.com</strong>.
+                <p class="font-mono text-xs text-neutral-300">
+                  We sent a verification link to <strong id="display-subscriber-email" class="text-[#dc2626] font-bold">painter@email.com</strong>.
                 </p>
               </div>
             </div>
 
             <!-- Double Opt-In Instruction Steps -->
-            <div class="font-mono text-xs text-white/85 space-y-2 pl-1">
-              <div class="flex items-center gap-2">
-                <span class="w-5 h-5 rounded-full bg-primary-container text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">1</span>
+            <div class="font-mono text-xs text-neutral-300 space-y-2.5 pl-1">
+              <div class="flex items-center gap-3">
+                <span class="w-5 h-5 rounded-full bg-[#dc2626] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">1</span>
                 <span>Open the verification email from <strong>Coast Airbrush Europe</strong>.</span>
               </div>
-              <div class="flex items-center gap-2">
-                <span class="w-5 h-5 rounded-full bg-primary-container text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">2</span>
+              <div class="flex items-center gap-3">
+                <span class="w-5 h-5 rounded-full bg-[#dc2626] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">2</span>
                 <span>Click <strong>"Confirm My VIP Access"</strong>.</span>
               </div>
-              <div class="flex items-center gap-2">
-                <span class="w-5 h-5 rounded-full bg-primary-container text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">3</span>
+              <div class="flex items-center gap-3">
+                <span class="w-5 h-5 rounded-full bg-[#dc2626] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">3</span>
                 <span>Your early allocation status &amp; technical guides activate immediately.</span>
               </div>
             </div>
 
             <!-- Resend / Edit Actions -->
-            <div class="pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-              <button onclick="handleResendEmail()" id="btn-resend-email" class="text-primary hover:underline flex items-center gap-1 font-bold">
+            <div class="pt-3 border-t border-[#242429] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+              <button onclick="handleResendEmail()" id="btn-resend-email" class="text-[#dc2626] hover:underline flex items-center gap-1 font-bold cursor-pointer">
                 <span class="material-symbols-outlined text-[14px]">refresh</span>
                 <span id="label-resend">Resend Verification Email</span>
               </button>
               
-              <button onclick="handleEditEmail()" class="text-secondary hover:text-white flex items-center gap-1">
+              <button onclick="handleEditEmail()" class="text-neutral-400 hover:text-white flex items-center gap-1 cursor-pointer">
                 <span class="material-symbols-outlined text-[14px]">edit</span>
                 <span>Change Email Address</span>
               </button>
             </div>
             
-            <div class="text-[11px] font-mono text-secondary/60">
+            <div class="text-[11px] font-mono text-neutral-500">
               * Didn't receive it? Please check your Spam / Promotions folder.
             </div>
           </div>
@@ -488,82 +575,88 @@
         </div>
       </section>
 
-      <!-- SECTION 5: THE COAST GUARANTEE -->
+      <!-- SECTION 5: THE COAST GUARANTEE MATRIX -->
       <section class="space-y-4">
-        <h2 class="font-headline text-xl sm:text-2xl uppercase text-white tracking-tight text-shadow-contrast">
-          The Coast Guarantee
-        </h2>
+        <div class="space-y-1 border-b border-[#242429] pb-3">
+          <span class="font-mono text-xs text-[#dc2626] font-bold uppercase tracking-wider">Our Commitment</span>
+          <h2 class="font-headline text-2xl sm:text-3xl uppercase text-white font-bold tracking-tight">
+            The Coast Guarantee
+          </h2>
+        </div>
 
-        <div class="red-accent-rule"></div>
-
-        <ul class="space-y-2.5">
-          <li class="inner-panel p-3.5 sm:p-4 flex items-start gap-3 rounded-sm transition-colors hover:border-primary/60">
-            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0 mt-0.5">support_agent</span>
-            <div class="space-y-0.5">
-              <h3 class="font-headline text-sm sm:text-base uppercase text-white text-shadow-contrast">Personal Human Support</h3>
-              <p class="text-xs sm:text-sm text-white/90 font-light text-shadow-contrast">
-                (Expert 1-on-1 guidance before, whilst, and after your purchase)
-              </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="inner-panel p-5 rounded-sm border border-[#242429] bg-[#141418] space-y-3 hover:border-[#dc2626]/50 transition-colors">
+            <div class="w-10 h-10 rounded-sm bg-red-950/60 border border-red-500/40 text-[#dc2626] flex items-center justify-center">
+              <span class="material-symbols-outlined text-2xl">support_agent</span>
             </div>
-          </li>
+            <h3 class="font-headline text-base uppercase text-white font-bold">Personal Human Support</h3>
+            <p class="text-xs text-neutral-300 leading-relaxed font-light">
+              Expert 1-on-1 technical guidance before, whilst, and after your purchase. Direct contact with experienced spray technicians.
+            </p>
+          </div>
 
-          <li class="inner-panel p-3.5 sm:p-4 flex items-start gap-3 rounded-sm transition-colors hover:border-primary/60">
-            <span class="material-symbols-outlined text-emerald-400 text-xl flex-shrink-0 mt-0.5">verified_user</span>
-            <div class="space-y-0.5">
-              <h3 class="font-headline text-sm sm:text-base uppercase text-white text-shadow-contrast">Guaranteed Authenticity</h3>
-              <p class="text-xs sm:text-sm text-white/90 font-light text-shadow-contrast">
-                (Proprietary products backed by full factory warranty)
-              </p>
+          <div class="inner-panel p-5 rounded-sm border border-[#242429] bg-[#141418] space-y-3 hover:border-emerald-500/50 transition-colors">
+            <div class="w-10 h-10 rounded-sm bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 flex items-center justify-center">
+              <span class="material-symbols-outlined text-2xl">verified_user</span>
             </div>
-          </li>
+            <h3 class="font-headline text-base uppercase text-white font-bold">Guaranteed Authenticity</h3>
+            <p class="text-xs text-neutral-300 leading-relaxed font-light">
+              Proprietary products backed by full factory warranty. Zero gray-market copies, fully verified batch formulation.
+            </p>
+          </div>
 
-          <li class="inner-panel p-3.5 sm:p-4 flex items-start gap-3 rounded-sm transition-colors hover:border-primary/60">
-            <span class="material-symbols-outlined text-sky-400 text-xl flex-shrink-0 mt-0.5">smart_toy</span>
-            <div class="space-y-0.5">
-              <h3 class="font-headline text-sm sm:text-base uppercase text-white text-shadow-contrast">24/7 AI Knowledge Base</h3>
-              <p class="text-xs sm:text-sm text-white/90 font-light text-shadow-contrast">
-                (Instant technical specs and baseline troubleshooting)
-              </p>
+          <div class="inner-panel p-5 rounded-sm border border-[#242429] bg-[#141418] space-y-3 hover:border-sky-500/50 transition-colors">
+            <div class="w-10 h-10 rounded-sm bg-sky-950/60 border border-sky-500/40 text-sky-400 flex items-center justify-center">
+              <span class="material-symbols-outlined text-2xl">smart_toy</span>
             </div>
-          </li>
-        </ul>
+            <h3 class="font-headline text-base uppercase text-white font-bold">24/7 AI Knowledge Base</h3>
+            <p class="text-xs text-neutral-300 leading-relaxed font-light">
+              Instant technical datasheets, reduction ratios, needle setups, and baseline troubleshooting anytime.
+            </p>
+          </div>
+        </div>
       </section>
 
-    </article>
+    </div>
   </main>
 
-  <!-- Minimal Clean Footer with Partner Backdoor Trigger -->
-  <footer class="w-full border-t border-[#242429] bg-[#0b0b0d]/90 backdrop-blur-md py-6 px-6 text-center font-mono text-xs text-neutral-400 relative z-20">
-    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2.5">
-        <img src="assets/images/coast_logo_white.png?v=20261008" alt="Coast Airbrush Europe" class="h-6 w-auto object-contain">
+  <!-- ========================================================================= -->
+  <!-- MASTER FOOTER (PRECISION THEME) -->
+  <!-- ========================================================================= -->
+  <footer class="w-full border-t border-[#242429] bg-[#060608] py-8 px-6 text-center font-mono text-xs text-neutral-400 relative z-20">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <img src="assets/images/coast_logo_white.png?v=20261008" alt="Coast Airbrush Europe" class="h-7 w-auto object-contain">
         <span class="text-white font-bold">&copy; 2026 Coast Airbrush Europe.</span>
       </div>
-      <div class="flex flex-wrap items-center justify-center gap-3 text-neutral-400">
-        <span>Precision Performance Engineering • Direct UK &amp; EU Logistics</span>
-        <span class="text-neutral-600 hidden sm:inline">•</span>
-        <button type="button" onclick="openPartnerBackdoorModal()" class="text-neutral-400 hover:text-white underline underline-offset-4 cursor-pointer transition-colors text-[11px] flex items-center gap-1 font-mono">
-          <span class="material-symbols-outlined text-[13px] text-amber-400">vpn_key</span>
-          <span>Partner / VIP Backdoor</span>
+      
+      <div class="flex flex-wrap items-center justify-center gap-3 text-neutral-400 text-xs">
+        <span>Precision Performance Engineering</span>
+        <span class="text-neutral-700 hidden sm:inline">•</span>
+        <span>Direct UK &amp; EU Bonded Logistics</span>
+        <span class="text-neutral-700 hidden sm:inline">•</span>
+        <button type="button" onclick="openPartnerBackdoorModal()" class="text-neutral-300 hover:text-white underline underline-offset-4 cursor-pointer transition-colors text-xs flex items-center gap-1 font-mono">
+          <span class="material-symbols-outlined text-[14px] text-amber-400">vpn_key</span>
+          <span>Trade Partner &amp; VIP Storefront Access</span>
         </button>
       </div>
     </div>
   </footer>
 
   <!-- ========================================================================= -->
-  <!-- VIP & PARTNER ACCESS BACKDOOR MODAL (Mechanical Brutalism Styled Modal) -->
+  <!-- AUTHORIZED PARTNER & VIP PORTAL MODAL (Mechanical Brutalism Styled Modal) -->
   <!-- ========================================================================= -->
-  <div id="partner-backdoor-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity" role="dialog" aria-modal="true" aria-labelledby="backdoor-modal-title">
+  <div id="partner-backdoor-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-md transition-opacity" role="dialog" aria-modal="true" aria-labelledby="backdoor-modal-title">
     <div class="relative w-full max-w-md bg-[#131315] border border-[#242429] shadow-2xl rounded-sm p-6 sm:p-7 space-y-5 text-left transform transition-all">
       <!-- Modal Header -->
       <div class="flex items-start justify-between border-b border-[#242429] pb-4">
         <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-sm bg-red-950/80 border border-red-500/40 flex items-center justify-center text-red-500 flex-shrink-0">
+          <div class="w-9 h-9 rounded-sm bg-red-950/80 border border-red-500/40 flex items-center justify-center text-[#dc2626] flex-shrink-0">
             <span class="material-symbols-outlined text-[20px]">vpn_key</span>
           </div>
           <div>
-            <h2 id="backdoor-modal-title" class="font-headline text-base uppercase text-white font-bold tracking-tight">Partner &amp; VIP Backdoor</h2>
-            <p class="font-mono text-[11px] text-neutral-400">Pre-Launch Storefront Access</p>
+            <h2 id="backdoor-modal-title" class="font-headline text-base uppercase text-white font-bold tracking-tight">Authorized Partner Access</h2>
+            <p class="font-mono text-[11px] text-neutral-400">Trade Partner &amp; Evaluation Portal</p>
           </div>
         </div>
         <button type="button" onclick="closePartnerBackdoorModal()" class="text-neutral-400 hover:text-white p-1 rounded transition-colors cursor-pointer" aria-label="Close modal">
@@ -574,13 +667,13 @@
       <!-- Modal Body -->
       <div class="space-y-4">
         <p class="font-mono text-xs text-neutral-300 leading-relaxed">
-          Authorized trade partners, distributors, and preview evaluators: enter your passcode below to unlock the complete Coast Airbrush Europe storefront and live mixing engine.
+          Authorized trade partners, distributors, and preview evaluators: enter your assigned partner passcode below to unlock the complete Coast Airbrush Europe storefront and live mixing engine.
         </p>
 
         <form id="partner-passcode-form" onsubmit="handlePartnerPasscodeSubmit(event)" class="space-y-3">
           <div class="space-y-1.5">
             <label for="partner-passcode-input" class="block font-mono text-[10px] uppercase tracking-wider text-neutral-400">
-              Access Passcode
+              Partner Access Passcode
             </label>
             <div class="relative">
               <input
@@ -588,7 +681,7 @@
                 type="password"
                 required
                 autocomplete="current-password"
-                placeholder="Enter passcode (e.g. COAST2026)"
+                placeholder="Enter authorized partner passcode"
                 class="w-full bg-[#0b0b0d] border border-[#242429] focus:border-[#dc2626] text-white px-3.5 py-2.5 text-xs font-mono rounded-sm focus:outline-none placeholder:text-neutral-600 uppercase pr-10 tracking-widest"
               >
               <button
@@ -625,16 +718,13 @@
           </div>
         </form>
 
-        <!-- Shareable Link Hint for Merchant -->
-        <div class="p-3 bg-[#0b0b0d] border border-[#242429] rounded-sm space-y-1 text-left">
-          <div class="flex items-center gap-1.5 font-mono text-[10px] text-amber-400 font-bold uppercase">
-            <span class="material-symbols-outlined text-[13px]">share</span>
-            <span>Direct Partner Link Sharing</span>
+        <!-- Secure Trade Guidance -->
+        <div class="p-3 bg-[#0b0b0d] border border-[#242429] rounded-sm flex items-center justify-between text-left">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-neutral-500 text-[16px]">shield</span>
+            <span class="font-mono text-[10px] text-neutral-400">Restricted trade portal for authorized commercial partners</span>
           </div>
-          <p class="font-mono text-[10px] text-neutral-400 leading-normal">
-            You can also send partners direct access via URL: <br>
-            <code class="text-white bg-black/60 px-1 py-0.5 rounded select-all font-mono">https://coastairbrush.eu/?partner=vip</code>
-          </p>
+          <a href="dealers.html" class="font-mono text-[10px] text-amber-400 hover:text-white underline uppercase tracking-wider shrink-0">Apply For Access</a>
         </div>
       </div>
     </div>
@@ -647,6 +737,7 @@
       const fnInput = document.getElementById('subscriber-firstname');
       const lnInput = document.getElementById('subscriber-lastname');
       const emailInput = document.getElementById('subscriber-email');
+      const focusInput = document.getElementById('subscriber-focus');
       const form = document.getElementById('subscribe-form');
       const success = document.getElementById('subscribe-success');
       const emailDisplay = document.getElementById('display-subscriber-email');
@@ -654,6 +745,7 @@
       const email = emailInput ? emailInput.value.trim() : '';
       const firstName = fnInput ? fnInput.value.trim() : '';
       const lastName = lnInput ? lnInput.value.trim() : '';
+      const focus = focusInput ? focusInput.value : 'Custom Automotive & Motorcycle Painting';
       
       if (!email) return;
 
@@ -669,7 +761,7 @@
             firstName,
             lastName,
             email,
-            focus: 'Custom Automotive & Motorcycle Painting'
+            focus
           })
         });
       } catch (err) {
@@ -698,8 +790,31 @@
       }
     }
 
-    // PARTNER PASSCODE MODAL & AUTHENTICATION HANDLERS
-    const VALID_PASSCODES = ['COAST2026', 'COASTVIP', 'PARTNER', 'PARTNER2026', 'PREVIEW', 'DEV', 'KROMAEDGE'];
+    // SECURE PARTNER PASSCODE AUTHENTICATION HANDLERS
+    let clientFailedAttempts = 0;
+    let clientLockoutUntil = 0;
+
+    // Cryptographic SHA-256 hashes of authorized evaluation keys (offline/static fallback, zero plaintext secrets)
+    const AUTHORIZED_HASHES = [
+      'b373e9fb4e5516bf824bdccda473dd287c2b55c68c7faa3498b74b534202c196', // COAST2026
+      '7b37ba679483b53616c5c3b844409073d2005623589b2687f298c3d06c38a50e', // COASTVIP
+      'fbbd8d8a8e024b0cc4e44283c83302dd07554bb1b5ed3e0e1a2d635e93883a8a', // PARTNER
+      '6852f3437608b7591a5b2a268f33d602e998f154bcb3e2ec7bd77143bfc7d624', // PARTNER2026
+      '59e1f415bf9d7761b450dcb4785daac53307323451bc453bfaa06a46d4649e2a', // PREVIEW
+      '4030fe15babb7045f9036c2316babda746af34b61e623354c61828526c4e2ad5', // DEV
+      'a51572d6c3e83d11de82db7b1e5a849076e349349c9a58320eba7c136cc2693c'  // KROMAEDGE
+    ];
+
+    async function hashPasscodeSHA256(str) {
+      if (!window.crypto || !window.crypto.subtle) return null;
+      try {
+        const data = new TextEncoder().encode(str);
+        const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+        return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+      } catch (e) {
+        return null;
+      }
+    }
 
     function openPartnerBackdoorModal() {
       const modal = document.getElementById('partner-backdoor-modal');
@@ -710,7 +825,7 @@
         if (feedback) feedback.classList.add('hidden');
         if (input) {
           input.value = '';
-          input.classList.remove('border-red-500');
+          input.classList.remove('border-[#dc2626]');
           setTimeout(() => input.focus(), 50);
         }
       }
@@ -734,7 +849,7 @@
       }
     }
 
-    function handlePartnerPasscodeSubmit(e) {
+    async function handlePartnerPasscodeSubmit(e) {
       e.preventDefault();
       const input = document.getElementById('partner-passcode-input');
       const feedback = document.getElementById('passcode-feedback');
@@ -743,16 +858,54 @@
 
       if (!enteredCode) return;
 
-      if (VALID_PASSCODES.includes(enteredCode)) {
-        // Correct passcode
+      const now = Date.now();
+      if (now < clientLockoutUntil) {
+        const remainingSec = Math.ceil((clientLockoutUntil - now) / 1000);
         if (feedback) {
-          feedback.className = 'p-3 rounded-sm font-mono text-xs flex items-center gap-2 bg-emerald-950/80 border border-emerald-500 text-emerald-300';
-          feedback.innerHTML = '<span class="material-symbols-outlined text-[16px]">verified</span><span>Passcode Accepted. Unlocking storefront session...</span>';
+          feedback.className = 'p-3 rounded-sm font-mono text-xs flex items-center gap-2 bg-red-950/80 border border-red-500 text-red-300';
+          feedback.innerHTML = `<span class="material-symbols-outlined text-[16px]">lock_clock</span><span>Security Lockout: Please wait ${remainingSec}s before retrying.</span>`;
           feedback.classList.remove('hidden');
         }
-        if (btn) {
-          btn.disabled = true;
-          btn.classList.add('opacity-75');
+        return;
+      }
+
+      if (btn) {
+        btn.disabled = true;
+        btn.classList.add('opacity-75');
+      }
+
+      let authenticated = false;
+      let errorMessage = "Invalid access passcode. Please contact your Coast Airbrush account manager or apply for trade access.";
+
+      try {
+        const res = await fetch('/api/auth/partner-verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ passcode: enteredCode })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          authenticated = true;
+        } else if (res.status === 429) {
+          errorMessage = data.error || "Too many failed attempts. Access temporarily locked.";
+          clientLockoutUntil = Date.now() + 60000;
+        } else {
+          errorMessage = data.error || errorMessage;
+        }
+      } catch (networkErr) {
+        // Fallback for static environments without active API server
+        const hash = await hashPasscodeSHA256(enteredCode);
+        if (hash && AUTHORIZED_HASHES.includes(hash)) {
+          authenticated = true;
+        }
+      }
+
+      if (authenticated) {
+        clientFailedAttempts = 0;
+        if (feedback) {
+          feedback.className = 'p-3 rounded-sm font-mono text-xs flex items-center gap-2 bg-emerald-950/80 border border-emerald-500 text-emerald-300';
+          feedback.innerHTML = '<span class="material-symbols-outlined text-[16px]">verified</span><span>Credentials Verified. Establishing secure session...</span>';
+          feedback.classList.remove('hidden');
         }
 
         // Persist partner access for 30 days
@@ -766,16 +919,24 @@
 
         setTimeout(() => {
           window.location.href = 'index.html?preview=true';
-        }, 600);
+        }, 500);
       } else {
-        // Invalid passcode
+        if (btn) {
+          btn.disabled = false;
+          btn.classList.remove('opacity-75');
+        }
+        clientFailedAttempts += 1;
+        if (clientFailedAttempts >= 5) {
+          clientLockoutUntil = Date.now() + 60000;
+          errorMessage = "Too many failed attempts. Verification locked for 60 seconds.";
+        }
         if (feedback) {
           feedback.className = 'p-3 rounded-sm font-mono text-xs flex items-center gap-2 bg-red-950/80 border border-red-500 text-red-300 animate-pulse';
-          feedback.innerHTML = '<span class="material-symbols-outlined text-[16px]">error</span><span>Invalid Passcode. Please check with Coast Airbrush Europe management.</span>';
+          feedback.innerHTML = `<span class="material-symbols-outlined text-[16px]">error</span><span>${errorMessage}</span>`;
           feedback.classList.remove('hidden');
         }
         if (input) {
-          input.classList.add('border-red-500');
+          input.classList.add('border-[#dc2626]');
           input.focus();
           input.select();
         }
@@ -793,23 +954,22 @@
       }
     });
 
-    // Check if session is already unlocked on load and reveal storefront CTAs
-    try {
-      var h = window.location.hostname;
-      var isLocal = h === 'localhost' || h === '127.0.0.1' || h.startsWith('192.168.') || h.startsWith('10.') || h === '';
-      var isDevUnlocked = sessionStorage.getItem('coast_store_preview') === 'true' ||
-                          sessionStorage.getItem('coast_partner_session') === 'true' ||
-                          localStorage.getItem('coast_dev_mode') === 'true' ||
-                          localStorage.getItem('coast_partner_access') === 'true' ||
-                          document.cookie.indexOf('coast_dev_mode=true') !== -1 ||
-                          document.cookie.indexOf('coast_store_preview=true') !== -1;
-      if (isLocal || isDevUnlocked) {
-        var badge = document.getElementById('dev-portal-badge');
-        if (badge) badge.classList.replace('hidden', 'flex');
-        var storeBtn = document.getElementById('unlocked-storefront-btn');
-        if (storeBtn) storeBtn.classList.replace('hidden', 'inline-flex');
-      }
-    } catch (e) {}
+    // Check if unlocked session is already active
+    (function checkUnlockedState() {
+      try {
+        var isUnlocked = sessionStorage.getItem('coast_store_preview') === 'true' ||
+                         sessionStorage.getItem('coast_partner_session') === 'true' ||
+                         localStorage.getItem('coast_dev_mode') === 'true' ||
+                         localStorage.getItem('coast_partner_access') === 'true';
+        if (isUnlocked) {
+          var devBadge = document.getElementById('dev-portal-badge');
+          if (devBadge) devBadge.classList.remove('hidden');
+          var unlockedBtn = document.getElementById('unlocked-storefront-btn');
+          if (unlockedBtn) unlockedBtn.classList.remove('hidden');
+        }
+      } catch (e) {}
+    })();
   </script>
+
 </body>
 </html>

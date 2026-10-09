@@ -69,7 +69,7 @@
     "shopifyProductId": 8840192800002,
     "handle": "kroma-dedicated-topcoat-clear",
     "productTitle": "Kroma Edge Dedicated Topcoat Clear System",
-    "variantTitle": "Topcoat Clear 180 SET (1.5 m²)",
+    "variantTitle": "Topcoat Clear 180 SET (1.5 m\u00b2)",
     "category": "paint_system",
     "priceGbp": 65,
     "priceEur": 76.47,
@@ -82,7 +82,7 @@
     "shopifyProductId": 8840192800002,
     "handle": "kroma-dedicated-topcoat-clear",
     "productTitle": "Kroma Edge Dedicated Topcoat Clear System",
-    "variantTitle": "Topcoat Clear 900 SET (6.0 m²)",
+    "variantTitle": "Topcoat Clear 900 SET (6.0 m\u00b2)",
     "category": "paint_system",
     "priceGbp": 285,
     "priceEur": 335.3,
@@ -95,7 +95,7 @@
     "shopifyProductId": 8840192800002,
     "handle": "kroma-dedicated-topcoat-clear",
     "productTitle": "Kroma Edge Dedicated Topcoat Clear System",
-    "variantTitle": "Topcoat Clear 3600 SET (24.0 m²)",
+    "variantTitle": "Topcoat Clear 3600 SET (24.0 m\u00b2)",
     "category": "paint_system",
     "priceGbp": 1050,
     "priceEur": 1235.33,
@@ -116,7 +116,7 @@
     "hsCode": "8424.20.00",
     "countryOfOrigin": "GB"
   },
-  "show-krome-metal-flake-1-1": {
+  "FKS012001000": {
     "shopifyVariantId": 4591028300010,
     "shopifyProductId": 8840192800004,
     "handle": "fk-2610",
@@ -129,7 +129,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "show-krome-metal-flake-1-2": {
+  "FKS01200100": {
     "shopifyVariantId": 4591028300011,
     "shopifyProductId": 8840192800004,
     "handle": "fk-2610",
@@ -142,7 +142,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "show-krome-metal-flake-1-3": {
+  "FKS0120030": {
     "shopifyVariantId": 4591028300012,
     "shopifyProductId": 8840192800004,
     "handle": "fk-2610",
@@ -159,7 +159,7 @@
     "shopifyVariantId": 4591028300013,
     "shopifyProductId": 8840192800005,
     "handle": "fk-2603",
-    "productTitle": "Flake King 500 – Dry Metal Flake Airbrush Attachment",
+    "productTitle": "Flake King 500 \u2013 Dry Metal Flake Airbrush Attachment",
     "variantTitle": "Default Title",
     "category": "spray_hardware",
     "priceGbp": 83.33,
@@ -207,7 +207,7 @@
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB"
   },
-  "kromatic-show-krome-metal-flake-1": {
+  "FKK012001000": {
     "shopifyVariantId": 4591028300017,
     "shopifyProductId": 8840192800009,
     "handle": "fk-2524",
@@ -220,7 +220,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-show-krome-metal-flake-2": {
+  "FKK01200100": {
     "shopifyVariantId": 4591028300018,
     "shopifyProductId": 8840192800009,
     "handle": "fk-2524",
@@ -233,7 +233,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-show-krome-metal-flake-3": {
+  "FKK0120030": {
     "shopifyVariantId": 4591028300019,
     "shopifyProductId": 8840192800009,
     "handle": "fk-2524",
@@ -493,7 +493,7 @@
     "hsCode": "3919.10.80",
     "countryOfOrigin": "GB"
   },
-  "kromatic-asteroid-metal-flake-1": {
+  "FKK132001000": {
     "shopifyVariantId": 4591028300039,
     "shopifyProductId": 8840192800021,
     "handle": "fk-2341",
@@ -506,7 +506,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-asteroid-metal-flake-2": {
+  "FKK13200100": {
     "shopifyVariantId": 4591028300040,
     "shopifyProductId": 8840192800021,
     "handle": "fk-2341",
@@ -519,7 +519,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-asteroid-metal-flake-3": {
+  "FKK1320030": {
     "shopifyVariantId": 4591028300041,
     "shopifyProductId": 8840192800021,
     "handle": "fk-2341",
@@ -532,7 +532,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "gun-metal-metal-flake-1": {
+  "FKS232001000": {
     "shopifyVariantId": 4591028300042,
     "shopifyProductId": 8840192800022,
     "handle": "fk-2330",
@@ -545,7 +545,7 @@
     "hsCode": "8424.20.00",
     "countryOfOrigin": "GB"
   },
-  "gun-metal-metal-flake-2": {
+  "FKS23200100": {
     "shopifyVariantId": 4591028300043,
     "shopifyProductId": 8840192800022,
     "handle": "fk-2330",
@@ -558,7 +558,7 @@
     "hsCode": "8424.20.00",
     "countryOfOrigin": "GB"
   },
-  "gun-metal-metal-flake-3": {
+  "FKS2320030": {
     "shopifyVariantId": 4591028300044,
     "shopifyProductId": 8840192800022,
     "handle": "fk-2330",
@@ -571,7 +571,7 @@
     "hsCode": "8424.20.00",
     "countryOfOrigin": "GB"
   },
-  "kromatic-elvis-gold-metal-flake-1": {
+  "FKK022001000": {
     "shopifyVariantId": 4591028300045,
     "shopifyProductId": 8840192800023,
     "handle": "fk-2319",
@@ -584,7 +584,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-elvis-gold-metal-flake-2": {
+  "FKK02200100": {
     "shopifyVariantId": 4591028300046,
     "shopifyProductId": 8840192800023,
     "handle": "fk-2319",
@@ -597,7 +597,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-elvis-gold-metal-flake-3": {
+  "FKK0220030": {
     "shopifyVariantId": 4591028300047,
     "shopifyProductId": 8840192800023,
     "handle": "fk-2319",
@@ -688,7 +688,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-cobalt-blue-metal-flake-1": {
+  "FKS202001000": {
     "shopifyVariantId": 4591028300054,
     "shopifyProductId": 8840192800026,
     "handle": "fk-2283",
@@ -701,7 +701,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-cobalt-blue-metal-flake-2": {
+  "FKS20200100": {
     "shopifyVariantId": 4591028300055,
     "shopifyProductId": 8840192800026,
     "handle": "fk-2283",
@@ -714,7 +714,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-cobalt-blue-metal-flake-3": {
+  "FKS2020030": {
     "shopifyVariantId": 4591028300056,
     "shopifyProductId": 8840192800026,
     "handle": "fk-2283",
@@ -727,7 +727,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-turquoise-blue-metal-flake-1": {
+  "FKS212001000": {
     "shopifyVariantId": 4591028300057,
     "shopifyProductId": 8840192800027,
     "handle": "fk-2269",
@@ -740,7 +740,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-turquoise-blue-metal-flake-2": {
+  "FKS21200100": {
     "shopifyVariantId": 4591028300058,
     "shopifyProductId": 8840192800027,
     "handle": "fk-2269",
@@ -753,7 +753,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-turquoise-blue-metal-flake-3": {
+  "FKS2120030": {
     "shopifyVariantId": 4591028300059,
     "shopifyProductId": 8840192800027,
     "handle": "fk-2269",
@@ -766,7 +766,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-azura-blue-metal-flake-1": {
+  "FKS192001000": {
     "shopifyVariantId": 4591028300060,
     "shopifyProductId": 8840192800028,
     "handle": "fk-2255",
@@ -779,7 +779,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-azura-blue-metal-flake-2": {
+  "FKS19200100": {
     "shopifyVariantId": 4591028300061,
     "shopifyProductId": 8840192800028,
     "handle": "fk-2255",
@@ -792,7 +792,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-azura-blue-metal-flake-3": {
+  "FKS1920030": {
     "shopifyVariantId": 4591028300062,
     "shopifyProductId": 8840192800028,
     "handle": "fk-2255",
@@ -844,7 +844,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-light-blue-metal-flake-1": {
+  "FKS182001000": {
     "shopifyVariantId": 4591028300066,
     "shopifyProductId": 8840192800030,
     "handle": "fk-2233",
@@ -857,7 +857,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-light-blue-metal-flake-2": {
+  "FKS18200100": {
     "shopifyVariantId": 4591028300067,
     "shopifyProductId": 8840192800030,
     "handle": "fk-2233",
@@ -870,7 +870,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-light-blue-metal-flake-3": {
+  "FKS1820030": {
     "shopifyVariantId": 4591028300068,
     "shopifyProductId": 8840192800030,
     "handle": "fk-2233",
@@ -883,7 +883,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-poison-green-metal-flake-1": {
+  "FKK122001000": {
     "shopifyVariantId": 4591028300069,
     "shopifyProductId": 8840192800031,
     "handle": "fk-2222",
@@ -896,7 +896,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-poison-green-metal-flake-2": {
+  "FKK12200100": {
     "shopifyVariantId": 4591028300070,
     "shopifyProductId": 8840192800031,
     "handle": "fk-2222",
@@ -909,7 +909,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-poison-green-metal-flake-3": {
+  "FKK1220030": {
     "shopifyVariantId": 4591028300071,
     "shopifyProductId": 8840192800031,
     "handle": "fk-2222",
@@ -922,7 +922,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-emerald-green-metal-flake-1": {
+  "FKS172001000": {
     "shopifyVariantId": 4591028300072,
     "shopifyProductId": 8840192800032,
     "handle": "fk-2208",
@@ -935,7 +935,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-emerald-green-metal-flake-2": {
+  "FKS17200100": {
     "shopifyVariantId": 4591028300073,
     "shopifyProductId": 8840192800032,
     "handle": "fk-2208",
@@ -948,7 +948,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-emerald-green-metal-flake-3": {
+  "FKS1720030": {
     "shopifyVariantId": 4591028300074,
     "shopifyProductId": 8840192800032,
     "handle": "fk-2208",
@@ -961,7 +961,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-poison-green-metal-flake-1": {
+  "FKS162001000": {
     "shopifyVariantId": 4591028300075,
     "shopifyProductId": 8840192800033,
     "handle": "fk-2194",
@@ -974,7 +974,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-poison-green-metal-flake-2": {
+  "FKS16200100": {
     "shopifyVariantId": 4591028300076,
     "shopifyProductId": 8840192800033,
     "handle": "fk-2194",
@@ -987,7 +987,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-poison-green-metal-flake-3": {
+  "FKS1620030": {
     "shopifyVariantId": 4591028300077,
     "shopifyProductId": 8840192800033,
     "handle": "fk-2194",
@@ -1000,7 +1000,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-lime-green-metal-flake-1": {
+  "FKS152001000": {
     "shopifyVariantId": 4591028300078,
     "shopifyProductId": 8840192800034,
     "handle": "fk-2183",
@@ -1013,7 +1013,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-lime-green-metal-flake-2": {
+  "FKS15200100": {
     "shopifyVariantId": 4591028300079,
     "shopifyProductId": 8840192800034,
     "handle": "fk-2183",
@@ -1026,7 +1026,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-lime-green-metal-flake-3": {
+  "FKS1520030": {
     "shopifyVariantId": 4591028300080,
     "shopifyProductId": 8840192800034,
     "handle": "fk-2183",
@@ -1039,7 +1039,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "peacock-metal-flake-1": {
+  "FKM242001000": {
     "shopifyVariantId": 4591028300081,
     "shopifyProductId": 8840192800035,
     "handle": "fk-2172",
@@ -1052,7 +1052,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "peacock-metal-flake-2": {
+  "FKM24200100": {
     "shopifyVariantId": 4591028300082,
     "shopifyProductId": 8840192800035,
     "handle": "fk-2172",
@@ -1065,7 +1065,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "peacock-metal-flake-3": {
+  "FKM2420030": {
     "shopifyVariantId": 4591028300083,
     "shopifyProductId": 8840192800035,
     "handle": "fk-2172",
@@ -1078,7 +1078,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-purple-heart-metal-flake-1": {
+  "FKS142001000": {
     "shopifyVariantId": 4591028300084,
     "shopifyProductId": 8840192800036,
     "handle": "fk-2158",
@@ -1091,7 +1091,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-purple-heart-metal-flake-2": {
+  "FKS14200100": {
     "shopifyVariantId": 4591028300085,
     "shopifyProductId": 8840192800036,
     "handle": "fk-2158",
@@ -1104,7 +1104,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-purple-heart-metal-flake-3": {
+  "FKS1420030": {
     "shopifyVariantId": 4591028300086,
     "shopifyProductId": 8840192800036,
     "handle": "fk-2158",
@@ -1117,7 +1117,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "sky-purple-metal-flake-1": {
+  "FKM222001000": {
     "shopifyVariantId": 4591028300087,
     "shopifyProductId": 8840192800037,
     "handle": "fk-2147",
@@ -1130,7 +1130,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "sky-purple-metal-flake-2": {
+  "FKM22200100": {
     "shopifyVariantId": 4591028300088,
     "shopifyProductId": 8840192800037,
     "handle": "fk-2147",
@@ -1143,7 +1143,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "sky-purple-metal-flake-3": {
+  "FKM2220030": {
     "shopifyVariantId": 4591028300089,
     "shopifyProductId": 8840192800037,
     "handle": "fk-2147",
@@ -1156,7 +1156,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-fewsha-metal-flake-1": {
+  "FKS112001000": {
     "shopifyVariantId": 4591028300090,
     "shopifyProductId": 8840192800038,
     "handle": "fk-2133",
@@ -1169,7 +1169,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-fewsha-metal-flake-2": {
+  "FKS11200100": {
     "shopifyVariantId": 4591028300091,
     "shopifyProductId": 8840192800038,
     "handle": "fk-2133",
@@ -1182,7 +1182,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-fewsha-metal-flake-3": {
+  "FKS1120030": {
     "shopifyVariantId": 4591028300092,
     "shopifyProductId": 8840192800038,
     "handle": "fk-2133",
@@ -1195,7 +1195,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-lavender-metal-flake-1": {
+  "FKK082001000": {
     "shopifyVariantId": 4591028300093,
     "shopifyProductId": 8840192800039,
     "handle": "fk-2122",
@@ -1208,7 +1208,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-lavender-metal-flake-2": {
+  "FKK08200100": {
     "shopifyVariantId": 4591028300094,
     "shopifyProductId": 8840192800039,
     "handle": "fk-2122",
@@ -1221,7 +1221,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-lavender-metal-flake-3": {
+  "FKK0820030": {
     "shopifyVariantId": 4591028300095,
     "shopifyProductId": 8840192800039,
     "handle": "fk-2122",
@@ -1234,7 +1234,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-bubble-gum-metal-flake-1": {
+  "FKK112001000": {
     "shopifyVariantId": 4591028300096,
     "shopifyProductId": 8840192800040,
     "handle": "fk-2111",
@@ -1247,7 +1247,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-bubble-gum-metal-flake-2": {
+  "FKK11200100": {
     "shopifyVariantId": 4591028300097,
     "shopifyProductId": 8840192800040,
     "handle": "fk-2111",
@@ -1260,7 +1260,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-bubble-gum-metal-flake-3": {
+  "FKK1120030": {
     "shopifyVariantId": 4591028300098,
     "shopifyProductId": 8840192800040,
     "handle": "fk-2111",
@@ -1273,7 +1273,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-pink-metal-flake-1": {
+  "FKS122001000": {
     "shopifyVariantId": 4591028300099,
     "shopifyProductId": 8840192800041,
     "handle": "fk-2104",
@@ -1286,7 +1286,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-pink-metal-flake-2": {
+  "FKS12200100": {
     "shopifyVariantId": 4591028300100,
     "shopifyProductId": 8840192800041,
     "handle": "fk-2104",
@@ -1299,7 +1299,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-pink-metal-flake-3": {
+  "FKS1220030": {
     "shopifyVariantId": 4591028300101,
     "shopifyProductId": 8840192800041,
     "handle": "fk-2104",
@@ -1312,7 +1312,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "fire-purple-metal-flake-1": {
+  "FKM252001000": {
     "shopifyVariantId": 4591028300102,
     "shopifyProductId": 8840192800042,
     "handle": "fk-2097",
@@ -1325,7 +1325,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "fire-purple-metal-flake-2": {
+  "FKM25200100": {
     "shopifyVariantId": 4591028300103,
     "shopifyProductId": 8840192800042,
     "handle": "fk-2097",
@@ -1338,7 +1338,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "fire-purple-metal-flake-3": {
+  "FKM2520030": {
     "shopifyVariantId": 4591028300104,
     "shopifyProductId": 8840192800042,
     "handle": "fk-2097",
@@ -1351,7 +1351,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-volcano-red-metal-flake-1": {
+  "FKK042001000": {
     "shopifyVariantId": 4591028300105,
     "shopifyProductId": 8840192800043,
     "handle": "fk-2090",
@@ -1364,7 +1364,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-volcano-red-metal-flake-2": {
+  "FKK04200100": {
     "shopifyVariantId": 4591028300106,
     "shopifyProductId": 8840192800043,
     "handle": "fk-2090",
@@ -1377,7 +1377,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-volcano-red-metal-flake-3": {
+  "FKK0420030": {
     "shopifyVariantId": 4591028300107,
     "shopifyProductId": 8840192800043,
     "handle": "fk-2090",
@@ -1390,7 +1390,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-bright-red-metal-flake-1": {
+  "FKS102001000": {
     "shopifyVariantId": 4591028300108,
     "shopifyProductId": 8840192800044,
     "handle": "fk-2080",
@@ -1403,7 +1403,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-bright-red-metal-flake-2": {
+  "FKS10200100": {
     "shopifyVariantId": 4591028300109,
     "shopifyProductId": 8840192800044,
     "handle": "fk-2080",
@@ -1416,7 +1416,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-bright-red-metal-flake-3": {
+  "FKS1020030": {
     "shopifyVariantId": 4591028300110,
     "shopifyProductId": 8840192800044,
     "handle": "fk-2080",
@@ -1429,7 +1429,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-apple-red-metal-flake-1": {
+  "FKS092001000": {
     "shopifyVariantId": 4591028300111,
     "shopifyProductId": 8840192800045,
     "handle": "fk-2070",
@@ -1442,7 +1442,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-apple-red-metal-flake-2": {
+  "FKS09200100": {
     "shopifyVariantId": 4591028300112,
     "shopifyProductId": 8840192800045,
     "handle": "fk-2070",
@@ -1455,7 +1455,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-apple-red-metal-flake-3": {
+  "FKS0920030": {
     "shopifyVariantId": 4591028300113,
     "shopifyProductId": 8840192800045,
     "handle": "fk-2070",
@@ -1468,7 +1468,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-tangy-orange-metal-flake-1": {
+  "FKS082001000": {
     "shopifyVariantId": 4591028300114,
     "shopifyProductId": 8840192800046,
     "handle": "fk-2060",
@@ -1481,7 +1481,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-tangy-orange-metal-flake-2": {
+  "FKS08200100": {
     "shopifyVariantId": 4591028300115,
     "shopifyProductId": 8840192800046,
     "handle": "fk-2060",
@@ -1494,7 +1494,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-tangy-orange-metal-flake-3": {
+  "FKS0820030": {
     "shopifyVariantId": 4591028300116,
     "shopifyProductId": 8840192800046,
     "handle": "fk-2060",
@@ -1507,7 +1507,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "fizzy-green-metal-flake-1": {
+  "FKM232001000": {
     "shopifyVariantId": 4591028300117,
     "shopifyProductId": 8840192800047,
     "handle": "fk-2053",
@@ -1520,7 +1520,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "fizzy-green-metal-flake-2": {
+  "FKM23200100": {
     "shopifyVariantId": 4591028300118,
     "shopifyProductId": 8840192800047,
     "handle": "fk-2053",
@@ -1533,7 +1533,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "fizzy-green-metal-flake-3": {
+  "FKM2320030": {
     "shopifyVariantId": 4591028300119,
     "shopifyProductId": 8840192800047,
     "handle": "fk-2053",
@@ -1546,7 +1546,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-extreme-yellow-metal-flake-1": {
+  "FKS072001000": {
     "shopifyVariantId": 4591028300120,
     "shopifyProductId": 8840192800048,
     "handle": "fk-2043",
@@ -1559,7 +1559,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-extreme-yellow-metal-flake-2": {
+  "FKS07200100": {
     "shopifyVariantId": 4591028300121,
     "shopifyProductId": 8840192800048,
     "handle": "fk-2043",
@@ -1572,7 +1572,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-extreme-yellow-metal-flake-3": {
+  "FKS0720030": {
     "shopifyVariantId": 4591028300122,
     "shopifyProductId": 8840192800048,
     "handle": "fk-2043",
@@ -1585,7 +1585,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "nevada-sands-metal-flake-1": {
+  "FKS062001000": {
     "shopifyVariantId": 4591028300123,
     "shopifyProductId": 8840192800049,
     "handle": "fk-2036",
@@ -1598,7 +1598,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "nevada-sands-metal-flake-2": {
+  "FKS06200100": {
     "shopifyVariantId": 4591028300124,
     "shopifyProductId": 8840192800049,
     "handle": "fk-2036",
@@ -1611,7 +1611,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "nevada-sands-metal-flake-3": {
+  "FKS0620030": {
     "shopifyVariantId": 4591028300125,
     "shopifyProductId": 8840192800049,
     "handle": "fk-2036",
@@ -1624,7 +1624,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-copper-head-metal-flake-1": {
+  "FKK032001000": {
     "shopifyVariantId": 4591028300126,
     "shopifyProductId": 8840192800050,
     "handle": "fk-2029",
@@ -1637,7 +1637,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-copper-head-metal-flake-2": {
+  "FKK03200100": {
     "shopifyVariantId": 4591028300127,
     "shopifyProductId": 8840192800050,
     "handle": "fk-2029",
@@ -1650,7 +1650,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "kromatic-copper-head-metal-flake-3": {
+  "FKK0320030": {
     "shopifyVariantId": 4591028300128,
     "shopifyProductId": 8840192800050,
     "handle": "fk-2029",
@@ -1663,7 +1663,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-copper-head-metal-flake-1": {
+  "FKS052001000": {
     "shopifyVariantId": 4591028300129,
     "shopifyProductId": 8840192800051,
     "handle": "fk-2022",
@@ -1676,7 +1676,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-copper-head-metal-flake-2": {
+  "FKS05200100": {
     "shopifyVariantId": 4591028300130,
     "shopifyProductId": 8840192800051,
     "handle": "fk-2022",
@@ -1689,7 +1689,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-copper-head-metal-flake-3": {
+  "FKS0520030": {
     "shopifyVariantId": 4591028300131,
     "shopifyProductId": 8840192800051,
     "handle": "fk-2022",
@@ -1702,7 +1702,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-righteous-gold-metal-flake-1": {
+  "FKS042001000": {
     "shopifyVariantId": 4591028300132,
     "shopifyProductId": 8840192800052,
     "handle": "fk-2015",
@@ -1715,7 +1715,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-righteous-gold-metal-flake-2": {
+  "FKS04200100": {
     "shopifyVariantId": 4591028300133,
     "shopifyProductId": 8840192800052,
     "handle": "fk-2015",
@@ -1728,7 +1728,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-righteous-gold-metal-flake-3": {
+  "FKS0420030": {
     "shopifyVariantId": 4591028300134,
     "shopifyProductId": 8840192800052,
     "handle": "fk-2015",
@@ -1741,7 +1741,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-sovereign-gold-metal-flake-1": {
+  "FKS032001000": {
     "shopifyVariantId": 4591028300135,
     "shopifyProductId": 8840192800053,
     "handle": "fk-2005",
@@ -1754,7 +1754,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-sovereign-gold-metal-flake-2": {
+  "FKS03200100": {
     "shopifyVariantId": 4591028300136,
     "shopifyProductId": 8840192800053,
     "handle": "fk-2005",
@@ -1767,7 +1767,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-sovereign-gold-metal-flake-3": {
+  "FKS0320030": {
     "shopifyVariantId": 4591028300137,
     "shopifyProductId": 8840192800053,
     "handle": "fk-2005",
@@ -1780,7 +1780,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-elvis-gold-metal-flake-1": {
+  "FKS022001000": {
     "shopifyVariantId": 4591028300138,
     "shopifyProductId": 8840192800054,
     "handle": "fk-1992",
@@ -1793,7 +1793,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-elvis-gold-metal-flake-2": {
+  "FKS02200100": {
     "shopifyVariantId": 4591028300139,
     "shopifyProductId": 8840192800054,
     "handle": "fk-1992",
@@ -1806,7 +1806,7 @@
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB"
   },
-  "candy-elvis-gold-metal-flake-3": {
+  "FKS0220030": {
     "shopifyVariantId": 4591028300140,
     "shopifyProductId": 8840192800054,
     "handle": "fk-1992",

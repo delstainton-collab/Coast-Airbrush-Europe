@@ -386,7 +386,7 @@ export const ECOM_CATALOG = [
     "category": "Dry Metal Flake (Glitter)",
     "flakeType": "Single Colour",
     "name": "Show Krome Metal Flake",
-    "sku": "show-krome-metal-flake-1",
+    "sku": "FKS01",
     "priceGbp": 4.71,
     "priceEur": 5.51,
     "inStock": true,

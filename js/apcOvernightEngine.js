@@ -19,7 +19,7 @@ export const APC_SERVICES = {
 export const APC_CONFIG_DEFAULT = {
   depotNumber: "128", // Local APC Partner Depot Number
   accountNumber: "COAST8842",
-  senderName: "Coast Airbrush Europe (DAS64 Design Ltd)",
+  senderName: "Coast Airbrush Europe (DAS64 Ltd)",
   senderAddress: "Unit 12, Enterprise Park, High Wycombe, HP12 3RL, UK",
   senderPhone: "+44 (0) 1494 882000",
   fuelSurchargePercent: 9.5, // Standard APC monthly fuel levy
@@ -513,8 +513,8 @@ export class APCOvernightEngine {
       <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #0f172a; padding-bottom: 8px;">
         <div>
           <div style="font-size: 16px; font-weight: 900; color: #b91c1c;">COAST AIRBRUSH EUROPE</div>
-          <div style="font-size: 9px; color: #475569;">DAS64 Design Ltd • Official European Master Distributor</div>
-          <div style="font-size: 9px; color: #475569;">VAT ID: GB384910283 • EORI: GB384910283000</div>
+          <div style="font-size: 9px; color: #475569;">DAS64 Ltd • Official European Master Distributor</div>
+          <div style="font-size: 9px; color: #475569;">VAT ID: GB886634179 • EORI: GB886634179000</div>
         </div>
         <div style="text-align: right;">
           <div style="font-size: 14px; font-weight: 900;">PACKING SLIP & INVOICE</div>
