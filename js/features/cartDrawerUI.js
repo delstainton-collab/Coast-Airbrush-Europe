@@ -180,28 +180,97 @@ export class CartDrawerUI {
       }
     }
 
-    // Update Drawer Items
+    // Helper to format titles cleanly without screaming all-caps
+    const toTitleCase = (str) => {
+      if (!str) return '';
+      if (str !== str.toUpperCase()) return str;
+      return str.toLowerCase().replace(/(?:^|\s|\/|-|\()\w/g, c => c.toUpperCase());
+    };
+
+    const resolveItemImage = (item) => {
+      if (item.image) return item.image;
+      const sku = (item.sku || '').toLowerCase();
+      const title = (item.title || '').toLowerCase();
+      if (sku.includes('tape') || title.includes('tape')) {
+        return 'https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1';
+      }
+      if (sku.includes('flake') || sku.includes('2603') || title.includes('flake') || title.includes('holo')) {
+        return 'https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/0.015KromaticHolo.jpg?fit=600%2C600&ssl=1';
+      }
+      if (sku.includes('1970') || sku.includes('500') || title.includes('gun') || title.includes('attachment')) {
+        return 'assets/images/flake-buggy-studio.jpg';
+      }
+      if (sku.includes('kroma') || title.includes('kroma') || title.includes('chrome')) {
+        return 'assets/images/kroma-detail-skull.jpg';
+      }
+      return null;
+    };
+
+    // Update Drawer Count Badges
+    const drawerCountBadge = document.getElementById('header-cart-count-badge');
+    if (drawerCountBadge) {
+      drawerCountBadge.textContent = `${summary.itemCount} ${summary.itemCount === 1 ? 'item' : 'items'}`;
+    }
+
+    // Update Drawer Items with Shopify-Standard Steppers and Controls
     if (itemsContainer) {
       itemsContainer.innerHTML = '';
       if (summary.items.length === 0) {
-        itemsContainer.innerHTML = `<div class="py-12 text-center font-mono text-xs text-secondary">Your project cart is currently empty.</div>`;
+        itemsContainer.innerHTML = `
+          <div class="py-14 text-center space-y-3 font-mono">
+            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto text-neutral-500">
+              <span class="material-symbols-outlined text-2xl">shopping_cart</span>
+            </div>
+            <div class="text-sm text-neutral-300 font-bold">Your Project Cart is empty</div>
+            <p class="text-xs text-neutral-500 max-w-xs mx-auto">Explore high-solids paints, mirror chrome systems, and dry flake guns.</p>
+          </div>
+        `;
       } else {
         summary.items.forEach((item, idx) => {
           const itemPriceLocal = (country.currency === 'GBP') ? (item.priceGbp || item.priceEur * 0.85) : item.priceEur * country.rateToEur;
           const itemSubtotalLocal = itemPriceLocal * item.quantity;
           const priceDisplay = `${country.symbol}${itemSubtotalLocal.toFixed(2)}`;
+          const imgUrl = resolveItemImage(item);
+          const formattedTitle = toTitleCase(item.title);
 
           const row = document.createElement('div');
-          row.className = 'cart-drawer-item p-3 flex justify-between items-center';
+          row.className = 'cart-drawer-item p-3 rounded-md bg-[#181a1c] border border-white/10 hover:border-white/20 transition-all flex flex-col gap-2.5';
           row.innerHTML = `
-            <div>
-              <h5 class="font-headline text-sm uppercase text-on-surface">${item.title}</h5>
-              <div class="font-mono text-[11px] text-secondary">SKU: ${item.sku} | ${item.variantDetails || 'Std'} | Qty: ${item.quantity} ${item.moq && item.moq > 1 ? `<span class="text-neutral-400 font-normal">(Case: ${item.moq})</span>` : ''}</div>
-              ${item.retailPriceEur && item.retailPriceEur > item.priceEur ? `<div class="font-mono text-[10px] text-emerald-400">Wholesale Trade Price (Retail: ${country.currency === 'GBP' ? '£' + (item.retailPriceGbp || item.retailPriceEur * 0.85).toFixed(2) : '€' + item.retailPriceEur.toFixed(2)})</div>` : ''}
+            <div class="flex items-start gap-3">
+              <div class="w-12 h-12 rounded bg-black/60 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
+                ${imgUrl ? `<img src="${imgUrl}" alt="${formattedTitle}" class="w-full h-full object-cover">` : `<span class="material-symbols-outlined text-neutral-400 text-xl">palette</span>`}
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <h4 class="font-headline text-xs sm:text-sm font-bold text-white tracking-wide leading-snug truncate" title="${item.title}">${formattedTitle}</h4>
+                  <div class="font-headline text-sm font-extrabold ${summary.isB2B ? 'text-emerald-400' : 'text-white'} shrink-0">${priceDisplay}</div>
+                </div>
+                <div class="font-mono text-[11px] text-neutral-400 mt-0.5 truncate">
+                  SKU: <span class="text-neutral-300 font-semibold">${item.sku || 'N/A'}</span>
+                  ${item.variantDetails && item.variantDetails !== 'Standard' && item.variantDetails !== 'Std' ? `<span class="text-neutral-500">•</span> <span>${item.variantDetails}</span>` : ''}
+                </div>
+                ${item.retailPriceEur && item.retailPriceEur > item.priceEur ? `<div class="font-mono text-[10px] text-emerald-400 mt-0.5">Wholesale Trade Price (Retail: ${country.currency === 'GBP' ? '£' + (item.retailPriceGbp || item.retailPriceEur * 0.85).toFixed(2) : '€' + item.retailPriceEur.toFixed(2)})</div>` : ''}
+              </div>
             </div>
-            <div class="text-right">
-              <div class="font-headline text-base ${summary.isB2B ? 'text-emerald-400' : 'text-primary'}">${priceDisplay}</div>
-              <button onclick="window.paintApp.removeItem(${idx})" class="font-label-xs text-[10px] text-error hover:underline cursor-pointer">Remove</button>
+
+            <div class="flex items-center justify-between pt-2 border-t border-white/5">
+              <div class="flex items-center gap-2">
+                <div class="inline-flex items-center border border-white/20 bg-black/60 rounded h-7">
+                  <button type="button" onclick="window.paintApp.changeItemQuantity(${idx}, -1)" class="w-7 h-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-white/10 rounded-l transition-colors cursor-pointer" aria-label="Decrease quantity">
+                    <span class="material-symbols-outlined text-[13px]">remove</span>
+                  </button>
+                  <span class="w-7 text-center font-mono text-xs text-white font-bold select-none">${item.quantity}</span>
+                  <button type="button" onclick="window.paintApp.changeItemQuantity(${idx}, 1)" class="w-7 h-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-white/10 rounded-r transition-colors cursor-pointer" aria-label="Increase quantity">
+                    <span class="material-symbols-outlined text-[13px]">add</span>
+                  </button>
+                </div>
+                ${item.quantity > 1 ? `<span class="font-mono text-[10px] text-neutral-400">(${country.symbol}${itemPriceLocal.toFixed(2)} ea)</span>` : ''}
+              </div>
+
+              <button type="button" onclick="window.paintApp.removeItem(${idx})" class="font-mono text-[11px] text-neutral-400 hover:text-red-400 flex items-center gap-1 transition-colors cursor-pointer" title="Remove item">
+                <span class="material-symbols-outlined text-[14px]">delete</span>
+                <span>Remove</span>
+              </button>
             </div>
           `;
           itemsContainer.appendChild(row);
@@ -269,7 +338,7 @@ export class CartDrawerUI {
       const progressPercent = Math.min(100, Math.round((currentVal / thresholdVal) * 100));
 
       if (remainingVal <= 0 && currentVal > 0) {
-        const unlockedHtml = `<span class="text-emerald-400 font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">celebration</span> FREE APC OVERNIGHT SHIPPING UNLOCKED!</span>`;
+        const unlockedHtml = `<span class="text-emerald-400 font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">celebration</span> Free Express Delivery Unlocked!</span>`;
         if (topMeterText) topMeterText.innerHTML = unlockedHtml;
         if (topMeterFill) {
           topMeterFill.style.width = '100%';
@@ -283,14 +352,14 @@ export class CartDrawerUI {
         }
       } else {
         if (topMeterText) {
-          topMeterText.innerHTML = `Add <strong id="shipping-meter-remaining" class="text-amber-300 font-bold">${currSymbol}${remainingVal.toFixed(2)}</strong> to unlock <span class="text-emerald-400 font-bold">FREE APC OVERNIGHT SHIPPING</span> 🚚`;
+          topMeterText.innerHTML = `Add <strong id="shipping-meter-remaining" class="text-amber-300 font-bold">${currSymbol}${remainingVal.toFixed(2)}</strong> for <span class="text-emerald-400 font-bold">Free APC Overnight Express</span> 🚚`;
         }
         if (topMeterFill) {
           topMeterFill.style.width = `${progressPercent}%`;
           topMeterFill.classList.remove('shipping-progress-unlocked');
         }
         if (drawerMeterText) {
-          drawerMeterText.innerHTML = `<span class="material-symbols-outlined text-amber-400 text-[16px]">local_shipping</span><span>Add <strong id="drawer-shipping-remaining" class="text-amber-300 font-bold">${currSymbol}${remainingVal.toFixed(2)}</strong> for FREE Express Delivery</span>`;
+          drawerMeterText.innerHTML = `<span class="material-symbols-outlined text-amber-400 text-[16px]">local_shipping</span><span>Add <strong id="drawer-shipping-remaining" class="text-amber-300 font-bold">${currSymbol}${remainingVal.toFixed(2)}</strong> for Free Express Delivery</span>`;
         }
         if (drawerMeterPercent) drawerMeterPercent.textContent = `${progressPercent}%`;
         if (drawerMeterFill) {
@@ -300,27 +369,85 @@ export class CartDrawerUI {
       }
     }
 
-    // Render 1-Click Upsells in Cart Drawer
+    // Render 1-Click Upsells in Cart Drawer (Intelligent Deduplication & Accurate Catalog Pricing)
     const upsellContainer = document.getElementById('drawer-upsell-items');
     if (upsellContainer) {
-      const cartSkus = summary.items.map(it => it.sku || '');
+      const cartSkus = summary.items.map(it => (it.sku || '').toLowerCase());
+      const cartTitles = summary.items.map(it => (it.title || '').toLowerCase());
+
       const potentialUpsells = [
-        { id: 'fk-tape-orange', title: 'Orange Fineline Tape (3mm)', priceEur: 6.95, priceGbp: 5.95 },
-        { id: 'fk-2603', title: '0.015 Kromatic Holo Flake (30g)', priceEur: 16.95, priceGbp: 14.49 },
-        { id: 'kroma-topcoat-clr-180', title: 'Kroma Dedicated Clear (180 Set)', priceEur: 76.47, priceGbp: 65.00 },
-        { id: 'fk-1970', title: 'Flake King 550 Mini Gun', priceEur: 116.99, priceGbp: 99.99 }
+        { 
+          id: 'fk-2366-3mm', 
+          sku: 'tpor3', 
+          matchKeys: ['tape', 'tpor', 'masking', 'fine line', 'fineline', 'fk-tape'],
+          title: 'Orange Fine Line Tape (3mm)', 
+          priceEur: 6.05, 
+          priceGbp: 5.14,
+          img: 'https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange1mm.png?fit=600%2C600&ssl=1'
+        },
+        { 
+          id: 'fk-2603', 
+          sku: 'fk-2603', 
+          matchKeys: ['2603', 'holo flake', 'kromatic holo', '0.015', 'glitter'],
+          title: '0.015 Kromatic Holo Flake (30g)', 
+          priceEur: 16.95, 
+          priceGbp: 14.49,
+          img: 'https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/0.015KromaticHolo.jpg?fit=600%2C600&ssl=1'
+        },
+        { 
+          id: 'kroma-topcoat-clr-180', 
+          sku: 'ke-clr-180', 
+          matchKeys: ['topcoat', 'clear', 'clr-180', 'kroma-topcoat'],
+          title: 'Kroma Dedicated Clear (180 Set)', 
+          priceEur: 76.47, 
+          priceGbp: 65.00,
+          img: 'assets/images/kroma-detail-skull.jpg'
+        },
+        { 
+          id: 'fk-1970', 
+          sku: 'fk-1970', 
+          matchKeys: ['1970', '550 mini', 'flake king 550'],
+          title: 'Flake King 550 Mini Gun', 
+          priceEur: 116.99, 
+          priceGbp: 99.99,
+          img: 'assets/images/flake-buggy-studio.jpg'
+        },
+        { 
+          id: 'fk-50', 
+          sku: 'fk-50', 
+          matchKeys: ['binder', 'fk50', 'fk-50'],
+          title: 'FK50 Waterborne Flake Binder (1L)', 
+          priceEur: 29.35, 
+          priceGbp: 24.95,
+          img: 'assets/images/fk100-prime-black-base.jpg'
+        }
       ];
-      const eligibleUpsells = potentialUpsells.filter(u => !cartSkus.some(s => s.toLowerCase().includes(u.id))).slice(0, 2);
+
+      // Smart filter: Never recommend any product if its SKU, ID, or category keyword is already in the cart
+      const eligibleUpsells = potentialUpsells.filter(u => {
+        const matchesSku = cartSkus.some(s => s.includes(u.sku) || s.includes(u.id));
+        const matchesKeyword = u.matchKeys.some(k => cartSkus.some(s => s.includes(k)) || cartTitles.some(t => t.includes(k)));
+        return !matchesSku && !matchesKeyword;
+      }).slice(0, 2);
 
       upsellContainer.innerHTML = eligibleUpsells.map(u => {
         const pDisplay = isUK ? `£${u.priceGbp.toFixed(2)}` : `€${u.priceEur.toFixed(2)}`;
         return `
-          <div class="bg-[#181a1c] border border-white/10 p-2.5 rounded flex flex-col justify-between">
-            <div class="text-[11px] font-bold text-white truncate" title="${u.title}">${u.title}</div>
+          <div class="bg-[#181a1c] border border-white/10 hover:border-white/20 p-2.5 rounded flex flex-col justify-between transition-colors">
+            <div class="flex items-start gap-2">
+              <div class="w-8 h-8 rounded bg-black/60 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
+                ${u.img ? `<img src="${u.img}" alt="${u.title}" class="w-full h-full object-cover">` : `<span class="material-symbols-outlined text-amber-400 text-sm">auto_awesome</span>`}
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="text-[11px] font-bold text-white truncate" title="${u.title}">${u.title}</div>
+                <div class="text-[10px] text-neutral-400 font-mono">System Companion</div>
+              </div>
+            </div>
             <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-white/10">
               <span class="text-amber-300 text-xs font-bold font-mono">${pDisplay}</span>
-              <button onclick="window.paintApp.addProductToCartById('${u.id}')" class="px-2 py-0.5 bg-primary/20 hover:bg-primary/40 border border-primary/50 text-white text-[10px] font-bold rounded flex items-center gap-1 transition-colors cursor-pointer">
-                <span>+ ADD</span>
+              <button type="button" onclick="window.paintApp.addUpsellToCart('${u.id}')" class="px-2.5 py-1 bg-white/10 hover:bg-primary border border-white/20 hover:border-primary text-white text-[10px] font-bold rounded flex items-center gap-1 transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-[11px]">add</span>
+                <span>Add</span>
               </button>
             </div>
           </div>
@@ -432,6 +559,47 @@ export class CartDrawerUI {
 
   removeItem(index) {
     this.app.shopifyCartManager.removeItem(index);
+  }
+
+  changeItemQuantity(index, delta) {
+    const item = this.app.shopifyCartManager.cartItems[index];
+    if (!item) return;
+    const currentQty = item.quantity || 1;
+    const moq = item.moq || 1;
+    const newQty = currentQty + (delta * moq);
+    if (newQty <= 0) {
+      this.removeItem(index);
+    } else {
+      this.app.shopifyCartManager.updateQuantity(index, newQty);
+    }
+  }
+
+  setItemQuantity(index, newQty) {
+    const qty = parseInt(newQty, 10);
+    if (isNaN(qty) || qty <= 0) {
+      this.removeItem(index);
+    } else {
+      this.app.shopifyCartManager.updateQuantity(index, qty);
+    }
+  }
+
+  addUpsellToCart(upsellId) {
+    if (upsellId === 'fk-2366-3mm') {
+      this.app.shopifyCartManager.addItem({
+        sku: 'TPOR3',
+        title: 'Prime Orange Fine Line Tape',
+        variantDetails: '3mm x 55m',
+        category: 'Masking Products',
+        quantity: 1,
+        priceEur: 6.05,
+        priceGbp: 5.14
+      });
+      this.app.showToast('Added Prime Orange Fine Line Tape (3mm) to cart!', 'success');
+      return;
+    }
+    if (this.app.addProductToCartById) {
+      this.app.addProductToCartById(upsellId);
+    }
   }
 
   removeKromaEdgeFromCart() {

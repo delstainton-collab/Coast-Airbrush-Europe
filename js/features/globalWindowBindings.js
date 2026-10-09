@@ -23,6 +23,9 @@ export function bindGlobalWindowActions(app) {
       form.innerHTML = `<span class="text-emerald-400 font-bold text-[11px] flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">check_circle</span> You're registered on the European priority dispatch list for ${name}!</span>`;
     }
   };
+  window.changeCartItemQuantity = (idx, delta) => app.changeItemQuantity(idx, delta);
+  window.removeCartItem = (idx) => app.removeItem(idx);
+  window.addUpsellToCart = (upsellId) => app.addUpsellToCart(upsellId);
   window.addKromaEdgeToCart = (prodId) => app.addProductToCartById(prodId);
   window.addKromaEdgeBundleToCart = () => app.addKromaEdgeBundleToCart();
   window.addFlakeKingMasterBundleToCart = () => app.addFlakeKingMasterBundleToCart();

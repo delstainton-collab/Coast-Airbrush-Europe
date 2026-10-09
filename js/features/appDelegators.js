@@ -196,6 +196,9 @@ export function registerAppDelegators(proto) {
     cartDrawerUI: [
       'renderCartSummary',
       'removeItem',
+      'changeItemQuantity',
+      'setItemQuantity',
+      'addUpsellToCart',
       'checkoutShopify',
       'openTradeAccountModal',
       'closeTradeAccountModal',

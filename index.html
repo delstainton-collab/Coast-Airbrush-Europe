@@ -7511,23 +7511,29 @@
   <!-- ========================================================================= -->
   <!-- SHOPIFY CART DRAWER (EUROPEAN UPGRADE) -->
   <!-- ========================================================================= -->
-  <div id="drawer-shopify-cart" class="drawer-overlay">
+  <div id="drawer-shopify-cart" class="drawer-overlay" role="dialog" aria-modal="true" aria-label="Project Cart and Bill of Materials">
     <div class="drawer-panel">
-      <div class="p-5 bg-surface-container-high border-b-2 border-secondary flex justify-between items-center">
-        <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary text-2xl">shopping_bag</span>
+      <!-- Cart Drawer Header -->
+      <div class="p-4 sm:p-5 bg-surface-container-high border-b border-white/10 flex justify-between items-center shrink-0">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded bg-primary/10 border border-primary/30 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-xl">shopping_bag</span>
+          </div>
           <div>
-            <h3 class="font-headline text-xl text-primary uppercase">PROJECT CART &amp; BOM</h3>
-            <span id="cart-drawer-hub-badge" class="font-mono text-[10px] text-emerald-400 font-bold block">🇬🇧 UK Dispatch • 🇪🇺 Delivered Duty Paid (Zero Courier Surcharges)</span>
+            <div class="flex items-center gap-2">
+              <h3 class="font-headline text-base sm:text-lg text-white font-bold tracking-tight">Project Cart &amp; BOM</h3>
+              <span id="header-cart-count-badge" class="px-2 py-0.5 rounded-full bg-white/10 text-neutral-300 font-mono text-[11px] font-semibold">0</span>
+            </div>
+            <span id="cart-drawer-hub-badge" class="font-mono text-[10px] text-emerald-400 font-medium block">🇬🇧 UK Dispatch • 🇪🇺 Delivered Duty Paid (Zero Courier Surcharges)</span>
           </div>
         </div>
-        <button id="btn-close-cart-drawer" class="text-secondary hover:text-primary transition-colors cursor-pointer">
-          <span class="material-symbols-outlined text-2xl">close</span>
+        <button id="btn-close-cart-drawer" class="w-8 h-8 rounded border border-white/10 hover:border-white/30 bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white transition-colors flex items-center justify-center cursor-pointer" aria-label="Close cart drawer">
+          <span class="material-symbols-outlined text-xl">close</span>
         </button>
       </div>
 
       <!-- In-Drawer Dynamic Free Courier Shipping Meter -->
-      <div id="drawer-shipping-meter" class="p-3.5 bg-[#121416] border-b border-white/10 flex flex-col gap-1.5">
+      <div id="drawer-shipping-meter" class="p-3 bg-[#111315] border-b border-white/10 flex flex-col gap-1.5 shrink-0">
         <div class="flex justify-between items-center text-xs font-mono">
           <span id="drawer-shipping-text" class="text-neutral-200 font-medium flex items-center gap-1.5">
             <span class="material-symbols-outlined text-amber-400 text-[16px]">local_shipping</span>
@@ -7536,19 +7542,20 @@
           <span id="drawer-shipping-percent" class="text-[11px] font-bold text-neutral-400">0%</span>
         </div>
         <div class="w-full bg-neutral-800 h-2 rounded-full overflow-hidden border border-white/10">
-          <div id="drawer-shipping-fill" class="shipping-progress-bar-fill h-full rounded-full" style="width: 0%;"></div>
+          <div id="drawer-shipping-fill" class="shipping-progress-bar-fill h-full rounded-full transition-all duration-300" style="width: 0%;"></div>
         </div>
       </div>
 
-      <div id="cart-drawer-items" class="p-4 sm:p-5 flex-1 min-h-[160px] overflow-y-auto custom-scrollbar flex flex-col gap-3">
-        <!-- Cart Items -->
+      <!-- Cart Items List (Dominant Scrolling Viewport) -->
+      <div id="cart-drawer-items" class="p-4 flex-1 min-h-0 overflow-y-auto custom-scrollbar flex flex-col gap-2.5">
+        <!-- Rendered dynamically via CartDrawerUI -->
       </div>
 
       <!-- 1-Click Complete Your Finish System Upsells -->
-      <div id="drawer-upsells" class="p-3.5 bg-[#141618] border-t border-white/10 flex flex-col gap-2">
+      <div id="drawer-upsells" class="p-3 bg-[#141618] border-t border-white/10 flex flex-col gap-2 shrink-0">
         <div class="flex items-center justify-between">
-          <span class="text-[10px] font-mono uppercase tracking-wider text-amber-400 font-bold flex items-center gap-1">
-            <span class="material-symbols-outlined text-[14px]">auto_awesome</span> COMPLETE YOUR FINISH SYSTEM
+          <span class="text-[10px] font-mono tracking-wider text-amber-400 font-semibold flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">auto_awesome</span> Complete Your Finish System
           </span>
           <span class="text-[9px] font-mono text-neutral-400">1-Click Fast Add</span>
         </div>
@@ -7557,38 +7564,46 @@
         </div>
       </div>
 
-      <!-- EU VAT & Payment Module -->
-      <div class="p-5 bg-surface-container border-t-2 border-secondary flex flex-col gap-3">
-        <!-- EU Intra-Community VAT Validator -->
-        <div class="bg-surface-dim p-3 border border-secondary/80 rounded">
-          <div class="flex justify-between items-center mb-1">
-            <span class="font-label-xs text-[10px] uppercase text-secondary font-bold flex items-center gap-1">
-              <span class="material-symbols-outlined text-[13px] text-primary">domain</span> EU B2B VAT Exemption (0% Reverse-Charge)
+      <!-- EU VAT & Payment Module (Clean Shopify Accordion / Section) -->
+      <div class="p-4 bg-surface-container border-t border-white/10 flex flex-col gap-3 shrink-0">
+        <!-- EU Intra-Community VAT Validator (Muted Secondary Button, Not Red!) -->
+        <details class="group bg-surface-dim p-2.5 border border-white/10 rounded transition-colors" id="cart-vat-disclosure">
+          <summary class="flex justify-between items-center cursor-pointer select-none">
+            <span class="font-mono text-[11px] text-neutral-300 font-semibold flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[14px] text-primary">domain</span>
+              <span>EU B2B VAT Exemption (0% Reverse-Charge)</span>
             </span>
-            <span id="vat-status-pill" class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-surface border border-secondary text-secondary">OPTIONAL</span>
+            <div class="flex items-center gap-1.5">
+              <span id="vat-status-pill" class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-surface border border-white/15 text-neutral-400">OPTIONAL</span>
+              <span class="material-symbols-outlined text-[14px] text-neutral-400 transition-transform group-open:rotate-180">expand_more</span>
+            </div>
+          </summary>
+          <div class="mt-2.5 pt-2 border-t border-white/10">
+            <div class="flex gap-1.5">
+              <input type="text" id="input-vat-number" placeholder="e.g. DE123456789 or NL899999999B01" class="mech-input !py-1.5 !px-2.5 !text-xs font-mono uppercase flex-1 rounded bg-[#0b0b0d] border border-white/20 text-white placeholder:text-neutral-600 focus:border-primary">
+              <button id="btn-verify-vat" type="button" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[11px] font-mono font-bold rounded transition-colors cursor-pointer shrink-0">
+                Apply VAT
+              </button>
+            </div>
+            <div id="vat-feedback-msg" class="font-mono text-[10px] mt-1.5 hidden"></div>
           </div>
-          <div class="flex gap-1.5 mt-1.5">
-            <input type="text" id="input-vat-number" placeholder="e.g. DE123456789 or NL899999999B01" class="mech-input !py-1 !px-2 !text-xs font-mono uppercase flex-1">
-            <button id="btn-verify-vat" class="mech-button-primary !py-1 !px-3 !text-[11px] font-bold">Apply VAT</button>
-          </div>
-          <div id="vat-feedback-msg" class="font-mono text-[10px] mt-1.5 hidden"></div>
-        </div>
+        </details>
 
         <!-- Order Summary Matrix -->
-        <div class="flex flex-col gap-1.5 font-label-xs text-xs pt-1 border-t border-secondary/40">
-          <div class="flex justify-between text-secondary">
+        <div class="flex flex-col gap-1.5 text-xs pt-1 border-t border-white/10">
+          <div class="flex justify-between text-neutral-400">
             <span>Net Subtotal:</span>
-            <span id="cart-drawer-subtotal" class="font-mono text-on-surface">€0.00</span>
+            <span id="cart-drawer-subtotal" class="font-mono text-white font-medium">€0.00</span>
           </div>
-          <div class="flex justify-between text-secondary">
-            <span id="cart-drawer-vat-label">VAT (19% DE):</span>
-            <span id="cart-drawer-vat-amount" class="font-mono text-on-surface">€0.00</span>
+          <div class="flex justify-between text-neutral-400">
+            <span id="cart-drawer-vat-label">VAT:</span>
+            <span id="cart-drawer-vat-amount" class="font-mono text-white">€0.00</span>
           </div>
-          <div class="flex justify-between text-secondary">
-            <span id="cart-drawer-carrier-label">Shipping &amp; ADR Packaging:</span>
-            <span id="cart-drawer-shipping-amount" class="font-mono text-on-surface">€0.00</span>
+          <div class="flex justify-between text-neutral-400">
+            <span id="cart-drawer-carrier-label">Shipping &amp; Packaging:</span>
+            <span id="cart-drawer-shipping-amount" class="font-mono text-white">€0.00</span>
           </div>
-          <div id="cart-drawer-small-order-row" class="flex justify-between text-secondary hidden">
+          <div id="cart-drawer-small-order-row" class="flex justify-between text-neutral-400 hidden">
             <span class="flex items-center gap-1 text-amber-400">
               <span class="material-symbols-outlined text-[13px]">handyman</span>
               <span id="cart-drawer-small-order-label">Small Order Packaging Prep:</span>
@@ -7602,59 +7617,67 @@
             </span>
             <span id="cart-drawer-savings-amount" class="font-mono font-bold">-£0.00</span>
           </div>
-          <div id="cart-drawer-ddp-row" class="flex justify-between text-secondary hidden">
+          <div id="cart-drawer-ddp-row" class="flex justify-between text-neutral-400 hidden">
             <span class="flex items-center gap-1 text-amber-400">
               <span class="material-symbols-outlined text-[12px]">gavel</span> DDP Customs Clearance Fee:
             </span>
             <span id="cart-drawer-ddp-amount" class="font-mono text-amber-400">€0.00</span>
           </div>
-          <div class="flex justify-between text-[11px] text-secondary">
+          <div class="flex justify-between text-[11px] text-neutral-400">
             <span>Courier Service:</span>
-            <span id="cart-drawer-carrier" class="font-mono text-emerald-400 font-bold">DHL Express (Free &gt; €200)</span>
+            <span id="cart-drawer-carrier" class="font-mono text-emerald-400 font-medium">DHL Express (Free &gt; €200)</span>
           </div>
-          <div class="flex justify-between items-center font-headline text-2xl pt-2 border-t border-secondary">
-            <span class="text-secondary uppercase">TOTAL (LANDED):</span>
+          <div class="flex justify-between items-baseline pt-2 border-t border-white/10">
+            <span class="font-headline text-base text-neutral-300 font-bold uppercase tracking-wide">Total:</span>
             <div class="text-right">
-              <span id="cart-drawer-total" class="text-primary block font-bold">€0.00</span>
-              <span id="cart-drawer-converted-total" class="text-xs font-mono text-secondary font-normal block"></span>
+              <span id="cart-drawer-total" class="font-headline text-2xl font-extrabold text-white block">€0.00</span>
+              <span id="cart-drawer-converted-total" class="text-xs font-mono text-neutral-400 font-normal block"></span>
             </div>
           </div>
         </div>
 
-        <!-- European Payment Gateways Acceptance Strip -->
-        <div class="bg-surface-dim p-2.5 border border-secondary/60 rounded flex flex-col gap-1.5">
-          <span class="font-label-xs text-[9px] uppercase tracking-wider text-secondary/90 font-bold">Accepted European Payment Methods:</span>
+        <!-- European Payment Gateways Acceptance Strip (Clean Muted Trust Strip) -->
+        <div class="bg-[#101214] p-2 border border-white/10 rounded flex flex-col gap-1.5">
+          <div class="flex items-center justify-between text-[10px] text-neutral-400 font-mono">
+            <span>Accepted Payment Methods:</span>
+            <span class="flex items-center gap-1 text-emerald-400"><span class="material-symbols-outlined text-[12px]">lock</span> 256-Bit SSL Encrypted</span>
+          </div>
           <div class="flex flex-wrap gap-1.5 items-center">
-            <span class="px-2 py-0.5 bg-surface border border-secondary font-bold text-[10px] text-pink-400">Klarna.</span>
-            <span class="px-2 py-0.5 bg-surface border border-secondary font-bold text-[10px] text-sky-400">iDEAL</span>
-            <span class="px-2 py-0.5 bg-surface border border-secondary font-bold text-[10px] text-yellow-400">PayPal</span>
-            <span class="px-2 py-0.5 bg-surface border border-secondary font-bold text-[10px] text-blue-400">Bancontact</span>
-            <span class="px-2 py-0.5 bg-surface border border-secondary font-bold text-[10px] text-red-400">BLIK</span>
-            <span class="px-2 py-0.5 bg-surface border border-secondary font-bold text-[10px] text-emerald-400">SEPA Direct</span>
-            <span class="px-2 py-0.5 bg-surface border border-secondary font-bold text-[10px] text-white">Apple / Google Pay</span>
+            <span class="px-2 py-0.5 bg-black/60 border border-white/10 rounded font-semibold text-[10px] text-pink-300">Klarna</span>
+            <span class="px-2 py-0.5 bg-black/60 border border-white/10 rounded font-semibold text-[10px] text-sky-300">iDEAL</span>
+            <span class="px-2 py-0.5 bg-black/60 border border-white/10 rounded font-semibold text-[10px] text-amber-300">PayPal</span>
+            <span class="px-2 py-0.5 bg-black/60 border border-white/10 rounded font-semibold text-[10px] text-blue-300">Bancontact</span>
+            <span class="px-2 py-0.5 bg-black/60 border border-white/10 rounded font-semibold text-[10px] text-rose-300">BLIK</span>
+            <span class="px-2 py-0.5 bg-black/60 border border-white/10 rounded font-semibold text-[10px] text-emerald-300">SEPA Direct</span>
+            <span class="px-2 py-0.5 bg-black/60 border border-white/10 rounded font-semibold text-[10px] text-white">Apple Pay</span>
+            <span class="px-2 py-0.5 bg-black/60 border border-white/10 rounded font-semibold text-[10px] text-white">Google Pay</span>
           </div>
         </div>
 
-        <!-- Two-Path B2B Checkout Actions -->
+        <!-- Checkout Actions -->
         <div id="cart-drawer-checkout-actions" class="flex flex-col gap-2">
-          <!-- Card / Standard Checkout Button -->
-          <button id="btn-drawer-checkout-shopify" class="mech-button-primary !w-full !justify-center !py-3.5 !text-sm font-bold shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
-            PROCEED TO EUROPEAN CHECKOUT &rarr;
+          <!-- Primary Checkout Button (Sole Red Conversion Button!) -->
+          <button id="btn-drawer-checkout-shopify" class="w-full py-3.5 px-4 bg-[#dc2626] hover:bg-[#b91c1c] active:translate-y-0.5 text-white font-headline text-sm uppercase font-bold tracking-wide rounded shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <span>PROCEED TO EUROPEAN CHECKOUT</span>
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
           </button>
           
           <!-- B2B Account Credit Checkout Button -->
-          <button id="btn-drawer-checkout-account" class="hidden !w-full !justify-center !py-3 !text-xs font-bold !bg-emerald-950/80 !border-2 !border-emerald-500 !text-emerald-300 hover:!bg-emerald-900 cursor-pointer flex items-center gap-2 rounded">
+          <button id="btn-drawer-checkout-account" class="hidden w-full justify-center py-3 text-xs font-bold bg-emerald-950/80 border-2 border-emerald-500 text-emerald-300 hover:bg-emerald-900 cursor-pointer flex items-center gap-2 rounded transition-colors">
             <span class="material-symbols-outlined text-[16px]">receipt_long</span>
             <span id="btn-drawer-account-text">CHARGE TO TRADE ACCOUNT (NET 30 DAYS)</span>
           </button>
         </div>
 
+        <!-- Secondary BOM Actions (Ghost/Outline Styling) -->
         <div class="flex gap-2">
-          <button id="btn-drawer-export-csv" class="mech-btn-secondary !flex-1 !justify-center !text-xs !py-2">
-            Download CSV BOM
+          <button id="btn-drawer-export-csv" class="flex-1 py-2 px-2.5 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-neutral-300 hover:text-white font-mono text-[11px] rounded transition-colors flex items-center justify-center gap-1.5 cursor-pointer">
+            <span class="material-symbols-outlined text-[14px]">file_download</span>
+            <span>Download CSV BOM</span>
           </button>
-          <button id="btn-drawer-export-json" class="mech-btn-secondary !flex-1 !justify-center !text-xs !py-2">
-            Save Recipe JSON
+          <button id="btn-drawer-export-json" class="flex-1 py-2 px-2.5 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-neutral-300 hover:text-white font-mono text-[11px] rounded transition-colors flex items-center justify-center gap-1.5 cursor-pointer">
+            <span class="material-symbols-outlined text-[14px]">data_object</span>
+            <span>Save Recipe JSON</span>
           </button>
         </div>
       </div>
