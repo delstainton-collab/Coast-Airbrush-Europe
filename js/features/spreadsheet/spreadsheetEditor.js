@@ -397,7 +397,8 @@ export class SpreadsheetEditor {
     });
 
     if (this.state.departmentFilter !== 'all') {
-      working = working.filter(p => (p.department || '').toLowerCase() === this.state.departmentFilter.toLowerCase());
+      const df = this.state.departmentFilter.toLowerCase();
+      working = working.filter(p => (p.department || '').toLowerCase() === df || (p.departmentId || '').toLowerCase() === df);
     }
 
     if (this.state.brandFilter !== 'all') {
