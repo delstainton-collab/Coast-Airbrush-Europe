@@ -31,17 +31,41 @@ export class StorefrontFiltersUI {
   matchCategory(product, catId) {
     if (!catId || catId === 'all') return true;
 
+    // 5 Core Master Departments
+    if (catId === 'spray-equipment' || catId === 'Paint & Spray Equipment' || catId === 'equipment') {
+      return product.department === 'Spray Equipment' || product.departmentId === 'spray-equipment' || ['Dry Metal Flake Guns', 'Flake King Gun Accessories'].includes(product.category);
+    }
+    if (catId === 'paints-coatings' || catId === 'Solvent Paints' || catId === 'Water Based Paint') {
+      return product.department === 'Paints & Coatings' || product.departmentId === 'paints-coatings' || ['Mirror Chrome Systems', 'Dedicated Clearcoats', 'Basecoats & Binders', 'Solvent Paints', 'Wet Products'].includes(product.category);
+    }
+    if (catId === 'flakes-special-fx' || catId === 'Dry Special FX Products' || catId === 'dry-special-fx') {
+      return product.department === 'Flakes & Special FX' || product.departmentId === 'flakes-special-fx' || product.category === 'Dry Metal Flake (Glitter)' || product.category === 'Metal Flake';
+    }
+    if (catId === 'workstations-jigs' || catId === 'vsionair-all' || catId === 'Workstations & Jigs') {
+      return product.department === 'Workstations, Stands & Jigs' || product.departmentId === 'workstations-jigs' || product.brand === 'VsionAir';
+    }
+    if (catId === 'masking-prep' || catId === 'Masking Products' || catId === 'masking-products') {
+      return product.department === 'Masking & Prep' || product.departmentId === 'masking-prep' || product.category === 'Masking Products';
+    }
+
+    // Direct Chemistry Filters
+    if (catId === 'chem-solvent' || catId === 'Solvent' || catId === 'solvent-chemistry') {
+      return (product.chemistry || '').toLowerCase() === 'solvent';
+    }
+    if (catId === 'chem-water' || catId === 'Water-Based' || catId === 'waterborne' || catId === 'water-based-chemistry') {
+      return (product.chemistry || '').toLowerCase() === 'water-based';
+    }
+
     // Direct brand & category overrides for precision storefront filtering
-    if (catId === 'vsionair-all' || catId === 'Workstations & Jigs' || catId === 'workstations-jigs') return product.brand === 'VsionAir';
     if (catId === 'Basecoats & Binders' || catId === 'basecoats-binders' || catId === 'Wet Products') return product.category === 'Basecoats & Binders' || product.category === 'Wet Products';
     if (catId === 'Mirror Chrome Systems' || catId === 'mirror-chrome' || catId === 'Sprayable Chrome') return product.category === 'Mirror Chrome Systems';
     if (catId === 'Dedicated Clearcoats' || catId === 'clear-coat' || catId === 'Clearcoats') return product.category === 'Dedicated Clearcoats';
     if (catId === 'Dry Metal Flake Guns' || catId === 'dry-flake-guns') return product.category === 'Dry Metal Flake Guns';
     if (catId === 'Flake King Gun Accessories') return product.category === 'Flake King Gun Accessories';
     if (catId === 'flake-guns-all') return product.category === 'Dry Metal Flake Guns' || product.category === 'Flake King Gun Accessories';
-    if (catId === 'flake-candy' || catId === 'Candy Color Flakes') return product.category === 'Dry Metal Flake (Glitter)' && (product.name || '').toLowerCase().includes('candy');
-    if (catId === 'flake-kromatic' || catId === 'Kromatic Shift Flakes') return product.category === 'Dry Metal Flake (Glitter)' && (product.name || '').toLowerCase().includes('kromatic');
-    if (catId === 'flake-specialty' || catId === 'Specialty Flakes') return product.category === 'Dry Metal Flake (Glitter)' && !(product.name || '').toLowerCase().includes('candy') && !(product.name || '').toLowerCase().includes('kromatic');
+    if (catId === 'flake-candy' || catId === 'Candy Color Flakes' || catId === 'candy') return (product.category === 'Dry Metal Flake (Glitter)' || product.department === 'Flakes & Special FX') && (product.subcategory === 'Candy Color Flakes' || (product.name || '').toLowerCase().includes('candy'));
+    if (catId === 'flake-kromatic' || catId === 'Kromatic Shift Flakes' || catId === 'kromatic') return (product.category === 'Dry Metal Flake (Glitter)' || product.department === 'Flakes & Special FX') && (product.subcategory === 'Kromatic Shift Flakes' || (product.name || '').toLowerCase().includes('kromatic'));
+    if (catId === 'flake-specialty' || catId === 'Specialty Flakes' || catId === 'Specialty & Show Krome' || catId === 'specialty') return (product.category === 'Dry Metal Flake (Glitter)' || product.department === 'Flakes & Special FX') && !(product.name || '').toLowerCase().includes('candy') && !(product.name || '').toLowerCase().includes('kromatic');
     if (catId === 'Dry Metal Flake (Glitter)' || catId === 'dry-flakes' || catId === 'Metal Flake' || catId === 'Metal Flakes') return product.category === 'Dry Metal Flake (Glitter)' || product.category === 'Metal Flake';
     if (catId === 'Masking Products' || catId === 'fine-line-tapes' || catId === 'Fine Line Tapes') return product.category === 'Masking Products';
 
@@ -53,11 +77,15 @@ export class StorefrontFiltersUI {
         const prodTags = Array.isArray(product.tags) ? product.tags.map(t => String(t).toLowerCase()) : [];
 
         if (taxMatch.type === 'subcategory') {
+          if (product.subcategoryId && product.subcategoryId === taxMatch.sub.id) return true;
+          if (product.subcategory && product.subcategory.toLowerCase() === taxMatch.sub.name.toLowerCase()) return true;
           return taxMatch.sub.matchValues.some(val => {
             const v = val.toLowerCase();
             return prodCat === v || prodTags.includes(v);
           });
         } else if (taxMatch.type === 'department') {
+          if (product.departmentId && product.departmentId === taxMatch.dept.id) return true;
+          if (product.department && product.department.toLowerCase() === taxMatch.dept.name.toLowerCase()) return true;
           return taxMatch.dept.subcategories.some(sub => {
             return sub.matchValues.some(val => {
               const v = val.toLowerCase();
@@ -124,36 +152,42 @@ export class StorefrontFiltersUI {
 
     const PRIMARY_DEPARTMENTS = [
       { id: "all", label: "All Products", icon: "apps", brand: "all" },
-      { id: "Solvent Paints", label: "Sprayable Chrome", icon: "format_paint", brand: "Kroma Edge" },
-      { id: "Dry Metal Flake (Glitter)", label: "Metal Flakes", icon: "auto_awesome", brand: "Flake King" },
-      { id: "Basecoats & Binders", label: "Basecoats & Binders", icon: "science", brand: "Flake King" },
-      { id: "Dry Metal Flake Guns", label: "Flake Guns & Kits", icon: "precision_manufacturing", brand: "Flake King" },
-      { id: "Flake King Gun Accessories", label: "Gun Accessories", icon: "build", brand: "Flake King" },
-      { id: "vsionair-all", label: "Workstations & Jigs (Coming Soon)", icon: "handyman", brand: "VsionAir" },
-      { id: "Masking Products", label: "Fine Line Tapes", icon: "content_cut", brand: "Flake King" }
+      { id: "spray-equipment", label: "Spray Equipment", icon: "precision_manufacturing", brand: "all" },
+      { id: "paints-coatings", label: "Paints & Coatings", icon: "format_paint", brand: "all" },
+      { id: "flakes-special-fx", label: "Flakes & Special FX", icon: "auto_awesome", brand: "Flake King" },
+      { id: "workstations-jigs", label: "Workstations & Jigs", icon: "handyman", brand: "VsionAir" },
+      { id: "masking-prep", label: "Fine Line Tapes", icon: "content_cut", brand: "Flake King" }
     ];
 
     const VSIONAIR_SUBCATS = [
-      { id: "vsionair-all", label: "All Workstations & Jigs" },
+      { id: "workstations-jigs", label: "All Workstations & Jigs" },
       { id: "Work-Holding Jigs", label: "Work-Holding Jigs (10)" },
-      { id: "Base Stands & Easels", label: "Base Stands & Easels (7)" },
-      { id: "Tool Bars & Lighting Rigs", label: "Lighting Rigs & Tool Bars (9)" },
       { id: "Tool & Airbrush Holders", label: "Airbrush & Tool Holders (18)" },
+      { id: "Tool Bars & Lighting Rigs", label: "Lighting Rigs & Tool Bars (9)" },
+      { id: "Base Stands & Easels", label: "Base Stands & Easels (7)" },
       { id: "Fixings, Knobs & Hardware", label: "Fixings, Knobs & Hardware (25)" }
     ];
 
     const FLAKE_SUBCATS = [
       { id: "all", label: "All Flakes" },
-      { id: "single", label: "Single Colour" },
+      { id: "candy", label: "Candy Color" },
       { id: "kromatic", label: "Kromatic" },
-      { id: "iridescent", label: "Iridescent" },
-      { id: "mixed", label: "Mixed" }
+      { id: "specialty", label: "Specialty & Chrome" }
     ];
 
     const GUN_SUBCATS = [
+      { id: "spray-equipment", label: "All Spray Tools" },
       { id: "Dry Metal Flake Guns", label: "Flake Guns & Kits" },
       { id: "Flake King Gun Accessories", label: "Gun Accessories & Jars" },
       { id: "flake-guns-all", label: "All Gun Hardware" }
+    ];
+
+    const PAINT_SUBCATS = [
+      { id: "paints-coatings", label: "All Paints & Coatings (5)" },
+      { id: "chem-solvent", label: "🧪 Solvent Systems (5)" },
+      { id: "Mirror Chrome Systems", label: "Mirror Chrome (1)" },
+      { id: "Dedicated Clearcoats", label: "Topcoat Clear (1)" },
+      { id: "Basecoats & Binders", label: "Base & Binders (3)" }
     ];
 
     const getCount = (catId) => {
@@ -178,11 +212,18 @@ export class StorefrontFiltersUI {
         if (count === 0 && dept.id !== 'all') return;
 
         // Check if primary is active (or if child subcategory is active)
-        const isVsionAirChild = VSIONAIR_SUBCATS.some(s => s.id === this.activeCategoryFilter);
+        const isVsionAirChild = VSIONAIR_SUBCATS.some(s => s.id === this.activeCategoryFilter) || this.activeCategoryFilter === 'vsionair-all';
         const isGunChild = GUN_SUBCATS.some(s => s.id === this.activeCategoryFilter);
+        const isPaintChild = PAINT_SUBCATS.some(s => s.id === this.activeCategoryFilter);
+        const isFlakeChild = (this.activeCategoryFilter === 'Dry Metal Flake (Glitter)' || this.activeCategoryFilter === 'Metal Flake');
+        const isMaskingChild = (this.activeCategoryFilter === 'Masking Products');
+
         const isActive = (this.activeCategoryFilter === dept.id) || 
-                         (dept.id === 'vsionair-all' && isVsionAirChild) ||
-                         (dept.id === 'Dry Metal Flake Guns' && this.activeCategoryFilter === 'flake-guns-all');
+                         (dept.id === 'workstations-jigs' && isVsionAirChild) ||
+                         (dept.id === 'spray-equipment' && isGunChild) ||
+                         (dept.id === 'paints-coatings' && isPaintChild) ||
+                         (dept.id === 'flakes-special-fx' && isFlakeChild) ||
+                         (dept.id === 'masking-prep' && isMaskingChild);
 
         html += `
           <button type="button" data-cat-pill="${dept.id}" class="top-category-pill ${isActive ? 'active' : ''}">
@@ -235,9 +276,10 @@ export class StorefrontFiltersUI {
 
     // 2. Render Secondary Subcategory Sub-Bar
     if (flakeSubcatBar) {
-      const isFlakeSelected = this.activeCategoryFilter === 'Dry Metal Flake (Glitter)' || this.activeCategoryFilter === 'Metal Flake';
-      const isVsionAirSelected = this.activeCategoryFilter === 'vsionair-all' || VSIONAIR_SUBCATS.some(s => s.id === this.activeCategoryFilter);
-      const isGunSelected = this.activeCategoryFilter === 'Dry Metal Flake Guns' || this.activeCategoryFilter === 'Flake King Gun Accessories' || this.activeCategoryFilter === 'flake-guns-all';
+      const isFlakeSelected = this.activeCategoryFilter === 'flakes-special-fx' || this.activeCategoryFilter === 'Dry Metal Flake (Glitter)' || this.activeCategoryFilter === 'Metal Flake';
+      const isVsionAirSelected = this.activeCategoryFilter === 'workstations-jigs' || this.activeCategoryFilter === 'vsionair-all' || VSIONAIR_SUBCATS.some(s => s.id === this.activeCategoryFilter);
+      const isGunSelected = this.activeCategoryFilter === 'spray-equipment' || this.activeCategoryFilter === 'Dry Metal Flake Guns' || this.activeCategoryFilter === 'Flake King Gun Accessories' || this.activeCategoryFilter === 'flake-guns-all';
+      const isPaintSelected = this.activeCategoryFilter === 'paints-coatings' || PAINT_SUBCATS.some(s => s.id === this.activeCategoryFilter);
 
       if (isFlakeSelected) {
         flakeSubcatBar.style.display = 'flex';
@@ -289,6 +331,23 @@ export class StorefrontFiltersUI {
           btn.addEventListener('click', () => {
             const val = btn.getAttribute('data-sub-val');
             this.activeBrandFilter = 'Flake King';
+            this.setCategoryFilter(val);
+          });
+        });
+      } else if (isPaintSelected) {
+        flakeSubcatBar.style.display = 'flex';
+        flakeSubcatBar.innerHTML = PAINT_SUBCATS.map(sub => {
+          const isActive = (this.activeCategoryFilter === sub.id);
+          return `
+            <button type="button" data-sub-val="${sub.id}" class="subcat-chip ${isActive ? 'active' : ''}">
+              ${sub.label}
+            </button>
+          `;
+        }).join('');
+
+        flakeSubcatBar.querySelectorAll('.subcat-chip').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const val = btn.getAttribute('data-sub-val');
             this.setCategoryFilter(val);
           });
         });
@@ -541,6 +600,10 @@ export class StorefrontFiltersUI {
 
           dept.subcategories.forEach(sub => {
             const matchingProds = activeProducts.filter(p => {
+              if (p.subcategoryId) {
+                return p.subcategoryId === sub.id;
+              }
+              if (p.subcategory && p.subcategory.toLowerCase() === sub.name.toLowerCase()) return true;
               const prodCat = (p.category || p.productType || p.type || '').trim().toLowerCase();
               const prodTags = Array.isArray(p.tags) ? p.tags.map(t => String(t).toLowerCase()) : [];
               return sub.matchValues.some(val => {

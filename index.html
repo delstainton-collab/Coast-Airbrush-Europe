@@ -593,8 +593,110 @@
           <!-- 1. SHOP ALL -->
           <a id="tab-storefront" class="nav-link active !py-1.5 !px-3 whitespace-nowrap" href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('all')">SHOP ALL</a>
 
-          <!-- 2. WORKSTATIONS & JIGS (Dropdown) -->
-          <div class="relative group nav-dropdown-wrapper py-1" data-dropdown="vsionair">
+          <!-- 2. SPRAY EQUIPMENT (Dropdown) -->
+          <div class="relative group nav-dropdown-wrapper py-1" data-dropdown="spray-equipment">
+            <button type="button" class="nav-link nav-dropdown-trigger !py-1.5 !px-3 font-bold text-white hover:text-primary flex items-center gap-1 cursor-pointer whitespace-nowrap bg-transparent border-0" aria-expanded="false" aria-haspopup="true" onclick="window.toggleNavDropdown(this, event)">
+              <span>SPRAY EQUIPMENT</span>
+              <span class="material-symbols-outlined text-[15px] dropdown-chevron transition-transform duration-200 pointer-events-none">expand_more</span>
+            </button>
+            <!-- Dropdown Panel -->
+            <div class="nav-dropdown-menu">
+              <div class="bg-[#101114] border border-[#27272a] shadow-[0_12px_32px_rgba(0,0,0,0.9)] rounded-md p-2 flex flex-col gap-1 backdrop-blur-md min-w-[270px]">
+                <div class="px-2.5 py-1 text-[10px] font-mono text-neutral-400 uppercase tracking-wider border-b border-white/5 flex items-center justify-between">
+                  <span>Flake Guns &amp; Spray Equipment</span>
+                  <span class="text-primary font-bold">9 SKUs</span>
+                </div>
+                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Dry Metal Flake Guns', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-primary flex items-center justify-between text-xs font-mono transition-colors">
+                  <span>Dry Flake Guns &amp; Kits</span>
+                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">5</span>
+                </a>
+                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Flake King Gun Accessories', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-primary flex items-center justify-between text-xs font-mono transition-colors">
+                  <span>Gun Accessories &amp; Jars</span>
+                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">4</span>
+                </a>
+                <div class="border-t border-white/5 pt-1 mt-0.5">
+                  <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('spray-equipment'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded bg-primary/10 hover:bg-primary/20 text-primary hover:text-white flex items-center justify-between text-[11px] font-mono font-bold transition-colors">
+                    <span>View All Spray Equipment (9) &rarr;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. PAINTS & COATINGS (Dropdown) -->
+          <div class="relative group nav-dropdown-wrapper py-1" data-dropdown="paints-coatings">
+            <button type="button" class="nav-link nav-dropdown-trigger !py-1.5 !px-3 font-bold text-white hover:text-emerald-400 flex items-center gap-1 cursor-pointer whitespace-nowrap bg-transparent border-0" aria-expanded="false" aria-haspopup="true" onclick="window.toggleNavDropdown(this, event)">
+              <span>PAINTS &amp; COATINGS</span>
+              <span class="material-symbols-outlined text-[15px] dropdown-chevron transition-transform duration-200 pointer-events-none">expand_more</span>
+            </button>
+            <!-- Dropdown Panel -->
+            <div class="nav-dropdown-menu">
+              <div class="bg-[#101114] border border-[#27272a] shadow-[0_12px_32px_rgba(0,0,0,0.9)] rounded-md p-2 flex flex-col gap-1 backdrop-blur-md min-w-[280px]">
+                <div class="px-2.5 py-1 text-[10px] font-mono text-emerald-400 uppercase tracking-wider border-b border-white/5 flex items-center justify-between">
+                  <span>Solvent Systems (Hazmat)</span>
+                  <span class="text-neutral-400 font-bold">5 SKUs</span>
+                </div>
+                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Mirror Chrome Systems', 'Kroma Edge'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-emerald-400 flex items-center justify-between text-xs font-mono transition-colors">
+                  <span>Spray-On Mirror Chrome</span>
+                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">1</span>
+                </a>
+                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Dedicated Clearcoats', 'Kroma Edge'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-emerald-400 flex items-center justify-between text-xs font-mono transition-colors">
+                  <span>Hydrophobic Topcoat Clear</span>
+                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">1</span>
+                </a>
+                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Basecoats & Binders', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-emerald-400 flex items-center justify-between text-xs font-mono transition-colors">
+                  <span>Prime Black Solvent Basecoat</span>
+                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">1</span>
+                </a>
+                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Basecoats & Binders', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-emerald-400 flex items-center justify-between text-xs font-mono transition-colors">
+                  <span>Clear Intercoat Binders</span>
+                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">2</span>
+                </a>
+                <div class="border-t border-white/5 pt-1 mt-0.5">
+                  <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('paints-coatings'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 flex items-center justify-between text-[11px] font-mono font-bold transition-colors">
+                    <span>View All Paints &amp; Coatings (5) &rarr;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. FLAKES & SPECIAL FX (Dropdown) -->
+          <div class="relative group nav-dropdown-wrapper py-1" data-dropdown="flakes-special-fx">
+            <button type="button" class="nav-link nav-dropdown-trigger !py-1.5 !px-3 font-bold text-white hover:text-amber-300 flex items-center gap-1 cursor-pointer whitespace-nowrap bg-transparent border-0" aria-expanded="false" aria-haspopup="true" onclick="window.toggleNavDropdown(this, event)">
+              <span>FLAKES &amp; SPECIAL FX</span>
+              <span class="material-symbols-outlined text-[15px] dropdown-chevron transition-transform duration-200 pointer-events-none">expand_more</span>
+            </button>
+            <!-- Dropdown Panel -->
+            <div class="nav-dropdown-menu">
+              <div class="bg-[#101114] border border-[#27272a] shadow-[0_12px_32px_rgba(0,0,0,0.9)] rounded-md p-2 flex flex-col gap-1 backdrop-blur-md min-w-[270px]">
+                <div class="px-2.5 py-1 text-[10px] font-mono text-neutral-400 uppercase tracking-wider border-b border-white/5 flex items-center justify-between">
+                  <span>Solvent-Proof Metal Flakes</span>
+                  <span class="text-amber-300 font-bold">36 SKUs</span>
+                </div>
+                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('flake-candy', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-amber-300 flex items-center justify-between text-xs font-mono transition-colors">
+                  <span>Candy Color Flakes</span>
+                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">19</span>
+                </a>
+                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('flake-kromatic', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-amber-300 flex items-center justify-between text-xs font-mono transition-colors">
+                  <span>Kromatic Shift Flakes</span>
+                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">9</span>
+                </a>
+                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('flake-specialty', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-amber-300 flex items-center justify-between text-xs font-mono transition-colors">
+                  <span>Specialty &amp; Show Krome</span>
+                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">8</span>
+                </a>
+                <div class="border-t border-white/5 pt-1 mt-0.5">
+                  <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Dry Metal Flake (Glitter)', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 flex items-center justify-between text-[11px] font-mono font-bold transition-colors">
+                    <span>View All 36 Flakes &rarr;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. WORKSTATIONS & JIGS (Dropdown) -->
+          <div class="relative group nav-dropdown-wrapper py-1" data-dropdown="workstations-jigs">
             <button type="button" class="nav-link nav-dropdown-trigger !py-1.5 !px-3 text-amber-400 font-bold hover:text-amber-300 flex items-center gap-1 cursor-pointer whitespace-nowrap bg-transparent border-0" aria-expanded="false" aria-haspopup="true" onclick="window.toggleNavDropdown(this, event)">
               <span>WORKSTATIONS &amp; JIGS</span>
               <span class="material-symbols-outlined text-[15px] dropdown-chevron transition-transform duration-200 pointer-events-none">expand_more</span>
@@ -635,149 +737,25 @@
             </div>
           </div>
 
-          <!-- 3. DRY FLAKE GUNS (Dropdown) -->
-          <div class="relative group nav-dropdown-wrapper py-1" data-dropdown="guns">
-            <button type="button" class="nav-link nav-dropdown-trigger !py-1.5 !px-3 font-bold text-white hover:text-primary flex items-center gap-1 cursor-pointer whitespace-nowrap bg-transparent border-0" aria-expanded="false" aria-haspopup="true" onclick="window.toggleNavDropdown(this, event)">
-              <span>DRY FLAKE GUNS</span>
-              <span class="material-symbols-outlined text-[15px] dropdown-chevron transition-transform duration-200 pointer-events-none">expand_more</span>
-            </button>
-            <!-- Dropdown Panel -->
-            <div class="nav-dropdown-menu">
-              <div class="bg-[#101114] border border-[#27272a] shadow-[0_12px_32px_rgba(0,0,0,0.9)] rounded-md p-2 flex flex-col gap-1 backdrop-blur-md min-w-[260px]">
-                <div class="px-2.5 py-1 text-[10px] font-mono text-neutral-400 uppercase tracking-wider border-b border-white/5 flex items-center justify-between">
-                  <span>Flake King Guns</span>
-                  <span class="text-primary font-bold">9 SKUs</span>
-                </div>
-                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Dry Metal Flake Guns', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-primary flex items-center justify-between text-xs font-mono transition-colors">
-                  <span>Dry Flake Guns &amp; Kits</span>
-                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">5</span>
-                </a>
-                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Flake King Gun Accessories', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-primary flex items-center justify-between text-xs font-mono transition-colors">
-                  <span>Gun Accessories &amp; Jars</span>
-                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">4</span>
-                </a>
-                <div class="border-t border-white/5 pt-1 mt-0.5">
-                  <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('flake-guns-all', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded bg-primary/10 hover:bg-primary/20 text-primary hover:text-white flex items-center justify-between text-[11px] font-mono font-bold transition-colors">
-                    <span>View All Guns &amp; Accessories (9) &rarr;</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 4. METAL FLAKES (Dropdown) -->
-          <div class="relative group nav-dropdown-wrapper py-1" data-dropdown="flakes">
-            <button type="button" class="nav-link nav-dropdown-trigger !py-1.5 !px-3 font-bold hover:text-amber-300 flex items-center gap-1 cursor-pointer whitespace-nowrap bg-transparent border-0" aria-expanded="false" aria-haspopup="true" onclick="window.toggleNavDropdown(this, event)">
-              <span>METAL FLAKES</span>
+          <!-- 6. MASKING & PREP (Dropdown) -->
+          <div class="relative group nav-dropdown-wrapper py-1" data-dropdown="masking-prep">
+            <button type="button" class="nav-link nav-dropdown-trigger !py-1.5 !px-3 font-bold text-rose-400 hover:text-rose-300 flex items-center gap-1 cursor-pointer whitespace-nowrap bg-transparent border-0" aria-expanded="false" aria-haspopup="true" onclick="window.toggleNavDropdown(this, event)">
+              <span>MASKING &amp; PREP</span>
               <span class="material-symbols-outlined text-[15px] dropdown-chevron transition-transform duration-200 pointer-events-none">expand_more</span>
             </button>
             <!-- Dropdown Panel -->
             <div class="nav-dropdown-menu">
               <div class="bg-[#101114] border border-[#27272a] shadow-[0_12px_32px_rgba(0,0,0,0.9)] rounded-md p-2 flex flex-col gap-1 backdrop-blur-md min-w-[270px]">
                 <div class="px-2.5 py-1 text-[10px] font-mono text-neutral-400 uppercase tracking-wider border-b border-white/5 flex items-center justify-between">
-                  <span>Solvent-Proof Metal Flakes</span>
-                  <span class="text-amber-300 font-bold">36 SKUs</span>
-                </div>
-                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('flake-candy', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-amber-300 flex items-center justify-between text-xs font-mono transition-colors">
-                  <span>Candy Color Flakes</span>
-                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">19</span>
-                </a>
-                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('flake-kromatic', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-amber-300 flex items-center justify-between text-xs font-mono transition-colors">
-                  <span>Kromatic Shift Flakes</span>
-                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">9</span>
-                </a>
-                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('flake-specialty', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-amber-300 flex items-center justify-between text-xs font-mono transition-colors">
-                  <span>Specialty &amp; Show Krome</span>
-                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">8</span>
-                </a>
-                <div class="border-t border-white/5 pt-1 mt-0.5">
-                  <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Dry Metal Flake (Glitter)', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 flex items-center justify-between text-[11px] font-mono font-bold transition-colors">
-                    <span>View All 36 Flakes &rarr;</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 5. MIRROR CHROME (Dropdown) -->
-          <div class="relative group nav-dropdown-wrapper py-1" data-dropdown="chrome">
-            <button type="button" class="nav-link nav-dropdown-trigger !py-1.5 !px-3 text-sky-400 font-bold hover:text-sky-300 flex items-center gap-1 cursor-pointer whitespace-nowrap bg-transparent border-0" aria-expanded="false" aria-haspopup="true" onclick="window.toggleNavDropdown(this, event)">
-              <span>MIRROR CHROME</span>
-              <span class="material-symbols-outlined text-[15px] dropdown-chevron transition-transform duration-200 pointer-events-none">expand_more</span>
-            </button>
-            <!-- Dropdown Panel -->
-            <div class="nav-dropdown-menu">
-              <div class="bg-[#101114] border border-[#27272a] shadow-[0_12px_32px_rgba(0,0,0,0.9)] rounded-md p-2 flex flex-col gap-1 backdrop-blur-md min-w-[260px]">
-                <div class="px-2.5 py-1 text-[10px] font-mono text-neutral-400 uppercase tracking-wider border-b border-white/5 flex items-center justify-between">
-                  <span>Kroma Edge Systems</span>
-                  <span class="text-sky-400 font-bold">2 SKUs</span>
-                </div>
-                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Mirror Chrome Systems', 'Kroma Edge'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-sky-400 flex items-center justify-between text-xs font-mono transition-colors">
-                  <span>Spray-On Mirror Chrome</span>
-                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">1</span>
-                </a>
-                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Dedicated Clearcoats', 'Kroma Edge'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-sky-400 flex items-center justify-between text-xs font-mono transition-colors">
-                  <span>Hydrophobic Topcoat Clear</span>
-                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">1</span>
-                </a>
-                <div class="border-t border-white/5 pt-1 mt-0.5">
-                  <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('all', 'Kroma Edge'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 flex items-center justify-between text-[11px] font-mono font-bold transition-colors">
-                    <span>View All Kroma Edge &rarr;</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 6. BASECOATS & BINDERS (Dropdown) -->
-          <div class="relative group nav-dropdown-wrapper py-1" data-dropdown="basecoats">
-            <button type="button" class="nav-link nav-dropdown-trigger !py-1.5 !px-3 text-emerald-400 font-bold hover:text-emerald-300 flex items-center gap-1 cursor-pointer whitespace-nowrap bg-transparent border-0" aria-expanded="false" aria-haspopup="true" onclick="window.toggleNavDropdown(this, event)">
-              <span>BASECOATS &amp; BINDERS</span>
-              <span class="material-symbols-outlined text-[15px] dropdown-chevron transition-transform duration-200 pointer-events-none">expand_more</span>
-            </button>
-            <!-- Dropdown Panel -->
-            <div class="nav-dropdown-menu">
-              <div class="bg-[#101114] border border-[#27272a] shadow-[0_12px_32px_rgba(0,0,0,0.9)] rounded-md p-2 flex flex-col gap-1 backdrop-blur-md min-w-[260px]">
-                <div class="px-2.5 py-1 text-[10px] font-mono text-neutral-400 uppercase tracking-wider border-b border-white/5 flex items-center justify-between">
-                  <span>Flake King Coatings</span>
-                  <span class="text-emerald-400 font-bold">3 SKUs</span>
-                </div>
-                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Basecoats & Binders', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-emerald-400 flex items-center justify-between text-xs font-mono transition-colors">
-                  <span>Prime Black Solvent Basecoat</span>
-                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">1</span>
-                </a>
-                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Basecoats & Binders', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-emerald-400 flex items-center justify-between text-xs font-mono transition-colors">
-                  <span>Clear Intercoat Binders</span>
-                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">2</span>
-                </a>
-                <div class="border-t border-white/5 pt-1 mt-0.5">
-                  <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Basecoats & Binders', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 flex items-center justify-between text-[11px] font-mono font-bold transition-colors">
-                    <span>View All Basecoats &amp; Binders &rarr;</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 7. FINE LINE TAPES (Dropdown) -->
-          <div class="relative group nav-dropdown-wrapper py-1" data-dropdown="tapes">
-            <button type="button" class="nav-link nav-dropdown-trigger !py-1.5 !px-3 text-rose-400 font-bold hover:text-rose-300 flex items-center gap-1 cursor-pointer whitespace-nowrap bg-transparent border-0" aria-expanded="false" aria-haspopup="true" onclick="window.toggleNavDropdown(this, event)">
-              <span>FINE LINE TAPES</span>
-              <span class="material-symbols-outlined text-[15px] dropdown-chevron transition-transform duration-200 pointer-events-none">expand_more</span>
-            </button>
-            <!-- Dropdown Panel -->
-            <div class="nav-dropdown-menu">
-              <div class="bg-[#101114] border border-[#27272a] shadow-[0_12px_32px_rgba(0,0,0,0.9)] rounded-md p-2 flex flex-col gap-1 backdrop-blur-md min-w-[260px]">
-                <div class="px-2.5 py-1 text-[10px] font-mono text-neutral-400 uppercase tracking-wider border-b border-white/5 flex items-center justify-between">
                   <span>Precision Masking Tapes</span>
                   <span class="text-rose-400 font-bold">6 SKUs</span>
                 </div>
                 <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Masking Products', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-rose-400 flex items-center justify-between text-xs font-mono transition-colors">
-                  <span>Prime Green Precision Tape (3 Sizes)</span>
+                  <span>Prime Green Precision Tape</span>
                   <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">3</span>
                 </a>
                 <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Masking Products', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-200 hover:text-rose-400 flex items-center justify-between text-xs font-mono transition-colors">
-                  <span>Prime Orange High-Temp Tape (3 Sizes)</span>
+                  <span>Prime Orange High-Temp Tape</span>
                   <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">3</span>
                 </a>
                 <div class="border-t border-white/5 pt-1 mt-0.5">
@@ -789,7 +767,7 @@
             </div>
           </div>
 
-          <!-- 8. BRANDS (Dropdown) -->
+          <!-- 7. BRANDS (Dropdown) -->
           <div class="relative group nav-dropdown-wrapper py-1" data-dropdown="brands">
             <button type="button" class="nav-link nav-dropdown-trigger !py-1.5 !px-3 text-primary font-bold hover:text-red-400 flex items-center gap-1 cursor-pointer whitespace-nowrap bg-transparent border-0" aria-expanded="false" aria-haspopup="true" onclick="window.toggleNavDropdown(this, event)" title="Explore Authorized European Manufacturers">
               <span class="material-symbols-outlined text-[15px] pointer-events-none">verified</span>
@@ -5441,11 +5419,11 @@
         <div class="md:col-span-2">
           <select id="admin-ss-filter-department" class="mech-select w-full text-xs font-mono">
             <option value="all">All Departments</option>
-            <option value="Automotive & Custom Paint">Automotive &amp; Custom Paint</option>
-            <option value="Special Effects & Flakes">Special Effects &amp; Flakes</option>
-            <option value="Equipment & Hardware">Equipment &amp; Hardware</option>
-            <option value="Consumables & Prep">Consumables &amp; Prep</option>
-            <option value="Studio & Merchandise">Studio &amp; Merchandise</option>
+            <option value="Spray Equipment">Spray Equipment</option>
+            <option value="Paints & Coatings">Paints &amp; Coatings</option>
+            <option value="Flakes & Special FX">Flakes &amp; Special FX</option>
+            <option value="Workstations, Stands & Jigs">Workstations, Stands &amp; Jigs</option>
+            <option value="Masking & Prep">Masking &amp; Prep</option>
           </select>
         </div>
 
@@ -5534,6 +5512,24 @@
                 <th class="p-2.5 min-w-[160px] border-r border-secondary/40 cursor-pointer hover:text-primary transition-colors" data-sort="category">
                   <div class="flex items-center justify-between">
                     <span>Category</span>
+                    <span class="material-symbols-outlined text-[14px] opacity-60">unfold_more</span>
+                  </div>
+                </th>
+                <th class="p-2.5 min-w-[150px] border-r border-secondary/40 cursor-pointer hover:text-primary transition-colors" data-sort="subcategory">
+                  <div class="flex items-center justify-between">
+                    <span>Subcategory</span>
+                    <span class="material-symbols-outlined text-[14px] opacity-60">unfold_more</span>
+                  </div>
+                </th>
+                <th class="p-2.5 min-w-[110px] border-r border-secondary/40 cursor-pointer hover:text-primary transition-colors" data-sort="chemistry">
+                  <div class="flex items-center justify-between">
+                    <span>Chemistry</span>
+                    <span class="material-symbols-outlined text-[14px] opacity-60">unfold_more</span>
+                  </div>
+                </th>
+                <th class="p-2.5 min-w-[110px] border-r border-secondary/40 cursor-pointer hover:text-primary transition-colors" data-sort="paintStage">
+                  <div class="flex items-center justify-between">
+                    <span>Paint Stage</span>
                     <span class="material-symbols-outlined text-[14px] opacity-60">unfold_more</span>
                   </div>
                 </th>

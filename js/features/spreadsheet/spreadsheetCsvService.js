@@ -15,7 +15,12 @@ export class SpreadsheetCsvService {
       id: newId,
       sku: `CAE-${Date.now().toString().slice(-4)}`,
       name: 'New Custom Formula / Finish',
-      department: 'Automotive & Custom Paint',
+      department: 'Paints & Coatings',
+      departmentId: 'paints-coatings',
+      subcategory: 'Solvent Primers',
+      subcategoryId: 'solvent-primers',
+      chemistry: 'Solvent',
+      paintStage: 'Primer',
       brand: 'Kroma Edge',
       category: 'Mirror Chrome Systems',
       priceEur: 99.00,
@@ -65,6 +70,9 @@ export class SpreadsheetCsvService {
       "Department",
       "Brand",
       "Category",
+      "Subcategory",
+      "Chemistry",
+      "Paint_Stage",
       "Price_EUR",
       "Price_GBP",
       "In_Stock",
@@ -87,6 +95,9 @@ export class SpreadsheetCsvService {
         `"${(p.department || '').replace(/"/g, '""')}"`,
         `"${(p.brand || '').replace(/"/g, '""')}"`,
         `"${(p.category || '').replace(/"/g, '""')}"`,
+        `"${(p.subcategory || '').replace(/"/g, '""')}"`,
+        `"${(p.chemistry || 'N/A').replace(/"/g, '""')}"`,
+        `"${(p.paintStage || 'N/A').replace(/"/g, '""')}"`,
         (p.priceEur !== undefined ? p.priceEur : 0).toFixed(2),
         (p.priceGbp !== undefined ? p.priceGbp : 0).toFixed(2),
         p.inStock !== false ? "TRUE" : "FALSE",
@@ -128,6 +139,9 @@ export class SpreadsheetCsvService {
         const deptIdx = headers.indexOf('department');
         const brandIdx = headers.indexOf('brand');
         const catIdx = headers.indexOf('category');
+        const subcatIdx = headers.findIndex(h => h.includes('subcat'));
+        const chemIdx = headers.findIndex(h => h.includes('chem'));
+        const stageIdx = headers.findIndex(h => h.includes('stage') || h.includes('paintstage'));
         const eurIdx = headers.findIndex(h => h.includes('eur'));
         const gbpIdx = headers.findIndex(h => h.includes('gbp'));
         const stockIdx = headers.findIndex(h => h.includes('stock'));
@@ -162,6 +176,9 @@ export class SpreadsheetCsvService {
           if (deptIdx >= 0 && row[deptIdx]) st.department = row[deptIdx];
           if (brandIdx >= 0 && row[brandIdx]) st.brand = row[brandIdx];
           if (catIdx >= 0 && row[catIdx]) st.category = row[catIdx];
+          if (subcatIdx >= 0 && row[subcatIdx]) st.subcategory = row[subcatIdx];
+          if (chemIdx >= 0 && row[chemIdx]) st.chemistry = row[chemIdx];
+          if (stageIdx >= 0 && row[stageIdx]) st.paintStage = row[stageIdx];
           if (eurIdx >= 0 && row[eurIdx] !== '') st.priceEur = parseFloat(row[eurIdx]) || 0;
           if (gbpIdx >= 0 && row[gbpIdx] !== '') st.priceGbp = parseFloat(row[gbpIdx]) || 0;
           if (stockIdx >= 0 && row[stockIdx] !== '') {

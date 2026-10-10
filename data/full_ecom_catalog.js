@@ -165,7 +165,13 @@ export const ECOM_CATALOG = [
       "Complete Mixing & Application Guide"
     ],
     "hsCode": "3208.90.19",
-    "countryOfOrigin": "JP"
+    "countryOfOrigin": "JP",
+    "department": "Paints & Coatings",
+    "departmentId": "paints-coatings",
+    "subcategory": "Spray-On Mirror Chrome",
+    "subcategoryId": "chrome-systems",
+    "chemistry": "Solvent",
+    "paintStage": "FX / Specialty"
   },
   {
     "id": "kroma-dedicated-topcoat-clear",
@@ -292,7 +298,13 @@ export const ECOM_CATALOG = [
       "Kroma High-Flow Optical Thinner"
     ],
     "hsCode": "3208.10.90",
-    "countryOfOrigin": "JP"
+    "countryOfOrigin": "JP",
+    "department": "Paints & Coatings",
+    "departmentId": "paints-coatings",
+    "subcategory": "Clearcoats & Topcoats",
+    "subcategoryId": "solvent-clears",
+    "chemistry": "Solvent",
+    "paintStage": "Clearcoat"
   },
   {
     "id": "fk-2629",
@@ -378,7 +390,13 @@ export const ECOM_CATALOG = [
       "Heavy-Duty Lockable Aluminium Flight Case with CNC Foam Inlay"
     ],
     "hsCode": "8424.20.00",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Spray Equipment",
+    "departmentId": "spray-equipment",
+    "subcategory": "Dry Flake Guns & Kits",
+    "subcategoryId": "dry-flake-guns",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "fk-2610",
@@ -748,7 +766,13 @@ export const ECOM_CATALOG = [
       }
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Specialty & Show Krome",
+    "subcategoryId": "specialty-flakes"
   },
   {
     "id": "fk-2603",
@@ -841,7 +865,13 @@ export const ECOM_CATALOG = [
       "Precision O-Ring Seal Kit & Instruction Manual"
     ],
     "hsCode": "8424.20.00",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Spray Equipment",
+    "departmentId": "spray-equipment",
+    "subcategory": "Dry Flake Guns & Kits",
+    "subcategoryId": "dry-flake-guns",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "fk-2602",
@@ -934,7 +964,13 @@ export const ECOM_CATALOG = [
       "Official Flake King Technical User Guide"
     ],
     "hsCode": "8424.20.00",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Spray Equipment",
+    "departmentId": "spray-equipment",
+    "subcategory": "Dry Flake Guns & Kits",
+    "subcategoryId": "dry-flake-guns",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "fk-2600",
@@ -960,7 +996,13 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 1.24,
     "priceRrpIncVat": 1.49,
     "hsCode": "8424.90.00",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Spray Equipment",
+    "departmentId": "spray-equipment",
+    "subcategory": "Gun Accessories & Jars",
+    "subcategoryId": "gun-accessories",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "fk-2598",
@@ -986,7 +1028,13 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 1.1,
     "priceRrpIncVat": 1.32,
     "hsCode": "8424.90.00",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Spray Equipment",
+    "departmentId": "spray-equipment",
+    "subcategory": "Gun Accessories & Jars",
+    "subcategoryId": "gun-accessories",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "fk-2524",
@@ -1245,7 +1293,13 @@ export const ECOM_CATALOG = [
     ],
     "stockCode": "FKK01",
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Kromatic Shift Flakes",
+    "subcategoryId": "kromatic-flakes"
   },
   {
     "id": "fk-2426",
@@ -1316,7 +1370,13 @@ export const ECOM_CATALOG = [
       }
     ],
     "hsCode": "8424.90.00",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Spray Equipment",
+    "departmentId": "spray-equipment",
+    "subcategory": "Gun Accessories & Jars",
+    "subcategoryId": "gun-accessories",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "fk-2423",
@@ -1342,7 +1402,13 @@ export const ECOM_CATALOG = [
     "priceRrpExVat": 1.65,
     "priceRrpIncVat": 1.98,
     "hsCode": "8424.90.00",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Spray Equipment",
+    "departmentId": "spray-equipment",
+    "subcategory": "Gun Accessories & Jars",
+    "subcategoryId": "gun-accessories",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "fk-2415",
@@ -1424,7 +1490,13 @@ export const ECOM_CATALOG = [
     "imageWebp": "assets/images/fk100-prime-black-base.webp",
     "images": [
       "assets/images/fk100-prime-black-base.jpg"
-    ]
+    ],
+    "department": "Paints & Coatings",
+    "departmentId": "paints-coatings",
+    "chemistry": "Solvent",
+    "subcategory": "Solvent Basecoats",
+    "subcategoryId": "solvent-basecoats",
+    "paintStage": "Basecoat"
   },
   {
     "id": "fk-2409",
@@ -1490,7 +1562,13 @@ export const ECOM_CATALOG = [
     "imageWebp": "assets/images/fk55-thinner.webp",
     "images": [
       "assets/images/fk55-thinner.jpg"
-    ]
+    ],
+    "department": "Paints & Coatings",
+    "departmentId": "paints-coatings",
+    "chemistry": "Solvent",
+    "subcategory": "Intercoats & Binders",
+    "subcategoryId": "solvent-intercoats",
+    "paintStage": "Intercoat"
   },
   {
     "id": "fk-2401",
@@ -1588,7 +1666,13 @@ export const ECOM_CATALOG = [
     "imageWebp": "assets/images/fk50-surface-binder.webp",
     "images": [
       "assets/images/fk50-surface-binder.jpg"
-    ]
+    ],
+    "department": "Paints & Coatings",
+    "departmentId": "paints-coatings",
+    "chemistry": "Solvent",
+    "subcategory": "Intercoats & Binders",
+    "subcategoryId": "solvent-intercoats",
+    "paintStage": "Intercoat"
   },
   {
     "id": "fk-2392",
@@ -1706,7 +1790,13 @@ export const ECOM_CATALOG = [
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/UltiMaskCrepe48mmB.gif?fit=600%2C600&ssl=1"
     ],
     "hsCode": "4811.41.00",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Masking & Prep",
+    "departmentId": "masking-prep",
+    "subcategory": "Fine Line Masking Tapes",
+    "subcategoryId": "fine-line-tapes",
+    "chemistry": "N/A",
+    "paintStage": "Prep / Masking"
   },
   {
     "id": "fk-2380",
@@ -1846,7 +1936,13 @@ export const ECOM_CATALOG = [
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/FlatLine48mmA.png?fit=600%2C600&ssl=1"
     ],
     "hsCode": "3919.10.80",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Masking & Prep",
+    "departmentId": "masking-prep",
+    "subcategory": "Fine Line Masking Tapes",
+    "subcategoryId": "fine-line-tapes",
+    "chemistry": "N/A",
+    "paintStage": "Prep / Masking"
   },
   {
     "id": "fk-2375",
@@ -1880,7 +1976,13 @@ export const ECOM_CATALOG = [
     "tapeWidths": [],
     "hasPackPriceMatrix": false,
     "hsCode": "3919.10.80",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Masking & Prep",
+    "departmentId": "masking-prep",
+    "subcategory": "Fine Line Masking Tapes",
+    "subcategoryId": "fine-line-tapes",
+    "chemistry": "N/A",
+    "paintStage": "Prep / Masking"
   },
   {
     "id": "fk-2366",
@@ -1998,7 +2100,13 @@ export const ECOM_CATALOG = [
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Orange6mm.png?fit=600%2C600&ssl=1"
     ],
     "hsCode": "3919.10.80",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Masking & Prep",
+    "departmentId": "masking-prep",
+    "subcategory": "Fine Line Masking Tapes",
+    "subcategoryId": "fine-line-tapes",
+    "chemistry": "N/A",
+    "paintStage": "Prep / Masking"
   },
   {
     "id": "fk-2361",
@@ -2032,7 +2140,13 @@ export const ECOM_CATALOG = [
     "tapeWidths": [],
     "hasPackPriceMatrix": false,
     "hsCode": "3919.10.80",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Masking & Prep",
+    "departmentId": "masking-prep",
+    "subcategory": "Fine Line Masking Tapes",
+    "subcategoryId": "fine-line-tapes",
+    "chemistry": "N/A",
+    "paintStage": "Prep / Masking"
   },
   {
     "id": "fk-2352",
@@ -2150,7 +2264,13 @@ export const ECOM_CATALOG = [
       "https://i0.wp.com/www.flakeking.com/wp-content/uploads/2020/06/Green6mm.png?fit=600%2C600&ssl=1"
     ],
     "hsCode": "3919.10.80",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Masking & Prep",
+    "departmentId": "masking-prep",
+    "subcategory": "Fine Line Masking Tapes",
+    "subcategoryId": "fine-line-tapes",
+    "chemistry": "N/A",
+    "paintStage": "Prep / Masking"
   },
   {
     "id": "fk-2341",
@@ -2316,7 +2436,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Kromatic Shift Flakes",
+    "subcategoryId": "kromatic-flakes"
   },
   {
     "id": "fk-2330",
@@ -2483,7 +2609,13 @@ export const ECOM_CATALOG = [
     "imageWebp": "assets/images/flakes/fk-2330.webp",
     "stockCode": "FKS23",
     "hsCode": "8424.20.00",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Specialty & Show Krome",
+    "subcategoryId": "specialty-flakes"
   },
   {
     "id": "fk-2319",
@@ -2649,7 +2781,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Kromatic Shift Flakes",
+    "subcategoryId": "kromatic-flakes"
   },
   {
     "id": "fk-2308",
@@ -2815,7 +2953,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Specialty & Show Krome",
+    "subcategoryId": "specialty-flakes"
   },
   {
     "id": "fk-2297",
@@ -2981,7 +3125,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Specialty & Show Krome",
+    "subcategoryId": "specialty-flakes"
   },
   {
     "id": "fk-2283",
@@ -3193,7 +3343,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2269",
@@ -3405,7 +3561,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2255",
@@ -3617,7 +3779,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2244",
@@ -3783,7 +3951,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Kromatic Shift Flakes",
+    "subcategoryId": "kromatic-flakes"
   },
   {
     "id": "fk-2233",
@@ -3949,7 +4123,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2222",
@@ -4115,7 +4295,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Kromatic Shift Flakes",
+    "subcategoryId": "kromatic-flakes"
   },
   {
     "id": "fk-2208",
@@ -4327,7 +4513,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2194",
@@ -4539,7 +4731,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2183",
@@ -4705,7 +4903,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2172",
@@ -4871,7 +5075,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2158",
@@ -5083,7 +5293,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2147",
@@ -5249,7 +5465,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Specialty & Show Krome",
+    "subcategoryId": "specialty-flakes"
   },
   {
     "id": "fk-2133",
@@ -5461,7 +5683,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2122",
@@ -5627,7 +5855,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Kromatic Shift Flakes",
+    "subcategoryId": "kromatic-flakes"
   },
   {
     "id": "fk-2111",
@@ -5793,7 +6027,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Kromatic Shift Flakes",
+    "subcategoryId": "kromatic-flakes"
   },
   {
     "id": "fk-2104",
@@ -5959,7 +6199,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2097",
@@ -6125,7 +6371,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Specialty & Show Krome",
+    "subcategoryId": "specialty-flakes"
   },
   {
     "id": "fk-2090",
@@ -6291,7 +6543,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Kromatic Shift Flakes",
+    "subcategoryId": "kromatic-flakes"
   },
   {
     "id": "fk-2080",
@@ -6503,7 +6761,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2070",
@@ -6715,7 +6979,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2060",
@@ -6927,7 +7197,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2053",
@@ -7093,7 +7369,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Specialty & Show Krome",
+    "subcategoryId": "specialty-flakes"
   },
   {
     "id": "fk-2043",
@@ -7305,7 +7587,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2036",
@@ -7471,7 +7759,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Specialty & Show Krome",
+    "subcategoryId": "specialty-flakes"
   },
   {
     "id": "fk-2029",
@@ -7637,7 +7931,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Kromatic Shift Flakes",
+    "subcategoryId": "kromatic-flakes"
   },
   {
     "id": "fk-2022",
@@ -7803,7 +8103,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2015",
@@ -7969,7 +8275,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-2005",
@@ -8181,7 +8493,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-1992",
@@ -8439,7 +8757,13 @@ export const ECOM_CATALOG = [
       "assets/images/flakes/flake_king_size_chart.png"
     ],
     "hsCode": "3926.90.97",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Flakes & Special FX",
+    "departmentId": "flakes-special-fx",
+    "chemistry": "Dry",
+    "paintStage": "FX / Flake",
+    "subcategory": "Candy Color Flakes",
+    "subcategoryId": "candy-flakes"
   },
   {
     "id": "fk-1972",
@@ -8514,7 +8838,13 @@ export const ECOM_CATALOG = [
       "1\u00d7 100g Flake Jar & 1/4\" BSP Fitting"
     ],
     "hsCode": "8424.20.00",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Spray Equipment",
+    "departmentId": "spray-equipment",
+    "subcategory": "Dry Flake Guns & Kits",
+    "subcategoryId": "dry-flake-guns",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "fk-1970",
@@ -8591,7 +8921,13 @@ export const ECOM_CATALOG = [
       "1\u00d7 30g Flake Jar & Manual"
     ],
     "hsCode": "8424.20.00",
-    "countryOfOrigin": "GB"
+    "countryOfOrigin": "GB",
+    "department": "Spray Equipment",
+    "departmentId": "spray-equipment",
+    "subcategory": "Dry Flake Guns & Kits",
+    "subcategoryId": "dry-flake-guns",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-635",
@@ -8628,7 +8964,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Work-Holding Jigs & Arms",
+    "subcategoryId": "work-holding-jigs",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-627",
@@ -8654,7 +8996,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7616.99.90",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool Bars & Lighting Rigs",
+    "subcategoryId": "tool-bars-lighting",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-494",
@@ -8680,7 +9028,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Work-Holding Jigs & Arms",
+    "subcategoryId": "work-holding-jigs",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-463",
@@ -8706,7 +9060,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-462",
@@ -8732,7 +9092,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-460",
@@ -8758,7 +9124,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-459",
@@ -8784,7 +9156,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-458",
@@ -8810,7 +9188,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-454",
@@ -8836,7 +9220,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-453",
@@ -8862,7 +9252,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-452",
@@ -8888,7 +9284,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-451",
@@ -8914,7 +9316,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-450",
@@ -8940,7 +9348,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-448",
@@ -8966,7 +9380,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-447",
@@ -8992,7 +9412,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-446",
@@ -9018,7 +9444,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-445",
@@ -9044,7 +9476,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-444",
@@ -9070,7 +9508,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-443",
@@ -9096,7 +9540,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-442",
@@ -9122,7 +9572,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-440",
@@ -9148,7 +9604,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-439",
@@ -9174,7 +9636,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-438",
@@ -9200,7 +9668,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-437",
@@ -9226,7 +9700,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-436",
@@ -9252,7 +9732,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-435",
@@ -9278,7 +9764,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-434",
@@ -9304,7 +9796,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-353",
@@ -9330,7 +9828,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-351",
@@ -9356,7 +9860,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-349",
@@ -9382,7 +9892,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-347",
@@ -9408,7 +9924,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.20.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-345",
@@ -9434,7 +9956,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-343",
@@ -9460,7 +9988,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "3926.90.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-341",
@@ -9486,7 +10020,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-339",
@@ -9512,7 +10052,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-336",
@@ -9538,7 +10084,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-328",
@@ -9564,7 +10116,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-326",
@@ -9590,7 +10148,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-324",
@@ -9616,7 +10180,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-323",
@@ -9642,7 +10212,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-322",
@@ -9668,7 +10244,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-321",
@@ -9694,7 +10276,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-319",
@@ -9720,7 +10308,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-317",
@@ -9746,7 +10340,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-314",
@@ -9772,7 +10372,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8424.90.00",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool & Airbrush Holders",
+    "subcategoryId": "airbrush-holders",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-312",
@@ -9798,7 +10404,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Work-Holding Jigs & Arms",
+    "subcategoryId": "work-holding-jigs",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-310",
@@ -9824,7 +10436,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Work-Holding Jigs & Arms",
+    "subcategoryId": "work-holding-jigs",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-308",
@@ -9850,7 +10468,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Work-Holding Jigs & Arms",
+    "subcategoryId": "work-holding-jigs",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-306",
@@ -9876,7 +10500,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Work-Holding Jigs & Arms",
+    "subcategoryId": "work-holding-jigs",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-304",
@@ -9902,7 +10532,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Work-Holding Jigs & Arms",
+    "subcategoryId": "work-holding-jigs",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-302",
@@ -9928,7 +10564,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Work-Holding Jigs & Arms",
+    "subcategoryId": "work-holding-jigs",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-297",
@@ -9954,7 +10596,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Work-Holding Jigs & Arms",
+    "subcategoryId": "work-holding-jigs",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-296",
@@ -9980,7 +10628,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Base Stands & Easels",
+    "subcategoryId": "base-stands-easels",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-294",
@@ -10006,7 +10660,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Base Stands & Easels",
+    "subcategoryId": "base-stands-easels",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-293",
@@ -10032,7 +10692,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Work-Holding Jigs & Arms",
+    "subcategoryId": "work-holding-jigs",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-288",
@@ -10058,7 +10724,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool Bars & Lighting Rigs",
+    "subcategoryId": "tool-bars-lighting",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-284",
@@ -10084,7 +10756,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7616.99.90",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool Bars & Lighting Rigs",
+    "subcategoryId": "tool-bars-lighting",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-282",
@@ -10110,7 +10788,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7616.99.90",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool Bars & Lighting Rigs",
+    "subcategoryId": "tool-bars-lighting",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-281",
@@ -10136,7 +10820,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7616.99.90",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool Bars & Lighting Rigs",
+    "subcategoryId": "tool-bars-lighting",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-280",
@@ -10162,7 +10852,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7616.99.90",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool Bars & Lighting Rigs",
+    "subcategoryId": "tool-bars-lighting",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-279",
@@ -10188,7 +10884,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7616.99.90",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool Bars & Lighting Rigs",
+    "subcategoryId": "tool-bars-lighting",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-278",
@@ -10214,7 +10916,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7616.99.90",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool Bars & Lighting Rigs",
+    "subcategoryId": "tool-bars-lighting",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-270",
@@ -10240,7 +10948,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7616.99.90",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Tool Bars & Lighting Rigs",
+    "subcategoryId": "tool-bars-lighting",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-268",
@@ -10266,7 +10980,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7616.99.90",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Base Stands & Easels",
+    "subcategoryId": "base-stands-easels",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-265",
@@ -10292,7 +11012,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7318.15.95",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Fixings, Knobs & Hardware",
+    "subcategoryId": "hardware-fixings",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-262",
@@ -10318,7 +11044,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7616.99.90",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Base Stands & Easels",
+    "subcategoryId": "base-stands-easels",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-260",
@@ -10344,7 +11076,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Base Stands & Easels",
+    "subcategoryId": "base-stands-easels",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-256",
@@ -10370,7 +11108,13 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "8479.89.97",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Base Stands & Easels",
+    "subcategoryId": "base-stands-easels",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   },
   {
     "id": "va-255",
@@ -10396,6 +11140,12 @@ export const ECOM_CATALOG = [
     "repricingHold": true,
     "hsCode": "7616.99.90",
     "countryOfOrigin": "GB",
-    "isComingSoon": true
+    "isComingSoon": true,
+    "department": "Workstations, Stands & Jigs",
+    "departmentId": "workstations-jigs",
+    "subcategory": "Base Stands & Easels",
+    "subcategoryId": "base-stands-easels",
+    "chemistry": "N/A",
+    "paintStage": "N/A"
   }
 ];

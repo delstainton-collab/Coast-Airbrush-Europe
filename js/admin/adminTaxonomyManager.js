@@ -1,39 +1,39 @@
 export const DEFAULT_TAXONOMY_CONFIG = {
   departments: [
     {
-      id: "dept-auto-paint",
-      name: "Automotive & Custom Paint",
-      icon: "format_paint",
-      description: "Solvent paints, mirror chrome, basecoats, reducers and clears",
-      categories: ["Mirror Chrome Systems", "Solvent Paints", "Dedicated Clearcoats", "Basecoats", "Reducers & Thinners"]
-    },
-    {
-      id: "dept-special-effects",
-      name: "Special Effects & Flakes",
-      icon: "auto_awesome",
-      description: "Dry metal flakes, holographic flakes, pearls, and kromatic pigments",
-      categories: ["Dry Metal Flake (Glitter)", "Kromatic Flakes", "Iridescent Flakes", "Special Effects"]
-    },
-    {
-      id: "dept-equipment",
-      name: "Equipment & Hardware",
+      id: "dept-spray-equipment",
+      name: "Spray Equipment",
       icon: "precision_manufacturing",
-      description: "Flake King guns, airbrushes, jigs, stands, and spray equipment",
-      categories: ["Dry Metal Flake Guns", "Flake King Gun Accessories", "Workstations & Jigs", "Helmet Jigs", "Motorcycle Part Jigs", "Stands"]
+      description: "Professional airbrushes, automotive spray guns, and dry flake dispersal equipment",
+      categories: ["Dry Metal Flake Guns", "Flake King Gun Accessories", "Airbrushes", "Spray Guns", "Striping Brushes & Pinstriping"]
     },
     {
-      id: "dept-consumables",
-      name: "Consumables & Prep",
+      id: "dept-paints-coatings",
+      name: "Paints & Coatings",
+      icon: "format_paint",
+      description: "Solvent and waterborne primers, basecoats, clears, candies, and special effect paint systems",
+      categories: ["Mirror Chrome Systems", "Dedicated Clearcoats", "Basecoats & Binders", "Solvent Primers", "Solvent Basecoats", "Waterborne Primers", "Waterborne Basecoats"]
+    },
+    {
+      id: "dept-flakes-special-fx",
+      name: "Flakes & Special FX",
+      icon: "auto_awesome",
+      description: "Solvent-proof dry metal flakes, color-shifting pigments, pearls, and leafing materials",
+      categories: ["Dry Metal Flake (Glitter)", "Candy Color Flakes", "Kromatic Shift Flakes", "Specialty & Show Krome", "Pearls & Chameleons", "Gold & Metal Leaf"]
+    },
+    {
+      id: "dept-workstations-jigs",
+      name: "Workstations, Stands & Jigs",
+      icon: "handyman",
+      description: "Modular workpiece holding jigs, magnetic holders, studio lighting rigs, and base stands",
+      categories: ["Work-Holding Jigs", "Tool & Airbrush Holders", "Tool Bars & Lighting Rigs", "Base Stands & Easels", "Fixings, Knobs & Hardware"]
+    },
+    {
+      id: "dept-masking-prep",
+      name: "Masking & Prep",
       icon: "content_cut",
-      description: "Fine line masking tapes, surface prep, tack cloths, and cleaners",
-      categories: ["Masking Products", "Basecoats & Binders", "Surface Cleaners", "Abrasives"]
-    },
-    {
-      id: "dept-studio",
-      name: "Studio & Merchandise",
-      icon: "palette",
-      description: "Apparel, swag, studio tools, and instructional materials",
-      categories: ["Apparel & Merch", "Studio Accessories", "Reference Guides"]
+      description: "Fine line precision tapes, surface degreasers, and surface preparation consumables",
+      categories: ["Masking Products", "Fine Line Masking Tapes", "Surface Cleaners & Degreasers", "Abrasives & Scuff Pads"]
     }
   ]
 };

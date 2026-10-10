@@ -423,7 +423,7 @@ export class SpreadsheetEditor {
     if (this.state.searchQuery) {
       const q = this.state.searchQuery;
       working = working.filter(p => {
-        const str = `${p.sku || ''} ${p.name || ''} ${p.department || ''} ${p.brand || ''} ${p.category || ''} ${p.badge || ''} ${p.meta?.recommendedNozzle || ''} ${p.description || ''}`.toLowerCase();
+        const str = `${p.sku || ''} ${p.name || ''} ${p.department || ''} ${p.brand || ''} ${p.category || ''} ${p.subcategory || ''} ${p.chemistry || ''} ${p.paintStage || ''} ${p.badge || ''} ${p.meta?.recommendedNozzle || ''} ${p.description || ''}`.toLowerCase();
         return str.includes(q);
       });
     }
@@ -575,7 +575,7 @@ export class SpreadsheetEditor {
     if (displayList.length === 0) {
       tbody.innerHTML = `
         <tr>
-          <td colspan="16" class="p-8 text-center text-secondary font-mono">
+          <td colspan="19" class="p-8 text-center text-secondary font-mono">
             No products found matching current filters. Try resetting filters or adding a product row.
           </td>
         </tr>
@@ -719,6 +719,29 @@ export class SpreadsheetEditor {
         </td>
         <td class="p-1 border-r border-secondary/30">
           <input type="text" class="ss-cell-input w-full bg-transparent p-1.5 font-mono text-[11px] text-secondary border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all" data-id="${p.id}" data-field="category" value="${escapeHtml(p.category || '')}">
+        </td>
+        <td class="p-1 border-r border-secondary/30">
+          <input type="text" class="ss-cell-input w-full bg-transparent p-1.5 font-mono text-[11px] text-sky-300 border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all" data-id="${p.id}" data-field="subcategory" value="${escapeHtml(p.subcategory || '')}" placeholder="Subcategory">
+        </td>
+        <td class="p-1 border-r border-secondary/30">
+          <select class="ss-cell-input w-full bg-transparent p-1 font-mono text-[11px] text-amber-300 border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all" data-id="${p.id}" data-field="chemistry">
+            <option value="Solvent" ${p.chemistry === 'Solvent' ? 'selected' : ''} class="bg-surface text-white">Solvent</option>
+            <option value="Water-Based" ${p.chemistry === 'Water-Based' ? 'selected' : ''} class="bg-surface text-white">Water-Based</option>
+            <option value="Dry" ${p.chemistry === 'Dry' ? 'selected' : ''} class="bg-surface text-white">Dry</option>
+            <option value="N/A" ${!p.chemistry || p.chemistry === 'N/A' ? 'selected' : ''} class="bg-surface text-white">N/A</option>
+          </select>
+        </td>
+        <td class="p-1 border-r border-secondary/30">
+          <select class="ss-cell-input w-full bg-transparent p-1 font-mono text-[11px] text-emerald-300 border border-transparent focus:border-primary focus:bg-surface-container rounded transition-all" data-id="${p.id}" data-field="paintStage">
+            <option value="Primer" ${p.paintStage === 'Primer' ? 'selected' : ''} class="bg-surface text-white">Primer</option>
+            <option value="Basecoat" ${p.paintStage === 'Basecoat' ? 'selected' : ''} class="bg-surface text-white">Basecoat</option>
+            <option value="Intercoat" ${p.paintStage === 'Intercoat' ? 'selected' : ''} class="bg-surface text-white">Intercoat</option>
+            <option value="Clearcoat" ${p.paintStage === 'Clearcoat' ? 'selected' : ''} class="bg-surface text-white">Clearcoat</option>
+            <option value="FX / Flake" ${p.paintStage === 'FX / Flake' ? 'selected' : ''} class="bg-surface text-white">FX / Flake</option>
+            <option value="FX / Specialty" ${p.paintStage === 'FX / Specialty' ? 'selected' : ''} class="bg-surface text-white">FX / Specialty</option>
+            <option value="Prep / Masking" ${p.paintStage === 'Prep / Masking' ? 'selected' : ''} class="bg-surface text-white">Prep / Masking</option>
+            <option value="N/A" ${!p.paintStage || p.paintStage === 'N/A' ? 'selected' : ''} class="bg-surface text-white">N/A</option>
+          </select>
         </td>
         <td class="p-1 border-r border-secondary/30 text-center">
           ${matrixBadge}

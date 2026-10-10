@@ -9,21 +9,20 @@ console.log("=================================================================")
 // -------------------------------------------------------------------
 // Test 1: Taxonomy Structure & Coverage
 // -------------------------------------------------------------------
-console.log("\n[Test 1] Verifying 6 Master Departments in Taxonomy...");
+console.log("\n[Test 1] Verifying 5 Master Departments in Taxonomy...");
 const expectedDepts = [
-  "Paint & Spray Equipment",
-  "Solvent Paints",
-  "Water Based Paint",
-  "Dry Special FX Products",
-  "Masking Products",
-  "Workstations & Jigs"
+  "Spray Equipment",
+  "Paints & Coatings",
+  "Flakes & Special FX",
+  "Workstations, Stands & Jigs",
+  "Masking & Prep"
 ];
 
-assert.strictEqual(MASTER_TAXONOMY.length, 6, "Must define exactly 6 departments in Master Taxonomy");
+assert.strictEqual(MASTER_TAXONOMY.length, 5, "Must define exactly 5 departments in Master Taxonomy");
 expectedDepts.forEach((deptName, idx) => {
   assert.strictEqual(MASTER_TAXONOMY[idx].name, deptName, `Department ${idx + 1} must be '${deptName}'`);
 });
-console.log("✔ All 6 Master Departments correctly defined in MASTER_TAXONOMY.");
+console.log("✔ All 5 Master Departments correctly defined in MASTER_TAXONOMY.");
 
 // -------------------------------------------------------------------
 // Test 2: Golden Rule - 0-Product Categories are Invisible
@@ -94,33 +93,34 @@ app.renderCategoryDropdown();
 const catHtml = mockSelectCat.innerHTML;
 
 // 1. Water Based Paint currently has 0 products in active catalog -> MUST BE INVISIBLE
-assert(!catHtml.includes("WATER BASED PAINT"), "Water Based Paint must NOT appear in dropdown while product count is 0");
-console.log("✔ Golden Rule verified: 'WATER BASED PAINT' is invisible (0 products).");
+assert(!catHtml.includes("Waterborne Primers"), "Waterborne Primers must NOT appear in dropdown while product count is 0");
+assert(!catHtml.includes("Waterborne Basecoats"), "Waterborne Basecoats must NOT appear in dropdown while product count is 0");
+console.log("✔ Golden Rule verified: Unstocked waterborne coatings are invisible (0 products).");
 
 // 2. Airbrushes, Spray Guns, Striping Brushes have 0 products -> MUST BE INVISIBLE
-assert(!catHtml.includes("Airbrush ("), "Airbrush must NOT appear in dropdown while product count is 0");
+assert(!catHtml.includes("Airbrushes ("), "Airbrushes must NOT appear in dropdown while product count is 0");
 assert(!catHtml.includes("Spray Guns ("), "Spray Guns must NOT appear in dropdown while product count is 0");
-assert(!catHtml.includes("Striping Brushes ("), "Striping Brushes must NOT appear in dropdown while product count is 0");
-console.log("✔ Golden Rule verified: Unstocked equipment (Airbrush, Spray Guns, Striping Brushes) are invisible.");
+assert(!catHtml.includes("Striping Brushes & Pinstriping ("), "Striping Brushes must NOT appear in dropdown while product count is 0");
+console.log("✔ Golden Rule verified: Unstocked equipment (Airbrushes, Spray Guns, Striping Brushes) are invisible.");
 
-// 3. Primers, Candies, Pin Striping Paint have 0 products -> MUST BE INVISIBLE
-assert(!catHtml.includes("Primer ("), "Primer must NOT appear in dropdown while product count is 0");
-assert(!catHtml.includes("Candies ("), "Candies must NOT appear in dropdown while product count is 0");
-assert(!catHtml.includes("Pin Striping Paint ("), "Pin Striping Paint must NOT appear in dropdown while product count is 0");
-console.log("✔ Golden Rule verified: Unstocked solvent paints (Primer, Candies, Pin Striping) are invisible.");
+// 3. Solvent Primers, Candies have 0 products -> MUST BE INVISIBLE
+assert(!catHtml.includes("Solvent Primers ("), "Solvent Primers must NOT appear in dropdown while product count is 0");
+assert(!catHtml.includes("Solvent Candies & Dyes ("), "Solvent Candies & Dyes must NOT appear in dropdown while product count is 0");
+console.log("✔ Golden Rule verified: Unstocked solvent paints (Primers, Candies) are invisible.");
 
 // 4. Pearls, Gold Leaf have 0 products -> MUST BE INVISIBLE
-assert(!catHtml.includes("Pearls ("), "Pearls must NOT appear in dropdown while product count is 0");
-assert(!catHtml.includes("Gold Leaf ("), "Gold Leaf must NOT appear in dropdown while product count is 0");
+assert(!catHtml.includes("Pearls & Chameleons ("), "Pearls must NOT appear in dropdown while product count is 0");
+assert(!catHtml.includes("Gold & Metal Leaf ("), "Gold Leaf must NOT appear in dropdown while product count is 0");
 console.log("✔ Golden Rule verified: Unstocked special FX (Pearls, Gold Leaf) are invisible.");
 
 // 5. Active categories MUST be visible
-assert(catHtml.includes("Dry Flake Guns"), "Dry Flake Guns must be visible (in-stock products exist)");
-assert(catHtml.includes("Base Coat"), "Base Coat must be visible (in-stock products exist)");
-assert(catHtml.includes("Clear Coat"), "Clear Coat must be visible (in-stock products exist)");
-assert(catHtml.includes("Flakes (36)"), "Flakes must be visible with count (36)");
-assert(catHtml.includes("Fine Line Tapes (6)"), "Fine Line Tapes must be visible with count (6)");
-assert(catHtml.includes("Work-Holding Jigs (10)"), "Work-Holding Jigs must be visible with count (10)");
+assert(catHtml.includes("Dry Flake Guns & Kits"), "Dry Flake Guns & Kits must be visible (in-stock products exist)");
+assert(catHtml.includes("Solvent Basecoats"), "Solvent Basecoats must be visible (in-stock products exist)");
+assert(catHtml.includes("Clearcoats & Topcoats"), "Clearcoats & Topcoats must be visible (in-stock products exist)");
+assert(catHtml.includes("Intercoats & Binders"), "Intercoats & Binders must be visible (in-stock products exist)");
+assert(catHtml.includes("Candy Color Flakes (19)"), "Candy Color Flakes must be visible with count (19)");
+assert(catHtml.includes("Fine Line Masking Tapes (6)"), "Fine Line Masking Tapes must be visible with count (6)");
+assert(catHtml.includes("Work-Holding Jigs & Arms (10)"), "Work-Holding Jigs & Arms must be visible with count (10)");
 console.log("✔ Active categories correctly populated with accurate live product counts.");
 
 // -------------------------------------------------------------------
@@ -150,7 +150,7 @@ global.window.SHOPIFY_CATALOG = [
     id: "createx-auto-air-01",
     sku: "WB-BASE-01",
     name: "Createx Hyper FX Waterborne Basecoat Black (4oz)",
-    category: "Water Based Basecoat",
+    category: "Waterborne Basecoats",
     brand: "Hyper FX (Powered by Createx)",
     priceEur: 14.50,
     priceGbp: 12.00
@@ -162,8 +162,8 @@ app.renderCategoryDropdown();
 const updatedCatHtml = mockSelectCat.innerHTML;
 const updatedBrandHtml = mockSelectBrand.innerHTML;
 
-assert(updatedCatHtml.includes("WATER BASED PAINT"), "Water Based Paint optgroup must immediately appear when product added!");
-assert(updatedCatHtml.includes("Basecoats (1)"), "Basecoats (1) must appear under Water Based Paint!");
+assert(updatedCatHtml.includes("PAINTS & COATINGS"), "Paints & Coatings optgroup must appear when product added!");
+assert(updatedCatHtml.includes("Waterborne Basecoats (1)"), "Waterborne Basecoats (1) must appear under Paints & Coatings!");
 assert(updatedBrandHtml.includes("HYPER FX (POWERED BY CREATEX) (1)"), "Hyper FX brand must appear in brand dropdown!");
 console.log("✔ Dynamic arrival of Water Based Paint immediately makes category and brand visible!");
 
