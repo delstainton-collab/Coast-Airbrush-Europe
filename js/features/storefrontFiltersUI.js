@@ -31,6 +31,20 @@ export class StorefrontFiltersUI {
   matchCategory(product, catId) {
     if (!catId || catId === 'all') return true;
 
+    // Direct brand & category overrides for precision storefront filtering
+    if (catId === 'vsionair-all' || catId === 'Workstations & Jigs' || catId === 'workstations-jigs') return product.brand === 'VsionAir';
+    if (catId === 'Basecoats & Binders' || catId === 'basecoats-binders' || catId === 'Wet Products') return product.category === 'Basecoats & Binders' || product.category === 'Wet Products';
+    if (catId === 'Mirror Chrome Systems' || catId === 'mirror-chrome' || catId === 'Sprayable Chrome') return product.category === 'Mirror Chrome Systems';
+    if (catId === 'Dedicated Clearcoats' || catId === 'clear-coat' || catId === 'Clearcoats') return product.category === 'Dedicated Clearcoats';
+    if (catId === 'Dry Metal Flake Guns' || catId === 'dry-flake-guns') return product.category === 'Dry Metal Flake Guns';
+    if (catId === 'Flake King Gun Accessories') return product.category === 'Flake King Gun Accessories';
+    if (catId === 'flake-guns-all') return product.category === 'Dry Metal Flake Guns' || product.category === 'Flake King Gun Accessories';
+    if (catId === 'flake-candy' || catId === 'Candy Color Flakes') return product.category === 'Dry Metal Flake (Glitter)' && (product.name || '').toLowerCase().includes('candy');
+    if (catId === 'flake-kromatic' || catId === 'Kromatic Shift Flakes') return product.category === 'Dry Metal Flake (Glitter)' && (product.name || '').toLowerCase().includes('kromatic');
+    if (catId === 'flake-specialty' || catId === 'Specialty Flakes') return product.category === 'Dry Metal Flake (Glitter)' && !(product.name || '').toLowerCase().includes('candy') && !(product.name || '').toLowerCase().includes('kromatic');
+    if (catId === 'Dry Metal Flake (Glitter)' || catId === 'dry-flakes' || catId === 'Metal Flake' || catId === 'Metal Flakes') return product.category === 'Dry Metal Flake (Glitter)' || product.category === 'Metal Flake';
+    if (catId === 'Masking Products' || catId === 'fine-line-tapes' || catId === 'Fine Line Tapes') return product.category === 'Masking Products';
+
     // Check MASTER_TAXONOMY first
     if (typeof findTaxonomyCategory === 'function') {
       const taxMatch = findTaxonomyCategory(catId);
@@ -450,8 +464,15 @@ export class StorefrontFiltersUI {
   }
 
   setCategoryAndScroll(catId, brandName = null) {
+    if (typeof window !== 'undefined' && typeof window.closeAllNavDropdowns === 'function') {
+      window.closeAllNavDropdowns();
+    }
     this.setCategoryFilter(catId, brandName);
-    this.app.switchTab('tab-ecom', 'view-ecom');
+    if (document.getElementById('tab-storefront')) {
+      this.app.switchTab('tab-storefront', 'view-storefront', false);
+    } else if (document.getElementById('tab-ecom')) {
+      this.app.switchTab('tab-ecom', 'view-ecom', false);
+    }
     setTimeout(() => {
       const anchor = document.getElementById('storefront-catalog-anchor') || document.getElementById('top-category-pill-bar');
       if (anchor) {
