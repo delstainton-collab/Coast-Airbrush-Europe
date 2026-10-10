@@ -1494,7 +1494,7 @@ export const ECOM_CATALOG = [
     "department": "Paints & Coatings",
     "departmentId": "paints-coatings",
     "chemistry": "Water-Based",
-    "subcategory": "Waterborne Basecoats",
+    "subcategory": "Water-Based Basecoats",
     "subcategoryId": "wb-basecoats",
     "paintStage": "Basecoat"
   },
@@ -1566,7 +1566,7 @@ export const ECOM_CATALOG = [
     "department": "Paints & Coatings",
     "departmentId": "paints-coatings",
     "chemistry": "Water-Based",
-    "subcategory": "Waterborne Binders & Thinners",
+    "subcategory": "Water-Based Binders & Thinners",
     "subcategoryId": "wb-binders",
     "paintStage": "Reducer"
   },
@@ -1670,7 +1670,7 @@ export const ECOM_CATALOG = [
     "department": "Paints & Coatings",
     "departmentId": "paints-coatings",
     "chemistry": "Water-Based",
-    "subcategory": "Waterborne Binders & Thinners",
+    "subcategory": "Water-Based Binders & Thinners",
     "subcategoryId": "wb-binders",
     "paintStage": "Intercoat"
   },

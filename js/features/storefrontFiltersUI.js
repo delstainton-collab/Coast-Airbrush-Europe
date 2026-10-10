@@ -57,11 +57,11 @@ export class StorefrontFiltersUI {
     }
 
     // Direct brand & category overrides for precision storefront filtering
-    if (catId === 'Waterborne Basecoats' || catId === 'wb-basecoats' || catId === 'Waterborne Base' || catId === 'Prime Black Waterborne Base') {
-      return product.subcategoryId === 'wb-basecoats' || product.subcategory === 'Waterborne Basecoats' || (product.name && product.name.includes('FK100'));
+    if (catId === 'Water-Based Basecoats' || catId === 'Waterborne Basecoats' || catId === 'wb-basecoats' || catId === 'Waterborne Base' || catId === 'Water-Based Base' || catId === 'Prime Black Water-Based Base' || catId === 'Prime Black Waterborne Base') {
+      return product.subcategoryId === 'wb-basecoats' || product.subcategory === 'Water-Based Basecoats' || product.subcategory === 'Waterborne Basecoats' || (product.name && product.name.includes('FK100'));
     }
-    if (catId === 'Waterborne Binders & Thinners' || catId === 'wb-binders' || catId === 'Waterborne Binders' || catId === 'Waterborne Intercoats & Binders') {
-      return product.subcategoryId === 'wb-binders' || product.subcategory === 'Waterborne Binders & Thinners' || (product.name && (product.name.includes('FK50') || product.name.includes('FK55')));
+    if (catId === 'Water-Based Binders & Thinners' || catId === 'Waterborne Binders & Thinners' || catId === 'wb-binders' || catId === 'Waterborne Binders' || catId === 'Water-Based Binders' || catId === 'Waterborne Intercoats & Binders' || catId === 'Water-Based Intercoats & Binders') {
+      return product.subcategoryId === 'wb-binders' || product.subcategory === 'Water-Based Binders & Thinners' || product.subcategory === 'Waterborne Binders & Thinners' || (product.name && (product.name.includes('FK50') || product.name.includes('FK55')));
     }
     if (catId === 'Basecoats & Binders' || catId === 'basecoats-binders' || catId === 'Wet Products') return product.category === 'Basecoats & Binders' || product.category === 'Wet Products';
     if (catId === 'Mirror Chrome Systems' || catId === 'mirror-chrome' || catId === 'Sprayable Chrome') return product.category === 'Mirror Chrome Systems';
@@ -191,11 +191,7 @@ export class StorefrontFiltersUI {
     const PAINT_SUBCATS = [
       { id: "paints-coatings", label: "All Paints & Coatings (5)" },
       { id: "chem-water", label: "💧 Water-Based Systems (3)" },
-      { id: "Waterborne Basecoats", label: "Waterborne Base (1)" },
-      { id: "Waterborne Binders & Thinners", label: "Water Binders & Thinners (2)" },
-      { id: "chem-solvent", label: "🧪 Solvent Systems (2)" },
-      { id: "Mirror Chrome Systems", label: "Mirror Chrome (1)" },
-      { id: "Dedicated Clearcoats", label: "Topcoat Clear (1)" }
+      { id: "chem-solvent", label: "🧪 Solvent Systems (2)" }
     ];
 
     const getCount = (catId) => {

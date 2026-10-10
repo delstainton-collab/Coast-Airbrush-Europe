@@ -15,10 +15,11 @@
  *    - Intercoats & Binders
  *    - Solvent Candies & Dyes
  *    - Spray-On Mirror Chrome
- *    - Waterborne Primers
- *    - Waterborne Basecoats
- *    - Waterborne Clears & Topcoats
- *    - Waterborne Candies
+ *    - Water-Based Primers
+ *    - Water-Based Basecoats
+ *    - Water-Based Binders & Thinners
+ *    - Water-Based Clears & Topcoats
+ *    - Water-Based Candies
  * 3. Flakes & Special FX (flakes-special-fx)
  *    - Candy Color Flakes
  *    - Kromatic Shift Flakes
@@ -166,23 +167,26 @@ export const MASTER_TAXONOMY = [
       // Water-Based Systems
       {
         id: "wb-primers",
-        name: "Waterborne Primers",
+        name: "Water-Based Primers",
         chemistry: "Water-Based",
         paintStage: "Primer",
-        matchValues: ["Waterborne Primers", "Waterborne Primer", "Water Based Primer", "WB Primer", "WB Primers"]
+        matchValues: ["Water-Based Primers", "Water-Based Primer", "Water Based Primer", "Waterborne Primers", "Waterborne Primer", "WB Primer", "WB Primers"]
       },
       {
         id: "wb-basecoats",
-        name: "Waterborne Basecoats",
+        name: "Water-Based Basecoats",
         chemistry: "Water-Based",
         paintStage: "Basecoat",
         matchValues: [
+          "Water-Based Basecoat",
+          "Water-Based Basecoats",
           "Water Based Basecoat",
           "Water Based Basecoats",
           "WB Basecoat",
           "WB Basecoats",
           "Waterborne Basecoat",
           "Waterborne Basecoats",
+          "Prime Black Water-Based Base",
           "Prime Black Waterborne Base",
           "Prime Black Base",
           "FK100 Prime Black Base",
@@ -191,10 +195,15 @@ export const MASTER_TAXONOMY = [
       },
       {
         id: "wb-binders",
-        name: "Waterborne Binders & Thinners",
+        name: "Water-Based Binders & Thinners",
         chemistry: "Water-Based",
         paintStage: "Intercoat / Reducer",
         matchValues: [
+          "Water-Based Binders & Thinners",
+          "Water-Based Binders",
+          "Water-Based Binder",
+          "Water-Based Thinners",
+          "Water-Based Thinner",
           "Waterborne Binders & Thinners",
           "Waterborne Binders",
           "Waterborne Binder",
@@ -211,17 +220,17 @@ export const MASTER_TAXONOMY = [
       },
       {
         id: "wb-clears",
-        name: "Waterborne Clears & Topcoats",
+        name: "Water-Based Clears & Topcoats",
         chemistry: "Water-Based",
         paintStage: "Clearcoat",
-        matchValues: ["Waterborne Clears", "Waterborne Clear", "WB Clear", "Water Based Clear", "Water Based Clearcoat"]
+        matchValues: ["Water-Based Clears", "Water-Based Clear", "Waterborne Clears", "Waterborne Clear", "WB Clear", "Water Based Clear", "Water Based Clearcoat"]
       },
       {
         id: "wb-candies",
-        name: "Waterborne Candies",
+        name: "Water-Based Candies",
         chemistry: "Water-Based",
         paintStage: "FX / Flake",
-        matchValues: ["Water Based Candies", "Water Based Candy", "WB Candies", "WB Candy", "Waterborne Candy", "Waterborne Candies"]
+        matchValues: ["Water-Based Candies", "Water-Based Candy", "Water Based Candies", "Water Based Candy", "WB Candies", "WB Candy", "Waterborne Candy", "Waterborne Candies"]
       }
     ]
   },

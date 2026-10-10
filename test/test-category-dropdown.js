@@ -92,9 +92,9 @@ app.renderCategoryDropdown();
 // Verify Category Dropdown HTML output
 const catHtml = mockSelectCat.innerHTML;
 
-// 1. Unstocked Waterborne & Solvent Primers have 0 products in active catalog -> MUST BE INVISIBLE
-assert(!catHtml.includes("Waterborne Primers"), "Waterborne Primers must NOT appear in dropdown while product count is 0");
-assert(!catHtml.includes("Waterborne Clears"), "Waterborne Clears must NOT appear in dropdown while product count is 0");
+// 1. Unstocked Water-Based & Solvent Primers have 0 products in active catalog -> MUST BE INVISIBLE
+assert(!catHtml.includes("Water-Based Primers") && !catHtml.includes("Waterborne Primers"), "Water-Based Primers must NOT appear in dropdown while product count is 0");
+assert(!catHtml.includes("Water-Based Clears") && !catHtml.includes("Waterborne Clears"), "Water-Based Clears must NOT appear in dropdown while product count is 0");
 assert(!catHtml.includes("Solvent Primers ("), "Solvent Primers must NOT appear in dropdown while product count is 0");
 assert(!catHtml.includes("Solvent Basecoats ("), "Solvent Basecoats must NOT appear in dropdown while product count is 0");
 console.log("✔ Golden Rule verified: Unstocked primers & solvent basecoats are invisible (0 products).");
@@ -116,8 +116,8 @@ console.log("✔ Golden Rule verified: Unstocked special FX (Pearls, Gold Leaf) 
 
 // 5. Active categories MUST be visible
 assert(catHtml.includes("Dry Flake Guns & Kits"), "Dry Flake Guns & Kits must be visible (in-stock products exist)");
-assert(catHtml.includes("Waterborne Basecoats (1)"), "Waterborne Basecoats must be visible with count (1)");
-assert(catHtml.includes("Waterborne Binders & Thinners (2)"), "Waterborne Binders & Thinners must be visible with count (2)");
+assert(catHtml.includes("Water-Based Basecoats (1)"), "Water-Based Basecoats must be visible with count (1)");
+assert(catHtml.includes("Water-Based Binders & Thinners (2)"), "Water-Based Binders & Thinners must be visible with count (2)");
 assert(catHtml.includes("Clearcoats & Topcoats (1)"), "Clearcoats & Topcoats must be visible with count (1)");
 assert(catHtml.includes("Spray-On Mirror Chrome (1)"), "Spray-On Mirror Chrome must be visible with count (1)");
 assert(catHtml.includes("Candy Color Flakes (19)"), "Candy Color Flakes must be visible with count (19)");
@@ -151,8 +151,8 @@ global.window.SHOPIFY_CATALOG = [
   {
     id: "createx-auto-air-01",
     sku: "WB-BASE-01",
-    name: "Createx Hyper FX Waterborne Basecoat Black (4oz)",
-    category: "Waterborne Basecoats",
+    name: "Createx Hyper FX Water-Based Basecoat Black (4oz)",
+    category: "Water-Based Basecoats",
     brand: "Hyper FX (Powered by Createx)",
     priceEur: 14.50,
     priceGbp: 12.00
@@ -165,7 +165,7 @@ const updatedCatHtml = mockSelectCat.innerHTML;
 const updatedBrandHtml = mockSelectBrand.innerHTML;
 
 assert(updatedCatHtml.includes("PAINTS & COATINGS"), "Paints & Coatings optgroup must appear when product added!");
-assert(updatedCatHtml.includes("Waterborne Basecoats (2)"), "Waterborne Basecoats (2) must appear under Paints & Coatings!");
+assert(updatedCatHtml.includes("Water-Based Basecoats (2)"), "Water-Based Basecoats (2) must appear under Paints & Coatings!");
 assert(updatedBrandHtml.includes("HYPER FX (POWERED BY CREATEX) (1)"), "Hyper FX brand must appear in brand dropdown!");
 console.log("✔ Dynamic arrival of Water Based Paint immediately makes category and brand visible!");
 
