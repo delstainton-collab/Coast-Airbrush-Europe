@@ -57,6 +57,12 @@ export class StorefrontFiltersUI {
     }
 
     // Direct brand & category overrides for precision storefront filtering
+    if (catId === 'Waterborne Basecoats' || catId === 'wb-basecoats' || catId === 'Waterborne Base' || catId === 'Prime Black Waterborne Base') {
+      return product.subcategoryId === 'wb-basecoats' || product.subcategory === 'Waterborne Basecoats' || (product.name && product.name.includes('FK100'));
+    }
+    if (catId === 'Waterborne Binders & Thinners' || catId === 'wb-binders' || catId === 'Waterborne Binders' || catId === 'Waterborne Intercoats & Binders') {
+      return product.subcategoryId === 'wb-binders' || product.subcategory === 'Waterborne Binders & Thinners' || (product.name && (product.name.includes('FK50') || product.name.includes('FK55')));
+    }
     if (catId === 'Basecoats & Binders' || catId === 'basecoats-binders' || catId === 'Wet Products') return product.category === 'Basecoats & Binders' || product.category === 'Wet Products';
     if (catId === 'Mirror Chrome Systems' || catId === 'mirror-chrome' || catId === 'Sprayable Chrome') return product.category === 'Mirror Chrome Systems';
     if (catId === 'Dedicated Clearcoats' || catId === 'clear-coat' || catId === 'Clearcoats') return product.category === 'Dedicated Clearcoats';
@@ -184,10 +190,12 @@ export class StorefrontFiltersUI {
 
     const PAINT_SUBCATS = [
       { id: "paints-coatings", label: "All Paints & Coatings (5)" },
-      { id: "chem-solvent", label: "🧪 Solvent Systems (5)" },
+      { id: "chem-water", label: "💧 Water-Based Systems (3)" },
+      { id: "Waterborne Basecoats", label: "Waterborne Base (1)" },
+      { id: "Waterborne Binders & Thinners", label: "Water Binders & Thinners (2)" },
+      { id: "chem-solvent", label: "🧪 Solvent Systems (2)" },
       { id: "Mirror Chrome Systems", label: "Mirror Chrome (1)" },
-      { id: "Dedicated Clearcoats", label: "Topcoat Clear (1)" },
-      { id: "Basecoats & Binders", label: "Base & Binders (3)" }
+      { id: "Dedicated Clearcoats", label: "Topcoat Clear (1)" }
     ];
 
     const getCount = (catId) => {
@@ -262,11 +270,15 @@ export class StorefrontFiltersUI {
           const catId = btn.getAttribute('data-cat-pill');
           if (catId === 'all') {
             this.activeBrandFilter = 'all';
-            this.setCategoryFilter('all');
+            this.activeFlakeSubcat = 'all';
+            this.searchQuery = '';
+            this.setCategoryFilter('all', 'all');
           } else {
             const foundDept = PRIMARY_DEPARTMENTS.find(d => d.id === catId);
             if (foundDept && foundDept.brand !== 'all') {
               this.activeBrandFilter = foundDept.brand;
+            } else {
+              this.activeBrandFilter = 'all';
             }
             this.setCategoryFilter(catId);
           }
@@ -464,21 +476,35 @@ export class StorefrontFiltersUI {
     this.activeCategoryFilter = catId;
     if (brandName) {
       this.activeBrandFilter = brandName;
+    } else if (catId === 'all') {
+      this.activeBrandFilter = 'all';
+    } else if (this.activeBrandFilter && this.activeBrandFilter !== 'all') {
+      // If the current active brand has no items in the newly selected category, reset brand to 'all'
+      const brandHasProducts = (typeof this.app.getEffectiveProducts === 'function' ? this.app.getEffectiveProducts() : ECOM_CATALOG).some(p => 
+        !p.hideFromStorefront &&
+        (p.brand || '').toLowerCase().includes(this.activeBrandFilter.toLowerCase()) &&
+        this.matchCategory(p, catId)
+      );
+      if (!brandHasProducts) {
+        this.activeBrandFilter = 'all';
+      }
     }
+
     const selectCat = document.getElementById('select-shop-category');
     if (selectCat && selectCat.value !== catId) {
       selectCat.value = catId;
     }
     const selectBrand = document.getElementById('select-shop-brand');
-    if (selectBrand && brandName && selectBrand.value !== brandName) {
-      selectBrand.value = brandName;
+    if (selectBrand) {
+      selectBrand.value = this.activeBrandFilter || 'all';
     }
 
     const brandPills = document.querySelectorAll('#brand-filter-pills .brand-pill');
     brandPills.forEach(btn => {
       const match = (btn.getAttribute('data-cat-val') === catId) || 
                     (catId === 'flake-guns-all' && btn.getAttribute('data-cat-val') === 'Dry Metal Flake Guns') ||
-                    (catId === 'all' && btn.getAttribute('data-brand-val') === 'all');
+                    (this.activeBrandFilter === 'all' && btn.getAttribute('data-brand-val') === 'all') ||
+                    (btn.getAttribute('data-brand-val') === this.activeBrandFilter);
       btn.className = match ? 'brand-pill active px-3 py-1.5 border border-primary bg-primary-container text-white font-bold transition-colors cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' : 'brand-pill px-3 py-1.5 border border-secondary bg-black/60 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer';
     });
 
@@ -525,6 +551,17 @@ export class StorefrontFiltersUI {
   setCategoryAndScroll(catId, brandName = null) {
     if (typeof window !== 'undefined' && typeof window.closeAllNavDropdowns === 'function') {
       window.closeAllNavDropdowns();
+    }
+    if (catId === 'all' || !brandName) {
+      this.activeBrandFilter = brandName || 'all';
+      this.activeFlakeSubcat = 'all';
+      this.searchQuery = '';
+      const searchInput = document.getElementById('input-shop-search');
+      if (searchInput) searchInput.value = '';
+      const storeHeaderSearch = document.getElementById('store-search-input');
+      if (storeHeaderSearch) storeHeaderSearch.value = '';
+      const mobileSearchInput = document.getElementById('mobile-shop-search');
+      if (mobileSearchInput) mobileSearchInput.value = '';
     }
     this.setCategoryFilter(catId, brandName);
     if (document.getElementById('tab-storefront')) {
@@ -764,7 +801,13 @@ export class StorefrontFiltersUI {
 
     if (selectCat) {
       selectCat.addEventListener('change', (e) => {
-        this.setCategoryFilter(e.target.value);
+        const val = e.target.value;
+        if (val === 'all') {
+          this.activeBrandFilter = 'all';
+          this.setCategoryFilter('all', 'all');
+        } else {
+          this.setCategoryFilter(val);
+        }
       });
     }
 

@@ -1493,9 +1493,9 @@ export const ECOM_CATALOG = [
     ],
     "department": "Paints & Coatings",
     "departmentId": "paints-coatings",
-    "chemistry": "Solvent",
-    "subcategory": "Solvent Basecoats",
-    "subcategoryId": "solvent-basecoats",
+    "chemistry": "Water-Based",
+    "subcategory": "Waterborne Basecoats",
+    "subcategoryId": "wb-basecoats",
     "paintStage": "Basecoat"
   },
   {
@@ -1565,10 +1565,10 @@ export const ECOM_CATALOG = [
     ],
     "department": "Paints & Coatings",
     "departmentId": "paints-coatings",
-    "chemistry": "Solvent",
-    "subcategory": "Intercoats & Binders",
-    "subcategoryId": "solvent-intercoats",
-    "paintStage": "Intercoat"
+    "chemistry": "Water-Based",
+    "subcategory": "Waterborne Binders & Thinners",
+    "subcategoryId": "wb-binders",
+    "paintStage": "Reducer"
   },
   {
     "id": "fk-2401",
@@ -1669,9 +1669,9 @@ export const ECOM_CATALOG = [
     ],
     "department": "Paints & Coatings",
     "departmentId": "paints-coatings",
-    "chemistry": "Solvent",
-    "subcategory": "Intercoats & Binders",
-    "subcategoryId": "solvent-intercoats",
+    "chemistry": "Water-Based",
+    "subcategory": "Waterborne Binders & Thinners",
+    "subcategoryId": "wb-binders",
     "paintStage": "Intercoat"
   },
   {

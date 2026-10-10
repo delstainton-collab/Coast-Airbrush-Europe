@@ -28,8 +28,8 @@ const expectedSubcats = [
   { label: "Specialty & Show Krome", count: 8, dept: "Flake King" },
   { label: "Spray-On Mirror Chrome", count: 1, dept: "Kroma Edge" },
   { label: "Hydrophobic Topcoat Clear", count: 1, dept: "Kroma Edge" },
-  { label: "Prime Black Solvent Basecoat", count: 1, dept: "Flake King" },
-  { label: "Clear Intercoat Binders", count: 2, dept: "Flake King" },
+  { label: "Prime Black Waterborne Base", count: 1, dept: "Flake King" },
+  { label: "Waterborne Binders & Thinners", count: 2, dept: "Flake King" },
   { label: "Prime Green Precision Tape", count: 3, dept: "Flake King" },
   { label: "Prime Orange High-Temp Tape", count: 3, dept: "Flake King" }
 ];

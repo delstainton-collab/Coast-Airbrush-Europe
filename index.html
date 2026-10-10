@@ -591,7 +591,7 @@
       <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin">
         <nav class="master-nav-bar flex items-center space-x-2 lg:space-x-3.5 py-1.5 font-mono text-xs uppercase overflow-visible flex-wrap lg:flex-nowrap">
           <!-- 1. SHOP ALL -->
-          <a id="tab-storefront" class="nav-link active !py-1.5 !px-3 whitespace-nowrap" href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('all')">SHOP ALL</a>
+          <a id="tab-storefront" class="nav-link active !py-1.5 !px-3 whitespace-nowrap" href="javascript:void(0)" onclick="window.paintApp && (window.paintApp.resetAllFilters ? window.paintApp.resetAllFilters() : window.paintApp.setCategoryAndScroll('all', 'all'))">SHOP ALL</a>
 
           <!-- 2. SPRAY EQUIPMENT (Dropdown) -->
           <div class="relative group nav-dropdown-wrapper py-1" data-dropdown="spray-equipment">
@@ -632,9 +632,24 @@
             <!-- Dropdown Panel -->
             <div class="nav-dropdown-menu">
               <div class="bg-[#101114] border border-[#27272a] shadow-[0_12px_32px_rgba(0,0,0,0.9)] rounded-md p-2 flex flex-col gap-1 backdrop-blur-md min-w-[280px]">
+                <!-- Water-Based Systems (Non-Hazmat) -->
                 <div class="px-2.5 py-1 text-[10px] font-mono text-neutral-400 uppercase tracking-wider border-b border-white/5 flex items-center justify-between">
+                  <span>Water-Based Systems (Non-Hazmat)</span>
+                  <span class="text-neutral-300 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">3 SKUs</span>
+                </div>
+                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Waterborne Basecoats', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-300 hover:text-white flex items-center justify-between text-xs font-mono transition-colors">
+                  <span>Prime Black Waterborne Base</span>
+                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">1</span>
+                </a>
+                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Waterborne Binders & Thinners', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-300 hover:text-white flex items-center justify-between text-xs font-mono transition-colors">
+                  <span>Waterborne Binders &amp; Thinners</span>
+                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">2</span>
+                </a>
+
+                <!-- Solvent Systems (Hazmat) -->
+                <div class="px-2.5 py-1 text-[10px] font-mono text-neutral-400 uppercase tracking-wider border-b border-t border-white/5 mt-1 pt-1.5 flex items-center justify-between">
                   <span>Solvent Systems (Hazmat)</span>
-                  <span class="text-neutral-300 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">5 SKUs</span>
+                  <span class="text-neutral-300 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">2 SKUs</span>
                 </div>
                 <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Mirror Chrome Systems', 'Kroma Edge'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-300 hover:text-white flex items-center justify-between text-xs font-mono transition-colors">
                   <span>Spray-On Mirror Chrome</span>
@@ -643,14 +658,6 @@
                 <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Dedicated Clearcoats', 'Kroma Edge'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-300 hover:text-white flex items-center justify-between text-xs font-mono transition-colors">
                   <span>Hydrophobic Topcoat Clear</span>
                   <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">1</span>
-                </a>
-                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Basecoats & Binders', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-300 hover:text-white flex items-center justify-between text-xs font-mono transition-colors">
-                  <span>Prime Black Solvent Basecoat</span>
-                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">1</span>
-                </a>
-                <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('Basecoats & Binders', 'Flake King'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded hover:bg-white/5 text-neutral-300 hover:text-white flex items-center justify-between text-xs font-mono transition-colors">
-                  <span>Clear Intercoat Binders</span>
-                  <span class="text-[10px] text-neutral-400 font-bold bg-[#181a1d] px-1.5 py-0.5 rounded border border-white/5">2</span>
                 </a>
                 <div class="border-t border-white/5 pt-1 mt-0.5">
                   <a href="javascript:void(0)" onclick="window.paintApp && window.paintApp.setCategoryAndScroll('paints-coatings'); window.closeAllNavDropdowns && window.closeAllNavDropdowns();" class="px-2.5 py-1.5 rounded bg-red-600/10 hover:bg-red-600/20 text-red-400 hover:text-red-300 border border-red-500/20 flex items-center justify-between text-[11px] font-mono font-bold transition-colors">

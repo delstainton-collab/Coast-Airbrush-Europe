@@ -182,7 +182,31 @@ export const MASTER_TAXONOMY = [
           "WB Basecoat",
           "WB Basecoats",
           "Waterborne Basecoat",
-          "Waterborne Basecoats"
+          "Waterborne Basecoats",
+          "Prime Black Waterborne Base",
+          "Prime Black Base",
+          "FK100 Prime Black Base",
+          "FK100"
+        ]
+      },
+      {
+        id: "wb-binders",
+        name: "Waterborne Binders & Thinners",
+        chemistry: "Water-Based",
+        paintStage: "Intercoat / Reducer",
+        matchValues: [
+          "Waterborne Binders & Thinners",
+          "Waterborne Binders",
+          "Waterborne Binder",
+          "Waterborne Thinners",
+          "Waterborne Thinner",
+          "Water Based Binder",
+          "Water Based Thinner",
+          "FK50 Surface Binder",
+          "FK55 Thinner",
+          "FK50",
+          "FK55",
+          "WB Binders"
         ]
       },
       {
