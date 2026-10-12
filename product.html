@@ -632,14 +632,14 @@
               </div>
 
               <!-- Documentation Download Dual Strip -->
-              <div class="grid grid-cols-2 gap-space-sm pt-2">
-                <a class="flex items-center justify-center gap-2 h-10 px-3 rounded-lg bg-surface-container-low border border-surface-container-high hover:bg-surface-container text-secondary hover:text-on-surface transition-all font-label-caps text-label-caps uppercase" href="#tab-specs">
+              <div class="grid grid-cols-2 gap-space-sm pt-2" id="pdp-doc-strip">
+                <a id="pdp-tds-link" class="flex items-center justify-center gap-2 h-10 px-3 rounded-lg bg-surface-container-low border border-surface-container-high hover:bg-surface-container text-secondary hover:text-on-surface transition-all font-label-caps text-label-caps uppercase" href="#tab-specs">
                   <span class="material-symbols-outlined text-[16px] text-primary">download</span>
-                  <span>TDS Specification (PDF)</span>
+                  <span id="pdp-tds-text">TDS Specification (PDF)</span>
                 </a>
-                <a class="flex items-center justify-center gap-2 h-10 px-3 rounded-lg bg-surface-container-low border border-surface-container-high hover:bg-surface-container text-secondary hover:text-on-surface transition-all font-label-caps text-label-caps uppercase" href="support.html#tab-sds">
+                <a id="pdp-sds-link" class="flex items-center justify-center gap-2 h-10 px-3 rounded-lg bg-surface-container-low border border-surface-container-high hover:bg-surface-container text-secondary hover:text-on-surface transition-all font-label-caps text-label-caps uppercase" href="support.html#tab-sds">
                   <span class="material-symbols-outlined text-[16px] text-secondary">description</span>
-                  <span>Safety SDS Sheet (PDF)</span>
+                  <span id="pdp-sds-text">Safety SDS Sheet (PDF)</span>
                 </a>
               </div>
 
@@ -1998,8 +1998,59 @@
       // Check category and adapt system setup selector
       const cat = (product.category || product.productType || '').toLowerCase();
       const title = (product.name || product.title || '').toLowerCase();
-      const isFlake = cat.includes('flake') || cat.includes('glitter') || title.includes('flake');
-      const isPaint = cat.includes('paint') || cat.includes('chrome') || cat.includes('system') || title.includes('chrome');
+      const isGun = cat.includes('gun') || title.includes('gun') || title.includes('adaptor') || title.includes('flake king 1000') || title.includes('flake king 500');
+      const isJig = cat.includes('jig') || cat.includes('stand') || title.includes('vsionair') || title.includes('tri-stand');
+      const isTooling = isGun || isJig || cat.includes('equipment') || cat.includes('hardware');
+      const isFlake = !isTooling && (cat.includes('flake') || cat.includes('glitter') || title.includes('flake'));
+      const isPaint = !isTooling && !isFlake && (cat.includes('paint') || cat.includes('chrome') || cat.includes('system') || title.includes('chrome'));
+
+      // Configure Documentation Strip (TDS / SDS)
+      const docStrip = document.getElementById('pdp-doc-strip');
+      const pdpTdsLink = document.getElementById('pdp-tds-link');
+      const pdpTdsText = document.getElementById('pdp-tds-text');
+      const pdpSdsLink = document.getElementById('pdp-sds-link');
+
+      if (isGun) {
+        if (pdpSdsLink) pdpSdsLink.style.display = 'none';
+        if (docStrip) {
+          docStrip.classList.remove('grid-cols-2');
+          docStrip.classList.add('grid-cols-1');
+        }
+        if (pdpTdsLink) {
+          pdpTdsLink.href = 'assets/docs/FLAKE_KING_1000_ASSEMBLY_INSTRUCTIONS.pdf';
+          pdpTdsLink.setAttribute('download', 'FLAKE_KING_1000_ASSEMBLY_INSTRUCTIONS.pdf');
+          pdpTdsLink.setAttribute('target', '_blank');
+        }
+        if (pdpTdsText) {
+          pdpTdsText.textContent = 'How-To-Use & Assembly TDS (PDF)';
+        }
+      } else if (isJig || isTooling) {
+        if (pdpSdsLink) pdpSdsLink.style.display = 'none';
+        if (docStrip) {
+          docStrip.classList.remove('grid-cols-2');
+          docStrip.classList.add('grid-cols-1');
+        }
+        if (pdpTdsLink) {
+          pdpTdsLink.href = '#tab-specs';
+          pdpTdsLink.removeAttribute('download');
+        }
+        if (pdpTdsText) {
+          pdpTdsText.textContent = 'Tooling Specification (TDS)';
+        }
+      } else {
+        if (pdpSdsLink) pdpSdsLink.style.display = 'flex';
+        if (docStrip) {
+          docStrip.classList.remove('grid-cols-1');
+          docStrip.classList.add('grid-cols-2');
+        }
+        if (pdpTdsLink) {
+          pdpTdsLink.href = '#tab-specs';
+          pdpTdsLink.removeAttribute('download');
+        }
+        if (pdpTdsText) {
+          pdpTdsText.textContent = 'TDS Specification (PDF)';
+        }
+      }
 
       // Adapt Buy Box for experienced painters
       const vLabel = document.getElementById('variant-label-1');
@@ -2007,12 +2058,12 @@
       const vGroup = document.getElementById('nozzle-btn-group');
       const bContainer = document.getElementById('bundle-variant-container');
 
-      if (isFlake || isPaint || !cat.includes('airbrush')) {
+      if (isGun || isTooling || isFlake || isPaint || !cat.includes('airbrush')) {
         // Remove airbrush studio bundle upsell in buy box
         bundleSurcharge = 0;
         if (bContainer) bContainer.style.display = 'none';
         if (vAccessoryNote) vAccessoryNote.style.display = 'none';
-        if (vLabel) vLabel.textContent = isFlake ? 'Select Jar / Pack Size' : 'Select Volume / Pack Size';
+        if (vLabel) vLabel.textContent = isGun ? 'Select Gun Configuration / Kit' : (isFlake ? 'Select Jar / Pack Size' : 'Select Volume / Pack Size');
 
         if (vGroup && product.variants && product.variants.length > 0) {
           vGroup.innerHTML = product.variants.map((v, idx) => {
@@ -2169,10 +2220,91 @@
 
       const cat = (product?.category || product?.productType || '').toLowerCase();
       const title = (product?.name || product?.title || '').toLowerCase();
-      const isFlake = cat.includes('flake') || cat.includes('glitter') || title.includes('flake');
-      const isPaint = cat.includes('paint') || cat.includes('chrome') || cat.includes('system') || title.includes('chrome');
+      const isGun = cat.includes('gun') || title.includes('gun') || title.includes('adaptor') || title.includes('flake king 1000') || title.includes('flake king 500');
+      const isJig = cat.includes('jig') || cat.includes('stand') || title.includes('vsionair') || title.includes('tri-stand');
+      const isTooling = isGun || isJig || cat.includes('equipment') || cat.includes('hardware');
+      const isFlake = !isTooling && (cat.includes('flake') || cat.includes('glitter') || title.includes('flake'));
+      const isPaint = !isTooling && !isFlake && (cat.includes('paint') || cat.includes('chrome') || cat.includes('system') || title.includes('chrome'));
 
-      if (isFlake) {
+      if (isGun) {
+        if (badgeElem) badgeElem.textContent = 'Mechanical & Pneumatic Specifications';
+        if (titleElem) titleElem.textContent = 'Flake King Gun Technical Specifications';
+        if (metaText) metaText.textContent = 'Patented Dry Venturi System • UK Precision Engineered';
+
+        container.innerHTML = `
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Dispersion Technology</span>
+              <span class="material-symbols-outlined text-primary-container text-[20px]">air</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Dispersion Nozzle</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">Dry Venturi Fluidization</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Applies dry flakes from 0.002" (50µm) micro-fine to 0.040" (1025µm) giant flakes without clogging.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Pneumatic Calibration</span>
+              <span class="material-symbols-outlined text-tertiary text-[20px]">speed</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Operating Pressure</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">10–15 PSI Fluidization</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Low pressure fluffs and fluidizes dry flake. Maximum safe line pressure: 30 PSI.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Air Supply Fitment</span>
+              <span class="material-symbols-outlined text-secondary text-[20px]">tune</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Airline Connection</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">1/4" BSP Quick Connect</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Direct push-fit collar with micro regulator for precision pressure tuning at the handle.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Barrel Configuration</span>
+              <span class="material-symbols-outlined text-primary-container text-[20px]">settings_input_component</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Grub Screw Alignment</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">Rigid or Self-Levelling</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Loosen grub screws for gravity-assisted self-levelling jar float; tighten for fixed angle locks.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">Assembly Caution</span>
+              <span class="material-symbols-outlined text-amber-400 text-[20px]">warning</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">Regulator Assembly</span>
+              <p class="font-headline-sm text-headline-sm text-amber-400 font-bold mt-0.5">Hand-Tighten Only</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Do not overtighten the air regulator onto the gun handle to prevent thread or handle shear.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-space-md rounded-lg border border-surface-container-high shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-secondary">European Regulatory Status</span>
+              <span class="material-symbols-outlined text-secondary text-[20px]">verified</span>
+            </div>
+            <div>
+              <span class="font-code-spec text-code-spec text-secondary uppercase">REACH &amp; Safety Compliance</span>
+              <p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">REACH Exempt Tooling</p>
+              <p class="font-body-sm text-body-sm text-secondary mt-1">Non-chemical inert mechanical equipment. No chemical SDS required under EU REACH 1907/2006.</p>
+            </div>
+          </div>
+        `;
+      } else if (isFlake) {
         if (badgeElem) badgeElem.textContent = 'Thermoset & Substrate Tolerances';
         if (titleElem) titleElem.textContent = 'Dry Metal Flake Bench Specifications';
         if (metaText) metaText.textContent = 'ISO 9001:2015 Tested & Certified at DAS64 Laboratory UK';

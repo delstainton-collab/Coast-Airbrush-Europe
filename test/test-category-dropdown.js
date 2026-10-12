@@ -121,7 +121,9 @@ assert(catHtml.includes("Water-Based Binders & Thinners (2)"), "Water-Based Bind
 assert(catHtml.includes("Clearcoats & Topcoats (1)"), "Clearcoats & Topcoats must be visible with count (1)");
 assert(catHtml.includes("Spray-On Mirror Chrome (1)"), "Spray-On Mirror Chrome must be visible with count (1)");
 assert(catHtml.includes("Candy Color Flakes (19)"), "Candy Color Flakes must be visible with count (19)");
-assert(catHtml.includes("Fine Line Masking Tapes (6)"), "Fine Line Masking Tapes must be visible with count (6)");
+assert(catHtml.includes("Prime Orange & Green Vinyl (4)"), "Prime Orange & Green Vinyl must be visible with count (4)");
+assert(catHtml.includes("Prime Flat Line (1)"), "Prime Flat Line must be visible with count (1)");
+assert(catHtml.includes("Ultimask Crepe (1)"), "Ultimask Crepe must be visible with count (1)");
 assert(catHtml.includes("Work-Holding Jigs & Arms (10)"), "Work-Holding Jigs & Arms must be visible with count (10)");
 console.log("✔ Active categories correctly populated with accurate live product counts.");
 

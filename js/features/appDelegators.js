@@ -58,6 +58,8 @@ export function registerAppDelegators(proto) {
       'getFlakeSpecForSize',
       'openFlakeTDSModal',
       'closeFlakeTDSModal',
+      'switchFlakeTDSTab',
+      'downloadFlakeGunPDF',
       'downloadTDS',
       'downloadSystemTDS',
       'downloadSystemSDS',

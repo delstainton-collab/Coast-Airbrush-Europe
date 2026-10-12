@@ -30,8 +30,9 @@ const expectedSubcats = [
   { label: "Hydrophobic Topcoat Clear", count: 1, dept: "Kroma Edge" },
   { label: "Prime Black Water-Based Base", count: 1, dept: "Flake King" },
   { label: "Water-Based Binders & Thinners", count: 2, dept: "Flake King" },
-  { label: "Prime Green Precision Tape", count: 3, dept: "Flake King" },
-  { label: "Prime Orange High-Temp Tape", count: 3, dept: "Flake King" }
+  { label: "Prime Orange & Green Vinyl", count: 4, dept: "Flake King" },
+  { label: "Prime Flat Line", count: 1, dept: "Flake King" },
+  { label: "Ultimask Crepe", count: 1, dept: "Flake King" }
 ];
 
 expectedSubcats.forEach(sub => {

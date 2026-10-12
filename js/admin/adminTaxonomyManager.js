@@ -32,8 +32,8 @@ export const DEFAULT_TAXONOMY_CONFIG = {
       id: "dept-masking-prep",
       name: "Masking & Prep",
       icon: "content_cut",
-      description: "Fine line precision tapes, surface degreasers, and surface preparation consumables",
-      categories: ["Masking Products", "Fine Line Masking Tapes", "Surface Cleaners & Degreasers", "Abrasives & Scuff Pads"]
+      description: "Fine line precision vinyl tapes, flat line washi tapes, crepe masking, and surface preparation consumables",
+      categories: ["Prime Orange & Green Vinyl", "Prime Flat Line", "Ultimask Crepe", "Masking Products", "Fine Line Masking Tapes", "Surface Cleaners & Degreasers", "Abrasives & Scuff Pads"]
     }
   ]
 };

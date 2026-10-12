@@ -370,18 +370,20 @@ export class DepartmentViews {
 
   setDeptTapesSubcat(subcat, viewAll = false) {
     if (!this.app.deptTapesState) {
-      this.app.deptTapesState = { subcat: 'featured', viewMode: 'featured' };
+      this.app.deptTapesState = { subcat: 'all', viewMode: 'featured' };
     }
     this.app.deptTapesState.subcat = subcat;
-    this.app.deptTapesState.viewMode = (subcat === 'featured') ? 'featured' : 'all';
+    this.app.deptTapesState.viewMode = (subcat === 'featured' || subcat === 'all') ? 'featured' : 'all';
 
     const buttons = document.querySelectorAll('.dept-tapes-subcat-btn');
     buttons.forEach(btn => {
       const btnCat = btn.getAttribute('data-dept-tapes-subcat');
-      if (btnCat === subcat) {
+      const isMatch = (btnCat === subcat) || 
+                      ((subcat === 'all' || subcat === 'featured') && (btnCat === 'all' || btnCat === 'featured'));
+      if (isMatch) {
         btn.className = 'dept-tapes-subcat-btn active px-3 py-1.5 border border-primary bg-primary/20 text-white font-bold transition-colors cursor-pointer rounded text-[11px] shadow-sm';
       } else {
-        btn.className = 'dept-tapes-subcat-btn px-3 py-1.5 border border-secondary bg-black/70 text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]';
+        btn.className = 'dept-tapes-subcat-btn px-3 py-1.5 border border-surface-container-high bg-surface-container-low text-secondary hover:text-white hover:border-primary transition-colors cursor-pointer rounded text-[11px]';
       }
     });
 
@@ -395,13 +397,13 @@ export class DepartmentViews {
     if (!featuredView || !dynamicGrid) return;
 
     if (!this.app.deptTapesState) {
-      this.app.deptTapesState = { subcat: 'featured', viewMode: 'featured' };
+      this.app.deptTapesState = { subcat: 'all', viewMode: 'featured' };
     }
 
-    if (this.app.deptTapesState.subcat === 'featured') {
+    if (this.app.deptTapesState.subcat === 'featured' || this.app.deptTapesState.subcat === 'all') {
       featuredView.style.display = 'grid';
       dynamicGrid.style.display = 'none';
-      if (countBadge) countBadge.textContent = 'Showing 4 Featured Tapes';
+      if (countBadge) countBadge.textContent = 'Showing 6 Precision Masking Tapes (3 Formulations)';
       return;
     }
 
@@ -413,14 +415,28 @@ export class DepartmentViews {
     );
 
     let items = allTapes;
-    if (this.app.deptTapesState.subcat === 'tapes') {
+    if (this.app.deptTapesState.subcat === 'vinyl') {
+      items = allTapes.filter(p => p.subcategoryId === 'prime-vinyl-tapes' || (p.name && (p.name.includes('Orange') || p.name.includes('Green'))));
+    } else if (this.app.deptTapesState.subcat === 'flat-line') {
+      items = allTapes.filter(p => p.subcategoryId === 'prime-flat-line' || (p.name && p.name.includes('Flat Line')));
+    } else if (this.app.deptTapesState.subcat === 'crepe') {
+      items = allTapes.filter(p => p.subcategoryId === 'ultimask-crepe' || (p.name && (p.name.includes('UltiMask') || p.name.includes('Crepe'))));
+    } else if (this.app.deptTapesState.subcat === 'tapes') {
       items = allTapes.filter(p => p.category === 'Masking Products' && !p.name.includes('Mixed'));
     } else if (this.app.deptTapesState.subcat === 'sets') {
       items = allTapes.filter(p => p.name.includes('Mixed Set') || p.name.includes('Workshop Set'));
     }
 
     if (countBadge) {
-      const labelMap = { all: 'All Masking Tapes', tapes: 'Fine Line Single Rolls', sets: 'Mixed Width Sets' };
+      const labelMap = { 
+        all: 'All Masking Tapes', 
+        featured: 'Featured Tapes (3 Formulations)',
+        vinyl: 'Prime Orange & Green Vinyl Tapes', 
+        'flat-line': 'Prime Flat Line Washi Tape', 
+        crepe: 'Ultimask Crepe Masking Tape',
+        tapes: 'Fine Line Single Rolls', 
+        sets: 'Mixed Width Sets' 
+      };
       countBadge.textContent = `Showing ${items.length} ${labelMap[this.app.deptTapesState.subcat] || 'Tapes'}`;
     }
 
@@ -428,13 +444,19 @@ export class DepartmentViews {
       const priceInfo = this.app.calculateDisplayPrice(prod);
       const isGreen = prod.name.toLowerCase().includes('green');
       const isOrange = prod.name.toLowerCase().includes('orange');
+      const isFlat = prod.name.toLowerCase().includes('flat');
+      const isCrepe = prod.name.toLowerCase().includes('crepe') || prod.name.toLowerCase().includes('ultimask');
       const isSet = prod.name.includes('Set') || prod.name.includes('Mixed');
-      const badgeText = isSet ? '5-ROLL SET' : (isGreen ? 'RAZOR EDGE' : (isOrange ? 'HEAT 132°C' : 'MASKING'));
+      const badgeText = isSet ? '5-ROLL SET' : (isGreen ? 'RAZOR EDGE' : (isOrange ? 'HEAT 132°C' : (isFlat ? 'WASHI NON-BLEED' : (isCrepe ? 'VEHICLE CREPE' : 'MASKING'))));
       const badgeColor = isGreen 
         ? 'bg-emerald-950/80 border-emerald-500/60 text-emerald-300' 
         : (isOrange 
             ? 'bg-orange-950/80 border-orange-500/60 text-orange-300' 
-            : 'bg-neutral-900 border-neutral-600 text-neutral-300');
+            : (isFlat
+                ? 'bg-amber-950/80 border-amber-500/60 text-amber-300'
+                : (isCrepe
+                    ? 'bg-blue-950/80 border-blue-500/60 text-blue-300'
+                    : 'bg-neutral-900 border-neutral-600 text-neutral-300')));
       const imgSrc = this.getAssetUrl(prod.image) || this.getAssetUrl('assets/images/flake-king-orange-mixed-set.webp');
 
       return `

@@ -186,7 +186,7 @@ class PaintSystemApp {
     this.activeFlakeSubcat = 'all';
     this.deptFlakeState = { subcat: 'all', viewMode: 'curated' };
     this.deptGunsState = { subcat: 'featured', viewMode: 'featured' };
-    this.deptTapesState = { subcat: 'featured', viewMode: 'featured' };
+    this.deptTapesState = { subcat: 'all', viewMode: 'featured' };
     this.searchQuery = '';
     this.isB2BMode = false;
     this.b2bSession = null;

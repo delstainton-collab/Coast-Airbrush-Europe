@@ -67,6 +67,8 @@ def sync(custom_sheet_path=None):
             retail_gbp = round(parse_num(r.get("Consumer Retail (inc-20% VAT GBP)")) / 1.20, 2)
 
         retail_eur = parse_num(r.get("Consumer Retail (ex-VAT EUR)") or r.get("Consumer Retail Price (EUR)"), retail_gbp * 1.176)
+        cost_gbp = parse_num(r.get("Unit Cost (ex-VAT GBP)") or 0.0)
+        cost_eur = parse_num(r.get("Unit Cost (ex-VAT EUR)") or round(cost_gbp * 1.176, 2))
         dealer_gbp = parse_num(r.get("Dealer Price (ex-VAT GBP)") or r.get("Dealer Price (GBP)"), retail_gbp * 0.70)
         dealer_eur = parse_num(r.get("Dealer Price (ex-VAT EUR)") or r.get("Dealer Price (EUR)"), dealer_gbp * 1.176)
         dist_gbp = parse_num(r.get("Distributor Price (ex-VAT GBP)") or r.get("Distributor Price (GBP)"), retail_gbp * 0.45)
@@ -78,6 +80,8 @@ def sync(custom_sheet_path=None):
         pricing_map[key] = {
             "retail_gbp": retail_gbp,
             "retail_eur": retail_eur,
+            "cost_gbp": cost_gbp,
+            "cost_eur": cost_eur,
             "dealer_gbp": dealer_gbp,
             "dealer_eur": dealer_eur,
             "dist_gbp": dist_gbp,
@@ -151,36 +155,80 @@ def sync(custom_sheet_path=None):
             writer.writeheader()
             writer.writerows(updated_shopify_rows)
 
+        # 1-click Shopify Admin Import CSV with "Cost per item" populated
+        export_fields = list(base_fields)
+        if "Cost per item" not in export_fields:
+            if "Variant Price" in export_fields:
+                idx = export_fields.index("Variant Price")
+                export_fields.insert(idx + 1, "Cost per item")
+            else:
+                export_fields.append("Cost per item")
+
+        ready_rows = []
+        for row in updated_shopify_rows:
+            r_copy = dict(row)
+            handle = r_copy.get("Handle", "").strip()
+            sku = r_copy.get("Variant SKU", "").strip()
+            match = pricing_map.get((handle, sku))
+            if not match:
+                candidates = [v for k, v in pricing_map.items() if k[0] == handle]
+                if len(candidates) == 1:
+                    match = candidates[0]
+            if match and match.get("cost_gbp", 0) > 0:
+                r_copy["Cost per item"] = f"{match['cost_gbp']:.2f}"
+            else:
+                r_copy["Cost per item"] = ""
+            ready_rows.append(r_copy)
+
         with open(EXPORT_READY_CSV, mode="w", encoding="utf-8", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=base_fields)
+            writer = csv.DictWriter(f, fieldnames=export_fields)
             writer.writeheader()
-            writer.writerows(updated_shopify_rows)
+            writer.writerows(ready_rows)
 
         print(f"✔ Synchronized {SHOPIFY_CSV} with updated Types, Tags & Prices")
-        print(f"✔ Generated 1-click Shopify import file: {EXPORT_READY_CSV}")
+        print(f"✔ Generated 1-click Shopify import file with Cost per item: {EXPORT_READY_CSV}")
 
     # 2. Update b2b_pricebook_secure.json
     pricebook_data = {
-        "version": "2026-10-09",
-        "generatedAt": "2026-10-09T10:15:00.000Z",
+        "version": "2026-10-12",
+        "generatedAt": "2026-10-12T10:35:00.000Z",
         "currencyMultiplierGbp": 0.85,
+        "marginGuardrails": {
+            "dealerMinMarginPercent": 35.0,
+            "distributorMinMarginPercent": 25.0
+        },
         "defaultDiscounts": {
-            "dealer": 0.30,
-            "distributor": 0.55
+            "paintsAndBulk": {"dealer": 0.30, "distributor": 0.50},
+            "hardwareAndEquipment": {"dealer": 0.20, "distributor": 0.30},
+            "smallPacksAndTapes": {"dealer": 0.20, "distributor": 0.30}
         },
         "skuPricing": {},
         "products": {}
     }
 
     for (handle, sku), data in pricing_map.items():
+        cost_val = data.get("cost_gbp", 0.0)
+        dlr_val = data["dealer_gbp"]
+        dst_val = data["dist_gbp"]
+        ret_val = data["retail_gbp"]
+
+        dlr_mrg = round(((dlr_val - cost_val) / dlr_val) * 100, 1) if dlr_val > 0 else 0.0
+        dst_mrg = round(((dst_val - cost_val) / dst_val) * 100, 1) if dst_val > 0 else 0.0
+
         if sku:
             pricebook_data["skuPricing"][sku] = {
-                "retailPriceGbp": data["retail_gbp"],
+                "retailPriceGbp": ret_val,
                 "retailPriceEur": data["retail_eur"],
-                "dealerPriceGbp": data["dealer_gbp"],
+                "unitCostGbp": cost_val,
+                "unitCostEur": data.get("cost_eur", 0.0),
+                "dealerPriceGbp": dlr_val,
                 "dealerPriceEur": data["dealer_eur"],
-                "distributorPriceGbp": data["dist_gbp"],
-                "distributorPriceEur": data["dist_eur"]
+                "dealerDiscountPercent": round((1 - (dlr_val / ret_val)) * 100, 1) if ret_val > 0 else 0.0,
+                "dealerMarginPercent": dlr_mrg,
+                "distributorPriceGbp": dst_val,
+                "distributorPriceEur": data["dist_eur"],
+                "distributorDiscountPercent": round((1 - (dst_val / ret_val)) * 100, 1) if ret_val > 0 else 0.0,
+                "distributorMarginPercent": dst_mrg
             }
 
         if handle not in pricebook_data["products"]:
@@ -188,19 +236,23 @@ def sync(custom_sheet_path=None):
 
         pricebook_data["products"][handle]["entries"].append({
             "sku": sku,
-            "retailPriceGbp": data["retail_gbp"],
+            "retailPriceGbp": ret_val,
             "retailPriceEur": data["retail_eur"],
-            "dealerPriceGbp": data["dealer_gbp"],
+            "unitCostGbp": cost_val,
+            "unitCostEur": data.get("cost_eur", 0.0),
+            "dealerPriceGbp": dlr_val,
             "dealerPriceEur": data["dealer_eur"],
-            "distributorPriceGbp": data["dist_gbp"],
+            "dealerDiscountPercent": round((1 - (dlr_val / ret_val)) * 100, 1) if ret_val > 0 else 0.0,
+            "dealerMarginPercent": dlr_mrg,
+            "distributorPriceGbp": dst_val,
             "distributorPriceEur": data["dist_eur"],
-            "dealerDiscountPercent": round((1 - (data["dealer_gbp"] / data["retail_gbp"])) * 100, 1) if data["retail_gbp"] > 0 else 30.0,
-            "distributorDiscountPercent": round((1 - (data["dist_gbp"] / data["retail_gbp"])) * 100, 1) if data["retail_gbp"] > 0 else 55.0
+            "distributorDiscountPercent": round((1 - (dst_val / ret_val)) * 100, 1) if ret_val > 0 else 0.0,
+            "distributorMarginPercent": dst_mrg
         })
 
     with open(PRICEBOOK_JSON, mode="w", encoding="utf-8") as f:
         json.dump(pricebook_data, f, indent=2)
-    print(f"✔ Synchronized B2B Trade Pricebook: {PRICEBOOK_JSON}")
+    print(f"✔ Synchronized B2B Trade Pricebook with BOM Unit Costs: {PRICEBOOK_JSON}")
 
 if __name__ == "__main__":
     sheet_arg = sys.argv[1] if len(sys.argv) > 1 else None

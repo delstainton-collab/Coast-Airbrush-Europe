@@ -371,20 +371,50 @@ export const MASTER_TAXONOMY = [
   {
     id: "masking-prep",
     name: "Masking & Prep",
-    description: "Fine line precision tapes, surface degreasers, and surface preparation consumables",
+    description: "Fine line precision vinyl tapes, flat line washi tapes, crepe masking, and surface preparation consumables",
     icon: "content_cut",
     subcategories: [
       {
-        id: "fine-line-tapes",
-        name: "Fine Line Masking Tapes",
+        id: "prime-vinyl-tapes",
+        name: "Prime Orange & Green Vinyl",
         matchValues: [
-          "Masking Products",
+          "Prime Orange & Green Vinyl",
+          "Prime Orange & Green Vinyl Tapes",
+          "Vinyl Fine Line",
           "Fine Line Tapes",
           "Fine Line Masking Tapes",
-          "Tapes",
-          "Precision Masking",
+          "Prime Orange Fine Line",
+          "Prime Green Fine Line",
+          "Prime Orange High-Temp Tape",
           "Prime Green Precision Tape",
-          "Prime Orange High-Temp Tape"
+          "Prime Orange Mixed Set",
+          "Prime Green Mixed Set"
+        ]
+      },
+      {
+        id: "prime-flat-line",
+        name: "Prime Flat Line",
+        matchValues: [
+          "Prime Flat Line",
+          "Prime Flat Line Masking Tape",
+          "Flat Line Tape",
+          "Flat Line",
+          "Washi Tape",
+          "Washi Masking Tape",
+          "Japanese Washi Tape"
+        ]
+      },
+      {
+        id: "ultimask-crepe",
+        name: "Ultimask Crepe",
+        matchValues: [
+          "Ultimask Crepe",
+          "UltiMask Crepe",
+          "Ultimask Crepe Masking Tape",
+          "UltiMask Crepe Masking Tape",
+          "Crepe Masking Tape",
+          "Crepe Tape",
+          "Crepe Paper Tape"
         ]
       },
       {
@@ -411,7 +441,9 @@ export function findTaxonomyCategory(catId) {
     'solvent-paints': 'paints-coatings',
     'water-based-paint': 'paints-coatings',
     'dry-special-fx': 'flakes-special-fx',
-    'masking-products': 'masking-prep'
+    'masking-products': 'masking-prep',
+    'fine-line-tapes': 'masking-prep',
+    'masking': 'masking-prep'
   };
 
   const resolvedId = legacyDeptMap[lower] || lower;

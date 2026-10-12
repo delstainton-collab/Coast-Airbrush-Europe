@@ -40,6 +40,18 @@ export function setupStorefrontDOMListeners(app) {
   app.addSafeListener('select-width-fk-2352', 'input', (e) => {
     app.onProductVariantChange('fk-2352', 'width', e.target.value);
   });
+  app.addSafeListener('select-width-fk-2380', 'change', (e) => {
+    app.onProductVariantChange('fk-2380', 'width', e.target.value);
+  });
+  app.addSafeListener('select-width-fk-2380', 'input', (e) => {
+    app.onProductVariantChange('fk-2380', 'width', e.target.value);
+  });
+  app.addSafeListener('select-width-fk-2392', 'change', (e) => {
+    app.onProductVariantChange('fk-2392', 'width', e.target.value);
+  });
+  app.addSafeListener('select-width-fk-2392', 'input', (e) => {
+    app.onProductVariantChange('fk-2392', 'width', e.target.value);
+  });
 
   // Global Delegated Selector Event Listener
   if (typeof document !== 'undefined') {

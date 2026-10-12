@@ -44,7 +44,7 @@ export class StorefrontFiltersUI {
     if (catId === 'workstations-jigs' || catId === 'vsionair-all' || catId === 'Workstations & Jigs') {
       return product.department === 'Workstations, Stands & Jigs' || product.departmentId === 'workstations-jigs' || product.brand === 'VsionAir';
     }
-    if (catId === 'masking-prep' || catId === 'Masking Products' || catId === 'masking-products') {
+    if (catId === 'masking-prep' || catId === 'Masking Products' || catId === 'masking-products' || catId === 'fine-line-tapes' || catId === 'Fine Line Tapes' || catId === 'Fine Line Masking Tapes' || catId === 'tapes') {
       return product.department === 'Masking & Prep' || product.departmentId === 'masking-prep' || product.category === 'Masking Products';
     }
 
@@ -57,6 +57,15 @@ export class StorefrontFiltersUI {
     }
 
     // Direct brand & category overrides for precision storefront filtering
+    if (catId === 'prime-vinyl-tapes' || catId === 'Prime Orange & Green Vinyl' || catId === 'vinyl-tapes' || catId === 'Prime Orange & Green Vinyl Tapes') {
+      return product.subcategoryId === 'prime-vinyl-tapes' || product.subcategory === 'Prime Orange & Green Vinyl' || (product.category === 'Masking Products' && (product.name.includes('Orange') || product.name.includes('Green')));
+    }
+    if (catId === 'prime-flat-line' || catId === 'Prime Flat Line' || catId === 'flat-line-tapes' || catId === 'Prime Flat Line Masking Tape') {
+      return product.subcategoryId === 'prime-flat-line' || product.subcategory === 'Prime Flat Line' || (product.category === 'Masking Products' && product.name.includes('Flat Line'));
+    }
+    if (catId === 'ultimask-crepe' || catId === 'Ultimask Crepe' || catId === 'UltiMask Crepe' || catId === 'crepe-masking-tapes' || catId === 'UltiMask Crepe Masking Tape') {
+      return product.subcategoryId === 'ultimask-crepe' || product.subcategory === 'Ultimask Crepe' || (product.category === 'Masking Products' && (product.name.includes('Ultimask') || product.name.includes('UltiMask') || product.name.includes('Crepe')));
+    }
     if (catId === 'Water-Based Basecoats' || catId === 'Waterborne Basecoats' || catId === 'wb-basecoats' || catId === 'Waterborne Base' || catId === 'Water-Based Base' || catId === 'Prime Black Water-Based Base' || catId === 'Prime Black Waterborne Base') {
       return product.subcategoryId === 'wb-basecoats' || product.subcategory === 'Water-Based Basecoats' || product.subcategory === 'Waterborne Basecoats' || (product.name && product.name.includes('FK100'));
     }
@@ -162,7 +171,7 @@ export class StorefrontFiltersUI {
       { id: "paints-coatings", label: "Paints & Coatings", icon: "format_paint", brand: "all" },
       { id: "flakes-special-fx", label: "Flakes & Special FX", icon: "auto_awesome", brand: "Flake King" },
       { id: "workstations-jigs", label: "Workstations & Jigs", icon: "handyman", brand: "VsionAir" },
-      { id: "masking-prep", label: "Fine Line Tapes", icon: "content_cut", brand: "Flake King" }
+      { id: "masking-prep", label: "Masking Tapes", icon: "content_cut", brand: "Flake King" }
     ];
 
     const VSIONAIR_SUBCATS = [
@@ -194,6 +203,13 @@ export class StorefrontFiltersUI {
       { id: "chem-solvent", label: "🧪 Solvent Systems (2)" }
     ];
 
+    const TAPE_SUBCATS = [
+      { id: "masking-prep", label: "All Masking Tapes (6)" },
+      { id: "prime-vinyl-tapes", label: "Prime Orange & Green Vinyl (4)" },
+      { id: "prime-flat-line", label: "Prime Flat Line (1)" },
+      { id: "ultimask-crepe", label: "Ultimask Crepe (1)" }
+    ];
+
     const getCount = (catId) => {
       let items = [...ECOM_CATALOG];
       if (this.activeBrandFilter && this.activeBrandFilter !== 'all') {
@@ -220,7 +236,7 @@ export class StorefrontFiltersUI {
         const isGunChild = GUN_SUBCATS.some(s => s.id === this.activeCategoryFilter);
         const isPaintChild = PAINT_SUBCATS.some(s => s.id === this.activeCategoryFilter);
         const isFlakeChild = (this.activeCategoryFilter === 'Dry Metal Flake (Glitter)' || this.activeCategoryFilter === 'Metal Flake');
-        const isMaskingChild = (this.activeCategoryFilter === 'Masking Products');
+        const isMaskingChild = (this.activeCategoryFilter === 'Masking Products' || this.activeCategoryFilter === 'fine-line-tapes' || TAPE_SUBCATS.some(s => s.id === this.activeCategoryFilter));
 
         const isActive = (this.activeCategoryFilter === dept.id) || 
                          (dept.id === 'workstations-jigs' && isVsionAirChild) ||
@@ -288,6 +304,10 @@ export class StorefrontFiltersUI {
       const isVsionAirSelected = this.activeCategoryFilter === 'workstations-jigs' || this.activeCategoryFilter === 'vsionair-all' || VSIONAIR_SUBCATS.some(s => s.id === this.activeCategoryFilter);
       const isGunSelected = this.activeCategoryFilter === 'spray-equipment' || this.activeCategoryFilter === 'Dry Metal Flake Guns' || this.activeCategoryFilter === 'Flake King Gun Accessories' || this.activeCategoryFilter === 'flake-guns-all';
       const isPaintSelected = this.activeCategoryFilter === 'paints-coatings' || PAINT_SUBCATS.some(s => s.id === this.activeCategoryFilter);
+      const isTapeSelected = this.activeCategoryFilter === 'masking-prep' || 
+                             this.activeCategoryFilter === 'Masking Products' || 
+                             this.activeCategoryFilter === 'fine-line-tapes' || 
+                             TAPE_SUBCATS.some(s => s.id === this.activeCategoryFilter);
 
       if (isFlakeSelected) {
         flakeSubcatBar.style.display = 'flex';
@@ -359,6 +379,24 @@ export class StorefrontFiltersUI {
             this.setCategoryFilter(val);
           });
         });
+      } else if (isTapeSelected) {
+        flakeSubcatBar.style.display = 'flex';
+        flakeSubcatBar.innerHTML = TAPE_SUBCATS.map(sub => {
+          const isActive = (this.activeCategoryFilter === sub.id) || (sub.id === 'masking-prep' && (this.activeCategoryFilter === 'Masking Products' || this.activeCategoryFilter === 'fine-line-tapes'));
+          return `
+            <button type="button" data-sub-val="${sub.id}" class="subcat-chip ${isActive ? 'active' : ''}">
+              ${sub.label}
+            </button>
+          `;
+        }).join('');
+
+        flakeSubcatBar.querySelectorAll('.subcat-chip').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const val = btn.getAttribute('data-sub-val');
+            this.activeBrandFilter = 'Flake King';
+            this.setCategoryFilter(val);
+          });
+        });
       } else {
         flakeSubcatBar.style.display = 'none';
         flakeSubcatBar.innerHTML = '';
@@ -390,8 +428,14 @@ export class StorefrontFiltersUI {
         title = "Flake King™ Gun Adapters, Lids & Replacement Parts";
       } else if (this.activeCategoryFilter === 'flake-guns-all') {
         title = "Flake King™ Guns, Accessories & Application Hardware";
-      } else if (this.activeCategoryFilter === 'Masking Products') {
-        title = "Flake King™ Fine Line & Specialty Masking Tapes";
+      } else if (this.activeCategoryFilter === 'prime-vinyl-tapes' || this.activeCategoryFilter === 'Prime Orange & Green Vinyl') {
+        title = "Flake King™ Prime Orange & Green Vinyl Precision Tapes";
+      } else if (this.activeCategoryFilter === 'prime-flat-line' || this.activeCategoryFilter === 'Prime Flat Line') {
+        title = "Flake King™ Prime Flat Line Washi Masking Tape";
+      } else if (this.activeCategoryFilter === 'ultimask-crepe' || this.activeCategoryFilter === 'Ultimask Crepe') {
+        title = "Flake King™ UltiMask Crepe Vehicle Masking Tape";
+      } else if (this.activeCategoryFilter === 'Masking Products' || this.activeCategoryFilter === 'masking-prep' || this.activeCategoryFilter === 'fine-line-tapes') {
+        title = "Flake King™ Precision Masking Tapes & Systems";
       } else if (this.activeCategoryFilter === 'Basecoats & Binders') {
         title = "Flake King™ Wet Products, Resins & Clears";
       } else if (this.activeCategoryFilter !== 'all') {
@@ -424,7 +468,12 @@ export class StorefrontFiltersUI {
         'Flake King Gun Accessories': 'Gun Accessories & Jars',
         'flake-guns-all': 'All Flake Hardware',
         'vsionair-all': 'Workstations & Jigs',
-        'Masking Products': 'Fine Line Tapes',
+        'Masking Products': 'Masking Tapes',
+        'masking-prep': 'Masking Tapes',
+        'fine-line-tapes': 'Masking Tapes',
+        'prime-vinyl-tapes': 'Prime Orange & Green Vinyl',
+        'prime-flat-line': 'Prime Flat Line',
+        'ultimask-crepe': 'Ultimask Crepe',
         'Basecoats & Binders': 'Basecoats & Binders',
         'Wet Products': 'Basecoats & Binders'
       };

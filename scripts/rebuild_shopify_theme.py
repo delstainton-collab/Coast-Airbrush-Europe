@@ -240,12 +240,20 @@ def get_theme_and_media_assets():
     img_dir = os.path.join(ROOT_DIR, "assets", "images")
     if os.path.exists(img_dir):
         for f in os.listdir(img_dir):
-            if f.endswith((".png", ".jpg", ".jpeg", ".svg", ".webp", ".ico")):
+            if f.endswith((".png", ".jpg", ".jpeg", ".svg", ".webp", ".ico")) and not f.startswith("._"):
                 fp = os.path.join(img_dir, f)
                 if any(x in f.lower() for x in ["logo", "favicon", "icon", "buggy", "kroma", "fk100", "flake-king-orange"]):
                     theme_assets[f"assets/{f}"] = fp
                 else:
                     content_media[f] = fp
+
+    docs_dir = os.path.join(ROOT_DIR, "assets", "docs")
+    if os.path.exists(docs_dir):
+        for f in os.listdir(docs_dir):
+            if f.endswith(".pdf") and not f.startswith("._"):
+                fp = os.path.join(docs_dir, f)
+                theme_assets[f"assets/{f}"] = fp
+                content_media[f] = fp
 
     for root_f in ["coast_logo_white.png", "coast_logo_black.png", "coast_logo_red.png", "favicon.ico"]:
         rfp = os.path.join(ROOT_DIR, root_f)

@@ -229,8 +229,13 @@ export class ProductDetailModal {
       if (reviewerAuthorEl) reviewerAuthorEl.textContent = reviewData.author;
 
       // Technical Specs
-      const isGun = (product.name || '').includes('Gun') || (product.name || '').includes('Airbrush') || product.category === 'Dry Metal Flake Guns' || product.category === 'Flake King Gun Accessories' || product.category === 'Airbrushes & Spray Guns';
+      const isGun = (product.name || '').includes('Gun') || (product.name || '').includes('Airbrush') || (product.name || '').includes('Adaptor') || (product.name || '').includes('Attachment') || product.category === 'Dry Metal Flake Guns' || product.category === 'Flake King Gun Accessories' || product.category === 'Airbrushes & Spray Guns';
       const isJig = product.brand === 'VsionAir' || (product.category || '').includes('Jig');
+
+      const tipLabel = document.getElementById('detail-spec-tip-label');
+      const psiLabel = document.getElementById('detail-spec-psi-label');
+      const ratioLabel = document.getElementById('detail-spec-ratio-label');
+      const vocLabel = document.getElementById('detail-spec-voc-label');
 
       const tipEl = document.getElementById('detail-spec-tip');
       const psiEl = document.getElementById('detail-spec-psi');
@@ -239,35 +244,83 @@ export class ProductDetailModal {
 
       if (isFlake) {
         const flakeSpec = this.app.getFlakeSpecForSize(currentSelection.size || (validSizes && validSizes[0]));
+        if (tipLabel) tipLabel.textContent = 'Gun Tip Recommendation:';
         if (tipEl) tipEl.textContent = flakeSpec ? flakeSpec.minGunNozzle : 'Flake King 500 / 1000 Dry Gun (or 1.4mm Wet)';
+        if (psiLabel) psiLabel.textContent = 'Air Pressure:';
         if (psiEl) psiEl.textContent = '10 - 15 PSI (Dry Fluidization) | 18 - 22 PSI (Wet Spray)';
+        if (ratioLabel) ratioLabel.textContent = 'Wet Spray Mix Ratio:';
         if (ratioEl) ratioEl.textContent = flakeSpec ? `${flakeSpec.ratioText} (or Dry via FK Gun)` : '60g / 1,000 ml Clear (or Dry via Gun)';
+        if (vocLabel) vocLabel.textContent = 'Thermal & UV Standard:';
         if (vocEl) vocEl.textContent = 'Non-Toxic PET • 350°F (177°C) Max • 18-Mo Miami UV Tested';
       } else if (isGun) {
-        if (tipEl) tipEl.textContent = 'Precision Machined Brass / Stainless Steel Nozzle';
-        if (psiEl) psiEl.textContent = '15 - 30 PSI Operating Pressure';
-        if (ratioEl) ratioEl.textContent = 'Standard 1/4" BSP European Quick Connect';
-        if (vocEl) vocEl.textContent = 'Tooling Equipment (CE & UKCA Certified)';
+        const isFk500 = (product.sku === 'FOM500' || (product.name || '').includes('500'));
+        if (tipLabel) tipLabel.textContent = 'Dispersion Nozzle:';
+        if (tipEl) tipEl.textContent = isFk500 ? 'Precision CNC Brass Airbrush Adaptor Collar' : '3× Color-Coded Precision Dispersion Nozzles';
+        if (psiLabel) psiLabel.textContent = 'Operating Pressure:';
+        if (psiEl) psiEl.textContent = '10 – 15 PSI (Dry Fluidization) | Max 30 PSI';
+        if (ratioLabel) ratioLabel.textContent = 'Airline Connection:';
+        if (ratioEl) ratioEl.textContent = isFk500 ? 'Direct Airbrush Push-Fit (Iwata, Badger, H&S, Paasche)' : 'Standard 1/4" BSP European Quick Connect';
+        if (vocLabel) vocLabel.textContent = 'Tooling & Safety:';
+        if (vocEl) vocEl.textContent = 'Tooling Equipment (CE & UKCA • Non-Chemical)';
       } else if (isJig) {
+        if (tipLabel) tipLabel.textContent = 'Locking Mechanism:';
         if (tipEl) tipEl.textContent = 'Universal 360° Multi-Axis Lock Clamp';
+        if (psiLabel) psiLabel.textContent = 'Frame Engineering:';
         if (psiEl) psiEl.textContent = 'Solid Steel / CNC Billet Alloy Construction';
+        if (ratioLabel) ratioLabel.textContent = 'Modular Mount:';
         if (ratioEl) ratioEl.textContent = 'Magnetic / Fast-Pin Modular Mount';
+        if (vocLabel) vocLabel.textContent = 'Durability Standard:';
         if (vocEl) vocEl.textContent = 'Lifetime Workshop Durability Guarantee';
       } else if (product.id === 'kroma-mirror-chrome-system' || (product.name && product.name.includes('Mirror Chrome'))) {
+        if (tipLabel) tipLabel.textContent = 'Gun Tip Recommendation:';
         if (tipEl) tipEl.textContent = 'Airbrush 0.3mm–0.5mm (25–45 PSI) / Spray Gun 0.8mm–1.2mm';
+        if (psiLabel) psiLabel.textContent = 'Air Pressure:';
         if (psiEl) psiEl.textContent = '20 - 25 PSI (Apply 1 Continuous Wet Coat @ >20°C)';
+        if (ratioLabel) ratioLabel.textContent = 'Mixing Ratio:';
         if (ratioEl) ratioEl.textContent = '5 : 5 : 2 : 2 (Binder : Reducer : Hardener : Seeds)';
+        if (vocLabel) vocLabel.textContent = 'VOC Emission Standard:';
         if (vocEl) vocEl.textContent = 'Self-Organizing Optical Coating (Zero Gray Clouding)';
       } else if (product.id === 'kroma-dedicated-topcoat-clear' || (product.name && product.name.includes('Topcoat Clear'))) {
+        if (tipLabel) tipLabel.textContent = 'Gun Tip Recommendation:';
         if (tipEl) tipEl.textContent = '1.0mm - 1.3mm HVLP / Airbrush 0.4mm - 0.5mm';
+        if (psiLabel) psiLabel.textContent = 'Air Pressure:';
         if (psiEl) psiEl.textContent = '18 - 22 PSI (Fine Tack Coat, 5m Flash, Full Wet Coat)';
+        if (ratioLabel) ratioLabel.textContent = 'Mixing Ratio:';
         if (ratioEl) ratioEl.textContent = '10 : 1 (Clear Base : Hardener) + 70%–100% Thinner';
+        if (vocLabel) vocLabel.textContent = 'VOC Emission Standard:';
         if (vocEl) vocEl.textContent = 'Optical Non-Clouding Clear (Specifically for Kroma Edge)';
       } else {
+        if (tipLabel) tipLabel.textContent = 'Gun Tip Recommendation:';
         if (tipEl) tipEl.textContent = '1.2mm - 1.4mm HVLP / Airbrush 0.3mm - 0.5mm';
+        if (psiLabel) psiLabel.textContent = 'Air Pressure:';
         if (psiEl) psiEl.textContent = '18 - 22 PSI (1.2 - 1.5 Bar)';
+        if (ratioLabel) ratioLabel.textContent = 'Mixing Ratio:';
         if (ratioEl) ratioEl.textContent = '3 : 1 : 2 (Paint : Catalyst : Reducer)';
+        if (vocLabel) vocLabel.textContent = 'VOC Emission Standard:';
         if (vocEl) vocEl.textContent = '<420 g/L (EU 2004/42/EC Stage II Compliant)';
+      }
+
+      // SDS & TDS Regulatory Downloads Visibility
+      const sdsBtn = document.getElementById('btn-download-sds');
+      const tdsBtn = document.getElementById('btn-download-tds');
+      const tdsBtnLabel = document.getElementById('btn-download-tds-label');
+
+      if (isGun || isJig) {
+        if (sdsBtn) sdsBtn.classList.add('hidden');
+        if (tdsBtn) {
+          tdsBtn.classList.remove('hidden');
+          tdsBtn.classList.add('w-full');
+          if (tdsBtnLabel) {
+            tdsBtnLabel.textContent = isGun ? 'HOW TO USE / ASSEMBLY TDS (PDF)' : 'WORKSHOP TECHNICAL SPECS (TDS)';
+          }
+        }
+      } else {
+        if (sdsBtn) sdsBtn.classList.remove('hidden');
+        if (tdsBtn) {
+          tdsBtn.classList.remove('hidden');
+          tdsBtn.classList.remove('w-full');
+          if (tdsBtnLabel) tdsBtnLabel.textContent = 'TECH SPEC (TDS)';
+        }
       }
 
       const isComingSoon = Boolean(product.isComingSoon || product.brand === 'VsionAir' || (product.badge && product.badge.includes('COMING SOON')));
@@ -305,12 +358,23 @@ export class ProductDetailModal {
       }
 
       const mixCalcBtn = document.getElementById('btn-detail-open-mix-calc');
-      if (mixCalcBtn) {
-        if (product.brand === 'VsionAir' || isComingSoon) {
-          mixCalcBtn.classList.add('hidden');
-        } else {
-          mixCalcBtn.classList.remove('hidden');
+      const assemblyGuideBtn = document.getElementById('btn-detail-open-assembly-guide');
+
+      if (isGun) {
+        if (mixCalcBtn) mixCalcBtn.classList.add('hidden');
+        if (assemblyGuideBtn) {
+          assemblyGuideBtn.classList.remove('hidden');
+          assemblyGuideBtn.onclick = () => {
+            this.app.closeDetailModal();
+            this.app.openFlakeTDSModal('guns');
+          };
         }
+      } else if (isJig || isComingSoon) {
+        if (mixCalcBtn) mixCalcBtn.classList.add('hidden');
+        if (assemblyGuideBtn) assemblyGuideBtn.classList.add('hidden');
+      } else {
+        if (mixCalcBtn) mixCalcBtn.classList.remove('hidden');
+        if (assemblyGuideBtn) assemblyGuideBtn.classList.add('hidden');
       }
 
       const mainImageSrc = this.getAssetUrl(product.image) || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80';

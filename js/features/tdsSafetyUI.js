@@ -63,7 +63,12 @@ export class TdsSafetyUI {
 
   downloadSDS(prod) {
     if (!prod) return;
-    const isFlake = prod.category === 'Dry Metal Flake (Glitter)' || (prod.brand || '').includes('Flake King');
+    const isGun = (prod.name || '').includes('Gun') || (prod.name || '').includes('Airbrush') || (prod.name || '').includes('Adaptor') || (prod.name || '').includes('Attachment') || prod.category === 'Dry Metal Flake Guns' || prod.category === 'Flake King Gun Accessories' || prod.category === 'Airbrushes & Spray Guns' || prod.brand === 'VsionAir' || (prod.category || '').includes('Jig');
+    if (isGun) {
+      console.warn('Mechanical tooling equipment (Guns / Adaptors / Jigs) does not require a chemical Safety Data Sheet (SDS).');
+      return;
+    }
+    const isFlake = prod.category === 'Dry Metal Flake (Glitter)' || (prod.category || '').includes('Flake');
     
     // Select the designated European REACH SDS PDF document
     let pdfUrl = 'assets/docs/KROMA_EDGE_REACH_SDS_SAFETY_DATA_SHEET.pdf';
@@ -105,10 +110,12 @@ export class TdsSafetyUI {
     return FLAKE_KING_WET_MIX_RATIOS[2]; // fallback to medium .008"
   }
 
-  openFlakeTDSModal() {
+  openFlakeTDSModal(initialTab = 'guns') {
     const modal = document.getElementById('modal-flake-tds');
     if (modal) {
+      this.switchFlakeTDSTab(initialTab);
       modal.classList.add('active');
+      document.body.classList.add('modal-open');
     }
   }
 
@@ -116,19 +123,67 @@ export class TdsSafetyUI {
     const modal = document.getElementById('modal-flake-tds');
     if (modal) {
       modal.classList.remove('active');
+      document.body.classList.remove('modal-open');
     }
+  }
+
+  switchFlakeTDSTab(tab = 'guns') {
+    const gunsBtn = document.getElementById('tab-btn-flake-guns');
+    const flakesBtn = document.getElementById('tab-btn-flake-flakes');
+    const gunsPane = document.getElementById('tab-pane-flake-guns');
+    const flakesPane = document.getElementById('tab-pane-flake-flakes');
+
+    if (tab === 'guns') {
+      if (gunsBtn) {
+        gunsBtn.classList.add('border-primary', 'text-primary');
+        gunsBtn.classList.remove('border-transparent', 'text-secondary');
+      }
+      if (flakesBtn) {
+        flakesBtn.classList.remove('border-primary', 'text-primary');
+        flakesBtn.classList.add('border-transparent', 'text-secondary');
+      }
+      if (gunsPane) gunsPane.classList.remove('hidden');
+      if (flakesPane) flakesPane.classList.add('hidden');
+    } else {
+      if (flakesBtn) {
+        flakesBtn.classList.add('border-primary', 'text-primary');
+        flakesBtn.classList.remove('border-transparent', 'text-secondary');
+      }
+      if (gunsBtn) {
+        gunsBtn.classList.remove('border-primary', 'text-primary');
+        gunsBtn.classList.add('border-transparent', 'text-secondary');
+      }
+      if (flakesPane) flakesPane.classList.remove('hidden');
+      if (gunsPane) gunsPane.classList.add('hidden');
+    }
+  }
+
+  downloadFlakeGunPDF() {
+    const a = document.createElement('a');
+    a.href = this.getAssetUrl('assets/docs/FLAKE_KING_1000_ASSEMBLY_INSTRUCTIONS.pdf');
+    a.download = 'FLAKE_KING_1000_ASSEMBLY_INSTRUCTIONS.pdf';
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
   downloadTDS(prod) {
     if (!prod) return;
     const nameLower = (prod.name || '').toLowerCase();
     const idLower = (prod.id || '').toLowerCase();
+    const isGun = (prod.name || '').includes('Gun') || (prod.name || '').includes('Airbrush') || (prod.name || '').includes('Adaptor') || (prod.name || '').includes('Attachment') || prod.category === 'Dry Metal Flake Guns' || prod.category === 'Flake King Gun Accessories' || prod.category === 'Airbrushes & Spray Guns';
     const isKromaClear = nameLower.includes('clear') || idLower.includes('clear') || idLower.includes('topcoat');
     const isVsionAir = (prod.brand || '').toLowerCase().includes('vsionair') || (prod.category || '').toLowerCase().includes('jig');
-    const isFlake = prod.category === 'Dry Metal Flake (Glitter)' || (prod.brand || '').includes('Flake King') || (prod.name || '').toLowerCase().includes('flake');
+    const isFlake = !isGun && (prod.category === 'Dry Metal Flake (Glitter)' || (prod.category || '').includes('Flake') || nameLower.includes('flake'));
+
+    if (isGun) {
+      this.openFlakeTDSModal('guns');
+      return;
+    }
 
     if (isFlake) {
-      this.openFlakeTDSModal();
+      this.openFlakeTDSModal('flakes');
       return;
     }
 
@@ -232,6 +287,25 @@ export class TdsSafetyUI {
         this.app.closeDetailModal();
         this.app.openQuickMixModal(prod.mixingSystemId || (prod.brand === 'Kroma Edge' ? 'kroma_edge_mirror_chrome' : null));
       }
+    });
+
+    this.app.addSafeListener('btn-detail-open-assembly-guide', () => {
+      if (this.app.activeModalProduct) {
+        this.app.closeDetailModal();
+        this.openFlakeTDSModal('guns');
+      }
+    });
+
+    this.app.addSafeListener('tab-btn-flake-guns', () => {
+      this.switchFlakeTDSTab('guns');
+    });
+
+    this.app.addSafeListener('tab-btn-flake-flakes', () => {
+      this.switchFlakeTDSTab('flakes');
+    });
+
+    this.app.addSafeListener('btn-download-flake-gun-pdf', () => {
+      this.downloadFlakeGunPDF();
     });
   }
 }

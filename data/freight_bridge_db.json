@@ -92,7 +92,7 @@
         "email": "logistics@coastairbrush.eu"
       },
       "createdAt": "2026-10-06T13:49:07.244Z",
-      "updatedAt": "2026-10-10T12:20:21.331Z"
+      "updatedAt": "2026-10-12T09:38:19.364Z"
     }
   },
   "shipments": {
@@ -18189,6 +18189,1334 @@
       "updatedAt": "2026-10-10T12:20:21.377Z",
       "cancelledAt": "2026-10-10T12:20:21.377Z",
       "cancellationReason": "End-to-end test verification cancellation"
+    },
+    "shp_CAE-FLEET-26-7FC3B593": {
+      "id": "shp_CAE-FLEET-26-7FC3B593",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-7FC3B593",
+      "bookingId": "BK-1791646237500-739",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Marco Rossi",
+        "company": "Milano Custom Garage SRL",
+        "address1": "Via Montenapoleone 18",
+        "city": "Milano",
+        "postal_code": "20121",
+        "country": "IT",
+        "phone": "+39 02 555 1234"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 140,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 165,
+        "volumetricWeightKg": 80.5,
+        "chargeableWeightKg": 165,
+        "volumeM3": 0.242
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-7FC3B593",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-7FC3B593.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-7FC3B593",
+      "createdAt": "2026-10-10T15:30:37.502Z",
+      "updatedAt": "2026-10-10T15:30:37.502Z"
+    },
+    "shp_CAE-FLEET-26-779D9299": {
+      "id": "shp_CAE-FLEET-26-779D9299",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-779D9299",
+      "bookingId": "BK-1791646237572-688",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Hans Gruber",
+        "company": "Gruber Automotive Paint",
+        "address1": "Industriestrasse 4",
+        "city": "Stuttgart",
+        "province": "",
+        "postalCode": "70173",
+        "country": "DE",
+        "phone": "+49 711 555 4321"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 44,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 69,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 69,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-779D9299",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-779D9299.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-779D9299",
+      "createdAt": "2026-10-10T15:30:37.573Z",
+      "updatedAt": "2026-10-10T15:30:37.573Z"
+    },
+    "shp_CAE-FLEET-26-10E7EF32": {
+      "id": "shp_CAE-FLEET-26-10E7EF32",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-10E7EF32",
+      "bookingId": "BK-1791646240140-764",
+      "status": "CANCELLED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Jean Dupont",
+        "company": "Atelier Custom Paris",
+        "address1": "44 Rue de Rivoli",
+        "city": "Paris",
+        "province": "",
+        "postalCode": "75004",
+        "country": "FR",
+        "phone": "+33 1 42 68 00 00"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 66,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 91,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 91,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-10E7EF32",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-10E7EF32.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-10E7EF32",
+      "createdAt": "2026-10-10T15:30:40.142Z",
+      "updatedAt": "2026-10-10T15:30:40.155Z",
+      "cancelledAt": "2026-10-10T15:30:40.155Z",
+      "cancellationReason": "End-to-end test verification cancellation"
+    },
+    "shp_CAE-FLEET-26-E4468059": {
+      "id": "shp_CAE-FLEET-26-E4468059",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-E4468059",
+      "bookingId": "BK-1791647160727-109",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Marco Rossi",
+        "company": "Milano Custom Garage SRL",
+        "address1": "Via Montenapoleone 18",
+        "city": "Milano",
+        "postal_code": "20121",
+        "country": "IT",
+        "phone": "+39 02 555 1234"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 140,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 165,
+        "volumetricWeightKg": 80.5,
+        "chargeableWeightKg": 165,
+        "volumeM3": 0.242
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-E4468059",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-E4468059.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-E4468059",
+      "createdAt": "2026-10-10T15:46:00.730Z",
+      "updatedAt": "2026-10-10T15:46:00.730Z"
+    },
+    "shp_CAE-FLEET-26-92BBCF5F": {
+      "id": "shp_CAE-FLEET-26-92BBCF5F",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-92BBCF5F",
+      "bookingId": "BK-1791647160806-986",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Hans Gruber",
+        "company": "Gruber Automotive Paint",
+        "address1": "Industriestrasse 4",
+        "city": "Stuttgart",
+        "province": "",
+        "postalCode": "70173",
+        "country": "DE",
+        "phone": "+49 711 555 4321"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 44,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 69,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 69,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-92BBCF5F",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-92BBCF5F.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-92BBCF5F",
+      "createdAt": "2026-10-10T15:46:00.810Z",
+      "updatedAt": "2026-10-10T15:46:00.810Z"
+    },
+    "shp_CAE-FLEET-26-0C1E18E3": {
+      "id": "shp_CAE-FLEET-26-0C1E18E3",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-0C1E18E3",
+      "bookingId": "BK-1791647163381-815",
+      "status": "CANCELLED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Jean Dupont",
+        "company": "Atelier Custom Paris",
+        "address1": "44 Rue de Rivoli",
+        "city": "Paris",
+        "province": "",
+        "postalCode": "75004",
+        "country": "FR",
+        "phone": "+33 1 42 68 00 00"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 66,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 91,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 91,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-0C1E18E3",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-0C1E18E3.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-0C1E18E3",
+      "createdAt": "2026-10-10T15:46:03.384Z",
+      "updatedAt": "2026-10-10T15:46:03.400Z",
+      "cancelledAt": "2026-10-10T15:46:03.400Z",
+      "cancellationReason": "End-to-end test verification cancellation"
+    },
+    "shp_CAE-FLEET-26-29FC9BF3": {
+      "id": "shp_CAE-FLEET-26-29FC9BF3",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-29FC9BF3",
+      "bookingId": "BK-1791647538304-217",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Marco Rossi",
+        "company": "Milano Custom Garage SRL",
+        "address1": "Via Montenapoleone 18",
+        "city": "Milano",
+        "postal_code": "20121",
+        "country": "IT",
+        "phone": "+39 02 555 1234"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 140,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 165,
+        "volumetricWeightKg": 80.5,
+        "chargeableWeightKg": 165,
+        "volumeM3": 0.242
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-29FC9BF3",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-29FC9BF3.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-29FC9BF3",
+      "createdAt": "2026-10-10T15:52:18.306Z",
+      "updatedAt": "2026-10-10T15:52:18.306Z"
+    },
+    "shp_CAE-FLEET-26-C78EE968": {
+      "id": "shp_CAE-FLEET-26-C78EE968",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-C78EE968",
+      "bookingId": "BK-1791647538378-303",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Hans Gruber",
+        "company": "Gruber Automotive Paint",
+        "address1": "Industriestrasse 4",
+        "city": "Stuttgart",
+        "province": "",
+        "postalCode": "70173",
+        "country": "DE",
+        "phone": "+49 711 555 4321"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 44,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 69,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 69,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-C78EE968",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-C78EE968.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-C78EE968",
+      "createdAt": "2026-10-10T15:52:18.381Z",
+      "updatedAt": "2026-10-10T15:52:18.381Z"
+    },
+    "shp_CAE-FLEET-26-74485F35": {
+      "id": "shp_CAE-FLEET-26-74485F35",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-74485F35",
+      "bookingId": "BK-1791647540944-373",
+      "status": "CANCELLED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Jean Dupont",
+        "company": "Atelier Custom Paris",
+        "address1": "44 Rue de Rivoli",
+        "city": "Paris",
+        "province": "",
+        "postalCode": "75004",
+        "country": "FR",
+        "phone": "+33 1 42 68 00 00"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 66,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 91,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 91,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-74485F35",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-74485F35.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-74485F35",
+      "createdAt": "2026-10-10T15:52:20.946Z",
+      "updatedAt": "2026-10-10T15:52:20.958Z",
+      "cancelledAt": "2026-10-10T15:52:20.958Z",
+      "cancellationReason": "End-to-end test verification cancellation"
+    },
+    "shp_CAE-FLEET-26-8F0B169E": {
+      "id": "shp_CAE-FLEET-26-8F0B169E",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-8F0B169E",
+      "bookingId": "BK-1791647596746-380",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Marco Rossi",
+        "company": "Milano Custom Garage SRL",
+        "address1": "Via Montenapoleone 18",
+        "city": "Milano",
+        "postal_code": "20121",
+        "country": "IT",
+        "phone": "+39 02 555 1234"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 140,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 165,
+        "volumetricWeightKg": 80.5,
+        "chargeableWeightKg": 165,
+        "volumeM3": 0.242
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-8F0B169E",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-8F0B169E.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-8F0B169E",
+      "createdAt": "2026-10-10T15:53:16.748Z",
+      "updatedAt": "2026-10-10T15:53:16.748Z"
+    },
+    "shp_CAE-FLEET-26-9FFBAB0C": {
+      "id": "shp_CAE-FLEET-26-9FFBAB0C",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-9FFBAB0C",
+      "bookingId": "BK-1791647596817-389",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Hans Gruber",
+        "company": "Gruber Automotive Paint",
+        "address1": "Industriestrasse 4",
+        "city": "Stuttgart",
+        "province": "",
+        "postalCode": "70173",
+        "country": "DE",
+        "phone": "+49 711 555 4321"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 44,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 69,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 69,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-9FFBAB0C",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-9FFBAB0C.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-9FFBAB0C",
+      "createdAt": "2026-10-10T15:53:16.819Z",
+      "updatedAt": "2026-10-10T15:53:16.819Z"
+    },
+    "shp_CAE-FLEET-26-AE7A9A62": {
+      "id": "shp_CAE-FLEET-26-AE7A9A62",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-AE7A9A62",
+      "bookingId": "BK-1791647599398-872",
+      "status": "CANCELLED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Jean Dupont",
+        "company": "Atelier Custom Paris",
+        "address1": "44 Rue de Rivoli",
+        "city": "Paris",
+        "province": "",
+        "postalCode": "75004",
+        "country": "FR",
+        "phone": "+33 1 42 68 00 00"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 66,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 91,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 91,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-AE7A9A62",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-AE7A9A62.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-AE7A9A62",
+      "createdAt": "2026-10-10T15:53:19.401Z",
+      "updatedAt": "2026-10-10T15:53:19.418Z",
+      "cancelledAt": "2026-10-10T15:53:19.418Z",
+      "cancellationReason": "End-to-end test verification cancellation"
+    },
+    "shp_CAE-FLEET-26-DCB8207F": {
+      "id": "shp_CAE-FLEET-26-DCB8207F",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-DCB8207F",
+      "bookingId": "BK-1791649040409-277",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Marco Rossi",
+        "company": "Milano Custom Garage SRL",
+        "address1": "Via Montenapoleone 18",
+        "city": "Milano",
+        "postal_code": "20121",
+        "country": "IT",
+        "phone": "+39 02 555 1234"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 140,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 165,
+        "volumetricWeightKg": 80.5,
+        "chargeableWeightKg": 165,
+        "volumeM3": 0.242
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-DCB8207F",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-DCB8207F.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-DCB8207F",
+      "createdAt": "2026-10-10T16:17:20.413Z",
+      "updatedAt": "2026-10-10T16:17:20.413Z"
+    },
+    "shp_CAE-FLEET-26-65E2CEA5": {
+      "id": "shp_CAE-FLEET-26-65E2CEA5",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-65E2CEA5",
+      "bookingId": "BK-1791649040494-480",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Hans Gruber",
+        "company": "Gruber Automotive Paint",
+        "address1": "Industriestrasse 4",
+        "city": "Stuttgart",
+        "province": "",
+        "postalCode": "70173",
+        "country": "DE",
+        "phone": "+49 711 555 4321"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 44,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 69,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 69,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-65E2CEA5",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-65E2CEA5.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-65E2CEA5",
+      "createdAt": "2026-10-10T16:17:20.500Z",
+      "updatedAt": "2026-10-10T16:17:20.500Z"
+    },
+    "shp_CAE-FLEET-26-763ADE72": {
+      "id": "shp_CAE-FLEET-26-763ADE72",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-763ADE72",
+      "bookingId": "BK-1791649043069-455",
+      "status": "CANCELLED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Jean Dupont",
+        "company": "Atelier Custom Paris",
+        "address1": "44 Rue de Rivoli",
+        "city": "Paris",
+        "province": "",
+        "postalCode": "75004",
+        "country": "FR",
+        "phone": "+33 1 42 68 00 00"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 66,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 91,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 91,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-763ADE72",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-763ADE72.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-763ADE72",
+      "createdAt": "2026-10-10T16:17:23.075Z",
+      "updatedAt": "2026-10-10T16:17:23.093Z",
+      "cancelledAt": "2026-10-10T16:17:23.093Z",
+      "cancellationReason": "End-to-end test verification cancellation"
+    },
+    "shp_CAE-FLEET-26-896E44AE": {
+      "id": "shp_CAE-FLEET-26-896E44AE",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-896E44AE",
+      "bookingId": "BK-1791649479397-872",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Marco Rossi",
+        "company": "Milano Custom Garage SRL",
+        "address1": "Via Montenapoleone 18",
+        "city": "Milano",
+        "postal_code": "20121",
+        "country": "IT",
+        "phone": "+39 02 555 1234"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 140,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 165,
+        "volumetricWeightKg": 80.5,
+        "chargeableWeightKg": 165,
+        "volumeM3": 0.242
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-896E44AE",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-896E44AE.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-896E44AE",
+      "createdAt": "2026-10-10T16:24:39.403Z",
+      "updatedAt": "2026-10-10T16:24:39.403Z"
+    },
+    "shp_CAE-FLEET-26-955AFB7A": {
+      "id": "shp_CAE-FLEET-26-955AFB7A",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-955AFB7A",
+      "bookingId": "BK-1791649479481-649",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Hans Gruber",
+        "company": "Gruber Automotive Paint",
+        "address1": "Industriestrasse 4",
+        "city": "Stuttgart",
+        "province": "",
+        "postalCode": "70173",
+        "country": "DE",
+        "phone": "+49 711 555 4321"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 44,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 69,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 69,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-955AFB7A",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-955AFB7A.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-955AFB7A",
+      "createdAt": "2026-10-10T16:24:39.484Z",
+      "updatedAt": "2026-10-10T16:24:39.485Z"
+    },
+    "shp_CAE-FLEET-26-42A65F7F": {
+      "id": "shp_CAE-FLEET-26-42A65F7F",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-42A65F7F",
+      "bookingId": "BK-1791649482045-852",
+      "status": "CANCELLED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Jean Dupont",
+        "company": "Atelier Custom Paris",
+        "address1": "44 Rue de Rivoli",
+        "city": "Paris",
+        "province": "",
+        "postalCode": "75004",
+        "country": "FR",
+        "phone": "+33 1 42 68 00 00"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 66,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 91,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 91,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-11",
+      "estimatedDeliveryDate": "2026-10-13",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-42A65F7F",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-42A65F7F.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-42A65F7F",
+      "createdAt": "2026-10-10T16:24:42.047Z",
+      "updatedAt": "2026-10-10T16:24:42.060Z",
+      "cancelledAt": "2026-10-10T16:24:42.060Z",
+      "cancellationReason": "End-to-end test verification cancellation"
+    },
+    "shp_CAE-FLEET-26-C120CE77": {
+      "id": "shp_CAE-FLEET-26-C120CE77",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-C120CE77",
+      "bookingId": "BK-1791797702429-204",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Marco Rossi",
+        "company": "Milano Custom Garage SRL",
+        "address1": "Via Montenapoleone 18",
+        "city": "Milano",
+        "postal_code": "20121",
+        "country": "IT",
+        "phone": "+39 02 555 1234"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 140,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 165,
+        "volumetricWeightKg": 80.5,
+        "chargeableWeightKg": 165,
+        "volumeM3": 0.242
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-13",
+      "estimatedDeliveryDate": "2026-10-15",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-C120CE77",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-C120CE77.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-C120CE77",
+      "createdAt": "2026-10-12T09:35:02.431Z",
+      "updatedAt": "2026-10-12T09:35:02.431Z"
+    },
+    "shp_CAE-FLEET-26-E1ECEBE9": {
+      "id": "shp_CAE-FLEET-26-E1ECEBE9",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-E1ECEBE9",
+      "bookingId": "BK-1791797702511-991",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Hans Gruber",
+        "company": "Gruber Automotive Paint",
+        "address1": "Industriestrasse 4",
+        "city": "Stuttgart",
+        "province": "",
+        "postalCode": "70173",
+        "country": "DE",
+        "phone": "+49 711 555 4321"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 44,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 69,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 69,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-13",
+      "estimatedDeliveryDate": "2026-10-15",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-E1ECEBE9",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-E1ECEBE9.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-E1ECEBE9",
+      "createdAt": "2026-10-12T09:35:02.513Z",
+      "updatedAt": "2026-10-12T09:35:02.513Z"
+    },
+    "shp_CAE-FLEET-26-7D2E6C88": {
+      "id": "shp_CAE-FLEET-26-7D2E6C88",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-7D2E6C88",
+      "bookingId": "BK-1791797705083-548",
+      "status": "CANCELLED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Jean Dupont",
+        "company": "Atelier Custom Paris",
+        "address1": "44 Rue de Rivoli",
+        "city": "Paris",
+        "province": "",
+        "postalCode": "75004",
+        "country": "FR",
+        "phone": "+33 1 42 68 00 00"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 66,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 91,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 91,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-13",
+      "estimatedDeliveryDate": "2026-10-15",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-7D2E6C88",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-7D2E6C88.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-7D2E6C88",
+      "createdAt": "2026-10-12T09:35:05.085Z",
+      "updatedAt": "2026-10-12T09:35:05.101Z",
+      "cancelledAt": "2026-10-12T09:35:05.101Z",
+      "cancellationReason": "End-to-end test verification cancellation"
+    },
+    "shp_CAE-FLEET-26-02066543": {
+      "id": "shp_CAE-FLEET-26-02066543",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-02066543",
+      "bookingId": "BK-1791797896724-725",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Marco Rossi",
+        "company": "Milano Custom Garage SRL",
+        "address1": "Via Montenapoleone 18",
+        "city": "Milano",
+        "postal_code": "20121",
+        "country": "IT",
+        "phone": "+39 02 555 1234"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 140,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 165,
+        "volumetricWeightKg": 80.5,
+        "chargeableWeightKg": 165,
+        "volumeM3": 0.242
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-13",
+      "estimatedDeliveryDate": "2026-10-15",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-02066543",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-02066543.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-02066543",
+      "createdAt": "2026-10-12T09:38:16.727Z",
+      "updatedAt": "2026-10-12T09:38:16.727Z"
+    },
+    "shp_CAE-FLEET-26-0CC72738": {
+      "id": "shp_CAE-FLEET-26-0CC72738",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-0CC72738",
+      "bookingId": "BK-1791797896803-773",
+      "status": "BOOKED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Hans Gruber",
+        "company": "Gruber Automotive Paint",
+        "address1": "Industriestrasse 4",
+        "city": "Stuttgart",
+        "province": "",
+        "postalCode": "70173",
+        "country": "DE",
+        "phone": "+49 711 555 4321"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 44,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 69,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 69,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-13",
+      "estimatedDeliveryDate": "2026-10-15",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-0CC72738",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-0CC72738.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-0CC72738",
+      "createdAt": "2026-10-12T09:38:16.806Z",
+      "updatedAt": "2026-10-12T09:38:16.806Z"
+    },
+    "shp_CAE-FLEET-26-2B7F3F6A": {
+      "id": "shp_CAE-FLEET-26-2B7F3F6A",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "carrierId": "mock-ltl",
+      "carrierName": "Coast Freight LTL (Autonomous Fleet Simulator)",
+      "proNumber": "CAE-FLEET-26-2B7F3F6A",
+      "bookingId": "BK-1791797899391-353",
+      "status": "CANCELLED",
+      "origin": {
+        "company": "Coast Airbrush Europe BV - Bonded Logistics Hub",
+        "name": "EU Fulfillment Center",
+        "address1": "Maasvlakte Haven 42",
+        "city": "Rotterdam",
+        "province": "South Holland",
+        "postalCode": "3011 AA",
+        "country": "NL",
+        "phone": "+31 10 555 0199",
+        "email": "logistics@coastairbrush.eu"
+      },
+      "destination": {
+        "name": "Jean Dupont",
+        "company": "Atelier Custom Paris",
+        "address1": "44 Rue de Rivoli",
+        "city": "Paris",
+        "province": "",
+        "postalCode": "75004",
+        "country": "FR",
+        "phone": "+33 1 42 68 00 00"
+      },
+      "density": {
+        "palletType": "EURO_PALLET",
+        "palletSpecName": "EUR-EPAL 1",
+        "palletCount": 1,
+        "totalNetWeightKg": 66,
+        "totalTareWeightKg": 25,
+        "totalGrossWeightKg": 91,
+        "volumetricWeightKg": 16.67,
+        "chargeableWeightKg": 91,
+        "volumeM3": 0.05
+      },
+      "appliedAccessorials": [
+        "LIFTGATE",
+        "HAZARDOUS_ADR"
+      ],
+      "accessorialTotalCents": 6000,
+      "pickupDate": "2026-10-13",
+      "estimatedDeliveryDate": "2026-10-15",
+      "bolUrl": "/api/freight/bol/CAE-FLEET-26-2B7F3F6A",
+      "bolFilePath": "/Volumes/Media SSD/Coast Airbrush Paint System/data/bol_documents/BOL-CAE-FLEET-26-2B7F3F6A.html",
+      "trackingUrl": "http://localhost:3015/api/freight/track/CAE-FLEET-26-2B7F3F6A",
+      "createdAt": "2026-10-12T09:38:19.394Z",
+      "updatedAt": "2026-10-12T09:38:19.410Z",
+      "cancelledAt": "2026-10-12T09:38:19.410Z",
+      "cancellationReason": "End-to-end test verification cancellation"
     }
   },
   "jobs": {
@@ -32361,6 +33689,1046 @@
       "createdAt": "2026-10-10T12:20:21.340Z",
       "updatedAt": "2026-10-10T12:20:21.367Z",
       "completedAt": "2026-10-10T12:20:21.367Z"
+    },
+    "job_1791646237486_901": {
+      "id": "job_1791646237486_901",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "shopify_order_99812",
+        "orderNumber": "#CAE-EU-10492",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Reducer Solvent 20L Drum",
+            "sku": "KE-SOLV-20L",
+            "quantity": 3,
+            "grams": 20000,
+            "length_cm": 30,
+            "width_cm": 30,
+            "height_cm": 45
+          },
+          {
+            "name": "Kroma Edge Custom Lacquer Pallet Kit",
+            "sku": "KE-BULK-PALLET",
+            "quantity": 1,
+            "grams": 80000,
+            "length_cm": 60,
+            "width_cm": 40,
+            "height_cm": 50
+          }
+        ],
+        "destination": {
+          "name": "Marco Rossi",
+          "company": "Milano Custom Garage SRL",
+          "address1": "Via Montenapoleone 18",
+          "city": "Milano",
+          "postal_code": "20121",
+          "country": "IT",
+          "phone": "+39 02 555 1234"
+        }
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-7FC3B593",
+      "createdAt": "2026-10-10T15:30:37.486Z",
+      "updatedAt": "2026-10-10T15:30:37.508Z",
+      "completedAt": "2026-10-10T15:30:37.508Z"
+    },
+    "job_1791646237558_757": {
+      "id": "job_1791646237558_757",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "order_mock_991823",
+        "orderNumber": "#CAE-EU-991823",
+        "items": [
+          {
+            "name": "Kroma Edge 20L Flammable Paint Drum",
+            "sku": "KE-DRUM-20L",
+            "quantity": 2,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Hans Gruber",
+          "company": "Gruber Automotive Paint",
+          "address1": "Industriestrasse 4",
+          "city": "Stuttgart",
+          "province": "",
+          "postalCode": "70173",
+          "country": "DE",
+          "phone": "+49 711 555 4321"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-779D9299",
+      "createdAt": "2026-10-10T15:30:37.558Z",
+      "updatedAt": "2026-10-10T15:30:37.579Z",
+      "completedAt": "2026-10-10T15:30:37.579Z"
+    },
+    "job_1791646240129_295": {
+      "id": "job_1791646240129_295",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "88472910",
+        "orderNumber": "#CAE-ORDER-884729",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Flammable Lacquer Drum 20L",
+            "sku": "KE-LTL-DRUM",
+            "quantity": 3,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Jean Dupont",
+          "company": "Atelier Custom Paris",
+          "address1": "44 Rue de Rivoli",
+          "city": "Paris",
+          "province": "",
+          "postalCode": "75004",
+          "country": "FR",
+          "phone": "+33 1 42 68 00 00"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-10E7EF32",
+      "createdAt": "2026-10-10T15:30:40.129Z",
+      "updatedAt": "2026-10-10T15:30:40.148Z",
+      "completedAt": "2026-10-10T15:30:40.148Z"
+    },
+    "job_1791647160707_440": {
+      "id": "job_1791647160707_440",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "shopify_order_99812",
+        "orderNumber": "#CAE-EU-10492",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Reducer Solvent 20L Drum",
+            "sku": "KE-SOLV-20L",
+            "quantity": 3,
+            "grams": 20000,
+            "length_cm": 30,
+            "width_cm": 30,
+            "height_cm": 45
+          },
+          {
+            "name": "Kroma Edge Custom Lacquer Pallet Kit",
+            "sku": "KE-BULK-PALLET",
+            "quantity": 1,
+            "grams": 80000,
+            "length_cm": 60,
+            "width_cm": 40,
+            "height_cm": 50
+          }
+        ],
+        "destination": {
+          "name": "Marco Rossi",
+          "company": "Milano Custom Garage SRL",
+          "address1": "Via Montenapoleone 18",
+          "city": "Milano",
+          "postal_code": "20121",
+          "country": "IT",
+          "phone": "+39 02 555 1234"
+        }
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-E4468059",
+      "createdAt": "2026-10-10T15:46:00.707Z",
+      "updatedAt": "2026-10-10T15:46:00.737Z",
+      "completedAt": "2026-10-10T15:46:00.737Z"
+    },
+    "job_1791647160787_99": {
+      "id": "job_1791647160787_99",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "order_mock_991823",
+        "orderNumber": "#CAE-EU-991823",
+        "items": [
+          {
+            "name": "Kroma Edge 20L Flammable Paint Drum",
+            "sku": "KE-DRUM-20L",
+            "quantity": 2,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Hans Gruber",
+          "company": "Gruber Automotive Paint",
+          "address1": "Industriestrasse 4",
+          "city": "Stuttgart",
+          "province": "",
+          "postalCode": "70173",
+          "country": "DE",
+          "phone": "+49 711 555 4321"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-92BBCF5F",
+      "createdAt": "2026-10-10T15:46:00.787Z",
+      "updatedAt": "2026-10-10T15:46:00.817Z",
+      "completedAt": "2026-10-10T15:46:00.817Z"
+    },
+    "job_1791647163365_931": {
+      "id": "job_1791647163365_931",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "88472910",
+        "orderNumber": "#CAE-ORDER-884729",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Flammable Lacquer Drum 20L",
+            "sku": "KE-LTL-DRUM",
+            "quantity": 3,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Jean Dupont",
+          "company": "Atelier Custom Paris",
+          "address1": "44 Rue de Rivoli",
+          "city": "Paris",
+          "province": "",
+          "postalCode": "75004",
+          "country": "FR",
+          "phone": "+33 1 42 68 00 00"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-0C1E18E3",
+      "createdAt": "2026-10-10T15:46:03.365Z",
+      "updatedAt": "2026-10-10T15:46:03.392Z",
+      "completedAt": "2026-10-10T15:46:03.392Z"
+    },
+    "job_1791647538289_606": {
+      "id": "job_1791647538289_606",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "shopify_order_99812",
+        "orderNumber": "#CAE-EU-10492",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Reducer Solvent 20L Drum",
+            "sku": "KE-SOLV-20L",
+            "quantity": 3,
+            "grams": 20000,
+            "length_cm": 30,
+            "width_cm": 30,
+            "height_cm": 45
+          },
+          {
+            "name": "Kroma Edge Custom Lacquer Pallet Kit",
+            "sku": "KE-BULK-PALLET",
+            "quantity": 1,
+            "grams": 80000,
+            "length_cm": 60,
+            "width_cm": 40,
+            "height_cm": 50
+          }
+        ],
+        "destination": {
+          "name": "Marco Rossi",
+          "company": "Milano Custom Garage SRL",
+          "address1": "Via Montenapoleone 18",
+          "city": "Milano",
+          "postal_code": "20121",
+          "country": "IT",
+          "phone": "+39 02 555 1234"
+        }
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-29FC9BF3",
+      "createdAt": "2026-10-10T15:52:18.289Z",
+      "updatedAt": "2026-10-10T15:52:18.312Z",
+      "completedAt": "2026-10-10T15:52:18.312Z"
+    },
+    "job_1791647538359_429": {
+      "id": "job_1791647538359_429",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "order_mock_991823",
+        "orderNumber": "#CAE-EU-991823",
+        "items": [
+          {
+            "name": "Kroma Edge 20L Flammable Paint Drum",
+            "sku": "KE-DRUM-20L",
+            "quantity": 2,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Hans Gruber",
+          "company": "Gruber Automotive Paint",
+          "address1": "Industriestrasse 4",
+          "city": "Stuttgart",
+          "province": "",
+          "postalCode": "70173",
+          "country": "DE",
+          "phone": "+49 711 555 4321"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-C78EE968",
+      "createdAt": "2026-10-10T15:52:18.359Z",
+      "updatedAt": "2026-10-10T15:52:18.388Z",
+      "completedAt": "2026-10-10T15:52:18.388Z"
+    },
+    "job_1791647540933_273": {
+      "id": "job_1791647540933_273",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "88472910",
+        "orderNumber": "#CAE-ORDER-884729",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Flammable Lacquer Drum 20L",
+            "sku": "KE-LTL-DRUM",
+            "quantity": 3,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Jean Dupont",
+          "company": "Atelier Custom Paris",
+          "address1": "44 Rue de Rivoli",
+          "city": "Paris",
+          "province": "",
+          "postalCode": "75004",
+          "country": "FR",
+          "phone": "+33 1 42 68 00 00"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-74485F35",
+      "createdAt": "2026-10-10T15:52:20.933Z",
+      "updatedAt": "2026-10-10T15:52:20.951Z",
+      "completedAt": "2026-10-10T15:52:20.951Z"
+    },
+    "job_1791647596731_378": {
+      "id": "job_1791647596731_378",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "shopify_order_99812",
+        "orderNumber": "#CAE-EU-10492",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Reducer Solvent 20L Drum",
+            "sku": "KE-SOLV-20L",
+            "quantity": 3,
+            "grams": 20000,
+            "length_cm": 30,
+            "width_cm": 30,
+            "height_cm": 45
+          },
+          {
+            "name": "Kroma Edge Custom Lacquer Pallet Kit",
+            "sku": "KE-BULK-PALLET",
+            "quantity": 1,
+            "grams": 80000,
+            "length_cm": 60,
+            "width_cm": 40,
+            "height_cm": 50
+          }
+        ],
+        "destination": {
+          "name": "Marco Rossi",
+          "company": "Milano Custom Garage SRL",
+          "address1": "Via Montenapoleone 18",
+          "city": "Milano",
+          "postal_code": "20121",
+          "country": "IT",
+          "phone": "+39 02 555 1234"
+        }
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-8F0B169E",
+      "createdAt": "2026-10-10T15:53:16.731Z",
+      "updatedAt": "2026-10-10T15:53:16.753Z",
+      "completedAt": "2026-10-10T15:53:16.753Z"
+    },
+    "job_1791647596803_294": {
+      "id": "job_1791647596803_294",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "order_mock_991823",
+        "orderNumber": "#CAE-EU-991823",
+        "items": [
+          {
+            "name": "Kroma Edge 20L Flammable Paint Drum",
+            "sku": "KE-DRUM-20L",
+            "quantity": 2,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Hans Gruber",
+          "company": "Gruber Automotive Paint",
+          "address1": "Industriestrasse 4",
+          "city": "Stuttgart",
+          "province": "",
+          "postalCode": "70173",
+          "country": "DE",
+          "phone": "+49 711 555 4321"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-9FFBAB0C",
+      "createdAt": "2026-10-10T15:53:16.803Z",
+      "updatedAt": "2026-10-10T15:53:16.825Z",
+      "completedAt": "2026-10-10T15:53:16.825Z"
+    },
+    "job_1791647599383_685": {
+      "id": "job_1791647599383_685",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "88472910",
+        "orderNumber": "#CAE-ORDER-884729",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Flammable Lacquer Drum 20L",
+            "sku": "KE-LTL-DRUM",
+            "quantity": 3,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Jean Dupont",
+          "company": "Atelier Custom Paris",
+          "address1": "44 Rue de Rivoli",
+          "city": "Paris",
+          "province": "",
+          "postalCode": "75004",
+          "country": "FR",
+          "phone": "+33 1 42 68 00 00"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-AE7A9A62",
+      "createdAt": "2026-10-10T15:53:19.383Z",
+      "updatedAt": "2026-10-10T15:53:19.409Z",
+      "completedAt": "2026-10-10T15:53:19.409Z"
+    },
+    "job_1791649040387_75": {
+      "id": "job_1791649040387_75",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "shopify_order_99812",
+        "orderNumber": "#CAE-EU-10492",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Reducer Solvent 20L Drum",
+            "sku": "KE-SOLV-20L",
+            "quantity": 3,
+            "grams": 20000,
+            "length_cm": 30,
+            "width_cm": 30,
+            "height_cm": 45
+          },
+          {
+            "name": "Kroma Edge Custom Lacquer Pallet Kit",
+            "sku": "KE-BULK-PALLET",
+            "quantity": 1,
+            "grams": 80000,
+            "length_cm": 60,
+            "width_cm": 40,
+            "height_cm": 50
+          }
+        ],
+        "destination": {
+          "name": "Marco Rossi",
+          "company": "Milano Custom Garage SRL",
+          "address1": "Via Montenapoleone 18",
+          "city": "Milano",
+          "postal_code": "20121",
+          "country": "IT",
+          "phone": "+39 02 555 1234"
+        }
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-DCB8207F",
+      "createdAt": "2026-10-10T16:17:20.387Z",
+      "updatedAt": "2026-10-10T16:17:20.423Z",
+      "completedAt": "2026-10-10T16:17:20.423Z"
+    },
+    "job_1791649040475_498": {
+      "id": "job_1791649040475_498",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "order_mock_991823",
+        "orderNumber": "#CAE-EU-991823",
+        "items": [
+          {
+            "name": "Kroma Edge 20L Flammable Paint Drum",
+            "sku": "KE-DRUM-20L",
+            "quantity": 2,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Hans Gruber",
+          "company": "Gruber Automotive Paint",
+          "address1": "Industriestrasse 4",
+          "city": "Stuttgart",
+          "province": "",
+          "postalCode": "70173",
+          "country": "DE",
+          "phone": "+49 711 555 4321"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-65E2CEA5",
+      "createdAt": "2026-10-10T16:17:20.475Z",
+      "updatedAt": "2026-10-10T16:17:20.509Z",
+      "completedAt": "2026-10-10T16:17:20.509Z"
+    },
+    "job_1791649043048_21": {
+      "id": "job_1791649043048_21",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "88472910",
+        "orderNumber": "#CAE-ORDER-884729",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Flammable Lacquer Drum 20L",
+            "sku": "KE-LTL-DRUM",
+            "quantity": 3,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Jean Dupont",
+          "company": "Atelier Custom Paris",
+          "address1": "44 Rue de Rivoli",
+          "city": "Paris",
+          "province": "",
+          "postalCode": "75004",
+          "country": "FR",
+          "phone": "+33 1 42 68 00 00"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-763ADE72",
+      "createdAt": "2026-10-10T16:17:23.048Z",
+      "updatedAt": "2026-10-10T16:17:23.084Z",
+      "completedAt": "2026-10-10T16:17:23.084Z"
+    },
+    "job_1791649479377_799": {
+      "id": "job_1791649479377_799",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "shopify_order_99812",
+        "orderNumber": "#CAE-EU-10492",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Reducer Solvent 20L Drum",
+            "sku": "KE-SOLV-20L",
+            "quantity": 3,
+            "grams": 20000,
+            "length_cm": 30,
+            "width_cm": 30,
+            "height_cm": 45
+          },
+          {
+            "name": "Kroma Edge Custom Lacquer Pallet Kit",
+            "sku": "KE-BULK-PALLET",
+            "quantity": 1,
+            "grams": 80000,
+            "length_cm": 60,
+            "width_cm": 40,
+            "height_cm": 50
+          }
+        ],
+        "destination": {
+          "name": "Marco Rossi",
+          "company": "Milano Custom Garage SRL",
+          "address1": "Via Montenapoleone 18",
+          "city": "Milano",
+          "postal_code": "20121",
+          "country": "IT",
+          "phone": "+39 02 555 1234"
+        }
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-896E44AE",
+      "createdAt": "2026-10-10T16:24:39.377Z",
+      "updatedAt": "2026-10-10T16:24:39.409Z",
+      "completedAt": "2026-10-10T16:24:39.409Z"
+    },
+    "job_1791649479461_535": {
+      "id": "job_1791649479461_535",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "order_mock_991823",
+        "orderNumber": "#CAE-EU-991823",
+        "items": [
+          {
+            "name": "Kroma Edge 20L Flammable Paint Drum",
+            "sku": "KE-DRUM-20L",
+            "quantity": 2,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Hans Gruber",
+          "company": "Gruber Automotive Paint",
+          "address1": "Industriestrasse 4",
+          "city": "Stuttgart",
+          "province": "",
+          "postalCode": "70173",
+          "country": "DE",
+          "phone": "+49 711 555 4321"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-955AFB7A",
+      "createdAt": "2026-10-10T16:24:39.461Z",
+      "updatedAt": "2026-10-10T16:24:39.491Z",
+      "completedAt": "2026-10-10T16:24:39.491Z"
+    },
+    "job_1791649482033_752": {
+      "id": "job_1791649482033_752",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "88472910",
+        "orderNumber": "#CAE-ORDER-884729",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Flammable Lacquer Drum 20L",
+            "sku": "KE-LTL-DRUM",
+            "quantity": 3,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Jean Dupont",
+          "company": "Atelier Custom Paris",
+          "address1": "44 Rue de Rivoli",
+          "city": "Paris",
+          "province": "",
+          "postalCode": "75004",
+          "country": "FR",
+          "phone": "+33 1 42 68 00 00"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-42A65F7F",
+      "createdAt": "2026-10-10T16:24:42.033Z",
+      "updatedAt": "2026-10-10T16:24:42.053Z",
+      "completedAt": "2026-10-10T16:24:42.053Z"
+    },
+    "job_1791797702408_995": {
+      "id": "job_1791797702408_995",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "shopify_order_99812",
+        "orderNumber": "#CAE-EU-10492",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Reducer Solvent 20L Drum",
+            "sku": "KE-SOLV-20L",
+            "quantity": 3,
+            "grams": 20000,
+            "length_cm": 30,
+            "width_cm": 30,
+            "height_cm": 45
+          },
+          {
+            "name": "Kroma Edge Custom Lacquer Pallet Kit",
+            "sku": "KE-BULK-PALLET",
+            "quantity": 1,
+            "grams": 80000,
+            "length_cm": 60,
+            "width_cm": 40,
+            "height_cm": 50
+          }
+        ],
+        "destination": {
+          "name": "Marco Rossi",
+          "company": "Milano Custom Garage SRL",
+          "address1": "Via Montenapoleone 18",
+          "city": "Milano",
+          "postal_code": "20121",
+          "country": "IT",
+          "phone": "+39 02 555 1234"
+        }
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-C120CE77",
+      "createdAt": "2026-10-12T09:35:02.408Z",
+      "updatedAt": "2026-10-12T09:35:02.439Z",
+      "completedAt": "2026-10-12T09:35:02.439Z"
+    },
+    "job_1791797702489_383": {
+      "id": "job_1791797702489_383",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "order_mock_991823",
+        "orderNumber": "#CAE-EU-991823",
+        "items": [
+          {
+            "name": "Kroma Edge 20L Flammable Paint Drum",
+            "sku": "KE-DRUM-20L",
+            "quantity": 2,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Hans Gruber",
+          "company": "Gruber Automotive Paint",
+          "address1": "Industriestrasse 4",
+          "city": "Stuttgart",
+          "province": "",
+          "postalCode": "70173",
+          "country": "DE",
+          "phone": "+49 711 555 4321"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-E1ECEBE9",
+      "createdAt": "2026-10-12T09:35:02.489Z",
+      "updatedAt": "2026-10-12T09:35:02.522Z",
+      "completedAt": "2026-10-12T09:35:02.522Z"
+    },
+    "job_1791797705067_864": {
+      "id": "job_1791797705067_864",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "88472910",
+        "orderNumber": "#CAE-ORDER-884729",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Flammable Lacquer Drum 20L",
+            "sku": "KE-LTL-DRUM",
+            "quantity": 3,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Jean Dupont",
+          "company": "Atelier Custom Paris",
+          "address1": "44 Rue de Rivoli",
+          "city": "Paris",
+          "province": "",
+          "postalCode": "75004",
+          "country": "FR",
+          "phone": "+33 1 42 68 00 00"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-7D2E6C88",
+      "createdAt": "2026-10-12T09:35:05.067Z",
+      "updatedAt": "2026-10-12T09:35:05.093Z",
+      "completedAt": "2026-10-12T09:35:05.093Z"
+    },
+    "job_1791797896702_714": {
+      "id": "job_1791797896702_714",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "shopify_order_99812",
+      "orderNumber": "#CAE-EU-10492",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "shopify_order_99812",
+        "orderNumber": "#CAE-EU-10492",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Reducer Solvent 20L Drum",
+            "sku": "KE-SOLV-20L",
+            "quantity": 3,
+            "grams": 20000,
+            "length_cm": 30,
+            "width_cm": 30,
+            "height_cm": 45
+          },
+          {
+            "name": "Kroma Edge Custom Lacquer Pallet Kit",
+            "sku": "KE-BULK-PALLET",
+            "quantity": 1,
+            "grams": 80000,
+            "length_cm": 60,
+            "width_cm": 40,
+            "height_cm": 50
+          }
+        ],
+        "destination": {
+          "name": "Marco Rossi",
+          "company": "Milano Custom Garage SRL",
+          "address1": "Via Montenapoleone 18",
+          "city": "Milano",
+          "postal_code": "20121",
+          "country": "IT",
+          "phone": "+39 02 555 1234"
+        }
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-02066543",
+      "createdAt": "2026-10-12T09:38:16.702Z",
+      "updatedAt": "2026-10-12T09:38:16.736Z",
+      "completedAt": "2026-10-12T09:38:16.736Z"
+    },
+    "job_1791797896785_443": {
+      "id": "job_1791797896785_443",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "order_mock_991823",
+      "orderNumber": "#CAE-EU-991823",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "order_mock_991823",
+        "orderNumber": "#CAE-EU-991823",
+        "items": [
+          {
+            "name": "Kroma Edge 20L Flammable Paint Drum",
+            "sku": "KE-DRUM-20L",
+            "quantity": 2,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Hans Gruber",
+          "company": "Gruber Automotive Paint",
+          "address1": "Industriestrasse 4",
+          "city": "Stuttgart",
+          "province": "",
+          "postalCode": "70173",
+          "country": "DE",
+          "phone": "+49 711 555 4321"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-0CC72738",
+      "createdAt": "2026-10-12T09:38:16.785Z",
+      "updatedAt": "2026-10-12T09:38:16.814Z",
+      "completedAt": "2026-10-12T09:38:16.814Z"
+    },
+    "job_1791797899375_741": {
+      "id": "job_1791797899375_741",
+      "tenantId": "coast-airbrush-europe",
+      "orderId": "88472910",
+      "orderNumber": "#CAE-ORDER-884729",
+      "payload": {
+        "tenantId": "coast-airbrush-europe",
+        "orderId": "88472910",
+        "orderNumber": "#CAE-ORDER-884729",
+        "items": [
+          {
+            "name": "Kroma Edge UN1263 Flammable Lacquer Drum 20L",
+            "sku": "KE-LTL-DRUM",
+            "quantity": 3,
+            "grams": 22000
+          }
+        ],
+        "destination": {
+          "name": "Jean Dupont",
+          "company": "Atelier Custom Paris",
+          "address1": "44 Rue de Rivoli",
+          "city": "Paris",
+          "province": "",
+          "postalCode": "75004",
+          "country": "FR",
+          "phone": "+33 1 42 68 00 00"
+        },
+        "accessorials": [
+          "LIFTGATE",
+          "HAZARDOUS_ADR"
+        ]
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "maxAttempts": 3,
+      "error": null,
+      "shipmentId": "shp_CAE-FLEET-26-2B7F3F6A",
+      "createdAt": "2026-10-12T09:38:19.375Z",
+      "updatedAt": "2026-10-12T09:38:19.402Z",
+      "completedAt": "2026-10-12T09:38:19.402Z"
     }
   }
 }

@@ -32,8 +32,10 @@ export function bindGlobalWindowActions(app) {
   window.configureKromaEdgeInMixLab = () => app.configureKromaEdgeInMixLab();
   window.openDetailModal = (prodId, tab) => app.openDetailModal(prodId, tab);
   window.openQuickMixModal = (systemId) => app.openQuickMixModal(systemId);
-  window.openFlakeTDSModal = () => app.openFlakeTDSModal();
+  window.openFlakeTDSModal = (tab) => app.openFlakeTDSModal(tab);
   window.closeFlakeTDSModal = () => app.closeFlakeTDSModal();
+  window.switchFlakeTDSTab = (tab) => app.switchFlakeTDSTab(tab);
+  window.downloadFlakeGunPDF = () => app.downloadFlakeGunPDF();
   window.setCategoryAndScroll = (catId, brandName) => app.setCategoryAndScroll(catId, brandName);
   window.filterByCategoryAndScroll = (catId, brandName) => app.setCategoryAndScroll(catId, brandName);
   window.applyKromaPreset = (panelId) => app.applyKromaPreset(panelId);

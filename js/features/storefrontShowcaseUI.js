@@ -106,6 +106,16 @@ export class StorefrontShowcaseUI {
       if (fk2352Val) {
         this.app.onProductVariantChange('fk-2352', 'width', fk2352Val);
       }
+      const fk2380Select = document.getElementById('select-width-fk-2380');
+      const fk2380Val = (this.app.selectedProductVariants['fk-2380'] && this.app.selectedProductVariants['fk-2380'].width) || (fk2380Select ? fk2380Select.value : null);
+      if (fk2380Val) {
+        this.app.onProductVariantChange('fk-2380', 'width', fk2380Val);
+      }
+      const fk2392Select = document.getElementById('select-width-fk-2392');
+      const fk2392Val = (this.app.selectedProductVariants['fk-2392'] && this.app.selectedProductVariants['fk-2392'].width) || (fk2392Select ? fk2392Select.value : null);
+      if (fk2392Val) {
+        this.app.onProductVariantChange('fk-2392', 'width', fk2392Val);
+      }
 
       this.updateDropdownOptionPrices();
 
@@ -181,8 +191,8 @@ export class StorefrontShowcaseUI {
         }
       }
 
-      // 3. Fine Line Tapes (fk-2366 & fk-2352)
-      ['fk-2366', 'fk-2352'].forEach(tapeId => {
+      // 3. Precision Tapes (fk-2366, fk-2352, fk-2380, fk-2392)
+      ['fk-2366', 'fk-2352', 'fk-2380', 'fk-2392'].forEach(tapeId => {
         if (!targetProdId || targetProdId === tapeId) {
           const tapeSelect = document.getElementById(`select-width-${tapeId}`);
           const tapeProd = ECOM_CATALOG.find(p => p.id === tapeId);
@@ -207,7 +217,7 @@ export class StorefrontShowcaseUI {
       const selects = document.querySelectorAll(selector);
       selects.forEach(sel => {
         const prodId = sel.dataset.variantProd;
-        if (['kroma-mirror-chrome-system', 'kroma-dedicated-topcoat-clear', 'fk-2366', 'fk-2352'].includes(prodId) && sel.id.startsWith('select-')) {
+        if (['kroma-mirror-chrome-system', 'kroma-dedicated-topcoat-clear', 'fk-2366', 'fk-2352', 'fk-2380', 'fk-2392'].includes(prodId) && sel.id.startsWith('select-')) {
           return;
         }
         const prod = ECOM_CATALOG.find(p => p.id === prodId);
