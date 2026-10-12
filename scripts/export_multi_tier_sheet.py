@@ -180,7 +180,7 @@ def run():
         title = row.get("Title", "").strip()
         vendor = row.get("Vendor", "").strip()
         raw_type = row.get("Type", "").strip()
-        pack = row.get("Option1 Value", "").strip()
+        pack = row.get("Option1 Value", "").strip().replace(" / ", " - ")
         dept, subcat = DEPARTMENT_MAP.get(raw_type, ("General Custom Finishing", raw_type))
 
         retail_str = row.get("Variant Price", "0").strip()

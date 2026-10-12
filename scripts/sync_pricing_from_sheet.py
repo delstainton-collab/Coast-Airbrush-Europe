@@ -148,6 +148,33 @@ def sync(custom_sheet_path=None):
                         new_tags.append(t)
                 row["Tags"] = ", ".join(new_tags)
 
+            # Sanitize Option names (Shopify disallows ' / ' in option names)
+            for opt_name in ["Option1 Name", "Option2 Name", "Option3 Name"]:
+                v = row.get(opt_name, "")
+                if v:
+                    if v.strip() == "Size / Pack":
+                        row[opt_name] = "Size"
+                    elif " / " in v:
+                        row[opt_name] = v.replace(" / ", " ")
+
+            # Sanitize Option values (convert ' / ' to ' - ')
+            for opt_val in ["Option1 Value", "Option2 Value", "Option3 Value"]:
+                v = row.get(opt_val, "")
+                if v and " / " in v:
+                    row[opt_val] = v.replace(" / ", " - ")
+
+            # Sanitize Image Src (Shopify requires absolute http/https URLs or empty)
+            img = row.get("Image Src", "").strip()
+            if img:
+                if img == "Images/Promo Images/Cleaned Skull Image.jpeg":
+                    row["Image Src"] = "https://coastairbrush.eu/assets/images/kroma-skull-mirror.jpg"
+                elif img == "Images/kromaedge/kroma-silver-surfer-front.jpg":
+                    row["Image Src"] = "https://coastairbrush.eu/assets/images/kroma-silver-surfer-front.jpg"
+                elif img.startswith("assets/") or img.startswith("Images/"):
+                    row["Image Src"] = f"https://coastairbrush.eu/{img}"
+                elif not (img.startswith("http://") or img.startswith("https://")):
+                    row["Image Src"] = f"https://coastairbrush.eu/{img.lstrip('/')}"
+
             updated_shopify_rows.append(row)
 
         with open(SHOPIFY_CSV, mode="w", encoding="utf-8", newline="") as f:
